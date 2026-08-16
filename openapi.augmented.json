@@ -1,9 +1,14 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "gumlet-rest-apis",
+    "title": "Gumlet",
     "description": "Gumlet APIs",
     "version": "1.4",
+    "contact": {
+      "name": "Gumlet Support Team",
+      "url": "https://www.gumlet.com/support",
+      "email": "support@gumlet.com"
+    },
     "x-scalar-sdk-installation": [
       {
         "lang": "TypeScript",
