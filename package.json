@@ -1,8 +1,12 @@
 {
   "name": "@gumlet/gumlet-rest",
   "version": "0.1.0",
-  "description": "GumletRestApis TypeScript SDK",
+  "description": "Gumlet APIs",
   "author": "Gumlet Rest Apis",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gumlet/nodejs-sdk.git"
+  },
   "type": "module",
   "sideEffects": false,
   "main": "./dist/cjs/index.js",
