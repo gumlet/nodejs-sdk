@@ -1,0 +1,6990 @@
+{
+  "name": "GumletRestApis",
+  "slug": "gumletRestApis",
+  "generatorVersion": "0.26.0",
+  "servers": [
+    "https://api.gumlet.com/v1"
+  ],
+  "environments": {
+    "production": "https://api.gumlet.com/v1"
+  },
+  "environmentOrder": [
+    "production"
+  ],
+  "auth": [
+    "apiKey"
+  ],
+  "authDetails": [
+    {
+      "kind": "apiKey",
+      "id": "sec0",
+      "in": "header",
+      "paramName": "Authorization"
+    }
+  ],
+  "clientHeaderParams": [],
+  "schemas": [],
+  "resources": [
+    "videoAssets",
+    "videoUsageAnalytics",
+    "multipartUpload",
+    "videoProfiles",
+    "videoPlaylists",
+    "webhookApis",
+    "imageSources",
+    "liveStreamAssets",
+    "videoWorkspaces",
+    "folders",
+    "channelViewers",
+    "dataApi"
+  ],
+  "publicResources": [
+    "videoAssets",
+    "videoUsageAnalytics",
+    "multipartUpload",
+    "videoProfiles",
+    "videoPlaylists",
+    "webhookApis",
+    "imageSources",
+    "liveStreamAssets",
+    "videoWorkspaces",
+    "folders",
+    "channelViewers",
+    "dataApi"
+  ],
+  "operations": [
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "create",
+      "publicOperation": "create",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "input",
+        "collection_id",
+        "profile_id",
+        "format",
+        "tag",
+        "title",
+        "description",
+        "metadata",
+        "width",
+        "height",
+        "resolution",
+        "crop",
+        "pad",
+        "trim",
+        "image_overlay",
+        "text_overlay",
+        "animated_gif",
+        "additional_tracks",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "enable_drm",
+        "call_to_actions",
+        "playlist_id",
+        "folder"
+      ],
+      "publicBodyParams": [
+        "input",
+        "collection_id",
+        "profile_id",
+        "format",
+        "tag",
+        "title",
+        "description",
+        "metadata",
+        "width",
+        "height",
+        "resolution",
+        "crop",
+        "pad",
+        "trim",
+        "image_overlay",
+        "text_overlay",
+        "animated_gif",
+        "additional_tracks",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "enable_drm",
+        "call_to_actions",
+        "playlist_id",
+        "folder"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "input",
+          "required": true
+        },
+        {
+          "name": "collection_id",
+          "required": true
+        },
+        {
+          "name": "profile_id",
+          "required": false
+        },
+        {
+          "name": "format",
+          "required": true
+        },
+        {
+          "name": "tag",
+          "required": false
+        },
+        {
+          "name": "title",
+          "required": false
+        },
+        {
+          "name": "description",
+          "required": false
+        },
+        {
+          "name": "metadata",
+          "required": false
+        },
+        {
+          "name": "width",
+          "required": false
+        },
+        {
+          "name": "height",
+          "required": false
+        },
+        {
+          "name": "resolution",
+          "required": false
+        },
+        {
+          "name": "crop",
+          "required": false
+        },
+        {
+          "name": "pad",
+          "required": false
+        },
+        {
+          "name": "trim",
+          "required": false
+        },
+        {
+          "name": "image_overlay",
+          "required": false
+        },
+        {
+          "name": "text_overlay",
+          "required": false
+        },
+        {
+          "name": "animated_gif",
+          "required": false
+        },
+        {
+          "name": "additional_tracks",
+          "required": false
+        },
+        {
+          "name": "generate_subtitles",
+          "required": false
+        },
+        {
+          "name": "mp4_access",
+          "required": false
+        },
+        {
+          "name": "per_title_encoding",
+          "required": false
+        },
+        {
+          "name": "process_low_resolution_input",
+          "required": false
+        },
+        {
+          "name": "audio_only",
+          "required": false
+        },
+        {
+          "name": "enable_drm",
+          "required": false
+        },
+        {
+          "name": "call_to_actions",
+          "required": false
+        },
+        {
+          "name": "playlist_id",
+          "required": false
+        },
+        {
+          "name": "folder",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetCreateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "upload",
+      "publicOperation": "upload",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/upload",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "collection_id",
+        "format",
+        "profile_id",
+        "tag",
+        "title",
+        "description",
+        "playlist_id",
+        "metadata",
+        "call_to_actions",
+        "width",
+        "height",
+        "enable_drm",
+        "pad",
+        "crop",
+        "image_overlay",
+        "text_overlay",
+        "trim",
+        "animated_gif",
+        "resolution",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "keep_original",
+        "thumbnail",
+        "enable_preview_thumbnails",
+        "workspace_id",
+        "folder"
+      ],
+      "publicBodyParams": [
+        "collection_id",
+        "format",
+        "profile_id",
+        "tag",
+        "title",
+        "description",
+        "playlist_id",
+        "metadata",
+        "call_to_actions",
+        "width",
+        "height",
+        "enable_drm",
+        "pad",
+        "crop",
+        "image_overlay",
+        "text_overlay",
+        "trim",
+        "animated_gif",
+        "resolution",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "keep_original",
+        "thumbnail",
+        "enable_preview_thumbnails",
+        "workspace_id",
+        "folder"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "collection_id",
+          "required": false
+        },
+        {
+          "name": "format",
+          "required": false
+        },
+        {
+          "name": "profile_id",
+          "required": false
+        },
+        {
+          "name": "tag",
+          "required": false
+        },
+        {
+          "name": "title",
+          "required": false
+        },
+        {
+          "name": "description",
+          "required": false
+        },
+        {
+          "name": "playlist_id",
+          "required": false
+        },
+        {
+          "name": "metadata",
+          "required": false
+        },
+        {
+          "name": "call_to_actions",
+          "required": false
+        },
+        {
+          "name": "width",
+          "required": false
+        },
+        {
+          "name": "height",
+          "required": false
+        },
+        {
+          "name": "enable_drm",
+          "required": false
+        },
+        {
+          "name": "pad",
+          "required": false
+        },
+        {
+          "name": "crop",
+          "required": false
+        },
+        {
+          "name": "image_overlay",
+          "required": false
+        },
+        {
+          "name": "text_overlay",
+          "required": false
+        },
+        {
+          "name": "trim",
+          "required": false
+        },
+        {
+          "name": "animated_gif",
+          "required": false
+        },
+        {
+          "name": "resolution",
+          "required": false
+        },
+        {
+          "name": "generate_subtitles",
+          "required": false
+        },
+        {
+          "name": "mp4_access",
+          "required": false
+        },
+        {
+          "name": "per_title_encoding",
+          "required": false
+        },
+        {
+          "name": "process_low_resolution_input",
+          "required": false
+        },
+        {
+          "name": "audio_only",
+          "required": false
+        },
+        {
+          "name": "keep_original",
+          "required": false
+        },
+        {
+          "name": "thumbnail",
+          "required": false
+        },
+        {
+          "name": "enable_preview_thumbnails",
+          "required": false
+        },
+        {
+          "name": "workspace_id",
+          "required": true
+        },
+        {
+          "name": "folder",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetUploadParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "retrieveStatus",
+      "publicOperation": "retrieveStatus",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/assets/{asset_id}",
+      "pathParams": [
+        "asset_id"
+      ],
+      "publicPathParams": [
+        "asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetRetrieveStatusParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "delete",
+      "publicOperation": "delete",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/video/assets/{asset_id}",
+      "pathParams": [
+        "asset_id"
+      ],
+      "publicPathParams": [
+        "asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetDeleteParams"
+      },
+      "response": {
+        "status": "204",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "204",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "update",
+      "publicOperation": "update",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/update",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "asset_id",
+        "title",
+        "description",
+        "tag",
+        "call_to_actions",
+        "metadata",
+        "remove_subtitles",
+        "input"
+      ],
+      "publicBodyParams": [
+        "asset_id",
+        "title",
+        "description",
+        "tag",
+        "call_to_actions",
+        "metadata",
+        "remove_subtitles",
+        "input"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true
+        },
+        {
+          "name": "title",
+          "required": false
+        },
+        {
+          "name": "description",
+          "required": false
+        },
+        {
+          "name": "tag",
+          "required": false
+        },
+        {
+          "name": "call_to_actions",
+          "required": false
+        },
+        {
+          "name": "metadata",
+          "required": false
+        },
+        {
+          "name": "remove_subtitles",
+          "required": false
+        },
+        {
+          "name": "input",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetUpdateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "selectFrom",
+      "publicOperation": "selectFrom",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_id}/thumbnail",
+      "pathParams": [
+        "asset_id"
+      ],
+      "publicPathParams": [
+        "asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "frame_at_second"
+      ],
+      "publicBodyParams": [
+        "frame_at_second"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "frame_at_second",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetSelectFromParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "text/plain",
+        "encoding": "text",
+        "contents": [
+          {
+            "contentType": "text/plain",
+            "encoding": "text"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "selectFromImageFile",
+      "publicOperation": "selectFromImageFile",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_ID}/thumbnail",
+      "pathParams": [
+        "asset_ID"
+      ],
+      "publicPathParams": [
+        "asset_ID"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "asset_ID",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetSelectFromImageFileParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "upload2",
+      "publicOperation": "upload2",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_ID}/subtitle/upload",
+      "pathParams": [
+        "asset_ID"
+      ],
+      "publicPathParams": [
+        "asset_ID"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "language_codes"
+      ],
+      "publicBodyParams": [
+        "language_codes"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "language_codes",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_ID",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetUpload2Params"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "uploadSubtitleCompletion",
+      "publicOperation": "uploadSubtitleCompletion",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_ID}/subtitle/upload/event",
+      "pathParams": [
+        "asset_ID"
+      ],
+      "publicPathParams": [
+        "asset_ID"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "upload_responses"
+      ],
+      "publicBodyParams": [
+        "upload_responses"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "upload_responses",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_ID",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetUploadSubtitleCompletionParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "upload3",
+      "publicOperation": "upload3",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_ID}/audio/upload",
+      "pathParams": [
+        "asset_ID"
+      ],
+      "publicPathParams": [
+        "asset_ID"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "language_codes"
+      ],
+      "publicBodyParams": [
+        "language_codes"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "language_codes",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_ID",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetUpload3Params"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "uploadAudioCompletion",
+      "publicOperation": "uploadAudioCompletion",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_ID}/audio/upload/event",
+      "pathParams": [
+        "asset_ID"
+      ],
+      "publicPathParams": [
+        "asset_ID"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "upload_responses"
+      ],
+      "publicBodyParams": [
+        "upload_responses"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "upload_responses",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_ID",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetUploadAudioCompletionParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "createUpdateChapter",
+      "publicOperation": "createUpdateChapter",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_id}/chapters",
+      "pathParams": [
+        "asset_id"
+      ],
+      "publicPathParams": [
+        "asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "chapters"
+      ],
+      "publicBodyParams": [
+        "chapters"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "chapters",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetCreateUpdateChapterParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "postVideoassetrecover",
+      "publicOperation": "postVideoassetrecover",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/asset/recover",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "asset_id"
+      ],
+      "publicBodyParams": [
+        "asset_id"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetPostVideoassetrecoverParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "listWorkspaceContent",
+      "publicOperation": "listWorkspaceContent",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/workspaces/{workspace_id}/list",
+      "pathParams": [
+        "workspace_id"
+      ],
+      "publicPathParams": [
+        "workspace_id"
+      ],
+      "queryParams": [
+        "type",
+        "parent_id",
+        "title",
+        "status",
+        "tag",
+        "playlist_id",
+        "start_date",
+        "end_date",
+        "min_duration",
+        "max_duration",
+        "sortBy",
+        "orderBy",
+        "searchIndex",
+        "offset",
+        "size"
+      ],
+      "publicQueryParams": [
+        "type",
+        "parent_id",
+        "title",
+        "status",
+        "tag",
+        "playlist_id",
+        "start_date",
+        "end_date",
+        "min_duration",
+        "max_duration",
+        "sortBy",
+        "orderBy",
+        "searchIndex",
+        "offset",
+        "size"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [
+        {
+          "name": "type",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "all"
+        },
+        {
+          "name": "parent_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "title",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "status",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "tag",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "playlist_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "start_date",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "end_date",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "min_duration",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "max_duration",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "sortBy",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "orderBy",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "searchIndex",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "offset",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 0
+        },
+        {
+          "name": "size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetListWorkspaceContentParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "list",
+      "publicOperation": "list",
+      "deprecated": true,
+      "method": "GET",
+      "path": "/video/assets/list/{workspace_id}",
+      "pathParams": [
+        "workspace_id"
+      ],
+      "publicPathParams": [
+        "workspace_id"
+      ],
+      "queryParams": [
+        "status",
+        "tag",
+        "title",
+        "folder",
+        "offset",
+        "size",
+        "playlist_id",
+        "sortBy",
+        "orderBy",
+        "type"
+      ],
+      "publicQueryParams": [
+        "status",
+        "tag",
+        "title",
+        "folder",
+        "offset",
+        "size",
+        "playlist_id",
+        "sortBy",
+        "orderBy",
+        "type"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [
+        {
+          "name": "status",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "tag",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "title",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "folder",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "offset",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "size",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "playlist_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "sortBy",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "createdAt"
+        },
+        {
+          "name": "orderBy",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "desc"
+        },
+        {
+          "name": "type",
+          "required": false,
+          "style": "form",
+          "explode": true
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetListParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoUsageAnalytics",
+      "publicResource": "videoUsageAnalytics",
+      "operation": "create",
+      "publicOperation": "create",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/analytics",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "metrics",
+        "date_range",
+        "filters",
+        "top_assets_count",
+        "top_assets_page"
+      ],
+      "publicBodyParams": [
+        "metrics",
+        "date_range",
+        "filters",
+        "top_assets_count",
+        "top_assets_page"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "metrics",
+          "required": true
+        },
+        {
+          "name": "date_range",
+          "required": true
+        },
+        {
+          "name": "filters",
+          "required": false
+        },
+        {
+          "name": "top_assets_count",
+          "required": false
+        },
+        {
+          "name": "top_assets_page",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoUsageAnalyticCreateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoUsageAnalytics",
+      "publicResource": "videoUsageAnalytics",
+      "operation": "streamingDuration",
+      "publicOperation": "streamingDuration",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/streaming-duration",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [
+        "start_at",
+        "end_at",
+        "collection_id",
+        "page",
+        "page_size"
+      ],
+      "publicQueryParams": [
+        "start_at",
+        "end_at",
+        "collection_id",
+        "page",
+        "page_size"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "start_at",
+          "required": true,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "end_at",
+          "required": true,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "collection_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "page",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "page_size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "1000"
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoUsageAnalyticStreamingDurationParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "multipartUpload",
+      "publicResource": "multipartUpload",
+      "operation": "signPart",
+      "publicOperation": "signPart",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/assets/{asset_id}/multipartupload/{part_number}/sign",
+      "pathParams": [
+        "asset_id",
+        "part_number"
+      ],
+      "publicPathParams": [
+        "asset_id",
+        "part_number"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        },
+        {
+          "name": "part_number",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "MultipartUploadSignPartParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "multipartUpload",
+      "publicResource": "multipartUpload",
+      "operation": "complete",
+      "publicOperation": "complete",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_id}/multipartupload/complete",
+      "pathParams": [
+        "asset_id"
+      ],
+      "publicPathParams": [
+        "asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "parts"
+      ],
+      "publicBodyParams": [
+        "parts"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "parts",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "MultipartUploadCompleteParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoProfiles",
+      "publicResource": "videoProfiles",
+      "operation": "create",
+      "publicOperation": "create",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/profiles",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "name",
+        "format",
+        "width",
+        "height",
+        "resolution",
+        "crop",
+        "pad",
+        "trim",
+        "image_overlay",
+        "text_overlay",
+        "animated_gif",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "enable_drm"
+      ],
+      "publicBodyParams": [
+        "name",
+        "format",
+        "width",
+        "height",
+        "resolution",
+        "crop",
+        "pad",
+        "trim",
+        "image_overlay",
+        "text_overlay",
+        "animated_gif",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "enable_drm"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "name",
+          "required": true
+        },
+        {
+          "name": "format",
+          "required": true
+        },
+        {
+          "name": "width",
+          "required": false
+        },
+        {
+          "name": "height",
+          "required": false
+        },
+        {
+          "name": "resolution",
+          "required": false
+        },
+        {
+          "name": "crop",
+          "required": false
+        },
+        {
+          "name": "pad",
+          "required": false
+        },
+        {
+          "name": "trim",
+          "required": false
+        },
+        {
+          "name": "image_overlay",
+          "required": false
+        },
+        {
+          "name": "text_overlay",
+          "required": false
+        },
+        {
+          "name": "animated_gif",
+          "required": false
+        },
+        {
+          "name": "generate_subtitles",
+          "required": false
+        },
+        {
+          "name": "mp4_access",
+          "required": false
+        },
+        {
+          "name": "per_title_encoding",
+          "required": false
+        },
+        {
+          "name": "process_low_resolution_input",
+          "required": false
+        },
+        {
+          "name": "audio_only",
+          "required": false
+        },
+        {
+          "name": "enable_drm",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoProfileCreateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoProfiles",
+      "publicResource": "videoProfiles",
+      "operation": "list",
+      "publicOperation": "list",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/profiles",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [
+        "offset",
+        "size"
+      ],
+      "publicQueryParams": [
+        "offset",
+        "size"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "offset",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "size",
+          "required": false,
+          "style": "form",
+          "explode": true
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoProfileListParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoProfiles",
+      "publicResource": "videoProfiles",
+      "operation": "update",
+      "publicOperation": "update",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/profiles/{profile_id}",
+      "pathParams": [
+        "profile_id"
+      ],
+      "publicPathParams": [
+        "profile_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "profile_id",
+        "name",
+        "format",
+        "width",
+        "height",
+        "resolution",
+        "crop",
+        "pad",
+        "trim",
+        "image_overlay",
+        "text_overlay",
+        "animated_gif",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "enable_drm"
+      ],
+      "publicBodyParams": [
+        "profile_id",
+        "name",
+        "format",
+        "width",
+        "height",
+        "resolution",
+        "crop",
+        "pad",
+        "trim",
+        "image_overlay",
+        "text_overlay",
+        "animated_gif",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "enable_drm"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "profile_id",
+          "required": true
+        },
+        {
+          "name": "name",
+          "required": false
+        },
+        {
+          "name": "format",
+          "required": false
+        },
+        {
+          "name": "width",
+          "required": false
+        },
+        {
+          "name": "height",
+          "required": false
+        },
+        {
+          "name": "resolution",
+          "required": false
+        },
+        {
+          "name": "crop",
+          "required": false
+        },
+        {
+          "name": "pad",
+          "required": false
+        },
+        {
+          "name": "trim",
+          "required": false
+        },
+        {
+          "name": "image_overlay",
+          "required": false
+        },
+        {
+          "name": "text_overlay",
+          "required": false
+        },
+        {
+          "name": "animated_gif",
+          "required": false
+        },
+        {
+          "name": "generate_subtitles",
+          "required": false
+        },
+        {
+          "name": "mp4_access",
+          "required": false
+        },
+        {
+          "name": "per_title_encoding",
+          "required": false
+        },
+        {
+          "name": "process_low_resolution_input",
+          "required": false
+        },
+        {
+          "name": "audio_only",
+          "required": false
+        },
+        {
+          "name": "enable_drm",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "profile_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoProfileUpdateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "4XX"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "4XX",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoProfiles",
+      "publicResource": "videoProfiles",
+      "operation": "retrieve",
+      "publicOperation": "retrieve",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/profiles/{profile_id}",
+      "pathParams": [
+        "profile_id"
+      ],
+      "publicPathParams": [
+        "profile_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "profile_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoProfileRetrieveParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoProfiles",
+      "publicResource": "videoProfiles",
+      "operation": "delete",
+      "publicOperation": "delete",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/video/profiles/{profile_id}",
+      "pathParams": [
+        "profile_id"
+      ],
+      "publicPathParams": [
+        "profile_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "profile_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoProfileDeleteParams"
+      },
+      "response": {
+        "status": "204",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "204",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoPlaylists",
+      "publicResource": "videoPlaylists",
+      "operation": "create",
+      "publicOperation": "create",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/playlist",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "collection_id",
+        "title",
+        "description"
+      ],
+      "publicBodyParams": [
+        "collection_id",
+        "title",
+        "description"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "collection_id",
+          "required": true
+        },
+        {
+          "name": "title",
+          "required": true
+        },
+        {
+          "name": "description",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoPlaylistCreateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoPlaylists",
+      "publicResource": "videoPlaylists",
+      "operation": "listAll",
+      "publicOperation": "listAll",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/playlist",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [
+        "collection_id"
+      ],
+      "publicQueryParams": [
+        "collection_id"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "collection_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoPlaylistListAllParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoPlaylists",
+      "publicResource": "videoPlaylists",
+      "operation": "createAssetTo",
+      "publicOperation": "createAssetTo",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/playlist/{playlist_id}/asset",
+      "pathParams": [
+        "playlist_id"
+      ],
+      "publicPathParams": [
+        "playlist_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "asset_list"
+      ],
+      "publicBodyParams": [
+        "asset_list"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "asset_list",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "playlist_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoPlaylistCreateAssetToParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoPlaylists",
+      "publicResource": "videoPlaylists",
+      "operation": "deleteAssetFrom",
+      "publicOperation": "deleteAssetFrom",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/video/playlist/{playlist_id}/asset",
+      "pathParams": [
+        "playlist_id"
+      ],
+      "publicPathParams": [
+        "playlist_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "delete_list"
+      ],
+      "publicBodyParams": [
+        "delete_list"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "delete_list",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "playlist_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoPlaylistDeleteAssetFromParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoPlaylists",
+      "publicResource": "videoPlaylists",
+      "operation": "update",
+      "publicOperation": "update",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/playlist/{playlist_id}",
+      "pathParams": [
+        "playlist_id"
+      ],
+      "publicPathParams": [
+        "playlist_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "title",
+        "description",
+        "position",
+        "player_config",
+        "channel_visibility"
+      ],
+      "publicBodyParams": [
+        "title",
+        "description",
+        "position",
+        "player_config",
+        "channel_visibility"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "title",
+          "required": false
+        },
+        {
+          "name": "description",
+          "required": false
+        },
+        {
+          "name": "position",
+          "required": false
+        },
+        {
+          "name": "player_config",
+          "required": false
+        },
+        {
+          "name": "channel_visibility",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "playlist_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoPlaylistUpdateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoPlaylists",
+      "publicResource": "videoPlaylists",
+      "operation": "deleteId",
+      "publicOperation": "deleteId",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/video/playlist/{playlist_id}",
+      "pathParams": [
+        "playlist_id"
+      ],
+      "publicPathParams": [
+        "playlist_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "playlist_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoPlaylistDeleteIdParams"
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoPlaylists",
+      "publicResource": "videoPlaylists",
+      "operation": "listAssets",
+      "publicOperation": "listAssets",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/playlist/{playlist_id}/assets",
+      "pathParams": [
+        "playlist_id"
+      ],
+      "publicPathParams": [
+        "playlist_id"
+      ],
+      "queryParams": [
+        "sort_by",
+        "sort_order",
+        "page_number",
+        "page_size"
+      ],
+      "publicQueryParams": [
+        "sort_by",
+        "sort_order",
+        "page_number",
+        "page_size"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "playlist_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [
+        {
+          "name": "sort_by",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "sort_order",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 1
+        },
+        {
+          "name": "page_number",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 1
+        },
+        {
+          "name": "page_size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "10"
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoPlaylistListAssetsParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoPlaylists",
+      "publicResource": "videoPlaylists",
+      "operation": "reorderAssets2",
+      "publicOperation": "reorderAssets2",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/playlists/{playlist_id}/reorder",
+      "pathParams": [
+        "playlist_id"
+      ],
+      "publicPathParams": [
+        "playlist_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "body"
+      ],
+      "publicBodyParams": [
+        "body"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "body",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "playlist_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoPlaylistReorderAssets2Params"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "404"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "404",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "webhookApis",
+      "publicResource": "webhookApis",
+      "operation": "create",
+      "publicOperation": "create",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/org/webhooks",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "url",
+        "secret_token",
+        "triggers",
+        "sources"
+      ],
+      "publicBodyParams": [
+        "url",
+        "secret_token",
+        "triggers",
+        "sources"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "url",
+          "required": true
+        },
+        {
+          "name": "secret_token",
+          "required": true
+        },
+        {
+          "name": "triggers",
+          "required": true
+        },
+        {
+          "name": "sources",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "WebhookApiCreateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "webhookApis",
+      "publicResource": "webhookApis",
+      "operation": "update",
+      "publicOperation": "update",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/org/webhooks/{webhook_id}",
+      "pathParams": [
+        "webhook_id"
+      ],
+      "publicPathParams": [
+        "webhook_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "url",
+        "secret_token",
+        "triggers",
+        "sources"
+      ],
+      "publicBodyParams": [
+        "url",
+        "secret_token",
+        "triggers",
+        "sources"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "url",
+          "required": false
+        },
+        {
+          "name": "secret_token",
+          "required": false
+        },
+        {
+          "name": "triggers",
+          "required": false
+        },
+        {
+          "name": "sources",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "webhook_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "WebhookApiUpdateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "webhookApis",
+      "publicResource": "webhookApis",
+      "operation": "delete",
+      "publicOperation": "delete",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/org/webhooks/{webhook_id}",
+      "pathParams": [
+        "webhook_id"
+      ],
+      "publicPathParams": [
+        "webhook_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "webhook_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "WebhookApiDeleteParams"
+      },
+      "response": {
+        "status": "204",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "204",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "imageSources",
+      "publicResource": "imageSources",
+      "operation": "create",
+      "publicOperation": "create",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/image/sources",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "namespace",
+        "type",
+        "aws",
+        "proxy",
+        "gcs",
+        "dostorage",
+        "wasabi",
+        "cloudinary",
+        "azure",
+        "linode",
+        "backblaze",
+        "cloudflare"
+      ],
+      "publicBodyParams": [
+        "namespace",
+        "type",
+        "aws",
+        "proxy",
+        "gcs",
+        "dostorage",
+        "wasabi",
+        "cloudinary",
+        "azure",
+        "linode",
+        "backblaze",
+        "cloudflare"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "namespace",
+          "required": true
+        },
+        {
+          "name": "type",
+          "required": true
+        },
+        {
+          "name": "aws",
+          "required": false
+        },
+        {
+          "name": "proxy",
+          "required": false
+        },
+        {
+          "name": "gcs",
+          "required": false
+        },
+        {
+          "name": "dostorage",
+          "required": false
+        },
+        {
+          "name": "wasabi",
+          "required": false
+        },
+        {
+          "name": "cloudinary",
+          "required": false
+        },
+        {
+          "name": "azure",
+          "required": false
+        },
+        {
+          "name": "linode",
+          "required": false
+        },
+        {
+          "name": "backblaze",
+          "required": false
+        },
+        {
+          "name": "cloudflare",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ImageSourceCreateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "imageSources",
+      "publicResource": "imageSources",
+      "operation": "list",
+      "publicOperation": "list",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/image/sources",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "imageSources",
+      "publicResource": "imageSources",
+      "operation": "update",
+      "publicOperation": "update",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/image/sources/{image_source_id}",
+      "pathParams": [
+        "image_source_id"
+      ],
+      "publicPathParams": [
+        "image_source_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "type",
+        "webfolder",
+        "aws",
+        "proxy",
+        "gcs",
+        "dostorage",
+        "wasabi",
+        "linode",
+        "backblaze",
+        "cloudflare",
+        "cloudinary",
+        "azure"
+      ],
+      "publicBodyParams": [
+        "type",
+        "webfolder",
+        "aws",
+        "proxy",
+        "gcs",
+        "dostorage",
+        "wasabi",
+        "linode",
+        "backblaze",
+        "cloudflare",
+        "cloudinary",
+        "azure"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "type",
+          "required": false
+        },
+        {
+          "name": "webfolder",
+          "required": false
+        },
+        {
+          "name": "aws",
+          "required": false
+        },
+        {
+          "name": "proxy",
+          "required": false
+        },
+        {
+          "name": "gcs",
+          "required": false
+        },
+        {
+          "name": "dostorage",
+          "required": false
+        },
+        {
+          "name": "wasabi",
+          "required": false
+        },
+        {
+          "name": "linode",
+          "required": false
+        },
+        {
+          "name": "backblaze",
+          "required": false
+        },
+        {
+          "name": "cloudflare",
+          "required": false
+        },
+        {
+          "name": "cloudinary",
+          "required": false
+        },
+        {
+          "name": "azure",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "image_source_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ImageSourceUpdateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "imageSources",
+      "publicResource": "imageSources",
+      "operation": "delete",
+      "publicOperation": "delete",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/image/sources/{image_source_id}",
+      "pathParams": [
+        "image_source_id"
+      ],
+      "publicPathParams": [
+        "image_source_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "image_source_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ImageSourceDeleteParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "imageSources",
+      "publicResource": "imageSources",
+      "operation": "purgeCache",
+      "publicOperation": "purgeCache",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/purge/{subdomain}",
+      "pathParams": [
+        "subdomain"
+      ],
+      "publicPathParams": [
+        "subdomain"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "paths"
+      ],
+      "publicBodyParams": [
+        "paths"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "paths",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "subdomain",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ImageSourcePurgeCacheParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "imageSources",
+      "publicResource": "imageSources",
+      "operation": "analytics",
+      "publicOperation": "analytics",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/image/analytics",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "metrics",
+        "date_range"
+      ],
+      "publicBodyParams": [
+        "metrics",
+        "date_range"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "metrics",
+          "required": true
+        },
+        {
+          "name": "date_range",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ImageSourceAnalyticsParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "imageSources",
+      "publicResource": "imageSources",
+      "operation": "retrieve",
+      "publicOperation": "retrieve",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/image/sources/{source_id}",
+      "pathParams": [
+        "source_id"
+      ],
+      "publicPathParams": [
+        "source_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "source_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ImageSourceRetrieveParams"
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamAssets",
+      "publicResource": "liveStreamAssets",
+      "operation": "create",
+      "publicOperation": "create",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/live/assets",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "live_source_id",
+        "resolution",
+        "title",
+        "mp4_access",
+        "orientation",
+        "start_at"
+      ],
+      "publicBodyParams": [
+        "live_source_id",
+        "resolution",
+        "title",
+        "mp4_access",
+        "orientation",
+        "start_at"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "live_source_id",
+          "required": true
+        },
+        {
+          "name": "resolution",
+          "required": true
+        },
+        {
+          "name": "title",
+          "required": false
+        },
+        {
+          "name": "mp4_access",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "required": false
+        },
+        {
+          "name": "start_at",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamAssetCreateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamAssets",
+      "publicResource": "liveStreamAssets",
+      "operation": "update",
+      "publicOperation": "update",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/live/assets/update",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "live_asset_id",
+        "title",
+        "start_at"
+      ],
+      "publicBodyParams": [
+        "live_asset_id",
+        "title",
+        "start_at"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "live_asset_id",
+          "required": true
+        },
+        {
+          "name": "title",
+          "required": false
+        },
+        {
+          "name": "start_at",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamAssetUpdateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamAssets",
+      "publicResource": "liveStreamAssets",
+      "operation": "retrieveStatus",
+      "publicOperation": "retrieveStatus",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/live/assets/{live_asset_id}",
+      "pathParams": [
+        "live_asset_id"
+      ],
+      "publicPathParams": [
+        "live_asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "live_asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamAssetRetrieveStatusParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamAssets",
+      "publicResource": "liveStreamAssets",
+      "operation": "delete",
+      "publicOperation": "delete",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/video/live/assets/{live_asset_id}",
+      "pathParams": [
+        "live_asset_id"
+      ],
+      "publicPathParams": [
+        "live_asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "live_asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamAssetDeleteParams"
+      },
+      "response": {
+        "status": "204",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "204",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamAssets",
+      "publicResource": "liveStreamAssets",
+      "operation": "complete",
+      "publicOperation": "complete",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/live/assets/{live_asset_id}/complete",
+      "pathParams": [
+        "live_asset_id"
+      ],
+      "publicPathParams": [
+        "live_asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "live_asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamAssetCompleteParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamAssets",
+      "publicResource": "liveStreamAssets",
+      "operation": "filter",
+      "publicOperation": "filter",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/live/assets/list/{live_source_id}",
+      "pathParams": [
+        "live_source_id"
+      ],
+      "publicPathParams": [
+        "live_source_id"
+      ],
+      "queryParams": [
+        "status",
+        "offset",
+        "size"
+      ],
+      "publicQueryParams": [
+        "status",
+        "offset",
+        "size"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "live_source_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [
+        {
+          "name": "status",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "offset",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "size",
+          "required": false,
+          "style": "form",
+          "explode": true
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamAssetFilterParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamAssets",
+      "publicResource": "liveStreamAssets",
+      "operation": "postVideoliveassetsId",
+      "publicOperation": "postVideoliveassetsId",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/live/assets/{live_asset_id}/start",
+      "pathParams": [
+        "live_asset_id"
+      ],
+      "publicPathParams": [
+        "live_asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "live_asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamAssetPostVideoliveassetsIdParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamAssets",
+      "publicResource": "liveStreamAssets",
+      "operation": "upload",
+      "publicOperation": "upload",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/live/assets/thumbnail/upload",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "live_asset_id",
+        "statuses"
+      ],
+      "publicBodyParams": [
+        "live_asset_id",
+        "statuses"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "live_asset_id",
+          "required": true
+        },
+        {
+          "name": "statuses",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamAssetUploadParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "403",
+          "404"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "403",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "404",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamAssets",
+      "publicResource": "liveStreamAssets",
+      "operation": "listStatusCopy",
+      "publicOperation": "listStatusCopy",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/live/assets/{live_asset_id}/history",
+      "pathParams": [
+        "live_asset_id"
+      ],
+      "publicPathParams": [
+        "live_asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "live_asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamAssetListStatusCopyParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoWorkspaces",
+      "publicResource": "videoWorkspaces",
+      "operation": "list",
+      "publicOperation": "list",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/workspaces",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [
+        "offset",
+        "size"
+      ],
+      "publicQueryParams": [
+        "offset",
+        "size"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "offset",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "0"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "10"
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoWorkspaceListParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoWorkspaces",
+      "publicResource": "videoWorkspaces",
+      "operation": "create",
+      "publicOperation": "create",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/workspaces",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "name",
+        "type",
+        "default_profile_id",
+        "insight_property_id",
+        "video_protection",
+        "aws",
+        "proxy",
+        "gcs",
+        "dostorage",
+        "wasabi",
+        "cloudinary",
+        "azure",
+        "linode",
+        "backblaze",
+        "cloudflare",
+        "zoom"
+      ],
+      "publicBodyParams": [
+        "name",
+        "type",
+        "default_profile_id",
+        "insight_property_id",
+        "video_protection",
+        "aws",
+        "proxy",
+        "gcs",
+        "dostorage",
+        "wasabi",
+        "cloudinary",
+        "azure",
+        "linode",
+        "backblaze",
+        "cloudflare",
+        "zoom"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "name",
+          "required": true
+        },
+        {
+          "name": "type",
+          "required": true
+        },
+        {
+          "name": "default_profile_id",
+          "required": false
+        },
+        {
+          "name": "insight_property_id",
+          "required": false
+        },
+        {
+          "name": "video_protection",
+          "required": false
+        },
+        {
+          "name": "aws",
+          "required": false
+        },
+        {
+          "name": "proxy",
+          "required": false
+        },
+        {
+          "name": "gcs",
+          "required": false
+        },
+        {
+          "name": "dostorage",
+          "required": false
+        },
+        {
+          "name": "wasabi",
+          "required": false
+        },
+        {
+          "name": "cloudinary",
+          "required": false
+        },
+        {
+          "name": "azure",
+          "required": false
+        },
+        {
+          "name": "linode",
+          "required": false
+        },
+        {
+          "name": "backblaze",
+          "required": false
+        },
+        {
+          "name": "cloudflare",
+          "required": false
+        },
+        {
+          "name": "zoom",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoWorkspaceCreateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoWorkspaces",
+      "publicResource": "videoWorkspaces",
+      "operation": "update",
+      "publicOperation": "update",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/workspaces/{workspace_id}",
+      "pathParams": [
+        "workspace_id"
+      ],
+      "publicPathParams": [
+        "workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "name",
+        "default_profile_id",
+        "temp_cname",
+        "insight_property_id",
+        "player_config",
+        "video_protection",
+        "channel_settings",
+        "type",
+        "webfolder",
+        "aws",
+        "proxy",
+        "gcs",
+        "dostorage",
+        "wasabi",
+        "linode",
+        "backblaze",
+        "cloudflare",
+        "cloudinary",
+        "azure",
+        "zoom"
+      ],
+      "publicBodyParams": [
+        "name",
+        "default_profile_id",
+        "temp_cname",
+        "insight_property_id",
+        "player_config",
+        "video_protection",
+        "channel_settings",
+        "type",
+        "webfolder",
+        "aws",
+        "proxy",
+        "gcs",
+        "dostorage",
+        "wasabi",
+        "linode",
+        "backblaze",
+        "cloudflare",
+        "cloudinary",
+        "azure",
+        "zoom"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "name",
+          "required": false
+        },
+        {
+          "name": "default_profile_id",
+          "required": false
+        },
+        {
+          "name": "temp_cname",
+          "required": false
+        },
+        {
+          "name": "insight_property_id",
+          "required": false
+        },
+        {
+          "name": "player_config",
+          "required": false
+        },
+        {
+          "name": "video_protection",
+          "required": false
+        },
+        {
+          "name": "channel_settings",
+          "required": false
+        },
+        {
+          "name": "type",
+          "required": false
+        },
+        {
+          "name": "webfolder",
+          "required": false
+        },
+        {
+          "name": "aws",
+          "required": false
+        },
+        {
+          "name": "proxy",
+          "required": false
+        },
+        {
+          "name": "gcs",
+          "required": false
+        },
+        {
+          "name": "dostorage",
+          "required": false
+        },
+        {
+          "name": "wasabi",
+          "required": false
+        },
+        {
+          "name": "linode",
+          "required": false
+        },
+        {
+          "name": "backblaze",
+          "required": false
+        },
+        {
+          "name": "cloudflare",
+          "required": false
+        },
+        {
+          "name": "cloudinary",
+          "required": false
+        },
+        {
+          "name": "azure",
+          "required": false
+        },
+        {
+          "name": "zoom",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoWorkspaceUpdateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoWorkspaces",
+      "publicResource": "videoWorkspaces",
+      "operation": "retrieve",
+      "publicOperation": "retrieve",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/workspaces/{workspace_id}",
+      "pathParams": [
+        "workspace_id"
+      ],
+      "publicPathParams": [
+        "workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoWorkspaceRetrieveParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoWorkspaces",
+      "publicResource": "videoWorkspaces",
+      "operation": "delete",
+      "publicOperation": "delete",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/video/workspaces/{workspace_id}",
+      "pathParams": [
+        "workspace_id"
+      ],
+      "publicPathParams": [
+        "workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoWorkspaceDeleteParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "folders",
+      "publicResource": "folders",
+      "operation": "create1",
+      "publicOperation": "create1",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/workspaces/{workspace_id}/folders",
+      "pathParams": [
+        "workspace_id"
+      ],
+      "publicPathParams": [
+        "workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "name",
+        "parent_id"
+      ],
+      "publicBodyParams": [
+        "name",
+        "parent_id"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "name",
+          "required": true
+        },
+        {
+          "name": "parent_id",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "FolderCreate1Params"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "folders",
+      "publicResource": "folders",
+      "operation": "list",
+      "publicOperation": "list",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/workspaces/{workspace_id}/folders",
+      "pathParams": [
+        "workspace_id"
+      ],
+      "publicPathParams": [
+        "workspace_id"
+      ],
+      "queryParams": [
+        "parent_id"
+      ],
+      "publicQueryParams": [
+        "parent_id"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [
+        {
+          "name": "parent_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "FolderListParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "folders",
+      "publicResource": "folders",
+      "operation": "retrieve",
+      "publicOperation": "retrieve",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/workspaces/{workspace_id}/folders/{folder_id}",
+      "pathParams": [
+        "workspace_id",
+        "folder_id"
+      ],
+      "publicPathParams": [
+        "workspace_id",
+        "folder_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        },
+        {
+          "name": "folder_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "FolderRetrieveParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "404"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "404",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "folders",
+      "publicResource": "folders",
+      "operation": "update",
+      "publicOperation": "update",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/workspaces/{workspace_id}/folders/{folder_id}",
+      "pathParams": [
+        "workspace_id",
+        "folder_id"
+      ],
+      "publicPathParams": [
+        "workspace_id",
+        "folder_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "body"
+      ],
+      "publicBodyParams": [
+        "body"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "body",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        },
+        {
+          "name": "folder_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "FolderUpdateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "404"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "404",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "folders",
+      "publicResource": "folders",
+      "operation": "delete",
+      "publicOperation": "delete",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/video/workspaces/{workspace_id}/folders/{folder_id}",
+      "pathParams": [
+        "workspace_id",
+        "folder_id"
+      ],
+      "publicPathParams": [
+        "workspace_id",
+        "folder_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        },
+        {
+          "name": "folder_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "FolderDeleteParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "404"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "404",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "folders",
+      "publicResource": "folders",
+      "operation": "deleteAssetsFrom",
+      "publicOperation": "deleteAssetsFrom",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/workspaces/{workspace_id}/remove-assets-from-folder",
+      "pathParams": [
+        "workspace_id"
+      ],
+      "publicPathParams": [
+        "workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "asset_ids"
+      ],
+      "publicBodyParams": [
+        "asset_ids"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "asset_ids",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "FolderDeleteAssetsFromParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "channelViewers",
+      "publicResource": "channelViewers",
+      "operation": "invite",
+      "publicOperation": "invite",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/channel/{video_workspace_id}/viewers/invite",
+      "pathParams": [
+        "video_workspace_id"
+      ],
+      "publicPathParams": [
+        "video_workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "users"
+      ],
+      "publicBodyParams": [
+        "users"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "users",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "video_workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ChannelViewerInviteParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": true,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "channelViewers",
+      "publicResource": "channelViewers",
+      "operation": "delete",
+      "publicOperation": "delete",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/channel/{video_workspace_id}/viewers/remove",
+      "pathParams": [
+        "video_workspace_id"
+      ],
+      "publicPathParams": [
+        "video_workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "emails"
+      ],
+      "publicBodyParams": [
+        "emails"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "emails",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "video_workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ChannelViewerDeleteParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": true,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "channelViewers",
+      "publicResource": "channelViewers",
+      "operation": "inviteCsv",
+      "publicOperation": "inviteCsv",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/channel/{video_workspace_id}/viewers/invite/csv",
+      "pathParams": [
+        "video_workspace_id"
+      ],
+      "publicPathParams": [
+        "video_workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "viewers_csv"
+      ],
+      "publicBodyParams": [
+        "viewers_csv"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "viewers_csv",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "video_workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ChannelViewerInviteCsvParams"
+      },
+      "requestBody": {
+        "contentType": "multipart/form-data",
+        "encoding": "multipart",
+        "contents": [
+          {
+            "contentType": "multipart/form-data",
+            "encoding": "multipart"
+          }
+        ],
+        "required": true,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "dataApi",
+      "publicResource": "dataApi",
+      "operation": "insightsChart",
+      "publicOperation": "insightsChart",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/viewer-analytics",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "metrics",
+        "workspace_id",
+        "date_range",
+        "filters",
+        "group_by",
+        "chart_dimension"
+      ],
+      "publicBodyParams": [
+        "metrics",
+        "workspace_id",
+        "date_range",
+        "filters",
+        "group_by",
+        "chart_dimension"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "metrics",
+          "required": true
+        },
+        {
+          "name": "workspace_id",
+          "required": true
+        },
+        {
+          "name": "date_range",
+          "required": true
+        },
+        {
+          "name": "filters",
+          "required": false
+        },
+        {
+          "name": "group_by",
+          "required": false
+        },
+        {
+          "name": "chart_dimension",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "DataApiInsightsChartParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "dataApi",
+      "publicResource": "dataApi",
+      "operation": "insightsAggregated",
+      "publicOperation": "insightsAggregated",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/insights/aggregated-data",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "aggregate",
+        "workspace_id",
+        "timeframe",
+        "filters"
+      ],
+      "publicBodyParams": [
+        "aggregate",
+        "workspace_id",
+        "timeframe",
+        "filters"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "aggregate",
+          "required": true
+        },
+        {
+          "name": "workspace_id",
+          "required": true
+        },
+        {
+          "name": "timeframe",
+          "required": true
+        },
+        {
+          "name": "filters",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "DataApiInsightsAggregatedParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    }
+  ],
+  "webhooks": []
+}
