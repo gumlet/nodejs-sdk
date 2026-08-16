@@ -39,6 +39,7 @@ const client = new GumletRestAPIs({
 const create = await client.videoAssets.create({
   'Request Example': {
     value: {
+      format: 'ABR',
       collection_id: '646df1c9173a4a2fcac180b4',
       input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
       description: 'some description',
@@ -81,6 +82,7 @@ try {
   const create = await client.videoAssets.create({
     'Request Example': {
       value: {
+        format: 'ABR',
         collection_id: '646df1c9173a4a2fcac180b4',
         input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
         description: 'some description',

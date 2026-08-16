@@ -421,6 +421,7 @@
               "examples": {
                 "Request Example": {
                   "value": {
+                    "format": "ABR",
                     "collection_id": "646df1c9173a4a2fcac180b4",
                     "input": "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8",
                     "description": "some description",
@@ -743,7 +744,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import GumletRestAPIs from '@gumlet/gumlet-rest';\n\nconst client = new GumletRestAPIs({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.videoAssets.create({\n  'Request Example': {\n    value: {\n      collection_id: '646df1c9173a4a2fcac180b4',\n      input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',\n      description: 'some description',\n      tag: ['ball'],\n      profile_id: '646df1c9173a4a2fcac180b7',\n      cluster_type: 'prod',\n      playlist_id: '6597acd5ed6f26a9c5ca9633',\n      metadata: { headermeta: 'metavalue' },\n      call_to_actions: [\n        {\n          start_time: '1',\n          end_time: '90',\n          text: 'some test',\n          url: 'https://some-url.com',\n          position_from_top: '11',\n          position_from_right: '23',\n          border_radius: '11',\n          font_color: '#000001',\n          background_color: '#ffffff',\n        },\n      ],\n      folder: '697375fbfa2d1037283140e4',\n    },\n  },\n});\n\nconsole.log(create);"
+            "source": "import GumletRestAPIs from '@gumlet/gumlet-rest';\n\nconst client = new GumletRestAPIs({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.videoAssets.create({\n  'Request Example': {\n    value: {\n      format: 'ABR',\n      collection_id: '646df1c9173a4a2fcac180b4',\n      input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',\n      description: 'some description',\n      tag: ['ball'],\n      profile_id: '646df1c9173a4a2fcac180b7',\n      cluster_type: 'prod',\n      playlist_id: '6597acd5ed6f26a9c5ca9633',\n      metadata: { headermeta: 'metavalue' },\n      call_to_actions: [\n        {\n          start_time: '1',\n          end_time: '90',\n          text: 'some test',\n          url: 'https://some-url.com',\n          position_from_top: '11',\n          position_from_right: '23',\n          border_radius: '11',\n          font_color: '#000001',\n          background_color: '#ffffff',\n        },\n      ],\n      folder: '697375fbfa2d1037283140e4',\n    },\n  },\n});\n\nconsole.log(create);"
           }
         ]
       }
