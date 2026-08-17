@@ -1,6 +1,6 @@
 {
-  "name": "GumletRestApis",
-  "slug": "gumletRestApis",
+  "name": "Gumlet",
+  "slug": "gumlet",
   "generatorVersion": "0.26.0",
   "servers": [
     "https://api.gumlet.com/v1"

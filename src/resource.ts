@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import type { GumletRestAPIs } from './client';
+import type { Gumlet } from './client';
 
 export abstract class APIResource {
-  protected _client: GumletRestAPIs;
+  protected _client: Gumlet;
 
-  constructor(client: GumletRestAPIs) {
+  constructor(client: Gumlet) {
     this._client = client;
   }
 }

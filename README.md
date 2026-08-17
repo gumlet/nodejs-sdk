@@ -1,6 +1,6 @@
-# gumlet-rest-apis
+# Gumlet
 
-This library provides convenient access to the gumlet-rest-apis REST API from TypeScript or JavaScript.
+This library provides convenient access to the Gumlet REST API from TypeScript or JavaScript.
 
 The full API of this library can be found in [api.md](./api.md).
 
@@ -33,9 +33,9 @@ npm install @gumlet/gumlet-rest
 ## Usage
 
 ```ts
-import GumletRestAPIs from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/gumlet-rest';
 
-const client = new GumletRestAPIs({
+const client = new Gumlet({
   sec0: process.env['SEC0'], // defaults to the SEC0 env var
 });
 
@@ -146,9 +146,9 @@ Documented error statuses: `400`, `401`, `403`, `404`, `4XX`.
 Configure the generated client by setting any of these options when you create it.
 
 ```ts
-import GumletRestAPIs from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/gumlet-rest';
 
-const client = new GumletRestAPIs({
+const client = new Gumlet({
   timeout: 60000,
   maxRetries: 2,
   logLevel: 'debug',

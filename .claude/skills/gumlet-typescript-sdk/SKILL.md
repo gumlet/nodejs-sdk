@@ -1,11 +1,11 @@
 ---
-name: gumlet-rest-apis-typescript-sdk
-description: "TypeScript SDK for gumlet-rest-apis API. Use when writing TypeScript code that calls gumlet-rest-apis API with the @gumlet/gumlet-rest package: installing it, constructing and authenticating the client, and calling API operations."
+name: gumlet-typescript-sdk
+description: "TypeScript SDK for Gumlet API. Use when writing TypeScript code that calls Gumlet API with the @gumlet/gumlet-rest package: installing it, constructing and authenticating the client, and calling API operations."
 ---
 
-# gumlet-rest-apis TypeScript SDK
+# Gumlet TypeScript SDK
 
-Generated TypeScript client for gumlet-rest-apis API, published as `@gumlet/gumlet-rest`. Use the generated client instead of hand-writing HTTP requests.
+Generated TypeScript client for Gumlet API, published as `@gumlet/gumlet-rest`. Use the generated client instead of hand-writing HTTP requests.
 
 ## Install
 
@@ -16,9 +16,9 @@ npm install @gumlet/gumlet-rest
 ## Client setup and authentication
 
 ```ts
-import GumletRestAPIs from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/gumlet-rest';
 
-const client = new GumletRestAPIs({
+const client = new Gumlet({
   sec0: process.env['SEC0'], // defaults to the SEC0 env var
 });
 ```
@@ -30,9 +30,9 @@ Provide credentials using the options below. Environment variables are read auto
 ## Calling operations
 
 ```ts
-import GumletRestAPIs from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/gumlet-rest';
 
-const client = new GumletRestAPIs({
+const client = new Gumlet({
   sec0: process.env['SEC0'], // defaults to the SEC0 env var
 });
 

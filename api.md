@@ -1,4 +1,4 @@
-# gumlet-rest-apis TypeScript API
+# Gumlet TypeScript API
 
 Complete reference of every operation, grouped by resource. See [the README](./README.md) for usage and configuration.
 
@@ -87,9 +87,9 @@ Complete reference of every operation, grouped by resource. See [the README](./R
 ## Setup
 
 ```ts
-import GumletRestAPIs from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/gumlet-rest';
 
-const client = new GumletRestAPIs({
+const client = new Gumlet({
   sec0: process.env['SEC0'], // defaults to the SEC0 env var
 });
 ```

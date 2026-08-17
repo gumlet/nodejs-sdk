@@ -2,7 +2,7 @@
   "name": "@gumlet/gumlet-rest",
   "version": "0.1.0",
   "description": "Gumlet APIs",
-  "author": "Gumlet Rest Apis",
+  "author": "Gumlet",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gumlet/nodejs-sdk.git"
