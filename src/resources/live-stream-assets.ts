@@ -125,7 +125,7 @@ export class LiveStreamAssets extends APIResource {
   /**
    * Start a live stream.
    *
-   * @param {string} liveAssetID
+   * @param {string} liveAssetID - List asset id for which the stream needs to start.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    *
    * @example

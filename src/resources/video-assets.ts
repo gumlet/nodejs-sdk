@@ -264,7 +264,7 @@ export class VideoAssets extends APIResource {
   /**
    * This endpoint will create/update video asset chapters.
    *
-   * @param {string} assetID
+   * @param {string} assetID - Gumlet asset ID
    * @param {VideoAssetCreateUpdateChapterParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoAssetCreateUpdateChapterResponse>} 200
@@ -336,7 +336,7 @@ export class VideoAssets extends APIResource {
   /**
    * [Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.
    *
-   * @param {string} workspaceID
+   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {VideoAssetListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoAssetListResponse>} 200

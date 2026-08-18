@@ -49,7 +49,7 @@ export class VideoPlaylists extends APIResource {
   /**
    * This operation adds a single asset or a list of assets to a playlist.
    *
-   * @param {string} playlistID
+   * @param {string} playlistID - Playlist ID in which the asset needs to be added.
    * @param {VideoPlaylistCreateAssetToParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistCreateAssetToResponse>} 200
@@ -78,7 +78,7 @@ export class VideoPlaylists extends APIResource {
   /**
    * Removed an asset or list of assets from a given playlist.
    *
-   * @param {string} playlistID
+   * @param {string} playlistID - Playlist ID that is to be deleted.
    * @param {VideoPlaylistDeleteAssetFromParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistDeleteAssetFromResponse>} 200
@@ -101,7 +101,7 @@ export class VideoPlaylists extends APIResource {
   /**
    * This endpoint allows you to update playlist name, channel visibility, or playlist order on a channel page.
    *
-   * @param {string} playlistID
+   * @param {string} playlistID - ID for the playlist to update.
    * @param {VideoPlaylistUpdateParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistUpdateResponse>} 200
@@ -122,7 +122,7 @@ export class VideoPlaylists extends APIResource {
   /**
    * Deletes this playlist.
    *
-   * @param {string} playlistID
+   * @param {string} playlistID - Playlist ID that is to be deleted.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    *
    * @example
@@ -140,7 +140,7 @@ export class VideoPlaylists extends APIResource {
   /**
    * Get a list of all assets inside playlist. You can choose in which order are assets returned.
    *
-   * @param {string} playlistID
+   * @param {string} playlistID - ID of playlist in which you need to list assets.
    * @param {VideoPlaylistListAssetsParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistListAssetsResponse>} 200

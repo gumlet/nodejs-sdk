@@ -66,7 +66,7 @@ export class ImageSources extends APIResource {
   /**
    * This endpoint removes a image source. All image delivery using this subdomain will be stopped.
    *
-   * @param {string} imageSourceID
+   * @param {string} imageSourceID - Image source ID to delete. You can get this on Gumlet dashboard or in list source API.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<ImageSourceDeleteResponse>} 200
    *
