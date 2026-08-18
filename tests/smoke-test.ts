@@ -450,9 +450,9 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     path: '/image/sources',
     run: async () => {
       const create = await client.imageSources.create({
-        names: 'zoom-collection',
-        type: 'zoom',
-        zoom: { secret: 'yourSecret' },
+        type: 'webfolder',
+        webfolder: { base_url: 'https://www.google.com' },
+        namespace: 'google-demo',
       });
     },
   },
@@ -621,7 +621,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     path: '/video/workspaces',
     run: async () => {
       const create = await client.videoWorkspaces.create({
-        names: 'zoom-workspace',
+        name: 'zoom-workspace',
         type: 'zoom',
         zoom: { secret: 'yourSecret' },
       });

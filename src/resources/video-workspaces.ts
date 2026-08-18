@@ -38,7 +38,7 @@ export class VideoWorkspaces extends APIResource {
    * @example
    * ```ts
    * const create = await client.videoWorkspaces.create({
-   *   names: 'zoom-workspace',
+   *   name: 'zoom-workspace',
    *   type: 'zoom',
    *   zoom: { secret: 'yourSecret' },
    * });
@@ -485,7 +485,7 @@ export interface VideoWorkspaceCreateResponse {
   insight_property_id?: string;
   zoom?: VideoWorkspaceCreateResponse.Zoom;
   embed_details?: VideoWorkspaceCreateResponse.EmbedDetails;
-  folders?: Array<unknown>;
+  folders?: Array<string>;
   channel_settings?: VideoWorkspaceCreateResponse.ChannelSettings;
 }
 

@@ -256,7 +256,36 @@ export interface FolderUpdateParams {
   /**
    * Body param
    */
-  body?: Record<string, unknown>;
+  body?: FolderUpdateParams.Name | FolderUpdateParams.AssetIDs;
+}
+
+export namespace FolderUpdateParams {
+  export interface Name {
+    /**
+     * New folder name.
+     */
+    name: string;
+    /**
+     * New parent folder id. Send `null` to move the folder to the root level.
+     */
+    parent_id?: string | null;
+    /**
+     * Asset ids to move into this folder.
+     */
+    asset_ids?: Array<string>;
+  }
+
+  export interface AssetIDs {
+    asset_ids: Array<string>;
+    /**
+     * New folder name.
+     */
+    name?: string;
+    /**
+     * Parent folder id in which we need to move assets.
+     */
+    parent_id?: string;
+  }
 }
 
 export type FolderUpdateResponse =
@@ -283,7 +312,13 @@ export namespace FolderUpdateResponse {
      * @default 0
      */
     asset_count?: number;
+    /**
+     * ISO Timestamp
+     */
     created_at?: string;
+    /**
+     * ISO Timestamp
+     */
     updated_at?: string;
   }
 

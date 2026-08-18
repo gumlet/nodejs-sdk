@@ -17,9 +17,9 @@ export class ImageSources extends APIResource {
    * @example
    * ```ts
    * const create = await client.imageSources.create({
-   *   names: 'zoom-collection',
-   *   type: 'zoom',
-   *   zoom: { secret: 'yourSecret' },
+   *   type: 'webfolder',
+   *   webfolder: { base_url: 'https://www.google.com' },
+   *   namespace: 'google-demo',
    * });
    * ```
    */
@@ -203,6 +203,7 @@ export interface ImageSourceCreateParams {
    * This is a required field if source type is cloudflare.
    */
   cloudflare?: ImageSourceCreateParams.Cloudflare;
+  webfolder?: ImageSourceCreateParams.Webfolder;
 }
 
 export namespace ImageSourceCreateParams {
@@ -281,160 +282,37 @@ export namespace ImageSourceCreateParams {
     secret: string;
     base_path?: string;
   }
+
+  export interface Webfolder {
+    base_url?: string;
+  }
 }
 
 export interface ImageSourceCreateResponse {
   id?: string;
-  name?: string;
+  namespace?: string;
   type?: string;
+  cdn_type?: string;
+  cdn_cache_time?: number;
+  canonical_url?: boolean;
+  browser_cache_time?: number;
+  is_cloudfront?: boolean;
   created_at?: string;
   updated_at?: string;
-  video_protection?: Record<string, unknown>;
-  player_config?: ImageSourceCreateResponse.PlayerConfig;
-  default_profile_id?: string;
-  insight_property_id?: string;
-  zoom?: ImageSourceCreateResponse.Zoom;
-  embed_details?: ImageSourceCreateResponse.EmbedDetails;
-  folders?: Array<unknown>;
-  channel_settings?: ImageSourceCreateResponse.ChannelSettings;
+  webfolder?: ImageSourceCreateResponse.Webfolder;
+  default_params?: ImageSourceCreateResponse.DefaultParams;
+  subdomain?: string;
+  is_active?: boolean;
 }
 
 export namespace ImageSourceCreateResponse {
-  export interface PlayerConfig {
-    /**
-     * @default true
-     */
-    preload?: boolean;
-    /**
-     * @default true
-     */
-    autoplay?: boolean;
-    /**
-     * @default true
-     */
-    disable_seek?: boolean;
-    /**
-     * @default true
-     */
-    disable_player_controls?: boolean;
-    /**
-     * @default true
-     */
-    powered_by_gumlet_overlay?: boolean;
-    /**
-     * @default true
-     */
-    allow_drm_protected_videos?: boolean;
-    /**
-     * @default true
-     */
-    loop?: boolean;
-    player_color?: string;
-    /**
-     * @default true
-     */
-    include_seo?: boolean;
-    /**
-     * @default true
-     */
-    subtitle_enabled?: boolean;
-    pixel_tags?: Record<string, unknown>;
-    /**
-     * @default 0
-     */
-    logo_width?: number;
-    /**
-     * @default 0
-     */
-    logo_height?: number;
-    /**
-     * @default true
-     */
-    dynamic_watermark?: boolean;
-    /**
-     * @default 0
-     */
-    watermark_font_size?: number;
-    watermark_font_color?: string;
-    watermark_bg_color?: string;
-    /**
-     * @default 0
-     */
-    watermark_interval?: number;
+  export interface Webfolder {
+    base_url?: string;
   }
 
-  export interface Zoom {
-    secret?: string;
-  }
-
-  export interface EmbedDetails {
-    /**
-     * @default true
-     */
-    powered_by_gumlet_overlay?: boolean;
-    /**
-     * @default true
-     */
-    allow_drm_protected_videos?: boolean;
-    /**
-     * @default true
-     */
-    preload?: boolean;
-    /**
-     * @default true
-     */
-    autoplay?: boolean;
-    /**
-     * @default 0
-     */
-    logo_width?: number;
-    /**
-     * @default 0
-     */
-    logo_height?: number;
-    player_color?: string;
-    /**
-     * @default true
-     */
-    is_seo?: boolean;
-    /**
-     * @default true
-     */
-    dynamic_watermark?: boolean;
-    /**
-     * @default 0
-     */
-    watermark_font_size?: number;
-    watermark_font_color?: string;
-    watermark_bg_color?: string;
-    /**
-     * @default 0
-     */
-    watermark_interval?: number;
-    /**
-     * @default true
-     */
-    disable_seek?: boolean;
-    /**
-     * @default true
-     */
-    disable_player_controls?: boolean;
-    /**
-     * @default true
-     */
-    loop?: boolean;
-    /**
-     * @default true
-     */
-    subtitle_enabled?: boolean;
-  }
-
-  export interface ChannelSettings {
-    /**
-     * @default true
-     */
-    active?: boolean;
-    privacy_type?: string;
+  export interface DefaultParams {
+    format?: string;
+    compress?: string;
   }
 }
 

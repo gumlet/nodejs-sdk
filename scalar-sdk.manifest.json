@@ -3792,7 +3792,8 @@
         "azure",
         "linode",
         "backblaze",
-        "cloudflare"
+        "cloudflare",
+        "webfolder"
       ],
       "publicBodyParams": [
         "namespace",
@@ -3806,7 +3807,8 @@
         "azure",
         "linode",
         "backblaze",
-        "cloudflare"
+        "cloudflare",
+        "webfolder"
       ],
       "bodyParamDetails": [
         {
@@ -3855,6 +3857,10 @@
         },
         {
           "name": "cloudflare",
+          "required": false
+        },
+        {
+          "name": "webfolder",
           "required": false
         }
       ],

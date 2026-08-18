@@ -629,9 +629,9 @@ This endpoint allows users to create image source.
 
 ```ts
 const create = await client.imageSources.create({
-  names: 'zoom-collection',
-  type: 'zoom',
-  zoom: { secret: 'yourSecret' },
+  type: 'webfolder',
+  webfolder: { base_url: 'https://www.google.com' },
+  namespace: 'google-demo',
 });
 ```
 
@@ -851,7 +851,7 @@ Video workspaces are top-level entities in Gumlet. You can use them to organize 
 
 ```ts
 const create = await client.videoWorkspaces.create({
-  names: 'zoom-workspace',
+  name: 'zoom-workspace',
   type: 'zoom',
   zoom: { secret: 'yourSecret' },
 });

@@ -7530,17 +7530,31 @@
                         "type": "string"
                       }
                     }
+                  },
+                  "webfolder": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "kt4iq0r4ofkar"
+                    },
+                    "properties": {
+                      "base_url": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "8nxga6djly0mz"
+                        }
+                      }
+                    }
                   }
                 }
               },
               "examples": {
                 "Request Example": {
                   "value": {
-                    "names": "zoom-collection",
-                    "type": "zoom",
-                    "zoom": {
-                      "secret": "yourSecret"
-                    }
+                    "type": "webfolder",
+                    "webfolder": {
+                      "base_url": "https://www.google.com"
+                    },
+                    "namespace": "google-demo"
                   }
                 }
               }
@@ -7555,61 +7569,25 @@
                 "examples": {
                   "Result": {
                     "value": {
-                      "id": "65b01610e99b77f116c0e32b",
-                      "name": "zoom-collection",
-                      "type": "zoom",
-                      "created_at": "2024-01-23T19:40:00.447Z",
-                      "updated_at": "2024-01-23T19:40:00.447Z",
-                      "video_protection": {},
-                      "player_config": {
-                        "preload": true,
-                        "autoplay": false,
-                        "disable_seek": false,
-                        "disable_player_controls": false,
-                        "powered_by_gumlet_overlay": true,
-                        "allow_drm_protected_videos": true,
-                        "loop": false,
-                        "player_color": "#6658ea",
-                        "include_seo": true,
-                        "subtitle_enabled": false,
-                        "pixel_tags": {},
-                        "logo_width": 100,
-                        "logo_height": 100,
-                        "dynamic_watermark": false,
-                        "watermark_font_size": 20,
-                        "watermark_font_color": "#ff0000",
-                        "watermark_bg_color": "transparent",
-                        "watermark_interval": 1000
+                      "id": "6a849ee1ed1e919cbba62a7e",
+                      "namespace": "google-demo",
+                      "type": "webfolder",
+                      "cdn_type": "third_party",
+                      "cdn_cache_time": 8640000,
+                      "canonical_url": true,
+                      "browser_cache_time": 8640000,
+                      "is_cloudfront": false,
+                      "created_at": "2026-08-18T18:05:21.565Z",
+                      "updated_at": "2026-08-18T18:05:21.565Z",
+                      "webfolder": {
+                        "base_url": "https://www.google.com"
                       },
-                      "default_profile_id": "646df1c9173a4a2fcac180b7",
-                      "insight_property_id": "65b01610e99b77f116c0e329",
-                      "zoom": {
-                        "secret": "yourSecret"
+                      "default_params": {
+                        "format": "auto",
+                        "compress": "true"
                       },
-                      "embed_details": {
-                        "powered_by_gumlet_overlay": true,
-                        "allow_drm_protected_videos": true,
-                        "preload": true,
-                        "autoplay": false,
-                        "logo_width": 100,
-                        "logo_height": 100,
-                        "player_color": "#6658ea",
-                        "is_seo": true,
-                        "dynamic_watermark": false,
-                        "watermark_font_size": 20,
-                        "watermark_font_color": "#ff0000",
-                        "watermark_bg_color": "transparent",
-                        "watermark_interval": 1000,
-                        "disable_seek": false,
-                        "disable_player_controls": false,
-                        "loop": false,
-                        "subtitle_enabled": false
-                      },
-                      "folders": [],
-                      "channel_settings": {
-                        "active": false,
-                        "privacy_type": "private"
-                      }
+                      "subdomain": "google-demo.gumlet.io",
+                      "is_active": true
                     }
                   }
                 },
@@ -7617,240 +7595,82 @@
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": "string",
-                      "example": "65b01610e99b77f116c0e32b"
+                      "type": "string"
                     },
-                    "name": {
-                      "type": "string",
-                      "example": "zoom-collection"
+                    "namespace": {
+                      "type": "string"
                     },
                     "type": {
-                      "type": "string",
-                      "example": "zoom"
+                      "type": "string"
+                    },
+                    "cdn_type": {
+                      "type": "string"
+                    },
+                    "cdn_cache_time": {
+                      "type": "integer"
+                    },
+                    "canonical_url": {
+                      "type": "boolean"
+                    },
+                    "browser_cache_time": {
+                      "type": "integer"
+                    },
+                    "is_cloudfront": {
+                      "type": "boolean"
                     },
                     "created_at": {
-                      "type": "string",
-                      "example": "2024-01-23T19:40:00.447Z"
+                      "type": "string"
                     },
                     "updated_at": {
-                      "type": "string",
-                      "example": "2024-01-23T19:40:00.447Z"
+                      "type": "string"
                     },
-                    "video_protection": {
-                      "type": "object",
-                      "properties": {}
-                    },
-                    "player_config": {
+                    "webfolder": {
                       "type": "object",
                       "properties": {
-                        "preload": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "autoplay": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "disable_seek": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "disable_player_controls": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "powered_by_gumlet_overlay": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "allow_drm_protected_videos": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "loop": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "player_color": {
-                          "type": "string",
-                          "example": "#6658ea"
-                        },
-                        "include_seo": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "subtitle_enabled": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "pixel_tags": {
-                          "type": "object",
-                          "properties": {}
-                        },
-                        "logo_width": {
-                          "type": "integer",
-                          "example": 100,
-                          "default": 0
-                        },
-                        "logo_height": {
-                          "type": "integer",
-                          "example": 100,
-                          "default": 0
-                        },
-                        "dynamic_watermark": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "watermark_font_size": {
-                          "type": "integer",
-                          "example": 20,
-                          "default": 0
-                        },
-                        "watermark_font_color": {
-                          "type": "string",
-                          "example": "#ff0000"
-                        },
-                        "watermark_bg_color": {
-                          "type": "string",
-                          "example": "transparent"
-                        },
-                        "watermark_interval": {
-                          "type": "integer",
-                          "example": 1000,
-                          "default": 0
+                        "base_url": {
+                          "type": "string"
                         }
                       }
                     },
-                    "default_profile_id": {
-                      "type": "string",
-                      "example": "646df1c9173a4a2fcac180b7"
-                    },
-                    "insight_property_id": {
-                      "type": "string",
-                      "example": "65b01610e99b77f116c0e329"
-                    },
-                    "zoom": {
+                    "default_params": {
                       "type": "object",
                       "properties": {
-                        "secret": {
-                          "type": "string",
-                          "example": "yourSecret"
+                        "format": {
+                          "type": "string"
+                        },
+                        "compress": {
+                          "type": "string"
                         }
                       }
                     },
-                    "embed_details": {
-                      "type": "object",
-                      "properties": {
-                        "powered_by_gumlet_overlay": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "allow_drm_protected_videos": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "preload": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "autoplay": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "logo_width": {
-                          "type": "integer",
-                          "example": 100,
-                          "default": 0
-                        },
-                        "logo_height": {
-                          "type": "integer",
-                          "example": 100,
-                          "default": 0
-                        },
-                        "player_color": {
-                          "type": "string",
-                          "example": "#6658ea"
-                        },
-                        "is_seo": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "dynamic_watermark": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "watermark_font_size": {
-                          "type": "integer",
-                          "example": 20,
-                          "default": 0
-                        },
-                        "watermark_font_color": {
-                          "type": "string",
-                          "example": "#ff0000"
-                        },
-                        "watermark_bg_color": {
-                          "type": "string",
-                          "example": "transparent"
-                        },
-                        "watermark_interval": {
-                          "type": "integer",
-                          "example": 1000,
-                          "default": 0
-                        },
-                        "disable_seek": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "disable_player_controls": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "loop": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "subtitle_enabled": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        }
-                      }
+                    "subdomain": {
+                      "type": "string"
                     },
-                    "folders": {
-                      "type": "array"
-                    },
-                    "channel_settings": {
-                      "type": "object",
-                      "properties": {
-                        "active": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "privacy_type": {
-                          "type": "string",
-                          "example": "private"
-                        }
-                      }
+                    "is_active": {
+                      "type": "boolean"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "id": "6a849ee1ed1e919cbba62a7e",
+                      "namespace": "google-demo",
+                      "type": "webfolder",
+                      "cdn_type": "third_party",
+                      "cdn_cache_time": 8640000,
+                      "canonical_url": true,
+                      "browser_cache_time": 8640000,
+                      "is_cloudfront": false,
+                      "created_at": "2026-08-18T18:05:21.565Z",
+                      "updated_at": "2026-08-18T18:05:21.565Z",
+                      "webfolder": {
+                        "base_url": "https://www.google.com"
+                      },
+                      "default_params": {
+                        "format": "auto",
+                        "compress": "true"
+                      },
+                      "subdomain": "google-demo.gumlet.io",
+                      "is_active": true
                     }
                   }
                 }
@@ -7906,7 +7726,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.imageSources.create({\n  names: 'zoom-collection',\n  type: 'zoom',\n  zoom: { secret: 'yourSecret' },\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.imageSources.create({\n  type: 'webfolder',\n  webfolder: { base_url: 'https://www.google.com' },\n  namespace: 'google-demo',\n});\n\nconsole.log(create);"
           }
         ]
       },
@@ -11818,7 +11638,7 @@
               "examples": {
                 "Request Example": {
                   "value": {
-                    "names": "zoom-workspace",
+                    "name": "zoom-workspace",
                     "type": "zoom",
                     "zoom": {
                       "secret": "yourSecret"
@@ -11919,8 +11739,7 @@
                       "example": "2024-01-23T19:40:00.447Z"
                     },
                     "video_protection": {
-                      "type": "object",
-                      "properties": {}
+                      "type": "object"
                     },
                     "player_config": {
                       "type": "object",
@@ -11975,8 +11794,7 @@
                           "default": true
                         },
                         "pixel_tags": {
-                          "type": "object",
-                          "properties": {}
+                          "type": "object"
                         },
                         "logo_width": {
                           "type": "integer",
@@ -12118,7 +11936,13 @@
                       }
                     },
                     "folders": {
-                      "type": "array"
+                      "type": "array",
+                      "items": {
+                        "x-stoplight": {
+                          "id": "mju7qgwlj4vva"
+                        },
+                        "type": "string"
+                      }
                     },
                     "channel_settings": {
                       "type": "object",
@@ -12188,7 +12012,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.videoWorkspaces.create({\n  names: 'zoom-workspace',\n  type: 'zoom',\n  zoom: { secret: 'yourSecret' },\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.videoWorkspaces.create({\n  name: 'zoom-workspace',\n  type: 'zoom',\n  zoom: { secret: 'yourSecret' },\n});\n\nconsole.log(create);"
           }
         ]
       }
@@ -13819,7 +13643,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
                 "properties": {
                   "name": {
                     "type": "string",
@@ -13843,24 +13666,49 @@
                 "anyOf": [
                   {
                     "required": [
-                      "asset_ids"
-                    ]
+                      "name"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "8yul7zan5b9ep"
+                        },
+                        "description": "New folder name."
+                      }
+                    }
                   },
                   {
-                    "anyOf": [
-                      {
-                        "required": [
-                          "name"
-                        ]
+                    "x-stoplight": {
+                      "id": "nr3ph8exc9gxm"
+                    },
+                    "required": [
+                      "asset_ids"
+                    ],
+                    "properties": {
+                      "asset_ids": {
+                        "type": "array",
+                        "x-stoplight": {
+                          "id": "2hi4gzgr1hjay"
+                        },
+                        "items": {
+                          "x-stoplight": {
+                            "id": "n7gg6x276zt4o"
+                          },
+                          "type": "string"
+                        }
                       },
-                      {
-                        "required": [
-                          "parent_id"
-                        ]
+                      "parent_id": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "gfyfxz9wbv934"
+                        },
+                        "description": "Parent folder id in which we need to move assets."
                       }
-                    ]
+                    }
                   }
-                ]
+                ],
+                "type": "object"
               },
               "examples": {
                 "Rename Example": {
@@ -13888,17 +13736,17 @@
                 "examples": {
                   "Folder Updated": {
                     "value": {
-                      "id": "67e4f01d403562dbea6542d4",
-                      "name": "Course Assets Updated",
-                      "video_source_id": "67e4ece9403562dbea65425f",
+                      "id": "6975a8a1c2fb61ce19eabcd7",
+                      "name": "Folder 1234",
+                      "video_source_id": "5f553b6cec202a5b44e3dd69",
                       "parent_id": null,
                       "path": [],
                       "path_names": [],
                       "depth": 0,
-                      "subdirectory_count": 2,
-                      "asset_count": 12,
-                      "created_at": "2026-03-18T10:00:00.000Z",
-                      "updated_at": "2026-03-18T10:20:00.000Z"
+                      "subdirectory_count": 0,
+                      "asset_count": 0,
+                      "created_at": "2026-01-25T05:22:41.527Z",
+                      "updated_at": "2026-08-18T18:18:58.193Z"
                     }
                   },
                   "Assets Moved": {
@@ -13909,9 +13757,8 @@
                   }
                 },
                 "schema": {
-                  "oneOf": [
+                  "anyOf": [
                     {
-                      "type": "object",
                       "properties": {
                         "id": {
                           "type": "string",
@@ -13963,16 +13810,17 @@
                         },
                         "created_at": {
                           "type": "string",
-                          "example": "2026-03-18T10:00:00.000Z"
+                          "example": "2026-03-18T10:00:00.000Z",
+                          "description": "ISO Timestamp"
                         },
                         "updated_at": {
                           "type": "string",
-                          "example": "2026-03-18T10:15:00.000Z"
+                          "example": "2026-03-18T10:15:00.000Z",
+                          "description": "ISO Timestamp"
                         }
                       }
                     },
                     {
-                      "type": "object",
                       "properties": {
                         "message": {
                           "type": "string",
@@ -13985,7 +13833,8 @@
                         }
                       }
                     }
-                  ]
+                  ],
+                  "type": "object"
                 }
               }
             }
