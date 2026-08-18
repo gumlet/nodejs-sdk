@@ -1718,7 +1718,7 @@
           "required": false,
           "style": "form",
           "explode": true,
-          "defaultValue": "createdAt"
+          "defaultValue": "created_at"
         },
         {
           "name": "orderBy",
@@ -4379,47 +4379,6 @@
           ]
         }
       ],
-      "responseLinks": [],
-      "transport": "http"
-    },
-    {
-      "resource": "imageSources",
-      "publicResource": "imageSources",
-      "operation": "retrieve",
-      "publicOperation": "retrieve",
-      "deprecated": false,
-      "method": "GET",
-      "path": "/image/sources/{source_id}",
-      "pathParams": [
-        "source_id"
-      ],
-      "publicPathParams": [
-        "source_id"
-      ],
-      "queryParams": [],
-      "publicQueryParams": [],
-      "headerParams": [],
-      "publicHeaderParams": [],
-      "bodyParams": [],
-      "publicBodyParams": [],
-      "bodyParamDetails": [],
-      "pathParamDetails": [
-        {
-          "name": "source_id",
-          "required": true,
-          "style": "simple",
-          "explode": false
-        }
-      ],
-      "queryParamDetails": [],
-      "headerParamDetails": [],
-      "cookieParams": [],
-      "publicCookieParams": [],
-      "cookieParamDetails": [],
-      "paramsModel": {
-        "publicName": "ImageSourceRetrieveParams"
-      },
-      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     },

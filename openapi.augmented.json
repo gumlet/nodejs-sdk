@@ -8229,6 +8229,29 @@
       }
     },
     "/image/sources/{image_source_id}": {
+      "get": {
+        "summary": "Get Source",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "image_source_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "get_image-sources-source-id",
+        "tags": [
+          "Image Sources"
+        ]
+      },
       "post": {
         "summary": "Update Source",
         "description": "This endpoint allows users to update image source that has previously been created.",
@@ -14714,38 +14737,6 @@
         ]
       }
     },
-    "/image/sources/{source_id}": {
-      "get": {
-        "summary": "Get Source",
-        "description": "",
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "parameters": [
-          {
-            "in": "path",
-            "name": "source_id",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "operationId": "get_image-sources-source-id",
-        "tags": [
-          "Image Sources"
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "TypeScript",
-            "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.imageSources.retrieve('sourceId');"
-          }
-        ]
-      }
-    },
     "/video/assets/{asset_ID}/audio/upload-1": {},
     "/channel/{video_workspace_id}/viewers/invite": {
       "post": {
@@ -15214,7 +15205,7 @@
                 "uploaded_at",
                 "created_at"
               ],
-              "default": "createdAt"
+              "default": "created_at"
             }
           },
           {
@@ -15254,7 +15245,105 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"all_assets\": [\n    {\n      \"asset_id\": \"6192269e0822a81d955d1a4b\",\n      \"progress\": 0,\n      \"created_at\": 1636968094594,\n      \"status\": \"optimizing\",\n      \"tag\": \"\",\n      \"source_id\": \"5f462c1561cf8a766464ffc4\",\n      \"input\": {\n        \"transformations\": {\n          \"resolution\": \"240p,360p\",\n          \"format\": \"hls\",\n          \"audio_codec\": [\n            \"aac\"\n          ],\n          \"video_codec\": [\n            \"libx264\"\n          ],\n          \"thumbnail\": [\n            \"auto\"\n          ],\n          \"thumbnail_format\": \"png\",\n          \"mp4_access\": false,\n          \"audio_only\": false,\n          \"keep_original\": true,\n          \"per_title_encoding\": true,\n          \"process_low_resolution_input\": false\n        },\n        \"source_url\": \"https://gumlet.sgp1.digitaloceanspaces.com/video/BigBuckBunny.mp4\",\n        \"size\": 158008374,\n        \"duration\": 596.473333,\n        \"aspect_ratio\": \"16:9\",\n        \"fps\": 24,\n        \"width\": 1280,\n        \"height\": 720,\n        \"additional_tracks\": [\n          {\n        \t\t\"url\":\"https://gumlet.sgp1.digitaloceanspaces.com/video/BigBuckBunny.aac\",\n        \t\t\"type\": \"audio\",\n        \t\t\"language_code\": \"en\",\n        \t\t\"name\": \"English\"\n      \t\t}\n        ]\n      },\n      \"output\": {\n        \"format\": \"hls\",\n        \"status_url\": \"https://api.gumlet.com/v1/video/assets/6192269e0822a81d955d1a4b\",\n        \"playback_url\": \"https://video.gumlet.io/5f462c1561cf8a766464ffc4/6192269e0822a81d955d1a4b/1.m3u8\",\n        \"thumbnail_url\": [\n          \"https://video.gumlet.io/5f462c1561cf8a766464ffc4/6192269e0822a81d955d1a4b/thumbnail-1-0.png\"\n        ]\n      }\n    }\n  ],\n  \"total_asset_count\": 2159,\n  \"current_offset\": 1,\n  \"distinct_tags\": [\n    \"\",\n    \"Gumlet\",\n    \"aasas\",\n    \"asasaasas\",\n    \"asasas\",\n    \"asasasasa\",\n    \"asasass\",\n    \"asasdfdfdd\",\n    \"asqs\",\n    \"dsddsd\",\n    \"dualcodectest-2\",\n    \"dualcodectrst\",\n    \"fallbacktest\",\n    \"filtertest\",\n    \"hlstest\",\n    \"josh\",\n    \"josh-2\",\n    \"lilo\",\n    \"newCode\",\n    \"newDashboard\",\n    \"newTest\",\n    \"newtest\",\n    \"rewew\",\n    \"sdsdsdsd\",\n    \"tag-1\",\n    \"test\",\n    \"testDASH\",\n    \"testVideoPad\",\n    \"test_bug\",\n    \"test_dash\",\n    \"testdualCodecsPatch\",\n    \"testgpusyash\",\n    \"testmp4\",\n    \"version_1\",\n    \"version_2\",\n    \"version_3\",\n    \"version_4\",\n    \"version_5\",\n    \"webhook\"\n  ]\n}"
+                    "value": {
+                      "all_assets": [
+                        {
+                          "asset_id": "6192269e0822a81d955d1a4b",
+                          "progress": 0,
+                          "created_at": 1636968094594,
+                          "status": "optimizing",
+                          "tag": "",
+                          "source_id": "5f462c1561cf8a766464ffc4",
+                          "input": {
+                            "transformations": {
+                              "resolution": "240p,360p",
+                              "format": "hls",
+                              "audio_codec": [
+                                "aac"
+                              ],
+                              "video_codec": [
+                                "libx264"
+                              ],
+                              "thumbnail": [
+                                "auto"
+                              ],
+                              "thumbnail_format": "png",
+                              "mp4_access": false,
+                              "audio_only": false,
+                              "keep_original": true,
+                              "per_title_encoding": true,
+                              "process_low_resolution_input": false
+                            },
+                            "source_url": "https://gumlet.sgp1.digitaloceanspaces.com/video/BigBuckBunny.mp4",
+                            "size": 158008374,
+                            "duration": 596.473333,
+                            "aspect_ratio": "16:9",
+                            "fps": 24,
+                            "width": 1280,
+                            "height": 720,
+                            "additional_tracks": [
+                              {
+                                "url": "https://gumlet.sgp1.digitaloceanspaces.com/video/BigBuckBunny.aac",
+                                "type": "audio",
+                                "language_code": "en",
+                                "name": "English"
+                              }
+                            ]
+                          },
+                          "output": {
+                            "format": "hls",
+                            "status_url": "https://api.gumlet.com/v1/video/assets/6192269e0822a81d955d1a4b",
+                            "playback_url": "https://video.gumlet.io/5f462c1561cf8a766464ffc4/6192269e0822a81d955d1a4b/1.m3u8",
+                            "thumbnail_url": [
+                              "https://video.gumlet.io/5f462c1561cf8a766464ffc4/6192269e0822a81d955d1a4b/thumbnail-1-0.png"
+                            ]
+                          }
+                        }
+                      ],
+                      "total_asset_count": 2159,
+                      "current_offset": 1,
+                      "distinct_tags": [
+                        "",
+                        "Gumlet",
+                        "aasas",
+                        "asasaasas",
+                        "asasas",
+                        "asasasasa",
+                        "asasass",
+                        "asasdfdfdd",
+                        "asqs",
+                        "dsddsd",
+                        "dualcodectest-2",
+                        "dualcodectrst",
+                        "fallbacktest",
+                        "filtertest",
+                        "hlstest",
+                        "josh",
+                        "josh-2",
+                        "lilo",
+                        "newCode",
+                        "newDashboard",
+                        "newTest",
+                        "newtest",
+                        "rewew",
+                        "sdsdsdsd",
+                        "tag-1",
+                        "test",
+                        "testDASH",
+                        "testVideoPad",
+                        "test_bug",
+                        "test_dash",
+                        "testdualCodecsPatch",
+                        "testgpusyash",
+                        "testmp4",
+                        "version_1",
+                        "version_2",
+                        "version_3",
+                        "version_4",
+                        "version_5",
+                        "webhook"
+                      ]
+                    }
                   }
                 },
                 "schema": {
@@ -15544,7 +15633,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst list = await client.videoAssets.list('workspaceId', {\n  sortBy: 'createdAt',\n  orderBy: 'desc',\n});\n\nconsole.log(list);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst list = await client.videoAssets.list('workspaceId', {\n  sortBy: 'created_at',\n  orderBy: 'desc',\n});\n\nconsole.log(list);"
           }
         ]
       }

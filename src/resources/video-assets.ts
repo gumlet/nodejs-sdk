@@ -342,7 +342,7 @@ export class VideoAssets extends APIResource {
    * @example
    * ```ts
    * const list = await client.videoAssets.list('workspaceId', {
-   *   sortBy: 'createdAt',
+   *   sortBy: 'created_at',
    *   orderBy: 'desc',
    * });
    * ```
@@ -1822,7 +1822,7 @@ export interface VideoAssetListParams {
   playlist_id?: string;
   /**
    * assets will be sorted based on the provided field.
-   * @default createdAt
+   * @default created_at
    */
   sortBy?: 'title' | 'duration' | 'uploaded_at' | 'created_at';
   /**

@@ -125,24 +125,6 @@ export class ImageSources extends APIResource {
   ): APIPromise<ImageSourceAnalyticsResponse> {
     return this._client.post('/image/analytics', { body, ...options });
   }
-
-  /**
-   * Get Source
-   *
-   * @param {string} sourceID
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   *
-   * @example
-   * ```ts
-   * await client.imageSources.retrieve('sourceId');
-   * ```
-   */
-  retrieve(sourceID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.get(__scalarPath`/image/sources/${sourceID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
-  }
 }
 
 export interface ImageSourceCreateParams {

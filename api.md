@@ -51,7 +51,6 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Delete Source](#delete-source)
   - [Purge Cache](#purge-cache)
   - [Image Analytics](#image-analytics)
-  - [Get Source](#get-source)
 - [`LiveStreamAssets`](#livestreamassets)
   - [Create Live Asset](#create-live-asset)
   - [Update Live Asset](#update-live-asset)
@@ -324,7 +323,7 @@ const listWorkspaceContent = await client.videoAssets.listWorkspaceContent('work
 
 ```ts
 const list = await client.videoAssets.list('workspaceId', {
-  sortBy: 'createdAt',
+  sortBy: 'created_at',
   orderBy: 'desc',
 });
 ```
@@ -698,12 +697,6 @@ const analytics = await client.imageSources.analytics({
   metrics: [],
   date_range: {},
 });
-```
-
-### Get Source
-
-```ts
-await client.imageSources.retrieve('sourceId');
 ```
 
 ## `LiveStreamAssets`

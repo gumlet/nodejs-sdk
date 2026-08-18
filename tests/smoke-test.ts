@@ -213,7 +213,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     path: '/video/assets/list/{workspace_id}',
     run: async () => {
       const list = await client.videoAssets.list('workspaceId', {
-        sortBy: 'createdAt',
+        sortBy: 'created_at',
         orderBy: 'desc',
       });
     },
@@ -502,15 +502,6 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
         metrics: [],
         date_range: {},
       });
-    },
-  },
-
-  {
-    operation: 'retrieve',
-    method: 'GET',
-    path: '/image/sources/{source_id}',
-    run: async () => {
-      await client.imageSources.retrieve('sourceId');
     },
   },
 
