@@ -31,7 +31,7 @@ export class ImageSources extends APIResource {
    * This endpoint list image sources which are assigned to the user or token.
    *
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<ImageSourceListResponse>} 200
+   * @returns {APIPromise<ImageSourceListResponse>} List all image sources
    *
    * @example
    * ```ts
