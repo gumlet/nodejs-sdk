@@ -10535,11 +10535,6 @@
             }
           }
         },
-        "security": [
-          {
-            "sec0": []
-          }
-        ],
         "x-internal": false,
         "tags": [
           "Video Assets"
