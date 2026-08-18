@@ -7753,7 +7753,7 @@
         "operationId": "list-sources",
         "responses": {
           "200": {
-            "description": "200",
+            "description": "List all image sources",
             "content": {
               "application/json": {
                 "examples": {
@@ -8216,7 +8216,7 @@
             }
           },
           "400": {
-            "description": "400",
+            "description": "400 Response code",
             "content": {
               "application/json": {
                 "examples": {
