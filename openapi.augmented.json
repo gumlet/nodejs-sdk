@@ -6,7 +6,7 @@
     "version": "1.4",
     "contact": {
       "name": "Gumlet Support Team",
-      "url": "https://www.gumlet.com/support",
+      "url": "https://www.gumlet.com/support/",
       "email": "support@gumlet.com"
     },
     "summary": "Gumlet REST API",
