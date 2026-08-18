@@ -1,6 +1,6 @@
 {
   "name": "@gumlet/node-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Gumlet REST APIs",
   "author": "Gumlet",
   "repository": {
