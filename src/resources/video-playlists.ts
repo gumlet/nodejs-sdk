@@ -8,7 +8,7 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class VideoPlaylists extends APIResource {
   /**
-   * Create Playlist
+   * Create new playlist inside video wprkspace
    *
    * @param {VideoPlaylistCreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -28,7 +28,7 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Get all playlists
+   * Get all playlists for given workspace
    *
    * @param {VideoPlaylistListAllParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -47,9 +47,9 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Add asset to playlist
+   * This operation adds a single asset or a list of assets to a playlist.
    *
-   * @param {string} playlistID
+   * @param {string} playlistID - Playlist ID in which the asset needs to be added.
    * @param {VideoPlaylistCreateAssetToParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistCreateAssetToResponse>} 200
@@ -59,10 +59,10 @@ export class VideoPlaylists extends APIResource {
    * const createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {
    *   asset_list: [
    *     { asset_id: '6508790283e4d60611846790' },
-   *     { position: '1', asset_id: '650878f883e4d6061184677d' },
+   *     { position: 1, asset_id: '650878f883e4d6061184677d' },
    *     { asset_id: '650878de83e4d6061184676a' },
-   *     { position: '2', asset_id: '650878d883e4d60611846757' },
-   *     { position: '3', asset_id: '65578dd87eebc22dcdd549a2' },
+   *     { position: 2, asset_id: '650878d883e4d60611846757' },
+   *     { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },
    *   ],
    * });
    * ```
@@ -76,9 +76,9 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Remove asset from playlist
+   * Removed an asset or list of assets from a given playlist.
    *
-   * @param {string} playlistID
+   * @param {string} playlistID - Playlist ID that is to be deleted.
    * @param {VideoPlaylistDeleteAssetFromParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistDeleteAssetFromResponse>} 200
@@ -99,9 +99,9 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Update Playlist
+   * This endpoint allows you to update playlist name, channel visibility, or playlist order on a channel page.
    *
-   * @param {string} playlistID
+   * @param {string} playlistID - ID for the playlist to update.
    * @param {VideoPlaylistUpdateParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistUpdateResponse>} 200
@@ -120,7 +120,9 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * @param {string} playlistID
+   * Deletes this playlist.
+   *
+   * @param {string} playlistID - Playlist ID that is to be deleted.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    *
    * @example
@@ -136,9 +138,9 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Get playlist assets
+   * Get a list of all assets inside playlist. You can choose in which order are assets returned.
    *
-   * @param {string} playlistID
+   * @param {string} playlistID - ID of playlist in which you need to list assets.
    * @param {VideoPlaylistListAssetsParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistListAssetsResponse>} 200

@@ -7,7 +7,7 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class WebhookAPIs extends APIResource {
   /**
-   * Create Webhook
+   * Creates a new webhook listener.
    *
    * @param {WebhookAPICreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -28,7 +28,7 @@ export class WebhookAPIs extends APIResource {
   }
 
   /**
-   * Update Webhook
+   * Update a webhook listener.
    *
    * @param {string} webhookID - Unique identifier for the Gumlet Webhook which needs to be updated.
    * @param {WebhookAPIUpdateParams} [body] - The request body to send.
@@ -49,7 +49,7 @@ export class WebhookAPIs extends APIResource {
   }
 
   /**
-   * Delete Webhook
+   * Delete webhook listener endpoint.
    *
    * @param {string} webhookID - Unique identifier for the Gumlet Webhook which needs to be deleted.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.

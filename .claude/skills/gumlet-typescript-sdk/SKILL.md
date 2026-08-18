@@ -19,13 +19,13 @@ npm install @gumlet/gumlet-rest
 import Gumlet from '@gumlet/gumlet-rest';
 
 const client = new Gumlet({
-  sec0: process.env['SEC0'], // defaults to the SEC0 env var
+  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
 });
 ```
 
 Provide credentials using the options below. Environment variables are read automatically when the target runtime supports them:
 
-- `sec0` (env: `SEC0`) — Credential for the sec0 scheme.
+- `apiKey` (env: `GUMLET_API_KEY`) — Credential for the API_KEY scheme.
 
 ## Calling operations
 
@@ -33,37 +33,33 @@ Provide credentials using the options below. Environment variables are read auto
 import Gumlet from '@gumlet/gumlet-rest';
 
 const client = new Gumlet({
-  sec0: process.env['SEC0'], // defaults to the SEC0 env var
+  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
 });
 
 const create = await client.videoAssets.create({
-  'Request Example': {
-    value: {
-      format: 'ABR',
-      collection_id: '646df1c9173a4a2fcac180b4',
-      input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
-      description: 'some description',
-      tag: ['ball'],
-      profile_id: '646df1c9173a4a2fcac180b7',
-      cluster_type: 'prod',
-      playlist_id: '6597acd5ed6f26a9c5ca9633',
-      metadata: { headermeta: 'metavalue' },
-      call_to_actions: [
-        {
-          start_time: '1',
-          end_time: '90',
-          text: 'some test',
-          url: 'https://some-url.com',
-          position_from_top: '11',
-          position_from_right: '23',
-          border_radius: '11',
-          font_color: '#000001',
-          background_color: '#ffffff',
-        },
-      ],
-      folder: '697375fbfa2d1037283140e4',
+  format: 'ABR',
+  collection_id: '646df1c9173a4a2fcac180b4',
+  input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+  description: 'some description',
+  tag: ['ball'],
+  profile_id: '646df1c9173a4a2fcac180b7',
+  cluster_type: 'prod',
+  playlist_id: '6597acd5ed6f26a9c5ca9633',
+  metadata: { headermeta: 'metavalue' },
+  call_to_actions: [
+    {
+      start_time: 1,
+      end_time: 90,
+      text: 'some test',
+      url: 'https://some-url.com',
+      position_from_top: 11,
+      position_from_right: 23,
+      border_radius: '11',
+      font_color: '#000001',
+      background_color: '#ffffff',
     },
-  },
+  ],
+  folder: '697375fbfa2d1037283140e4',
 });
 
 console.log(create);
@@ -80,33 +76,29 @@ import { APIError } from '@gumlet/gumlet-rest';
 
 try {
   const create = await client.videoAssets.create({
-    'Request Example': {
-      value: {
-        format: 'ABR',
-        collection_id: '646df1c9173a4a2fcac180b4',
-        input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
-        description: 'some description',
-        tag: ['ball'],
-        profile_id: '646df1c9173a4a2fcac180b7',
-        cluster_type: 'prod',
-        playlist_id: '6597acd5ed6f26a9c5ca9633',
-        metadata: { headermeta: 'metavalue' },
-        call_to_actions: [
-          {
-            start_time: '1',
-            end_time: '90',
-            text: 'some test',
-            url: 'https://some-url.com',
-            position_from_top: '11',
-            position_from_right: '23',
-            border_radius: '11',
-            font_color: '#000001',
-            background_color: '#ffffff',
-          },
-        ],
-        folder: '697375fbfa2d1037283140e4',
+    format: 'ABR',
+    collection_id: '646df1c9173a4a2fcac180b4',
+    input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+    description: 'some description',
+    tag: ['ball'],
+    profile_id: '646df1c9173a4a2fcac180b7',
+    cluster_type: 'prod',
+    playlist_id: '6597acd5ed6f26a9c5ca9633',
+    metadata: { headermeta: 'metavalue' },
+    call_to_actions: [
+      {
+        start_time: 1,
+        end_time: 90,
+        text: 'some test',
+        url: 'https://some-url.com',
+        position_from_top: 11,
+        position_from_right: 23,
+        border_radius: '11',
+        font_color: '#000001',
+        background_color: '#ffffff',
       },
-    },
+    ],
+    folder: '697375fbfa2d1037283140e4',
   });
 } catch (err) {
   if (err instanceof APIError) {

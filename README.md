@@ -36,37 +36,33 @@ npm install @gumlet/gumlet-rest
 import Gumlet from '@gumlet/gumlet-rest';
 
 const client = new Gumlet({
-  sec0: process.env['SEC0'], // defaults to the SEC0 env var
+  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
 });
 
 const create = await client.videoAssets.create({
-  'Request Example': {
-    value: {
-      format: 'ABR',
-      collection_id: '646df1c9173a4a2fcac180b4',
-      input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
-      description: 'some description',
-      tag: ['ball'],
-      profile_id: '646df1c9173a4a2fcac180b7',
-      cluster_type: 'prod',
-      playlist_id: '6597acd5ed6f26a9c5ca9633',
-      metadata: { headermeta: 'metavalue' },
-      call_to_actions: [
-        {
-          start_time: '1',
-          end_time: '90',
-          text: 'some test',
-          url: 'https://some-url.com',
-          position_from_top: '11',
-          position_from_right: '23',
-          border_radius: '11',
-          font_color: '#000001',
-          background_color: '#ffffff',
-        },
-      ],
-      folder: '697375fbfa2d1037283140e4',
+  format: 'ABR',
+  collection_id: '646df1c9173a4a2fcac180b4',
+  input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+  description: 'some description',
+  tag: ['ball'],
+  profile_id: '646df1c9173a4a2fcac180b7',
+  cluster_type: 'prod',
+  playlist_id: '6597acd5ed6f26a9c5ca9633',
+  metadata: { headermeta: 'metavalue' },
+  call_to_actions: [
+    {
+      start_time: 1,
+      end_time: 90,
+      text: 'some test',
+      url: 'https://some-url.com',
+      position_from_top: 11,
+      position_from_right: 23,
+      border_radius: '11',
+      font_color: '#000001',
+      background_color: '#ffffff',
     },
-  },
+  ],
+  folder: '697375fbfa2d1037283140e4',
 });
 
 console.log(create);
@@ -84,11 +80,11 @@ Pass credentials to the generated client constructor. Environment variables are 
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `sec0` | `string \| provider` | - | Credential for the sec0 scheme. Defaults to SEC0. |
+| `apiKey` | `string \| provider` | - | Credential for the API_KEY scheme. Defaults to GUMLET_API_KEY. |
 
 Declared schemes:
 
-- `sec0` API key in header `Authorization`
+- `API_KEY` bearer token
 
 <br />
 
@@ -101,33 +97,29 @@ import { APIError } from '@gumlet/gumlet-rest';
 
 try {
   const create = await client.videoAssets.create({
-    'Request Example': {
-      value: {
-        format: 'ABR',
-        collection_id: '646df1c9173a4a2fcac180b4',
-        input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
-        description: 'some description',
-        tag: ['ball'],
-        profile_id: '646df1c9173a4a2fcac180b7',
-        cluster_type: 'prod',
-        playlist_id: '6597acd5ed6f26a9c5ca9633',
-        metadata: { headermeta: 'metavalue' },
-        call_to_actions: [
-          {
-            start_time: '1',
-            end_time: '90',
-            text: 'some test',
-            url: 'https://some-url.com',
-            position_from_top: '11',
-            position_from_right: '23',
-            border_radius: '11',
-            font_color: '#000001',
-            background_color: '#ffffff',
-          },
-        ],
-        folder: '697375fbfa2d1037283140e4',
+    format: 'ABR',
+    collection_id: '646df1c9173a4a2fcac180b4',
+    input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+    description: 'some description',
+    tag: ['ball'],
+    profile_id: '646df1c9173a4a2fcac180b7',
+    cluster_type: 'prod',
+    playlist_id: '6597acd5ed6f26a9c5ca9633',
+    metadata: { headermeta: 'metavalue' },
+    call_to_actions: [
+      {
+        start_time: 1,
+        end_time: 90,
+        text: 'some test',
+        url: 'https://some-url.com',
+        position_from_top: 11,
+        position_from_right: 23,
+        border_radius: '11',
+        font_color: '#000001',
+        background_color: '#ffffff',
       },
-    },
+    ],
+    folder: '697375fbfa2d1037283140e4',
   });
 } catch (err) {
   if (err instanceof APIError) {
@@ -157,7 +149,7 @@ const client = new Gumlet({
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `sec0` | `string \| AuthTokenProvider` | `process.env["SEC0"]` | Credential for the sec0 scheme. |
+| `apiKey` | `string \| AuthTokenProvider` | `process.env["GUMLET_API_KEY"]` | Credential for the API_KEY scheme. |
 | `baseURL` | `string \| null` | `process.env["GUMLET_BASE_URL"]` | Override the default API base URL. Pass `null` when selecting a configured environment. |
 | `timeout` | `number` | `60000` | Maximum time in milliseconds to wait for a response before aborting a request. |
 | `maxRetries` | `number` | `2` | Number of retries for temporary failures. |
