@@ -32,6 +32,7 @@ import {
   type VideoAssetRetrieveStatusResponse,
   type VideoAssetUpdateResponse,
   type VideoAssetSelectFromResponse,
+  type VideoAssetSelectFromImageFileResponse,
   type VideoAssetUploadSubtitleCompletionResponse,
   type VideoAssetUploadAudioCompletionResponse,
   type VideoAssetCreateUpdateChapterResponse,
@@ -174,9 +175,9 @@ export type AuthTokenProvider = () => string | Promise<string>;
 
 export interface ClientOptions {
   /**
-   * The API key for header authorization.
+   * The token used for authentication.
    */
-  sec0?: string | AuthTokenProvider | undefined;
+  apiKey?: string | AuthTokenProvider | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -254,7 +255,7 @@ export type GumletOptions = ClientOptions;
  * API Client for interfacing with the Gumlet API.
  */
 export class Gumlet {
-  sec0: string | AuthTokenProvider;
+  apiKey: string | AuthTokenProvider;
 
   baseURL: string;
   maxRetries: number;
@@ -272,7 +273,7 @@ export class Gumlet {
   /**
    * API Client for interfacing with the Gumlet API.
    *
-   * @param {string | AuthTokenProvider | undefined} [opts.sec0=process.env["SEC0"] ?? undefined]
+   * @param {string | AuthTokenProvider | undefined} [opts.apiKey=process.env["API_KEY"] ?? undefined]
    * @param {string} [opts.baseURL=process.env["GUMLET_BASE_URL"] ?? https://api.gumlet.com/v1] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -281,15 +282,19 @@ export class Gumlet {
    * @param {HeadersLike} opts.defaultHeaders - Default headers to include with every request to the API.
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
-  constructor({ baseURL = readEnv('GUMLET_BASE_URL'), sec0 = readEnv('SEC0'), ...opts }: ClientOptions = {}) {
-    if (sec0 === undefined) {
+  constructor({
+    baseURL = readEnv('GUMLET_BASE_URL'),
+    apiKey = readEnv('API_KEY'),
+    ...opts
+  }: ClientOptions = {}) {
+    if (apiKey === undefined) {
       throw new Errors.GumletError(
-        "The SEC0 environment variable is missing or empty; either provide it, or instantiate the Gumlet client with an sec0 option, like new Gumlet({ sec0: 'My Sec0' }).",
+        "The API_KEY environment variable is missing or empty; either provide it, or instantiate the Gumlet client with an apiKey option, like new Gumlet({ apiKey: 'My API Key' }).",
       );
     }
 
     const options: ClientOptions = {
-      sec0,
+      apiKey,
       ...opts,
       baseURL: baseURL || 'https://api.gumlet.com/v1',
     };
@@ -326,7 +331,7 @@ export class Gumlet {
     this._baseURLOverridden = baseURLOverridden;
     this._defaultBaseURL = defaultBaseURL;
 
-    this.sec0 = sec0;
+    this.apiKey = apiKey;
   }
 
   withOptions(options: Partial<ClientOptions>): this {
@@ -339,7 +344,7 @@ export class Gumlet {
       logLevel: this.logLevel,
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
-      sec0: this.sec0,
+      apiKey: this.apiKey,
       ...options,
     });
     return client;
@@ -877,30 +882,30 @@ export class Gumlet {
     throw new Errors.AuthenticationError(
       401,
       undefined,
-      'Could not resolve authentication method. Expected the sec0 to be set. Or for the "Authorization" headers to be explicitly omitted',
+      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted',
       headers,
     );
   }
 
   authHeadersSync(): Record<string, string> {
     const headers: Record<string, string> = {};
-    const sec0 = this.resolveAuthOptionSync('sec0', this.sec0);
-    if (sec0) headers['Authorization'] = sec0;
+    const apiKey = this.resolveAuthOptionSync('apiKey', this.apiKey);
+    if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
     return headers;
   }
 
   webSocketAuthHeaders(): Record<string, string> {
-    const sec0 = this.resolveAuthOptionSync('sec0', this.sec0);
-    if (sec0) return { Authorization: sec0 };
+    const apiKey = this.resolveAuthOptionSync('apiKey', this.apiKey);
+    if (apiKey) return { Authorization: `Bearer ${apiKey}` };
     return {};
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    const sec0 = await this.resolveAuthOption('sec0', this.sec0);
-    if (sec0 == null) {
+    const apiKey = await this.resolveAuthOption('apiKey', this.apiKey);
+    if (apiKey == null) {
       return undefined;
     }
-    return buildHeaders([{ Authorization: sec0 }]);
+    return buildHeaders([{ Authorization: `Bearer ${apiKey}` }]);
   }
 
   private async authQueryAsync(): Promise<Record<string, string>> {
@@ -989,6 +994,7 @@ export declare namespace Gumlet {
     type VideoAssetRetrieveStatusResponse as VideoAssetRetrieveStatusResponse,
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
     type VideoAssetSelectFromResponse as VideoAssetSelectFromResponse,
+    type VideoAssetSelectFromImageFileResponse as VideoAssetSelectFromImageFileResponse,
     type VideoAssetUploadSubtitleCompletionResponse as VideoAssetUploadSubtitleCompletionResponse,
     type VideoAssetUploadAudioCompletionResponse as VideoAssetUploadAudioCompletionResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,

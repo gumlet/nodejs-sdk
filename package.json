@@ -1,7 +1,7 @@
 {
-  "name": "@gumlet/gumlet-rest",
-  "version": "0.2.0",
-  "description": "Gumlet APIs",
+  "name": "@gumlet/node-sdk",
+  "version": "0.3.0",
+  "description": "Gumlet REST APIs",
   "author": "Gumlet",
   "repository": {
     "type": "git",

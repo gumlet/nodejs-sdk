@@ -24,6 +24,7 @@ export type {
   VideoAssetUpdateResponse,
   VideoAssetSelectFromParams,
   VideoAssetSelectFromResponse,
+  VideoAssetSelectFromImageFileResponse,
   VideoAssetUpload2Params,
   VideoAssetUploadSubtitleCompletionParams,
   VideoAssetUploadSubtitleCompletionResponse,

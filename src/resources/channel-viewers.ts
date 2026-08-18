@@ -11,7 +11,7 @@ export class ChannelViewers extends APIResource {
   /**
    * Invite one or more viewers to a members-only channel.
    *
-   * @param {string} videoWorkspaceID
+   * @param {string} videoWorkspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {ChannelViewerInviteParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<ChannelViewerInviteResponse>} 200
@@ -38,7 +38,7 @@ export class ChannelViewers extends APIResource {
   /**
    * Remove one or more viewers from a channel by email address.
    *
-   * @param {string} videoWorkspaceID
+   * @param {string} videoWorkspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {ChannelViewerDeleteParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<ChannelViewerDeleteResponse>} 200
@@ -61,7 +61,7 @@ export class ChannelViewers extends APIResource {
   /**
    * Invite viewers to a channel by uploading a CSV file.
    *
-   * @param {string} videoWorkspaceID
+   * @param {string} videoWorkspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {ChannelViewerInviteCsvParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<ChannelViewerInviteCsvResponse>} 200

@@ -17,33 +17,29 @@ export class VideoAssets extends APIResource {
    * @example
    * ```ts
    * const create = await client.videoAssets.create({
-   *   'Request Example': {
-   *     value: {
-   *       format: 'ABR',
-   *       collection_id: '646df1c9173a4a2fcac180b4',
-   *       input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
-   *       description: 'some description',
-   *       tag: ['ball'],
-   *       profile_id: '646df1c9173a4a2fcac180b7',
-   *       cluster_type: 'prod',
-   *       playlist_id: '6597acd5ed6f26a9c5ca9633',
-   *       metadata: { headermeta: 'metavalue' },
-   *       call_to_actions: [
-   *         {
-   *           start_time: '1',
-   *           end_time: '90',
-   *           text: 'some test',
-   *           url: 'https://some-url.com',
-   *           position_from_top: '11',
-   *           position_from_right: '23',
-   *           border_radius: '11',
-   *           font_color: '#000001',
-   *           background_color: '#ffffff',
-   *         },
-   *       ],
-   *       folder: '697375fbfa2d1037283140e4',
+   *   format: 'ABR',
+   *   collection_id: '646df1c9173a4a2fcac180b4',
+   *   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+   *   description: 'some description',
+   *   tag: ['ball'],
+   *   profile_id: '646df1c9173a4a2fcac180b7',
+   *   cluster_type: 'prod',
+   *   playlist_id: '6597acd5ed6f26a9c5ca9633',
+   *   metadata: { headermeta: 'metavalue' },
+   *   call_to_actions: [
+   *     {
+   *       start_time: 1,
+   *       end_time: 90,
+   *       text: 'some test',
+   *       url: 'https://some-url.com',
+   *       position_from_top: 11,
+   *       position_from_right: 23,
+   *       border_radius: '11',
+   *       font_color: '#000001',
+   *       background_color: '#ffffff',
    *     },
-   *   },
+   *   ],
+   *   folder: '697375fbfa2d1037283140e4',
    * });
    * ```
    */
@@ -61,34 +57,29 @@ export class VideoAssets extends APIResource {
    * @example
    * ```ts
    * const upload = await client.videoAssets.upload({
-   *   'Request Example': {
-   *     value: {
-   *       title: 'Sports.',
-   *       description: 'This video provides information about various sports.',
-   *       format: 'MP4',
-   *       tag: ['games', 'field'],
-   *       profile_id: '646df1c9173a4a2fcac180b7',
-   *       cluster_type: 'prod',
-   *       input: 'https://file-examples.com/wp-content/storage/2017/04/file_example_MP4_480_1_5MG.mp4',
-   *       playlist_id: '6597acd5ed6f26a9c5ca9633',
-   *       metadata: { headermeta: 'metavalue' },
-   *       call_to_actions: [
-   *         {
-   *           start_time: '1',
-   *           end_time: '90',
-   *           text: 'Buy here!!',
-   *           url: 'https://some-buy-url-site.com',
-   *           position_from_top: '11',
-   *           position_from_right: '23',
-   *           border_radius: '11',
-   *           font_color: '#000001',
-   *           background_color: '#ffffff',
-   *         },
-   *       ],
-   *       folder: '697375fbfa2d1037283140e4',
-   *       workspace_id: '646df1c9173a4a2fcac180b4',
+   *   format: 'ABR',
+   *   collection_id: '646df1c9173a4a2fcac180b4',
+   *   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+   *   description: 'some description',
+   *   tag: ['ball'],
+   *   profile_id: '646df1c9173a4a2fcac180b7',
+   *   cluster_type: 'prod',
+   *   playlist_id: '6597acd5ed6f26a9c5ca9633',
+   *   metadata: { headermeta: 'metavalue' },
+   *   call_to_actions: [
+   *     {
+   *       start_time: 1,
+   *       end_time: 90,
+   *       text: 'some test',
+   *       url: 'https://some-url.com',
+   *       position_from_top: 11,
+   *       position_from_right: 23,
+   *       border_radius: '11',
+   *       font_color: '#000001',
+   *       background_color: '#ffffff',
    *     },
-   *   },
+   *   ],
+   *   folder: '697375fbfa2d1037283140e4',
    * });
    * ```
    */
@@ -150,7 +141,7 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Select frame from video to use as thumbnail
+   * Select frame from video to use as thumbnail.
    *
    * @param {string} assetID - Asset id of the video asset which needs to be deleted.
    * @param {VideoAssetSelectFromParams} body - The request body to send.
@@ -159,7 +150,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const string_ = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+   * const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
    * ```
    */
   selectFrom(
@@ -167,7 +158,7 @@ export class VideoAssets extends APIResource {
     body: VideoAssetSelectFromParams,
     options?: RequestOptions,
   ): APIPromise<VideoAssetSelectFromResponse> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail-select`, {
       body,
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
@@ -175,22 +166,29 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Use any image file to use as thumbnail
+   * Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.
+   *
+   * Here is the sample curl request.
+   *
+   * ```bash
+   * curl --location --request PUT '<upload_url>' \
+   * --data '<YOUR_FILE_PATH>'
+   * ```
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns 200
+   * @returns {APIPromise<VideoAssetSelectFromImageFileResponse>}
    *
    * @example
    * ```ts
-   * await client.videoAssets.selectFromImageFile('assetId');
+   * const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');
    * ```
    */
-  selectFromImageFile(assetID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  selectFromImageFile(
+    assetID: string,
+    options?: RequestOptions,
+  ): APIPromise<VideoAssetSelectFromImageFileResponse> {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, options);
   }
 
   /**
@@ -291,7 +289,7 @@ export class VideoAssets extends APIResource {
   /**
    * This endpoint will create/update video asset chapters.
    *
-   * @param {string} assetID
+   * @param {string} assetID - Gumlet asset ID
    * @param {VideoAssetCreateUpdateChapterParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoAssetCreateUpdateChapterResponse>} 200
@@ -312,6 +310,8 @@ export class VideoAssets extends APIResource {
   }
 
   /**
+   * Recovers asset from the recycle bin.
+   *
    * @param {VideoAssetPostVideoassetrecoverParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    *
@@ -361,7 +361,7 @@ export class VideoAssets extends APIResource {
   /**
    * [Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.
    *
-   * @param {string} workspaceID
+   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {VideoAssetListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoAssetListResponse>} 200
@@ -369,7 +369,7 @@ export class VideoAssets extends APIResource {
    * @example
    * ```ts
    * const list = await client.videoAssets.list('workspaceId', {
-   *   sortBy: 'createdAt',
+   *   sortBy: 'created_at',
    *   orderBy: 'desc',
    * });
    * ```
@@ -405,7 +405,7 @@ export interface VideoAssetCreateParams {
   /**
    * Specify a text string or identifier which can identify an asset or bunch of assets later.
    */
-  tag?: string;
+  tag?: Array<string>;
   /**
    * Specify a text string or identifier which can be used for filtering or searching the asset.
    */
@@ -416,9 +416,8 @@ export interface VideoAssetCreateParams {
   description?: string;
   /**
    * Add your metadata you want to associate with this asset.<br/> Example: <br/> <code>  {  "internal_video_id" : "123Abc"  }  </code>
-   * @format json
    */
-  metadata?: string;
+  metadata?: Record<string, unknown>;
   /**
    * Resize video with the given width. Can be an absolute value in pixels or a percentage value with the `%` suffix. Specified values greater than the original asset width will be ignored. Applicable only when specified format is `MP4`.
    */
@@ -493,7 +492,6 @@ export interface VideoAssetCreateParams {
   playlist_id?: string;
   /**
    * Add this asset to an existing folder by `folder_id`.
-   * @default ""
    */
   folder?: string;
 }
@@ -724,8 +722,9 @@ export namespace VideoAssetCreateParams {
     position_from_top?: number;
     /**
      * number of pixels from right
+     * @format int32
      */
-    position_from_right?: string;
+    position_from_right?: number;
   }
 }
 
@@ -824,21 +823,17 @@ export namespace VideoAssetCreateResponse {
 
 export interface VideoAssetUploadParams {
   /**
-   * Alias of `collection_id` for the Gumlet video workspace id.
-   */
-  workspace_id: string;
-  /**
    * Gumlet video workspace id.
    */
-  collection_id?: string;
-  /**
-   * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and `MP4`.
-   */
-  format?: 'ABR' | 'MP4';
+  collection_id: string;
   /**
    * Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `collection_id`) from the video profile.
    */
   profile_id?: string;
+  /**
+   * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and`MP4`.
+   */
+  format?: 'ABR' | 'MP4';
   /**
    * Specify a text string or identifier which can identify an asset or bunch of assets later.
    */
@@ -852,18 +847,9 @@ export interface VideoAssetUploadParams {
    */
   description?: string;
   /**
-   * Add this asset to a playlist.
+   * Add your metadata you want to associate with this asset.<br/> Example: <br/> <code>  {  "internal_video_id" : "123Abc"  }  </code>
    */
-  playlist_id?: string;
-  /**
-   * Set of key-value pairs that you can attach to this Asset. This can be useful for storing additional information.<br/> Example: <br/> <code>  {  "internal_video_id" : "123Abc"  }  </code>
-   * @format json
-   */
-  metadata?: string;
-  /**
-   * CTA, is an explicit prompt within the video content encouraging viewers to take a particular action.
-   */
-  call_to_actions?: Array<VideoAssetUploadParams.CallToAction>;
+  metadata?: Record<string, unknown>;
   /**
    * Resize video with the given width. Can be an absolute value in pixels or a percentage value with the `%` suffix. Specified values greater than the original asset width will be ignored. Applicable only when specified format is `MP4`.
    */
@@ -873,17 +859,21 @@ export interface VideoAssetUploadParams {
    */
   height?: string;
   /**
-   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and Fairplay DRMs.
+   * Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Re-sized rendition will retain the input aspect ratio.
    */
-  enable_drm?: boolean;
+  resolution?: string;
+  /**
+   * This transformation can be used to crop the video by defining a rectangular area within the dimensions of the output video.
+   */
+  crop?: VideoAssetUploadParams.Crop;
   /**
    * This transformation can be used to add padding to the video.
    */
   pad?: VideoAssetUploadParams.Pad;
   /**
-   * This transformation can be used to crop the video by defining a rectangular area within the dimensions of the output video.
+   * Trim transformation can be used to trim videos based on time duration.
    */
-  crop?: VideoAssetUploadParams.Crop;
+  trim?: VideoAssetUploadParams.Trim;
   /**
    * Image overlay can be used to brand a video or add a visual label in the form of an image.
    */
@@ -893,17 +883,13 @@ export interface VideoAssetUploadParams {
    */
   text_overlay?: VideoAssetUploadParams.TextOverlay;
   /**
-   * Trim transformation can be used to trim videos based on time duration.
-   */
-  trim?: VideoAssetUploadParams.Trim;
-  /**
    * Create an animated GIF from the video.
    */
   animated_gif?: VideoAssetUploadParams.AnimatedGif;
   /**
-   * Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Re-sized rendition will retain the input aspect ratio.
+   * Add additional Audio / Subtitle tracks to Gumlet for transcoding and delivery along with video asset track.
    */
-  resolution?: string;
+  additional_tracks?: Array<VideoAssetUploadParams.AdditionalTrack>;
   /**
    * Gumlet allows to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
    */
@@ -925,52 +911,41 @@ export interface VideoAssetUploadParams {
    */
   audio_only?: boolean;
   /**
-   * Gumlet by default saves the original file uploaded, if you don't want Gumlet to save your original files then you set this flag false.
+   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and Fairplay DRMs.
    */
-  keep_original?: boolean;
+  enable_drm?: boolean;
   /**
-   * Specify second or percentage value of video duration to capture thumbnail image from.
+   * CTA, is an explicit prompt within the video content encouraging viewers to take a particular action.
    */
-  thumbnail?: string;
+  call_to_actions?: Array<VideoAssetUploadParams.CallToAction>;
   /**
-   * Enable video preview thumbnails. Default: true
+   * Add this asset to a playlist.
    */
-  enable_preview_thumbnails?: boolean;
+  playlist_id?: string;
   /**
-   * Add this asset to an existing folder by folder id.
+   * Add this asset to an existing folder by `folder_id`.
    */
   folder?: string;
 }
 
 export namespace VideoAssetUploadParams {
-  export interface CallToAction {
-    text?: string;
-    url?: string;
+  export interface Crop {
     /**
-     * @format int32
+     * Width of the cropping area in pixels.
      */
-    start_time?: number;
+    width: string;
     /**
-     * @format int32
+     * Height of the cropping area in pixels.
      */
-    end_time?: number;
+    height: string;
     /**
-     * hex value of color
+     * This parameter defines the horizontal coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video width. **Default: `0`**
      */
-    font_color?: string;
+    horizontal_margin?: string;
     /**
-     * hex code of color
+     * This parameter defines the vertical coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video height. **Default: `0`**
      */
-    background_color?: string;
-    /**
-     * number of pixels from top
-     * @format int32
-     */
-    position_from_top?: number;
-    /**
-     * number of pixels from right
-     */
-    position_from_right?: string;
+    vertical_margin?: string;
   }
 
   export interface Pad {
@@ -996,23 +971,22 @@ export namespace VideoAssetUploadParams {
     color?: string;
   }
 
-  export interface Crop {
+  export interface Trim {
     /**
-     * Width of the cropping area in pixels.
+     * Start offset in number of seconds or in `HH:MM:SS` format.
+     * @format float
      */
-    width: string;
+    start_offset: number;
     /**
-     * Height of the cropping area in pixels.
+     * End offset in number of seconds or in `HH:MM:SS` format.
+     * @format float
      */
-    height: string;
+    end_offset: number;
     /**
-     * This parameter defines the horizontal coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video width. **Default: `0`**
+     * Duration can be used in conjunction with `start_offset` parameter, can be specified in number of seconds.
+     * @format float
      */
-    horizontal_margin?: string;
-    /**
-     * This parameter defines the vertical coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video height. **Default: `0`**
-     */
-    vertical_margin?: string;
+    duration?: number;
   }
 
   export interface ImageOverlay {
@@ -1101,24 +1075,6 @@ export namespace VideoAssetUploadParams {
     box_border?: string;
   }
 
-  export interface Trim {
-    /**
-     * Start offset in number of seconds or in `HH:MM:SS` format.
-     * @format float
-     */
-    start_offset: number;
-    /**
-     * End offset in number of seconds or in `HH:MM:SS` format.
-     * @format float
-     */
-    end_offset: number;
-    /**
-     * Duration can be used in conjunction with `start_offset` parameter, can be specified in number of seconds.
-     * @format float
-     */
-    duration?: number;
-  }
-
   export interface AnimatedGif {
     /**
      * The time (in seconds or `HH:MM:SS` format) of the video timeline where the animated gif should begin. **Default: `0`**
@@ -1142,6 +1098,25 @@ export namespace VideoAssetUploadParams {
     fps?: string;
   }
 
+  export interface AdditionalTrack {
+    /**
+     * URL or web address of a file that Gumlet should download to add a stream.
+     */
+    url: string;
+    /**
+     * Type of additional track. Value can be either audio or subtitle.
+     */
+    type: string;
+    /**
+     * The language code value represents BCP 47 specification compliant value. For example, en for English.
+     */
+    language_code: string;
+    /**
+     * The name of the track containing a human-readable description.
+     */
+    name?: string;
+  }
+
   export interface GenerateSubtitles {
     /**
      * Language code for native language of the audio.
@@ -1151,6 +1126,37 @@ export namespace VideoAssetUploadParams {
      * Comma separated string of language codes for which subtitle needs to be generated. Maximum four language codes are allowed.
      */
     subtitle_languages?: string;
+  }
+
+  export interface CallToAction {
+    text?: string;
+    url?: string;
+    /**
+     * @format int32
+     */
+    start_time?: number;
+    /**
+     * @format int32
+     */
+    end_time?: number;
+    /**
+     * hex value of color
+     */
+    font_color?: string;
+    /**
+     * hex code of color
+     */
+    background_color?: string;
+    /**
+     * number of pixels from top
+     * @format int32
+     */
+    position_from_top?: number;
+    /**
+     * number of pixels from right
+     * @format int32
+     */
+    position_from_right?: number;
   }
 }
 
@@ -1263,7 +1269,10 @@ export interface VideoAssetRetrieveStatusResponse {
    */
   processed_at?: number;
   folder?: string;
-  playlists?: Array<unknown>;
+  /**
+   * Array of Playlist IDs
+   */
+  playlists?: Array<string>;
 }
 
 export namespace VideoAssetRetrieveStatusResponse {
@@ -1530,7 +1539,23 @@ export interface VideoAssetSelectFromParams {
   frame_at_second: number;
 }
 
-export type VideoAssetSelectFromResponse = string;
+export interface VideoAssetSelectFromResponse {
+  success?: boolean;
+  asset_id?: string;
+  /**
+   * Milliseconds since epoch for the updated time.
+   */
+  thumbnail_updated_at?: number;
+}
+
+export interface VideoAssetSelectFromImageFileResponse {
+  upload_url?: string;
+  asset_id?: string;
+  /**
+   * Thumbnail updated at timestamp in milliseconds since epoch
+   */
+  thumbnail_updated_at?: number;
+}
 
 export interface VideoAssetUpload2Params {
   /**
@@ -1841,7 +1866,7 @@ export interface VideoAssetListParams {
   playlist_id?: string;
   /**
    * assets will be sorted based on the provided field.
-   * @default createdAt
+   * @default created_at
    */
   sortBy?: 'title' | 'duration' | 'uploaded_at' | 'created_at';
   /**
@@ -1967,6 +1992,7 @@ export declare namespace VideoAssets {
     type VideoAssetRetrieveStatusResponse as VideoAssetRetrieveStatusResponse,
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
     type VideoAssetSelectFromResponse as VideoAssetSelectFromResponse,
+    type VideoAssetSelectFromImageFileResponse as VideoAssetSelectFromImageFileResponse,
     type VideoAssetUploadSubtitleCompletionResponse as VideoAssetUploadSubtitleCompletionResponse,
     type VideoAssetUploadAudioCompletionResponse as VideoAssetUploadAudioCompletionResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,

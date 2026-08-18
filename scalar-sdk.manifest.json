@@ -1,7 +1,7 @@
 {
   "name": "Gumlet",
   "slug": "gumlet",
-  "generatorVersion": "0.26.0",
+  "generatorVersion": "0.27.0",
   "servers": [
     "https://api.gumlet.com/v1"
   ],
@@ -12,14 +12,12 @@
     "production"
   ],
   "auth": [
-    "apiKey"
+    "bearer"
   ],
   "authDetails": [
     {
-      "kind": "apiKey",
-      "id": "sec0",
-      "in": "header",
-      "paramName": "Authorization"
+      "kind": "bearer",
+      "id": "API_KEY"
     }
   ],
   "clientHeaderParams": [],
@@ -318,77 +316,71 @@
       "publicHeaderParams": [],
       "bodyParams": [
         "collection_id",
-        "format",
         "profile_id",
+        "format",
         "tag",
         "title",
         "description",
-        "playlist_id",
         "metadata",
-        "call_to_actions",
         "width",
         "height",
-        "enable_drm",
-        "pad",
+        "resolution",
         "crop",
+        "pad",
+        "trim",
         "image_overlay",
         "text_overlay",
-        "trim",
         "animated_gif",
-        "resolution",
+        "additional_tracks",
         "generate_subtitles",
         "mp4_access",
         "per_title_encoding",
         "process_low_resolution_input",
         "audio_only",
-        "keep_original",
-        "thumbnail",
-        "enable_preview_thumbnails",
-        "workspace_id",
+        "enable_drm",
+        "call_to_actions",
+        "playlist_id",
         "folder"
       ],
       "publicBodyParams": [
         "collection_id",
-        "format",
         "profile_id",
+        "format",
         "tag",
         "title",
         "description",
-        "playlist_id",
         "metadata",
-        "call_to_actions",
         "width",
         "height",
-        "enable_drm",
-        "pad",
+        "resolution",
         "crop",
+        "pad",
+        "trim",
         "image_overlay",
         "text_overlay",
-        "trim",
         "animated_gif",
-        "resolution",
+        "additional_tracks",
         "generate_subtitles",
         "mp4_access",
         "per_title_encoding",
         "process_low_resolution_input",
         "audio_only",
-        "keep_original",
-        "thumbnail",
-        "enable_preview_thumbnails",
-        "workspace_id",
+        "enable_drm",
+        "call_to_actions",
+        "playlist_id",
         "folder"
       ],
       "bodyParamDetails": [
         {
           "name": "collection_id",
+          "required": true
+        },
+        {
+          "name": "profile_id",
           "required": false
         },
         {
           "name": "format",
-          "required": false
-        },
-        {
-          "name": "profile_id",
           "required": false
         },
         {
@@ -404,15 +396,7 @@
           "required": false
         },
         {
-          "name": "playlist_id",
-          "required": false
-        },
-        {
           "name": "metadata",
-          "required": false
-        },
-        {
-          "name": "call_to_actions",
           "required": false
         },
         {
@@ -424,7 +408,11 @@
           "required": false
         },
         {
-          "name": "enable_drm",
+          "name": "resolution",
+          "required": false
+        },
+        {
+          "name": "crop",
           "required": false
         },
         {
@@ -432,7 +420,7 @@
           "required": false
         },
         {
-          "name": "crop",
+          "name": "trim",
           "required": false
         },
         {
@@ -444,15 +432,11 @@
           "required": false
         },
         {
-          "name": "trim",
-          "required": false
-        },
-        {
           "name": "animated_gif",
           "required": false
         },
         {
-          "name": "resolution",
+          "name": "additional_tracks",
           "required": false
         },
         {
@@ -476,20 +460,16 @@
           "required": false
         },
         {
-          "name": "keep_original",
+          "name": "enable_drm",
           "required": false
         },
         {
-          "name": "thumbnail",
+          "name": "call_to_actions",
           "required": false
         },
         {
-          "name": "enable_preview_thumbnails",
+          "name": "playlist_id",
           "required": false
-        },
-        {
-          "name": "workspace_id",
-          "required": true
         },
         {
           "name": "folder",
@@ -857,7 +837,7 @@
       "publicOperation": "selectFrom",
       "deprecated": false,
       "method": "POST",
-      "path": "/video/assets/{asset_id}/thumbnail",
+      "path": "/video/assets/{asset_id}/thumbnail-select",
       "pathParams": [
         "asset_id"
       ],
@@ -1812,7 +1792,7 @@
           "required": false,
           "style": "form",
           "explode": true,
-          "defaultValue": "createdAt"
+          "defaultValue": "created_at"
         },
         {
           "name": "orderBy",
@@ -3886,7 +3866,8 @@
         "azure",
         "linode",
         "backblaze",
-        "cloudflare"
+        "cloudflare",
+        "webfolder"
       ],
       "publicBodyParams": [
         "namespace",
@@ -3900,7 +3881,8 @@
         "azure",
         "linode",
         "backblaze",
-        "cloudflare"
+        "cloudflare",
+        "webfolder"
       ],
       "bodyParamDetails": [
         {
@@ -3949,6 +3931,10 @@
         },
         {
           "name": "cloudflare",
+          "required": false
+        },
+        {
+          "name": "webfolder",
           "required": false
         }
       ],
@@ -4060,6 +4046,47 @@
           ]
         }
       ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "imageSources",
+      "publicResource": "imageSources",
+      "operation": "retrieve",
+      "publicOperation": "retrieve",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/image/sources/{image_source_id}",
+      "pathParams": [
+        "image_source_id"
+      ],
+      "publicPathParams": [
+        "image_source_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "image_source_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ImageSourceRetrieveParams"
+      },
+      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     },
@@ -4467,47 +4494,6 @@
           ]
         }
       ],
-      "responseLinks": [],
-      "transport": "http"
-    },
-    {
-      "resource": "imageSources",
-      "publicResource": "imageSources",
-      "operation": "retrieve",
-      "publicOperation": "retrieve",
-      "deprecated": false,
-      "method": "GET",
-      "path": "/image/sources/{source_id}",
-      "pathParams": [
-        "source_id"
-      ],
-      "publicPathParams": [
-        "source_id"
-      ],
-      "queryParams": [],
-      "publicQueryParams": [],
-      "headerParams": [],
-      "publicHeaderParams": [],
-      "bodyParams": [],
-      "publicBodyParams": [],
-      "bodyParamDetails": [],
-      "pathParamDetails": [
-        {
-          "name": "source_id",
-          "required": true,
-          "style": "simple",
-          "explode": false
-        }
-      ],
-      "queryParamDetails": [],
-      "headerParamDetails": [],
-      "cookieParams": [],
-      "publicCookieParams": [],
-      "cookieParamDetails": [],
-      "paramsModel": {
-        "publicName": "ImageSourceRetrieveParams"
-      },
-      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     },

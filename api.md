@@ -17,7 +17,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Upload Audio](#upload-audio)
   - [Upload Audio Completion](#upload-audio-completion)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
-  - [`postVideoassetrecover`](#postvideoassetrecover)
+  - [Recover Deleted Asset](#recover-deleted-asset)
   - [List Assets](#list-assets)
   - [List Assets](#list-assets-1)
 - [`VideoUsageAnalytics`](#videousageanalytics)
@@ -48,11 +48,11 @@ Complete reference of every operation, grouped by resource. See [the README](./R
 - [`ImageSources`](#imagesources)
   - [Create Source](#create-source)
   - [List Sources](#list-sources)
+  - [Get Image Source](#get-image-source)
   - [Update Source](#update-source)
   - [Delete Source](#delete-source)
   - [Purge Cache](#purge-cache)
   - [Image Analytics](#image-analytics)
-  - [Get Source](#get-source)
 - [`LiveStreamAssets`](#livestreamassets)
   - [Create Live Asset](#create-live-asset)
   - [Update Live Asset](#update-live-asset)
@@ -87,10 +87,10 @@ Complete reference of every operation, grouped by resource. See [the README](./R
 ## Setup
 
 ```ts
-import Gumlet from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
-  sec0: process.env['SEC0'], // defaults to the SEC0 env var
+  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 ```
 
@@ -107,33 +107,29 @@ An asset refers to a media content/video that is processed, stored, and delivere
 
 ```ts
 const create = await client.videoAssets.create({
-  'Request Example': {
-    value: {
-      format: 'ABR',
-      collection_id: '646df1c9173a4a2fcac180b4',
-      input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
-      description: 'some description',
-      tag: ['ball'],
-      profile_id: '646df1c9173a4a2fcac180b7',
-      cluster_type: 'prod',
-      playlist_id: '6597acd5ed6f26a9c5ca9633',
-      metadata: { headermeta: 'metavalue' },
-      call_to_actions: [
-        {
-          start_time: '1',
-          end_time: '90',
-          text: 'some test',
-          url: 'https://some-url.com',
-          position_from_top: '11',
-          position_from_right: '23',
-          border_radius: '11',
-          font_color: '#000001',
-          background_color: '#ffffff',
-        },
-      ],
-      folder: '697375fbfa2d1037283140e4',
+  format: 'ABR',
+  collection_id: '646df1c9173a4a2fcac180b4',
+  input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+  description: 'some description',
+  tag: ['ball'],
+  profile_id: '646df1c9173a4a2fcac180b7',
+  cluster_type: 'prod',
+  playlist_id: '6597acd5ed6f26a9c5ca9633',
+  metadata: { headermeta: 'metavalue' },
+  call_to_actions: [
+    {
+      start_time: 1,
+      end_time: 90,
+      text: 'some test',
+      url: 'https://some-url.com',
+      position_from_top: 11,
+      position_from_right: 23,
+      border_radius: '11',
+      font_color: '#000001',
+      background_color: '#ffffff',
     },
-  },
+  ],
+  folder: '697375fbfa2d1037283140e4',
 });
 ```
 
@@ -148,34 +144,29 @@ This endpoint creates a video asset allowing to upload of the video from the loc
 
 ```ts
 const upload = await client.videoAssets.upload({
-  'Request Example': {
-    value: {
-      title: 'Sports.',
-      description: 'This video provides information about various sports.',
-      format: 'MP4',
-      tag: ['games', 'field'],
-      profile_id: '646df1c9173a4a2fcac180b7',
-      cluster_type: 'prod',
-      input: 'https://file-examples.com/wp-content/storage/2017/04/file_example_MP4_480_1_5MG.mp4',
-      playlist_id: '6597acd5ed6f26a9c5ca9633',
-      metadata: { headermeta: 'metavalue' },
-      call_to_actions: [
-        {
-          start_time: '1',
-          end_time: '90',
-          text: 'Buy here!!',
-          url: 'https://some-buy-url-site.com',
-          position_from_top: '11',
-          position_from_right: '23',
-          border_radius: '11',
-          font_color: '#000001',
-          background_color: '#ffffff',
-        },
-      ],
-      folder: '697375fbfa2d1037283140e4',
-      workspace_id: '646df1c9173a4a2fcac180b4',
+  format: 'ABR',
+  collection_id: '646df1c9173a4a2fcac180b4',
+  input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+  description: 'some description',
+  tag: ['ball'],
+  profile_id: '646df1c9173a4a2fcac180b7',
+  cluster_type: 'prod',
+  playlist_id: '6597acd5ed6f26a9c5ca9633',
+  metadata: { headermeta: 'metavalue' },
+  call_to_actions: [
+    {
+      start_time: 1,
+      end_time: 90,
+      text: 'some test',
+      url: 'https://some-url.com',
+      position_from_top: 11,
+      position_from_right: 23,
+      border_radius: '11',
+      font_color: '#000001',
+      background_color: '#ffffff',
     },
-  },
+  ],
+  folder: '697375fbfa2d1037283140e4',
 });
 ```
 
@@ -216,7 +207,7 @@ const update = await client.videoAssets.update({
 
 ### Update thumbnail from video
 
-Select frame from video to use as thumbnail
+Select frame from video to use as thumbnail.
 
 | Direction | Type |
 | --- | --- |
@@ -224,15 +215,26 @@ Select frame from video to use as thumbnail
 | Response | [`VideoAssetSelectFromResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const string_ = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
 ```
 
 ### Update thumbnail via upload
 
-Use any image file to use as thumbnail
+Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.
+
+Here is the sample curl request.
+
+```bash
+curl --location --request PUT '<upload_url>' \
+--data '<YOUR_FILE_PATH>'
+```
+
+| Direction | Type |
+| --- | --- |
+| Response | [`VideoAssetSelectFromImageFileResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-await client.videoAssets.selectFromImageFile('assetId');
+const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');
 ```
 
 ### Upload Subtitle
@@ -296,7 +298,9 @@ const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetI
 });
 ```
 
-### `postVideoassetrecover`
+### Recover Deleted Asset
+
+Recovers asset from the recycle bin.
 
 | Direction | Type |
 | --- | --- |
@@ -336,7 +340,7 @@ const listWorkspaceContent = await client.videoAssets.listWorkspaceContent('work
 
 ```ts
 const list = await client.videoAssets.list('workspaceId', {
-  sortBy: 'createdAt',
+  sortBy: 'created_at',
   orderBy: 'desc',
 });
 ```
@@ -483,6 +487,8 @@ const delete_ = await client.videoProfiles.delete('profileId');
 
 ### Create Playlist
 
+Create new playlist inside video wprkspace
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoPlaylistCreateParams`](./src/resources/video-playlists.ts) |
@@ -498,6 +504,8 @@ const create = await client.videoPlaylists.create({
 
 ### Get all playlists
 
+Get all playlists for given workspace
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoPlaylistListAllParams`](./src/resources/video-playlists.ts) |
@@ -509,6 +517,8 @@ const listAll = await client.videoPlaylists.listAll();
 
 ### Add asset to playlist
 
+This operation adds a single asset or a list of assets to a playlist.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoPlaylistCreateAssetToParams`](./src/resources/video-playlists.ts) |
@@ -518,15 +528,17 @@ const listAll = await client.videoPlaylists.listAll();
 const createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {
   asset_list: [
     { asset_id: '6508790283e4d60611846790' },
-    { position: '1', asset_id: '650878f883e4d6061184677d' },
+    { position: 1, asset_id: '650878f883e4d6061184677d' },
     { asset_id: '650878de83e4d6061184676a' },
-    { position: '2', asset_id: '650878d883e4d60611846757' },
-    { position: '3', asset_id: '65578dd87eebc22dcdd549a2' },
+    { position: 2, asset_id: '650878d883e4d60611846757' },
+    { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },
   ],
 });
 ```
 
 ### Remove asset from playlist
+
+Removed an asset or list of assets from a given playlist.
 
 | Direction | Type |
 | --- | --- |
@@ -541,6 +553,8 @@ const deleteAssetFrom = await client.videoPlaylists.deleteAssetFrom('playlistId'
 
 ### Update Playlist
 
+This endpoint allows you to update playlist name, channel visibility, or playlist order on a channel page.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoPlaylistUpdateParams`](./src/resources/video-playlists.ts) |
@@ -552,11 +566,15 @@ const update = await client.videoPlaylists.update('playlistId');
 
 ### `deleteId`
 
+Deletes this playlist.
+
 ```ts
 await client.videoPlaylists.deleteID('playlistId');
 ```
 
 ### Get playlist assets
+
+Get a list of all assets inside playlist. You can choose in which order are assets returned.
 
 | Direction | Type |
 | --- | --- |
@@ -593,6 +611,8 @@ const reorderAssets2 = await client.videoPlaylists.reorderAssets2('playlistId', 
 
 ### Create Webhook
 
+Creates a new webhook listener.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`WebhookAPICreateParams`](./src/resources/webhook-apis.ts) |
@@ -609,6 +629,8 @@ const create = await client.webhookAPIs.create({
 
 ### Update Webhook
 
+Update a webhook listener.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`WebhookAPIUpdateParams`](./src/resources/webhook-apis.ts) |
@@ -619,6 +641,8 @@ const update = await client.webhookAPIs.update('webhookId');
 ```
 
 ### Delete Webhook
+
+Delete webhook listener endpoint.
 
 | Direction | Type |
 | --- | --- |
@@ -641,9 +665,9 @@ This endpoint allows users to create image source.
 
 ```ts
 const create = await client.imageSources.create({
-  names: 'zoom-collection',
-  type: 'zoom',
-  zoom: { secret: 'yourSecret' },
+  type: 'webfolder',
+  webfolder: { base_url: 'https://www.google.com' },
+  namespace: 'google-demo',
 });
 ```
 
@@ -657,6 +681,14 @@ This endpoint list image sources which are assigned to the user or token.
 
 ```ts
 const list = await client.imageSources.list();
+```
+
+### Get Image Source
+
+Get all details about image source.
+
+```ts
+await client.imageSources.retrieve('imageSourceId');
 ```
 
 ### Update Source
@@ -710,12 +742,6 @@ const analytics = await client.imageSources.analytics({
   metrics: [],
   date_range: {},
 });
-```
-
-### Get Source
-
-```ts
-await client.imageSources.retrieve('sourceId');
 ```
 
 ## `LiveStreamAssets`
@@ -802,6 +828,8 @@ const filter = await client.liveStreamAssets.filter('liveSourceId');
 
 ### `postVideoliveassetsId`
 
+Start a live stream.
+
 ```ts
 await client.liveStreamAssets.postVideoliveassetsID('liveAssetId');
 ```
@@ -863,7 +891,7 @@ Video workspaces are top-level entities in Gumlet. You can use them to organize 
 
 ```ts
 const create = await client.videoWorkspaces.create({
-  names: 'zoom-workspace',
+  name: 'zoom-workspace',
   type: 'zoom',
   zoom: { secret: 'yourSecret' },
 });
