@@ -16,7 +16,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Upload Audio](#upload-audio)
   - [Upload Audio Completion](#upload-audio-completion)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
-  - [`postVideoassetrecover`](#postvideoassetrecover)
+  - [Recover Deleted Asset](#recover-deleted-asset)
   - [List Assets](#list-assets)
   - [List Assets](#list-assets-1)
 - [`VideoUsageAnalytics`](#videousageanalytics)
@@ -283,7 +283,7 @@ const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetI
 });
 ```
 
-### `postVideoassetrecover`
+### Recover Deleted Asset
 
 Recovers asset from the recycle bin.
 

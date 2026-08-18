@@ -10492,6 +10492,7 @@
     },
     "/video/asset/recover": {
       "post": {
+        "summary": "Recover Deleted Asset",
         "description": "Recovers asset from the recycle bin.",
         "operationId": "post_videoassetrecover",
         "responses": {
