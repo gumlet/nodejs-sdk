@@ -5462,7 +5462,7 @@
     "/video/playlist": {
       "post": {
         "summary": "Create Playlist",
-        "description": "",
+        "description": "Create new playlist inside video wprkspace",
         "operationId": "create-playlist",
         "requestBody": {
           "content": {
@@ -5697,7 +5697,7 @@
       },
       "get": {
         "summary": "Get all playlists",
-        "description": "",
+        "description": "Get all playlists for given workspace",
         "operationId": "get-all-playlists",
         "parameters": [
           {
@@ -5822,7 +5822,7 @@
     "/video/playlist/{playlist_id}/asset": {
       "post": {
         "summary": "Add asset to playlist",
-        "description": "",
+        "description": "This operation adds a single asset or a list of assets to a playlist.",
         "operationId": "add-asset-to-playlist",
         "parameters": [
           {
@@ -5970,7 +5970,7 @@
       },
       "delete": {
         "summary": "Remove asset from playlist",
-        "description": "",
+        "description": "Removed an asset or list of assets from a given playlist.",
         "operationId": "remove-asset-from-playlist",
         "parameters": [
           {
@@ -6094,7 +6094,7 @@
     "/video/playlist/{playlist_id}": {
       "post": {
         "summary": "Update Playlist",
-        "description": "",
+        "description": "This endpoint allows you to update playlist name, channel visibility, or playlist order on a channel page.",
         "operationId": "update-playlist",
         "parameters": [
           {
@@ -6431,7 +6431,7 @@
         ]
       },
       "delete": {
-        "description": "",
+        "description": "Deletes this playlist.",
         "responses": {
           "200": {
             "description": ""
@@ -6463,7 +6463,7 @@
     "/video/playlist/{playlist_id}/assets": {
       "get": {
         "summary": "Get playlist assets",
-        "description": "",
+        "description": "Get a list of all assets inside playlist. You can choose in which order are assets returned.",
         "operationId": "get-playlist-assets",
         "parameters": [
           {
@@ -6928,7 +6928,7 @@
     "/org/webhooks": {
       "post": {
         "summary": "Create Webhook",
-        "description": "",
+        "description": "Creates a new webhook listener.",
         "operationId": "create-webhook",
         "requestBody": {
           "content": {
@@ -7066,7 +7066,7 @@
     "/org/webhooks/{webhook_id}": {
       "post": {
         "summary": "Update Webhook",
-        "description": "",
+        "description": "Update a webhook listener.",
         "operationId": "update-webhook",
         "parameters": [
           {
@@ -7201,7 +7201,7 @@
       },
       "delete": {
         "summary": "Delete Webhook",
-        "description": "",
+        "description": "Delete webhook listener endpoint.",
         "operationId": "delete-webhook",
         "parameters": [
           {
@@ -8230,8 +8230,8 @@
     },
     "/image/sources/{image_source_id}": {
       "get": {
-        "summary": "Get Source",
-        "description": "",
+        "summary": "Get Image Source",
+        "description": "Get all details about image source.",
         "responses": {
           "200": {
             "description": ""
@@ -10480,7 +10480,7 @@
     },
     "/video/asset/recover": {
       "post": {
-        "description": "",
+        "description": "Recovers asset from the recycle bin.",
         "operationId": "post_videoassetrecover",
         "responses": {
           "200": {
@@ -10542,7 +10542,7 @@
     },
     "/video/live/assets/{live_asset_id}/start": {
       "post": {
-        "description": "",
+        "description": "Start a live stream.",
         "operationId": "post_videoliveassets:live_asset_id",
         "responses": {
           "200": {

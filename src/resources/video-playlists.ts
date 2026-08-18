@@ -8,7 +8,7 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class VideoPlaylists extends APIResource {
   /**
-   * Create Playlist
+   * Create new playlist inside video wprkspace
    *
    * @param {VideoPlaylistCreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -28,7 +28,7 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Get all playlists
+   * Get all playlists for given workspace
    *
    * @param {VideoPlaylistListAllParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -47,7 +47,7 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Add asset to playlist
+   * This operation adds a single asset or a list of assets to a playlist.
    *
    * @param {string} playlistID
    * @param {VideoPlaylistCreateAssetToParams} body - The request body to send.
@@ -76,7 +76,7 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Remove asset from playlist
+   * Removed an asset or list of assets from a given playlist.
    *
    * @param {string} playlistID
    * @param {VideoPlaylistDeleteAssetFromParams} body - The request body to send.
@@ -99,7 +99,7 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Update Playlist
+   * This endpoint allows you to update playlist name, channel visibility, or playlist order on a channel page.
    *
    * @param {string} playlistID
    * @param {VideoPlaylistUpdateParams} [body] - The request body to send.
@@ -120,6 +120,8 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
+   * Deletes this playlist.
+   *
    * @param {string} playlistID
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    *
@@ -136,7 +138,7 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Get playlist assets
+   * Get a list of all assets inside playlist. You can choose in which order are assets returned.
    *
    * @param {string} playlistID
    * @param {VideoPlaylistListAssetsParams} [query] - The parameters to send with the request.

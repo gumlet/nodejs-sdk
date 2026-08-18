@@ -285,6 +285,8 @@ const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetI
 
 ### `postVideoassetrecover`
 
+Recovers asset from the recycle bin.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoAssetPostVideoassetrecoverParams`](./src/resources/video-assets.ts) |
@@ -470,6 +472,8 @@ const delete_ = await client.videoProfiles.delete('profileId');
 
 ### Create Playlist
 
+Create new playlist inside video wprkspace
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoPlaylistCreateParams`](./src/resources/video-playlists.ts) |
@@ -485,6 +489,8 @@ const create = await client.videoPlaylists.create({
 
 ### Get all playlists
 
+Get all playlists for given workspace
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoPlaylistListAllParams`](./src/resources/video-playlists.ts) |
@@ -495,6 +501,8 @@ const listAll = await client.videoPlaylists.listAll();
 ```
 
 ### Add asset to playlist
+
+This operation adds a single asset or a list of assets to a playlist.
 
 | Direction | Type |
 | --- | --- |
@@ -515,6 +523,8 @@ const createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {
 
 ### Remove asset from playlist
 
+Removed an asset or list of assets from a given playlist.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoPlaylistDeleteAssetFromParams`](./src/resources/video-playlists.ts) |
@@ -528,6 +538,8 @@ const deleteAssetFrom = await client.videoPlaylists.deleteAssetFrom('playlistId'
 
 ### Update Playlist
 
+This endpoint allows you to update playlist name, channel visibility, or playlist order on a channel page.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoPlaylistUpdateParams`](./src/resources/video-playlists.ts) |
@@ -539,11 +551,15 @@ const update = await client.videoPlaylists.update('playlistId');
 
 ### `deleteId`
 
+Deletes this playlist.
+
 ```ts
 await client.videoPlaylists.deleteID('playlistId');
 ```
 
 ### Get playlist assets
+
+Get a list of all assets inside playlist. You can choose in which order are assets returned.
 
 | Direction | Type |
 | --- | --- |
@@ -580,6 +596,8 @@ const reorderAssets2 = await client.videoPlaylists.reorderAssets2('playlistId', 
 
 ### Create Webhook
 
+Creates a new webhook listener.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`WebhookAPICreateParams`](./src/resources/webhook-apis.ts) |
@@ -596,6 +614,8 @@ const create = await client.webhookAPIs.create({
 
 ### Update Webhook
 
+Update a webhook listener.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`WebhookAPIUpdateParams`](./src/resources/webhook-apis.ts) |
@@ -606,6 +626,8 @@ const update = await client.webhookAPIs.update('webhookId');
 ```
 
 ### Delete Webhook
+
+Delete webhook listener endpoint.
 
 | Direction | Type |
 | --- | --- |
@@ -782,6 +804,8 @@ const filter = await client.liveStreamAssets.filter('liveSourceId');
 ```
 
 ### `postVideoliveassetsId`
+
+Start a live stream.
 
 ```ts
 await client.liveStreamAssets.postVideoliveassetsID('liveAssetId');
