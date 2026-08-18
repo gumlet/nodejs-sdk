@@ -253,7 +253,7 @@ export type GumletOptions = ClientOptions;
  * API Client for interfacing with the Gumlet API.
  */
 export class Gumlet {
-  apiKey: string | AuthTokenProvider | undefined;
+  apiKey: string | AuthTokenProvider;
 
   baseURL: string;
   maxRetries: number;
@@ -271,7 +271,7 @@ export class Gumlet {
   /**
    * API Client for interfacing with the Gumlet API.
    *
-   * @param {string | AuthTokenProvider | undefined} [opts.apiKey=process.env["GUMLET_API_KEY"] ?? undefined]
+   * @param {string | AuthTokenProvider | undefined} [opts.apiKey=process.env["API_KEY"] ?? undefined]
    * @param {string} [opts.baseURL=process.env["GUMLET_BASE_URL"] ?? https://api.gumlet.com/v1] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -282,9 +282,15 @@ export class Gumlet {
    */
   constructor({
     baseURL = readEnv('GUMLET_BASE_URL'),
-    apiKey = readEnv('GUMLET_API_KEY'),
+    apiKey = readEnv('API_KEY'),
     ...opts
   }: ClientOptions = {}) {
+    if (apiKey === undefined) {
+      throw new Errors.GumletError(
+        "The API_KEY environment variable is missing or empty; either provide it, or instantiate the Gumlet client with an apiKey option, like new Gumlet({ apiKey: 'My API Key' }).",
+      );
+    }
+
     const options: ClientOptions = {
       apiKey,
       ...opts,

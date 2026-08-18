@@ -19,13 +19,13 @@ npm install @gumlet/node-sdk
 import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
-  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
+  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 ```
 
 Provide credentials using the options below. Environment variables are read automatically when the target runtime supports them:
 
-- `apiKey` (env: `GUMLET_API_KEY`) — Credential for the API_KEY scheme.
+- `apiKey` (env: `API_KEY`) — Credential for the API_KEY scheme.
 
 ## Calling operations
 
@@ -33,7 +33,7 @@ Provide credentials using the options below. Environment variables are read auto
 import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
-  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
+  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 
 const create = await client.videoAssets.create({
