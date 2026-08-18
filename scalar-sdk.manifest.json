@@ -833,6 +833,80 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
+      "operation": "selectFrom",
+      "publicOperation": "selectFrom",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_id}/thumbnail-select",
+      "pathParams": [
+        "asset_id"
+      ],
+      "publicPathParams": [
+        "asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "frame_at_second"
+      ],
+      "publicBodyParams": [
+        "frame_at_second"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "frame_at_second",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetSelectFromParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "text/plain",
+        "encoding": "text",
+        "contents": [
+          {
+            "contentType": "text/plain",
+            "encoding": "text"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
       "operation": "selectFromImageFile",
       "publicOperation": "selectFromImageFile",
       "deprecated": false,
@@ -3972,6 +4046,47 @@
           ]
         }
       ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "imageSources",
+      "publicResource": "imageSources",
+      "operation": "retrieve",
+      "publicOperation": "retrieve",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/image/sources/{image_source_id}",
+      "pathParams": [
+        "image_source_id"
+      ],
+      "publicPathParams": [
+        "image_source_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "image_source_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ImageSourceRetrieveParams"
+      },
+      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     },

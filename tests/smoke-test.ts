@@ -128,6 +128,15 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
+    operation: 'selectFrom',
+    method: 'POST',
+    path: '/video/assets/{asset_id}/thumbnail-select',
+    run: async () => {
+      const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+    },
+  },
+
+  {
     operation: 'selectFromImageFile',
     method: 'POST',
     path: '/video/assets/{asset_ID}/thumbnail',
@@ -463,6 +472,15 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     path: '/image/sources',
     run: async () => {
       const list = await client.imageSources.list();
+    },
+  },
+
+  {
+    operation: 'retrieve',
+    method: 'GET',
+    path: '/image/sources/{image_source_id}',
+    run: async () => {
+      await client.imageSources.retrieve('imageSourceId');
     },
   },
 

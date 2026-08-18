@@ -10,6 +10,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Asset Details](#asset-details)
   - [Delete Asset](#delete-asset)
   - [Update Asset](#update-asset)
+  - [Update thumbnail from video](#update-thumbnail-from-video)
   - [Update thumbnail via upload](#update-thumbnail-via-upload)
   - [Upload Subtitle](#upload-subtitle)
   - [Upload Subtitle Completion](#upload-subtitle-completion)
@@ -47,6 +48,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
 - [`ImageSources`](#imagesources)
   - [Create Source](#create-source)
   - [List Sources](#list-sources)
+  - [Get Image Source](#get-image-source)
   - [Update Source](#update-source)
   - [Delete Source](#delete-source)
   - [Purge Cache](#purge-cache)
@@ -201,6 +203,19 @@ This endpoint allows users to update video asset that has previously been create
 const update = await client.videoAssets.update({
   asset_id: '',
 });
+```
+
+### Update thumbnail from video
+
+Select frame from video to use as thumbnail.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`VideoAssetSelectFromParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetSelectFromResponse`](./src/resources/video-assets.ts) |
+
+```ts
+const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
 ```
 
 ### Update thumbnail via upload
@@ -666,6 +681,14 @@ This endpoint list image sources which are assigned to the user or token.
 
 ```ts
 const list = await client.imageSources.list();
+```
+
+### Get Image Source
+
+Get all details about image source.
+
+```ts
+await client.imageSources.retrieve('imageSourceId');
 ```
 
 ### Update Source

@@ -43,6 +43,24 @@ export class ImageSources extends APIResource {
   }
 
   /**
+   * Get all details about image source.
+   *
+   * @param {string} imageSourceID - Image source id. You can get it on Gumlet dashboard or using list sources API endpoint.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   *
+   * @example
+   * ```ts
+   * await client.imageSources.retrieve('imageSourceId');
+   * ```
+   */
+  retrieve(imageSourceID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.get(__scalarPath`/image/sources/${imageSourceID}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
    * This endpoint allows users to update image source that has previously been created.
    *
    * @param {string} imageSourceID - image source id which you want to update
