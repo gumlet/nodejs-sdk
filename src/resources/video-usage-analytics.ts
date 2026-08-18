@@ -122,9 +122,16 @@ export interface VideoUsageAnalyticStreamingDurationParams {
    * Date string in "yyyy-mm-dd" format
    */
   end_at: string;
+  /**
+   * Gumlet workspace ID
+   */
   collection_id?: string;
+  /**
+   * Page number of the response.
+   */
   page?: string;
   /**
+   * Assets to list per page.
    * @default 1000
    */
   page_size?: string;

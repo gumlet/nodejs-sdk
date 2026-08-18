@@ -38,7 +38,7 @@ export class VideoWorkspaces extends APIResource {
    * @example
    * ```ts
    * const create = await client.videoWorkspaces.create({
-   *   names: 'zoom-workspace',
+   *   name: 'zoom-workspace',
    *   type: 'zoom',
    *   zoom: { secret: 'yourSecret' },
    * });
@@ -54,7 +54,7 @@ export class VideoWorkspaces extends APIResource {
   /**
    * This endpoint allows users to update video workspace that has previously been created.
    *
-   * @param {string} workspaceID
+   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {VideoWorkspaceUpdateParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoWorkspaceUpdateResponse>} 200
@@ -75,7 +75,7 @@ export class VideoWorkspaces extends APIResource {
   /**
    * This endpoint get all the data of video workspace that has previously been created.
    *
-   * @param {string} workspaceID
+   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoWorkspaceRetrieveResponse>} 200
    *
@@ -91,7 +91,7 @@ export class VideoWorkspaces extends APIResource {
   /**
    * This endpoint removes a video workspace given its unique asset id. All the asset in workspace will be removed from storage as well, associated URLs will be inaccessible.
    *
-   * @param {string} workspaceID
+   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoWorkspaceDeleteResponse>} 200
    *
@@ -107,10 +107,12 @@ export class VideoWorkspaces extends APIResource {
 
 export interface VideoWorkspaceListParams {
   /**
+   * Number of workspaces to skip. For example if you need to list 11 to 20th workspaces, pass offset as 10 and size as 10.
    * @default 0
    */
   offset?: string;
   /**
+   * Number of workspace to return in single response.
    * @default 10
    */
   size?: string;
@@ -485,7 +487,7 @@ export interface VideoWorkspaceCreateResponse {
   insight_property_id?: string;
   zoom?: VideoWorkspaceCreateResponse.Zoom;
   embed_details?: VideoWorkspaceCreateResponse.EmbedDetails;
-  folders?: Array<unknown>;
+  folders?: Array<string>;
   channel_settings?: VideoWorkspaceCreateResponse.ChannelSettings;
 }
 
