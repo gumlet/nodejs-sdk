@@ -2,12 +2,18 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Gumlet",
-    "description": "Gumlet APIs",
+    "description": "Gumlet REST APIs",
     "version": "1.4",
     "contact": {
       "name": "Gumlet Support Team",
       "url": "https://www.gumlet.com/support",
       "email": "support@gumlet.com"
+    },
+    "summary": "Gumlet REST API",
+    "termsOfService": "https://www.gumlet.com/terms/",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://opensource.org/license/apache-2.0"
     },
     "x-scalar-sdk-installation": [
       {
@@ -23,19 +29,12 @@
   ],
   "components": {
     "securitySchemes": {
-      "sec0": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "Authorization",
-        "x-bearer-format": "bearer"
+      "API_KEY": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
   "paths": {
     "/video/assets": {
       "post": {
@@ -74,8 +73,14 @@
                     ]
                   },
                   "tag": {
-                    "type": "string",
-                    "description": "Specify a text string or identifier which can identify an asset or bunch of assets later."
+                    "type": "array",
+                    "description": "Specify a text string or identifier which can identify an asset or bunch of assets later.",
+                    "items": {
+                      "x-stoplight": {
+                        "id": "ukzi2mra8hepj"
+                      },
+                      "type": "string"
+                    }
                   },
                   "title": {
                     "type": "string",
@@ -86,9 +91,9 @@
                     "description": "Attach some textual data with the asset. This field is neither searchable nor filterable."
                   },
                   "metadata": {
-                    "type": "string",
+                    "type": "object",
                     "description": "Add your metadata you want to associate with this asset.<br/> Example: <br/> <code>  {  \"internal_video_id\" : \"123Abc\"  }  </code>",
-                    "format": "json"
+                    "additionalProperties": {}
                   },
                   "width": {
                     "type": "string",
@@ -307,6 +312,12 @@
                     "type": "array",
                     "description": "Add additional Audio / Subtitle tracks to Gumlet for transcoding and delivery along with video asset track.",
                     "items": {
+                      "type": "object",
+                      "required": [
+                        "url",
+                        "type",
+                        "language_code"
+                      ],
                       "properties": {
                         "url": {
                           "type": "string",
@@ -324,13 +335,7 @@
                           "type": "string",
                           "description": "The name of the track containing a human-readable description."
                         }
-                      },
-                      "required": [
-                        "url",
-                        "type",
-                        "language_code"
-                      ],
-                      "type": "object"
+                      }
                     }
                   },
                   "generate_subtitles": {
@@ -371,6 +376,7 @@
                     "type": "array",
                     "description": "CTA, is an explicit prompt within the video content encouraging viewers to take a particular action.",
                     "items": {
+                      "type": "object",
                       "properties": {
                         "text": {
                           "type": "string"
@@ -400,11 +406,11 @@
                           "format": "int32"
                         },
                         "position_from_right": {
-                          "type": "string",
-                          "description": "number of pixels from right"
+                          "type": "integer",
+                          "description": "number of pixels from right",
+                          "format": "int32"
                         }
-                      },
-                      "type": "object"
+                      }
                     }
                   },
                   "playlist_id": {
@@ -413,8 +419,7 @@
                   },
                   "folder": {
                     "type": "string",
-                    "description": "Add this asset to an existing folder by `folder_id`.",
-                    "default": ""
+                    "description": "Add this asset to an existing folder by `folder_id`."
                   }
                 }
               },
@@ -436,12 +441,12 @@
                     },
                     "call_to_actions": [
                       {
-                        "start_time": "1",
-                        "end_time": "90",
+                        "start_time": 1,
+                        "end_time": 90,
                         "text": "some test",
                         "url": "https://some-url.com",
-                        "position_from_top": "11",
-                        "position_from_right": "23",
+                        "position_from_top": 11,
+                        "position_from_right": 23,
                         "border_radius": "11",
                         "font_color": "#000001",
                         "background_color": "#ffffff"
@@ -461,7 +466,74 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"asset_id\": \"65b168a6e99b77f116c0e488\",\n    \"progress\": 0,\n    \"created_at\": 1706125479006,\n    \"updated_at\": 1706125479006,\n    \"status\": \"pre-queued\",\n    \"tag\": [\n        \"ball\"\n    ],\n    \"source_id\": \"646df1c9173a4a2fcac180b4\",\n    \"collection_id\": \"646df1c9173a4a2fcac180b4\",\n    \"input\": {\n        \"transformations\": {\n            \"format\": \"hls\",\n            \"resolution\": [\n                \"360p\",\n                \"480p\",\n                \"540p\",\n                \"720p\",\n                \"1080p\"\n            ],\n            \"audio_codec\": [\n                \"aac\"\n            ],\n            \"video_codec\": [\n                \"libx264\"\n            ],\n            \"thumbnail\": [\n                \"auto\"\n            ],\n            \"thumbnail_format\": \"png\",\n            \"mp4_access\": false,\n            \"per_title_encoding\": false\n        },\n        \"profile_id\": \"646df1c9173a4a2fcac180b7\",\n        \"title\": \"bipbopall\",\n        \"description\": \"some description\",\n        \"metadata\": {\n            \"headermeta\": \"metavalue\"\n        },\n        \"source_url\": \"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8\",\n        \"call_to_actions\": [\n            {\n                \"start_time\": 1,\n                \"end_time\": 90,\n                \"text\": \"some test\",\n                \"url\": \"https://some-url.com\",\n                \"position_from_top\": 11,\n                \"position_from_right\": 23,\n                \"border_radius\": 11,\n                \"font_color\": \"#000001\",\n                \"background_color\": \"#ffffff\",\n                \"html_target\": \"_blank\"\n            }\n        ]\n    },\n    \"output\": {\n        \"format\": \"hls\",\n        \"status_url\": \"https://api.gumlet.com/v1/video/assets/65b168a6e99b77f116c0e488\",\n        \"playback_url\": \"https://video.gumlet.io/646df1c9173a4a2fcac180b4/65b168a6e99b77f116c0e488/main.m3u8\",\n        \"thumbnail_url\": [\n            \"https://video.gumlet.io/646df1c9173a4a2fcac180b4/65b168a6e99b77f116c0e488/thumbnail-1-0.png?v=1706125479006\"\n        ]\n    },\n    \"playlists\": [\n        \"6597acd5ed6f26a9c5ca9633\"\n    ]\n}"
+                    "value": {
+                      "asset_id": "65b168a6e99b77f116c0e488",
+                      "progress": 0,
+                      "created_at": 1706125479006,
+                      "updated_at": 1706125479006,
+                      "status": "pre-queued",
+                      "tag": [
+                        "ball"
+                      ],
+                      "source_id": "646df1c9173a4a2fcac180b4",
+                      "collection_id": "646df1c9173a4a2fcac180b4",
+                      "input": {
+                        "transformations": {
+                          "format": "hls",
+                          "resolution": [
+                            "360p",
+                            "480p",
+                            "540p",
+                            "720p",
+                            "1080p"
+                          ],
+                          "audio_codec": [
+                            "aac"
+                          ],
+                          "video_codec": [
+                            "libx264"
+                          ],
+                          "thumbnail": [
+                            "auto"
+                          ],
+                          "thumbnail_format": "png",
+                          "mp4_access": false,
+                          "per_title_encoding": false
+                        },
+                        "profile_id": "646df1c9173a4a2fcac180b7",
+                        "title": "bipbopall",
+                        "description": "some description",
+                        "metadata": {
+                          "headermeta": "metavalue"
+                        },
+                        "source_url": "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8",
+                        "call_to_actions": [
+                          {
+                            "start_time": 1,
+                            "end_time": 90,
+                            "text": "some test",
+                            "url": "https://some-url.com",
+                            "position_from_top": 11,
+                            "position_from_right": 23,
+                            "border_radius": 11,
+                            "font_color": "#000001",
+                            "background_color": "#ffffff",
+                            "html_target": "_blank"
+                          }
+                        ]
+                      },
+                      "output": {
+                        "format": "hls",
+                        "status_url": "https://api.gumlet.com/v1/video/assets/65b168a6e99b77f116c0e488",
+                        "playback_url": "https://video.gumlet.io/646df1c9173a4a2fcac180b4/65b168a6e99b77f116c0e488/main.m3u8",
+                        "thumbnail_url": [
+                          "https://video.gumlet.io/646df1c9173a4a2fcac180b4/65b168a6e99b77f116c0e488/thumbnail-1-0.png?v=1706125479006"
+                        ]
+                      },
+                      "playlists": [
+                        "6597acd5ed6f26a9c5ca9633"
+                      ]
+                    }
                   }
                 },
                 "schema": {
@@ -681,7 +753,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"source_not_found\",\n    \"message\": \"Could not find any video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "source_not_found",
+                        "message": "Could not find any video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -711,7 +788,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"invalid_api_key\",\n        \"message\": \"API key supplied with request is invalid\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "invalid_api_key",
+                        "message": "API key supplied with request is invalid"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -744,7 +826,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.videoAssets.create({\n  'Request Example': {\n    value: {\n      format: 'ABR',\n      collection_id: '646df1c9173a4a2fcac180b4',\n      input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',\n      description: 'some description',\n      tag: ['ball'],\n      profile_id: '646df1c9173a4a2fcac180b7',\n      cluster_type: 'prod',\n      playlist_id: '6597acd5ed6f26a9c5ca9633',\n      metadata: { headermeta: 'metavalue' },\n      call_to_actions: [\n        {\n          start_time: '1',\n          end_time: '90',\n          text: 'some test',\n          url: 'https://some-url.com',\n          position_from_top: '11',\n          position_from_right: '23',\n          border_radius: '11',\n          font_color: '#000001',\n          background_color: '#ffffff',\n        },\n      ],\n      folder: '697375fbfa2d1037283140e4',\n    },\n  },\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.videoAssets.create({\n  format: 'ABR',\n  collection_id: '646df1c9173a4a2fcac180b4',\n  input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',\n  description: 'some description',\n  tag: ['ball'],\n  profile_id: '646df1c9173a4a2fcac180b7',\n  cluster_type: 'prod',\n  playlist_id: '6597acd5ed6f26a9c5ca9633',\n  metadata: { headermeta: 'metavalue' },\n  call_to_actions: [\n    {\n      start_time: 1,\n      end_time: 90,\n      text: 'some test',\n      url: 'https://some-url.com',\n      position_from_top: 11,\n      position_from_right: 23,\n      border_radius: '11',\n      font_color: '#000001',\n      background_color: '#ffffff',\n    },\n  ],\n  folder: '697375fbfa2d1037283140e4',\n});\n\nconsole.log(create);"
           }
         ]
       }
@@ -760,29 +842,32 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "workspace_id"
+                  "collection_id"
                 ],
                 "properties": {
                   "collection_id": {
                     "type": "string",
                     "description": "Gumlet video workspace id."
                   },
+                  "profile_id": {
+                    "type": "string",
+                    "description": "Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `collection_id`) from the video profile."
+                  },
                   "format": {
                     "type": "string",
-                    "description": "Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and `MP4`.",
+                    "description": "Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and`MP4`.",
                     "enum": [
                       "ABR",
                       "MP4"
                     ]
                   },
-                  "profile_id": {
-                    "type": "string",
-                    "description": "Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `collection_id`) from the video profile."
-                  },
                   "tag": {
                     "type": "array",
                     "description": "Specify a text string or identifier which can identify an asset or bunch of assets later.",
                     "items": {
+                      "x-stoplight": {
+                        "id": "ukzi2mra8hepj"
+                      },
                       "type": "string"
                     }
                   },
@@ -794,54 +879,10 @@
                     "type": "string",
                     "description": "Attach some textual data with the asset. This field is neither searchable nor filterable."
                   },
-                  "playlist_id": {
-                    "type": "string",
-                    "description": "Add this asset to a playlist."
-                  },
                   "metadata": {
-                    "type": "string",
-                    "description": "Set of key-value pairs that you can attach to this Asset. This can be useful for storing additional information.<br/> Example: <br/> <code>  {  \"internal_video_id\" : \"123Abc\"  }  </code>",
-                    "format": "json"
-                  },
-                  "call_to_actions": {
-                    "type": "array",
-                    "description": "CTA, is an explicit prompt within the video content encouraging viewers to take a particular action.",
-                    "items": {
-                      "properties": {
-                        "text": {
-                          "type": "string"
-                        },
-                        "url": {
-                          "type": "string"
-                        },
-                        "start_time": {
-                          "type": "integer",
-                          "format": "int32"
-                        },
-                        "end_time": {
-                          "type": "integer",
-                          "format": "int32"
-                        },
-                        "font_color": {
-                          "type": "string",
-                          "description": "hex value of color"
-                        },
-                        "background_color": {
-                          "type": "string",
-                          "description": "hex code of color"
-                        },
-                        "position_from_top": {
-                          "type": "integer",
-                          "description": "number of pixels from top",
-                          "format": "int32"
-                        },
-                        "position_from_right": {
-                          "type": "string",
-                          "description": "number of pixels from right"
-                        }
-                      },
-                      "type": "object"
-                    }
+                    "type": "object",
+                    "description": "Add your metadata you want to associate with this asset.<br/> Example: <br/> <code>  {  \"internal_video_id\" : \"123Abc\"  }  </code>",
+                    "additionalProperties": {}
                   },
                   "width": {
                     "type": "string",
@@ -851,9 +892,35 @@
                     "type": "string",
                     "description": "Resize video with the given height. Can be an absolute value in pixels or a percentage value with the `%` suffix. Specified values greater than the original asset height will be ignored. Applicable only when specified format is `MP4`."
                   },
-                  "enable_drm": {
-                    "type": "boolean",
-                    "description": "Enable DRM encryption for transcoded videos. Gumlet supports Widevine and Fairplay DRMs."
+                  "resolution": {
+                    "type": "string",
+                    "description": "Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Re-sized rendition will retain the input aspect ratio."
+                  },
+                  "crop": {
+                    "type": "object",
+                    "description": "This transformation can be used to crop the video by defining a rectangular area within the dimensions of the output video.",
+                    "required": [
+                      "width",
+                      "height"
+                    ],
+                    "properties": {
+                      "horizontal_margin": {
+                        "type": "string",
+                        "description": "This parameter defines the horizontal coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video width. **Default: `0`**"
+                      },
+                      "vertical_margin": {
+                        "type": "string",
+                        "description": "This parameter defines the vertical coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video height. **Default: `0`**"
+                      },
+                      "width": {
+                        "type": "string",
+                        "description": "Width of the cropping area in pixels."
+                      },
+                      "height": {
+                        "type": "string",
+                        "description": "Height of the cropping area in pixels."
+                      }
+                    }
                   },
                   "pad": {
                     "type": "object",
@@ -881,29 +948,28 @@
                       }
                     }
                   },
-                  "crop": {
+                  "trim": {
                     "type": "object",
-                    "description": "This transformation can be used to crop the video by defining a rectangular area within the dimensions of the output video.",
+                    "description": "Trim transformation can be used to trim videos based on time duration.",
                     "required": [
-                      "width",
-                      "height"
+                      "start_offset",
+                      "end_offset"
                     ],
                     "properties": {
-                      "horizontal_margin": {
-                        "type": "string",
-                        "description": "This parameter defines the horizontal coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video width. **Default: `0`**"
+                      "start_offset": {
+                        "type": "number",
+                        "description": "Start offset in number of seconds or in `HH:MM:SS` format.",
+                        "format": "float"
                       },
-                      "vertical_margin": {
-                        "type": "string",
-                        "description": "This parameter defines the vertical coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video height. **Default: `0`**"
+                      "end_offset": {
+                        "type": "number",
+                        "description": "End offset in number of seconds or in `HH:MM:SS` format.",
+                        "format": "float"
                       },
-                      "width": {
-                        "type": "string",
-                        "description": "Width of the cropping area in pixels."
-                      },
-                      "height": {
-                        "type": "string",
-                        "description": "Height of the cropping area in pixels."
+                      "duration": {
+                        "type": "number",
+                        "description": "Duration can be used in conjunction with `start_offset` parameter, can be specified in number of seconds.",
+                        "format": "float"
                       }
                     }
                   },
@@ -1005,31 +1071,6 @@
                       }
                     }
                   },
-                  "trim": {
-                    "type": "object",
-                    "description": "Trim transformation can be used to trim videos based on time duration.",
-                    "required": [
-                      "start_offset",
-                      "end_offset"
-                    ],
-                    "properties": {
-                      "start_offset": {
-                        "type": "number",
-                        "description": "Start offset in number of seconds or in `HH:MM:SS` format.",
-                        "format": "float"
-                      },
-                      "end_offset": {
-                        "type": "number",
-                        "description": "End offset in number of seconds or in `HH:MM:SS` format.",
-                        "format": "float"
-                      },
-                      "duration": {
-                        "type": "number",
-                        "description": "Duration can be used in conjunction with `start_offset` parameter, can be specified in number of seconds.",
-                        "format": "float"
-                      }
-                    }
-                  },
                   "animated_gif": {
                     "type": "object",
                     "description": "Create an animated GIF from the video.",
@@ -1056,9 +1097,35 @@
                       }
                     }
                   },
-                  "resolution": {
-                    "type": "string",
-                    "description": "Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Re-sized rendition will retain the input aspect ratio."
+                  "additional_tracks": {
+                    "type": "array",
+                    "description": "Add additional Audio / Subtitle tracks to Gumlet for transcoding and delivery along with video asset track.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "url",
+                        "type",
+                        "language_code"
+                      ],
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "URL or web address of a file that Gumlet should download to add a stream."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of additional track. Value can be either audio or subtitle."
+                        },
+                        "language_code": {
+                          "type": "string",
+                          "description": "The language code value represents BCP 47 specification compliant value. For example, en for English."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The name of the track containing a human-readable description."
+                        }
+                      }
+                    }
                   },
                   "generate_subtitles": {
                     "type": "object",
@@ -1090,72 +1157,91 @@
                     "type": "boolean",
                     "description": "This flag allows Gumlet to transcode and deliver audio-only in the specified format. In this case, video transformation and thumbnails/animated GIFs would not be created. **Default: `false`**"
                   },
-                  "keep_original": {
+                  "enable_drm": {
                     "type": "boolean",
-                    "description": "Gumlet by default saves the original file uploaded, if you don't want Gumlet to save your original files then you set this flag false."
+                    "description": "Enable DRM encryption for transcoded videos. Gumlet supports Widevine and Fairplay DRMs."
                   },
-                  "thumbnail": {
+                  "call_to_actions": {
+                    "type": "array",
+                    "description": "CTA, is an explicit prompt within the video content encouraging viewers to take a particular action.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+                        "start_time": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "end_time": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "font_color": {
+                          "type": "string",
+                          "description": "hex value of color"
+                        },
+                        "background_color": {
+                          "type": "string",
+                          "description": "hex code of color"
+                        },
+                        "position_from_top": {
+                          "type": "integer",
+                          "description": "number of pixels from top",
+                          "format": "int32"
+                        },
+                        "position_from_right": {
+                          "type": "integer",
+                          "description": "number of pixels from right",
+                          "format": "int32"
+                        }
+                      }
+                    }
+                  },
+                  "playlist_id": {
                     "type": "string",
-                    "description": "Specify second or percentage value of video duration to capture thumbnail image from."
-                  },
-                  "enable_preview_thumbnails": {
-                    "type": "boolean",
-                    "description": "Enable video preview thumbnails. Default: true"
-                  },
-                  "workspace_id": {
-                    "type": "string",
-                    "description": "Alias of `collection_id` for the Gumlet video workspace id."
+                    "description": "Add this asset to a playlist."
                   },
                   "folder": {
                     "type": "string",
-                    "description": "Add this asset to an existing folder by folder id."
+                    "description": "Add this asset to an existing folder by `folder_id`."
                   }
-                },
-                "anyOf": [
-                  {
-                    "required": [
-                      "collection_id"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "workspace_id"
-                    ]
-                  }
-                ]
+                }
               },
               "examples": {
                 "Request Example": {
                   "value": {
-                    "title": "Sports.",
-                    "description": "This video provides information about various sports.",
-                    "format": "MP4",
+                    "format": "ABR",
+                    "collection_id": "646df1c9173a4a2fcac180b4",
+                    "input": "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8",
+                    "description": "some description",
                     "tag": [
-                      "games",
-                      "field"
+                      "ball"
                     ],
                     "profile_id": "646df1c9173a4a2fcac180b7",
                     "cluster_type": "prod",
-                    "input": "https://file-examples.com/wp-content/storage/2017/04/file_example_MP4_480_1_5MG.mp4",
                     "playlist_id": "6597acd5ed6f26a9c5ca9633",
                     "metadata": {
                       "headermeta": "metavalue"
                     },
                     "call_to_actions": [
                       {
-                        "start_time": "1",
-                        "end_time": "90",
-                        "text": "Buy here!!",
-                        "url": "https://some-buy-url-site.com",
-                        "position_from_top": "11",
-                        "position_from_right": "23",
+                        "start_time": 1,
+                        "end_time": 90,
+                        "text": "some test",
+                        "url": "https://some-url.com",
+                        "position_from_top": 11,
+                        "position_from_right": 23,
                         "border_radius": "11",
                         "font_color": "#000001",
                         "background_color": "#ffffff"
                       }
                     ],
-                    "folder": "697375fbfa2d1037283140e4",
-                    "workspace_id": "646df1c9173a4a2fcac180b4"
+                    "folder": "697375fbfa2d1037283140e4"
                   }
                 }
               }
@@ -1169,7 +1255,72 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"asset_id\": \"65b169dfe99b77f116c0e4aa\",\n    \"progress\": 0,\n    \"created_at\": 1706125793055,\n    \"updated_at\": 1706125793055,\n    \"status\": \"upload-pending\",\n    \"tag\": [\n        \"games\",\n        \"field\"\n    ],\n    \"source_id\": \"646df1c9173a4a2fcac180b4\",\n    \"collection_id\": \"646df1c9173a4a2fcac180b4\",\n    \"input\": {\n        \"transformations\": {\n            \"format\": \"hls\",\n            \"resolution\": [\n                \"360p\",\n                \"480p\",\n                \"540p\",\n                \"720p\",\n                \"1080p\"\n            ],\n            \"audio_codec\": [\n                \"aac\"\n            ],\n            \"video_codec\": [\n                \"libx264\"\n            ],\n            \"thumbnail\": [\n                \"auto\"\n            ],\n            \"thumbnail_format\": \"png\",\n            \"mp4_access\": false,\n            \"per_title_encoding\": false,\n            \"original_deleted\": true\n        },\n        \"profile_id\": \"646df1c9173a4a2fcac180b7\",\n        \"title\": \"Sports.\",\n        \"description\": \"This video provides information about various sports.\",\n        \"metadata\": {\n            \"headermeta\": \"metavalue\"\n        },\n        \"source_url\": \"646df1c9173a4a2fcac180b4/65b169dfe99b77f116c0e4aa/origin-65b169dfe99b77f116c0e4aa\",\n        \"call_to_actions\": [\n            {\n                \"start_time\": 1,\n                \"end_time\": 90,\n                \"text\": \"Buy here!!\",\n                \"url\": \"https://some-buy-url-site.com\",\n                \"html_target\": \"_blank\"\n            }\n        ]\n    },\n    \"output\": {\n        \"format\": \"hls\",\n        \"status_url\": \"https://api.gumlet.com/v1/video/assets/65b169dfe99b77f116c0e4aa\",\n        \"playback_url\": \"https://dev-video.gumlet.io/646df1c9173a4a2fcac180b4/65b169dfe99b77f116c0e4aa/main.m3u8\",\n        \"thumbnail_url\": [\n            \"https://dev-video.gumlet.io/646df1c9173a4a2fcac180b4/65b169dfe99b77f116c0e4aa/thumbnail-1-0.png?v=1706125793055\"\n        ]\n    },\n    \"upload_url\": \"https://gumlet-video-user-uploads.s3-accelerate.dualstack.amazonaws.com/gumlet-user-uploads-dev-deletable/646df1c9173a4a2fcac180b4/65b169dfe99b77f116c0e4aa/origin-65b169dfe99b77f116c0e4aa?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA4WNLTXWDAC3AKBPV%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T194953Z&X-Amz-Expires=3600&X-Amz-Signature=b724bd728efd589ec6cb4d0fab17947448c02788823619433720e8fddf0f1155&X-Amz-SignedHeaders=host&x-id=PutObject\",\n    \"playlists\": [\n        \"6597acd5ed6f26a9c5ca9633\"\n    ]\n}"
+                    "value": {
+                      "asset_id": "65b169dfe99b77f116c0e4aa",
+                      "progress": 0,
+                      "created_at": 1706125793055,
+                      "updated_at": 1706125793055,
+                      "status": "upload-pending",
+                      "tag": [
+                        "games",
+                        "field"
+                      ],
+                      "source_id": "646df1c9173a4a2fcac180b4",
+                      "collection_id": "646df1c9173a4a2fcac180b4",
+                      "input": {
+                        "transformations": {
+                          "format": "hls",
+                          "resolution": [
+                            "360p",
+                            "480p",
+                            "540p",
+                            "720p",
+                            "1080p"
+                          ],
+                          "audio_codec": [
+                            "aac"
+                          ],
+                          "video_codec": [
+                            "libx264"
+                          ],
+                          "thumbnail": [
+                            "auto"
+                          ],
+                          "thumbnail_format": "png",
+                          "mp4_access": false,
+                          "per_title_encoding": false,
+                          "original_deleted": true
+                        },
+                        "profile_id": "646df1c9173a4a2fcac180b7",
+                        "title": "Sports.",
+                        "description": "This video provides information about various sports.",
+                        "metadata": {
+                          "headermeta": "metavalue"
+                        },
+                        "source_url": "646df1c9173a4a2fcac180b4/65b169dfe99b77f116c0e4aa/origin-65b169dfe99b77f116c0e4aa",
+                        "call_to_actions": [
+                          {
+                            "start_time": 1,
+                            "end_time": 90,
+                            "text": "Buy here!!",
+                            "url": "https://some-buy-url-site.com",
+                            "html_target": "_blank"
+                          }
+                        ]
+                      },
+                      "output": {
+                        "format": "hls",
+                        "status_url": "https://api.gumlet.com/v1/video/assets/65b169dfe99b77f116c0e4aa",
+                        "playback_url": "https://dev-video.gumlet.io/646df1c9173a4a2fcac180b4/65b169dfe99b77f116c0e4aa/main.m3u8",
+                        "thumbnail_url": [
+                          "https://dev-video.gumlet.io/646df1c9173a4a2fcac180b4/65b169dfe99b77f116c0e4aa/thumbnail-1-0.png?v=1706125793055"
+                        ]
+                      },
+                      "upload_url": "https://gumlet-video-user-uploads.s3-accelerate.dualstack.amazonaws.com/gumlet-user-uploads-dev-deletable/646df1c9173a4a2fcac180b4/65b169dfe99b77f116c0e4aa/origin-65b169dfe99b77f116c0e4aa?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA4WNLTXWDAC3AKBPV%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T194953Z&X-Amz-Expires=3600&X-Amz-Signature=b724bd728efd589ec6cb4d0fab17947448c02788823619433720e8fddf0f1155&X-Amz-SignedHeaders=host&x-id=PutObject",
+                      "playlists": [
+                        "6597acd5ed6f26a9c5ca9633"
+                      ]
+                    }
                   }
                 },
                 "schema": {
@@ -1375,7 +1526,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"source_not_found\",\n    \"message\": \"Could not find any video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "source_not_found",
+                        "message": "Could not find any video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -1405,7 +1561,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"source_not_found\",\n    \"message\": \"Could not find any video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "source_not_found",
+                        "message": "Could not find any video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -1438,7 +1599,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst upload = await client.videoAssets.upload({\n  'Request Example': {\n    value: {\n      title: 'Sports.',\n      description: 'This video provides information about various sports.',\n      format: 'MP4',\n      tag: ['games', 'field'],\n      profile_id: '646df1c9173a4a2fcac180b7',\n      cluster_type: 'prod',\n      input: 'https://file-examples.com/wp-content/storage/2017/04/file_example_MP4_480_1_5MG.mp4',\n      playlist_id: '6597acd5ed6f26a9c5ca9633',\n      metadata: { headermeta: 'metavalue' },\n      call_to_actions: [\n        {\n          start_time: '1',\n          end_time: '90',\n          text: 'Buy here!!',\n          url: 'https://some-buy-url-site.com',\n          position_from_top: '11',\n          position_from_right: '23',\n          border_radius: '11',\n          font_color: '#000001',\n          background_color: '#ffffff',\n        },\n      ],\n      folder: '697375fbfa2d1037283140e4',\n      workspace_id: '646df1c9173a4a2fcac180b4',\n    },\n  },\n});\n\nconsole.log(upload);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst upload = await client.videoAssets.upload({\n  format: 'ABR',\n  collection_id: '646df1c9173a4a2fcac180b4',\n  input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',\n  description: 'some description',\n  tag: ['ball'],\n  profile_id: '646df1c9173a4a2fcac180b7',\n  cluster_type: 'prod',\n  playlist_id: '6597acd5ed6f26a9c5ca9633',\n  metadata: { headermeta: 'metavalue' },\n  call_to_actions: [\n    {\n      start_time: 1,\n      end_time: 90,\n      text: 'some test',\n      url: 'https://some-url.com',\n      position_from_top: 11,\n      position_from_right: 23,\n      border_radius: '11',\n      font_color: '#000001',\n      background_color: '#ffffff',\n    },\n  ],\n  folder: '697375fbfa2d1037283140e4',\n});\n\nconsole.log(upload);"
           }
         ]
       }
@@ -1466,7 +1627,320 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"asset_id\": \"67e4ece9403562dbea654261\",\n  \"progress\": 100,\n  \"created_at\": 1743056105661,\n  \"updated_at\": 1743056105661,\n  \"status\": \"ready\",\n  \"tag\": [\n    \"demo\"\n  ],\n  \"source_id\": \"67e4ece9403562dbea65425f\",\n  \"collection_id\": \"67e4ece9403562dbea65425f\",\n  \"input\": {\n    \"transformations\": {\n      \"format\": \"abr\",\n      \"resolution\": [\n        \"240p\",\n        \"360p\",\n        \"480p\",\n        \"540p\",\n        \"720p\",\n        \"1080p\",\n        \"1440p\",\n        \"2160p\"\n      ],\n      \"audio_codec\": [\n        \"aac\"\n      ],\n      \"video_codec\": [\n        \"libx264\"\n      ],\n      \"image_overlay\": {\n        \"url\": \"https://demo.gumlet.io/logo.png\",\n        \"vertical_align\": \"top\",\n        \"horizontal_align\": \"right\",\n        \"vertical_margin\": \"5%\",\n        \"horizontal_margin\": \"5%\",\n        \"width\": \"20%\",\n        \"height\": \"20%\",\n        \"image_downloaded\": true\n      },\n      \"thumbnail\": [\n        \"auto\"\n      ],\n      \"thumbnail_format\": \"png\",\n      \"mp4_access\": false,\n      \"audio_only\": false,\n      \"original_deleted\": true,\n      \"per_title_encoding\": false,\n      \"generate_subtitles\": {\n        \"audio_language\": \"en\",\n        \"subtitle_languages\": [\n          \"es\",\n          \"hi\"\n        ]\n      },\n      \"preview_thumbnails\": {\n        \"max_tiles\": 100\n      }\n    },\n    \"profile_id\": \"67e4ece9403562dbea65425c\",\n    \"title\": \" Sample Video\",\n    \"description\": \"This is a sample video to help you experience Gumlet platform and player.\",\n    \"chapters\": [\n      {\n        \"endTime\": 10,\n        \"label\": \"First Chapter\"\n      },\n      {\n        \"endTime\": 50,\n        \"label\": \"Second Chapter\"\n      },\n      {\n        \"endTime\": 130,\n        \"label\": \"Third Chapter\"\n      },\n      {\n        \"endTime\": 155,\n        \"label\": \"Forth Chapter\"\n      }\n    ],\n    \"source_url\": \"5f462c1561cf8a766464ffc4/647eb18cc90c6c6c35370979/origin-647eb18cc90c6c6c35370979\",\n    \"size\": 364735178,\n    \"duration\": 183.088,\n    \"aspect_ratio\": \"16:9\",\n    \"fps\": 23.98,\n    \"width\": 3840,\n    \"height\": 2160\n  },\n  \"output\": {\n    \"format\": \"abr\",\n    \"status_url\": \"https://api.gumlet.com/v1/video/assets/67e4ece9403562dbea654261\",\n    \"playback_url\": \"https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/main.m3u8\",\n    \"dash_playback_url\": \"https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/main.mpd\",\n    \"thumbnail_url\": [\n      \"https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/thumbnail-1-0.png?v=1743056105661\"\n    ],\n    \"storage_details\": {\n      \"video\": [\n        {\n          \"fileName\": \"1080p.mp4\",\n          \"size\": 91884957,\n          \"resolution\": \"1920x1080\",\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"1440p.mp4\",\n          \"size\": 148667263,\n          \"resolution\": \"2560x1440\",\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"2160p.mp4\",\n          \"size\": 296143768,\n          \"resolution\": \"3840x2160\",\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"240p.mp4\",\n          \"size\": 6573304,\n          \"resolution\": \"426x240\",\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"360p.mp4\",\n          \"size\": 14040936,\n          \"resolution\": \"640x360\",\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"480p.mp4\",\n          \"size\": 23006040,\n          \"resolution\": \"854x480\",\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"540p.mp4\",\n          \"size\": 28124144,\n          \"resolution\": \"960x540\",\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"720p.mp4\",\n          \"size\": 45395668,\n          \"resolution\": \"1280x720\",\n          \"duration\": 183\n        }\n      ],\n      \"audio\": [\n        {\n          \"fileName\": \"en_128k.mp4\",\n          \"size\": 2913025,\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"en_192k.mp4\",\n          \"size\": 4378028,\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"en_64k.mp4\",\n          \"size\": 1448475,\n          \"duration\": 183\n        },\n        {\n          \"fileName\": \"en_96k.mp4\",\n          \"size\": 2180524,\n          \"duration\": 183\n        }\n      ],\n      \"playlist\": [\n        {\n          \"fileName\": \"1080p.m3u8\",\n          \"size\": 3790\n        },\n        {\n          \"fileName\": \"1080p_iframe.m3u8\",\n          \"size\": 4129\n        },\n        {\n          \"fileName\": \"1440p.m3u8\",\n          \"size\": 3793\n        },\n        {\n          \"fileName\": \"1440p_iframe.m3u8\",\n          \"size\": 4160\n        },\n        {\n          \"fileName\": \"2160p.m3u8\",\n          \"size\": 3797\n        },\n        {\n          \"fileName\": \"2160p_iframe.m3u8\",\n          \"size\": 4196\n        },\n        {\n          \"fileName\": \"240p.m3u8\",\n          \"size\": 3701\n        },\n        {\n          \"fileName\": \"240p_iframe.m3u8\",\n          \"size\": 3997\n        },\n        {\n          \"fileName\": \"360p.m3u8\",\n          \"size\": 3701\n        },\n        {\n          \"fileName\": \"360p_iframe.m3u8\",\n          \"size\": 4040\n        },\n        {\n          \"fileName\": \"480p.m3u8\",\n          \"size\": 3702\n        },\n        {\n          \"fileName\": \"480p_iframe.m3u8\",\n          \"size\": 4058\n        },\n        {\n          \"fileName\": \"540p.m3u8\",\n          \"size\": 3705\n        },\n        {\n          \"fileName\": \"540p_iframe.m3u8\",\n          \"size\": 4068\n        },\n        {\n          \"fileName\": \"720p.m3u8\",\n          \"size\": 3730\n        },\n        {\n          \"fileName\": \"720p_iframe.m3u8\",\n          \"size\": 4072\n        },\n        {\n          \"fileName\": \"en_128k.m3u8\",\n          \"size\": 3802\n        },\n        {\n          \"fileName\": \"en_192k.m3u8\",\n          \"size\": 3802\n        },\n        {\n          \"fileName\": \"en_64k.m3u8\",\n          \"size\": 3755\n        },\n        {\n          \"fileName\": \"en_96k.m3u8\",\n          \"size\": 3755\n        },\n        {\n          \"fileName\": \"es.m3u8\",\n          \"size\": 231\n        },\n        {\n          \"fileName\": \"hi.m3u8\",\n          \"size\": 231\n        },\n        {\n          \"fileName\": \"en.m3u8\",\n          \"size\": 232\n        },\n        {\n          \"fileName\": \"main.m3u8\",\n          \"size\": 10690\n        },\n        {\n          \"fileName\": \"main.mpd\",\n          \"size\": 6889\n        }\n      ],\n      \"thumbnail\": [\n        {\n          \"fileName\": \"thumbnail-1-0.png\",\n          \"size\": 6087369,\n          \"resolution\": \"3840x2160\"\n        }\n      ],\n      \"subtitle\": [\n        {\n          \"fileName\": \"es.vtt\",\n          \"size\": 398\n        },\n        {\n          \"fileName\": \"hi.vtt\",\n          \"size\": 632\n        },\n        {\n          \"fileName\": \"en.vtt\",\n          \"size\": 645\n        }\n      ],\n      \"previewThumbnail\": [\n        {\n          \"fileName\": \"preview_thumbnails.png\",\n          \"size\": 3089899\n        },\n        {\n          \"fileName\": \"preview_thumbnails.vtt\",\n          \"size\": 3816\n        }\n      ]\n    },\n    \"transcription_word_level_timestamps\": \"https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/67e4ece9403562dbea654261-transcription-word-level-timestamp.json?token=5589a9b725fabe0586e37782c3eb8e083a84e5c2&expires=1744100014337\",\n    \"storage_bytes\": 674034917,\n    \"preview_thumbnails_url\": \"https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/preview_thumbnails.vtt\"\n  },\n  \"processed_at\": 1743056105661,\n  \"folder\": \"Demo Folder\",\n  \"playlists\": []\n}"
+                    "value": {
+                      "asset_id": "67e4ece9403562dbea654261",
+                      "progress": 100,
+                      "created_at": 1743056105661,
+                      "updated_at": 1743056105661,
+                      "status": "ready",
+                      "tag": [
+                        "demo"
+                      ],
+                      "source_id": "67e4ece9403562dbea65425f",
+                      "collection_id": "67e4ece9403562dbea65425f",
+                      "input": {
+                        "transformations": {
+                          "format": "abr",
+                          "resolution": [
+                            "240p",
+                            "360p",
+                            "480p",
+                            "540p",
+                            "720p",
+                            "1080p",
+                            "1440p",
+                            "2160p"
+                          ],
+                          "audio_codec": [
+                            "aac"
+                          ],
+                          "video_codec": [
+                            "libx264"
+                          ],
+                          "image_overlay": {
+                            "url": "https://demo.gumlet.io/logo.png",
+                            "vertical_align": "top",
+                            "horizontal_align": "right",
+                            "vertical_margin": "5%",
+                            "horizontal_margin": "5%",
+                            "width": "20%",
+                            "height": "20%",
+                            "image_downloaded": true
+                          },
+                          "thumbnail": [
+                            "auto"
+                          ],
+                          "thumbnail_format": "png",
+                          "mp4_access": false,
+                          "audio_only": false,
+                          "original_deleted": true,
+                          "per_title_encoding": false,
+                          "generate_subtitles": {
+                            "audio_language": "en",
+                            "subtitle_languages": [
+                              "es",
+                              "hi"
+                            ]
+                          },
+                          "preview_thumbnails": {
+                            "max_tiles": 100
+                          }
+                        },
+                        "profile_id": "67e4ece9403562dbea65425c",
+                        "title": " Sample Video",
+                        "description": "This is a sample video to help you experience Gumlet platform and player.",
+                        "chapters": [
+                          {
+                            "endTime": 10,
+                            "label": "First Chapter"
+                          },
+                          {
+                            "endTime": 50,
+                            "label": "Second Chapter"
+                          },
+                          {
+                            "endTime": 130,
+                            "label": "Third Chapter"
+                          },
+                          {
+                            "endTime": 155,
+                            "label": "Forth Chapter"
+                          }
+                        ],
+                        "source_url": "5f462c1561cf8a766464ffc4/647eb18cc90c6c6c35370979/origin-647eb18cc90c6c6c35370979",
+                        "size": 364735178,
+                        "duration": 183.088,
+                        "aspect_ratio": "16:9",
+                        "fps": 23.98,
+                        "width": 3840,
+                        "height": 2160
+                      },
+                      "output": {
+                        "format": "abr",
+                        "status_url": "https://api.gumlet.com/v1/video/assets/67e4ece9403562dbea654261",
+                        "playback_url": "https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/main.m3u8",
+                        "dash_playback_url": "https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/main.mpd",
+                        "thumbnail_url": [
+                          "https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/thumbnail-1-0.png?v=1743056105661"
+                        ],
+                        "storage_details": {
+                          "video": [
+                            {
+                              "fileName": "1080p.mp4",
+                              "size": 91884957,
+                              "resolution": "1920x1080",
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "1440p.mp4",
+                              "size": 148667263,
+                              "resolution": "2560x1440",
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "2160p.mp4",
+                              "size": 296143768,
+                              "resolution": "3840x2160",
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "240p.mp4",
+                              "size": 6573304,
+                              "resolution": "426x240",
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "360p.mp4",
+                              "size": 14040936,
+                              "resolution": "640x360",
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "480p.mp4",
+                              "size": 23006040,
+                              "resolution": "854x480",
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "540p.mp4",
+                              "size": 28124144,
+                              "resolution": "960x540",
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "720p.mp4",
+                              "size": 45395668,
+                              "resolution": "1280x720",
+                              "duration": 183
+                            }
+                          ],
+                          "audio": [
+                            {
+                              "fileName": "en_128k.mp4",
+                              "size": 2913025,
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "en_192k.mp4",
+                              "size": 4378028,
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "en_64k.mp4",
+                              "size": 1448475,
+                              "duration": 183
+                            },
+                            {
+                              "fileName": "en_96k.mp4",
+                              "size": 2180524,
+                              "duration": 183
+                            }
+                          ],
+                          "playlist": [
+                            {
+                              "fileName": "1080p.m3u8",
+                              "size": 3790
+                            },
+                            {
+                              "fileName": "1080p_iframe.m3u8",
+                              "size": 4129
+                            },
+                            {
+                              "fileName": "1440p.m3u8",
+                              "size": 3793
+                            },
+                            {
+                              "fileName": "1440p_iframe.m3u8",
+                              "size": 4160
+                            },
+                            {
+                              "fileName": "2160p.m3u8",
+                              "size": 3797
+                            },
+                            {
+                              "fileName": "2160p_iframe.m3u8",
+                              "size": 4196
+                            },
+                            {
+                              "fileName": "240p.m3u8",
+                              "size": 3701
+                            },
+                            {
+                              "fileName": "240p_iframe.m3u8",
+                              "size": 3997
+                            },
+                            {
+                              "fileName": "360p.m3u8",
+                              "size": 3701
+                            },
+                            {
+                              "fileName": "360p_iframe.m3u8",
+                              "size": 4040
+                            },
+                            {
+                              "fileName": "480p.m3u8",
+                              "size": 3702
+                            },
+                            {
+                              "fileName": "480p_iframe.m3u8",
+                              "size": 4058
+                            },
+                            {
+                              "fileName": "540p.m3u8",
+                              "size": 3705
+                            },
+                            {
+                              "fileName": "540p_iframe.m3u8",
+                              "size": 4068
+                            },
+                            {
+                              "fileName": "720p.m3u8",
+                              "size": 3730
+                            },
+                            {
+                              "fileName": "720p_iframe.m3u8",
+                              "size": 4072
+                            },
+                            {
+                              "fileName": "en_128k.m3u8",
+                              "size": 3802
+                            },
+                            {
+                              "fileName": "en_192k.m3u8",
+                              "size": 3802
+                            },
+                            {
+                              "fileName": "en_64k.m3u8",
+                              "size": 3755
+                            },
+                            {
+                              "fileName": "en_96k.m3u8",
+                              "size": 3755
+                            },
+                            {
+                              "fileName": "es.m3u8",
+                              "size": 231
+                            },
+                            {
+                              "fileName": "hi.m3u8",
+                              "size": 231
+                            },
+                            {
+                              "fileName": "en.m3u8",
+                              "size": 232
+                            },
+                            {
+                              "fileName": "main.m3u8",
+                              "size": 10690
+                            },
+                            {
+                              "fileName": "main.mpd",
+                              "size": 6889
+                            }
+                          ],
+                          "thumbnail": [
+                            {
+                              "fileName": "thumbnail-1-0.png",
+                              "size": 6087369,
+                              "resolution": "3840x2160"
+                            }
+                          ],
+                          "subtitle": [
+                            {
+                              "fileName": "es.vtt",
+                              "size": 398
+                            },
+                            {
+                              "fileName": "hi.vtt",
+                              "size": 632
+                            },
+                            {
+                              "fileName": "en.vtt",
+                              "size": 645
+                            }
+                          ],
+                          "previewThumbnail": [
+                            {
+                              "fileName": "preview_thumbnails.png",
+                              "size": 3089899
+                            },
+                            {
+                              "fileName": "preview_thumbnails.vtt",
+                              "size": 3816
+                            }
+                          ]
+                        },
+                        "transcription_word_level_timestamps": "https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/67e4ece9403562dbea654261-transcription-word-level-timestamp.json?token=5589a9b725fabe0586e37782c3eb8e083a84e5c2&expires=1744100014337",
+                        "storage_bytes": 674034917,
+                        "preview_thumbnails_url": "https://video.gumlet.io/67e4ece9403562dbea65425f/67e4ece9403562dbea654261/preview_thumbnails.vtt"
+                      },
+                      "processed_at": 1743056105661,
+                      "folder": "Demo Folder",
+                      "playlists": [
+                        "6580370331f481c578e07287",
+                        "657c24f3e3340004404eed59"
+                      ]
+                    }
                   }
                 },
                 "schema": {
@@ -1878,7 +2352,14 @@
                       "example": "Demo Folder"
                     },
                     "playlists": {
-                      "type": "array"
+                      "type": "array",
+                      "description": "Array of Playlist IDs",
+                      "items": {
+                        "x-stoplight": {
+                          "id": "i8aa4yls9dah8"
+                        },
+                        "type": "string"
+                      }
                     }
                   }
                 }
@@ -1891,7 +2372,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"asset_not_found\",\n    \"message\": \"Could not find any video asset with specified asset_id.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "asset_not_found",
+                        "message": "Could not find any video asset with specified asset_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -1921,7 +2407,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"asset_not_found\",\n    \"message\": \"Could not find any video asset with specified asset_id.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "asset_not_found",
+                        "message": "Could not find any video asset with specified asset_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -1954,7 +2445,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst retrieveStatus = await client.videoAssets.retrieveStatus('assetId');\n\nconsole.log(retrieveStatus);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst retrieveStatus = await client.videoAssets.retrieveStatus('assetId');\n\nconsole.log(retrieveStatus);"
           }
         ]
       },
@@ -1992,7 +2483,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"asset_not_found\",\n    \"message\": \"Could not find any video asset with specified asset_id.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "asset_not_found",
+                        "message": "Could not find any video asset with specified asset_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -2022,7 +2518,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"asset_not_found\",\n    \"message\": \"Could not find any video asset with specified asset_id.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "asset_not_found",
+                        "message": "Could not find any video asset with specified asset_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -2055,7 +2556,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nawait client.videoAssets.delete('assetId');"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.videoAssets.delete('assetId');"
           }
         ]
       }
@@ -2158,7 +2659,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -2174,7 +2675,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -2193,7 +2694,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst update = await client.videoAssets.update({\n  asset_id: '',\n});\n\nconsole.log(update);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst update = await client.videoAssets.update({\n  asset_id: '',\n});\n\nconsole.log(update);"
           }
         ]
       }
@@ -2247,7 +2748,33 @@
               "text/plain": {
                 "examples": {
                   "Result": {
-                    "value": ""
+                    "value": {
+                      "success": true,
+                      "asset_id": "6495e52a01e29f9a90f3e884",
+                      "thumbnail_updated_at": 1787073689058
+                    }
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "success": true,
+                      "asset_id": "6495e52a01e29f9a90f3e884",
+                      "thumbnail_updated_at": 1787073689058
+                    }
+                  },
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "asset_id": {
+                      "type": "string"
+                    },
+                    "thumbnail_updated_at": {
+                      "type": "integer",
+                      "description": "Milliseconds since epoch for the updated time."
+                    }
                   }
                 }
               }
@@ -2262,7 +2789,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst string_ = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });\n\nconsole.log(string_);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });\n\nconsole.log(selectFrom);"
           }
         ]
       }
@@ -2321,7 +2848,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nawait client.videoAssets.selectFromImageFile('assetId');"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.videoAssets.selectFromImageFile('assetId');"
           }
         ]
       }
@@ -2398,7 +2925,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nawait client.videoAssets.upload2('assetId');"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.videoAssets.upload2('assetId');"
           }
         ]
       }
@@ -2488,7 +3015,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst uploadSubtitleCompletion = await client.videoAssets.uploadSubtitleCompletion('assetId');\n\nconsole.log(uploadSubtitleCompletion);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst uploadSubtitleCompletion = await client.videoAssets.uploadSubtitleCompletion('assetId');\n\nconsole.log(uploadSubtitleCompletion);"
           }
         ]
       }
@@ -2565,7 +3092,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nawait client.videoAssets.upload3('assetId');"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.videoAssets.upload3('assetId');"
           }
         ]
       }
@@ -2655,7 +3182,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst uploadAudioCompletion = await client.videoAssets.uploadAudioCompletion('assetId');\n\nconsole.log(uploadAudioCompletion);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst uploadAudioCompletion = await client.videoAssets.uploadAudioCompletion('assetId');\n\nconsole.log(uploadAudioCompletion);"
           }
         ]
       }
@@ -2750,7 +3277,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst createUpdateChapter = await client.videoAssets.createUpdateChapter('assetId', {\n  chapters: [],\n});\n\nconsole.log(createUpdateChapter);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst createUpdateChapter = await client.videoAssets.createUpdateChapter('assetId', {\n  chapters: [],\n});\n\nconsole.log(createUpdateChapter);"
           }
         ]
       }
@@ -2903,7 +3430,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.videoUsageAnalytics.create({\n  metrics: [],\n  date_range: {},\n  top_assets_count: '5',\n  top_assets_page: '0',\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.videoUsageAnalytics.create({\n  metrics: [],\n  date_range: {},\n  top_assets_count: '5',\n  top_assets_page: '0',\n});\n\nconsole.log(create);"
           }
         ]
       }
@@ -3038,7 +3565,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst streamingDuration = await client.videoUsageAnalytics.streamingDuration({\n  start_at: 'startAt',\n  end_at: 'endAt',\n  page_size: '1000',\n});\n\nconsole.log(streamingDuration);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst streamingDuration = await client.videoUsageAnalytics.streamingDuration({\n  start_at: 'startAt',\n  end_at: 'endAt',\n  page_size: '1000',\n});\n\nconsole.log(streamingDuration);"
           }
         ]
       }
@@ -3123,7 +3650,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst signPart = await client.multipartUpload.signPart('partNumber', {\n  asset_id: 'assetId',\n});\n\nconsole.log(signPart);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst signPart = await client.multipartUpload.signPart('partNumber', {\n  asset_id: 'assetId',\n});\n\nconsole.log(signPart);"
           }
         ]
       }
@@ -3214,7 +3741,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst complete = await client.multipartUpload.complete('assetId');\n\nconsole.log(complete);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst complete = await client.multipartUpload.complete('assetId');\n\nconsole.log(complete);"
           }
         ]
       }
@@ -3645,7 +4172,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.videoProfiles.create({\n  name: 'Gumlet-Profile-1',\n  format: 'ABR',\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.videoProfiles.create({\n  name: 'Gumlet-Profile-1',\n  format: 'ABR',\n});\n\nconsole.log(create);"
           }
         ]
       },
@@ -3780,7 +4307,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst list = await client.videoProfiles.list();\n\nconsole.log(list);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst list = await client.videoProfiles.list();\n\nconsole.log(list);"
           }
         ]
       }
@@ -4206,7 +4733,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst update = await client.videoProfiles.update('profileId', {\n  profile_id: '',\n  format: 'ABR',\n});\n\nconsole.log(update);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst update = await client.videoProfiles.update('profileId', {\n  profile_id: '',\n  format: 'ABR',\n});\n\nconsole.log(update);"
           }
         ]
       },
@@ -4378,7 +4905,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst retrieve = await client.videoProfiles.retrieve('profileId');\n\nconsole.log(retrieve);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst retrieve = await client.videoProfiles.retrieve('profileId');\n\nconsole.log(retrieve);"
           }
         ]
       },
@@ -4483,7 +5010,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst delete_ = await client.videoProfiles.delete('profileId');\n\nconsole.log(delete_);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst delete_ = await client.videoProfiles.delete('profileId');\n\nconsole.log(delete_);"
           }
         ]
       }
@@ -4690,7 +5217,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.videoPlaylists.create({\n  title: 'Playlist-Title',\n  description: 'This is description for playlist.',\n  collection_id: '{{video-source-id}}',\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.videoPlaylists.create({\n  title: 'Playlist-Title',\n  description: 'This is description for playlist.',\n  collection_id: '{{video-source-id}}',\n});\n\nconsole.log(create);"
           }
         ]
       },
@@ -4788,7 +5315,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst listAll = await client.videoPlaylists.listAll();\n\nconsole.log(listAll);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst listAll = await client.videoPlaylists.listAll();\n\nconsole.log(listAll);"
           }
         ]
       }
@@ -4930,7 +5457,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {\n  asset_list: [\n    { asset_id: '6508790283e4d60611846790' },\n    { position: '1', asset_id: '650878f883e4d6061184677d' },\n    { asset_id: '650878de83e4d6061184676a' },\n    { position: '2', asset_id: '650878d883e4d60611846757' },\n    { position: '3', asset_id: '65578dd87eebc22dcdd549a2' },\n  ],\n});\n\nconsole.log(createAssetTo);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {\n  asset_list: [\n    { asset_id: '6508790283e4d60611846790' },\n    { position: '1', asset_id: '650878f883e4d6061184677d' },\n    { asset_id: '650878de83e4d6061184676a' },\n    { position: '2', asset_id: '650878d883e4d60611846757' },\n    { position: '3', asset_id: '65578dd87eebc22dcdd549a2' },\n  ],\n});\n\nconsole.log(createAssetTo);"
           }
         ]
       },
@@ -5044,7 +5571,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst deleteAssetFrom = await client.videoPlaylists.deleteAssetFrom('playlistId', {\n  delete_list: ['6508790783e4d606118467a3'],\n});\n\nconsole.log(deleteAssetFrom);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst deleteAssetFrom = await client.videoPlaylists.deleteAssetFrom('playlistId', {\n  delete_list: ['6508790783e4d606118467a3'],\n});\n\nconsole.log(deleteAssetFrom);"
           }
         ]
       }
@@ -5353,7 +5880,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst update = await client.videoPlaylists.update('playlistId');\n\nconsole.log(update);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst update = await client.videoPlaylists.update('playlistId');\n\nconsole.log(update);"
           }
         ]
       },
@@ -5382,7 +5909,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nawait client.videoPlaylists.deleteID('playlistId');"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.videoPlaylists.deleteID('playlistId');"
           }
         ]
       }
@@ -5539,7 +6066,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst listAssets = await client.videoPlaylists.listAssets('playlistId', {\n  sort_order: 1,\n  page_number: 1,\n  page_size: '10',\n});\n\nconsole.log(listAssets);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst listAssets = await client.videoPlaylists.listAssets('playlistId', {\n  sort_order: 1,\n  page_number: 1,\n  page_size: '10',\n});\n\nconsole.log(listAssets);"
           }
         ]
       }
@@ -5757,7 +6284,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst reorderAssets2 = await client.videoPlaylists.reorderAssets2('playlistId', {\n  asset_id: '6e82bf783e88be000ab45ed2',\n  page_number: 1,\n  page_size: 10,\n  asset_position: 0,\n});\n\nconsole.log(reorderAssets2);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst reorderAssets2 = await client.videoPlaylists.reorderAssets2('playlistId', {\n  asset_id: '6e82bf783e88be000ab45ed2',\n  page_number: 1,\n  page_size: 10,\n  asset_position: 0,\n});\n\nconsole.log(reorderAssets2);"
           }
         ]
       }
@@ -5883,7 +6410,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.webhookAPIs.create({\n  url: '',\n  secret_token: '',\n  triggers: [],\n  sources: [],\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.webhookAPIs.create({\n  url: '',\n  secret_token: '',\n  triggers: [],\n  sources: [],\n});\n\nconsole.log(create);"
           }
         ]
       }
@@ -6008,7 +6535,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst update = await client.webhookAPIs.update('webhookId');\n\nconsole.log(update);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst update = await client.webhookAPIs.update('webhookId');\n\nconsole.log(update);"
           }
         ]
       },
@@ -6069,7 +6596,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst delete_ = await client.webhookAPIs.delete('webhookId');\n\nconsole.log(delete_);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst delete_ = await client.webhookAPIs.delete('webhookId');\n\nconsole.log(delete_);"
           }
         ]
       }
@@ -6657,7 +7184,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.imageSources.create({\n  names: 'zoom-collection',\n  type: 'zoom',\n  zoom: { secret: 'yourSecret' },\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.imageSources.create({\n  names: 'zoom-collection',\n  type: 'zoom',\n  zoom: { secret: 'yourSecret' },\n});\n\nconsole.log(create);"
           }
         ]
       },
@@ -7013,7 +7540,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst list = await client.imageSources.list();\n\nconsole.log(list);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst list = await client.imageSources.list();\n\nconsole.log(list);"
           }
         ]
       }
@@ -7678,7 +8205,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst update = await client.imageSources.update('imageSourceId');\n\nconsole.log(update);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst update = await client.imageSources.update('imageSourceId');\n\nconsole.log(update);"
           }
         ]
       },
@@ -7752,7 +8279,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst delete_ = await client.imageSources.delete('imageSourceId');\n\nconsole.log(delete_);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst delete_ = await client.imageSources.delete('imageSourceId');\n\nconsole.log(delete_);"
           }
         ]
       }
@@ -7829,7 +8356,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nawait client.imageSources.purgeCache('subdomain');"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.imageSources.purgeCache('subdomain');"
           }
         ]
       }
@@ -7963,7 +8490,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst analytics = await client.imageSources.analytics({\n  metrics: [],\n  date_range: {},\n});\n\nconsole.log(analytics);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst analytics = await client.imageSources.analytics({\n  metrics: [],\n  date_range: {},\n});\n\nconsole.log(analytics);"
           }
         ]
       }
@@ -8206,7 +8733,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.liveStreamAssets.create({\n  live_source_id: '',\n  resolution: '',\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.liveStreamAssets.create({\n  live_source_id: '',\n  resolution: '',\n});\n\nconsole.log(create);"
           }
         ]
       }
@@ -8432,7 +8959,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst update = await client.liveStreamAssets.update({\n  live_asset_id: '',\n});\n\nconsole.log(update);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst update = await client.liveStreamAssets.update({\n  live_asset_id: '',\n});\n\nconsole.log(update);"
           }
         ]
       }
@@ -8643,7 +9170,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst retrieveStatus = await client.liveStreamAssets.retrieveStatus('liveAssetId');\n\nconsole.log(retrieveStatus);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst retrieveStatus = await client.liveStreamAssets.retrieveStatus('liveAssetId');\n\nconsole.log(retrieveStatus);"
           }
         ]
       },
@@ -8704,7 +9231,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst delete_ = await client.liveStreamAssets.delete('liveAssetId');\n\nconsole.log(delete_);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst delete_ = await client.liveStreamAssets.delete('liveAssetId');\n\nconsole.log(delete_);"
           }
         ]
       }
@@ -8781,7 +9308,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst complete = await client.liveStreamAssets.complete('liveAssetId');\n\nconsole.log(complete);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst complete = await client.liveStreamAssets.complete('liveAssetId');\n\nconsole.log(complete);"
           }
         ]
       }
@@ -9063,7 +9590,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst filter = await client.liveStreamAssets.filter('liveSourceId');\n\nconsole.log(filter);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst filter = await client.liveStreamAssets.filter('liveSourceId');\n\nconsole.log(filter);"
           }
         ]
       }
@@ -9125,7 +9652,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nawait client.videoAssets.postVideoassetrecover({\n  asset_id: '',\n});"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.videoAssets.postVideoassetrecover({\n  asset_id: '',\n});"
           }
         ]
       }
@@ -9190,7 +9717,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nawait client.liveStreamAssets.postVideoliveassetsID('liveAssetId');"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.liveStreamAssets.postVideoliveassetsID('liveAssetId');"
           }
         ]
       }
@@ -9406,7 +9933,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst upload = await client.liveStreamAssets.upload({\n  live_asset_id: '68c406b147f9ad0c0d584ce2',\n  statuses: ['preparing', 'disconnected'],\n});\n\nconsole.log(upload);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst upload = await client.liveStreamAssets.upload({\n  live_asset_id: '68c406b147f9ad0c0d584ce2',\n  statuses: ['preparing', 'disconnected'],\n});\n\nconsole.log(upload);"
           }
         ]
       }
@@ -9786,7 +10313,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst list = await client.videoWorkspaces.list({\n  offset: '0',\n  size: '10',\n});\n\nconsole.log(list);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst list = await client.videoWorkspaces.list({\n  offset: '0',\n  size: '10',\n});\n\nconsole.log(list);"
           }
         ]
       },
@@ -10418,7 +10945,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create = await client.videoWorkspaces.create({\n  names: 'zoom-workspace',\n  type: 'zoom',\n  zoom: { secret: 'yourSecret' },\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create = await client.videoWorkspaces.create({\n  names: 'zoom-workspace',\n  type: 'zoom',\n  zoom: { secret: 'yourSecret' },\n});\n\nconsole.log(create);"
           }
         ]
       }
@@ -11241,7 +11768,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst update = await client.videoWorkspaces.update('workspaceId');\n\nconsole.log(update);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst update = await client.videoWorkspaces.update('workspaceId');\n\nconsole.log(update);"
           }
         ]
       },
@@ -11301,7 +11828,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst retrieve = await client.videoWorkspaces.retrieve('workspaceId');\n\nconsole.log(retrieve);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst retrieve = await client.videoWorkspaces.retrieve('workspaceId');\n\nconsole.log(retrieve);"
           }
         ]
       },
@@ -11375,7 +11902,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst delete_ = await client.videoWorkspaces.delete('workspaceId');\n\nconsole.log(delete_);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst delete_ = await client.videoWorkspaces.delete('workspaceId');\n\nconsole.log(delete_);"
           }
         ]
       }
@@ -11561,7 +12088,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst create1 = await client.folders.create1('workspaceId', { name: 'Course Assets', parent_id: null });\n\nconsole.log(create1);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst create1 = await client.folders.create1('workspaceId', { name: 'Course Assets', parent_id: null });\n\nconsole.log(create1);"
           }
         ]
       },
@@ -11725,7 +12252,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst list = await client.folders.list('workspaceId');\n\nconsole.log(list);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst list = await client.folders.list('workspaceId');\n\nconsole.log(list);"
           }
         ]
       }
@@ -11924,7 +12451,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst retrieve = await client.folders.retrieve('folderId', {\n  workspace_id: 'workspaceId',\n});\n\nconsole.log(retrieve);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst retrieve = await client.folders.retrieve('folderId', {\n  workspace_id: 'workspaceId',\n});\n\nconsole.log(retrieve);"
           }
         ]
       },
@@ -12210,7 +12737,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst update = await client.folders.update('folderId', {\n  workspace_id: 'workspaceId',\n});\n\nconsole.log(update);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst update = await client.folders.update('folderId', {\n  workspace_id: 'workspaceId',\n});\n\nconsole.log(update);"
           }
         ]
       },
@@ -12345,7 +12872,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst delete_ = await client.folders.delete('folderId', {\n  workspace_id: 'workspaceId',\n});\n\nconsole.log(delete_);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst delete_ = await client.folders.delete('folderId', {\n  workspace_id: 'workspaceId',\n});\n\nconsole.log(delete_);"
           }
         ]
       }
@@ -12472,7 +12999,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst deleteAssetsFrom = await client.folders.deleteAssetsFrom('workspaceId', {\n  asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],\n});\n\nconsole.log(deleteAssetsFrom);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst deleteAssetsFrom = await client.folders.deleteAssetsFrom('workspaceId', {\n  asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],\n});\n\nconsole.log(deleteAssetsFrom);"
           }
         ]
       }
@@ -12997,7 +13524,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst listWorkspaceContent = await client.videoAssets.listWorkspaceContent('workspaceId', {\n  type: 'all',\n  offset: 0,\n  size: 20,\n});\n\nconsole.log(listWorkspaceContent);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst listWorkspaceContent = await client.videoAssets.listWorkspaceContent('workspaceId', {\n  type: 'all',\n  offset: 0,\n  size: 20,\n});\n\nconsole.log(listWorkspaceContent);"
           }
         ]
       }
@@ -13029,7 +13556,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nawait client.imageSources.retrieve('sourceId');"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.imageSources.retrieve('sourceId');"
           }
         ]
       }
@@ -13179,7 +13706,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst invite = await client.channelViewers.invite('videoWorkspaceId', {\n  users: [\n    { email: 'test@gumlet.com', name: 'Test User-0' },\n    { email: 'test+1@gumlet.com', name: 'Test User-1' },\n    { email: 'test+2@gumlet.com', name: 'Test User-2' },\n  ],\n});\n\nconsole.log(invite);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst invite = await client.channelViewers.invite('videoWorkspaceId', {\n  users: [\n    { email: 'test@gumlet.com', name: 'Test User-0' },\n    { email: 'test+1@gumlet.com', name: 'Test User-1' },\n    { email: 'test+2@gumlet.com', name: 'Test User-2' },\n  ],\n});\n\nconsole.log(invite);"
           }
         ]
       }
@@ -13301,7 +13828,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst delete_ = await client.channelViewers.delete('videoWorkspaceId', {\n  emails: ['test@gumlet.com', 'test+2@gumlet.com'],\n});\n\nconsole.log(delete_);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst delete_ = await client.channelViewers.delete('videoWorkspaceId', {\n  emails: ['test@gumlet.com', 'test+2@gumlet.com'],\n});\n\nconsole.log(delete_);"
           }
         ]
       }
@@ -13416,7 +13943,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst inviteCsv = await client.channelViewers.inviteCsv('videoWorkspaceId', { viewers_csv: 'viewers.csv' });\n\nconsole.log(inviteCsv);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst inviteCsv = await client.channelViewers.inviteCsv('videoWorkspaceId', { viewers_csv: 'viewers.csv' });\n\nconsole.log(inviteCsv);"
           }
         ]
       }
@@ -13822,7 +14349,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst list = await client.videoAssets.list('workspaceId', {\n  sortBy: 'createdAt',\n  orderBy: 'desc',\n});\n\nconsole.log(list);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst list = await client.videoAssets.list('workspaceId', {\n  sortBy: 'createdAt',\n  orderBy: 'desc',\n});\n\nconsole.log(list);"
           }
         ]
       }
@@ -13981,7 +14508,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst listStatusCopy = await client.liveStreamAssets.listStatusCopy('liveAssetId');\n\nconsole.log(listStatusCopy);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst listStatusCopy = await client.liveStreamAssets.listStatusCopy('liveAssetId');\n\nconsole.log(listStatusCopy);"
           }
         ]
       }
@@ -14313,7 +14840,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst insightsChart = await client.dataAPI.insightsChart({\n  metrics: [],\n  workspace_id: '',\n  date_range: {\n    start_at: '2024-01-01',\n    end_at: '2024-01-01',\n  },\n  group_by: 'daily',\n});\n\nconsole.log(insightsChart);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst insightsChart = await client.dataAPI.insightsChart({\n  metrics: [],\n  workspace_id: '',\n  date_range: {\n    start_at: '2024-01-01',\n    end_at: '2024-01-01',\n  },\n  group_by: 'daily',\n});\n\nconsole.log(insightsChart);"
           }
         ]
       }
@@ -14579,7 +15106,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  sec0: process.env['SEC0'], // defaults to the SEC0 env var\n});\n\nconst insightsAggregated = await client.dataAPI.insightsAggregated({\n  aggregate: [],\n  workspace_id: '',\n  timeframe: {},\n});\n\nconsole.log(insightsAggregated);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst insightsAggregated = await client.dataAPI.insightsAggregated({\n  aggregate: [],\n  workspace_id: '',\n  timeframe: {},\n});\n\nconsole.log(insightsAggregated);"
           }
         ]
       }
@@ -14678,6 +15205,11 @@
       "tags": [
         "Data API"
       ]
+    }
+  ],
+  "security": [
+    {
+      "API_KEY": []
     }
   ]
 }

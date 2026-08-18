@@ -38,33 +38,29 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     path: '/video/assets',
     run: async () => {
       const create = await client.videoAssets.create({
-        'Request Example': {
-          value: {
-            format: 'ABR',
-            collection_id: '646df1c9173a4a2fcac180b4',
-            input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
-            description: 'some description',
-            tag: ['ball'],
-            profile_id: '646df1c9173a4a2fcac180b7',
-            cluster_type: 'prod',
-            playlist_id: '6597acd5ed6f26a9c5ca9633',
-            metadata: { headermeta: 'metavalue' },
-            call_to_actions: [
-              {
-                start_time: '1',
-                end_time: '90',
-                text: 'some test',
-                url: 'https://some-url.com',
-                position_from_top: '11',
-                position_from_right: '23',
-                border_radius: '11',
-                font_color: '#000001',
-                background_color: '#ffffff',
-              },
-            ],
-            folder: '697375fbfa2d1037283140e4',
+        format: 'ABR',
+        collection_id: '646df1c9173a4a2fcac180b4',
+        input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+        description: 'some description',
+        tag: ['ball'],
+        profile_id: '646df1c9173a4a2fcac180b7',
+        cluster_type: 'prod',
+        playlist_id: '6597acd5ed6f26a9c5ca9633',
+        metadata: { headermeta: 'metavalue' },
+        call_to_actions: [
+          {
+            start_time: 1,
+            end_time: 90,
+            text: 'some test',
+            url: 'https://some-url.com',
+            position_from_top: 11,
+            position_from_right: 23,
+            border_radius: '11',
+            font_color: '#000001',
+            background_color: '#ffffff',
           },
-        },
+        ],
+        folder: '697375fbfa2d1037283140e4',
       });
     },
   },
@@ -75,34 +71,29 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     path: '/video/assets/upload',
     run: async () => {
       const upload = await client.videoAssets.upload({
-        'Request Example': {
-          value: {
-            title: 'Sports.',
-            description: 'This video provides information about various sports.',
-            format: 'MP4',
-            tag: ['games', 'field'],
-            profile_id: '646df1c9173a4a2fcac180b7',
-            cluster_type: 'prod',
-            input: 'https://file-examples.com/wp-content/storage/2017/04/file_example_MP4_480_1_5MG.mp4',
-            playlist_id: '6597acd5ed6f26a9c5ca9633',
-            metadata: { headermeta: 'metavalue' },
-            call_to_actions: [
-              {
-                start_time: '1',
-                end_time: '90',
-                text: 'Buy here!!',
-                url: 'https://some-buy-url-site.com',
-                position_from_top: '11',
-                position_from_right: '23',
-                border_radius: '11',
-                font_color: '#000001',
-                background_color: '#ffffff',
-              },
-            ],
-            folder: '697375fbfa2d1037283140e4',
-            workspace_id: '646df1c9173a4a2fcac180b4',
+        format: 'ABR',
+        collection_id: '646df1c9173a4a2fcac180b4',
+        input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+        description: 'some description',
+        tag: ['ball'],
+        profile_id: '646df1c9173a4a2fcac180b7',
+        cluster_type: 'prod',
+        playlist_id: '6597acd5ed6f26a9c5ca9633',
+        metadata: { headermeta: 'metavalue' },
+        call_to_actions: [
+          {
+            start_time: 1,
+            end_time: 90,
+            text: 'some test',
+            url: 'https://some-url.com',
+            position_from_top: 11,
+            position_from_right: 23,
+            border_radius: '11',
+            font_color: '#000001',
+            background_color: '#ffffff',
           },
-        },
+        ],
+        folder: '697375fbfa2d1037283140e4',
       });
     },
   },
@@ -141,7 +132,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/assets/{asset_id}/thumbnail',
     run: async () => {
-      const string_ = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+      const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
     },
   },
 
