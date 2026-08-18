@@ -1,9 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "@gumlet/gumlet-rest",
 <<<<<<< HEAD
   "version": "0.2.0",
   "description": "Gumlet APIs",
 =======
+=======
+  "name": "@gumlet/node-sdk",
+>>>>>>> 30990bc63d7ac7a3f795a1f402e9df091637111c
   "version": "0.1.0",
   "description": "Gumlet REST APIs",
 >>>>>>> 29c0932e7c7f2301abd509f9718cce7102ade160

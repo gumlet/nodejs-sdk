@@ -25,7 +25,7 @@ The full API of this library can be found in [api.md](./api.md).
 ## Installation
 
 ```sh
-npm install @gumlet/gumlet-rest
+npm install @gumlet/node-sdk
 ```
 
 <br />
@@ -33,7 +33,7 @@ npm install @gumlet/gumlet-rest
 ## Usage
 
 ```ts
-import Gumlet from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
   apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
@@ -93,7 +93,7 @@ Declared schemes:
 Non-success responses throw generated API errors. Error objects expose status, headers, response body, and request metadata where the target runtime supports it.
 
 ```ts
-import { APIError } from '@gumlet/gumlet-rest';
+import { APIError } from '@gumlet/node-sdk';
 
 try {
   const create = await client.videoAssets.create({
@@ -138,7 +138,7 @@ Documented error statuses: `400`, `401`, `403`, `404`, `4XX`.
 Configure the generated client by setting any of these options when you create it.
 
 ```ts
-import Gumlet from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
   timeout: 60000,
