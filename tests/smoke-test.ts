@@ -128,20 +128,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'selectFrom',
-    method: 'POST',
-    path: '/video/assets/{asset_id}/thumbnail',
-    run: async () => {
-      const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
-    },
-  },
-
-  {
     operation: 'selectFromImageFile',
     method: 'POST',
     path: '/video/assets/{asset_ID}/thumbnail',
     run: async () => {
-      await client.videoAssets.selectFromImageFile('assetId');
+      const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');
     },
   },
 
@@ -356,10 +347,10 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
       const createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {
         asset_list: [
           { asset_id: '6508790283e4d60611846790' },
-          { position: '1', asset_id: '650878f883e4d6061184677d' },
+          { position: 1, asset_id: '650878f883e4d6061184677d' },
           { asset_id: '650878de83e4d6061184676a' },
-          { position: '2', asset_id: '650878d883e4d60611846757' },
-          { position: '3', asset_id: '65578dd87eebc22dcdd549a2' },
+          { position: 2, asset_id: '650878d883e4d60611846757' },
+          { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },
         ],
       });
     },

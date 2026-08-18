@@ -10,7 +10,6 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Asset Details](#asset-details)
   - [Delete Asset](#delete-asset)
   - [Update Asset](#update-asset)
-  - [Update thumbnail from video](#update-thumbnail-from-video)
   - [Update thumbnail via upload](#update-thumbnail-via-upload)
   - [Upload Subtitle](#upload-subtitle)
   - [Upload Subtitle Completion](#upload-subtitle-completion)
@@ -205,25 +204,23 @@ const update = await client.videoAssets.update({
 });
 ```
 
-### Update thumbnail from video
+### Update thumbnail via upload
 
-Select frame from video to use as thumbnail
+Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.
+
+Here is the sample curl request.
+
+```bash
+curl --location --request PUT '<upload_url>' \
+--data '<YOUR_FILE_PATH>'
+```
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetSelectFromParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetSelectFromResponse`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetSelectFromImageFileResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
-```
-
-### Update thumbnail via upload
-
-Use any image file to use as thumbnail
-
-```ts
-await client.videoAssets.selectFromImageFile('assetId');
+const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');
 ```
 
 ### Upload Subtitle
@@ -509,10 +506,10 @@ const listAll = await client.videoPlaylists.listAll();
 const createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {
   asset_list: [
     { asset_id: '6508790283e4d60611846790' },
-    { position: '1', asset_id: '650878f883e4d6061184677d' },
+    { position: 1, asset_id: '650878f883e4d6061184677d' },
     { asset_id: '650878de83e4d6061184676a' },
-    { position: '2', asset_id: '650878d883e4d60611846757' },
-    { position: '3', asset_id: '65578dd87eebc22dcdd549a2' },
+    { position: 2, asset_id: '650878d883e4d60611846757' },
+    { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },
   ],
 });
 ```

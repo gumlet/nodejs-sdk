@@ -141,47 +141,29 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Select frame from video to use as thumbnail
+   * Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.
    *
-   * @param {string} assetID - Asset id of the video asset which needs to be deleted.
-   * @param {VideoAssetSelectFromParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetSelectFromResponse>} 200
+   * Here is the sample curl request.
    *
-   * @example
-   * ```ts
-   * const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+   * ```bash
+   * curl --location --request PUT '<upload_url>' \
+   * --data '<YOUR_FILE_PATH>'
    * ```
-   */
-  selectFrom(
-    assetID: string,
-    body: VideoAssetSelectFromParams,
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetSelectFromResponse> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
-  }
-
-  /**
-   * Use any image file to use as thumbnail
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns 200
+   * @returns {APIPromise<VideoAssetSelectFromImageFileResponse>}
    *
    * @example
    * ```ts
-   * await client.videoAssets.selectFromImageFile('assetId');
+   * const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');
    * ```
    */
-  selectFromImageFile(assetID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  selectFromImageFile(
+    assetID: string,
+    options?: RequestOptions,
+  ): APIPromise<VideoAssetSelectFromImageFileResponse> {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, options);
   }
 
   /**
@@ -1522,19 +1504,11 @@ export namespace VideoAssetUpdateParams {
 
 export type VideoAssetUpdateResponse = Record<string, unknown>;
 
-export interface VideoAssetSelectFromParams {
-  /**
-   * Frame secound
-   * @format int32
-   */
-  frame_at_second: number;
-}
-
-export interface VideoAssetSelectFromResponse {
-  success?: boolean;
+export interface VideoAssetSelectFromImageFileResponse {
+  upload_url?: string;
   asset_id?: string;
   /**
-   * Milliseconds since epoch for the updated time.
+   * Thumbnail updated at timestamp in milliseconds since epoch
    */
   thumbnail_updated_at?: number;
 }
@@ -1973,7 +1947,7 @@ export declare namespace VideoAssets {
     type VideoAssetUploadResponse as VideoAssetUploadResponse,
     type VideoAssetRetrieveStatusResponse as VideoAssetRetrieveStatusResponse,
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
-    type VideoAssetSelectFromResponse as VideoAssetSelectFromResponse,
+    type VideoAssetSelectFromImageFileResponse as VideoAssetSelectFromImageFileResponse,
     type VideoAssetUploadSubtitleCompletionResponse as VideoAssetUploadSubtitleCompletionResponse,
     type VideoAssetUploadAudioCompletionResponse as VideoAssetUploadAudioCompletionResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
@@ -1982,7 +1956,6 @@ export declare namespace VideoAssets {
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
-    type VideoAssetSelectFromParams as VideoAssetSelectFromParams,
     type VideoAssetUpload2Params as VideoAssetUpload2Params,
     type VideoAssetUploadSubtitleCompletionParams as VideoAssetUploadSubtitleCompletionParams,
     type VideoAssetUpload3Params as VideoAssetUpload3Params,

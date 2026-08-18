@@ -2699,10 +2699,10 @@
         ]
       }
     },
-    "/video/assets/{asset_id}/thumbnail": {
+    "/video/assets/{asset_id}/thumbnail-select": {
       "post": {
         "summary": "Update thumbnail from video",
-        "description": "Select frame from video to use as thumbnail",
+        "description": "Select frame from video to use as thumbnail.",
         "operationId": "select-from-video",
         "parameters": [
           {
@@ -2785,19 +2785,25 @@
         "tags": [
           "Video Assets"
         ],
-        "x-codeSamples": [
-          {
-            "lang": "TypeScript",
-            "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });\n\nconsole.log(selectFrom);"
-          }
-        ]
-      }
+        "x-stoplight": {
+          "id": "eqetja43tfsmt"
+        }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "asset_id",
+          "in": "path",
+          "required": true
+        }
+      ]
     },
     "/video/assets/{asset_ID}/thumbnail": {
       "post": {
         "summary": "Update thumbnail via upload",
-        "description": "Use any image file to use as thumbnail",
+        "description": "Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.\n\nHere is the sample curl request.\n\n```bash\ncurl --location --request PUT '<upload_url>' \\\n--data '<YOUR_FILE_PATH>'\n```",
         "operationId": "select-from-image-file",
         "parameters": [
           {
@@ -2812,12 +2818,37 @@
         ],
         "responses": {
           "200": {
-            "description": "200",
+            "description": "",
             "content": {
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  upload_url: \"URL\",\n  asset_id: {asset_id}\n}\n  "
+                    "value": {
+                      "upload_url": "URL",
+                      "asset_id": "asset_id"
+                    }
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "upload_url": "https://gumlet-video-storage.s3.us-west-2.amazonaws.com/gumlet-video-storage-prod/5f553b6cec202a5b44e3dd69/6495e52a01e29f9a90f3e884/thumbnail-1-0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA4WNLTXWDACO5V32D%2F20260818%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260818T173755Z&X-Amz-Expires=1800&X-Amz-Signature=1ba342f62a5d72bcfff451d7696039e951260434ce5e27bec9dffac448d762a7&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                      "asset_id": "6495e52a01e29f9a90f3e884",
+                      "thumbnail_updated_at": 1787074674975
+                    }
+                  },
+                  "properties": {
+                    "upload_url": {
+                      "type": "string"
+                    },
+                    "asset_id": {
+                      "type": "string"
+                    },
+                    "thumbnail_updated_at": {
+                      "type": "integer",
+                      "description": "Thumbnail updated at timestamp in milliseconds since epoch"
+                    }
                   }
                 }
               }
@@ -2829,7 +2860,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -2848,7 +2879,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nawait client.videoAssets.selectFromImageFile('assetId');"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');\n\nconsole.log(selectFromImageFile);"
           }
         ]
       }
@@ -2906,7 +2937,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -2980,7 +3011,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -2996,7 +3027,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -3073,7 +3104,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -3147,7 +3178,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -3163,7 +3194,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -3242,7 +3273,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -3258,7 +3289,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -3351,7 +3382,40 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"top_assets\": [\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 162870,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    },\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 21348,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    },\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 1239,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    },\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 974,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    },\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 124,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    }\n  ]\n}"
+                    "value": {
+                      "top_assets": [
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 162870,
+                          "collection_name": "<COLLECTION_NAME>"
+                        },
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 21348,
+                          "collection_name": "<COLLECTION_NAME>"
+                        },
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 1239,
+                          "collection_name": "<COLLECTION_NAME>"
+                        },
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 974,
+                          "collection_name": "<COLLECTION_NAME>"
+                        },
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 124,
+                          "collection_name": "<COLLECTION_NAME>"
+                        }
+                      ]
+                    }
                   }
                 },
                 "schema": {
@@ -3393,7 +3457,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"parameter_missing\",\n    \"message\": \"One or more required values are missing.\",\n    \"param\": \"date_range\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "One or more required values are missing.",
+                        "param": "date_range"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -3489,7 +3559,43 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"data\": [\n        {\n            \"asset_id\": \"638888010f1a158347ce9842\",\n            \"units\": 0\n        },\n        {\n            \"asset_id\": \"6369df88cb5ca27c554bb1f2\",\n            \"units\": 0\n        },\n        {\n            \"asset_id\": \"63761f1fbe6f4dea7af3e050\",\n            \"units\": 0\n        },\n        {\n            \"asset_id\": \"63761eb6b6648252fc979673\",\n            \"units\": 0\n        },\n        {\n            \"asset_id\": \"6385035a3f8d6fa3925c5ae9\",\n            \"units\": 0\n        },\n        {\n            \"asset_id\": \"63761e09be6f4dea7af3ddaf\",\n            \"units\": 0\n        },\n        {\n            \"asset_id\": \"6322109d046f16b5e0ee63d9\",\n            \"units\": 0\n        },\n        {\n            \"asset_id\": \"6405cc5b4d82222f8a2053f2\",\n            \"units\": 0\n        }\n    ],\n    \"has_next_page\": false\n}"
+                    "value": {
+                      "data": [
+                        {
+                          "asset_id": "638888010f1a158347ce9842",
+                          "units": 0
+                        },
+                        {
+                          "asset_id": "6369df88cb5ca27c554bb1f2",
+                          "units": 0
+                        },
+                        {
+                          "asset_id": "63761f1fbe6f4dea7af3e050",
+                          "units": 0
+                        },
+                        {
+                          "asset_id": "63761eb6b6648252fc979673",
+                          "units": 0
+                        },
+                        {
+                          "asset_id": "6385035a3f8d6fa3925c5ae9",
+                          "units": 0
+                        },
+                        {
+                          "asset_id": "63761e09be6f4dea7af3ddaf",
+                          "units": 0
+                        },
+                        {
+                          "asset_id": "6322109d046f16b5e0ee63d9",
+                          "units": 0
+                        },
+                        {
+                          "asset_id": "6405cc5b4d82222f8a2053f2",
+                          "units": 0
+                        }
+                      ],
+                      "has_next_page": false
+                    }
                   }
                 },
                 "schema": {
@@ -3528,7 +3634,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"parameter_missing\",\n    \"message\": \"One or more required values are missing.\",\n    \"param\": \"start_at\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "One or more required values are missing.",
+                        "param": "start_at"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -3602,7 +3714,11 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\"asset_id\":\"642db9d6cc21a55eb474a0b2\",\"part_number\":\"1\",\"part_upload_url\":\"https://gumlet-video-user-uploads.s3.us-west-2.amazonaws.com/gumlet-user-uploads-prod/600e2eccc1be42e7a5b29427/642db9d6cc21c21eb474a0c1/origin-642db9d6cc21a55eb474a0c1?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA4WNLTXWDOHE3WKEQ%2F20230405%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230405T181136Z&X-Amz-Expires=3600&X-Amz-Signature=23d23ca56dceab55ba16349609af7d0921361ced905dde848b6206aa3de0205a&X-Amz-SignedHeaders=host&partNumber=1&uploadId=rkY.tbFdsN14Obcdh.VpVvGdtVxipAa2dyKszL2g7ETT38TXucloiyJLtz9Ff79OgvM3tdsFdenolTgdaIy_jo7GyArbApbueZZ9oLM3k7tuHkX9wXyOMDbGRQ3V0q4W&x-id=UploadPart\"}"
+                    "value": {
+                      "asset_id": "642db9d6cc21a55eb474a0b2",
+                      "part_number": "1",
+                      "part_upload_url": "https://gumlet-video-user-uploads.s3.us-west-2.amazonaws.com/gumlet-user-uploads-prod/600e2eccc1be42e7a5b29427/642db9d6cc21c21eb474a0c1/origin-642db9d6cc21a55eb474a0c1?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA4WNLTXWDOHE3WKEQ%2F20230405%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230405T181136Z&X-Amz-Expires=3600&X-Amz-Signature=23d23ca56dceab55ba16349609af7d0921361ced905dde848b6206aa3de0205a&X-Amz-SignedHeaders=host&partNumber=1&uploadId=rkY.tbFdsN14Obcdh.VpVvGdtVxipAa2dyKszL2g7ETT38TXucloiyJLtz9Ff79OgvM3tdsFdenolTgdaIy_jo7GyArbApbueZZ9oLM3k7tuHkX9wXyOMDbGRQ3V0q4W&x-id=UploadPart"
+                    }
                   }
                 },
                 "schema": {
@@ -3631,7 +3747,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -3706,7 +3822,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -3722,7 +3838,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -3995,7 +4111,7 @@
                       "transcribe": {
                         "type": "boolean",
                         "description": "This will generate the subtitles in the native audio.",
-                        "default": "true"
+                        "default": true
                       },
                       "subtitle_languages": {
                         "type": "string",
@@ -4035,7 +4151,26 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"profile_id\": \"61921fb10822a81d955d1730\",\n  \"name\": \"Gumlet-Profile-1\",\n  \"transformations\": {\n    \"format\": \"hls\",\n    \"audio_codec\": [\n      \"aac\"\n    ],\n    \"video_codec\": [\n      \"libx264\"\n    ],\n    \"thumbnail\": [\n      \"auto\"\n    ],\n    \"thumbnail_format\": \"png\",\n    \"mp4_access\": false,\n    \"per_title_encoding\": true\n  },\n  \"created_at\": 1636966321742\n}"
+                    "value": {
+                      "profile_id": "61921fb10822a81d955d1730",
+                      "name": "Gumlet-Profile-1",
+                      "transformations": {
+                        "format": "hls",
+                        "audio_codec": [
+                          "aac"
+                        ],
+                        "video_codec": [
+                          "libx264"
+                        ],
+                        "thumbnail": [
+                          "auto"
+                        ],
+                        "thumbnail_format": "png",
+                        "mp4_access": false,
+                        "per_title_encoding": true
+                      },
+                      "created_at": 1636966321742
+                    }
                   }
                 },
                 "schema": {
@@ -4109,7 +4244,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\"error\":{\"code\":\"parameter_missing\",\"message\":\"video output format (format) and profile name (name) are required to create profile.\"}}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "video output format (format) and profile name (name) are required to create profile."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -4139,7 +4279,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n            \"error\": {\n                \"code\": \"profile_not_found\",\n                \"message\": \"Could not find any video profile with specified profile_id.\"\n            }\n        }"
+                    "value": {
+                      "error": {
+                        "code": "profile_not_found",
+                        "message": "Could not find any video profile with specified profile_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -4207,7 +4352,239 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"all_profiles\": [\n    {\n      \"profile_id\": \"61921fb10822a81d955d1730\",\n      \"name\": \"Gumlet-Profile-1\",\n      \"transformations\": {\n        \"format\": \"hls\",\n        \"audio_codec\": [\n          \"aac\"\n        ],\n        \"video_codec\": [\n          \"libx264\"\n        ],\n        \"thumbnail\": [\n          \"auto\"\n        ],\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": false,\n        \"per_title_encoding\": true\n      },\n      \"created_at\": 1636966321742,\n      \"updated_at\": 1636966321742\n    },\n    {\n      \"profile_id\": \"619206f80822a81d955cb2b1\",\n      \"name\": \"Gumlet Video Profile-1\",\n      \"transformations\": {\n        \"format\": \"hls\",\n        \"audio_codec\": [\n          \"aac\"\n        ],\n        \"video_codec\": [\n          \"libx264\"\n        ],\n        \"thumbnail\": [\n          \"auto\"\n        ],\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": false,\n        \"per_title_encoding\": true\n      },\n      \"created_at\": 1636959992966,\n      \"updated_at\": 1636959992966\n    },\n    {\n      \"profile_id\": \"61666fce68d8028cdd8e3417\",\n      \"name\": \"new-staging-1\",\n      \"transformations\": {\n        \"format\": \"hls\",\n        \"resolution\": [\n          \"240p\",\n          \"360p\",\n          \"480p\",\n          \"540p\",\n          \"720p\",\n          \"1080p\"\n        ],\n        \"video_codec\": [\n          \"libx264\"\n        ],\n        \"audio_codec\": [\n          \"aac\"\n        ],\n        \"thumbnail\": [\n          \"auto\"\n        ],\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": false,\n        \"per_title_encoding\": true\n      },\n      \"created_at\": 1634103246666,\n      \"updated_at\": 1634103246666\n    },\n    {\n      \"profile_id\": \"615db3e70ba15d66354583c2\",\n      \"name\": \"new-staging-p\",\n      \"transformations\": {\n        \"resolution\": [\n          \"240p\",\n          \"360p\",\n          \"480p\",\n          \"540p\",\n          \"720p\"\n        ],\n        \"format\": \"hls\",\n        \"audio_codec\": [\n          \"aac\"\n        ],\n        \"video_codec\": [\n          \"libx264\"\n        ],\n        \"thumbnail\": [\n          \"auto\"\n        ],\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": false,\n        \"per_title_encoding\": true\n      },\n      \"created_at\": 1633530855475,\n      \"updated_at\": 1633530855475\n    },\n    {\n      \"profile_id\": \"615d84e80ba15d66354534fe\",\n      \"name\": \"new-profile-test\",\n      \"transformations\": {\n        \"resolution\": [\n          \"240p\",\n          \"360p\",\n          \"480p\",\n          \"540p\",\n          \"720p\",\n          \"1080p\"\n        ],\n        \"format\": \"hls\",\n        \"audio_codec\": [\n          \"aac\"\n        ],\n        \"video_codec\": [\n          \"libx264\"\n        ],\n        \"thumbnail\": [\n          \"auto\"\n        ],\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": true,\n        \"per_title_encoding\": true\n      },\n      \"created_at\": 1633518824278,\n      \"updated_at\": 1633518824278\n    },\n    {\n      \"profile_id\": \"60a3f690687a6ca9aad205dc\",\n      \"name\": \"staging-profile\",\n      \"transformations\": {\n        \"format\": \"hls\",\n        \"resolution\": {\n          \"0\": \"240p\",\n          \"1\": \"360p\",\n          \"2\": \"480p\",\n          \"3\": \"540p\"\n        },\n        \"video_codec\": {\n          \"0\": \"libx264\"\n        },\n        \"audio_codec\": [\n          \"aac\"\n        ],\n        \"thumbnail\": {\n          \"0\": \"auto\"\n        },\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": true,\n        \"per_title_encoding\": true,\n        \"trim\": {}\n      },\n      \"created_at\": 1621358224338,\n      \"updated_at\": 1633517722412\n    },\n    {\n      \"profile_id\": \"609cf385fb00af2de13f8b3f\",\n      \"name\": \"non-pte-test-profile\",\n      \"transformations\": {\n        \"format\": \"hls\",\n        \"resolution\": [\n          \"240p\",\n          \"360p\",\n          \"480p\",\n          \"540p\",\n          \"720p\",\n          \"1080p\"\n        ],\n        \"video_codec\": [\n          \"libx264\"\n        ],\n        \"audio_codec\": [\n          \"aac\"\n        ],\n        \"thumbnail\": [\n          \"auto\"\n        ],\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": false,\n        \"per_title_encoding\": false\n      },\n      \"created_at\": 1620898693836,\n      \"updated_at\": 1620898693836\n    },\n    {\n      \"profile_id\": \"5feaf9a22e3cb37e8417174e\",\n      \"name\": \"Gumlet Video Profile-1\",\n      \"transformations\": {\n        \"format\": \"hls\",\n        \"video_codec\": [\n          \"libx264\"\n        ],\n        \"audio_codec\": [\n          \"aac\"\n        ],\n        \"text_overlay\": {\n          \"text\": \"Gumlet\",\n          \"vertical_align\": \"top\",\n          \"horizontal_align\": \"left\",\n          \"vertical_margin\": \"10%\",\n          \"horizontal_margin\": \"10%\",\n          \"font_color\": \"black\",\n          \"font\": \"sans\",\n          \"font_size\": 45,\n          \"box\": true,\n          \"box_color\": \"white\",\n          \"box_border\": 10\n        },\n        \"thumbnail\": [\n          \"auto\"\n        ],\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": false,\n        \"image_overlay\": {\n          \"url\": \"https://assets.gumlet.io/assets/logo.svg?format=png\",\n          \"vertical_align\": \"top\",\n          \"horizontal_align\": \"left\",\n          \"vertical_margin\": \"5%\",\n          \"horizontal_margin\": \"5%\",\n          \"width\": \"10%\",\n          \"height\": \"10%\"\n        }\n      },\n      \"created_at\": 1609234850093,\n      \"updated_at\": 1609235119156\n    }\n  ],\n  \"total_profile_count\": 8,\n  \"current_offset\": 8\n}"
+                    "value": {
+                      "all_profiles": [
+                        {
+                          "profile_id": "61921fb10822a81d955d1730",
+                          "name": "Gumlet-Profile-1",
+                          "transformations": {
+                            "format": "hls",
+                            "audio_codec": [
+                              "aac"
+                            ],
+                            "video_codec": [
+                              "libx264"
+                            ],
+                            "thumbnail": [
+                              "auto"
+                            ],
+                            "thumbnail_format": "png",
+                            "mp4_access": false,
+                            "per_title_encoding": true
+                          },
+                          "created_at": 1636966321742,
+                          "updated_at": 1636966321742
+                        },
+                        {
+                          "profile_id": "619206f80822a81d955cb2b1",
+                          "name": "Gumlet Video Profile-1",
+                          "transformations": {
+                            "format": "hls",
+                            "audio_codec": [
+                              "aac"
+                            ],
+                            "video_codec": [
+                              "libx264"
+                            ],
+                            "thumbnail": [
+                              "auto"
+                            ],
+                            "thumbnail_format": "png",
+                            "mp4_access": false,
+                            "per_title_encoding": true
+                          },
+                          "created_at": 1636959992966,
+                          "updated_at": 1636959992966
+                        },
+                        {
+                          "profile_id": "61666fce68d8028cdd8e3417",
+                          "name": "new-staging-1",
+                          "transformations": {
+                            "format": "hls",
+                            "resolution": [
+                              "240p",
+                              "360p",
+                              "480p",
+                              "540p",
+                              "720p",
+                              "1080p"
+                            ],
+                            "video_codec": [
+                              "libx264"
+                            ],
+                            "audio_codec": [
+                              "aac"
+                            ],
+                            "thumbnail": [
+                              "auto"
+                            ],
+                            "thumbnail_format": "png",
+                            "mp4_access": false,
+                            "per_title_encoding": true
+                          },
+                          "created_at": 1634103246666,
+                          "updated_at": 1634103246666
+                        },
+                        {
+                          "profile_id": "615db3e70ba15d66354583c2",
+                          "name": "new-staging-p",
+                          "transformations": {
+                            "resolution": [
+                              "240p",
+                              "360p",
+                              "480p",
+                              "540p",
+                              "720p"
+                            ],
+                            "format": "hls",
+                            "audio_codec": [
+                              "aac"
+                            ],
+                            "video_codec": [
+                              "libx264"
+                            ],
+                            "thumbnail": [
+                              "auto"
+                            ],
+                            "thumbnail_format": "png",
+                            "mp4_access": false,
+                            "per_title_encoding": true
+                          },
+                          "created_at": 1633530855475,
+                          "updated_at": 1633530855475
+                        },
+                        {
+                          "profile_id": "615d84e80ba15d66354534fe",
+                          "name": "new-profile-test",
+                          "transformations": {
+                            "resolution": [
+                              "240p",
+                              "360p",
+                              "480p",
+                              "540p",
+                              "720p",
+                              "1080p"
+                            ],
+                            "format": "hls",
+                            "audio_codec": [
+                              "aac"
+                            ],
+                            "video_codec": [
+                              "libx264"
+                            ],
+                            "thumbnail": [
+                              "auto"
+                            ],
+                            "thumbnail_format": "png",
+                            "mp4_access": true,
+                            "per_title_encoding": true
+                          },
+                          "created_at": 1633518824278,
+                          "updated_at": 1633518824278
+                        },
+                        {
+                          "profile_id": "60a3f690687a6ca9aad205dc",
+                          "name": "staging-profile",
+                          "transformations": {
+                            "format": "hls",
+                            "resolution": {
+                              "0": "240p",
+                              "1": "360p",
+                              "2": "480p",
+                              "3": "540p"
+                            },
+                            "video_codec": [
+                              "libx264"
+                            ],
+                            "audio_codec": [
+                              "aac"
+                            ],
+                            "thumbnail": [
+                              "auto"
+                            ],
+                            "thumbnail_format": "png",
+                            "mp4_access": true,
+                            "per_title_encoding": true,
+                            "trim": {}
+                          },
+                          "created_at": 1621358224338,
+                          "updated_at": 1633517722412
+                        },
+                        {
+                          "profile_id": "609cf385fb00af2de13f8b3f",
+                          "name": "non-pte-test-profile",
+                          "transformations": {
+                            "format": "hls",
+                            "resolution": [
+                              "240p",
+                              "360p",
+                              "480p",
+                              "540p",
+                              "720p",
+                              "1080p"
+                            ],
+                            "video_codec": [
+                              "libx264"
+                            ],
+                            "audio_codec": [
+                              "aac"
+                            ],
+                            "thumbnail": [
+                              "auto"
+                            ],
+                            "thumbnail_format": "png",
+                            "mp4_access": false,
+                            "per_title_encoding": false
+                          },
+                          "created_at": 1620898693836,
+                          "updated_at": 1620898693836
+                        },
+                        {
+                          "profile_id": "5feaf9a22e3cb37e8417174e",
+                          "name": "Gumlet Video Profile-1",
+                          "transformations": {
+                            "format": "hls",
+                            "video_codec": [
+                              "libx264"
+                            ],
+                            "audio_codec": [
+                              "aac"
+                            ],
+                            "text_overlay": {
+                              "text": "Gumlet",
+                              "vertical_align": "top",
+                              "horizontal_align": "left",
+                              "vertical_margin": "10%",
+                              "horizontal_margin": "10%",
+                              "font_color": "black",
+                              "font": "sans",
+                              "font_size": 45,
+                              "box": true,
+                              "box_color": "white",
+                              "box_border": 10
+                            },
+                            "thumbnail": [
+                              "auto"
+                            ],
+                            "thumbnail_format": "png",
+                            "mp4_access": false,
+                            "image_overlay": {
+                              "url": "https://assets.gumlet.io/assets/logo.svg?format=png",
+                              "vertical_align": "top",
+                              "horizontal_align": "left",
+                              "vertical_margin": "5%",
+                              "horizontal_margin": "5%",
+                              "width": "10%",
+                              "height": "10%"
+                            }
+                          },
+                          "created_at": 1609234850093,
+                          "updated_at": 1609235119156
+                        }
+                      ],
+                      "total_profile_count": 8,
+                      "current_offset": 8
+                    }
                   }
                 },
                 "schema": {
@@ -4580,7 +4957,7 @@
                       },
                       "transcribe": {
                         "type": "boolean",
-                        "default": "true",
+                        "default": true,
                         "description": "This is by default true to generate the subtitles in the native audio."
                       }
                     }
@@ -4617,7 +4994,28 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"profile_id\": \"61921fb10822a81d955d1730\",\n    \"name\": \"Gumlet-Profile-2\",\n    \"transformations\": {\n        \"resolution\": \"240p,360p\",\n        \"format\": \"hls\",\n        \"audio_codec\": [\n            \"aac\"\n        ],\n        \"video_codec\": [\n            \"libx264\"\n        ],\n        \"thumbnail\": [\n            \"auto\"\n        ],\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": false,\n        \"per_title_encoding\": true\n    },\n    \"created_at\": 1636966321742,\n    \"updated_at\": 1636975593082\n}"
+                    "value": {
+                      "profile_id": "61921fb10822a81d955d1730",
+                      "name": "Gumlet-Profile-2",
+                      "transformations": {
+                        "resolution": "240p,360p",
+                        "format": "hls",
+                        "audio_codec": [
+                          "aac"
+                        ],
+                        "video_codec": [
+                          "libx264"
+                        ],
+                        "thumbnail": [
+                          "auto"
+                        ],
+                        "thumbnail_format": "png",
+                        "mp4_access": false,
+                        "per_title_encoding": true
+                      },
+                      "created_at": 1636966321742,
+                      "updated_at": 1636975593082
+                    }
                   }
                 },
                 "schema": {
@@ -4700,7 +5098,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"profile_not_found\",\n        \"message\": \"Could not find any video profile with specified profile_id.\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "profile_not_found",
+                        "message": "Could not find any video profile with specified profile_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -4759,7 +5162,28 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"profile_id\": \"61921fb10822a81d955d1730\",\n    \"name\": \"Gumlet-Profile-2\",\n    \"transformations\": {\n        \"format\": \"hls\",\n        \"audio_codec\": [\n            \"aac\"\n        ],\n        \"video_codec\": [\n            \"libx264\"\n        ],\n        \"thumbnail\": [\n            \"auto\"\n        ],\n        \"thumbnail_format\": \"png\",\n        \"mp4_access\": false,\n        \"per_title_encoding\": true,\n        \"resolution\": \"240p,360p\"\n    },\n    \"created_at\": 1636966321742,\n    \"updated_at\": 1636975593082\n}"
+                    "value": {
+                      "profile_id": "61921fb10822a81d955d1730",
+                      "name": "Gumlet-Profile-2",
+                      "transformations": {
+                        "format": "hls",
+                        "audio_codec": [
+                          "aac"
+                        ],
+                        "video_codec": [
+                          "libx264"
+                        ],
+                        "thumbnail": [
+                          "auto"
+                        ],
+                        "thumbnail_format": "png",
+                        "mp4_access": false,
+                        "per_title_encoding": true,
+                        "resolution": "240p,360p"
+                      },
+                      "created_at": 1636966321742,
+                      "updated_at": 1636975593082
+                    }
                   }
                 },
                 "schema": {
@@ -4842,7 +5266,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"profile_not_found\",\n        \"message\": \"Could not find any video profile with specified profile_id.\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "profile_not_found",
+                        "message": "Could not find any video profile with specified profile_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -4872,7 +5301,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"profile_not_found\",\n        \"message\": \"Could not find any video profile with specified profile_id.\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "profile_not_found",
+                        "message": "Could not find any video profile with specified profile_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -4931,7 +5365,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -4947,7 +5381,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"profile_not_found\",\n        \"message\": \"Could not find any video profile with specified profile_id.\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "profile_not_found",
+                        "message": "Could not find any video profile with specified profile_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -4977,7 +5416,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"profile_not_found\",\n        \"message\": \"Could not find any video profile with specified profile_id.\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "profile_not_found",
+                        "message": "Could not find any video profile with specified profile_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -5060,7 +5504,32 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"id\": \"659693cadc46251d898930f2\",\n    \"collection_id\": \"646df1c9173a4a2fcac180b4\",\n    \"title\": \"Playlist-Title\",\n    \"description\": \"This is description for playlist.\",\n    \"player_config\": {\n        \"preload\": false,\n        \"autoplay\": false,\n        \"disable_seek\": false,\n        \"disable_player_controls\": false,\n        \"powered_by_gumlet_overlay\": false,\n        \"allow_drm_protected_videos\": false,\n        \"loop\": false,\n        \"player_color\": \"#6658ea\",\n        \"include_seo\": true,\n        \"subtitle_enabled\": false,\n        \"pixel_tags\": {},\n        \"logo_width\": 100,\n        \"logo_height\": 100,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 20,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000\n    }\n}"
+                    "value": {
+                      "id": "659693cadc46251d898930f2",
+                      "collection_id": "646df1c9173a4a2fcac180b4",
+                      "title": "Playlist-Title",
+                      "description": "This is description for playlist.",
+                      "player_config": {
+                        "preload": false,
+                        "autoplay": false,
+                        "disable_seek": false,
+                        "disable_player_controls": false,
+                        "powered_by_gumlet_overlay": false,
+                        "allow_drm_protected_videos": false,
+                        "loop": false,
+                        "player_color": "#6658ea",
+                        "include_seo": true,
+                        "subtitle_enabled": false,
+                        "pixel_tags": {},
+                        "logo_width": 100,
+                        "logo_height": 100,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 20,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -5184,7 +5653,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"message\": \"body must have required property 'title'\",\n        \"code\": \"invalid_parameter\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "message": "body must have required property 'title'",
+                        "code": "invalid_parameter"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -5242,7 +5716,27 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "[\n    {\n        \"id\": \"6566ebd57499c676fe302bfc\",\n        \"collection_id\": \"646df1c9173a4a2fcac180b4\",\n        \"title\": \"Playlist-1\",\n        \"description\": \"This is updated description\",\n        \"player_config\": {}\n    },\n    {\n        \"id\": \"65802cc5bda4c3f74c99eacf\",\n        \"collection_id\": \"646df1c9173a4a2fcac180b4\",\n        \"title\": \"Playlist-2\",\n        \"player_config\": {}\n    },\n    {\n        \"id\": \"65802cc6bda4c3f74c99eae5\",\n        \"collection_id\": \"646df1c9173a4a2fcac180b4\",\n        \"title\": \"Playlist-3\",\n        \"player_config\": {}\n    }\n]"
+                    "value": [
+                      {
+                        "id": "6566ebd57499c676fe302bfc",
+                        "collection_id": "646df1c9173a4a2fcac180b4",
+                        "title": "Playlist-1",
+                        "description": "This is updated description",
+                        "player_config": {}
+                      },
+                      {
+                        "id": "65802cc5bda4c3f74c99eacf",
+                        "collection_id": "646df1c9173a4a2fcac180b4",
+                        "title": "Playlist-2",
+                        "player_config": {}
+                      },
+                      {
+                        "id": "65802cc6bda4c3f74c99eae5",
+                        "collection_id": "646df1c9173a4a2fcac180b4",
+                        "title": "Playlist-3",
+                        "player_config": {}
+                      }
+                    ]
                   }
                 },
                 "schema": {
@@ -5282,7 +5776,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"collection_not_found\",\n        \"message\": \"Could not find any video collection with specified collection_id.\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "collection_not_found",
+                        "message": "Could not find any video collection with specified collection_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -5370,18 +5869,18 @@
                         "asset_id": "6508790283e4d60611846790"
                       },
                       {
-                        "position": "1",
+                        "position": 1,
                         "asset_id": "650878f883e4d6061184677d"
                       },
                       {
                         "asset_id": "650878de83e4d6061184676a"
                       },
                       {
-                        "position": "2",
+                        "position": 2,
                         "asset_id": "650878d883e4d60611846757"
                       },
                       {
-                        "position": "3",
+                        "position": 3,
                         "asset_id": "65578dd87eebc22dcdd549a2"
                       }
                     ]
@@ -5398,7 +5897,9 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"success\": true\n}"
+                    "value": {
+                      "success": true
+                    }
                   }
                 },
                 "schema": {
@@ -5420,7 +5921,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"invalid_parameter_value\",\n        \"message\": \"The parameter value is invalid.\",\n        \"param\": \"playlist-id\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "invalid_parameter_value",
+                        "message": "The parameter value is invalid.",
+                        "param": "playlist-id"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -5457,7 +5964,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {\n  asset_list: [\n    { asset_id: '6508790283e4d60611846790' },\n    { position: '1', asset_id: '650878f883e4d6061184677d' },\n    { asset_id: '650878de83e4d6061184676a' },\n    { position: '2', asset_id: '650878d883e4d60611846757' },\n    { position: '3', asset_id: '65578dd87eebc22dcdd549a2' },\n  ],\n});\n\nconsole.log(createAssetTo);"
+            "source": "import Gumlet from '@gumlet/gumlet-rest';\n\nconst client = new Gumlet({\n  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var\n});\n\nconst createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {\n  asset_list: [\n    { asset_id: '6508790283e4d60611846790' },\n    { position: 1, asset_id: '650878f883e4d6061184677d' },\n    { asset_id: '650878de83e4d6061184676a' },\n    { position: 2, asset_id: '650878d883e4d60611846757' },\n    { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },\n  ],\n});\n\nconsole.log(createAssetTo);"
           }
         ]
       },
@@ -5512,7 +6019,9 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"success\": true\n}"
+                    "value": {
+                      "success": true
+                    }
                   }
                 },
                 "schema": {
@@ -5534,7 +6043,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"assets_id_not_valid\",\n        \"message\": \"one or more asset ids in asset_list are not valid.\",\n        \"param\": \"delete_list[0]\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "assets_id_not_valid",
+                        "message": "one or more asset ids in asset_list are not valid.",
+                        "param": "delete_list[0]"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -5684,7 +6199,7 @@
                 "Request Example": {
                   "value": {
                     "title": "Playlist-Title-Updated",
-                    "position": "6",
+                    "position": 6,
                     "description": "This is updated description",
                     "player_config": {
                       "preload": true,
@@ -5719,7 +6234,32 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"id\": \"6566ebd57499c676fe302bfc\",\n    \"collection_id\": \"646df1c9173a4a2fcac180b4\",\n    \"title\": \"Playlist-Title-Updated\",\n    \"description\": \"This is updated description\",\n    \"player_config\": {\n        \"preload\": true,\n        \"autoplay\": false,\n        \"disable_seek\": true,\n        \"disable_player_controls\": false,\n        \"powered_by_gumlet_overlay\": false,\n        \"allow_drm_protected_videos\": false,\n        \"loop\": false,\n        \"player_color\": \"#6658ea\",\n        \"include_seo\": true,\n        \"subtitle_enabled\": true,\n        \"pixel_tags\": {},\n        \"logo_width\": 51,\n        \"logo_height\": 100,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 1,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000\n    }\n}"
+                    "value": {
+                      "id": "6566ebd57499c676fe302bfc",
+                      "collection_id": "646df1c9173a4a2fcac180b4",
+                      "title": "Playlist-Title-Updated",
+                      "description": "This is updated description",
+                      "player_config": {
+                        "preload": true,
+                        "autoplay": false,
+                        "disable_seek": true,
+                        "disable_player_controls": false,
+                        "powered_by_gumlet_overlay": false,
+                        "allow_drm_protected_videos": false,
+                        "loop": false,
+                        "player_color": "#6658ea",
+                        "include_seo": true,
+                        "subtitle_enabled": true,
+                        "pixel_tags": {},
+                        "logo_width": 51,
+                        "logo_height": 100,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 1,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -5843,7 +6383,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"incorrect_playlist_id\",\n        \"message\": \"No playlist with provided id exists.\",\n        \"param\": \"6566ebd57499c676fe302bfd\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "incorrect_playlist_id",
+                        "message": "No playlist with provided id exists.",
+                        "param": "6566ebd57499c676fe302bfd"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -5973,7 +6519,92 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"asset_list\": [\n        {\n            \"id\": \"6593d0e5e1b4f8a05db8df0d\",\n            \"title\": \"video asset title 1\",\n            \"description\": \"Asset description\",\n            \"status\": \"ready\",\n            \"created_at\": \"2024-01-02T09:01:25.079Z\",\n            \"duration\": 885\n        },\n        {\n            \"id\": \"6593d14583d3d4d3324f7f71\",\n            \"title\": \"video asset title 2\",\n            \"description\": \"Asset description\",\n            \"status\": \"ready\",\n            \"created_at\": \"2024-01-02T09:03:01.149Z\",\n            \"duration\": 1742\n        },\n        {\n            \"id\": \"6596f6f8b3487059a710ff77\",\n            \"title\": \"video asset title 3\",\n            \"description\": \"Asset description\",\n            \"status\": \"ready\",\n            \"created_at\": \"2024-01-04T18:20:40.582Z\",\n            \"duration\": 8462\n        },\n        {\n            \"id\": \"6596f6e7b3487059a710ff4f\",\n            \"title\": \"video asset title 4\",\n            \"description\": \"Asset description\",\n            \"status\": \"ready\",\n            \"created_at\": \"2024-01-04T18:20:23.342Z\",\n            \"duration\": 645\n        },\n        {\n            \"id\": \"65578dd87eebc22dcdd549a2\",\n            \"title\": \"video asset title 5\",\n            \"description\": \"Asset description\",\n            \"status\": \"ready\",\n            \"created_at\": \"2023-11-17T15:59:20.823Z\",\n            \"duration\": 427\n        },\n        {\n            \"id\": \"6593f310c69a8548236b2a86\",\n            \"title\": \"video asset title 6\",\n            \"description\": \"Asset description\",\n            \"status\": \"upload-pending\",\n            \"created_at\": \"2024-01-02T11:27:16.289Z\",\n            \"duration\": 720\n        },\n        {\n            \"id\": \"6593e776c69a8548236b2a59\",\n            \"title\": \"video asset title 7\",\n            \"description\": \"Asset description\",\n            \"status\": \"upload-pending\",\n            \"created_at\": \"2024-01-02T11:26:15.083Z\",\n            \"duration\": 374\n        },\n        {\n            \"id\": \"6508790283e4d60611846790\",\n            \"title\": \"video asset title 8\",\n            \"description\": \"Asset description\",\n            \"status\": \"ready\",\n            \"created_at\": \"2023-09-18T16:21:22.955Z\",\n            \"duration\": 603\n        },\n        {\n            \"id\": \"650878f883e4d6061184677d\",\n            \"title\": \"video asset title 9\",\n            \"description\": \"Asset description\",\n            \"status\": \"ready\",\n            \"created_at\": \"2023-09-18T16:21:12.870Z\",\n            \"duration\": 929\n        },\n        {\n            \"id\": \"650878de83e4d6061184676a\",\n            \"title\": \"video asset title 10\",\n            \"description\": \"Asset description\",\n            \"status\": \"ready\",\n            \"created_at\": \"2023-09-18T16:20:46.129Z\",\n            \"duration\": 12\n        }\n    ],\n    \"has_next_page\": true,\n    \"next_page\": 2\n}"
+                    "value": {
+                      "asset_list": [
+                        {
+                          "id": "6593d0e5e1b4f8a05db8df0d",
+                          "title": "video asset title 1",
+                          "description": "Asset description",
+                          "status": "ready",
+                          "created_at": "2024-01-02T09:01:25.079Z",
+                          "duration": 885
+                        },
+                        {
+                          "id": "6593d14583d3d4d3324f7f71",
+                          "title": "video asset title 2",
+                          "description": "Asset description",
+                          "status": "ready",
+                          "created_at": "2024-01-02T09:03:01.149Z",
+                          "duration": 1742
+                        },
+                        {
+                          "id": "6596f6f8b3487059a710ff77",
+                          "title": "video asset title 3",
+                          "description": "Asset description",
+                          "status": "ready",
+                          "created_at": "2024-01-04T18:20:40.582Z",
+                          "duration": 8462
+                        },
+                        {
+                          "id": "6596f6e7b3487059a710ff4f",
+                          "title": "video asset title 4",
+                          "description": "Asset description",
+                          "status": "ready",
+                          "created_at": "2024-01-04T18:20:23.342Z",
+                          "duration": 645
+                        },
+                        {
+                          "id": "65578dd87eebc22dcdd549a2",
+                          "title": "video asset title 5",
+                          "description": "Asset description",
+                          "status": "ready",
+                          "created_at": "2023-11-17T15:59:20.823Z",
+                          "duration": 427
+                        },
+                        {
+                          "id": "6593f310c69a8548236b2a86",
+                          "title": "video asset title 6",
+                          "description": "Asset description",
+                          "status": "upload-pending",
+                          "created_at": "2024-01-02T11:27:16.289Z",
+                          "duration": 720
+                        },
+                        {
+                          "id": "6593e776c69a8548236b2a59",
+                          "title": "video asset title 7",
+                          "description": "Asset description",
+                          "status": "upload-pending",
+                          "created_at": "2024-01-02T11:26:15.083Z",
+                          "duration": 374
+                        },
+                        {
+                          "id": "6508790283e4d60611846790",
+                          "title": "video asset title 8",
+                          "description": "Asset description",
+                          "status": "ready",
+                          "created_at": "2023-09-18T16:21:22.955Z",
+                          "duration": 603
+                        },
+                        {
+                          "id": "650878f883e4d6061184677d",
+                          "title": "video asset title 9",
+                          "description": "Asset description",
+                          "status": "ready",
+                          "created_at": "2023-09-18T16:21:12.870Z",
+                          "duration": 929
+                        },
+                        {
+                          "id": "650878de83e4d6061184676a",
+                          "title": "video asset title 10",
+                          "description": "Asset description",
+                          "status": "ready",
+                          "created_at": "2023-09-18T16:20:46.129Z",
+                          "duration": 12
+                        }
+                      ],
+                      "has_next_page": true,
+                      "next_page": 2
+                    }
                   }
                 },
                 "schema": {
@@ -6033,7 +6664,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"message\": \"querystring/sort_by must be equal to one of the allowed values\",\n        \"code\": \"invalid_parameter\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "message": "querystring/sort_by must be equal to one of the allowed values",
+                        "code": "invalid_parameter"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -6340,7 +6976,19 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"id\": \"65eed75eadeea8478f14ebd4\",\n    \"url\": \"https://webhook.site/16df065a-b398-48bc-b825-b0804979c5f1\",\n    \"triggers\": [\n        \"status\"\n    ],\n    \"created_at\": \"2024-03-11T10:05:18.316Z\",\n    \"updated_at\": \"2024-03-11T10:05:18.316Z\",\n    \"sources\": [\n        \"5f462c1561cf8a766464ffc4\"\n    ],\n    \"secret_token\": \"rnVNfIKgnH\"\n}"
+                    "value": {
+                      "id": "65eed75eadeea8478f14ebd4",
+                      "url": "https://webhook.site/16df065a-b398-48bc-b825-b0804979c5f1",
+                      "triggers": [
+                        "status"
+                      ],
+                      "created_at": "2024-03-11T10:05:18.316Z",
+                      "updated_at": "2024-03-11T10:05:18.316Z",
+                      "sources": [
+                        "5f462c1561cf8a766464ffc4"
+                      ],
+                      "secret_token": "rnVNfIKgnH"
+                    }
                   }
                 },
                 "schema": {
@@ -6391,7 +7039,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -6465,7 +7113,19 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"id\": \"65eed75eadeea8478f14ebd4\",\n    \"url\": \"https://webhook.site/16df065a-b398-48bc-b825-b0804979c5f2\",\n    \"triggers\": [\n        \"status\"\n    ],\n    \"created_at\": \"2024-03-11T10:05:18.316Z\",\n    \"updated_at\": \"2024-03-11T10:10:37.461Z\",\n    \"sources\": [\n        \"5f462c1561cf8a766464ffc4\"\n    ],\n    \"secret_token\": \"rnVNfIKgnH\"\n}"
+                    "value": {
+                      "id": "65eed75eadeea8478f14ebd4",
+                      "url": "https://webhook.site/16df065a-b398-48bc-b825-b0804979c5f2",
+                      "triggers": [
+                        "status"
+                      ],
+                      "created_at": "2024-03-11T10:05:18.316Z",
+                      "updated_at": "2024-03-11T10:10:37.461Z",
+                      "sources": [
+                        "5f462c1561cf8a766464ffc4"
+                      ],
+                      "secret_token": "rnVNfIKgnH"
+                    }
                   }
                 },
                 "schema": {
@@ -6516,7 +7176,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -6561,7 +7221,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -6577,7 +7237,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -6894,7 +7554,63 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"id\": \"65b01610e99b77f116c0e32b\",\n    \"name\": \"zoom-collection\",\n    \"type\": \"zoom\",\n    \"created_at\": \"2024-01-23T19:40:00.447Z\",\n    \"updated_at\": \"2024-01-23T19:40:00.447Z\",\n    \"video_protection\": {},\n    \"player_config\": {\n        \"preload\": true,\n        \"autoplay\": false,\n        \"disable_seek\": false,\n        \"disable_player_controls\": false,\n        \"powered_by_gumlet_overlay\": true,\n        \"allow_drm_protected_videos\": true,\n        \"loop\": false,\n        \"player_color\": \"#6658ea\",\n        \"include_seo\": true,\n        \"subtitle_enabled\": false,\n        \"pixel_tags\": {},\n        \"logo_width\": 100,\n        \"logo_height\": 100,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 20,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000\n    },\n    \"default_profile_id\": \"646df1c9173a4a2fcac180b7\",\n    \"insight_property_id\": \"65b01610e99b77f116c0e329\",\n    \"zoom\": {\n        \"secret\": \"yourSecret\"\n    },\n    \"embed_details\": {\n        \"powered_by_gumlet_overlay\": true,\n        \"allow_drm_protected_videos\": true,\n        \"preload\": true,\n        \"autoplay\": false,\n        \"logo_width\": 100,\n        \"logo_height\": 100,\n        \"player_color\": \"#6658ea\",\n        \"is_seo\": true,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 20,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000,\n        \"disable_seek\": false,\n        \"disable_player_controls\": false,\n        \"loop\": false,\n        \"subtitle_enabled\": false\n    },\n    \"folders\": [],\n    \"channel_settings\": {\n        \"active\": false,\n        \"privacy_type\": \"private\"\n    }\n}"
+                    "value": {
+                      "id": "65b01610e99b77f116c0e32b",
+                      "name": "zoom-collection",
+                      "type": "zoom",
+                      "created_at": "2024-01-23T19:40:00.447Z",
+                      "updated_at": "2024-01-23T19:40:00.447Z",
+                      "video_protection": {},
+                      "player_config": {
+                        "preload": true,
+                        "autoplay": false,
+                        "disable_seek": false,
+                        "disable_player_controls": false,
+                        "powered_by_gumlet_overlay": true,
+                        "allow_drm_protected_videos": true,
+                        "loop": false,
+                        "player_color": "#6658ea",
+                        "include_seo": true,
+                        "subtitle_enabled": false,
+                        "pixel_tags": {},
+                        "logo_width": 100,
+                        "logo_height": 100,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 20,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000
+                      },
+                      "default_profile_id": "646df1c9173a4a2fcac180b7",
+                      "insight_property_id": "65b01610e99b77f116c0e329",
+                      "zoom": {
+                        "secret": "yourSecret"
+                      },
+                      "embed_details": {
+                        "powered_by_gumlet_overlay": true,
+                        "allow_drm_protected_videos": true,
+                        "preload": true,
+                        "autoplay": false,
+                        "logo_width": 100,
+                        "logo_height": 100,
+                        "player_color": "#6658ea",
+                        "is_seo": true,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 20,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000,
+                        "disable_seek": false,
+                        "disable_player_controls": false,
+                        "loop": false,
+                        "subtitle_enabled": false
+                      },
+                      "folders": [],
+                      "channel_settings": {
+                        "active": false,
+                        "privacy_type": "private"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -7147,7 +7863,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"parameter_missing\",\n        \"message\": \"One or more required values are missing.\",\n        \"param\": \"name\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "One or more required values are missing.",
+                        "param": "name"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -7199,7 +7921,148 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"all_sources\": [\n        {\n            \"id\": \"646df1c9173a4a2fcac180b4\",\n            \"name\": \"collection_name\",\n            \"type\": \"aws\",\n            \"created_at\": \"2023-05-24T11:15:21.624Z\",\n            \"updated_at\": \"2024-01-24T11:57:48.744Z\",\n            \"video_protection\": {\n                \"signed_url\": true,\n                \"signed_url_secret\": \"47a3e2fbb1318f033b882c632bc103a8\"\n            },\n            \"player_config\": {\n                \"preload\": false,\n                \"autoplay\": false,\n                \"disable_seek\": false,\n                \"disable_player_controls\": false,\n                \"powered_by_gumlet_overlay\": false,\n                \"allow_drm_protected_videos\": false,\n                \"loop\": false,\n                \"player_color\": \"#6658ea\",\n                \"include_seo\": true,\n                \"subtitle_enabled\": false,\n                \"pixel_tags\": {},\n                \"logo_width\": 100,\n                \"logo_height\": 100,\n                \"dynamic_watermark\": false,\n                \"watermark_font_size\": 20,\n                \"watermark_font_color\": \"#ff0000\",\n                \"watermark_bg_color\": \"transparent\",\n                \"watermark_interval\": 1000\n            },\n            \"default_profile_id\": \"646df1c9173a4a2fcac180b7\",\n            \"insight_property_id\": \"646df0aa173a4a2fcac18009\",\n            \"aws\": {\n                \"bucket_name\": \"asd\",\n                \"bucket_region\": \"ap-south-1\",\n                \"access_key\": \"Code@123\",\n                \"secret\": \"****************\"\n            },\n            \"embed_details\": {\n                \"pixel_tags\": {},\n                \"preload\": false,\n                \"autoplay\": false,\n                \"logo_width\": 100,\n                \"logo_height\": 100,\n                \"player_color\": \"#6658ea\",\n                \"is_seo\": true,\n                \"dynamic_watermark\": false,\n                \"disable_seek\": false,\n                \"disable_player_controls\": false,\n                \"allow_drm_protected_videos\": false,\n                \"powered_by_gumlet_overlay\": false,\n                \"loop\": false,\n                \"subtitle_enabled\": false,\n                \"watermark_bg_color\": \"transparent\",\n                \"watermark_font_color\": \"#ff0000\",\n                \"watermark_font_size\": 20,\n                \"watermark_interval\": 1000\n            },\n            \"folders\": [\n                \"folder\",\n                \"folder 2\",\n                \"folder 27\",\n                \"folder 4\"\n            ],\n            \"channel_settings\": {\n                \"title\": \"my channel\",\n                \"active\": false,\n                \"description\": \"desc\",\n                \"privacy_type\": \"private\",\n                \"custom_logo\": true,\n                \"logo_url\": \"https://dev-video.gumlet.io/646df1c9172a4a2fcac180b4/channel/logo.png\",\n                \"cname\": [\n                    \"okj.com\",\n                    \"sd.com\",\n                    \"safd.com\"\n                ],\n                \"temp_cname\": [\n                    \"okj.com\",\n                    \"safd.com\",\n                    \"sd.com\"\n                ]\n            }\n        },\n        {\n            \"id\": \"65b016f4e99b77f116c0e381\",\n            \"name\": \"private uploads\",\n            \"type\": \"direct-upload\",\n            \"created_at\": \"2024-01-23T19:43:48.267Z\",\n            \"updated_at\": \"2024-01-23T19:43:48.272Z\",\n            \"video_protection\": {},\n            \"player_config\": {\n                \"preload\": true,\n                \"autoplay\": false,\n                \"disable_seek\": false,\n                \"disable_player_controls\": false,\n                \"powered_by_gumlet_overlay\": true,\n                \"allow_drm_protected_videos\": true,\n                \"loop\": false,\n                \"player_color\": \"#6658ea\",\n                \"include_seo\": true,\n                \"subtitle_enabled\": false,\n                \"pixel_tags\": {},\n                \"logo_width\": 100,\n                \"logo_height\": 100,\n                \"dynamic_watermark\": false,\n                \"watermark_font_size\": 20,\n                \"watermark_font_color\": \"#ff0000\",\n                \"watermark_bg_color\": \"transparent\",\n                \"watermark_interval\": 1000\n            },\n            \"default_profile_id\": \"646df1c9173a4a2fcac180b7\",\n            \"insight_property_id\": \"65b016f4e99b77f116c0e37f\",\n            \"embed_details\": {\n                \"pixel_tags\": {},\n                \"powered_by_gumlet_overlay\": true,\n                \"allow_drm_protected_videos\": true,\n                \"preload\": true,\n                \"autoplay\": false,\n                \"logo_width\": 100,\n                \"logo_height\": 100,\n                \"player_color\": \"#6658ea\",\n                \"is_seo\": true,\n                \"dynamic_watermark\": false,\n                \"watermark_font_size\": 20,\n                \"watermark_font_color\": \"#ff0000\",\n                \"watermark_bg_color\": \"transparent\",\n                \"watermark_interval\": 1000,\n                \"disable_seek\": false,\n                \"disable_player_controls\": false,\n                \"loop\": false,\n                \"subtitle_enabled\": false\n            },\n            \"folders\": [],\n            \"channel_settings\": {\n                \"active\": false,\n                \"privacy_type\": \"private\"\n            }\n        }\n    ]\n}"
+                    "value": {
+                      "all_sources": [
+                        {
+                          "id": "646df1c9173a4a2fcac180b4",
+                          "name": "collection_name",
+                          "type": "aws",
+                          "created_at": "2023-05-24T11:15:21.624Z",
+                          "updated_at": "2024-01-24T11:57:48.744Z",
+                          "video_protection": {
+                            "signed_url": true,
+                            "signed_url_secret": "47a3e2fbb1318f033b882c632bc103a8"
+                          },
+                          "player_config": {
+                            "preload": false,
+                            "autoplay": false,
+                            "disable_seek": false,
+                            "disable_player_controls": false,
+                            "powered_by_gumlet_overlay": false,
+                            "allow_drm_protected_videos": false,
+                            "loop": false,
+                            "player_color": "#6658ea",
+                            "include_seo": true,
+                            "subtitle_enabled": false,
+                            "pixel_tags": {},
+                            "logo_width": 100,
+                            "logo_height": 100,
+                            "dynamic_watermark": false,
+                            "watermark_font_size": 20,
+                            "watermark_font_color": "#ff0000",
+                            "watermark_bg_color": "transparent",
+                            "watermark_interval": 1000
+                          },
+                          "default_profile_id": "646df1c9173a4a2fcac180b7",
+                          "insight_property_id": "646df0aa173a4a2fcac18009",
+                          "aws": {
+                            "bucket_name": "asd",
+                            "bucket_region": "ap-south-1",
+                            "access_key": "Code@123",
+                            "secret": "****************"
+                          },
+                          "embed_details": {
+                            "pixel_tags": {},
+                            "preload": false,
+                            "autoplay": false,
+                            "logo_width": 100,
+                            "logo_height": 100,
+                            "player_color": "#6658ea",
+                            "is_seo": true,
+                            "dynamic_watermark": false,
+                            "disable_seek": false,
+                            "disable_player_controls": false,
+                            "allow_drm_protected_videos": false,
+                            "powered_by_gumlet_overlay": false,
+                            "loop": false,
+                            "subtitle_enabled": false,
+                            "watermark_bg_color": "transparent",
+                            "watermark_font_color": "#ff0000",
+                            "watermark_font_size": 20,
+                            "watermark_interval": 1000
+                          },
+                          "folders": [
+                            "folder",
+                            "folder 2",
+                            "folder 27",
+                            "folder 4"
+                          ],
+                          "channel_settings": {
+                            "title": "my channel",
+                            "active": false,
+                            "description": "desc",
+                            "privacy_type": "private",
+                            "custom_logo": true,
+                            "logo_url": "https://dev-video.gumlet.io/646df1c9172a4a2fcac180b4/channel/logo.png",
+                            "cname": [
+                              "okj.com",
+                              "sd.com",
+                              "safd.com"
+                            ],
+                            "temp_cname": [
+                              "okj.com",
+                              "safd.com",
+                              "sd.com"
+                            ]
+                          }
+                        },
+                        {
+                          "id": "65b016f4e99b77f116c0e381",
+                          "name": "private uploads",
+                          "type": "direct-upload",
+                          "created_at": "2024-01-23T19:43:48.267Z",
+                          "updated_at": "2024-01-23T19:43:48.272Z",
+                          "video_protection": {},
+                          "player_config": {
+                            "preload": true,
+                            "autoplay": false,
+                            "disable_seek": false,
+                            "disable_player_controls": false,
+                            "powered_by_gumlet_overlay": true,
+                            "allow_drm_protected_videos": true,
+                            "loop": false,
+                            "player_color": "#6658ea",
+                            "include_seo": true,
+                            "subtitle_enabled": false,
+                            "pixel_tags": {},
+                            "logo_width": 100,
+                            "logo_height": 100,
+                            "dynamic_watermark": false,
+                            "watermark_font_size": 20,
+                            "watermark_font_color": "#ff0000",
+                            "watermark_bg_color": "transparent",
+                            "watermark_interval": 1000
+                          },
+                          "default_profile_id": "646df1c9173a4a2fcac180b7",
+                          "insight_property_id": "65b016f4e99b77f116c0e37f",
+                          "embed_details": {
+                            "pixel_tags": {},
+                            "powered_by_gumlet_overlay": true,
+                            "allow_drm_protected_videos": true,
+                            "preload": true,
+                            "autoplay": false,
+                            "logo_width": 100,
+                            "logo_height": 100,
+                            "player_color": "#6658ea",
+                            "is_seo": true,
+                            "dynamic_watermark": false,
+                            "watermark_font_size": 20,
+                            "watermark_font_color": "#ff0000",
+                            "watermark_bg_color": "transparent",
+                            "watermark_interval": 1000,
+                            "disable_seek": false,
+                            "disable_player_controls": false,
+                            "loop": false,
+                            "subtitle_enabled": false
+                          },
+                          "folders": [],
+                          "channel_settings": {
+                            "active": false,
+                            "privacy_type": "private"
+                          }
+                        }
+                      ]
+                    }
                   }
                 },
                 "schema": {
@@ -7521,7 +8384,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -7854,7 +8717,89 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"id\": \"646df1c9173a4a2fcac180b4\",\n    \"name\": \"aws-source\",\n    \"type\": \"aws\",\n    \"created_at\": \"2023-05-24T11:15:21.624Z\",\n    \"updated_at\": \"2024-01-24T11:24:16.003Z\",\n    \"video_protection\": {\n        \"signed_url\": true,\n        \"signed_url_secret\": \"87a2e2fbb2318f902b882c532bc703a8\"\n    },\n    \"player_config\": {\n        \"preload\": false,\n        \"autoplay\": false,\n        \"disable_seek\": false,\n        \"disable_player_controls\": false,\n        \"powered_by_gumlet_overlay\": false,\n        \"allow_drm_protected_videos\": false,\n        \"loop\": false,\n        \"player_color\": \"#6658ea\",\n        \"include_seo\": true,\n        \"subtitle_enabled\": false,\n        \"pixel_tags\": {},\n        \"logo_width\": 100,\n        \"logo_height\": 100,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 20,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000\n    },\n    \"default_profile_id\": \"646df1c9173a4a2fcac180b7\",\n    \"insight_property_id\": \"646df0aa173a4a2fcac18009\",\n    \"aws\": {\n        \"bucket_name\": \"my-bucket-test\",\n        \"bucket_region\": \"ap-southeast-1\",\n        \"access_key\": \"BQUA6QFXVWHAAB6IO2X1\",\n        \"secret\": \"****************\"\n    },\n    \"embed_details\": {\n        \"preload\": false,\n        \"autoplay\": false,\n        \"logo_width\": 100,\n        \"logo_height\": 100,\n        \"player_color\": \"#6658ea\",\n        \"is_seo\": true,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 20,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000,\n        \"disable_seek\": false,\n        \"disable_player_controls\": false,\n        \"powered_by_gumlet_overlay\": false,\n        \"allow_drm_protected_videos\": false,\n        \"pixel_tags\": {},\n        \"loop\": false,\n        \"subtitle_enabled\": false\n    },\n    \"folders\": [\n        \"folder\",\n        \"folder 2\",\n        \"folder 27\",\n        \"folder 4\"\n    ],\n    \"channel_settings\": {\n        \"title\": \"myTitle\",\n        \"active\": false,\n        \"description\": \"desc\",\n        \"privacy_type\": \"private\",\n        \"custom_logo\": true,\n        \"logo_url\": \"https://dev-video.gumlet.io/626d21c3473a4a2faac180b4/channel/logo.png\",\n        \"cname\": [\n            \"okj.com\",\n            \"sd.com\",\n            \"safd.com\"\n        ],\n        \"temp_cname\": [\n            \"okj.com\",\n            \"safd.com\",\n            \"sd.com\"\n        ]\n    }\n}"
+                    "value": {
+                      "id": "646df1c9173a4a2fcac180b4",
+                      "name": "aws-source",
+                      "type": "aws",
+                      "created_at": "2023-05-24T11:15:21.624Z",
+                      "updated_at": "2024-01-24T11:24:16.003Z",
+                      "video_protection": {
+                        "signed_url": true,
+                        "signed_url_secret": "87a2e2fbb2318f902b882c532bc703a8"
+                      },
+                      "player_config": {
+                        "preload": false,
+                        "autoplay": false,
+                        "disable_seek": false,
+                        "disable_player_controls": false,
+                        "powered_by_gumlet_overlay": false,
+                        "allow_drm_protected_videos": false,
+                        "loop": false,
+                        "player_color": "#6658ea",
+                        "include_seo": true,
+                        "subtitle_enabled": false,
+                        "pixel_tags": {},
+                        "logo_width": 100,
+                        "logo_height": 100,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 20,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000
+                      },
+                      "default_profile_id": "646df1c9173a4a2fcac180b7",
+                      "insight_property_id": "646df0aa173a4a2fcac18009",
+                      "aws": {
+                        "bucket_name": "my-bucket-test",
+                        "bucket_region": "ap-southeast-1",
+                        "access_key": "BQUA6QFXVWHAAB6IO2X1",
+                        "secret": "****************"
+                      },
+                      "embed_details": {
+                        "preload": false,
+                        "autoplay": false,
+                        "logo_width": 100,
+                        "logo_height": 100,
+                        "player_color": "#6658ea",
+                        "is_seo": true,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 20,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000,
+                        "disable_seek": false,
+                        "disable_player_controls": false,
+                        "powered_by_gumlet_overlay": false,
+                        "allow_drm_protected_videos": false,
+                        "pixel_tags": {},
+                        "loop": false,
+                        "subtitle_enabled": false
+                      },
+                      "folders": [
+                        "folder",
+                        "folder 2",
+                        "folder 27",
+                        "folder 4"
+                      ],
+                      "channel_settings": {
+                        "title": "myTitle",
+                        "active": false,
+                        "description": "desc",
+                        "privacy_type": "private",
+                        "custom_logo": true,
+                        "logo_url": "https://dev-video.gumlet.io/626d21c3473a4a2faac180b4/channel/logo.png",
+                        "cname": [
+                          "okj.com",
+                          "sd.com",
+                          "safd.com"
+                        ],
+                        "temp_cname": [
+                          "okj.com",
+                          "safd.com",
+                          "sd.com"
+                        ]
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -8168,7 +9113,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"parameter_missing\",\n        \"message\": \"One or more required values are missing.\",\n        \"param\": \"gcs\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "One or more required values are missing.",
+                        "param": "gcs"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -8230,7 +9181,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -8246,7 +9197,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"collection_not_found\",\n        \"message\": \"Could not find any video collection with specified collection_id.\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "collection_not_found",
+                        "message": "Could not find any video collection with specified collection_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -8337,7 +9293,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -8411,7 +9367,40 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"top_assets\": [\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 162870,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    },\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 21348,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    },\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 1239,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    },\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 974,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    },\n    {\n        \"collection_id\": \"<COLLECTION_ID>\",\n        \"asset_id\": \"<ASSET_ID>\",\n        \"units\": 124,\n        \"collection_name\": \"<COLLECTION_NAME>\"\n    }\n  ]\n}"
+                    "value": {
+                      "top_assets": [
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 162870,
+                          "collection_name": "<COLLECTION_NAME>"
+                        },
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 21348,
+                          "collection_name": "<COLLECTION_NAME>"
+                        },
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 1239,
+                          "collection_name": "<COLLECTION_NAME>"
+                        },
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 974,
+                          "collection_name": "<COLLECTION_NAME>"
+                        },
+                        {
+                          "collection_id": "<COLLECTION_ID>",
+                          "asset_id": "<ASSET_ID>",
+                          "units": 124,
+                          "collection_name": "<COLLECTION_NAME>"
+                        }
+                      ]
+                    }
                   }
                 },
                 "schema": {
@@ -8453,7 +9442,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"parameter_missing\",\n    \"message\": \"One or more required values are missing.\",\n    \"param\": \"date_range\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "One or more required values are missing.",
+                        "param": "date_range"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -8670,7 +9665,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"source_not_found\",\n    \"message\": \"Could not find any video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "source_not_found",
+                        "message": "Could not find any video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -8700,7 +9700,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"source_not_found\",\n    \"message\": \"Could not find any video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "source_not_found",
+                        "message": "Could not find any video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -8896,7 +9901,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"source_not_found\",\n    \"message\": \"Could not find any video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "source_not_found",
+                        "message": "Could not find any video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -8926,7 +9936,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"source_not_found\",\n    \"message\": \"Could not find any video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "source_not_found",
+                        "message": "Could not find any video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -9107,7 +10122,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"live_asset_not_found\",\n    \"message\": \"Could not find any live video asset with specified asset_id.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "live_asset_not_found",
+                        "message": "Could not find any live video asset with specified asset_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -9137,7 +10157,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"live_asset_not_found\",\n    \"message\": \"Could not find any live video asset with specified asset_id.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "live_asset_not_found",
+                        "message": "Could not find any live video asset with specified asset_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -9196,7 +10221,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -9212,7 +10237,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -9259,7 +10284,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -9275,7 +10300,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"live_asset_not_found\",\n    \"message\": \"Could not find any live video asset with specified asset_id.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "live_asset_not_found",
+                        "message": "Could not find any live video asset with specified asset_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -9527,7 +10557,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"live_source_not_found\",\n    \"message\": \"Could not find any live video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "live_source_not_found",
+                        "message": "Could not find any live video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -9557,7 +10592,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"live_source_not_found\",\n    \"message\": \"Could not find any live video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "live_source_not_found",
+                        "message": "Could not find any live video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -9950,7 +10990,148 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"all_sources\": [\n        {\n            \"id\": \"646df1c9173a4a2fcac180b4\",\n            \"name\": \"collection_name\",\n            \"type\": \"aws\",\n            \"created_at\": \"2023-05-24T11:15:21.624Z\",\n            \"updated_at\": \"2024-01-24T11:57:48.744Z\",\n            \"video_protection\": {\n                \"signed_url\": true,\n                \"signed_url_secret\": \"47a3e2fbb1318f033b882c632bc103a8\"\n            },\n            \"player_config\": {\n                \"preload\": false,\n                \"autoplay\": false,\n                \"disable_seek\": false,\n                \"disable_player_controls\": false,\n                \"powered_by_gumlet_overlay\": false,\n                \"allow_drm_protected_videos\": false,\n                \"loop\": false,\n                \"player_color\": \"#6658ea\",\n                \"include_seo\": true,\n                \"subtitle_enabled\": false,\n                \"pixel_tags\": {},\n                \"logo_width\": 100,\n                \"logo_height\": 100,\n                \"dynamic_watermark\": false,\n                \"watermark_font_size\": 20,\n                \"watermark_font_color\": \"#ff0000\",\n                \"watermark_bg_color\": \"transparent\",\n                \"watermark_interval\": 1000\n            },\n            \"default_profile_id\": \"646df1c9173a4a2fcac180b7\",\n            \"insight_property_id\": \"646df0aa173a4a2fcac18009\",\n            \"aws\": {\n                \"bucket_name\": \"asd\",\n                \"bucket_region\": \"ap-south-1\",\n                \"access_key\": \"Code@123\",\n                \"secret\": \"****************\"\n            },\n            \"embed_details\": {\n                \"pixel_tags\": {},\n                \"preload\": false,\n                \"autoplay\": false,\n                \"logo_width\": 100,\n                \"logo_height\": 100,\n                \"player_color\": \"#6658ea\",\n                \"is_seo\": true,\n                \"dynamic_watermark\": false,\n                \"disable_seek\": false,\n                \"disable_player_controls\": false,\n                \"allow_drm_protected_videos\": false,\n                \"powered_by_gumlet_overlay\": false,\n                \"loop\": false,\n                \"subtitle_enabled\": false,\n                \"watermark_bg_color\": \"transparent\",\n                \"watermark_font_color\": \"#ff0000\",\n                \"watermark_font_size\": 20,\n                \"watermark_interval\": 1000\n            },\n            \"folders\": [\n                \"folder\",\n                \"folder 2\",\n                \"folder 27\",\n                \"folder 4\"\n            ],\n            \"channel_settings\": {\n                \"title\": \"my channel\",\n                \"active\": false,\n                \"description\": \"desc\",\n                \"privacy_type\": \"private\",\n                \"custom_logo\": true,\n                \"logo_url\": \"https://dev-video.gumlet.io/646df1c9172a4a2fcac180b4/channel/logo.png\",\n                \"cname\": [\n                    \"okj.com\",\n                    \"sd.com\",\n                    \"safd.com\"\n                ],\n                \"temp_cname\": [\n                    \"okj.com\",\n                    \"safd.com\",\n                    \"sd.com\"\n                ]\n            }\n        },\n        {\n            \"id\": \"65b016f4e99b77f116c0e381\",\n            \"name\": \"private uploads\",\n            \"type\": \"direct-upload\",\n            \"created_at\": \"2024-01-23T19:43:48.267Z\",\n            \"updated_at\": \"2024-01-23T19:43:48.272Z\",\n            \"video_protection\": {},\n            \"player_config\": {\n                \"preload\": true,\n                \"autoplay\": false,\n                \"disable_seek\": false,\n                \"disable_player_controls\": false,\n                \"powered_by_gumlet_overlay\": true,\n                \"allow_drm_protected_videos\": true,\n                \"loop\": false,\n                \"player_color\": \"#6658ea\",\n                \"include_seo\": true,\n                \"subtitle_enabled\": false,\n                \"pixel_tags\": {},\n                \"logo_width\": 100,\n                \"logo_height\": 100,\n                \"dynamic_watermark\": false,\n                \"watermark_font_size\": 20,\n                \"watermark_font_color\": \"#ff0000\",\n                \"watermark_bg_color\": \"transparent\",\n                \"watermark_interval\": 1000\n            },\n            \"default_profile_id\": \"646df1c9173a4a2fcac180b7\",\n            \"insight_property_id\": \"65b016f4e99b77f116c0e37f\",\n            \"embed_details\": {\n                \"pixel_tags\": {},\n                \"powered_by_gumlet_overlay\": true,\n                \"allow_drm_protected_videos\": true,\n                \"preload\": true,\n                \"autoplay\": false,\n                \"logo_width\": 100,\n                \"logo_height\": 100,\n                \"player_color\": \"#6658ea\",\n                \"is_seo\": true,\n                \"dynamic_watermark\": false,\n                \"watermark_font_size\": 20,\n                \"watermark_font_color\": \"#ff0000\",\n                \"watermark_bg_color\": \"transparent\",\n                \"watermark_interval\": 1000,\n                \"disable_seek\": false,\n                \"disable_player_controls\": false,\n                \"loop\": false,\n                \"subtitle_enabled\": false\n            },\n            \"folders\": [],\n            \"channel_settings\": {\n                \"active\": false,\n                \"privacy_type\": \"private\"\n            }\n        }\n    ]\n}"
+                    "value": {
+                      "all_sources": [
+                        {
+                          "id": "646df1c9173a4a2fcac180b4",
+                          "name": "collection_name",
+                          "type": "aws",
+                          "created_at": "2023-05-24T11:15:21.624Z",
+                          "updated_at": "2024-01-24T11:57:48.744Z",
+                          "video_protection": {
+                            "signed_url": true,
+                            "signed_url_secret": "47a3e2fbb1318f033b882c632bc103a8"
+                          },
+                          "player_config": {
+                            "preload": false,
+                            "autoplay": false,
+                            "disable_seek": false,
+                            "disable_player_controls": false,
+                            "powered_by_gumlet_overlay": false,
+                            "allow_drm_protected_videos": false,
+                            "loop": false,
+                            "player_color": "#6658ea",
+                            "include_seo": true,
+                            "subtitle_enabled": false,
+                            "pixel_tags": {},
+                            "logo_width": 100,
+                            "logo_height": 100,
+                            "dynamic_watermark": false,
+                            "watermark_font_size": 20,
+                            "watermark_font_color": "#ff0000",
+                            "watermark_bg_color": "transparent",
+                            "watermark_interval": 1000
+                          },
+                          "default_profile_id": "646df1c9173a4a2fcac180b7",
+                          "insight_property_id": "646df0aa173a4a2fcac18009",
+                          "aws": {
+                            "bucket_name": "asd",
+                            "bucket_region": "ap-south-1",
+                            "access_key": "Code@123",
+                            "secret": "****************"
+                          },
+                          "embed_details": {
+                            "pixel_tags": {},
+                            "preload": false,
+                            "autoplay": false,
+                            "logo_width": 100,
+                            "logo_height": 100,
+                            "player_color": "#6658ea",
+                            "is_seo": true,
+                            "dynamic_watermark": false,
+                            "disable_seek": false,
+                            "disable_player_controls": false,
+                            "allow_drm_protected_videos": false,
+                            "powered_by_gumlet_overlay": false,
+                            "loop": false,
+                            "subtitle_enabled": false,
+                            "watermark_bg_color": "transparent",
+                            "watermark_font_color": "#ff0000",
+                            "watermark_font_size": 20,
+                            "watermark_interval": 1000
+                          },
+                          "folders": [
+                            "folder",
+                            "folder 2",
+                            "folder 27",
+                            "folder 4"
+                          ],
+                          "channel_settings": {
+                            "title": "my channel",
+                            "active": false,
+                            "description": "desc",
+                            "privacy_type": "private",
+                            "custom_logo": true,
+                            "logo_url": "https://dev-video.gumlet.io/646df1c9172a4a2fcac180b4/channel/logo.png",
+                            "cname": [
+                              "okj.com",
+                              "sd.com",
+                              "safd.com"
+                            ],
+                            "temp_cname": [
+                              "okj.com",
+                              "safd.com",
+                              "sd.com"
+                            ]
+                          }
+                        },
+                        {
+                          "id": "65b016f4e99b77f116c0e381",
+                          "name": "private uploads",
+                          "type": "direct-upload",
+                          "created_at": "2024-01-23T19:43:48.267Z",
+                          "updated_at": "2024-01-23T19:43:48.272Z",
+                          "video_protection": {},
+                          "player_config": {
+                            "preload": true,
+                            "autoplay": false,
+                            "disable_seek": false,
+                            "disable_player_controls": false,
+                            "powered_by_gumlet_overlay": true,
+                            "allow_drm_protected_videos": true,
+                            "loop": false,
+                            "player_color": "#6658ea",
+                            "include_seo": true,
+                            "subtitle_enabled": false,
+                            "pixel_tags": {},
+                            "logo_width": 100,
+                            "logo_height": 100,
+                            "dynamic_watermark": false,
+                            "watermark_font_size": 20,
+                            "watermark_font_color": "#ff0000",
+                            "watermark_bg_color": "transparent",
+                            "watermark_interval": 1000
+                          },
+                          "default_profile_id": "646df1c9173a4a2fcac180b7",
+                          "insight_property_id": "65b016f4e99b77f116c0e37f",
+                          "embed_details": {
+                            "pixel_tags": {},
+                            "powered_by_gumlet_overlay": true,
+                            "allow_drm_protected_videos": true,
+                            "preload": true,
+                            "autoplay": false,
+                            "logo_width": 100,
+                            "logo_height": 100,
+                            "player_color": "#6658ea",
+                            "is_seo": true,
+                            "dynamic_watermark": false,
+                            "watermark_font_size": 20,
+                            "watermark_font_color": "#ff0000",
+                            "watermark_bg_color": "transparent",
+                            "watermark_interval": 1000,
+                            "disable_seek": false,
+                            "disable_player_controls": false,
+                            "loop": false,
+                            "subtitle_enabled": false
+                          },
+                          "folders": [],
+                          "channel_settings": {
+                            "active": false,
+                            "privacy_type": "private"
+                          }
+                        }
+                      ]
+                    }
                   }
                 },
                 "schema": {
@@ -10272,7 +11453,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -10655,7 +11836,63 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"id\": \"65b01610e99b77f116c0e32b\",\n    \"name\": \"zoom-workspace\",\n    \"type\": \"zoom\",\n    \"created_at\": \"2024-01-23T19:40:00.447Z\",\n    \"updated_at\": \"2024-01-23T19:40:00.447Z\",\n    \"video_protection\": {},\n    \"player_config\": {\n        \"preload\": true,\n        \"autoplay\": false,\n        \"disable_seek\": false,\n        \"disable_player_controls\": false,\n        \"powered_by_gumlet_overlay\": true,\n        \"allow_drm_protected_videos\": true,\n        \"loop\": false,\n        \"player_color\": \"#6658ea\",\n        \"include_seo\": true,\n        \"subtitle_enabled\": false,\n        \"pixel_tags\": {},\n        \"logo_width\": 100,\n        \"logo_height\": 100,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 20,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000\n    },\n    \"default_profile_id\": \"646df1c9173a4a2fcac180b7\",\n    \"insight_property_id\": \"65b01610e99b77f116c0e329\",\n    \"zoom\": {\n        \"secret\": \"yourSecret\"\n    },\n    \"embed_details\": {\n        \"powered_by_gumlet_overlay\": true,\n        \"allow_drm_protected_videos\": true,\n        \"preload\": true,\n        \"autoplay\": false,\n        \"logo_width\": 100,\n        \"logo_height\": 100,\n        \"player_color\": \"#6658ea\",\n        \"is_seo\": true,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 20,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000,\n        \"disable_seek\": false,\n        \"disable_player_controls\": false,\n        \"loop\": false,\n        \"subtitle_enabled\": false\n    },\n    \"folders\": [],\n    \"channel_settings\": {\n        \"active\": false,\n        \"privacy_type\": \"private\"\n    }\n}"
+                    "value": {
+                      "id": "65b01610e99b77f116c0e32b",
+                      "name": "zoom-workspace",
+                      "type": "zoom",
+                      "created_at": "2024-01-23T19:40:00.447Z",
+                      "updated_at": "2024-01-23T19:40:00.447Z",
+                      "video_protection": {},
+                      "player_config": {
+                        "preload": true,
+                        "autoplay": false,
+                        "disable_seek": false,
+                        "disable_player_controls": false,
+                        "powered_by_gumlet_overlay": true,
+                        "allow_drm_protected_videos": true,
+                        "loop": false,
+                        "player_color": "#6658ea",
+                        "include_seo": true,
+                        "subtitle_enabled": false,
+                        "pixel_tags": {},
+                        "logo_width": 100,
+                        "logo_height": 100,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 20,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000
+                      },
+                      "default_profile_id": "646df1c9173a4a2fcac180b7",
+                      "insight_property_id": "65b01610e99b77f116c0e329",
+                      "zoom": {
+                        "secret": "yourSecret"
+                      },
+                      "embed_details": {
+                        "powered_by_gumlet_overlay": true,
+                        "allow_drm_protected_videos": true,
+                        "preload": true,
+                        "autoplay": false,
+                        "logo_width": 100,
+                        "logo_height": 100,
+                        "player_color": "#6658ea",
+                        "is_seo": true,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 20,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000,
+                        "disable_seek": false,
+                        "disable_player_controls": false,
+                        "loop": false,
+                        "subtitle_enabled": false
+                      },
+                      "folders": [],
+                      "channel_settings": {
+                        "active": false,
+                        "privacy_type": "private"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -10908,7 +12145,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"parameter_missing\",\n        \"message\": \"One or more required values are missing.\",\n        \"param\": \"name\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "One or more required values are missing.",
+                        "param": "name"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -11417,7 +12660,89 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"id\": \"646df1c9173a4a2fcac180b4\",\n    \"name\": \"aws-source\",\n    \"type\": \"aws\",\n    \"created_at\": \"2023-05-24T11:15:21.624Z\",\n    \"updated_at\": \"2024-01-24T11:24:16.003Z\",\n    \"video_protection\": {\n        \"signed_url\": true,\n        \"signed_url_secret\": \"87a2e2fbb2318f902b882c532bc703a8\"\n    },\n    \"player_config\": {\n        \"preload\": false,\n        \"autoplay\": false,\n        \"disable_seek\": false,\n        \"disable_player_controls\": false,\n        \"powered_by_gumlet_overlay\": false,\n        \"allow_drm_protected_videos\": false,\n        \"loop\": false,\n        \"player_color\": \"#6658ea\",\n        \"include_seo\": true,\n        \"subtitle_enabled\": false,\n        \"pixel_tags\": {},\n        \"logo_width\": 100,\n        \"logo_height\": 100,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 20,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000\n    },\n    \"default_profile_id\": \"646df1c9173a4a2fcac180b7\",\n    \"insight_property_id\": \"646df0aa173a4a2fcac18009\",\n    \"aws\": {\n        \"bucket_name\": \"my-bucket-test\",\n        \"bucket_region\": \"ap-southeast-1\",\n        \"access_key\": \"BQUA6QFXVWHAAB6IO2X1\",\n        \"secret\": \"****************\"\n    },\n    \"embed_details\": {\n        \"preload\": false,\n        \"autoplay\": false,\n        \"logo_width\": 100,\n        \"logo_height\": 100,\n        \"player_color\": \"#6658ea\",\n        \"is_seo\": true,\n        \"dynamic_watermark\": false,\n        \"watermark_font_size\": 20,\n        \"watermark_font_color\": \"#ff0000\",\n        \"watermark_bg_color\": \"transparent\",\n        \"watermark_interval\": 1000,\n        \"disable_seek\": false,\n        \"disable_player_controls\": false,\n        \"powered_by_gumlet_overlay\": false,\n        \"allow_drm_protected_videos\": false,\n        \"pixel_tags\": {},\n        \"loop\": false,\n        \"subtitle_enabled\": false\n    },\n    \"folders\": [\n        \"folder\",\n        \"folder 2\",\n        \"folder 27\",\n        \"folder 4\"\n    ],\n    \"channel_settings\": {\n        \"title\": \"myTitle\",\n        \"active\": false,\n        \"description\": \"desc\",\n        \"privacy_type\": \"private\",\n        \"custom_logo\": true,\n        \"logo_url\": \"https://dev-video.gumlet.io/626d21c3473a4a2faac180b4/channel/logo.png\",\n        \"cname\": [\n            \"okj.com\",\n            \"sd.com\",\n            \"safd.com\"\n        ],\n        \"temp_cname\": [\n            \"okj.com\",\n            \"safd.com\",\n            \"sd.com\"\n        ]\n    }\n}"
+                    "value": {
+                      "id": "646df1c9173a4a2fcac180b4",
+                      "name": "aws-source",
+                      "type": "aws",
+                      "created_at": "2023-05-24T11:15:21.624Z",
+                      "updated_at": "2024-01-24T11:24:16.003Z",
+                      "video_protection": {
+                        "signed_url": true,
+                        "signed_url_secret": "87a2e2fbb2318f902b882c532bc703a8"
+                      },
+                      "player_config": {
+                        "preload": false,
+                        "autoplay": false,
+                        "disable_seek": false,
+                        "disable_player_controls": false,
+                        "powered_by_gumlet_overlay": false,
+                        "allow_drm_protected_videos": false,
+                        "loop": false,
+                        "player_color": "#6658ea",
+                        "include_seo": true,
+                        "subtitle_enabled": false,
+                        "pixel_tags": {},
+                        "logo_width": 100,
+                        "logo_height": 100,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 20,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000
+                      },
+                      "default_profile_id": "646df1c9173a4a2fcac180b7",
+                      "insight_property_id": "646df0aa173a4a2fcac18009",
+                      "aws": {
+                        "bucket_name": "my-bucket-test",
+                        "bucket_region": "ap-southeast-1",
+                        "access_key": "BQUA6QFXVWHAAB6IO2X1",
+                        "secret": "****************"
+                      },
+                      "embed_details": {
+                        "preload": false,
+                        "autoplay": false,
+                        "logo_width": 100,
+                        "logo_height": 100,
+                        "player_color": "#6658ea",
+                        "is_seo": true,
+                        "dynamic_watermark": false,
+                        "watermark_font_size": 20,
+                        "watermark_font_color": "#ff0000",
+                        "watermark_bg_color": "transparent",
+                        "watermark_interval": 1000,
+                        "disable_seek": false,
+                        "disable_player_controls": false,
+                        "powered_by_gumlet_overlay": false,
+                        "allow_drm_protected_videos": false,
+                        "pixel_tags": {},
+                        "loop": false,
+                        "subtitle_enabled": false
+                      },
+                      "folders": [
+                        "folder",
+                        "folder 2",
+                        "folder 27",
+                        "folder 4"
+                      ],
+                      "channel_settings": {
+                        "title": "myTitle",
+                        "active": false,
+                        "description": "desc",
+                        "privacy_type": "private",
+                        "custom_logo": true,
+                        "logo_url": "https://dev-video.gumlet.io/626d21c3473a4a2faac180b4/channel/logo.png",
+                        "cname": [
+                          "okj.com",
+                          "sd.com",
+                          "safd.com"
+                        ],
+                        "temp_cname": [
+                          "okj.com",
+                          "safd.com",
+                          "sd.com"
+                        ]
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -11731,7 +13056,13 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"parameter_missing\",\n        \"message\": \"One or more required values are missing.\",\n        \"param\": \"gcs\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "One or more required values are missing.",
+                        "param": "gcs"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -11793,7 +13124,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -11809,7 +13140,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -11853,7 +13184,7 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{}"
+                    "value": {}
                   }
                 },
                 "schema": {
@@ -11869,7 +13200,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"collection_not_found\",\n        \"message\": \"Could not find any video collection with specified collection_id.\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "collection_not_found",
+                        "message": "Could not find any video collection with specified collection_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -14286,7 +15622,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"source_not_found\",\n    \"message\": \"Could not find any video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "source_not_found",
+                        "message": "Could not find any video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -14316,7 +15657,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"source_not_found\",\n    \"message\": \"Could not find any video source with specified source ID.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "source_not_found",
+                        "message": "Could not find any video source with specified source ID."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -14377,7 +15723,23 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"status\": \"created\",\n  \"stream_key\": \"619231610822a81d955d22f4\",\n  \"live_asset_id\": \"619231610822a81d955d22f3\",\n  \"live_video_source_id\": \"6165247368d80232d28d4379\",\n  \"input\": {\n    \"resolution\": [\n      \"720p\"\n    ]\n  },\n  \"stream_url\": \"rtmp://livestream-ingest.gumlet.io:1935/app/619231610822a81d955d22f4\",\n  \"output\": {\n    \"playback_url\": \"https://video.gumlet.io/6165247368d80232d28d4379/619231610822a81d955d22f3/master.m3u8\"\n  },\n  \"created_at\": 1636970849188,\n  \"updated_at\": 1636970849188\n}"
+                    "value": {
+                      "status": "created",
+                      "stream_key": "619231610822a81d955d22f4",
+                      "live_asset_id": "619231610822a81d955d22f3",
+                      "live_video_source_id": "6165247368d80232d28d4379",
+                      "input": {
+                        "resolution": [
+                          "720p"
+                        ]
+                      },
+                      "stream_url": "rtmp://livestream-ingest.gumlet.io:1935/app/619231610822a81d955d22f4",
+                      "output": {
+                        "playback_url": "https://video.gumlet.io/6165247368d80232d28d4379/619231610822a81d955d22f3/master.m3u8"
+                      },
+                      "created_at": 1636970849188,
+                      "updated_at": 1636970849188
+                    }
                   }
                 },
                 "schema": {
@@ -14445,7 +15807,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"live_asset_not_found\",\n    \"message\": \"Could not find any live video asset with specified asset_id.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "live_asset_not_found",
+                        "message": "Could not find any live video asset with specified asset_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -14475,7 +15842,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n  \"error\": {\n    \"code\": \"live_asset_not_found\",\n    \"message\": \"Could not find any live video asset with specified asset_id.\"\n  }\n}"
+                    "value": {
+                      "error": {
+                        "code": "live_asset_not_found",
+                        "message": "Could not find any live video asset with specified asset_id."
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -14690,7 +16062,72 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"views\": [\n        {\n            \"x\": 1647475200000,\n            \"y\": null,\n            \"unit\": \"views\"\n        },\n        {\n            \"x\": 1647561600000,\n            \"y\": null,\n            \"unit\": \"views\"\n        },\n        {\n            \"x\": 1647648000000,\n            \"y\": 6,\n            \"unit\": \"views\"\n        },\n        {\n            \"x\": 1647734400000,\n            \"y\": 24,\n            \"unit\": \"views\"\n        },\n        {\n            \"x\": 1647820800000,\n            \"y\": 33,\n            \"unit\": \"views\"\n        },\n        {\n            \"x\": 1647907200000,\n            \"y\": 16,\n            \"unit\": \"views\"\n        }\n    ],\n    \"unique_views\": [\n        {\n            \"x\": 1647475200000,\n            \"y\": null,\n            \"unit\": \"users\"\n        },\n        {\n            \"x\": 1647561600000,\n            \"y\": null,\n            \"unit\": \"users\"\n        },\n        {\n            \"x\": 1647648000000,\n            \"y\": 1,\n            \"unit\": \"users\"\n        },\n        {\n            \"x\": 1647734400000,\n            \"y\": 1,\n            \"unit\": \"users\"\n        },\n        {\n            \"x\": 1647820800000,\n            \"y\": 1,\n            \"unit\": \"users\"\n        },\n        {\n            \"x\": 1647907200000,\n            \"y\": 1,\n            \"unit\": \"users\"\n        }\n    ]\n}"
+                    "value": {
+                      "views": [
+                        {
+                          "x": 1647475200000,
+                          "y": null,
+                          "unit": "views"
+                        },
+                        {
+                          "x": 1647561600000,
+                          "y": null,
+                          "unit": "views"
+                        },
+                        {
+                          "x": 1647648000000,
+                          "y": 6,
+                          "unit": "views"
+                        },
+                        {
+                          "x": 1647734400000,
+                          "y": 24,
+                          "unit": "views"
+                        },
+                        {
+                          "x": 1647820800000,
+                          "y": 33,
+                          "unit": "views"
+                        },
+                        {
+                          "x": 1647907200000,
+                          "y": 16,
+                          "unit": "views"
+                        }
+                      ],
+                      "unique_views": [
+                        {
+                          "x": 1647475200000,
+                          "y": null,
+                          "unit": "users"
+                        },
+                        {
+                          "x": 1647561600000,
+                          "y": null,
+                          "unit": "users"
+                        },
+                        {
+                          "x": 1647648000000,
+                          "y": 1,
+                          "unit": "users"
+                        },
+                        {
+                          "x": 1647734400000,
+                          "y": 1,
+                          "unit": "users"
+                        },
+                        {
+                          "x": 1647820800000,
+                          "y": 1,
+                          "unit": "users"
+                        },
+                        {
+                          "x": 1647907200000,
+                          "y": 1,
+                          "unit": "users"
+                        }
+                      ]
+                    }
                   }
                 },
                 "schema": {
@@ -14767,7 +16204,14 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"parameter_missing\",\n        \"message\": \"One or more required values are missing.\",\n        \"extra\": null,\n        \"param\": \"metrics\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "One or more required values are missing.",
+                        "extra": null,
+                        "param": "metrics"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -14802,7 +16246,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"invalid_property_id\",\n        \"message\": \"You don't have access to that property, please select a property id\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "invalid_property_id",
+                        "message": "You don't have access to that property, please select a property id"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -14997,7 +16446,14 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"views\": {\n        \"sum\": {\n            \"value\": 79,\n            \"unit\": \"views\"\n        }\n    }\n}"
+                    "value": {
+                      "views": {
+                        "sum": {
+                          "value": 79,
+                          "unit": "views"
+                        }
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -15033,7 +16489,14 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"parameter_missing\",\n        \"message\": \"One or more required values are missing.\",\n        \"extra\": null,\n        \"param\": \"property_id\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "parameter_missing",
+                        "message": "One or more required values are missing.",
+                        "extra": null,
+                        "param": "property_id"
+                      }
+                    }
                   }
                 },
                 "schema": {
@@ -15068,7 +16531,12 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": "{\n    \"error\": {\n        \"code\": \"invalid_property_id\",\n        \"message\": \"You don't have access to that property, please select a property id\"\n    }\n}"
+                    "value": {
+                      "error": {
+                        "code": "invalid_property_id",
+                        "message": "You don't have access to that property, please select a property id"
+                      }
+                    }
                   }
                 },
                 "schema": {

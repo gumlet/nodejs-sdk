@@ -59,10 +59,10 @@ export class VideoPlaylists extends APIResource {
    * const createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {
    *   asset_list: [
    *     { asset_id: '6508790283e4d60611846790' },
-   *     { position: '1', asset_id: '650878f883e4d6061184677d' },
+   *     { position: 1, asset_id: '650878f883e4d6061184677d' },
    *     { asset_id: '650878de83e4d6061184676a' },
-   *     { position: '2', asset_id: '650878d883e4d60611846757' },
-   *     { position: '3', asset_id: '65578dd87eebc22dcdd549a2' },
+   *     { position: 2, asset_id: '650878d883e4d60611846757' },
+   *     { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },
    *   ],
    * });
    * ```
