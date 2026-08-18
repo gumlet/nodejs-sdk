@@ -88,7 +88,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
 import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
-  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
+  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 ```
 

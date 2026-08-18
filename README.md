@@ -36,7 +36,7 @@ npm install @gumlet/node-sdk
 import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
-  apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
+  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 
 const create = await client.videoAssets.create({
@@ -80,7 +80,7 @@ Pass credentials to the generated client constructor. Environment variables are 
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `apiKey` | `string \| provider` | - | Credential for the API_KEY scheme. Defaults to GUMLET_API_KEY. |
+| `apiKey` | `string \| provider` | - | Credential for the API_KEY scheme. Defaults to API_KEY. |
 
 Declared schemes:
 
@@ -149,7 +149,7 @@ const client = new Gumlet({
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `apiKey` | `string \| AuthTokenProvider` | `process.env["GUMLET_API_KEY"]` | Credential for the API_KEY scheme. |
+| `apiKey` | `string \| AuthTokenProvider` | `process.env["API_KEY"]` | Credential for the API_KEY scheme. |
 | `baseURL` | `string \| null` | `process.env["GUMLET_BASE_URL"]` | Override the default API base URL. Pass `null` when selecting a configured environment. |
 | `timeout` | `number` | `60000` | Maximum time in milliseconds to wait for a response before aborting a request. |
 | `maxRetries` | `number` | `2` | Number of retries for temporary failures. |
