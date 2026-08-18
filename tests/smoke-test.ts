@@ -13,7 +13,7 @@ import { writeFileSync } from 'node:fs';
 
 // The package exports the client class. The client reads auth and the base URL from the
 // environment, so it needs no constructor options to point at a server.
-import Gumlet from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/node-sdk';
 
 // One shared client runs every case.
 const client = new Gumlet();

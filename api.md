@@ -85,7 +85,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
 ## Setup
 
 ```ts
-import Gumlet from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
   apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
