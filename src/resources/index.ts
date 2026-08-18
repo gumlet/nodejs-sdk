@@ -9,6 +9,8 @@ export type {
   VideoAssetRetrieveStatusResponse,
   VideoAssetUpdateParams,
   VideoAssetUpdateResponse,
+  VideoAssetSelectFromParams,
+  VideoAssetSelectFromResponse,
   VideoAssetSelectFromImageFileResponse,
   VideoAssetUpload2Params,
   VideoAssetUploadSubtitleCompletionParams,

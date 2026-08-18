@@ -2787,7 +2787,14 @@
         ],
         "x-stoplight": {
           "id": "eqetja43tfsmt"
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Gumlet from '@gumlet/node-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });\n\nconsole.log(selectFrom);"
+          }
+        ]
       },
       "parameters": [
         {
@@ -8261,6 +8268,13 @@
         "operationId": "get_image-sources-source-id",
         "tags": [
           "Image Sources"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Gumlet from '@gumlet/node-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.imageSources.retrieve('imageSourceId');"
+          }
         ]
       },
       "post": {

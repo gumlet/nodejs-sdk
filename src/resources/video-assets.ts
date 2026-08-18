@@ -141,6 +141,31 @@ export class VideoAssets extends APIResource {
   }
 
   /**
+   * Select frame from video to use as thumbnail.
+   *
+   * @param {string} assetID - Asset id of the video asset which needs to be deleted.
+   * @param {VideoAssetSelectFromParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<VideoAssetSelectFromResponse>} 200
+   *
+   * @example
+   * ```ts
+   * const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+   * ```
+   */
+  selectFrom(
+    assetID: string,
+    body: VideoAssetSelectFromParams,
+    options?: RequestOptions,
+  ): APIPromise<VideoAssetSelectFromResponse> {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail-select`, {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
+    });
+  }
+
+  /**
    * Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.
    *
    * Here is the sample curl request.
@@ -1506,6 +1531,23 @@ export namespace VideoAssetUpdateParams {
 
 export type VideoAssetUpdateResponse = Record<string, unknown>;
 
+export interface VideoAssetSelectFromParams {
+  /**
+   * Frame secound
+   * @format int32
+   */
+  frame_at_second: number;
+}
+
+export interface VideoAssetSelectFromResponse {
+  success?: boolean;
+  asset_id?: string;
+  /**
+   * Milliseconds since epoch for the updated time.
+   */
+  thumbnail_updated_at?: number;
+}
+
 export interface VideoAssetSelectFromImageFileResponse {
   upload_url?: string;
   asset_id?: string;
@@ -1949,6 +1991,7 @@ export declare namespace VideoAssets {
     type VideoAssetUploadResponse as VideoAssetUploadResponse,
     type VideoAssetRetrieveStatusResponse as VideoAssetRetrieveStatusResponse,
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
+    type VideoAssetSelectFromResponse as VideoAssetSelectFromResponse,
     type VideoAssetSelectFromImageFileResponse as VideoAssetSelectFromImageFileResponse,
     type VideoAssetUploadSubtitleCompletionResponse as VideoAssetUploadSubtitleCompletionResponse,
     type VideoAssetUploadAudioCompletionResponse as VideoAssetUploadAudioCompletionResponse,
@@ -1958,6 +2001,7 @@ export declare namespace VideoAssets {
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
+    type VideoAssetSelectFromParams as VideoAssetSelectFromParams,
     type VideoAssetUpload2Params as VideoAssetUpload2Params,
     type VideoAssetUploadSubtitleCompletionParams as VideoAssetUploadSubtitleCompletionParams,
     type VideoAssetUpload3Params as VideoAssetUpload3Params,
