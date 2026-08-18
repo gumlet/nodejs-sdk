@@ -1,22 +1,22 @@
 ---
 name: gumlet-typescript-sdk
-description: "TypeScript SDK for Gumlet API. Use when writing TypeScript code that calls Gumlet API with the @gumlet/gumlet-rest package: installing it, constructing and authenticating the client, and calling API operations."
+description: "TypeScript SDK for Gumlet API. Use when writing TypeScript code that calls Gumlet API with the @gumlet/node-sdk package: installing it, constructing and authenticating the client, and calling API operations."
 ---
 
 # Gumlet TypeScript SDK
 
-Generated TypeScript client for Gumlet API, published as `@gumlet/gumlet-rest`. Use the generated client instead of hand-writing HTTP requests.
+Generated TypeScript client for Gumlet API, published as `@gumlet/node-sdk`. Use the generated client instead of hand-writing HTTP requests.
 
 ## Install
 
 ```sh
-npm install @gumlet/gumlet-rest
+npm install @gumlet/node-sdk
 ```
 
 ## Client setup and authentication
 
 ```ts
-import Gumlet from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
   apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
@@ -30,7 +30,7 @@ Provide credentials using the options below. Environment variables are read auto
 ## Calling operations
 
 ```ts
-import Gumlet from '@gumlet/gumlet-rest';
+import Gumlet from '@gumlet/node-sdk';
 
 const client = new Gumlet({
   apiKey: process.env['GUMLET_API_KEY'], // defaults to the GUMLET_API_KEY env var
@@ -72,7 +72,7 @@ Method names, parameter shapes, and response types are generated from the API de
 Non-success responses throw generated API errors. Error objects expose status, headers, response body, and request metadata where the target runtime supports it.
 
 ```ts
-import { APIError } from '@gumlet/gumlet-rest';
+import { APIError } from '@gumlet/node-sdk';
 
 try {
   const create = await client.videoAssets.create({
