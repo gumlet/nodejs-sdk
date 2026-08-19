@@ -2807,7 +2807,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });\n\nconsole.log(selectFrom);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst thumbnailSelect = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });\n\nconsole.log(thumbnailSelect);"
           }
         ]
       },
@@ -2905,7 +2905,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');\n\nconsole.log(selectFromImageFile);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');\n\nconsole.log(thumbnailUpload);"
           }
         ]
       }
@@ -3652,7 +3652,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst create = await client.videoUsageAnalytics.create({\n  metrics: [],\n  date_range: {},\n  top_assets_count: '5',\n  top_assets_page: '0',\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst createDetails = await client.videoUsageAnalytics.createDetails({\n  metrics: [],\n  date_range: {},\n  top_assets_count: '5',\n  top_assets_page: '0',\n});\n\nconsole.log(createDetails);"
           }
         ]
       }
@@ -3842,7 +3842,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst streamingDuration = await client.videoUsageAnalytics.streamingDuration({\n  start_at: '2026-06-21',\n  end_at: '2026-06-30',\n  page: '1',\n  page_size: '1000',\n});\n\nconsole.log(streamingDuration);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst topAssets = await client.videoUsageAnalytics.topAssets({\n  start_at: '2026-06-21',\n  end_at: '2026-06-30',\n  page: '1',\n  page_size: '1000',\n});\n\nconsole.log(topAssets);"
           }
         ]
       }
@@ -3934,7 +3934,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst signPart = await client.multipartUpload.signPart('partNumber', {\n  asset_id: 'assetId',\n});\n\nconsole.log(signPart);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst listPartURL = await client.multipartUpload.listPartURL('partNumber', {\n  asset_id: 'assetId',\n});\n\nconsole.log(listPartURL);"
           }
         ]
       }
@@ -6160,7 +6160,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {\n  asset_list: [\n    { asset_id: '6508790283e4d60611846790' },\n    { position: 1, asset_id: '650878f883e4d6061184677d' },\n    { asset_id: '650878de83e4d6061184676a' },\n    { position: 2, asset_id: '650878d883e4d60611846757' },\n    { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },\n  ],\n});\n\nconsole.log(createAssetTo);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst createAsset = await client.videoPlaylists.createAsset('playlistId', {\n  asset_list: [\n    { asset_id: '6508790283e4d60611846790' },\n    { position: 1, asset_id: '650878f883e4d6061184677d' },\n    { asset_id: '650878de83e4d6061184676a' },\n    { position: 2, asset_id: '650878d883e4d60611846757' },\n    { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },\n  ],\n});\n\nconsole.log(createAsset);"
           }
         ]
       },
@@ -6286,7 +6286,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst deleteAssetFrom = await client.videoPlaylists.deleteAssetFrom('playlistId', {\n  delete_list: ['6508790783e4d606118467a3'],\n});\n\nconsole.log(deleteAssetFrom);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst deleteAsset = await client.videoPlaylists.deleteAsset('playlistId', {\n  delete_list: ['6508790783e4d606118467a3'],\n});\n\nconsole.log(deleteAsset);"
           }
         ]
       }
@@ -6663,7 +6663,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoPlaylists.deleteID('playlistId');"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoPlaylists.delete('playlistId');"
           }
         ]
       }
@@ -7135,7 +7135,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst reorderAssets2 = await client.videoPlaylists.reorderAssets2('playlistId', {\n  asset_id: '6e82bf783e88be000ab45ed2',\n  page_number: 1,\n  page_size: 10,\n  asset_position: 0,\n});\n\nconsole.log(reorderAssets2);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst reorderAsset = await client.videoPlaylists.reorderAsset('playlistId', {\n  asset_id: '6e82bf783e88be000ab45ed2',\n  page_number: 1,\n  page_size: 10,\n  asset_position: 0,\n});\n\nconsole.log(reorderAsset);"
           }
         ]
       }
@@ -11133,7 +11133,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoAssets.postVideoassetrecover({\n  asset_id: '',\n});"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoAssets.recover({\n  asset_id: '',\n});"
           }
         ]
       }
@@ -13897,7 +13897,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst create1 = await client.folders.create1('workspaceId', { name: 'Course Assets', parent_id: null });\n\nconsole.log(create1);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst create = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });\n\nconsole.log(create);"
           }
         ]
       },
@@ -14848,7 +14848,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst deleteAssetsFrom = await client.folders.deleteAssetsFrom('workspaceId', {\n  asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],\n});\n\nconsole.log(deleteAssetsFrom);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst deleteAssets = await client.folders.deleteAssets('workspaceId', {\n  asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],\n});\n\nconsole.log(deleteAssets);"
           }
         ]
       }
@@ -15376,7 +15376,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst listWorkspaceContent = await client.videoAssets.listWorkspaceContent('workspaceId', {\n  type: 'all',\n  offset: 0,\n  size: 20,\n});\n\nconsole.log(listWorkspaceContent);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst list = await client.videoAssets.list('workspaceId', {\n  type: 'all',\n  offset: 0,\n  size: 20,\n});\n\nconsole.log(list);"
           }
         ]
       }
@@ -16293,7 +16293,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst list = await client.videoAssets.list('workspaceId', {\n  sortBy: 'created_at',\n  orderBy: 'desc',\n});\n\nconsole.log(list);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {\n  sortBy: 'created_at',\n  orderBy: 'desc',\n});\n\nconsole.log(listDeprecated);"
           }
         ]
       }

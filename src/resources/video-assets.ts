@@ -144,20 +144,20 @@ export class VideoAssets extends APIResource {
    * Select frame from video to use as thumbnail.
    *
    * @param {string} assetID - Asset id of the video asset which needs to be deleted.
-   * @param {VideoAssetSelectFromParams} body - The request body to send.
+   * @param {VideoAssetThumbnailSelectParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetSelectFromResponse>} 200
+   * @returns {APIPromise<VideoAssetThumbnailSelectResponse>} 200
    *
    * @example
    * ```ts
-   * const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+   * const thumbnailSelect = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
    * ```
    */
-  selectFrom(
+  thumbnailSelect(
     assetID: string,
-    body: VideoAssetSelectFromParams,
+    body: VideoAssetThumbnailSelectParams,
     options?: RequestOptions,
-  ): APIPromise<VideoAssetSelectFromResponse> {
+  ): APIPromise<VideoAssetThumbnailSelectResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail-select`, {
       body,
       ...options,
@@ -177,17 +177,14 @@ export class VideoAssets extends APIResource {
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetSelectFromImageFileResponse>}
+   * @returns {APIPromise<VideoAssetThumbnailUploadResponse>}
    *
    * @example
    * ```ts
-   * const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');
+   * const thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');
    * ```
    */
-  selectFromImageFile(
-    assetID: string,
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetSelectFromImageFileResponse> {
+  thumbnailUpload(assetID: string, options?: RequestOptions): APIPromise<VideoAssetThumbnailUploadResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, options);
   }
 
@@ -304,20 +301,17 @@ export class VideoAssets extends APIResource {
   /**
    * Recovers a deleted asset from the recycle bin.
    *
-   * @param {VideoAssetPostVideoassetrecoverParams} body - The request body to send.
+   * @param {VideoAssetRecoverParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    *
    * @example
    * ```ts
-   * await client.videoAssets.postVideoassetrecover({
+   * await client.videoAssets.recover({
    *   asset_id: '',
    * });
    * ```
    */
-  postVideoassetrecover(
-    body: VideoAssetPostVideoassetrecoverParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
+  recover(body: VideoAssetRecoverParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/video/asset/recover', {
       body,
       ...options,
@@ -329,31 +323,6 @@ export class VideoAssets extends APIResource {
    * List folders and assets for a workspace in a single response. Use `parent_id` to browse a specific folder, or filters like `title`, `status`, and `playlist_id` to search assets.
    *
    * @param {string} workspaceID - Video workspace id.
-   * @param {VideoAssetListWorkspaceContentParams} [query] - The parameters to send with the request.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetListWorkspaceContentResponse>} 200
-   *
-   * @example
-   * ```ts
-   * const listWorkspaceContent = await client.videoAssets.listWorkspaceContent('workspaceId', {
-   *   type: 'all',
-   *   offset: 0,
-   *   size: 20,
-   * });
-   * ```
-   */
-  listWorkspaceContent(
-    workspaceID: string,
-    query: VideoAssetListWorkspaceContentParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetListWorkspaceContentResponse> {
-    return this._client.get(__scalarPath`/video/workspaces/${workspaceID}/list`, { query, ...options });
-  }
-
-  /**
-   * [Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.
-   *
-   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {VideoAssetListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoAssetListResponse>} 200
@@ -361,6 +330,31 @@ export class VideoAssets extends APIResource {
    * @example
    * ```ts
    * const list = await client.videoAssets.list('workspaceId', {
+   *   type: 'all',
+   *   offset: 0,
+   *   size: 20,
+   * });
+   * ```
+   */
+  list(
+    workspaceID: string,
+    query: VideoAssetListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VideoAssetListResponse> {
+    return this._client.get(__scalarPath`/video/workspaces/${workspaceID}/list`, { query, ...options });
+  }
+
+  /**
+   * [Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.
+   *
+   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
+   * @param {VideoAssetListDeprecatedParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<VideoAssetListDeprecatedResponse>} 200
+   *
+   * @example
+   * ```ts
+   * const listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {
    *   sortBy: 'created_at',
    *   orderBy: 'desc',
    * });
@@ -368,11 +362,11 @@ export class VideoAssets extends APIResource {
    *
    * @deprecated
    */
-  list(
+  listDeprecated(
     workspaceID: string,
-    query: VideoAssetListParams | null | undefined = {},
+    query: VideoAssetListDeprecatedParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<VideoAssetListResponse> {
+  ): APIPromise<VideoAssetListDeprecatedResponse> {
     return this._client.get(__scalarPath`/video/assets/list/${workspaceID}`, { query, ...options });
   }
 }
@@ -1523,7 +1517,7 @@ export namespace VideoAssetUpdateParams {
 
 export type VideoAssetUpdateResponse = Record<string, unknown>;
 
-export interface VideoAssetSelectFromParams {
+export interface VideoAssetThumbnailSelectParams {
   /**
    * Frame secound
    * @format int32
@@ -1531,7 +1525,7 @@ export interface VideoAssetSelectFromParams {
   frame_at_second: number;
 }
 
-export interface VideoAssetSelectFromResponse {
+export interface VideoAssetThumbnailSelectResponse {
   success?: boolean;
   asset_id?: string;
   /**
@@ -1540,7 +1534,7 @@ export interface VideoAssetSelectFromResponse {
   thumbnail_updated_at?: number;
 }
 
-export interface VideoAssetSelectFromImageFileResponse {
+export interface VideoAssetThumbnailUploadResponse {
   upload_url?: string;
   asset_id?: string;
   /**
@@ -1647,14 +1641,14 @@ export namespace VideoAssetCreateUpdateChapterParams {
 
 export type VideoAssetCreateUpdateChapterResponse = Record<string, unknown>;
 
-export interface VideoAssetPostVideoassetrecoverParams {
+export interface VideoAssetRecoverParams {
   /**
    * Gumlet Video Asset Id which needs to be recovered.
    */
   asset_id: string;
 }
 
-export interface VideoAssetListWorkspaceContentParams {
+export interface VideoAssetListParams {
   /**
    * Return `folders`, `videos`, or `all`. Default is `all`.
    */
@@ -1720,9 +1714,9 @@ export interface VideoAssetListWorkspaceContentParams {
   size?: number;
 }
 
-export interface VideoAssetListWorkspaceContentResponse {
-  folders?: Array<VideoAssetListWorkspaceContentResponse.Folder>;
-  all_assets?: Array<VideoAssetListWorkspaceContentResponse.AllAsset>;
+export interface VideoAssetListResponse {
+  folders?: Array<VideoAssetListResponse.Folder>;
+  all_assets?: Array<VideoAssetListResponse.AllAsset>;
   /**
    * @default 0
    */
@@ -1741,7 +1735,7 @@ export interface VideoAssetListWorkspaceContentResponse {
   current_offset?: number;
 }
 
-export namespace VideoAssetListWorkspaceContentResponse {
+export namespace VideoAssetListResponse {
   export interface Folder {
     id?: string;
     name?: string;
@@ -1857,7 +1851,7 @@ export namespace VideoAssetListWorkspaceContentResponse {
   }
 }
 
-export interface VideoAssetListParams {
+export interface VideoAssetListDeprecatedParams {
   /**
    * To filter assets on the basis of their current status. Can be specified as a single status value string or comma-separated status values. The status value can be one of `queued`, `processing`, `ready`, `errored`, and `deleted`.
    */
@@ -1902,8 +1896,8 @@ export interface VideoAssetListParams {
   type?: string;
 }
 
-export interface VideoAssetListResponse {
-  all_assets?: Array<VideoAssetListResponse.AllAsset>;
+export interface VideoAssetListDeprecatedResponse {
+  all_assets?: Array<VideoAssetListDeprecatedResponse.AllAsset>;
   /**
    * @default 0
    */
@@ -1915,7 +1909,7 @@ export interface VideoAssetListResponse {
   distinct_tags?: Array<string>;
 }
 
-export namespace VideoAssetListResponse {
+export namespace VideoAssetListDeprecatedResponse {
   export interface AllAsset {
     asset_id?: string;
     /**
@@ -2013,26 +2007,26 @@ export declare namespace VideoAssets {
     type VideoAssetUploadResponse as VideoAssetUploadResponse,
     type VideoAssetRetrieveStatusResponse as VideoAssetRetrieveStatusResponse,
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
-    type VideoAssetSelectFromResponse as VideoAssetSelectFromResponse,
-    type VideoAssetSelectFromImageFileResponse as VideoAssetSelectFromImageFileResponse,
+    type VideoAssetThumbnailSelectResponse as VideoAssetThumbnailSelectResponse,
+    type VideoAssetThumbnailUploadResponse as VideoAssetThumbnailUploadResponse,
     type VideoAssetUpload2Response as VideoAssetUpload2Response,
     type VideoAssetSubtitleUploadCompleteResponse as VideoAssetSubtitleUploadCompleteResponse,
     type VideoAssetUpload3Response as VideoAssetUpload3Response,
     type VideoAssetCompleteAudioUploadResponse as VideoAssetCompleteAudioUploadResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
-    type VideoAssetListWorkspaceContentResponse as VideoAssetListWorkspaceContentResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
+    type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
-    type VideoAssetSelectFromParams as VideoAssetSelectFromParams,
+    type VideoAssetThumbnailSelectParams as VideoAssetThumbnailSelectParams,
     type VideoAssetUpload2Params as VideoAssetUpload2Params,
     type VideoAssetSubtitleUploadCompleteParams as VideoAssetSubtitleUploadCompleteParams,
     type VideoAssetUpload3Params as VideoAssetUpload3Params,
     type VideoAssetCompleteAudioUploadParams as VideoAssetCompleteAudioUploadParams,
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
-    type VideoAssetPostVideoassetrecoverParams as VideoAssetPostVideoassetrecoverParams,
-    type VideoAssetListWorkspaceContentParams as VideoAssetListWorkspaceContentParams,
+    type VideoAssetRecoverParams as VideoAssetRecoverParams,
     type VideoAssetListParams as VideoAssetListParams,
+    type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
   };
 }

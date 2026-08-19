@@ -833,8 +833,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "selectFrom",
-      "publicOperation": "selectFrom",
+      "operation": "thumbnailSelect",
+      "publicOperation": "thumbnailSelect",
       "deprecated": false,
       "method": "POST",
       "path": "/video/assets/{asset_id}/thumbnail-select",
@@ -874,7 +874,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetSelectFromParams"
+        "publicName": "VideoAssetThumbnailSelectParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -907,8 +907,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "selectFromImageFile",
-      "publicOperation": "selectFromImageFile",
+      "operation": "thumbnailUpload",
+      "publicOperation": "thumbnailUpload",
       "deprecated": false,
       "method": "POST",
       "path": "/video/assets/{asset_ID}/thumbnail",
@@ -939,7 +939,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetSelectFromImageFileParams"
+        "publicName": "VideoAssetThumbnailUploadParams"
       },
       "response": {
         "status": "200",
@@ -1437,8 +1437,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "postVideoassetrecover",
-      "publicOperation": "postVideoassetrecover",
+      "operation": "recover",
+      "publicOperation": "recover",
       "deprecated": false,
       "method": "POST",
       "path": "/video/asset/recover",
@@ -1467,7 +1467,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetPostVideoassetrecoverParams"
+        "publicName": "VideoAssetRecoverParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -1500,8 +1500,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "listWorkspaceContent",
-      "publicOperation": "listWorkspaceContent",
+      "operation": "list",
+      "publicOperation": "list",
       "deprecated": false,
       "method": "GET",
       "path": "/video/workspaces/{workspace_id}/list",
@@ -1658,7 +1658,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetListWorkspaceContentParams"
+        "publicName": "VideoAssetListParams"
       },
       "response": {
         "status": "200",
@@ -1696,8 +1696,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "list",
-      "publicOperation": "list",
+      "operation": "listDeprecated",
+      "publicOperation": "listDeprecated",
       "deprecated": true,
       "method": "GET",
       "path": "/video/assets/list/{workspace_id}",
@@ -1813,7 +1813,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetListParams"
+        "publicName": "VideoAssetListDeprecatedParams"
       },
       "response": {
         "status": "200",
@@ -1863,8 +1863,8 @@
     {
       "resource": "videoUsageAnalytics",
       "publicResource": "videoUsageAnalytics",
-      "operation": "create",
-      "publicOperation": "create",
+      "operation": "createDetails",
+      "publicOperation": "createDetails",
       "deprecated": false,
       "method": "POST",
       "path": "/video/analytics",
@@ -1917,7 +1917,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoUsageAnalyticCreateParams"
+        "publicName": "VideoUsageAnalyticCreateDetailsParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -1968,8 +1968,8 @@
     {
       "resource": "videoUsageAnalytics",
       "publicResource": "videoUsageAnalytics",
-      "operation": "streamingDuration",
-      "publicOperation": "streamingDuration",
+      "operation": "topAssets",
+      "publicOperation": "topAssets",
       "deprecated": false,
       "method": "GET",
       "path": "/video/streaming-duration",
@@ -2034,7 +2034,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoUsageAnalyticStreamingDurationParams"
+        "publicName": "VideoUsageAnalyticTopAssetsParams"
       },
       "response": {
         "status": "200",
@@ -2072,8 +2072,8 @@
     {
       "resource": "multipartUpload",
       "publicResource": "multipartUpload",
-      "operation": "signPart",
-      "publicOperation": "signPart",
+      "operation": "listPartUrl",
+      "publicOperation": "listPartUrl",
       "deprecated": false,
       "method": "GET",
       "path": "/video/assets/{asset_id}/multipartupload/{part_number}/sign",
@@ -2112,7 +2112,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "MultipartUploadSignPartParams"
+        "publicName": "MultipartUploadListPartUrlParams"
       },
       "response": {
         "status": "200",
@@ -3012,8 +3012,8 @@
     {
       "resource": "videoPlaylists",
       "publicResource": "videoPlaylists",
-      "operation": "createAssetTo",
-      "publicOperation": "createAssetTo",
+      "operation": "createAsset",
+      "publicOperation": "createAsset",
       "deprecated": false,
       "method": "POST",
       "path": "/video/playlist/{playlist_id}/asset",
@@ -3053,7 +3053,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoPlaylistCreateAssetToParams"
+        "publicName": "VideoPlaylistCreateAssetParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -3104,8 +3104,8 @@
     {
       "resource": "videoPlaylists",
       "publicResource": "videoPlaylists",
-      "operation": "deleteAssetFrom",
-      "publicOperation": "deleteAssetFrom",
+      "operation": "deleteAsset",
+      "publicOperation": "deleteAsset",
       "deprecated": false,
       "method": "DELETE",
       "path": "/video/playlist/{playlist_id}/asset",
@@ -3145,7 +3145,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoPlaylistDeleteAssetFromParams"
+        "publicName": "VideoPlaylistDeleteAssetParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -3312,8 +3312,8 @@
     {
       "resource": "videoPlaylists",
       "publicResource": "videoPlaylists",
-      "operation": "deleteId",
-      "publicOperation": "deleteId",
+      "operation": "delete",
+      "publicOperation": "delete",
       "deprecated": false,
       "method": "DELETE",
       "path": "/video/playlist/{playlist_id}",
@@ -3344,7 +3344,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoPlaylistDeleteIdParams"
+        "publicName": "VideoPlaylistDeleteParams"
       },
       "errorResponses": [],
       "responseLinks": [],
@@ -3461,8 +3461,8 @@
     {
       "resource": "videoPlaylists",
       "publicResource": "videoPlaylists",
-      "operation": "reorderAssets2",
-      "publicOperation": "reorderAssets2",
+      "operation": "reorderAsset",
+      "publicOperation": "reorderAsset",
       "deprecated": false,
       "method": "POST",
       "path": "/video/playlists/{playlist_id}/reorder",
@@ -3502,7 +3502,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoPlaylistReorderAssets2Params"
+        "publicName": "VideoPlaylistReorderAssetParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -5961,8 +5961,8 @@
     {
       "resource": "folders",
       "publicResource": "folders",
-      "operation": "create1",
-      "publicOperation": "create1",
+      "operation": "create",
+      "publicOperation": "create",
       "deprecated": false,
       "method": "POST",
       "path": "/video/workspaces/{workspace_id}/folders",
@@ -6008,7 +6008,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "FolderCreate1Params"
+        "publicName": "FolderCreateParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -6432,8 +6432,8 @@
     {
       "resource": "folders",
       "publicResource": "folders",
-      "operation": "deleteAssetsFrom",
-      "publicOperation": "deleteAssetsFrom",
+      "operation": "deleteAssets",
+      "publicOperation": "deleteAssets",
       "deprecated": false,
       "method": "POST",
       "path": "/video/workspaces/{workspace_id}/remove-assets-from-folder",
@@ -6473,7 +6473,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "FolderDeleteAssetsFromParams"
+        "publicName": "FolderDeleteAssetsParams"
       },
       "requestBody": {
         "contentType": "application/json",
