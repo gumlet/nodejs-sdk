@@ -32,6 +32,10 @@ const runNpm = (args, stdio = 'inherit') => spawnSync('npm', args, { stdio });
 export const publishNpm = (runner = runNpm, metadata = readPackageMetadata()) => {
   const { name, version } = metadata;
   const packageSpec = `${name}@${version}`;
+  if (runner(['view', packageSpec, 'version'], 'ignore').status === 0) {
+    console.log(`${packageSpec} already published to npm, skipping`);
+    return;
+  }
 
   const tag = npmDistTagForVersion(version);
   const args = ['publish', '--access', 'public', ...(tag ? ['--tag', tag] : [])];

@@ -13,7 +13,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Update thumbnail from video](#update-thumbnail-from-video)
   - [Update thumbnail via upload](#update-thumbnail-via-upload)
   - [Upload Subtitle](#upload-subtitle)
-  - [Upload Subtitle Completion](#upload-subtitle-completion)
+  - [Subtitle Upload Complete](#subtitle-upload-complete)
   - [Upload Audio](#upload-audio)
   - [Upload Audio Completion](#upload-audio-completion)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
@@ -239,17 +239,20 @@ const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetI
 
 ### Upload Subtitle
 
-Upload your subtitled .srt file to your video asset.
+Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
 
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoAssetUpload2Params`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetUpload2Response`](./src/resources/video-assets.ts) |
 
 ```ts
-await client.videoAssets.upload2('assetId');
+const upload2 = await client.videoAssets.upload2('assetId');
 ```
 
-### Upload Subtitle Completion
+### Subtitle Upload Complete
+
+This API must be called after uploading subtitles; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
 
 | Direction | Type |
 | --- | --- |
