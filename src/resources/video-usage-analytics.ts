@@ -39,8 +39,9 @@ export class VideoUsageAnalytics extends APIResource {
    * @example
    * ```ts
    * const streamingDuration = await client.videoUsageAnalytics.streamingDuration({
-   *   start_at: 'startAt',
-   *   end_at: 'endAt',
+   *   start_at: '2026-06-21',
+   *   end_at: '2026-06-30',
+   *   page: '1',
    *   page_size: '1000',
    * });
    * ```
@@ -128,6 +129,7 @@ export interface VideoUsageAnalyticStreamingDurationParams {
   collection_id?: string;
   /**
    * Page number of the response.
+   * @default 1
    */
   page?: string;
   /**

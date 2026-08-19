@@ -2018,7 +2018,8 @@
           "name": "page",
           "required": false,
           "style": "form",
-          "explode": true
+          "explode": true,
+          "defaultValue": "1"
         },
         {
           "name": "page_size",
