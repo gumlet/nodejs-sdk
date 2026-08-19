@@ -216,20 +216,20 @@ export class VideoAssets extends APIResource {
    * This API must be called after uploading subtitles; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
    *
    * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetUploadSubtitleCompletionParams} [body] - The request body to send.
+   * @param {VideoAssetSubtitleUploadCompleteParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetUploadSubtitleCompletionResponse>} 200
+   * @returns {APIPromise<VideoAssetSubtitleUploadCompleteResponse>} 200
    *
    * @example
    * ```ts
-   * const uploadSubtitleCompletion = await client.videoAssets.uploadSubtitleCompletion('assetId');
+   * const subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');
    * ```
    */
-  uploadSubtitleCompletion(
+  subtitleUploadComplete(
     assetID: string,
-    body: VideoAssetUploadSubtitleCompletionParams | null | undefined = {},
+    body: VideoAssetSubtitleUploadCompleteParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<VideoAssetUploadSubtitleCompletionResponse> {
+  ): APIPromise<VideoAssetSubtitleUploadCompleteResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/subtitle/upload/event`, {
       body,
       ...options,
@@ -237,48 +237,44 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Upload your audio file to your video asset.
+   * Upload any audio file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {VideoAssetUpload3Params} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns 200
+   * @returns {APIPromise<VideoAssetUpload3Response>} 200
    *
    * @example
    * ```ts
-   * await client.videoAssets.upload3('assetId');
+   * const upload3 = await client.videoAssets.upload3('assetId');
    * ```
    */
   upload3(
     assetID: string,
     body: VideoAssetUpload3Params | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/audio/upload`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  ): APIPromise<VideoAssetUpload3Response> {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/audio/upload`, { body, ...options });
   }
 
   /**
-   * Upload Audio Completion
+   * This API must be called after uploading audio; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
    *
    * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetUploadAudioCompletionParams} [body] - The request body to send.
+   * @param {VideoAssetCompleteAudioUploadParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetUploadAudioCompletionResponse>} 200
+   * @returns {APIPromise<VideoAssetCompleteAudioUploadResponse>} 200
    *
    * @example
    * ```ts
-   * const uploadAudioCompletion = await client.videoAssets.uploadAudioCompletion('assetId');
+   * const completeAudioUpload = await client.videoAssets.completeAudioUpload('assetId');
    * ```
    */
-  uploadAudioCompletion(
+  completeAudioUpload(
     assetID: string,
-    body: VideoAssetUploadAudioCompletionParams | null | undefined = {},
+    body: VideoAssetCompleteAudioUploadParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<VideoAssetUploadAudioCompletionResponse> {
+  ): APIPromise<VideoAssetCompleteAudioUploadResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/audio/upload/event`, { body, ...options });
   }
 
@@ -1575,11 +1571,11 @@ export namespace VideoAssetUpload2Response {
   }
 }
 
-export interface VideoAssetUploadSubtitleCompletionParams {
-  upload_responses?: Array<VideoAssetUploadSubtitleCompletionParams.UploadResponse>;
+export interface VideoAssetSubtitleUploadCompleteParams {
+  upload_responses?: Array<VideoAssetSubtitleUploadCompleteParams.UploadResponse>;
 }
 
-export namespace VideoAssetUploadSubtitleCompletionParams {
+export namespace VideoAssetSubtitleUploadCompleteParams {
   export interface UploadResponse {
     /**
      * Language Code for uploaded .srt or .vtt file.
@@ -1592,7 +1588,7 @@ export namespace VideoAssetUploadSubtitleCompletionParams {
   }
 }
 
-export type VideoAssetUploadSubtitleCompletionResponse = Record<string, unknown>;
+export type VideoAssetSubtitleUploadCompleteResponse = Record<string, unknown>;
 
 export interface VideoAssetUpload3Params {
   /**
@@ -1601,11 +1597,26 @@ export interface VideoAssetUpload3Params {
   language_codes?: Array<string>;
 }
 
-export interface VideoAssetUploadAudioCompletionParams {
-  upload_responses?: Array<VideoAssetUploadAudioCompletionParams.UploadResponse>;
+export interface VideoAssetUpload3Response {
+  /**
+   * Gumlet Asset ID
+   */
+  asset_id: string;
+  signed_urls: Array<VideoAssetUpload3Response.SignedURL>;
 }
 
-export namespace VideoAssetUploadAudioCompletionParams {
+export namespace VideoAssetUpload3Response {
+  export interface SignedURL {
+    language_code: string;
+    upload_url: string;
+  }
+}
+
+export interface VideoAssetCompleteAudioUploadParams {
+  upload_responses?: Array<VideoAssetCompleteAudioUploadParams.UploadResponse>;
+}
+
+export namespace VideoAssetCompleteAudioUploadParams {
   export interface UploadResponse {
     /**
      * Language Code for uploaded audio file.
@@ -1618,7 +1629,7 @@ export namespace VideoAssetUploadAudioCompletionParams {
   }
 }
 
-export type VideoAssetUploadAudioCompletionResponse = Record<string, unknown>;
+export type VideoAssetCompleteAudioUploadResponse = Record<string, unknown>;
 
 export interface VideoAssetCreateUpdateChapterParams {
   chapters: Array<VideoAssetCreateUpdateChapterParams.Chapter>;
@@ -2005,8 +2016,9 @@ export declare namespace VideoAssets {
     type VideoAssetSelectFromResponse as VideoAssetSelectFromResponse,
     type VideoAssetSelectFromImageFileResponse as VideoAssetSelectFromImageFileResponse,
     type VideoAssetUpload2Response as VideoAssetUpload2Response,
-    type VideoAssetUploadSubtitleCompletionResponse as VideoAssetUploadSubtitleCompletionResponse,
-    type VideoAssetUploadAudioCompletionResponse as VideoAssetUploadAudioCompletionResponse,
+    type VideoAssetSubtitleUploadCompleteResponse as VideoAssetSubtitleUploadCompleteResponse,
+    type VideoAssetUpload3Response as VideoAssetUpload3Response,
+    type VideoAssetCompleteAudioUploadResponse as VideoAssetCompleteAudioUploadResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
     type VideoAssetListWorkspaceContentResponse as VideoAssetListWorkspaceContentResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
@@ -2015,9 +2027,9 @@ export declare namespace VideoAssets {
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
     type VideoAssetSelectFromParams as VideoAssetSelectFromParams,
     type VideoAssetUpload2Params as VideoAssetUpload2Params,
-    type VideoAssetUploadSubtitleCompletionParams as VideoAssetUploadSubtitleCompletionParams,
+    type VideoAssetSubtitleUploadCompleteParams as VideoAssetSubtitleUploadCompleteParams,
     type VideoAssetUpload3Params as VideoAssetUpload3Params,
-    type VideoAssetUploadAudioCompletionParams as VideoAssetUploadAudioCompletionParams,
+    type VideoAssetCompleteAudioUploadParams as VideoAssetCompleteAudioUploadParams,
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
     type VideoAssetPostVideoassetrecoverParams as VideoAssetPostVideoassetrecoverParams,
     type VideoAssetListWorkspaceContentParams as VideoAssetListWorkspaceContentParams,

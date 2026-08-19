@@ -3152,7 +3152,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst uploadSubtitleCompletion = await client.videoAssets.uploadSubtitleCompletion('assetId');\n\nconsole.log(uploadSubtitleCompletion);"
+            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');\n\nconsole.log(subtitleUploadComplete);"
           }
         ]
       }
@@ -3160,7 +3160,7 @@
     "/video/assets/{asset_ID}/audio/upload": {
       "post": {
         "summary": "Upload Audio",
-        "description": "Upload your audio file to your video asset.",
+        "description": "Upload any audio file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.",
         "operationId": "video-asset-upload-audio",
         "parameters": [
           {
@@ -3200,6 +3200,46 @@
                   "Result": {
                     "value": ""
                   }
+                },
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "asset_id": {
+                      "type": "string",
+                      "description": "Gumlet Asset ID"
+                    },
+                    "signed_urls": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "language_code": {
+                            "type": "string"
+                          },
+                          "upload_url": {
+                            "type": "string"
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "language_code",
+                          "upload_url"
+                        ],
+                        "required": [
+                          "language_code",
+                          "upload_url"
+                        ]
+                      }
+                    }
+                  },
+                  "x-apidog-orders": [
+                    "asset_id",
+                    "signed_urls"
+                  ],
+                  "required": [
+                    "asset_id",
+                    "signed_urls"
+                  ]
                 }
               }
             }
@@ -3225,23 +3265,20 @@
         "tags": [
           "Video Assets"
         ],
-        "x-stoplight": {
-          "id": "kn1e4t69lw9qv"
-        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoAssets.upload3('assetId');"
+            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst upload3 = await client.videoAssets.upload3('assetId');\n\nconsole.log(upload3);"
           }
         ]
       }
     },
     "/video/assets/{asset_ID}/audio/upload/event": {
       "post": {
-        "summary": "Upload Audio Completion",
-        "description": "",
-        "operationId": "upload-audio-completion",
+        "summary": "Complete Audio Upload",
+        "description": "This API must be called after uploading audio; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.",
+        "operationId": "complete-audio-upload",
         "parameters": [
           {
             "name": "asset_ID",
@@ -3318,14 +3355,11 @@
         "tags": [
           "Video Assets"
         ],
-        "x-stoplight": {
-          "id": "qee5xrskl5oyi"
-        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst uploadAudioCompletion = await client.videoAssets.uploadAudioCompletion('assetId');\n\nconsole.log(uploadAudioCompletion);"
+            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst completeAudioUpload = await client.videoAssets.completeAudioUpload('assetId');\n\nconsole.log(completeAudioUpload);"
           }
         ]
       }
