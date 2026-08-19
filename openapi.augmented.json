@@ -3466,7 +3466,7 @@
       "post": {
         "summary": "Video Usage Analytics",
         "description": "This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption",
-        "operationId": "get-details",
+        "operationId": "retrieve-analytics",
         "requestBody": {
           "content": {
             "application/json": {
