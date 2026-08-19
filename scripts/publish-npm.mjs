@@ -32,7 +32,7 @@ const runNpm = (args, stdio = 'inherit') => spawnSync('npm', args, { stdio });
 export const publishNpm = (runner = runNpm, metadata = readPackageMetadata()) => {
   const { name, version } = metadata;
   const packageSpec = `${name}@${version}`;
-
+  
   const tag = npmDistTagForVersion(version);
   const args = ['publish', '--access', 'public', ...(tag ? ['--tag', tag] : [])];
   console.log(
