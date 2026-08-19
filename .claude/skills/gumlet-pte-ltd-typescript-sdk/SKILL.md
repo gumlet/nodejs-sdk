@@ -1,11 +1,11 @@
 ---
 name: gumlet-pte-ltd-typescript-sdk
-description: "TypeScript SDK for Gumlet Pte. Ltd API. Use when writing TypeScript code that calls Gumlet Pte. Ltd API with the @gumlet/node-sdk package: installing it, constructing and authenticating the client, and calling API operations."
+description: "TypeScript SDK for Gumlet Pte. Ltd. API. Use when writing TypeScript code that calls Gumlet Pte. Ltd. API with the @gumlet/node-sdk package: installing it, constructing and authenticating the client, and calling API operations."
 ---
 
-# Gumlet Pte. Ltd TypeScript SDK
+# Gumlet Pte. Ltd. TypeScript SDK
 
-Generated TypeScript client for Gumlet Pte. Ltd API, published as `@gumlet/node-sdk`. Use the generated client instead of hand-writing HTTP requests.
+Generated TypeScript client for Gumlet Pte. Ltd. API, published as `@gumlet/node-sdk`. Use the generated client instead of hand-writing HTTP requests.
 
 ## Install
 
