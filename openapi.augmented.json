@@ -8251,7 +8251,331 @@
         "description": "Get all details about image source.",
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "cdn_type": {
+                      "type": "string"
+                    },
+                    "cdn_cache_time": {
+                      "type": "integer"
+                    },
+                    "canonical_url": {
+                      "type": "boolean"
+                    },
+                    "browser_cache_time": {
+                      "type": "integer"
+                    },
+                    "is_cloudfront": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "webfolder": {
+                      "type": "object",
+                      "description": "This is a required field if source type is webfolder.",
+                      "properties": {
+                        "base_url": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "aws": {
+                      "type": "object",
+                      "description": "This is a required field if source type is aws.",
+                      "required": [
+                        "bucket_name",
+                        "bucket_region",
+                        "access_key",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "bucket_region": {
+                          "type": "string"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        },
+                        "base_path": {
+                          "type": "string"
+                        },
+                        "endpoint": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "proxy": {
+                      "type": "object",
+                      "description": "This is a required field if source type is proxy.",
+                      "required": [
+                        "whitelisted_domains"
+                      ],
+                      "properties": {
+                        "whitelisted_domains": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "gcs": {
+                      "type": "object",
+                      "description": "This is a required field if source type is gcs.",
+                      "required": [
+                        "bucket_name",
+                        "service_account_key"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "service_account_key": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "dostorage": {
+                      "type": "object",
+                      "description": "This is a required field if source type is dostorage.",
+                      "required": [
+                        "bucket_name",
+                        "bucket_region",
+                        "access_key",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "bucket_region": {
+                          "type": "string"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        },
+                        "base_path": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "wasabi": {
+                      "type": "object",
+                      "description": "This is a required field if source type is wasabi.",
+                      "required": [
+                        "bucket_name",
+                        "bucket_region",
+                        "access_key",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "bucket_region": {
+                          "type": "string"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        },
+                        "base_path": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "linode": {
+                      "type": "object",
+                      "description": "This is a required field if source type is linode.",
+                      "required": [
+                        "bucket_name",
+                        "bucket_region",
+                        "access_key",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "bucket_region": {
+                          "type": "string"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "backblaze": {
+                      "type": "object",
+                      "description": "This is a required field if source type is backblaze.",
+                      "required": [
+                        "bucket_name",
+                        "access_key",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "bucket_region": {
+                          "type": "string",
+                          "description": "bucket_region or endpoint"
+                        },
+                        "endpoint": {
+                          "type": "string",
+                          "description": "bucket_region or endpoint"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        },
+                        "base_path": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "cloudflare": {
+                      "type": "object",
+                      "description": "This is a required field if source type is cloudflare.",
+                      "required": [
+                        "bucket_name",
+                        "access_key",
+                        "account_id",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "account_id": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        },
+                        "base_path": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "cloudinary": {
+                      "type": "object",
+                      "description": "This is a required field if source type is cloudinary.",
+                      "required": [
+                        "host_name",
+                        "cloud_name"
+                      ],
+                      "properties": {
+                        "host_name": {
+                          "type": "string"
+                        },
+                        "cloud_name": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "azure": {
+                      "type": "object",
+                      "description": "This is a required field if source type is azure.",
+                      "required": [
+                        "azure_account_name",
+                        "azure_container_name",
+                        "azure_shared_token",
+                        "azure_path"
+                      ],
+                      "properties": {
+                        "azure_account_name": {
+                          "type": "string"
+                        },
+                        "azure_container_name": {
+                          "type": "string"
+                        },
+                        "azure_shared_token": {
+                          "type": "string"
+                        },
+                        "azure_path": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "default_params": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "request_headers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    },
+                    "subdomain": {
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "id": "58bfdbace74f4f000123b4ac",
+                      "namespace": "demo",
+                      "type": "dostorage",
+                      "cdn_type": "third_party",
+                      "cdn_cache_time": 31536000,
+                      "canonical_url": false,
+                      "browser_cache_time": 8640000,
+                      "is_cloudfront": false,
+                      "created_at": "2017-03-08T10:23:40.422Z",
+                      "updated_at": "2026-03-25T11:18:02.877Z",
+                      "dostorage": {
+                        "bucket_name": "gumlet",
+                        "bucket_region": "sgp1",
+                        "base_path": "/public/img",
+                        "access_key": "DO801YUPB6PA8L7CMFNC",
+                        "secret": "****************"
+                      },
+                      "default_params": {},
+                      "request_headers": [],
+                      "subdomain": "demo.gumlet.io",
+                      "is_active": true
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "parameters": [
@@ -8273,7 +8597,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/node-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.imageSources.retrieve('imageSourceId');"
+            "source": "import Gumlet from '@gumlet/node-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst retrieve = await client.imageSources.retrieve('imageSourceId');\n\nconsole.log(retrieve);"
           }
         ]
       },
@@ -8557,6 +8881,78 @@
                         "type": "string"
                       }
                     }
+                  },
+                  "default_params": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "uevurxwukxwph"
+                    }
+                  },
+                  "error_image": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "vsfn5j2zepna2"
+                    },
+                    "description": "URL for error image to display when we get broken image from your origin."
+                  },
+                  "request_headers": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "jfv8jngxfn44y"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "b4zme1scx0vau"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "response_headers": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "3c37705m1vqtv"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "h991rmiuuck50"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "temp_cname": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "nycpttbt3ubkv"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "uiq0l25kmsvrr"
+                      },
+                      "type": "string"
+                    }
+                  },
+                  "browser_cache_time": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "xfsu66pc7m5ok"
+                    },
+                    "format": "int32",
+                    "description": "Browser cache time in seconds. For example setting this to 3600 caches the image in browser for 3600 seconds (1 hour)"
+                  },
+                  "cdn_cache_time": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "9g2k0iyj9vq86"
+                    },
+                    "format": "int32",
+                    "description": "CDN cache time in seconds."
+                  },
+                  "is_active": {
+                    "type": "boolean",
+                    "x-stoplight": {
+                      "id": "l0wilhnm9rcwn"
+                    },
+                    "description": "Enable / disable source."
                   }
                 }
               },
@@ -8586,87 +8982,25 @@
                 "examples": {
                   "Result": {
                     "value": {
-                      "id": "646df1c9173a4a2fcac180b4",
-                      "name": "aws-source",
-                      "type": "aws",
-                      "created_at": "2023-05-24T11:15:21.624Z",
-                      "updated_at": "2024-01-24T11:24:16.003Z",
-                      "video_protection": {
-                        "signed_url": true,
-                        "signed_url_secret": "87a2e2fbb2318f902b882c532bc703a8"
+                      "id": "653cc238411da17d32d9aefc",
+                      "namespace": "gumlet-blog-content",
+                      "type": "webfolder",
+                      "cdn_type": "third_party",
+                      "cdn_cache_time": 8640000,
+                      "canonical_url": true,
+                      "browser_cache_time": 8640000,
+                      "is_cloudfront": false,
+                      "created_at": "2023-10-28T08:11:36.943Z",
+                      "updated_at": "2026-08-19T03:50:26.098Z",
+                      "webfolder": {
+                        "base_url": "https://www.gumlet.co"
                       },
-                      "player_config": {
-                        "preload": false,
-                        "autoplay": false,
-                        "disable_seek": false,
-                        "disable_player_controls": false,
-                        "powered_by_gumlet_overlay": false,
-                        "allow_drm_protected_videos": false,
-                        "loop": false,
-                        "player_color": "#6658ea",
-                        "include_seo": true,
-                        "subtitle_enabled": false,
-                        "pixel_tags": {},
-                        "logo_width": 100,
-                        "logo_height": 100,
-                        "dynamic_watermark": false,
-                        "watermark_font_size": 20,
-                        "watermark_font_color": "#ff0000",
-                        "watermark_bg_color": "transparent",
-                        "watermark_interval": 1000
+                      "default_params": {
+                        "format": "auto",
+                        "compress": "true"
                       },
-                      "default_profile_id": "646df1c9173a4a2fcac180b7",
-                      "insight_property_id": "646df0aa173a4a2fcac18009",
-                      "aws": {
-                        "bucket_name": "my-bucket-test",
-                        "bucket_region": "ap-southeast-1",
-                        "access_key": "BQUA6QFXVWHAAB6IO2X1",
-                        "secret": "****************"
-                      },
-                      "embed_details": {
-                        "preload": false,
-                        "autoplay": false,
-                        "logo_width": 100,
-                        "logo_height": 100,
-                        "player_color": "#6658ea",
-                        "is_seo": true,
-                        "dynamic_watermark": false,
-                        "watermark_font_size": 20,
-                        "watermark_font_color": "#ff0000",
-                        "watermark_bg_color": "transparent",
-                        "watermark_interval": 1000,
-                        "disable_seek": false,
-                        "disable_player_controls": false,
-                        "powered_by_gumlet_overlay": false,
-                        "allow_drm_protected_videos": false,
-                        "pixel_tags": {},
-                        "loop": false,
-                        "subtitle_enabled": false
-                      },
-                      "folders": [
-                        "folder",
-                        "folder 2",
-                        "folder 27",
-                        "folder 4"
-                      ],
-                      "channel_settings": {
-                        "title": "myTitle",
-                        "active": false,
-                        "description": "desc",
-                        "privacy_type": "private",
-                        "custom_logo": true,
-                        "logo_url": "https://dev-video.gumlet.io/626d21c3473a4a2faac180b4/channel/logo.png",
-                        "cname": [
-                          "okj.com",
-                          "sd.com",
-                          "safd.com"
-                        ],
-                        "temp_cname": [
-                          "okj.com",
-                          "safd.com",
-                          "sd.com"
-                        ]
-                      }
+                      "subdomain": "gumlet-blog-content.gumlet.io",
+                      "is_active": true
                     }
                   }
                 },
@@ -8674,301 +9008,294 @@
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": "string",
-                      "example": "646df1c9173a4a2fcac180b4"
+                      "type": "string"
                     },
-                    "name": {
-                      "type": "string",
-                      "example": "aws-source"
+                    "namespace": {
+                      "type": "string"
                     },
                     "type": {
-                      "type": "string",
-                      "example": "aws"
+                      "type": "string"
+                    },
+                    "cdn_type": {
+                      "type": "string"
+                    },
+                    "cdn_cache_time": {
+                      "type": "integer"
+                    },
+                    "canonical_url": {
+                      "type": "boolean"
+                    },
+                    "browser_cache_time": {
+                      "type": "integer"
+                    },
+                    "is_cloudfront": {
+                      "type": "boolean"
                     },
                     "created_at": {
-                      "type": "string",
-                      "example": "2023-05-24T11:15:21.624Z"
+                      "type": "string"
                     },
                     "updated_at": {
-                      "type": "string",
-                      "example": "2024-01-24T11:24:16.003Z"
+                      "type": "string"
                     },
-                    "video_protection": {
+                    "webfolder": {
                       "type": "object",
+                      "description": "This is a required field if source type is webfolder.",
                       "properties": {
-                        "signed_url": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "signed_url_secret": {
-                          "type": "string",
-                          "example": "87a2e2fbb2318f902b882c532bc703a8"
+                        "base_url": {
+                          "type": "string"
                         }
                       }
-                    },
-                    "player_config": {
-                      "type": "object",
-                      "properties": {
-                        "preload": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "autoplay": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "disable_seek": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "disable_player_controls": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "powered_by_gumlet_overlay": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "allow_drm_protected_videos": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "loop": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "player_color": {
-                          "type": "string",
-                          "example": "#6658ea"
-                        },
-                        "include_seo": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "subtitle_enabled": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "pixel_tags": {
-                          "type": "object",
-                          "properties": {}
-                        },
-                        "logo_width": {
-                          "type": "integer",
-                          "example": 100,
-                          "default": 0
-                        },
-                        "logo_height": {
-                          "type": "integer",
-                          "example": 100,
-                          "default": 0
-                        },
-                        "dynamic_watermark": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "watermark_font_size": {
-                          "type": "integer",
-                          "example": 20,
-                          "default": 0
-                        },
-                        "watermark_font_color": {
-                          "type": "string",
-                          "example": "#ff0000"
-                        },
-                        "watermark_bg_color": {
-                          "type": "string",
-                          "example": "transparent"
-                        },
-                        "watermark_interval": {
-                          "type": "integer",
-                          "example": 1000,
-                          "default": 0
-                        }
-                      }
-                    },
-                    "default_profile_id": {
-                      "type": "string",
-                      "example": "646df1c9173a4a2fcac180b7"
-                    },
-                    "insight_property_id": {
-                      "type": "string",
-                      "example": "646df0aa173a4a2fcac18009"
                     },
                     "aws": {
                       "type": "object",
+                      "description": "This is a required field if source type is aws.",
+                      "required": [
+                        "bucket_name",
+                        "bucket_region",
+                        "access_key",
+                        "secret"
+                      ],
                       "properties": {
                         "bucket_name": {
-                          "type": "string",
-                          "example": "my-bucket-test"
+                          "type": "string"
+                        },
+                        "bucket_region": {
+                          "type": "string"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        },
+                        "base_path": {
+                          "type": "string"
+                        },
+                        "endpoint": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "proxy": {
+                      "type": "object",
+                      "description": "This is a required field if source type is proxy.",
+                      "required": [
+                        "whitelisted_domains"
+                      ],
+                      "properties": {
+                        "whitelisted_domains": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "gcs": {
+                      "type": "object",
+                      "description": "This is a required field if source type is gcs.",
+                      "required": [
+                        "bucket_name",
+                        "service_account_key"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "service_account_key": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "dostorage": {
+                      "type": "object",
+                      "description": "This is a required field if source type is dostorage.",
+                      "required": [
+                        "bucket_name",
+                        "bucket_region",
+                        "access_key",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "bucket_region": {
+                          "type": "string"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        },
+                        "base_path": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "wasabi": {
+                      "type": "object",
+                      "description": "This is a required field if source type is wasabi.",
+                      "required": [
+                        "bucket_name",
+                        "bucket_region",
+                        "access_key",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "bucket_region": {
+                          "type": "string"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        },
+                        "base_path": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "linode": {
+                      "type": "object",
+                      "description": "This is a required field if source type is linode.",
+                      "required": [
+                        "bucket_name",
+                        "bucket_region",
+                        "access_key",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
+                        },
+                        "bucket_region": {
+                          "type": "string"
+                        },
+                        "access_key": {
+                          "type": "string"
+                        },
+                        "secret": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "backblaze": {
+                      "type": "object",
+                      "description": "This is a required field if source type is backblaze.",
+                      "required": [
+                        "bucket_name",
+                        "access_key",
+                        "secret"
+                      ],
+                      "properties": {
+                        "bucket_name": {
+                          "type": "string"
                         },
                         "bucket_region": {
                           "type": "string",
-                          "example": "ap-southeast-1"
+                          "description": "bucket_region or endpoint"
+                        },
+                        "endpoint": {
+                          "type": "string",
+                          "description": "bucket_region or endpoint"
                         },
                         "access_key": {
-                          "type": "string",
-                          "example": "BQUA6QFXVWHAAB6IO2X1"
+                          "type": "string"
                         },
                         "secret": {
-                          "type": "string",
-                          "example": "****************"
+                          "type": "string"
+                        },
+                        "base_path": {
+                          "type": "string"
                         }
                       }
                     },
-                    "embed_details": {
+                    "cloudflare": {
                       "type": "object",
+                      "description": "This is a required field if source type is cloudflare.",
+                      "required": [
+                        "bucket_name",
+                        "access_key",
+                        "account_id",
+                        "secret"
+                      ],
                       "properties": {
-                        "preload": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
+                        "bucket_name": {
+                          "type": "string"
                         },
-                        "autoplay": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
+                        "access_key": {
+                          "type": "string"
                         },
-                        "logo_width": {
-                          "type": "integer",
-                          "example": 100,
-                          "default": 0
+                        "account_id": {
+                          "type": "string"
                         },
-                        "logo_height": {
-                          "type": "integer",
-                          "example": 100,
-                          "default": 0
+                        "secret": {
+                          "type": "string"
                         },
-                        "player_color": {
-                          "type": "string",
-                          "example": "#6658ea"
-                        },
-                        "is_seo": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "dynamic_watermark": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "watermark_font_size": {
-                          "type": "integer",
-                          "example": 20,
-                          "default": 0
-                        },
-                        "watermark_font_color": {
-                          "type": "string",
-                          "example": "#ff0000"
-                        },
-                        "watermark_bg_color": {
-                          "type": "string",
-                          "example": "transparent"
-                        },
-                        "watermark_interval": {
-                          "type": "integer",
-                          "example": 1000,
-                          "default": 0
-                        },
-                        "disable_seek": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "disable_player_controls": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "powered_by_gumlet_overlay": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "allow_drm_protected_videos": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "pixel_tags": {
-                          "type": "object",
-                          "properties": {}
-                        },
-                        "loop": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "subtitle_enabled": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
+                        "base_path": {
+                          "type": "string"
                         }
                       }
                     },
-                    "folders": {
+                    "cloudinary": {
+                      "type": "object",
+                      "description": "This is a required field if source type is cloudinary.",
+                      "required": [
+                        "host_name",
+                        "cloud_name"
+                      ],
+                      "properties": {
+                        "host_name": {
+                          "type": "string"
+                        },
+                        "cloud_name": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "azure": {
+                      "type": "object",
+                      "description": "This is a required field if source type is azure.",
+                      "required": [
+                        "azure_account_name",
+                        "azure_container_name",
+                        "azure_shared_token",
+                        "azure_path"
+                      ],
+                      "properties": {
+                        "azure_account_name": {
+                          "type": "string"
+                        },
+                        "azure_container_name": {
+                          "type": "string"
+                        },
+                        "azure_shared_token": {
+                          "type": "string"
+                        },
+                        "azure_path": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "default_params": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "request_headers": {
                       "type": "array",
                       "items": {
-                        "type": "string",
-                        "example": "folder"
+                        "type": "object",
+                        "properties": {}
                       }
                     },
-                    "channel_settings": {
-                      "type": "object",
-                      "properties": {
-                        "title": {
-                          "type": "string",
-                          "example": "myTitle"
-                        },
-                        "active": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "description": {
-                          "type": "string",
-                          "example": "desc"
-                        },
-                        "privacy_type": {
-                          "type": "string",
-                          "example": "private"
-                        },
-                        "custom_logo": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "logo_url": {
-                          "type": "string",
-                          "example": "https://dev-video.gumlet.io/626d21c3473a4a2faac180b4/channel/logo.png"
-                        },
-                        "cname": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "example": "okj.com"
-                          }
-                        },
-                        "temp_cname": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "example": "okj.com"
-                          }
-                        }
-                      }
+                    "subdomain": {
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
                     }
                   }
                 }
