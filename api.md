@@ -15,7 +15,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Upload Subtitle](#upload-subtitle)
   - [Subtitle Upload Complete](#subtitle-upload-complete)
   - [Upload Audio](#upload-audio)
-  - [Upload Audio Completion](#upload-audio-completion)
+  - [Complete Audio Upload](#complete-audio-upload)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
   - [Recover Deleted Asset](#recover-deleted-asset)
   - [List Assets](#list-assets)
@@ -265,17 +265,20 @@ const uploadSubtitleCompletion = await client.videoAssets.uploadSubtitleCompleti
 
 ### Upload Audio
 
-Upload your audio file to your video asset.
+Upload any audio file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
 
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoAssetUpload3Params`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetUpload3Response`](./src/resources/video-assets.ts) |
 
 ```ts
-await client.videoAssets.upload3('assetId');
+const upload3 = await client.videoAssets.upload3('assetId');
 ```
 
-### Upload Audio Completion
+### Complete Audio Upload
+
+This API must be called after uploading audio; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
 
 | Direction | Type |
 | --- | --- |
