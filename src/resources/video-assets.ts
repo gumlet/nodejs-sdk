@@ -192,32 +192,28 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Upload your subtitled .srt file to your video asset.
+   * Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {VideoAssetUpload2Params} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns 200
+   * @returns {APIPromise<VideoAssetUpload2Response>} 200
    *
    * @example
    * ```ts
-   * await client.videoAssets.upload2('assetId');
+   * const upload2 = await client.videoAssets.upload2('assetId');
    * ```
    */
   upload2(
     assetID: string,
     body: VideoAssetUpload2Params | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/subtitle/upload`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  ): APIPromise<VideoAssetUpload2Response> {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/subtitle/upload`, { body, ...options });
   }
 
   /**
-   * Upload Subtitle Completion
+   * This API must be called after uploading subtitles; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {VideoAssetUploadSubtitleCompletionParams} [body] - The request body to send.
@@ -1564,6 +1560,21 @@ export interface VideoAssetUpload2Params {
   language_codes?: Array<string>;
 }
 
+export interface VideoAssetUpload2Response {
+  /**
+   * Asset ID of Gumlet
+   */
+  asset_id: string;
+  signed_urls: Array<VideoAssetUpload2Response.SignedURL>;
+}
+
+export namespace VideoAssetUpload2Response {
+  export interface SignedURL {
+    language_code: string;
+    upload_url: string;
+  }
+}
+
 export interface VideoAssetUploadSubtitleCompletionParams {
   upload_responses?: Array<VideoAssetUploadSubtitleCompletionParams.UploadResponse>;
 }
@@ -1571,11 +1582,11 @@ export interface VideoAssetUploadSubtitleCompletionParams {
 export namespace VideoAssetUploadSubtitleCompletionParams {
   export interface UploadResponse {
     /**
-     * Language Code for uploadeds.srt file.
+     * Language Code for uploaded .srt or .vtt file.
      */
     language_code?: string;
     /**
-     * Status of language uploaded .srt file. (If status code was 200, You can mark true else false)
+     * Status of language uploaded .srt or .vtt file. (If status code was 200, You can mark true else false)
      */
     uploaded?: boolean;
   }
@@ -1993,6 +2004,7 @@ export declare namespace VideoAssets {
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
     type VideoAssetSelectFromResponse as VideoAssetSelectFromResponse,
     type VideoAssetSelectFromImageFileResponse as VideoAssetSelectFromImageFileResponse,
+    type VideoAssetUpload2Response as VideoAssetUpload2Response,
     type VideoAssetUploadSubtitleCompletionResponse as VideoAssetUploadSubtitleCompletionResponse,
     type VideoAssetUploadAudioCompletionResponse as VideoAssetUploadAudioCompletionResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,

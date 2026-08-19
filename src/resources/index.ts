@@ -13,6 +13,7 @@ export type {
   VideoAssetSelectFromResponse,
   VideoAssetSelectFromImageFileResponse,
   VideoAssetUpload2Params,
+  VideoAssetUpload2Response,
   VideoAssetUploadSubtitleCompletionParams,
   VideoAssetUploadSubtitleCompletionResponse,
   VideoAssetUpload3Params,
