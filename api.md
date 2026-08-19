@@ -176,10 +176,10 @@ This endpoint retrieves the details of an asset that has previously been created
 
 | Direction | Type |
 | --- | --- |
-| Response | [`VideoAssetRetrieveStatusResponse`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetRetrieveDetailsResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const retrieveStatus = await client.videoAssets.retrieveStatus('assetId');
+const retrieveDetails = await client.videoAssets.retrieveDetails('assetId');
 ```
 
 ### Delete Asset
@@ -243,11 +243,11 @@ Upload `.srt` or `.vtt`  file to the video asset. The response of this API call 
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetUpload2Params`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetUpload2Response`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetSubtitleUploadParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetSubtitleUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const upload2 = await client.videoAssets.upload2('assetId');
+const subtitleUpload = await client.videoAssets.subtitleUpload('assetId');
 ```
 
 ### Complete Subtitle Upload
@@ -271,11 +271,11 @@ The response of this API call gives `upload_url` for each language specified. Yo
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetUpload3Params`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetUpload3Response`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetAudioUploadParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetAudioUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const upload3 = await client.videoAssets.upload3('assetId');
+const audioUpload = await client.videoAssets.audioUpload('assetId');
 ```
 
 ### Complete Audio Upload
@@ -362,11 +362,11 @@ This endpoint gives usage analytics data of your videos. Ex - top assets, bandwi
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoUsageAnalyticCreateDetailsParams`](./src/resources/video-usage-analytics.ts) |
-| Response | [`VideoUsageAnalyticCreateDetailsResponse`](./src/resources/video-usage-analytics.ts) |
+| Request | [`VideoUsageAnalyticRetrieveParams`](./src/resources/video-usage-analytics.ts) |
+| Response | [`VideoUsageAnalyticRetrieveResponse`](./src/resources/video-usage-analytics.ts) |
 
 ```ts
-const createDetails = await client.videoUsageAnalytics.createDetails({
+const retrieve = await client.videoUsageAnalytics.retrieve({
   metrics: [],
   date_range: {},
   top_assets_count: '5',
@@ -400,11 +400,11 @@ Use this endpoint to retrieve a pre-signed upload URL for the given part number.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`MultipartUploadListPartURLParams`](./src/resources/multipart-upload.ts) |
-| Response | [`MultipartUploadListPartURLResponse`](./src/resources/multipart-upload.ts) |
+| Request | [`MultipartUploadRetrievePartURLParams`](./src/resources/multipart-upload.ts) |
+| Response | [`MultipartUploadRetrievePartURLResponse`](./src/resources/multipart-upload.ts) |
 
 ```ts
-const listPartURL = await client.multipartUpload.listPartURL('partNumber', {
+const retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {
   asset_id: 'assetId',
 });
 ```
@@ -870,10 +870,10 @@ This endpoint retrieves the history of a live video asset that has previously be
 
 | Direction | Type |
 | --- | --- |
-| Response | [`LiveStreamAssetListStatusCopyResponse`](./src/resources/live-stream-assets.ts) |
+| Response | [`LiveStreamAssetStatusHistoryResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const listStatusCopy = await client.liveStreamAssets.listStatusCopy('liveAssetId');
+const statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');
 ```
 
 ## `VideoWorkspaces`

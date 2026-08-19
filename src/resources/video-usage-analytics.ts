@@ -8,13 +8,13 @@ export class VideoUsageAnalytics extends APIResource {
   /**
    * This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption
    *
-   * @param {VideoUsageAnalyticCreateDetailsParams} body - The request body to send.
+   * @param {VideoUsageAnalyticRetrieveParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoUsageAnalyticCreateDetailsResponse>} 200
+   * @returns {APIPromise<VideoUsageAnalyticRetrieveResponse>} 200
    *
    * @example
    * ```ts
-   * const createDetails = await client.videoUsageAnalytics.createDetails({
+   * const retrieve = await client.videoUsageAnalytics.retrieve({
    *   metrics: [],
    *   date_range: {},
    *   top_assets_count: '5',
@@ -22,10 +22,10 @@ export class VideoUsageAnalytics extends APIResource {
    * });
    * ```
    */
-  createDetails(
-    body: VideoUsageAnalyticCreateDetailsParams,
+  retrieve(
+    body: VideoUsageAnalyticRetrieveParams,
     options?: RequestOptions,
-  ): APIPromise<VideoUsageAnalyticCreateDetailsResponse> {
+  ): APIPromise<VideoUsageAnalyticRetrieveResponse> {
     return this._client.post('/video/analytics', { body, ...options });
   }
 
@@ -54,7 +54,7 @@ export class VideoUsageAnalytics extends APIResource {
   }
 }
 
-export interface VideoUsageAnalyticCreateDetailsParams {
+export interface VideoUsageAnalyticRetrieveParams {
   /**
    * Define the metric you need the data for, currently we only support `bandwidth_consumption`, `asset_duration`, `storage_unit`, `top_assets`, `bandwidth_consumption_by_collection`, `errored_videos` and `widget_data`
    */
@@ -62,8 +62,8 @@ export interface VideoUsageAnalyticCreateDetailsParams {
   /**
    * The timeframe to get the data for. Currently we only support a maximum of 60 days between `start_at` and `end_at`.
    */
-  date_range: VideoUsageAnalyticCreateDetailsParams.DateRange;
-  filters?: VideoUsageAnalyticCreateDetailsParams.Filters;
+  date_range: VideoUsageAnalyticRetrieveParams.DateRange;
+  filters?: VideoUsageAnalyticRetrieveParams.Filters;
   /**
    * Count of video assets that should be returned. Max assets count is 1000 per page.
    * @default 5
@@ -76,7 +76,7 @@ export interface VideoUsageAnalyticCreateDetailsParams {
   top_assets_page?: string;
 }
 
-export namespace VideoUsageAnalyticCreateDetailsParams {
+export namespace VideoUsageAnalyticRetrieveParams {
   export interface DateRange {
     /**
      * The starting date to consider
@@ -98,11 +98,11 @@ export namespace VideoUsageAnalyticCreateDetailsParams {
   }
 }
 
-export interface VideoUsageAnalyticCreateDetailsResponse {
-  top_assets?: Array<VideoUsageAnalyticCreateDetailsResponse.TopAsset>;
+export interface VideoUsageAnalyticRetrieveResponse {
+  top_assets?: Array<VideoUsageAnalyticRetrieveResponse.TopAsset>;
 }
 
-export namespace VideoUsageAnalyticCreateDetailsResponse {
+export namespace VideoUsageAnalyticRetrieveResponse {
   export interface TopAsset {
     collection_id?: string;
     asset_id?: string;
@@ -158,9 +158,9 @@ export namespace VideoUsageAnalyticTopAssetsResponse {
 }
 export declare namespace VideoUsageAnalytics {
   export {
-    type VideoUsageAnalyticCreateDetailsResponse as VideoUsageAnalyticCreateDetailsResponse,
+    type VideoUsageAnalyticRetrieveResponse as VideoUsageAnalyticRetrieveResponse,
     type VideoUsageAnalyticTopAssetsResponse as VideoUsageAnalyticTopAssetsResponse,
-    type VideoUsageAnalyticCreateDetailsParams as VideoUsageAnalyticCreateDetailsParams,
+    type VideoUsageAnalyticRetrieveParams as VideoUsageAnalyticRetrieveParams,
     type VideoUsageAnalyticTopAssetsParams as VideoUsageAnalyticTopAssetsParams,
   };
 }
