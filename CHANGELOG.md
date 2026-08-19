@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/gumlet/nodejs-sdk/compare/v1.0.12...v2.0.0) (2026-08-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Serialization or defaults of query param `page` on `videoUsageAnalytics.streamingDuration` changed.
+
+### Features
+
+* **api:** update SDK surface (1 change) ([380a4d6](https://github.com/gumlet/nodejs-sdk/commit/380a4d61f5f4c4e76f1b3ae62ac76f867a38184d))
+
+
+### Chores
+
+* **api:** update generated SDK content ([2a44dec](https://github.com/gumlet/nodejs-sdk/commit/2a44dec9fe9ca192656ff35f9a21ac10d1184d80))
+
 ## [1.0.12](https://github.com/gumlet/nodejs-sdk/compare/v1.0.10...v1.0.12) (2026-08-19)
 
 
