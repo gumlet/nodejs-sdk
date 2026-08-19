@@ -99,11 +99,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'retrieveStatus',
+    operation: 'retrieveDetails',
     method: 'GET',
     path: '/video/assets/{asset_id}',
     run: async () => {
-      const retrieveStatus = await client.videoAssets.retrieveStatus('assetId');
+      const retrieveDetails = await client.videoAssets.retrieveDetails('assetId');
     },
   },
 
@@ -146,11 +146,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'upload2',
+    operation: 'subtitleUpload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/subtitle/upload',
     run: async () => {
-      const upload2 = await client.videoAssets.upload2('assetId');
+      const subtitleUpload = await client.videoAssets.subtitleUpload('assetId');
     },
   },
 
@@ -164,11 +164,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'upload3',
+    operation: 'audioUpload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/audio/upload',
     run: async () => {
-      const upload3 = await client.videoAssets.upload3('assetId');
+      const audioUpload = await client.videoAssets.audioUpload('assetId');
     },
   },
 
@@ -229,11 +229,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'createDetails',
+    operation: 'retrieve',
     method: 'POST',
     path: '/video/analytics',
     run: async () => {
-      const createDetails = await client.videoUsageAnalytics.createDetails({
+      const retrieve = await client.videoUsageAnalytics.retrieve({
         metrics: [],
         date_range: {},
         top_assets_count: '5',
@@ -257,11 +257,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'listPartUrl',
+    operation: 'retrievePartUrl',
     method: 'GET',
     path: '/video/assets/{asset_id}/multipartupload/{part_number}/sign',
     run: async () => {
-      const listPartURL = await client.multipartUpload.listPartURL('partNumber', {
+      const retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {
         asset_id: 'assetId',
       });
     },
@@ -605,11 +605,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'listStatusCopy',
+    operation: 'statusHistory',
     method: 'GET',
     path: '/video/live/assets/{live_asset_id}/history',
     run: async () => {
-      const listStatusCopy = await client.liveStreamAssets.listStatusCopy('liveAssetId');
+      const statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');
     },
   },
 

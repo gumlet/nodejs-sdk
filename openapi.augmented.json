@@ -2454,7 +2454,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst retrieveStatus = await client.videoAssets.retrieveStatus('assetId');\n\nconsole.log(retrieveStatus);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst retrieveDetails = await client.videoAssets.retrieveDetails('assetId');\n\nconsole.log(retrieveDetails);"
           }
         ]
       },
@@ -2914,7 +2914,7 @@
       "post": {
         "summary": "Add Subtitles",
         "description": "Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.",
-        "operationId": "add-subtitles",
+        "operationId": "start-subtitle-upload",
         "parameters": [
           {
             "name": "asset_ID",
@@ -3039,7 +3039,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst upload2 = await client.videoAssets.upload2('assetId');\n\nconsole.log(upload2);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst subtitleUpload = await client.videoAssets.subtitleUpload('assetId');\n\nconsole.log(subtitleUpload);"
           }
         ]
       }
@@ -3160,7 +3160,7 @@
       "post": {
         "summary": "Add Audio",
         "description": "Add any audio file to the video asset. \nThe response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.",
-        "operationId": "add-audio",
+        "operationId": "start-audio-upload",
         "parameters": [
           {
             "name": "asset_ID",
@@ -3268,7 +3268,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst upload3 = await client.videoAssets.upload3('assetId');\n\nconsole.log(upload3);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst audioUpload = await client.videoAssets.audioUpload('assetId');\n\nconsole.log(audioUpload);"
           }
         ]
       }
@@ -3652,7 +3652,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst createDetails = await client.videoUsageAnalytics.createDetails({\n  metrics: [],\n  date_range: {},\n  top_assets_count: '5',\n  top_assets_page: '0',\n});\n\nconsole.log(createDetails);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst retrieve = await client.videoUsageAnalytics.retrieve({\n  metrics: [],\n  date_range: {},\n  top_assets_count: '5',\n  top_assets_page: '0',\n});\n\nconsole.log(retrieve);"
           }
         ]
       }
@@ -3934,7 +3934,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst listPartURL = await client.multipartUpload.listPartURL('partNumber', {\n  asset_id: 'assetId',\n});\n\nconsole.log(listPartURL);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {\n  asset_id: 'assetId',\n});\n\nconsole.log(retrievePartURL);"
           }
         ]
       }
@@ -16302,7 +16302,7 @@
       "get": {
         "summary": "Get Live Asset Status History",
         "description": "This endpoint retrieves the history of a live video asset that has previously been created.",
-        "operationId": "get-live-asset-status-copy",
+        "operationId": "asset-status-history",
         "parameters": [
           {
             "name": "live_asset_id",
@@ -16481,7 +16481,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst listStatusCopy = await client.liveStreamAssets.listStatusCopy('liveAssetId');\n\nconsole.log(listStatusCopy);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');\n\nconsole.log(statusHistory);"
           }
         ]
       }

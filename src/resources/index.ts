@@ -6,18 +6,18 @@ export type {
   VideoAssetCreateResponse,
   VideoAssetUploadParams,
   VideoAssetUploadResponse,
-  VideoAssetRetrieveStatusResponse,
+  VideoAssetRetrieveDetailsResponse,
   VideoAssetUpdateParams,
   VideoAssetUpdateResponse,
   VideoAssetThumbnailSelectParams,
   VideoAssetThumbnailSelectResponse,
   VideoAssetThumbnailUploadResponse,
-  VideoAssetUpload2Params,
-  VideoAssetUpload2Response,
+  VideoAssetSubtitleUploadParams,
+  VideoAssetSubtitleUploadResponse,
   VideoAssetCompleteSubtitleUploadParams,
   VideoAssetCompleteSubtitleUploadResponse,
-  VideoAssetUpload3Params,
-  VideoAssetUpload3Response,
+  VideoAssetAudioUploadParams,
+  VideoAssetAudioUploadResponse,
   VideoAssetCompleteAudioUploadParams,
   VideoAssetCompleteAudioUploadResponse,
   VideoAssetCreateUpdateChapterParams,
@@ -30,15 +30,15 @@ export type {
 } from './video-assets';
 export { VideoUsageAnalytics } from './video-usage-analytics';
 export type {
-  VideoUsageAnalyticCreateDetailsParams,
-  VideoUsageAnalyticCreateDetailsResponse,
+  VideoUsageAnalyticRetrieveParams,
+  VideoUsageAnalyticRetrieveResponse,
   VideoUsageAnalyticTopAssetsParams,
   VideoUsageAnalyticTopAssetsResponse,
 } from './video-usage-analytics';
 export { MultipartUpload } from './multipart-upload';
 export type {
-  MultipartUploadListPartURLParams,
-  MultipartUploadListPartURLResponse,
+  MultipartUploadRetrievePartURLParams,
+  MultipartUploadRetrievePartURLResponse,
   MultipartUploadCompleteParams,
   MultipartUploadCompleteResponse,
 } from './multipart-upload';
@@ -104,7 +104,7 @@ export type {
   LiveStreamAssetFilterResponse,
   LiveStreamAssetUploadParams,
   LiveStreamAssetUploadResponse,
-  LiveStreamAssetListStatusCopyResponse,
+  LiveStreamAssetStatusHistoryResponse,
 } from './live-stream-assets';
 export { VideoWorkspaces } from './video-workspaces';
 export type {

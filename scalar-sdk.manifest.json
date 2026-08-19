@@ -546,8 +546,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "retrieveStatus",
-      "publicOperation": "retrieveStatus",
+      "operation": "retrieveDetails",
+      "publicOperation": "retrieveDetails",
       "deprecated": false,
       "method": "GET",
       "path": "/video/assets/{asset_id}",
@@ -578,7 +578,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetRetrieveStatusParams"
+        "publicName": "VideoAssetRetrieveDetailsParams"
       },
       "response": {
         "status": "200",
@@ -977,8 +977,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "upload2",
-      "publicOperation": "upload2",
+      "operation": "subtitleUpload",
+      "publicOperation": "subtitleUpload",
       "deprecated": false,
       "method": "POST",
       "path": "/video/assets/{asset_ID}/subtitle/upload",
@@ -1018,7 +1018,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetUpload2Params"
+        "publicName": "VideoAssetSubtitleUploadParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -1161,8 +1161,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "upload3",
-      "publicOperation": "upload3",
+      "operation": "audioUpload",
+      "publicOperation": "audioUpload",
       "deprecated": false,
       "method": "POST",
       "path": "/video/assets/{asset_ID}/audio/upload",
@@ -1202,7 +1202,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetUpload3Params"
+        "publicName": "VideoAssetAudioUploadParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -1863,8 +1863,8 @@
     {
       "resource": "videoUsageAnalytics",
       "publicResource": "videoUsageAnalytics",
-      "operation": "createDetails",
-      "publicOperation": "createDetails",
+      "operation": "retrieve",
+      "publicOperation": "retrieve",
       "deprecated": false,
       "method": "POST",
       "path": "/video/analytics",
@@ -1917,7 +1917,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoUsageAnalyticCreateDetailsParams"
+        "publicName": "VideoUsageAnalyticRetrieveParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -2072,8 +2072,8 @@
     {
       "resource": "multipartUpload",
       "publicResource": "multipartUpload",
-      "operation": "listPartUrl",
-      "publicOperation": "listPartUrl",
+      "operation": "retrievePartUrl",
+      "publicOperation": "retrievePartUrl",
       "deprecated": false,
       "method": "GET",
       "path": "/video/assets/{asset_id}/multipartupload/{part_number}/sign",
@@ -2112,7 +2112,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "MultipartUploadListPartUrlParams"
+        "publicName": "MultipartUploadRetrievePartUrlParams"
       },
       "response": {
         "status": "200",
@@ -5282,8 +5282,8 @@
     {
       "resource": "liveStreamAssets",
       "publicResource": "liveStreamAssets",
-      "operation": "listStatusCopy",
-      "publicOperation": "listStatusCopy",
+      "operation": "statusHistory",
+      "publicOperation": "statusHistory",
       "deprecated": false,
       "method": "GET",
       "path": "/video/live/assets/{live_asset_id}/history",
@@ -5314,7 +5314,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "LiveStreamAssetListStatusCopyParams"
+        "publicName": "LiveStreamAssetStatusHistoryParams"
       },
       "response": {
         "status": "200",
