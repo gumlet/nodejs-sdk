@@ -1,5 +1,43 @@
 # Changelog
 
+## [2.0.0](https://github.com/gumlet/nodejs-sdk/compare/v1.0.12...v2.0.0) (2026-08-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 20 breaking changes to the SDK surface.
+    - Operation `videoAssets.list` route changed from `GET /video/assets/list/{workspace_id}` to `GET /video/workspaces/{workspace_id}/list`.
+    - Serialization or defaults of query param `type` on `videoAssets.list` changed.
+    - Serialization or defaults of query param `sortBy` on `videoAssets.list` changed.
+    - Serialization or defaults of query param `orderBy` on `videoAssets.list` changed.
+    - Serialization or defaults of query param `offset` on `videoAssets.list` changed.
+    - Serialization or defaults of query param `size` on `videoAssets.list` changed.
+    - Removed query param `folder` from `videoAssets.list`.
+    - Removed operation `videoAssets.selectFrom` (`POST /video/assets/{asset_id}/thumbnail-select`).
+    - Removed operation `videoAssets.selectFromImageFile` (`POST /video/assets/{asset_ID}/thumbnail`).
+    - Removed operation `videoAssets.postVideoassetrecover` (`POST /video/asset/recover`).
+    - Removed operation `videoAssets.listWorkspaceContent` (`GET /video/workspaces/{workspace_id}/list`).
+    - Removed operation `videoUsageAnalytics.create` (`POST /video/analytics`).
+    - Removed operation `videoUsageAnalytics.streamingDuration` (`GET /video/streaming-duration`).
+    - Removed operation `multipartUpload.signPart` (`GET /video/assets/{asset_id}/multipartupload/{part_number}/sign`).
+    - Removed operation `videoPlaylists.createAssetTo` (`POST /video/playlist/{playlist_id}/asset`).
+    - Removed operation `videoPlaylists.deleteAssetFrom` (`DELETE /video/playlist/{playlist_id}/asset`).
+    - Removed operation `videoPlaylists.deleteId` (`DELETE /video/playlist/{playlist_id}`).
+    - Removed operation `videoPlaylists.reorderAssets2` (`POST /video/playlists/{playlist_id}/reorder`).
+    - Removed operation `folders.create1` (`POST /video/workspaces/{workspace_id}/folders`).
+    - Removed operation `folders.deleteAssetsFrom` (`POST /video/workspaces/{workspace_id}/remove-assets-from-folder`).
+* **api:** Serialization or defaults of query param `page` on `videoUsageAnalytics.streamingDuration` changed.
+
+### Features
+
+* **api:** update operation videoAssets.list (+39 more changes) ([00b3b34](https://github.com/gumlet/nodejs-sdk/commit/00b3b343fafad88b708787bd119009bf36e5d492))
+* **api:** update SDK surface (1 change) ([380a4d6](https://github.com/gumlet/nodejs-sdk/commit/380a4d61f5f4c4e76f1b3ae62ac76f867a38184d))
+
+
+### Chores
+
+* **api:** update generated SDK content ([2a44dec](https://github.com/gumlet/nodejs-sdk/commit/2a44dec9fe9ca192656ff35f9a21ac10d1184d80))
+
 ## [1.0.12](https://github.com/gumlet/nodejs-sdk/compare/v1.0.10...v1.0.12) (2026-08-19)
 
 
