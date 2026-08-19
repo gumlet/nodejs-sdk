@@ -155,11 +155,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'subtitleUploadComplete',
+    operation: 'completeSubtitleUpload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/subtitle/upload/event',
     run: async () => {
-      const subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');
+      const completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');
     },
   },
 
@@ -584,11 +584,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'postVideoliveassetsId',
+    operation: 'start',
     method: 'POST',
     path: '/video/live/assets/{live_asset_id}/start',
     run: async () => {
-      await client.liveStreamAssets.postVideoliveassetsID('liveAssetId');
+      await client.liveStreamAssets.start('liveAssetId');
     },
   },
 

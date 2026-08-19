@@ -130,10 +130,10 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * await client.liveStreamAssets.postVideoliveassetsID('liveAssetId');
+   * await client.liveStreamAssets.start('liveAssetId');
    * ```
    */
-  postVideoliveassetsID(liveAssetID: string, options?: RequestOptions): APIPromise<void> {
+  start(liveAssetID: string, options?: RequestOptions): APIPromise<void> {
     return this._client.post(__scalarPath`/video/live/assets/${liveAssetID}/start`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),

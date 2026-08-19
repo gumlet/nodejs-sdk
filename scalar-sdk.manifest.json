@@ -1069,8 +1069,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "subtitleUploadComplete",
-      "publicOperation": "subtitleUploadComplete",
+      "operation": "completeSubtitleUpload",
+      "publicOperation": "completeSubtitleUpload",
       "deprecated": false,
       "method": "POST",
       "path": "/video/assets/{asset_ID}/subtitle/upload/event",
@@ -1110,7 +1110,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetSubtitleUploadCompleteParams"
+        "publicName": "VideoAssetCompleteSubtitleUploadParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -5119,8 +5119,8 @@
     {
       "resource": "liveStreamAssets",
       "publicResource": "liveStreamAssets",
-      "operation": "postVideoliveassetsId",
-      "publicOperation": "postVideoliveassetsId",
+      "operation": "start",
+      "publicOperation": "start",
       "deprecated": false,
       "method": "POST",
       "path": "/video/live/assets/{live_asset_id}/start",
@@ -5151,7 +5151,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "LiveStreamAssetPostVideoliveassetsIdParams"
+        "publicName": "LiveStreamAssetStartParams"
       },
       "response": {
         "status": "200",
