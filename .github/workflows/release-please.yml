@@ -85,12 +85,6 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
-      - name: Check OIDC
-        run: |
-          echo "OIDC URL: ${ACTIONS_ID_TOKEN_REQUEST_URL:+AVAILABLE}"
-          echo "OIDC TOKEN: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+AVAILABLE}"
-          npm --version
-          npm config get registry
       - run: npm install
       - run: npm run build
       # OIDC trusted publishing needs npm >= 11.5; pinned to the major (not `latest`) so a new
