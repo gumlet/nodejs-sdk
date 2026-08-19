@@ -2914,7 +2914,7 @@
       "post": {
         "summary": "Upload Subtitle",
         "description": "Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.",
-        "operationId": "video-asset-upload-subtitle",
+        "operationId": "subtitle-upload",
         "parameters": [
           {
             "name": "asset_ID",
@@ -3160,7 +3160,7 @@
       "post": {
         "summary": "Upload Audio",
         "description": "Upload any audio file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.",
-        "operationId": "video-asset-upload-audio",
+        "operationId": "upload-audio",
         "parameters": [
           {
             "name": "asset_ID",
