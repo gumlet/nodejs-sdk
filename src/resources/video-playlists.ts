@@ -50,13 +50,13 @@ export class VideoPlaylists extends APIResource {
    * This operation adds a single asset or a list of assets to a playlist.
    *
    * @param {string} playlistID - Playlist ID in which the asset needs to be added.
-   * @param {VideoPlaylistCreateAssetToParams} body - The request body to send.
+   * @param {VideoPlaylistCreateAssetParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoPlaylistCreateAssetToResponse>} 200
+   * @returns {APIPromise<VideoPlaylistCreateAssetResponse>} 200
    *
    * @example
    * ```ts
-   * const createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {
+   * const createAsset = await client.videoPlaylists.createAsset('playlistId', {
    *   asset_list: [
    *     { asset_id: '6508790283e4d60611846790' },
    *     { position: 1, asset_id: '650878f883e4d6061184677d' },
@@ -67,11 +67,11 @@ export class VideoPlaylists extends APIResource {
    * });
    * ```
    */
-  createAssetTo(
+  createAsset(
     playlistID: string,
-    body: VideoPlaylistCreateAssetToParams,
+    body: VideoPlaylistCreateAssetParams,
     options?: RequestOptions,
-  ): APIPromise<VideoPlaylistCreateAssetToResponse> {
+  ): APIPromise<VideoPlaylistCreateAssetResponse> {
     return this._client.post(__scalarPath`/video/playlist/${playlistID}/asset`, { body, ...options });
   }
 
@@ -79,22 +79,22 @@ export class VideoPlaylists extends APIResource {
    * Removed an asset or list of assets from a given playlist.
    *
    * @param {string} playlistID - Playlist ID that is to be deleted.
-   * @param {VideoPlaylistDeleteAssetFromParams} body - The request body to send.
+   * @param {VideoPlaylistDeleteAssetParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoPlaylistDeleteAssetFromResponse>} 200
+   * @returns {APIPromise<VideoPlaylistDeleteAssetResponse>} 200
    *
    * @example
    * ```ts
-   * const deleteAssetFrom = await client.videoPlaylists.deleteAssetFrom('playlistId', {
+   * const deleteAsset = await client.videoPlaylists.deleteAsset('playlistId', {
    *   delete_list: ['6508790783e4d606118467a3'],
    * });
    * ```
    */
-  deleteAssetFrom(
+  deleteAsset(
     playlistID: string,
-    body: VideoPlaylistDeleteAssetFromParams,
+    body: VideoPlaylistDeleteAssetParams,
     options?: RequestOptions,
-  ): APIPromise<VideoPlaylistDeleteAssetFromResponse> {
+  ): APIPromise<VideoPlaylistDeleteAssetResponse> {
     return this._client.delete(__scalarPath`/video/playlist/${playlistID}/asset`, { body, ...options });
   }
 
@@ -127,10 +127,10 @@ export class VideoPlaylists extends APIResource {
    *
    * @example
    * ```ts
-   * await client.videoPlaylists.deleteID('playlistId');
+   * await client.videoPlaylists.delete('playlistId');
    * ```
    */
-  deleteID(playlistID: string, options?: RequestOptions): APIPromise<void> {
+  delete(playlistID: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(__scalarPath`/video/playlist/${playlistID}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -166,13 +166,13 @@ export class VideoPlaylists extends APIResource {
    * Reorder videos inside a playlist either by moving a single asset to a position or by sorting the playlist by title or created date.
    *
    * @param {string} playlistID - Playlist id.
-   * @param {VideoPlaylistReorderAssets2Params} body - The request body to send.
+   * @param {VideoPlaylistReorderAssetParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoPlaylistReorderAssets2Response>} 200
+   * @returns {APIPromise<VideoPlaylistReorderAssetResponse>} 200
    *
    * @example
    * ```ts
-   * const reorderAssets2 = await client.videoPlaylists.reorderAssets2('playlistId', {
+   * const reorderAsset = await client.videoPlaylists.reorderAsset('playlistId', {
    *   asset_id: '6e82bf783e88be000ab45ed2',
    *   page_number: 1,
    *   page_size: 10,
@@ -180,11 +180,11 @@ export class VideoPlaylists extends APIResource {
    * });
    * ```
    */
-  reorderAssets2(
+  reorderAsset(
     playlistID: string,
-    body: VideoPlaylistReorderAssets2Params,
+    body: VideoPlaylistReorderAssetParams,
     options?: RequestOptions,
-  ): APIPromise<VideoPlaylistReorderAssets2Response> {
+  ): APIPromise<VideoPlaylistReorderAssetResponse> {
     return this._client.post(__scalarPath`/video/playlists/${playlistID}/reorder`, { body, ...options });
   }
 }
@@ -288,11 +288,11 @@ export namespace VideoPlaylistListAllResponse {
   }
 }
 
-export interface VideoPlaylistCreateAssetToParams {
-  asset_list: Array<VideoPlaylistCreateAssetToParams.AssetList>;
+export interface VideoPlaylistCreateAssetParams {
+  asset_list: Array<VideoPlaylistCreateAssetParams.AssetList>;
 }
 
-export namespace VideoPlaylistCreateAssetToParams {
+export namespace VideoPlaylistCreateAssetParams {
   export interface AssetList {
     asset_id?: string;
     /**
@@ -303,21 +303,21 @@ export namespace VideoPlaylistCreateAssetToParams {
   }
 }
 
-export interface VideoPlaylistCreateAssetToResponse {
+export interface VideoPlaylistCreateAssetResponse {
   /**
    * @default true
    */
   success?: boolean;
 }
 
-export interface VideoPlaylistDeleteAssetFromParams {
+export interface VideoPlaylistDeleteAssetParams {
   /**
    * Array of video asset ids.
    */
   delete_list: Array<string>;
 }
 
-export interface VideoPlaylistDeleteAssetFromResponse {
+export interface VideoPlaylistDeleteAssetResponse {
   /**
    * @default true
    */
@@ -501,11 +501,11 @@ export namespace VideoPlaylistListAssetsResponse {
   }
 }
 
-export type VideoPlaylistReorderAssets2Params =
-  | VideoPlaylistReorderAssets2Params.Variant0
-  | VideoPlaylistReorderAssets2Params.Variant1;
+export type VideoPlaylistReorderAssetParams =
+  | VideoPlaylistReorderAssetParams.Variant0
+  | VideoPlaylistReorderAssetParams.Variant1;
 
-export declare namespace VideoPlaylistReorderAssets2Params {
+export declare namespace VideoPlaylistReorderAssetParams {
   export interface Variant0 {
     /**
      * Asset id to move.
@@ -535,7 +535,7 @@ export declare namespace VideoPlaylistReorderAssets2Params {
   }
 }
 
-export interface VideoPlaylistReorderAssets2Response {
+export interface VideoPlaylistReorderAssetResponse {
   /**
    * @default true
    */
@@ -546,17 +546,17 @@ export declare namespace VideoPlaylists {
   export {
     type VideoPlaylistCreateResponse as VideoPlaylistCreateResponse,
     type VideoPlaylistListAllResponse as VideoPlaylistListAllResponse,
-    type VideoPlaylistCreateAssetToResponse as VideoPlaylistCreateAssetToResponse,
-    type VideoPlaylistDeleteAssetFromResponse as VideoPlaylistDeleteAssetFromResponse,
+    type VideoPlaylistCreateAssetResponse as VideoPlaylistCreateAssetResponse,
+    type VideoPlaylistDeleteAssetResponse as VideoPlaylistDeleteAssetResponse,
     type VideoPlaylistUpdateResponse as VideoPlaylistUpdateResponse,
     type VideoPlaylistListAssetsResponse as VideoPlaylistListAssetsResponse,
-    type VideoPlaylistReorderAssets2Response as VideoPlaylistReorderAssets2Response,
+    type VideoPlaylistReorderAssetResponse as VideoPlaylistReorderAssetResponse,
     type VideoPlaylistCreateParams as VideoPlaylistCreateParams,
     type VideoPlaylistListAllParams as VideoPlaylistListAllParams,
-    type VideoPlaylistCreateAssetToParams as VideoPlaylistCreateAssetToParams,
-    type VideoPlaylistDeleteAssetFromParams as VideoPlaylistDeleteAssetFromParams,
+    type VideoPlaylistCreateAssetParams as VideoPlaylistCreateAssetParams,
+    type VideoPlaylistDeleteAssetParams as VideoPlaylistDeleteAssetParams,
     type VideoPlaylistUpdateParams as VideoPlaylistUpdateParams,
     type VideoPlaylistListAssetsParams as VideoPlaylistListAssetsParams,
-    type VideoPlaylistReorderAssets2Params as VideoPlaylistReorderAssets2Params,
+    type VideoPlaylistReorderAssetParams as VideoPlaylistReorderAssetParams,
   };
 }

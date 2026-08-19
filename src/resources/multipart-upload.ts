@@ -10,22 +10,22 @@ export class MultipartUpload extends APIResource {
    * Use this endpoint to retrieve a pre-signed upload URL for the given part number.
    *
    * @param {string} partNumber - Part number of multiple parts of the original video which you you are uploading
-   * @param {MultipartUploadSignPartParams} params - The parameters to send with the request.
+   * @param {MultipartUploadListPartURLParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<MultipartUploadSignPartResponse>} 200
+   * @returns {APIPromise<MultipartUploadListPartURLResponse>} 200
    *
    * @example
    * ```ts
-   * const signPart = await client.multipartUpload.signPart('partNumber', {
+   * const listPartURL = await client.multipartUpload.listPartURL('partNumber', {
    *   asset_id: 'assetId',
    * });
    * ```
    */
-  signPart(
+  listPartURL(
     partNumber: string,
-    params: MultipartUploadSignPartParams,
+    params: MultipartUploadListPartURLParams,
     options?: RequestOptions,
-  ): APIPromise<MultipartUploadSignPartResponse> {
+  ): APIPromise<MultipartUploadListPartURLResponse> {
     const { asset_id } = params;
     return this._client.get(
       __scalarPath`/video/assets/${asset_id}/multipartupload/${partNumber}/sign`,
@@ -58,14 +58,14 @@ export class MultipartUpload extends APIResource {
   }
 }
 
-export interface MultipartUploadSignPartParams {
+export interface MultipartUploadListPartURLParams {
   /**
    * An asset id of the created asset for which you are uploading parts
    */
   asset_id: string;
 }
 
-export interface MultipartUploadSignPartResponse {
+export interface MultipartUploadListPartURLResponse {
   asset_id?: string;
   part_number?: string;
   part_upload_url?: string;
@@ -94,9 +94,9 @@ export namespace MultipartUploadCompleteParams {
 export type MultipartUploadCompleteResponse = Record<string, unknown>;
 export declare namespace MultipartUpload {
   export {
-    type MultipartUploadSignPartResponse as MultipartUploadSignPartResponse,
+    type MultipartUploadListPartURLResponse as MultipartUploadListPartURLResponse,
     type MultipartUploadCompleteResponse as MultipartUploadCompleteResponse,
-    type MultipartUploadSignPartParams as MultipartUploadSignPartParams,
+    type MultipartUploadListPartURLParams as MultipartUploadListPartURLParams,
     type MultipartUploadCompleteParams as MultipartUploadCompleteParams,
   };
 }

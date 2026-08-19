@@ -9,9 +9,9 @@ export type {
   VideoAssetRetrieveStatusResponse,
   VideoAssetUpdateParams,
   VideoAssetUpdateResponse,
-  VideoAssetSelectFromParams,
-  VideoAssetSelectFromResponse,
-  VideoAssetSelectFromImageFileResponse,
+  VideoAssetThumbnailSelectParams,
+  VideoAssetThumbnailSelectResponse,
+  VideoAssetThumbnailUploadResponse,
   VideoAssetUpload2Params,
   VideoAssetUpload2Response,
   VideoAssetSubtitleUploadCompleteParams,
@@ -22,23 +22,23 @@ export type {
   VideoAssetCompleteAudioUploadResponse,
   VideoAssetCreateUpdateChapterParams,
   VideoAssetCreateUpdateChapterResponse,
-  VideoAssetPostVideoassetrecoverParams,
-  VideoAssetListWorkspaceContentParams,
-  VideoAssetListWorkspaceContentResponse,
+  VideoAssetRecoverParams,
   VideoAssetListParams,
   VideoAssetListResponse,
+  VideoAssetListDeprecatedParams,
+  VideoAssetListDeprecatedResponse,
 } from './video-assets';
 export { VideoUsageAnalytics } from './video-usage-analytics';
 export type {
-  VideoUsageAnalyticCreateParams,
-  VideoUsageAnalyticCreateResponse,
-  VideoUsageAnalyticStreamingDurationParams,
-  VideoUsageAnalyticStreamingDurationResponse,
+  VideoUsageAnalyticCreateDetailsParams,
+  VideoUsageAnalyticCreateDetailsResponse,
+  VideoUsageAnalyticTopAssetsParams,
+  VideoUsageAnalyticTopAssetsResponse,
 } from './video-usage-analytics';
 export { MultipartUpload } from './multipart-upload';
 export type {
-  MultipartUploadSignPartParams,
-  MultipartUploadSignPartResponse,
+  MultipartUploadListPartURLParams,
+  MultipartUploadListPartURLResponse,
   MultipartUploadCompleteParams,
   MultipartUploadCompleteResponse,
 } from './multipart-upload';
@@ -59,16 +59,16 @@ export type {
   VideoPlaylistCreateResponse,
   VideoPlaylistListAllParams,
   VideoPlaylistListAllResponse,
-  VideoPlaylistCreateAssetToParams,
-  VideoPlaylistCreateAssetToResponse,
-  VideoPlaylistDeleteAssetFromParams,
-  VideoPlaylistDeleteAssetFromResponse,
+  VideoPlaylistCreateAssetParams,
+  VideoPlaylistCreateAssetResponse,
+  VideoPlaylistDeleteAssetParams,
+  VideoPlaylistDeleteAssetResponse,
   VideoPlaylistUpdateParams,
   VideoPlaylistUpdateResponse,
   VideoPlaylistListAssetsParams,
   VideoPlaylistListAssetsResponse,
-  VideoPlaylistReorderAssets2Params,
-  VideoPlaylistReorderAssets2Response,
+  VideoPlaylistReorderAssetParams,
+  VideoPlaylistReorderAssetResponse,
 } from './video-playlists';
 export { WebhookAPIs } from './webhook-apis';
 export type {
@@ -119,8 +119,8 @@ export type {
 } from './video-workspaces';
 export { Folders } from './folders';
 export type {
-  FolderCreate1Params,
-  FolderCreate1Response,
+  FolderCreateParams,
+  FolderCreateResponse,
   FolderListParams,
   FolderListResponse,
   FolderRetrieveParams,
@@ -129,8 +129,8 @@ export type {
   FolderUpdateResponse,
   FolderDeleteParams,
   FolderDeleteResponse,
-  FolderDeleteAssetsFromParams,
-  FolderDeleteAssetsFromResponse,
+  FolderDeleteAssetsParams,
+  FolderDeleteAssetsResponse,
 } from './folders';
 export { ChannelViewers } from './channel-viewers';
 export type {
