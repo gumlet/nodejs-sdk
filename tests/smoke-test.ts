@@ -480,7 +480,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/image/sources/{image_source_id}',
     run: async () => {
-      await client.imageSources.retrieve('imageSourceId');
+      const retrieve = await client.imageSources.retrieve('imageSourceId');
     },
   },
 

@@ -4086,6 +4086,17 @@
       "paramsModel": {
         "publicName": "ImageSourceRetrieveParams"
       },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
       "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
@@ -4120,7 +4131,15 @@
         "backblaze",
         "cloudflare",
         "cloudinary",
-        "azure"
+        "azure",
+        "default_params",
+        "error_image",
+        "request_headers",
+        "response_headers",
+        "temp_cname",
+        "browser_cache_time",
+        "cdn_cache_time",
+        "is_active"
       ],
       "publicBodyParams": [
         "type",
@@ -4134,7 +4153,15 @@
         "backblaze",
         "cloudflare",
         "cloudinary",
-        "azure"
+        "azure",
+        "default_params",
+        "error_image",
+        "request_headers",
+        "response_headers",
+        "temp_cname",
+        "browser_cache_time",
+        "cdn_cache_time",
+        "is_active"
       ],
       "bodyParamDetails": [
         {
@@ -4183,6 +4210,38 @@
         },
         {
           "name": "azure",
+          "required": false
+        },
+        {
+          "name": "default_params",
+          "required": false
+        },
+        {
+          "name": "error_image",
+          "required": false
+        },
+        {
+          "name": "request_headers",
+          "required": false
+        },
+        {
+          "name": "response_headers",
+          "required": false
+        },
+        {
+          "name": "temp_cname",
+          "required": false
+        },
+        {
+          "name": "browser_cache_time",
+          "required": false
+        },
+        {
+          "name": "cdn_cache_time",
+          "required": false
+        },
+        {
+          "name": "is_active",
           "required": false
         }
       ],
