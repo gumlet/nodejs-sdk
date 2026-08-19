@@ -210,7 +210,8 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * This API must be called after uploading subtitles; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
+   * This API must be called after adding subtitles; the add subtitle call gives you URLs to upload, and you complete a `PUT` request to those URLs.
+   * Once that is done, calling this initiates the process to actually add the subtitle to the video.
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {VideoAssetSubtitleUploadCompleteParams} [body] - The request body to send.
@@ -234,7 +235,8 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Upload any audio file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
+   * Add any audio file to the video asset.
+   * The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {VideoAssetUpload3Params} [body] - The request body to send.
@@ -255,7 +257,8 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * This API must be called after uploading audio; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
+   * This API must be called after adding audio(s); The add audio call gives you URLs to upload, and you complete a `PUT` request to those URLs.
+   * Once that is done, calling this initiates the process to actually add the subtitle to the video.
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {VideoAssetCompleteAudioUploadParams} [body] - The request body to send.
