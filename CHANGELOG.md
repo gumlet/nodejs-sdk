@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.14](https://github.com/gumlet/nodejs-sdk/compare/v1.0.13...v1.0.14) (2026-08-19)
+
+
+### Features
+
+* **api:** add body field group_by on imageSources.analytics ([7316216](https://github.com/gumlet/nodejs-sdk/commit/7316216f0c6ce173e20c680bf1dc3b4cce62ed0d))
+
+
+### Chores
+
+* release 1.0.14 ([ba07ae8](https://github.com/gumlet/nodejs-sdk/commit/ba07ae8e343e64b5cbb972a0d085d72b754d17b4))
+
 ## [1.0.13](https://github.com/gumlet/nodejs-sdk/compare/v1.0.12...v1.0.13) (2026-08-19)
 
 
