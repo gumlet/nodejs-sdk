@@ -1,6 +1,6 @@
-# Gumlet Pte. Ltd
+# Gumlet Pte. Ltd.
 
-This library provides convenient access to the Gumlet Pte. Ltd REST API from TypeScript or JavaScript.
+This library provides convenient access to the Gumlet Pte. Ltd. REST API from TypeScript or JavaScript.
 
 The full API of this library can be found in [api.md](./api.md).
 
