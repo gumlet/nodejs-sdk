@@ -1,4 +1,4 @@
-# Gumlet Pte. Ltd. TypeScript API
+# Gumlet Pte. Ltd TypeScript API
 
 Complete reference of every operation, grouped by resource. See [the README](./README.md) for usage and configuration.
 
