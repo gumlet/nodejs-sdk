@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.0.10](https://github.com/gumlet/nodejs-sdk/compare/v1.0.8...v1.0.10) (2026-08-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `videoAssets.uploadSubtitleCompletion` (`POST /video/assets/{asset_ID}/subtitle/upload/event`).
+    - Removed operation `videoAssets.uploadAudioCompletion` (`POST /video/assets/{asset_ID}/audio/upload/event`).
+
+### Features
+
+* **api:** update SDK surface (4 changes) ([6759d57](https://github.com/gumlet/nodejs-sdk/commit/6759d5769ccc1eef251d9b00c6af5ad3b8bf31f9))
+
+
+### Chores
+
+* **api:** update generated SDK content ([b96850b](https://github.com/gumlet/nodejs-sdk/commit/b96850b8d1b7e4b01bc0a2bc2d28dbb95e5032c4))
+* release 1.0.10 ([992af3d](https://github.com/gumlet/nodejs-sdk/commit/992af3d72890922b9c51abdc65ee77574941f569))
+
 ## [1.0.8](https://github.com/gumlet/nodejs-sdk/compare/v1.0.7...v1.0.8) (2026-08-19)
 
 
