@@ -256,11 +256,11 @@ This API must be called after uploading subtitles; the call gives you URLs to up
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetUploadSubtitleCompletionParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetUploadSubtitleCompletionResponse`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetSubtitleUploadCompleteParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetSubtitleUploadCompleteResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const uploadSubtitleCompletion = await client.videoAssets.uploadSubtitleCompletion('assetId');
+const subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');
 ```
 
 ### Upload Audio
@@ -282,11 +282,11 @@ This API must be called after uploading audio; the call gives you URLs to upload
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetUploadAudioCompletionParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetUploadAudioCompletionResponse`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetCompleteAudioUploadParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetCompleteAudioUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const uploadAudioCompletion = await client.videoAssets.uploadAudioCompletion('assetId');
+const completeAudioUpload = await client.videoAssets.completeAudioUpload('assetId');
 ```
 
 ### Create/Update Video Asset Chapters
