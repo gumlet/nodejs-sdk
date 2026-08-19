@@ -520,6 +520,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
       const analytics = await client.imageSources.analytics({
         metrics: [],
         date_range: {},
+        group_by: 'daily',
       });
     },
   },

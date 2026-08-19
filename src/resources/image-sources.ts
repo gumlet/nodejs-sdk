@@ -121,7 +121,7 @@ export class ImageSources extends APIResource {
   }
 
   /**
-   * This endpoint help you get analytics data.
+   * This endpoint helps you get image analytics data like bandwidth consumption, request count, CDN hit ratio, etc.
    *
    * @param {ImageSourceAnalyticsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -132,6 +132,7 @@ export class ImageSources extends APIResource {
    * const analytics = await client.imageSources.analytics({
    *   metrics: [],
    *   date_range: {},
+   *   group_by: 'daily',
    * });
    * ```
    */
@@ -959,11 +960,28 @@ export interface ImageSourceAnalyticsParams {
   /**
    * Define the metric you need the data for, currently we support "bandwidth_consumption", "requests_count","status_4xx","status_5xx","avg_response_time""
    */
-  metrics: Array<string>;
+  metrics: Array<
+    | 'bandwidth_consumption'
+    | 'requests_count'
+    | 'transformations_count'
+    | 'bandwidth_savings'
+    | 'origin_hit_rate'
+    | 'avg_transformation_response_time'
+    | 'status_4xx'
+    | 'status_5xx'
+    | 'cdn_hit_rate'
+    | 'content_type'
+    | 'status_2xx'
+    | 'avg_response_time'
+  >;
   /**
    * The timeframe to get the data for. Currently we only support a maximum of 30 days between `start_at` and `end_at`.
    */
   date_range: ImageSourceAnalyticsParams.DateRange;
+  /**
+   * @default daily
+   */
+  group_by?: 'daily' | 'weekly' | 'monthly';
 }
 
 export namespace ImageSourceAnalyticsParams {
@@ -982,18 +1000,182 @@ export namespace ImageSourceAnalyticsParams {
 }
 
 export interface ImageSourceAnalyticsResponse {
-  top_assets?: Array<ImageSourceAnalyticsResponse.TopAsset>;
+  bandwidth_consumption?: Array<ImageSourceAnalyticsResponse.BandwidthConsumption>;
+  requests_count?: Array<ImageSourceAnalyticsResponse.RequestsCount>;
+  status_2xx?: Array<ImageSourceAnalyticsResponse.Status2xx>;
+  status_4xx?: Array<ImageSourceAnalyticsResponse.Status4xx>;
+  status_5xx?: Array<ImageSourceAnalyticsResponse.Status5xx>;
+  avg_response_time?: Array<ImageSourceAnalyticsResponse.AvgResponseTime>;
+  cdn_hit_rate?: Array<ImageSourceAnalyticsResponse.CdnHitRate>;
+  transformations_count?: Array<ImageSourceAnalyticsResponse.TransformationsCount>;
+  origin_hit_rate?: Array<ImageSourceAnalyticsResponse.OriginHitRate>;
+  avg_transformation_response_time?: Array<ImageSourceAnalyticsResponse.AvgTransformationResponseTime>;
+  content_type?: Array<ImageSourceAnalyticsResponse.ContentType>;
 }
 
 export namespace ImageSourceAnalyticsResponse {
-  export interface TopAsset {
-    collection_id?: string;
-    asset_id?: string;
+  export interface BandwidthConsumption {
     /**
-     * @default 0
+     * Value of bandwidth consumption in bytes.
      */
-    units?: number;
-    collection_name?: string;
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface RequestsCount {
+    /**
+     * Count of requests.
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface Status2xx {
+    /**
+     * Value between 0 and 1 depicting percentage of 2xx requests.
+     * @format float
+     * @minimum 0
+     * @maximum 1
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface Status4xx {
+    /**
+     * Value between 0 and 1 depicting percentage of 4xx requests.
+     * @format float
+     * @minimum 0
+     * @maximum 1
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface Status5xx {
+    /**
+     * Value between 0 and 1 depicting percentage of 5xx requests.
+     * @format float
+     * @minimum 0
+     * @maximum 1
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface AvgResponseTime {
+    /**
+     * Response time in seconds.
+     * @format float
+     * @minimum 0
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface CdnHitRate {
+    /**
+     * Number between 0 and 1 depicting CDN hit ratio percentage.
+     * @format float
+     * @minimum 0
+     * @maximum 1
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface TransformationsCount {
+    /**
+     * Number of transformations
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface OriginHitRate {
+    /**
+     * Number between 0 and 1 depicting Origin Cache hit ratio.
+     * @format float
+     * @minimum 0
+     * @maximum 1
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface AvgTransformationResponseTime {
+    /**
+     * Seconds it takes for image transform
+     * @format float
+     * @minimum 0
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface ContentType {
+    /**
+     * Total count of AVIF images delivered
+     */
+    avif: number;
+    /**
+     * Total count of PNG images delivered
+     */
+    png: number;
+    /**
+     * Total count of JPEG images delivered
+     */
+    jpeg: number;
+    /**
+     * Total count of GIF images delivered
+     */
+    gif: number;
+    /**
+     * Total count of WEBP images delivered
+     */
+    webp: number;
+    /**
+     * Total count of JPEG-XL images delivered
+     */
+    jxl: number;
+    /**
+     * Total count of MP4 videos delivered
+     */
+    mp4: number;
+    /**
+     * Seconds since epoch.
+     */
+    timestamp: number;
   }
 }
 export declare namespace ImageSources {
