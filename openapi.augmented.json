@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Gumlet",
-    "description": "Gumlet REST APIs",
+    "description": "Gumlet REST APIs.",
     "version": "1.4",
     "contact": {
       "name": "Gumlet Support Team",
@@ -33,7 +33,8 @@
         "type": "http",
         "scheme": "bearer"
       }
-    }
+    },
+    "schemas": {}
   },
   "paths": {
     "/video/assets": {
@@ -822,6 +823,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "wrrbz3ioehwrt"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -1595,6 +1599,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "7vjmxfy06ukbh"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -2441,6 +2448,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "7111k8t5s2gnx"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -2552,6 +2562,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "chk6k1qv4s6mp"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -2690,6 +2703,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "r0ctywn88400k"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -2786,7 +2802,7 @@
           "Video Assets"
         ],
         "x-stoplight": {
-          "id": "eqetja43tfsmt"
+          "id": "rx6lhax45mah6"
         },
         "x-codeSamples": [
           {
@@ -2883,6 +2899,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "5ckscoiseqpdr"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -2895,7 +2914,7 @@
     "/video/assets/{asset_ID}/subtitle/upload": {
       "post": {
         "summary": "Upload Subtitle",
-        "description": "Upload your subtitled .srt file to your video asset.",
+        "description": "Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.",
         "operationId": "video-asset-upload-subtitle",
         "parameters": [
           {
@@ -2922,6 +2941,15 @@
                     }
                   }
                 }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "language_codes": [
+                      "en"
+                    ]
+                  }
+                }
               }
             }
           }
@@ -2933,8 +2961,56 @@
               "application/json": {
                 "examples": {
                   "Result": {
-                    "value": ""
+                    "value": {
+                      "signed_urls": [
+                        {
+                          "language_code": "en",
+                          "upload_url": "<UPLOAD_URL>"
+                        }
+                      ],
+                      "asset_id": "6a8491aaf180d34362c9587a"
+                    }
                   }
+                },
+                "schema": {
+                  "title": "",
+                  "type": "object",
+                  "properties": {
+                    "asset_id": {
+                      "type": "string",
+                      "description": "Asset ID of Gumlet"
+                    },
+                    "signed_urls": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "language_code": {
+                            "type": "string"
+                          },
+                          "upload_url": {
+                            "type": "string"
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "language_code",
+                          "upload_url"
+                        ],
+                        "required": [
+                          "language_code",
+                          "upload_url"
+                        ]
+                      }
+                    }
+                  },
+                  "x-apidog-orders": [
+                    "asset_id",
+                    "signed_urls"
+                  ],
+                  "required": [
+                    "asset_id",
+                    "signed_urls"
+                  ]
                 }
               }
             }
@@ -2964,16 +3040,16 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoAssets.upload2('assetId');"
+            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst upload2 = await client.videoAssets.upload2('assetId');\n\nconsole.log(upload2);"
           }
         ]
       }
     },
     "/video/assets/{asset_ID}/subtitle/upload/event": {
       "post": {
-        "summary": "Upload Subtitle Completion",
-        "description": "",
-        "operationId": "upload-subtitle-completion",
+        "summary": "Subtitle Upload Complete",
+        "description": "This API must be called after uploading subtitles; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.",
+        "operationId": "subtitle-upload-complete",
         "parameters": [
           {
             "name": "asset_ID",
@@ -2997,15 +3073,34 @@
                       "properties": {
                         "language_code": {
                           "type": "string",
-                          "description": "Language Code for uploadeds.srt file."
+                          "description": "Language Code for uploaded .srt or .vtt file."
                         },
                         "uploaded": {
                           "type": "boolean",
-                          "description": "Status of language uploaded .srt file. (If status code was 200, You can mark true else false)"
+                          "description": "Status of language uploaded .srt or .vtt file. (If status code was 200, You can mark true else false)"
                         }
                       },
-                      "type": "object"
+                      "type": "object",
+                      "x-apidog-orders": [
+                        "language_code",
+                        "uploaded"
+                      ]
                     }
+                  }
+                },
+                "x-apidog-orders": [
+                  "upload_responses"
+                ]
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "upload_responses": [
+                      {
+                        "language_code": "en",
+                        "uploaded": true
+                      }
+                    ]
                   }
                 }
               }
@@ -3050,6 +3145,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "9oxodzjjpi14n"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -3127,6 +3225,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "kn1e4t69lw9qv"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -3217,6 +3318,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "qee5xrskl5oyi"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -3313,6 +3417,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "p0f3lcp5j2j91"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -3505,6 +3612,9 @@
         "tags": [
           "Video Usage Analytics"
         ],
+        "x-stoplight": {
+          "id": "plq0zxnyavyb2"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -3685,6 +3795,9 @@
         "tags": [
           "Video Usage Analytics"
         ],
+        "x-stoplight": {
+          "id": "difsmxe8e5oaa"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -3774,6 +3887,9 @@
         "tags": [
           "Multipart Upload"
         ],
+        "x-stoplight": {
+          "id": "3s79ppxzn4m4a"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -3865,6 +3981,9 @@
         "tags": [
           "Multipart Upload"
         ],
+        "x-stoplight": {
+          "id": "hn4uybtbtvz5m"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -4325,6 +4444,9 @@
         "tags": [
           "Video Profiles"
         ],
+        "x-stoplight": {
+          "id": "c17cjdbbio5um"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -4692,6 +4814,9 @@
         "tags": [
           "Video Profiles"
         ],
+        "x-stoplight": {
+          "id": "pagbl35gzdirz"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -5144,6 +5269,9 @@
         "tags": [
           "Video Profiles"
         ],
+        "x-stoplight": {
+          "id": "4z7lrir87xi3k"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -5347,6 +5475,9 @@
         "tags": [
           "Video Profiles"
         ],
+        "x-stoplight": {
+          "id": "gs7dr32im7wkf"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -5462,6 +5593,9 @@
         "tags": [
           "Video Profiles"
         ],
+        "x-stoplight": {
+          "id": "0rf71da9mcxfb"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -5699,6 +5833,9 @@
         "tags": [
           "Video Playlists"
         ],
+        "x-stoplight": {
+          "id": "m1hfwb0mu7j6u"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -5822,6 +5959,9 @@
         "tags": [
           "Video Playlists"
         ],
+        "x-stoplight": {
+          "id": "gw4fx29r5lbs2"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -5973,6 +6113,9 @@
         "tags": [
           "Video Playlists"
         ],
+        "x-stoplight": {
+          "id": "udtlsqhehl96y"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -6096,6 +6239,9 @@
         "tags": [
           "Video Playlists"
         ],
+        "x-stoplight": {
+          "id": "j7pd61w7qxzcy"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -6437,6 +6583,9 @@
         "tags": [
           "Video Playlists"
         ],
+        "x-stoplight": {
+          "id": "p0mid6f7xir0p"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -6467,6 +6616,9 @@
         "tags": [
           "Video Playlists"
         ],
+        "x-stoplight": {
+          "id": "gocfme0boqws3"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -6715,6 +6867,9 @@
         "tags": [
           "Video Playlists"
         ],
+        "x-stoplight": {
+          "id": "955aq8lyn9wbf"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -6933,6 +7088,9 @@
         "tags": [
           "Video Playlists"
         ],
+        "x-stoplight": {
+          "id": "ya28vvdrhqo14"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -7071,6 +7229,9 @@
         "tags": [
           "Webhook APIs"
         ],
+        "x-stoplight": {
+          "id": "73fyyktivlvzj"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -7208,6 +7369,9 @@
         "tags": [
           "Webhook APIs"
         ],
+        "x-stoplight": {
+          "id": "cj3d5p1p3xcxm"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -7269,6 +7433,9 @@
         "tags": [
           "Webhook APIs"
         ],
+        "x-stoplight": {
+          "id": "62i31r1exgnzy"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -7739,6 +7906,9 @@
         "tags": [
           "Image Sources"
         ],
+        "x-stoplight": {
+          "id": "hublbrwwbpzvk"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -8236,6 +8406,9 @@
         "tags": [
           "Image Sources"
         ],
+        "x-stoplight": {
+          "id": "25t5xel9wzl7p"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -8593,6 +8766,9 @@
         "tags": [
           "Image Sources"
         ],
+        "x-stoplight": {
+          "id": "npgcaxb2d1coo"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -9347,6 +9523,9 @@
         "tags": [
           "Image Sources"
         ],
+        "x-stoplight": {
+          "id": "eik63l5w65q6w"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -9427,6 +9606,9 @@
         "tags": [
           "Image Sources"
         ],
+        "x-stoplight": {
+          "id": "bbevpkv6hdvi3"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -9504,6 +9686,9 @@
         "tags": [
           "Image Sources"
         ],
+        "x-stoplight": {
+          "id": "e3caqvyy7k26m"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -9677,6 +9862,9 @@
         "tags": [
           "Image Sources"
         ],
+        "x-stoplight": {
+          "id": "qvi8qr8h8ntr7"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -9930,6 +10118,9 @@
         "tags": [
           "Live Stream Assets"
         ],
+        "x-stoplight": {
+          "id": "cka42lfc4c8hf"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -10166,6 +10357,9 @@
         "tags": [
           "Live Stream Assets"
         ],
+        "x-stoplight": {
+          "id": "5728lo8oym6rd"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -10387,6 +10581,9 @@
         "tags": [
           "Live Stream Assets"
         ],
+        "x-stoplight": {
+          "id": "29sodii3xa4fn"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -10448,6 +10645,9 @@
         "tags": [
           "Live Stream Assets"
         ],
+        "x-stoplight": {
+          "id": "ual1t8bmdt647"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -10530,6 +10730,9 @@
         "tags": [
           "Live Stream Assets"
         ],
+        "x-stoplight": {
+          "id": "pe5lhtkmzix7d"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -10822,6 +11025,9 @@
         "tags": [
           "Live Stream Assets"
         ],
+        "x-stoplight": {
+          "id": "v569z8svqfd5g"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -10880,6 +11086,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "kgpjwyo6i822v"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -10946,6 +11155,9 @@
         "tags": [
           "Live Stream Assets"
         ],
+        "x-stoplight": {
+          "id": "1bk7v7srb4xnu"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -11162,6 +11374,9 @@
         "tags": [
           "Live Stream Assets"
         ],
+        "x-stoplight": {
+          "id": "63zbin0vn1ydw"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -11683,6 +11898,9 @@
             }
           }
         ],
+        "x-stoplight": {
+          "id": "vl35ax8cootjj"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -12381,6 +12599,9 @@
         "tags": [
           "Video Workspaces"
         ],
+        "x-stoplight": {
+          "id": "qrbgt48bv6gca"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -13293,6 +13514,9 @@
         "tags": [
           "Video Workspaces"
         ],
+        "x-stoplight": {
+          "id": "pv5xcg85eloop"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -13354,6 +13578,9 @@
         "tags": [
           "Video Workspaces"
         ],
+        "x-stoplight": {
+          "id": "eejee4nn71jmi"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -13434,6 +13661,9 @@
         "tags": [
           "Video Workspaces"
         ],
+        "x-stoplight": {
+          "id": "s6walpwpct9py"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -13620,6 +13850,9 @@
         "tags": [
           "Folders"
         ],
+        "x-stoplight": {
+          "id": "s0ytspywrm8jb"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -13784,6 +14017,9 @@
         "tags": [
           "Folders"
         ],
+        "x-stoplight": {
+          "id": "6p3tyspj1nvn7"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -13983,6 +14219,9 @@
         "tags": [
           "Folders"
         ],
+        "x-stoplight": {
+          "id": "dzyho9ukcz99n"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -14294,6 +14533,9 @@
         "tags": [
           "Folders"
         ],
+        "x-stoplight": {
+          "id": "gniqycuuu62xd"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -14429,6 +14671,9 @@
         "tags": [
           "Folders"
         ],
+        "x-stoplight": {
+          "id": "7kqaxix8196fo"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -14556,6 +14801,9 @@
         "tags": [
           "Folders"
         ],
+        "x-stoplight": {
+          "id": "xmpwyetrzbdrr"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -15081,6 +15329,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "y3fzbxm6axi0a"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -15232,6 +15483,9 @@
         "tags": [
           "Channel Viewers"
         ],
+        "x-stoplight": {
+          "id": "pynbolf5gd84k"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -15355,6 +15609,9 @@
         "tags": [
           "Channel Viewers"
         ],
+        "x-stoplight": {
+          "id": "ow2emng08e9gs"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -15471,6 +15728,9 @@
         "tags": [
           "Channel Viewers"
         ],
+        "x-stoplight": {
+          "id": "k8pujzz5z3wov"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -15986,6 +16246,9 @@
         "tags": [
           "Video Assets"
         ],
+        "x-stoplight": {
+          "id": "9wrzusic0lzrv"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -16171,6 +16434,9 @@
         "tags": [
           "Live Stream Assets"
         ],
+        "x-stoplight": {
+          "id": "x23u8u11y6gic"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -16580,6 +16846,9 @@
             "url": "https://api.gumlet.com/v2"
           }
         ],
+        "x-stoplight": {
+          "id": "04zbqux39i8iv"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -16865,6 +17134,9 @@
             "url": "https://api.gumlet.com/v2"
           }
         ],
+        "x-stoplight": {
+          "id": "phzqm3nji6lx6"
+        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
@@ -16875,12 +17147,6 @@
       }
     }
   },
-  "x-readme": {
-    "headers": [],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true,
   "tags": [
     {
       "name": "Video Assets",
