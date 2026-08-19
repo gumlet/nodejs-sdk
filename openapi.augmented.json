@@ -9740,9 +9740,9 @@
     },
     "/image/analytics": {
       "post": {
-        "summary": "Image Analytics",
-        "description": "This endpoint help you get analytics data.",
-        "operationId": "image-analytics",
+        "summary": "Image Usage Analytics",
+        "description": "This endpoint helps you get image analytics data like bandwidth consumption, request count, CDN hit ratio, etc.",
+        "operationId": "image-usage-analytics",
         "requestBody": {
           "content": {
             "application/json": {
@@ -9755,10 +9755,86 @@
                 "properties": {
                   "metrics": {
                     "type": "array",
-                    "description": "Define the metric you need the data for, currently we support \"bandwidth_consumption\", \"requests_count\",\"status_4xx\",\"status_5xx\",\"avg_response_time\"\"",
                     "items": {
-                      "type": "string"
-                    }
+                      "type": "string",
+                      "enum": [
+                        "bandwidth_consumption",
+                        "requests_count",
+                        "transformations_count",
+                        "bandwidth_savings",
+                        "origin_hit_rate",
+                        "avg_transformation_response_time",
+                        "status_4xx",
+                        "status_5xx",
+                        "cdn_hit_rate",
+                        "content_type",
+                        "status_2xx",
+                        "avg_response_time"
+                      ],
+                      "x-apidog-enum": [
+                        {
+                          "value": "bandwidth_consumption",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "requests_count",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "transformations_count",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "bandwidth_savings",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "origin_hit_rate",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "avg_transformation_response_time",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "status_4xx",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "status_5xx",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "cdn_hit_rate",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "content_type",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "status_2xx",
+                          "name": "",
+                          "description": ""
+                        },
+                        {
+                          "value": "avg_response_time",
+                          "name": "",
+                          "description": ""
+                        }
+                      ]
+                    },
+                    "description": "Define the metric you need the data for, currently we support \"bandwidth_consumption\", \"requests_count\",\"status_4xx\",\"status_5xx\",\"avg_response_time\"\""
                   },
                   "date_range": {
                     "type": "object",
@@ -9774,9 +9850,44 @@
                         "description": "The ending date to consider",
                         "format": "date"
                       }
-                    }
+                    },
+                    "x-apidog-orders": [
+                      "start_at",
+                      "end_at"
+                    ]
+                  },
+                  "group_by": {
+                    "type": "string",
+                    "enum": [
+                      "daily",
+                      "weekly",
+                      "monthly"
+                    ],
+                    "x-apidog-enum": [
+                      {
+                        "value": "daily",
+                        "name": "",
+                        "description": ""
+                      },
+                      {
+                        "value": "weekly",
+                        "name": "",
+                        "description": ""
+                      },
+                      {
+                        "value": "monthly",
+                        "name": "",
+                        "description": ""
+                      }
+                    ],
+                    "default": "daily"
                   }
-                }
+                },
+                "x-apidog-orders": [
+                  "metrics",
+                  "date_range",
+                  "group_by"
+                ]
               }
             }
           }
@@ -9786,73 +9897,343 @@
             "description": "200",
             "content": {
               "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": {
-                      "top_assets": [
-                        {
-                          "collection_id": "<COLLECTION_ID>",
-                          "asset_id": "<ASSET_ID>",
-                          "units": 162870,
-                          "collection_name": "<COLLECTION_NAME>"
-                        },
-                        {
-                          "collection_id": "<COLLECTION_ID>",
-                          "asset_id": "<ASSET_ID>",
-                          "units": 21348,
-                          "collection_name": "<COLLECTION_NAME>"
-                        },
-                        {
-                          "collection_id": "<COLLECTION_ID>",
-                          "asset_id": "<ASSET_ID>",
-                          "units": 1239,
-                          "collection_name": "<COLLECTION_NAME>"
-                        },
-                        {
-                          "collection_id": "<COLLECTION_ID>",
-                          "asset_id": "<ASSET_ID>",
-                          "units": 974,
-                          "collection_name": "<COLLECTION_NAME>"
-                        },
-                        {
-                          "collection_id": "<COLLECTION_ID>",
-                          "asset_id": "<ASSET_ID>",
-                          "units": 124,
-                          "collection_name": "<COLLECTION_NAME>"
-                        }
-                      ]
-                    }
-                  }
-                },
+                "examples": {},
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "top_assets": {
+                    "bandwidth_consumption": {
                       "type": "array",
                       "items": {
                         "type": "object",
                         "properties": {
-                          "collection_id": {
-                            "type": "string",
-                            "example": "<COLLECTION_ID>"
-                          },
-                          "asset_id": {
-                            "type": "string",
-                            "example": "<ASSET_ID>"
-                          },
                           "units": {
-                            "type": "integer",
-                            "example": 162870,
-                            "default": 0
+                            "type": "number",
+                            "description": "Value of bandwidth consumption in bytes."
                           },
-                          "collection_name": {
-                            "type": "string",
-                            "example": "<COLLECTION_NAME>"
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
                           }
-                        }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "requests_count": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "units": {
+                            "type": "number",
+                            "description": "Count of requests."
+                          },
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "status_2xx": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "units": {
+                            "type": "number",
+                            "description": "Value between 0 and 1 depicting percentage of 2xx requests.",
+                            "format": "float",
+                            "minimum": 0,
+                            "maximum": 1
+                          },
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "status_4xx": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "units": {
+                            "type": "number",
+                            "description": "Value between 0 and 1 depicting percentage of 4xx requests.",
+                            "format": "float",
+                            "minimum": 0,
+                            "maximum": 1
+                          },
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "status_5xx": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "units": {
+                            "type": "number",
+                            "description": "Value between 0 and 1 depicting percentage of 5xx requests.",
+                            "format": "float",
+                            "minimum": 0,
+                            "maximum": 1
+                          },
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "avg_response_time": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "units": {
+                            "type": "number",
+                            "description": "Response time in seconds.",
+                            "format": "float",
+                            "minimum": 0
+                          },
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "cdn_hit_rate": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "units": {
+                            "type": "number",
+                            "description": "Number between 0 and 1 depicting CDN hit ratio percentage.",
+                            "format": "float",
+                            "minimum": 0,
+                            "maximum": 1
+                          },
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "transformations_count": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "units": {
+                            "type": "number",
+                            "description": "Number of transformations"
+                          },
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "origin_hit_rate": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "units": {
+                            "type": "number",
+                            "description": "Number between 0 and 1 depicting Origin Cache hit ratio.",
+                            "format": "float",
+                            "minimum": 0,
+                            "maximum": 1
+                          },
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "avg_transformation_response_time": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "units": {
+                            "type": "number",
+                            "description": "Seconds it takes for image transform",
+                            "format": "float",
+                            "minimum": 0
+                          },
+                          "timestamp": {
+                            "type": "number",
+                            "description": "Seconds since epoch for the unit given."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "units",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "units",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "content_type": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "avif": {
+                            "type": "integer",
+                            "description": "Total count of AVIF images delivered"
+                          },
+                          "png": {
+                            "type": "integer",
+                            "description": "Total count of PNG images delivered"
+                          },
+                          "jpeg": {
+                            "type": "integer",
+                            "description": "Total count of JPEG images delivered"
+                          },
+                          "gif": {
+                            "type": "integer",
+                            "description": "Total count of GIF images delivered"
+                          },
+                          "webp": {
+                            "type": "integer",
+                            "description": "Total count of WEBP images delivered"
+                          },
+                          "jxl": {
+                            "type": "integer",
+                            "description": "Total count of JPEG-XL images delivered"
+                          },
+                          "mp4": {
+                            "type": "integer",
+                            "description": "Total count of MP4 videos delivered"
+                          },
+                          "timestamp": {
+                            "type": "integer",
+                            "description": "Seconds since epoch."
+                          }
+                        },
+                        "x-apidog-orders": [
+                          "avif",
+                          "png",
+                          "jpeg",
+                          "gif",
+                          "webp",
+                          "jxl",
+                          "mp4",
+                          "timestamp"
+                        ],
+                        "required": [
+                          "avif",
+                          "png",
+                          "jpeg",
+                          "gif",
+                          "webp",
+                          "jxl",
+                          "mp4",
+                          "timestamp"
+                        ]
                       }
                     }
-                  }
+                  },
+                  "x-apidog-orders": [
+                    "bandwidth_consumption",
+                    "requests_count",
+                    "status_2xx",
+                    "status_4xx",
+                    "status_5xx",
+                    "avg_response_time",
+                    "cdn_hit_rate",
+                    "transformations_count",
+                    "origin_hit_rate",
+                    "avg_transformation_response_time",
+                    "content_type"
+                  ]
                 }
               }
             }
@@ -9902,14 +10283,11 @@
         "tags": [
           "Image Sources"
         ],
-        "x-stoplight": {
-          "id": "qvi8qr8h8ntr7"
-        },
         "x-codeSamples": [
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst analytics = await client.imageSources.analytics({\n  metrics: [],\n  date_range: {},\n});\n\nconsole.log(analytics);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst analytics = await client.imageSources.analytics({\n  metrics: [],\n  date_range: {},\n  group_by: 'daily',\n});\n\nconsole.log(analytics);"
           }
         ]
       }
