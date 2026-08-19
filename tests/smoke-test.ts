@@ -168,7 +168,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/assets/{asset_ID}/audio/upload',
     run: async () => {
-      await client.videoAssets.upload3('assetId');
+      const upload3 = await client.videoAssets.upload3('assetId');
     },
   },
 

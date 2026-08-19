@@ -30,6 +30,7 @@ export type {
   VideoAssetUploadSubtitleCompletionParams,
   VideoAssetUploadSubtitleCompletionResponse,
   VideoAssetUpload3Params,
+  VideoAssetUpload3Response,
   VideoAssetUploadAudioCompletionParams,
   VideoAssetUploadAudioCompletionResponse,
   VideoAssetCreateUpdateChapterParams,
