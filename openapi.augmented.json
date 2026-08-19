@@ -2718,7 +2718,7 @@
       "post": {
         "summary": "Update thumbnail from video",
         "description": "Select frame from video to use as thumbnail.",
-        "operationId": "select-from-video",
+        "operationId": "thumbnail-select",
         "parameters": [
           {
             "name": "asset_id",
@@ -2827,7 +2827,7 @@
       "post": {
         "summary": "Update thumbnail via upload",
         "description": "Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.\n\nHere is the sample curl request.\n\n```bash\ncurl --location --request PUT '<upload_url>' \\\n--data '<YOUR_FILE_PATH>'\n```",
-        "operationId": "select-from-image-file",
+        "operationId": "thumbnail-upload",
         "parameters": [
           {
             "name": "asset_ID",
@@ -3464,9 +3464,9 @@
     },
     "/video/analytics": {
       "post": {
-        "summary": "Video Analytics",
+        "summary": "Video Usage Analytics",
         "description": "This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption",
-        "operationId": "video-analytics",
+        "operationId": "get-details",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3659,9 +3659,9 @@
     },
     "/video/streaming-duration": {
       "get": {
-        "summary": "Streaming Duration",
+        "summary": "Top Streamed Assets",
         "description": "This endpoint lists top streamed assets in a video collection",
-        "operationId": "streaming-duration",
+        "operationId": "top-assets",
         "parameters": [
           {
             "name": "start_at",
@@ -3669,7 +3669,10 @@
             "description": "Date string in \"yyyy-mm-dd\" format",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "examples": [
+                "2026-06-21"
+              ]
             }
           },
           {
@@ -3678,7 +3681,10 @@
             "description": "Date string in \"yyyy-mm-dd\" format",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "examples": [
+                "2026-06-30"
+              ]
             }
           },
           {
@@ -3694,7 +3700,8 @@
             "description": "Page number of the response.",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "1"
             }
           },
           {
@@ -3835,16 +3842,16 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst streamingDuration = await client.videoUsageAnalytics.streamingDuration({\n  start_at: 'startAt',\n  end_at: 'endAt',\n  page_size: '1000',\n});\n\nconsole.log(streamingDuration);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst streamingDuration = await client.videoUsageAnalytics.streamingDuration({\n  start_at: '2026-06-21',\n  end_at: '2026-06-30',\n  page: '1',\n  page_size: '1000',\n});\n\nconsole.log(streamingDuration);"
           }
         ]
       }
     },
     "/video/assets/{asset_id}/multipartupload/{part_number}/sign": {
       "get": {
-        "summary": "Single Part",
-        "description": "Use this endpoint to retrieve pre-signed upload URL for each part.",
-        "operationId": "sign-part",
+        "summary": "Get Part Upload URL",
+        "description": "Use this endpoint to retrieve a pre-signed upload URL for the given part number.",
+        "operationId": "get-part-url",
         "parameters": [
           {
             "name": "asset_id",
@@ -6008,7 +6015,7 @@
       "post": {
         "summary": "Add asset to playlist",
         "description": "This operation adds a single asset or a list of assets to a playlist.",
-        "operationId": "add-asset-to-playlist",
+        "operationId": "add-asset-playlist",
         "parameters": [
           {
             "name": "playlist_id",
@@ -6160,7 +6167,7 @@
       "delete": {
         "summary": "Remove asset from playlist",
         "description": "Removed an asset or list of assets from a given playlist.",
-        "operationId": "remove-asset-from-playlist",
+        "operationId": "remove-asset-playlist",
         "parameters": [
           {
             "name": "playlist_id",
@@ -6645,7 +6652,7 @@
             "required": true
           }
         ],
-        "operationId": "delete_video-playlist-playlist-id",
+        "operationId": "delete-playlist",
         "tags": [
           "Video Playlists"
         ],
@@ -6916,7 +6923,7 @@
       "post": {
         "summary": "Arrange Videos In Playlist",
         "description": "Reorder videos inside a playlist either by moving a single asset to a position or by sorting the playlist by title or created date.",
-        "operationId": "reorder-playlist-assets-2",
+        "operationId": "reorder-asset-playlist",
         "parameters": [
           {
             "name": "playlist_id",
@@ -11073,8 +11080,8 @@
     "/video/asset/recover": {
       "post": {
         "summary": "Recover Deleted Asset",
-        "description": "Recovers asset from the recycle bin.",
-        "operationId": "post_videoassetrecover",
+        "description": "Recovers a deleted asset from the recycle bin.",
+        "operationId": "recover",
         "responses": {
           "200": {
             "description": "",
@@ -11204,7 +11211,7 @@
       "post": {
         "summary": "Upload Live Thumbnails",
         "description": "Generate presigned upload URLs for live stream thumbnails. Supported thumbnail states are `preparing`, `disconnected`, and `end`.",
-        "operationId": "upload-live-asset-thumbnails",
+        "operationId": "thumbnail-upload-live",
         "requestBody": {
           "content": {
             "application/json": {
@@ -13710,7 +13717,7 @@
       "post": {
         "summary": "Create Folder",
         "description": "Create a folder inside a video workspace. Optionally provide `parent_id` to create a nested folder.",
-        "operationId": "create-folder-1",
+        "operationId": "create-folder",
         "parameters": [
           {
             "name": "workspace_id",
@@ -14720,7 +14727,7 @@
       "post": {
         "summary": "Remove Assets From Folder",
         "description": "Remove one or more assets from their current folder assignment inside the workspace.",
-        "operationId": "remove-assets-from-folder",
+        "operationId": "remove-assets-folder",
         "parameters": [
           {
             "name": "workspace_id",
@@ -14850,7 +14857,7 @@
       "get": {
         "summary": "List Assets",
         "description": "List folders and assets for a workspace in a single response. Use `parent_id` to browse a specific folder, or filters like `title`, `status`, and `playlist_id` to search assets.",
-        "operationId": "list-workspace-content",
+        "operationId": "list-assets",
         "parameters": [
           {
             "name": "workspace_id",
@@ -15777,7 +15784,7 @@
       "get": {
         "summary": "List Assets",
         "description": "[Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.",
-        "operationId": "list-assets",
+        "operationId": "list-assets-deprecated",
         "parameters": [
           {
             "name": "status",

@@ -248,8 +248,9 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     path: '/video/streaming-duration',
     run: async () => {
       const streamingDuration = await client.videoUsageAnalytics.streamingDuration({
-        start_at: 'startAt',
-        end_at: 'endAt',
+        start_at: '2026-06-21',
+        end_at: '2026-06-30',
+        page: '1',
         page_size: '1000',
       });
     },

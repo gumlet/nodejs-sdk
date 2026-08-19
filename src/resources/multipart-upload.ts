@@ -7,7 +7,7 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class MultipartUpload extends APIResource {
   /**
-   * Use this endpoint to retrieve pre-signed upload URL for each part.
+   * Use this endpoint to retrieve a pre-signed upload URL for the given part number.
    *
    * @param {string} partNumber - Part number of multiple parts of the original video which you you are uploading
    * @param {MultipartUploadSignPartParams} params - The parameters to send with the request.

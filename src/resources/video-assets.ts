@@ -302,7 +302,7 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Recovers asset from the recycle bin.
+   * Recovers a deleted asset from the recycle bin.
    *
    * @param {VideoAssetPostVideoassetrecoverParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.

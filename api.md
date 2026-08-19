@@ -21,10 +21,10 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [List Assets](#list-assets)
   - [List Assets](#list-assets-1)
 - [`VideoUsageAnalytics`](#videousageanalytics)
-  - [Video Analytics](#video-analytics)
-  - [Streaming Duration](#streaming-duration)
+  - [Video Usage Analytics](#video-usage-analytics)
+  - [Top Streamed Assets](#top-streamed-assets)
 - [`MultipartUpload`](#multipartupload)
-  - [Single Part](#single-part)
+  - [Get Part Upload URL](#get-part-upload-url)
   - [Complete Multipart Upload](#complete-multipart-upload)
 - [`VideoProfiles`](#videoprofiles)
   - [Create Profile](#create-profile)
@@ -306,7 +306,7 @@ const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetI
 
 ### Recover Deleted Asset
 
-Recovers asset from the recycle bin.
+Recovers a deleted asset from the recycle bin.
 
 | Direction | Type |
 | --- | --- |
@@ -353,7 +353,7 @@ const list = await client.videoAssets.list('workspaceId', {
 
 ## `VideoUsageAnalytics`
 
-### Video Analytics
+### Video Usage Analytics
 
 This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption
 
@@ -371,7 +371,7 @@ const create = await client.videoUsageAnalytics.create({
 });
 ```
 
-### Streaming Duration
+### Top Streamed Assets
 
 This endpoint lists top streamed assets in a video collection
 
@@ -382,17 +382,18 @@ This endpoint lists top streamed assets in a video collection
 
 ```ts
 const streamingDuration = await client.videoUsageAnalytics.streamingDuration({
-  start_at: 'startAt',
-  end_at: 'endAt',
+  start_at: '2026-06-21',
+  end_at: '2026-06-30',
+  page: '1',
   page_size: '1000',
 });
 ```
 
 ## `MultipartUpload`
 
-### Single Part
+### Get Part Upload URL
 
-Use this endpoint to retrieve pre-signed upload URL for each part.
+Use this endpoint to retrieve a pre-signed upload URL for the given part number.
 
 | Direction | Type |
 | --- | --- |
