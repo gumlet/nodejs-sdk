@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.5](https://github.com/gumlet/nodejs-sdk/compare/v1.0.4...v1.0.5) (2026-08-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Renamed SDK from `Gumlet` to `GumletPteLtd`.
+
+### Features
+
+* **api:** update SDK name ([58ba716](https://github.com/gumlet/nodejs-sdk/commit/58ba7165414ecf596cdd01ef524464c84e203861))
+
+
+### Chores
+
+* release 1.0.5 ([85af2f3](https://github.com/gumlet/nodejs-sdk/commit/85af2f343305cb06b634fd21661ff5ac316d748b))
+
 ## [1.0.4](https://github.com/gumlet/nodejs-sdk/compare/v1.0.2...v1.0.4) (2026-08-19)
 
 
