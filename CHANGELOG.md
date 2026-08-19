@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.4](https://github.com/gumlet/nodejs-sdk/compare/v1.0.2...v1.0.4) (2026-08-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Response content type of `imageSources.retrieve` changed from `none` to `application/json`.
+
+### Features
+
+* **api:** update response of imageSources.retrieve (+8 more changes) ([c50a08a](https://github.com/gumlet/nodejs-sdk/commit/c50a08aa55ad0e7afa0c12fcbffae71124de2a15))
+
+
+### Chores
+
+* release 1.0.4 ([33a1260](https://github.com/gumlet/nodejs-sdk/commit/33a12608a225562e483dbdeccd6554dbad00a686))
+
 ## [1.0.2](https://github.com/gumlet/nodejs-sdk/compare/v1.0.1...v1.0.2) (2026-08-18)
 
 
