@@ -1,6 +1,6 @@
 {
-  "name": "GumletPteLtd",
-  "slug": "gumletPteLtd",
+  "name": "Gumlet",
+  "slug": "gumlet",
   "generatorVersion": "0.27.0",
   "servers": [
     "https://api.gumlet.com/v1"
