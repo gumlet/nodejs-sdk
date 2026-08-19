@@ -3151,7 +3151,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');\n\nconsole.log(subtitleUploadComplete);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');\n\nconsole.log(completeSubtitleUpload);"
           }
         ]
       }
@@ -11141,7 +11141,7 @@
     "/video/live/assets/{live_asset_id}/start": {
       "post": {
         "description": "Start a live stream.",
-        "operationId": "post_videoliveassets:live_asset_id",
+        "operationId": "start-live",
         "responses": {
           "200": {
             "description": "",
@@ -11202,7 +11202,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.liveStreamAssets.postVideoliveassetsID('liveAssetId');"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.liveStreamAssets.start('liveAssetId');"
           }
         ]
       }

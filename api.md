@@ -60,7 +60,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Delete Live Asset](#delete-live-asset)
   - [Complete Live Stream](#complete-live-stream)
   - [Filter Live Assets](#filter-live-assets)
-  - [`postVideoliveassetsId`](#postvideoliveassetsid)
+  - [`start`](#start)
   - [Upload Live Thumbnails](#upload-live-thumbnails)
   - [Get Live Asset Status History](#get-live-asset-status-history)
 - [`VideoWorkspaces`](#videoworkspaces)
@@ -257,11 +257,11 @@ Once that is done, calling this initiates the process to actually add the subtit
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetSubtitleUploadCompleteParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetSubtitleUploadCompleteResponse`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetCompleteSubtitleUploadParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetCompleteSubtitleUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');
+const completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');
 ```
 
 ### Add Audio
@@ -840,12 +840,12 @@ This endpoint lists live assets on the basis of `status` for the given `live_sou
 const filter = await client.liveStreamAssets.filter('liveSourceId');
 ```
 
-### `postVideoliveassetsId`
+### `start`
 
 Start a live stream.
 
 ```ts
-await client.liveStreamAssets.postVideoliveassetsID('liveAssetId');
+await client.liveStreamAssets.start('liveAssetId');
 ```
 
 ### Upload Live Thumbnails

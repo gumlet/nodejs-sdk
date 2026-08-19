@@ -214,20 +214,20 @@ export class VideoAssets extends APIResource {
    * Once that is done, calling this initiates the process to actually add the subtitle to the video.
    *
    * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetSubtitleUploadCompleteParams} [body] - The request body to send.
+   * @param {VideoAssetCompleteSubtitleUploadParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetSubtitleUploadCompleteResponse>} 200
+   * @returns {APIPromise<VideoAssetCompleteSubtitleUploadResponse>} 200
    *
    * @example
    * ```ts
-   * const subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');
+   * const completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');
    * ```
    */
-  subtitleUploadComplete(
+  completeSubtitleUpload(
     assetID: string,
-    body: VideoAssetSubtitleUploadCompleteParams | null | undefined = {},
+    body: VideoAssetCompleteSubtitleUploadParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<VideoAssetSubtitleUploadCompleteResponse> {
+  ): APIPromise<VideoAssetCompleteSubtitleUploadResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/subtitle/upload/event`, {
       body,
       ...options,
@@ -1568,11 +1568,11 @@ export namespace VideoAssetUpload2Response {
   }
 }
 
-export interface VideoAssetSubtitleUploadCompleteParams {
-  upload_responses?: Array<VideoAssetSubtitleUploadCompleteParams.UploadResponse>;
+export interface VideoAssetCompleteSubtitleUploadParams {
+  upload_responses?: Array<VideoAssetCompleteSubtitleUploadParams.UploadResponse>;
 }
 
-export namespace VideoAssetSubtitleUploadCompleteParams {
+export namespace VideoAssetCompleteSubtitleUploadParams {
   export interface UploadResponse {
     /**
      * Language Code for uploaded .srt or .vtt file.
@@ -1585,7 +1585,7 @@ export namespace VideoAssetSubtitleUploadCompleteParams {
   }
 }
 
-export type VideoAssetSubtitleUploadCompleteResponse = Record<string, unknown>;
+export type VideoAssetCompleteSubtitleUploadResponse = Record<string, unknown>;
 
 export interface VideoAssetUpload3Params {
   /**
@@ -2013,7 +2013,7 @@ export declare namespace VideoAssets {
     type VideoAssetThumbnailSelectResponse as VideoAssetThumbnailSelectResponse,
     type VideoAssetThumbnailUploadResponse as VideoAssetThumbnailUploadResponse,
     type VideoAssetUpload2Response as VideoAssetUpload2Response,
-    type VideoAssetSubtitleUploadCompleteResponse as VideoAssetSubtitleUploadCompleteResponse,
+    type VideoAssetCompleteSubtitleUploadResponse as VideoAssetCompleteSubtitleUploadResponse,
     type VideoAssetUpload3Response as VideoAssetUpload3Response,
     type VideoAssetCompleteAudioUploadResponse as VideoAssetCompleteAudioUploadResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
@@ -2024,7 +2024,7 @@ export declare namespace VideoAssets {
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
     type VideoAssetThumbnailSelectParams as VideoAssetThumbnailSelectParams,
     type VideoAssetUpload2Params as VideoAssetUpload2Params,
-    type VideoAssetSubtitleUploadCompleteParams as VideoAssetSubtitleUploadCompleteParams,
+    type VideoAssetCompleteSubtitleUploadParams as VideoAssetCompleteSubtitleUploadParams,
     type VideoAssetUpload3Params as VideoAssetUpload3Params,
     type VideoAssetCompleteAudioUploadParams as VideoAssetCompleteAudioUploadParams,
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
