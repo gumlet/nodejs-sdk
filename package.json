@@ -1,8 +1,15 @@
 {
+<<<<<<< HEAD
   "name": "@gumlet/node-sdk",
   "version": "1.0.10",
   "description": "Gumlet REST APIs",
   "author": "Gumlet Pte. Ltd.",
+=======
+  "name": "@gumlet/nodejs-sdk",
+  "version": "0.1.0",
+  "description": "Gumlet REST APIs.",
+  "author": "Gumlet",
+>>>>>>> 8cfa38550946b69af7b97ecf4c4c2c4fbe43b0ab
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gumlet/nodejs-sdk.git"

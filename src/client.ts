@@ -252,12 +252,12 @@ export interface ClientOptions {
   logger?: Logger | undefined;
 }
 
-export type GumletPteLtdOptions = ClientOptions;
+export type GumletOptions = ClientOptions;
 
 /**
- * API Client for interfacing with the GumletPteLtd API.
+ * API Client for interfacing with the Gumlet API.
  */
-export class GumletPteLtd {
+export class Gumlet {
   apiKey: string | AuthTokenProvider;
 
   baseURL: string;
@@ -274,7 +274,7 @@ export class GumletPteLtd {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the GumletPteLtd API.
+   * API Client for interfacing with the Gumlet API.
    *
    * @param {string | AuthTokenProvider | undefined} [opts.apiKey=process.env["API_KEY"] ?? undefined]
    * @param {string} [opts.baseURL=process.env["GUMLET_BASE_URL"] ?? https://api.gumlet.com/v1] - Override the default base URL for the API.
@@ -291,8 +291,8 @@ export class GumletPteLtd {
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.GumletPteLtdError(
-        "The API_KEY environment variable is missing or empty; either provide it, or instantiate the GumletPteLtd client with an apiKey option, like new GumletPteLtd({ apiKey: 'My API Key' }).",
+      throw new Errors.GumletError(
+        "The API_KEY environment variable is missing or empty; either provide it, or instantiate the Gumlet client with an apiKey option, like new Gumlet({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -304,7 +304,7 @@ export class GumletPteLtd {
     const baseURLOverridden = baseURL !== null && baseURL !== undefined && baseURL !== '';
     const defaultBaseURL = 'https://api.gumlet.com/v1';
     this.baseURL = options.baseURL || defaultBaseURL;
-    this.timeout = options.timeout ?? GumletPteLtd.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? Gumlet.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
@@ -927,8 +927,7 @@ export class GumletPteLtd {
   ): Promise<string | undefined> {
     if (value == null) return undefined;
     const token = typeof value === 'function' ? await value() : value;
-    if (!token)
-      throw new Errors.GumletPteLtdError(`Expected '${optionName}' to resolve to a non-empty string.`);
+    if (!token) throw new Errors.GumletError(`Expected '${optionName}' to resolve to a non-empty string.`);
     return token;
   }
 
@@ -939,14 +938,14 @@ export class GumletPteLtd {
     if (value == null) return undefined;
     const token = typeof value === 'function' ? value() : value;
     if (typeof token !== 'string' || !token)
-      throw new Errors.GumletPteLtdError(`Expected '${optionName}' to resolve to a non-empty string.`);
+      throw new Errors.GumletError(`Expected '${optionName}' to resolve to a non-empty string.`);
     return token;
   }
 
-  static GumletPteLtd = this;
+  static Gumlet = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static GumletPteLtdError = Errors.GumletPteLtdError;
+  static GumletError = Errors.GumletError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -976,20 +975,20 @@ export class GumletPteLtd {
   dataAPI: DataAPI = new DataAPI(this);
 }
 
-GumletPteLtd.VideoAssets = VideoAssets;
-GumletPteLtd.VideoUsageAnalytics = VideoUsageAnalytics;
-GumletPteLtd.MultipartUpload = MultipartUpload;
-GumletPteLtd.VideoProfiles = VideoProfiles;
-GumletPteLtd.VideoPlaylists = VideoPlaylists;
-GumletPteLtd.WebhookAPIs = WebhookAPIs;
-GumletPteLtd.ImageSources = ImageSources;
-GumletPteLtd.LiveStreamAssets = LiveStreamAssets;
-GumletPteLtd.VideoWorkspaces = VideoWorkspaces;
-GumletPteLtd.Folders = Folders;
-GumletPteLtd.ChannelViewers = ChannelViewers;
-GumletPteLtd.DataAPI = DataAPI;
+Gumlet.VideoAssets = VideoAssets;
+Gumlet.VideoUsageAnalytics = VideoUsageAnalytics;
+Gumlet.MultipartUpload = MultipartUpload;
+Gumlet.VideoProfiles = VideoProfiles;
+Gumlet.VideoPlaylists = VideoPlaylists;
+Gumlet.WebhookAPIs = WebhookAPIs;
+Gumlet.ImageSources = ImageSources;
+Gumlet.LiveStreamAssets = LiveStreamAssets;
+Gumlet.VideoWorkspaces = VideoWorkspaces;
+Gumlet.Folders = Folders;
+Gumlet.ChannelViewers = ChannelViewers;
+Gumlet.DataAPI = DataAPI;
 
-export declare namespace GumletPteLtd {
+export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
   export {
     VideoAssets as VideoAssets,

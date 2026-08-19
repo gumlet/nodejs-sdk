@@ -1,6 +1,6 @@
-# Gumlet Pte. Ltd.
+# Gumlet
 
-This library provides convenient access to the Gumlet Pte. Ltd. REST API from TypeScript or JavaScript.
+This library provides convenient access to the Gumlet REST API from TypeScript or JavaScript.
 
 The full API of this library can be found in [api.md](./api.md).
 
@@ -25,7 +25,7 @@ The full API of this library can be found in [api.md](./api.md).
 ## Installation
 
 ```sh
-npm install @gumlet/node-sdk
+npm install @gumlet/nodejs-sdk
 ```
 
 <br />
@@ -33,9 +33,9 @@ npm install @gumlet/node-sdk
 ## Usage
 
 ```ts
-import GumletPteLtd from '@gumlet/node-sdk';
+import Gumlet from '@gumlet/nodejs-sdk';
 
-const client = new GumletPteLtd({
+const client = new Gumlet({
   apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 
@@ -93,7 +93,7 @@ Declared schemes:
 Non-success responses throw generated API errors. Error objects expose status, headers, response body, and request metadata where the target runtime supports it.
 
 ```ts
-import { APIError } from '@gumlet/node-sdk';
+import { APIError } from '@gumlet/nodejs-sdk';
 
 try {
   const create = await client.videoAssets.create({
@@ -138,9 +138,9 @@ Documented error statuses: `400`, `401`, `403`, `404`, `4XX`.
 Configure the generated client by setting any of these options when you create it.
 
 ```ts
-import GumletPteLtd from '@gumlet/node-sdk';
+import Gumlet from '@gumlet/nodejs-sdk';
 
-const client = new GumletPteLtd({
+const client = new Gumlet({
   timeout: 60000,
   maxRetries: 2,
   logLevel: 'debug',
