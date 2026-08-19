@@ -1,11 +1,11 @@
 ---
-name: gumlet-typescript-sdk
-description: "TypeScript SDK for Gumlet API. Use when writing TypeScript code that calls Gumlet API with the @gumlet/node-sdk package: installing it, constructing and authenticating the client, and calling API operations."
+name: gumlet-pte-ltd-typescript-sdk
+description: "TypeScript SDK for Gumlet Pte. Ltd. API. Use when writing TypeScript code that calls Gumlet Pte. Ltd. API with the @gumlet/node-sdk package: installing it, constructing and authenticating the client, and calling API operations."
 ---
 
-# Gumlet TypeScript SDK
+# Gumlet Pte. Ltd. TypeScript SDK
 
-Generated TypeScript client for Gumlet API, published as `@gumlet/node-sdk`. Use the generated client instead of hand-writing HTTP requests.
+Generated TypeScript client for Gumlet Pte. Ltd. API, published as `@gumlet/node-sdk`. Use the generated client instead of hand-writing HTTP requests.
 
 ## Install
 
@@ -16,9 +16,9 @@ npm install @gumlet/node-sdk
 ## Client setup and authentication
 
 ```ts
-import Gumlet from '@gumlet/node-sdk';
+import GumletPteLtd from '@gumlet/node-sdk';
 
-const client = new Gumlet({
+const client = new GumletPteLtd({
   apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 ```
@@ -30,9 +30,9 @@ Provide credentials using the options below. Environment variables are read auto
 ## Calling operations
 
 ```ts
-import Gumlet from '@gumlet/node-sdk';
+import GumletPteLtd from '@gumlet/node-sdk';
 
-const client = new Gumlet({
+const client = new GumletPteLtd({
   apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 

@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
 import { hasOwn } from './values';
-import { type Gumlet } from '../../client';
+import { type GumletPteLtd } from '../../client';
 import { RequestOptions } from '../request-options';
 
 type LogFn = (message: string, ...rest: unknown[]) => void;
@@ -24,7 +24,7 @@ const levelNumbers = {
 export const parseLogLevel = (
   maybeLevel: string | undefined,
   sourceName: string,
-  client: Gumlet,
+  client: GumletPteLtd,
 ): LogLevel | undefined => {
   if (!maybeLevel) {
     return undefined;
@@ -60,7 +60,7 @@ const noopLogger = {
 
 let cachedLoggers = /* @__PURE__ */ new WeakMap<Logger, [LogLevel, Logger]>();
 
-export function loggerFor(client: Gumlet): Logger {
+export function loggerFor(client: GumletPteLtd): Logger {
   const logger = client.logger;
   const logLevel = client.logLevel ?? 'off';
   if (!logger) {

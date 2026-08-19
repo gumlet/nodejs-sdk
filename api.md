@@ -1,4 +1,4 @@
-# Gumlet TypeScript API
+# Gumlet Pte. Ltd. TypeScript API
 
 Complete reference of every operation, grouped by resource. See [the README](./README.md) for usage and configuration.
 
@@ -87,9 +87,9 @@ Complete reference of every operation, grouped by resource. See [the README](./R
 ## Setup
 
 ```ts
-import Gumlet from '@gumlet/node-sdk';
+import GumletPteLtd from '@gumlet/node-sdk';
 
-const client = new Gumlet({
+const client = new GumletPteLtd({
   apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 ```
