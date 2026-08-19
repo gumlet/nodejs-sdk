@@ -12,9 +12,9 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Update Asset](#update-asset)
   - [Update thumbnail from video](#update-thumbnail-from-video)
   - [Update thumbnail via upload](#update-thumbnail-via-upload)
-  - [Upload Subtitle](#upload-subtitle)
+  - [Subtitle Upload](#subtitle-upload)
   - [Subtitle Upload Complete](#subtitle-upload-complete)
-  - [Upload Audio](#upload-audio)
+  - [Audio Upload](#audio-upload)
   - [Complete Audio Upload](#complete-audio-upload)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
   - [Recover Deleted Asset](#recover-deleted-asset)
@@ -237,7 +237,7 @@ curl --location --request PUT '<upload_url>' \
 const thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');
 ```
 
-### Upload Subtitle
+### Subtitle Upload
 
 Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
 
@@ -263,7 +263,7 @@ This API must be called after uploading subtitles; the call gives you URLs to up
 const subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');
 ```
 
-### Upload Audio
+### Audio Upload
 
 Upload any audio file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
 
