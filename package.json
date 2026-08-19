@@ -1,7 +1,12 @@
 {
   "name": "@gumlet/nodejs-sdk",
+<<<<<<< HEAD
   "version": "1.0.1",
   "description": "Gumlet REST APIs.",
+=======
+  "version": "0.1.0",
+  "description": "Gumlet helps developers deliver online video and images. This API encompasses Gumlet Video, Image and Video Analytics functionality to help you build your products better and faster than ever before.",
+>>>>>>> 1e004adc57128e597c5d571642fb84d296223106
   "author": "Gumlet",
   "repository": {
     "type": "git",
