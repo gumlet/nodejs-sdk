@@ -1614,7 +1614,7 @@
       "get": {
         "summary": "Asset Details",
         "description": "This endpoint retrieves the details of an asset that has previously been created.",
-        "operationId": "get-asset-status",
+        "operationId": "get-asset-details",
         "parameters": [
           {
             "name": "asset_id",
@@ -3851,7 +3851,7 @@
       "get": {
         "summary": "Get Part Upload URL",
         "description": "Use this endpoint to retrieve a pre-signed upload URL for the given part number.",
-        "operationId": "get-part-url",
+        "operationId": "retrieve-part-url",
         "parameters": [
           {
             "name": "asset_id",
