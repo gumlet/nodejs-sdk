@@ -3152,7 +3152,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst uploadSubtitleCompletion = await client.videoAssets.uploadSubtitleCompletion('assetId');\n\nconsole.log(uploadSubtitleCompletion);"
+            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');\n\nconsole.log(subtitleUploadComplete);"
           }
         ]
       }
@@ -3359,7 +3359,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst uploadAudioCompletion = await client.videoAssets.uploadAudioCompletion('assetId');\n\nconsole.log(uploadAudioCompletion);"
+            "source": "import GumletPteLtd from '@gumlet/node-sdk';\n\nconst client = new GumletPteLtd({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst completeAudioUpload = await client.videoAssets.completeAudioUpload('assetId');\n\nconsole.log(completeAudioUpload);"
           }
         ]
       }

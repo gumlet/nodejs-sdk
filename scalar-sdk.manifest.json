@@ -1069,8 +1069,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "uploadSubtitleCompletion",
-      "publicOperation": "uploadSubtitleCompletion",
+      "operation": "subtitleUploadComplete",
+      "publicOperation": "subtitleUploadComplete",
       "deprecated": false,
       "method": "POST",
       "path": "/video/assets/{asset_ID}/subtitle/upload/event",
@@ -1110,7 +1110,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetUploadSubtitleCompletionParams"
+        "publicName": "VideoAssetSubtitleUploadCompleteParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -1253,8 +1253,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "uploadAudioCompletion",
-      "publicOperation": "uploadAudioCompletion",
+      "operation": "completeAudioUpload",
+      "publicOperation": "completeAudioUpload",
       "deprecated": false,
       "method": "POST",
       "path": "/video/assets/{asset_ID}/audio/upload/event",
@@ -1294,7 +1294,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetUploadAudioCompletionParams"
+        "publicName": "VideoAssetCompleteAudioUploadParams"
       },
       "requestBody": {
         "contentType": "application/json",
