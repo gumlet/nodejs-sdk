@@ -687,8 +687,12 @@ const list = await client.imageSources.list();
 
 Get all details about image source.
 
+| Direction | Type |
+| --- | --- |
+| Response | [`ImageSourceRetrieveResponse`](./src/resources/image-sources.ts) |
+
 ```ts
-await client.imageSources.retrieve('imageSourceId');
+const retrieve = await client.imageSources.retrieve('imageSourceId');
 ```
 
 ### Update Source

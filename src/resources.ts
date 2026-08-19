@@ -76,6 +76,7 @@ export type {
   ImageSourceCreateParams,
   ImageSourceCreateResponse,
   ImageSourceListResponse,
+  ImageSourceRetrieveResponse,
   ImageSourceUpdateParams,
   ImageSourceUpdateResponse,
   ImageSourceDeleteResponse,

@@ -47,17 +47,15 @@ export class ImageSources extends APIResource {
    *
    * @param {string} imageSourceID - Image source id. You can get it on Gumlet dashboard or using list sources API endpoint.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ImageSourceRetrieveResponse>}
    *
    * @example
    * ```ts
-   * await client.imageSources.retrieve('imageSourceId');
+   * const retrieve = await client.imageSources.retrieve('imageSourceId');
    * ```
    */
-  retrieve(imageSourceID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.get(__scalarPath`/image/sources/${imageSourceID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  retrieve(imageSourceID: string, options?: RequestOptions): APIPromise<ImageSourceRetrieveResponse> {
+    return this._client.get(__scalarPath`/image/sources/${imageSourceID}`, options);
   }
 
   /**
@@ -498,6 +496,149 @@ export namespace ImageSourceListResponse {
   }
 }
 
+export interface ImageSourceRetrieveResponse {
+  id?: string;
+  namespace?: string;
+  type?: string;
+  cdn_type?: string;
+  cdn_cache_time?: number;
+  canonical_url?: boolean;
+  browser_cache_time?: number;
+  is_cloudfront?: boolean;
+  created_at?: string;
+  updated_at?: string;
+  /**
+   * This is a required field if source type is webfolder.
+   */
+  webfolder?: ImageSourceRetrieveResponse.Webfolder;
+  /**
+   * This is a required field if source type is aws.
+   */
+  aws?: ImageSourceRetrieveResponse.Aws;
+  /**
+   * This is a required field if source type is proxy.
+   */
+  proxy?: ImageSourceRetrieveResponse.Proxy;
+  /**
+   * This is a required field if source type is gcs.
+   */
+  gcs?: ImageSourceRetrieveResponse.Gcs;
+  /**
+   * This is a required field if source type is dostorage.
+   */
+  dostorage?: ImageSourceRetrieveResponse.Dostorage;
+  /**
+   * This is a required field if source type is wasabi.
+   */
+  wasabi?: ImageSourceRetrieveResponse.Wasabi;
+  /**
+   * This is a required field if source type is linode.
+   */
+  linode?: ImageSourceRetrieveResponse.Linode;
+  /**
+   * This is a required field if source type is backblaze.
+   */
+  backblaze?: ImageSourceRetrieveResponse.Backblaze;
+  /**
+   * This is a required field if source type is cloudflare.
+   */
+  cloudflare?: ImageSourceRetrieveResponse.Cloudflare;
+  /**
+   * This is a required field if source type is cloudinary.
+   */
+  cloudinary?: ImageSourceRetrieveResponse.Cloudinary;
+  /**
+   * This is a required field if source type is azure.
+   */
+  azure?: ImageSourceRetrieveResponse.Azure;
+  default_params?: Record<string, unknown>;
+  request_headers?: Array<Record<string, unknown>>;
+  subdomain?: string;
+  is_active?: boolean;
+}
+
+export namespace ImageSourceRetrieveResponse {
+  export interface Webfolder {
+    base_url?: string;
+  }
+
+  export interface Aws {
+    bucket_name: string;
+    bucket_region: string;
+    access_key: string;
+    secret: string;
+    base_path?: string;
+    endpoint?: string;
+  }
+
+  export interface Proxy {
+    whitelisted_domains: string;
+  }
+
+  export interface Gcs {
+    bucket_name: string;
+    service_account_key: string;
+  }
+
+  export interface Dostorage {
+    bucket_name: string;
+    bucket_region: string;
+    access_key: string;
+    secret: string;
+    base_path?: string;
+  }
+
+  export interface Wasabi {
+    bucket_name: string;
+    bucket_region: string;
+    access_key: string;
+    secret: string;
+    base_path?: string;
+  }
+
+  export interface Linode {
+    bucket_name: string;
+    bucket_region: string;
+    access_key: string;
+    secret: string;
+  }
+
+  export interface Backblaze {
+    bucket_name: string;
+    access_key: string;
+    secret: string;
+    /**
+     * bucket_region or endpoint
+     */
+    bucket_region?: string;
+    /**
+     * bucket_region or endpoint
+     */
+    endpoint?: string;
+    base_path?: string;
+  }
+
+  export interface Cloudflare {
+    bucket_name: string;
+    access_key: string;
+    account_id: string;
+    secret: string;
+    base_path?: string;
+  }
+
+  export interface Cloudinary {
+    host_name: string;
+    cloud_name: string;
+  }
+
+  export interface Azure {
+    azure_account_name: string;
+    azure_container_name: string;
+    azure_shared_token: string;
+    azure_path: string;
+  }
+}
+
 export interface ImageSourceUpdateParams {
   type?:
     | 'proxy'
@@ -556,6 +697,28 @@ export interface ImageSourceUpdateParams {
    * This is a required field if source type is azure.
    */
   azure?: ImageSourceUpdateParams.Azure;
+  default_params?: Record<string, unknown>;
+  /**
+   * URL for error image to display when we get broken image from your origin.
+   */
+  error_image?: string;
+  request_headers?: Array<Record<string, unknown>>;
+  response_headers?: Array<Record<string, unknown>>;
+  temp_cname?: Array<string>;
+  /**
+   * Browser cache time in seconds. For example setting this to 3600 caches the image in browser for 3600 seconds (1 hour)
+   * @format int32
+   */
+  browser_cache_time?: number;
+  /**
+   * CDN cache time in seconds.
+   * @format int32
+   */
+  cdn_cache_time?: number;
+  /**
+   * Enable / disable source.
+   */
+  is_active?: boolean;
 }
 
 export namespace ImageSourceUpdateParams {
@@ -642,177 +805,144 @@ export namespace ImageSourceUpdateParams {
 
 export interface ImageSourceUpdateResponse {
   id?: string;
-  name?: string;
+  namespace?: string;
   type?: string;
+  cdn_type?: string;
+  cdn_cache_time?: number;
+  canonical_url?: boolean;
+  browser_cache_time?: number;
+  is_cloudfront?: boolean;
   created_at?: string;
   updated_at?: string;
-  video_protection?: ImageSourceUpdateResponse.VideoProtection;
-  player_config?: ImageSourceUpdateResponse.PlayerConfig;
-  default_profile_id?: string;
-  insight_property_id?: string;
+  /**
+   * This is a required field if source type is webfolder.
+   */
+  webfolder?: ImageSourceUpdateResponse.Webfolder;
+  /**
+   * This is a required field if source type is aws.
+   */
   aws?: ImageSourceUpdateResponse.Aws;
-  embed_details?: ImageSourceUpdateResponse.EmbedDetails;
-  folders?: Array<string>;
-  channel_settings?: ImageSourceUpdateResponse.ChannelSettings;
+  /**
+   * This is a required field if source type is proxy.
+   */
+  proxy?: ImageSourceUpdateResponse.Proxy;
+  /**
+   * This is a required field if source type is gcs.
+   */
+  gcs?: ImageSourceUpdateResponse.Gcs;
+  /**
+   * This is a required field if source type is dostorage.
+   */
+  dostorage?: ImageSourceUpdateResponse.Dostorage;
+  /**
+   * This is a required field if source type is wasabi.
+   */
+  wasabi?: ImageSourceUpdateResponse.Wasabi;
+  /**
+   * This is a required field if source type is linode.
+   */
+  linode?: ImageSourceUpdateResponse.Linode;
+  /**
+   * This is a required field if source type is backblaze.
+   */
+  backblaze?: ImageSourceUpdateResponse.Backblaze;
+  /**
+   * This is a required field if source type is cloudflare.
+   */
+  cloudflare?: ImageSourceUpdateResponse.Cloudflare;
+  /**
+   * This is a required field if source type is cloudinary.
+   */
+  cloudinary?: ImageSourceUpdateResponse.Cloudinary;
+  /**
+   * This is a required field if source type is azure.
+   */
+  azure?: ImageSourceUpdateResponse.Azure;
+  default_params?: Record<string, unknown>;
+  request_headers?: Array<Record<string, unknown>>;
+  subdomain?: string;
+  is_active?: boolean;
 }
 
 export namespace ImageSourceUpdateResponse {
-  export interface VideoProtection {
-    /**
-     * @default true
-     */
-    signed_url?: boolean;
-    signed_url_secret?: string;
-  }
-
-  export interface PlayerConfig {
-    /**
-     * @default true
-     */
-    preload?: boolean;
-    /**
-     * @default true
-     */
-    autoplay?: boolean;
-    /**
-     * @default true
-     */
-    disable_seek?: boolean;
-    /**
-     * @default true
-     */
-    disable_player_controls?: boolean;
-    /**
-     * @default true
-     */
-    powered_by_gumlet_overlay?: boolean;
-    /**
-     * @default true
-     */
-    allow_drm_protected_videos?: boolean;
-    /**
-     * @default true
-     */
-    loop?: boolean;
-    player_color?: string;
-    /**
-     * @default true
-     */
-    include_seo?: boolean;
-    /**
-     * @default true
-     */
-    subtitle_enabled?: boolean;
-    pixel_tags?: Record<string, unknown>;
-    /**
-     * @default 0
-     */
-    logo_width?: number;
-    /**
-     * @default 0
-     */
-    logo_height?: number;
-    /**
-     * @default true
-     */
-    dynamic_watermark?: boolean;
-    /**
-     * @default 0
-     */
-    watermark_font_size?: number;
-    watermark_font_color?: string;
-    watermark_bg_color?: string;
-    /**
-     * @default 0
-     */
-    watermark_interval?: number;
+  export interface Webfolder {
+    base_url?: string;
   }
 
   export interface Aws {
-    bucket_name?: string;
+    bucket_name: string;
+    bucket_region: string;
+    access_key: string;
+    secret: string;
+    base_path?: string;
+    endpoint?: string;
+  }
+
+  export interface Proxy {
+    whitelisted_domains: string;
+  }
+
+  export interface Gcs {
+    bucket_name: string;
+    service_account_key: string;
+  }
+
+  export interface Dostorage {
+    bucket_name: string;
+    bucket_region: string;
+    access_key: string;
+    secret: string;
+    base_path?: string;
+  }
+
+  export interface Wasabi {
+    bucket_name: string;
+    bucket_region: string;
+    access_key: string;
+    secret: string;
+    base_path?: string;
+  }
+
+  export interface Linode {
+    bucket_name: string;
+    bucket_region: string;
+    access_key: string;
+    secret: string;
+  }
+
+  export interface Backblaze {
+    bucket_name: string;
+    access_key: string;
+    secret: string;
+    /**
+     * bucket_region or endpoint
+     */
     bucket_region?: string;
-    access_key?: string;
-    secret?: string;
+    /**
+     * bucket_region or endpoint
+     */
+    endpoint?: string;
+    base_path?: string;
   }
 
-  export interface EmbedDetails {
-    /**
-     * @default true
-     */
-    preload?: boolean;
-    /**
-     * @default true
-     */
-    autoplay?: boolean;
-    /**
-     * @default 0
-     */
-    logo_width?: number;
-    /**
-     * @default 0
-     */
-    logo_height?: number;
-    player_color?: string;
-    /**
-     * @default true
-     */
-    is_seo?: boolean;
-    /**
-     * @default true
-     */
-    dynamic_watermark?: boolean;
-    /**
-     * @default 0
-     */
-    watermark_font_size?: number;
-    watermark_font_color?: string;
-    watermark_bg_color?: string;
-    /**
-     * @default 0
-     */
-    watermark_interval?: number;
-    /**
-     * @default true
-     */
-    disable_seek?: boolean;
-    /**
-     * @default true
-     */
-    disable_player_controls?: boolean;
-    /**
-     * @default true
-     */
-    powered_by_gumlet_overlay?: boolean;
-    /**
-     * @default true
-     */
-    allow_drm_protected_videos?: boolean;
-    pixel_tags?: Record<string, unknown>;
-    /**
-     * @default true
-     */
-    loop?: boolean;
-    /**
-     * @default true
-     */
-    subtitle_enabled?: boolean;
+  export interface Cloudflare {
+    bucket_name: string;
+    access_key: string;
+    account_id: string;
+    secret: string;
+    base_path?: string;
   }
 
-  export interface ChannelSettings {
-    title?: string;
-    /**
-     * @default true
-     */
-    active?: boolean;
-    description?: string;
-    privacy_type?: string;
-    /**
-     * @default true
-     */
-    custom_logo?: boolean;
-    logo_url?: string;
-    cname?: Array<string>;
-    temp_cname?: Array<string>;
+  export interface Cloudinary {
+    host_name: string;
+    cloud_name: string;
+  }
+
+  export interface Azure {
+    azure_account_name: string;
+    azure_container_name: string;
+    azure_shared_token: string;
+    azure_path: string;
   }
 }
 
@@ -870,6 +1000,7 @@ export declare namespace ImageSources {
   export {
     type ImageSourceCreateResponse as ImageSourceCreateResponse,
     type ImageSourceListResponse as ImageSourceListResponse,
+    type ImageSourceRetrieveResponse as ImageSourceRetrieveResponse,
     type ImageSourceUpdateResponse as ImageSourceUpdateResponse,
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
     type ImageSourceAnalyticsResponse as ImageSourceAnalyticsResponse,
