@@ -12,19 +12,19 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Update Asset](#update-asset)
   - [Update thumbnail from video](#update-thumbnail-from-video)
   - [Update thumbnail via upload](#update-thumbnail-via-upload)
-  - [Upload Subtitle](#upload-subtitle)
-  - [Subtitle Upload Complete](#subtitle-upload-complete)
-  - [Upload Audio](#upload-audio)
+  - [Add Subtitles](#add-subtitles)
+  - [Complete Subtitle Upload](#complete-subtitle-upload)
+  - [Add Audio](#add-audio)
   - [Complete Audio Upload](#complete-audio-upload)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
   - [Recover Deleted Asset](#recover-deleted-asset)
   - [List Assets](#list-assets)
   - [List Assets](#list-assets-1)
 - [`VideoUsageAnalytics`](#videousageanalytics)
-  - [Video Analytics](#video-analytics)
-  - [Streaming Duration](#streaming-duration)
+  - [Video Usage Analytics](#video-usage-analytics)
+  - [Top Streamed Assets](#top-streamed-assets)
 - [`MultipartUpload`](#multipartupload)
-  - [Single Part](#single-part)
+  - [Get Part Upload URL](#get-part-upload-url)
   - [Complete Multipart Upload](#complete-multipart-upload)
 - [`VideoProfiles`](#videoprofiles)
   - [Create Profile](#create-profile)
@@ -38,7 +38,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Add asset to playlist](#add-asset-to-playlist)
   - [Remove asset from playlist](#remove-asset-from-playlist)
   - [Update Playlist](#update-playlist)
-  - [`deleteId`](#deleteid)
+  - [`delete`](#delete)
   - [Get playlist assets](#get-playlist-assets)
   - [Arrange Videos In Playlist](#arrange-videos-in-playlist)
 - [`WebhookApis`](#webhookapis)
@@ -60,7 +60,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Delete Live Asset](#delete-live-asset)
   - [Complete Live Stream](#complete-live-stream)
   - [Filter Live Assets](#filter-live-assets)
-  - [`postVideoliveassetsId`](#postvideoliveassetsid)
+  - [`start`](#start)
   - [Upload Live Thumbnails](#upload-live-thumbnails)
   - [Get Live Asset Status History](#get-live-asset-status-history)
 - [`VideoWorkspaces`](#videoworkspaces)
@@ -176,10 +176,10 @@ This endpoint retrieves the details of an asset that has previously been created
 
 | Direction | Type |
 | --- | --- |
-| Response | [`VideoAssetRetrieveStatusResponse`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetRetrieveDetailsResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const retrieveStatus = await client.videoAssets.retrieveStatus('assetId');
+const retrieveDetails = await client.videoAssets.retrieveDetails('assetId');
 ```
 
 ### Delete Asset
@@ -211,11 +211,11 @@ Select frame from video to use as thumbnail.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetSelectFromParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetSelectFromResponse`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetThumbnailSelectParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetThumbnailSelectResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+const thumbnailSelect = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
 ```
 
 ### Update thumbnail via upload
@@ -231,54 +231,57 @@ curl --location --request PUT '<upload_url>' \
 
 | Direction | Type |
 | --- | --- |
-| Response | [`VideoAssetSelectFromImageFileResponse`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetThumbnailUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');
+const thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');
 ```
 
-### Upload Subtitle
+### Add Subtitles
 
 Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetUpload2Params`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetUpload2Response`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetSubtitleUploadParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetSubtitleUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const upload2 = await client.videoAssets.upload2('assetId');
+const subtitleUpload = await client.videoAssets.subtitleUpload('assetId');
 ```
 
-### Subtitle Upload Complete
+### Complete Subtitle Upload
 
-This API must be called after uploading subtitles; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
+This API must be called after adding subtitles; the add subtitle call gives you URLs to upload, and you complete a `PUT` request to those URLs. 
+Once that is done, calling this initiates the process to actually add the subtitle to the video.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetSubtitleUploadCompleteParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetSubtitleUploadCompleteResponse`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetCompleteSubtitleUploadParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetCompleteSubtitleUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');
+const completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');
 ```
 
-### Upload Audio
+### Add Audio
 
-Upload any audio file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
+Add any audio file to the video asset. 
+The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetUpload3Params`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetUpload3Response`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetAudioUploadParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetAudioUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const upload3 = await client.videoAssets.upload3('assetId');
+const audioUpload = await client.videoAssets.audioUpload('assetId');
 ```
 
 ### Complete Audio Upload
 
-This API must be called after uploading audio; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
+This API must be called after adding audio(s); The add audio call gives you URLs to upload, and you complete a `PUT` request to those URLs. 
+Once that is done, calling this initiates the process to actually add the subtitle to the video.
 
 | Direction | Type |
 | --- | --- |
@@ -306,14 +309,14 @@ const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetI
 
 ### Recover Deleted Asset
 
-Recovers asset from the recycle bin.
+Recovers a deleted asset from the recycle bin.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetPostVideoassetrecoverParams`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetRecoverParams`](./src/resources/video-assets.ts) |
 
 ```ts
-await client.videoAssets.postVideoassetrecover({
+await client.videoAssets.recover({
   asset_id: '',
 });
 ```
@@ -324,11 +327,11 @@ List folders and assets for a workspace in a single response. Use `parent_id` to
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetListWorkspaceContentParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetListWorkspaceContentResponse`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetListParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetListResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const listWorkspaceContent = await client.videoAssets.listWorkspaceContent('workspaceId', {
+const list = await client.videoAssets.list('workspaceId', {
   type: 'all',
   offset: 0,
   size: 20,
@@ -341,11 +344,11 @@ const listWorkspaceContent = await client.videoAssets.listWorkspaceContent('work
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetListParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetListResponse`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetListDeprecatedParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetListDeprecatedResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const list = await client.videoAssets.list('workspaceId', {
+const listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {
   sortBy: 'created_at',
   orderBy: 'desc',
 });
@@ -353,17 +356,17 @@ const list = await client.videoAssets.list('workspaceId', {
 
 ## `VideoUsageAnalytics`
 
-### Video Analytics
+### Video Usage Analytics
 
 This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoUsageAnalyticCreateParams`](./src/resources/video-usage-analytics.ts) |
-| Response | [`VideoUsageAnalyticCreateResponse`](./src/resources/video-usage-analytics.ts) |
+| Request | [`VideoUsageAnalyticRetrieveParams`](./src/resources/video-usage-analytics.ts) |
+| Response | [`VideoUsageAnalyticRetrieveResponse`](./src/resources/video-usage-analytics.ts) |
 
 ```ts
-const create = await client.videoUsageAnalytics.create({
+const retrieve = await client.videoUsageAnalytics.retrieve({
   metrics: [],
   date_range: {},
   top_assets_count: '5',
@@ -371,36 +374,37 @@ const create = await client.videoUsageAnalytics.create({
 });
 ```
 
-### Streaming Duration
+### Top Streamed Assets
 
 This endpoint lists top streamed assets in a video collection
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoUsageAnalyticStreamingDurationParams`](./src/resources/video-usage-analytics.ts) |
-| Response | [`VideoUsageAnalyticStreamingDurationResponse`](./src/resources/video-usage-analytics.ts) |
+| Request | [`VideoUsageAnalyticTopAssetsParams`](./src/resources/video-usage-analytics.ts) |
+| Response | [`VideoUsageAnalyticTopAssetsResponse`](./src/resources/video-usage-analytics.ts) |
 
 ```ts
-const streamingDuration = await client.videoUsageAnalytics.streamingDuration({
-  start_at: 'startAt',
-  end_at: 'endAt',
+const topAssets = await client.videoUsageAnalytics.topAssets({
+  start_at: '2026-06-21',
+  end_at: '2026-06-30',
+  page: '1',
   page_size: '1000',
 });
 ```
 
 ## `MultipartUpload`
 
-### Single Part
+### Get Part Upload URL
 
-Use this endpoint to retrieve pre-signed upload URL for each part.
+Use this endpoint to retrieve a pre-signed upload URL for the given part number.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`MultipartUploadSignPartParams`](./src/resources/multipart-upload.ts) |
-| Response | [`MultipartUploadSignPartResponse`](./src/resources/multipart-upload.ts) |
+| Request | [`MultipartUploadRetrievePartURLParams`](./src/resources/multipart-upload.ts) |
+| Response | [`MultipartUploadRetrievePartURLResponse`](./src/resources/multipart-upload.ts) |
 
 ```ts
-const signPart = await client.multipartUpload.signPart('partNumber', {
+const retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {
   asset_id: 'assetId',
 });
 ```
@@ -527,11 +531,11 @@ This operation adds a single asset or a list of assets to a playlist.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoPlaylistCreateAssetToParams`](./src/resources/video-playlists.ts) |
-| Response | [`VideoPlaylistCreateAssetToResponse`](./src/resources/video-playlists.ts) |
+| Request | [`VideoPlaylistCreateAssetParams`](./src/resources/video-playlists.ts) |
+| Response | [`VideoPlaylistCreateAssetResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {
+const createAsset = await client.videoPlaylists.createAsset('playlistId', {
   asset_list: [
     { asset_id: '6508790283e4d60611846790' },
     { position: 1, asset_id: '650878f883e4d6061184677d' },
@@ -548,11 +552,11 @@ Removed an asset or list of assets from a given playlist.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoPlaylistDeleteAssetFromParams`](./src/resources/video-playlists.ts) |
-| Response | [`VideoPlaylistDeleteAssetFromResponse`](./src/resources/video-playlists.ts) |
+| Request | [`VideoPlaylistDeleteAssetParams`](./src/resources/video-playlists.ts) |
+| Response | [`VideoPlaylistDeleteAssetResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const deleteAssetFrom = await client.videoPlaylists.deleteAssetFrom('playlistId', {
+const deleteAsset = await client.videoPlaylists.deleteAsset('playlistId', {
   delete_list: ['6508790783e4d606118467a3'],
 });
 ```
@@ -570,12 +574,12 @@ This endpoint allows you to update playlist name, channel visibility, or playlis
 const update = await client.videoPlaylists.update('playlistId');
 ```
 
-### `deleteId`
+### `delete`
 
 Deletes this playlist.
 
 ```ts
-await client.videoPlaylists.deleteID('playlistId');
+await client.videoPlaylists.delete('playlistId');
 ```
 
 ### Get playlist assets
@@ -601,11 +605,11 @@ Reorder videos inside a playlist either by moving a single asset to a position o
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoPlaylistReorderAssets2Params`](./src/resources/video-playlists.ts) |
-| Response | [`VideoPlaylistReorderAssets2Response`](./src/resources/video-playlists.ts) |
+| Request | [`VideoPlaylistReorderAssetParams`](./src/resources/video-playlists.ts) |
+| Response | [`VideoPlaylistReorderAssetResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const reorderAssets2 = await client.videoPlaylists.reorderAssets2('playlistId', {
+const reorderAsset = await client.videoPlaylists.reorderAsset('playlistId', {
   asset_id: '6e82bf783e88be000ab45ed2',
   page_number: 1,
   page_size: 10,
@@ -836,12 +840,12 @@ This endpoint lists live assets on the basis of `status` for the given `live_sou
 const filter = await client.liveStreamAssets.filter('liveSourceId');
 ```
 
-### `postVideoliveassetsId`
+### `start`
 
 Start a live stream.
 
 ```ts
-await client.liveStreamAssets.postVideoliveassetsID('liveAssetId');
+await client.liveStreamAssets.start('liveAssetId');
 ```
 
 ### Upload Live Thumbnails
@@ -866,10 +870,10 @@ This endpoint retrieves the history of a live video asset that has previously be
 
 | Direction | Type |
 | --- | --- |
-| Response | [`LiveStreamAssetListStatusCopyResponse`](./src/resources/live-stream-assets.ts) |
+| Response | [`LiveStreamAssetStatusHistoryResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const listStatusCopy = await client.liveStreamAssets.listStatusCopy('liveAssetId');
+const statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');
 ```
 
 ## `VideoWorkspaces`
@@ -952,11 +956,11 @@ Create a folder inside a video workspace. Optionally provide `parent_id` to crea
 
 | Direction | Type |
 | --- | --- |
-| Request | [`FolderCreate1Params`](./src/resources/folders.ts) |
-| Response | [`FolderCreate1Response`](./src/resources/folders.ts) |
+| Request | [`FolderCreateParams`](./src/resources/folders.ts) |
+| Response | [`FolderCreateResponse`](./src/resources/folders.ts) |
 
 ```ts
-const create1 = await client.folders.create1('workspaceId', { name: 'Course Assets', parent_id: null });
+const create = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });
 ```
 
 ### List Folders
@@ -1023,11 +1027,11 @@ Remove one or more assets from their current folder assignment inside the worksp
 
 | Direction | Type |
 | --- | --- |
-| Request | [`FolderDeleteAssetsFromParams`](./src/resources/folders.ts) |
-| Response | [`FolderDeleteAssetsFromResponse`](./src/resources/folders.ts) |
+| Request | [`FolderDeleteAssetsParams`](./src/resources/folders.ts) |
+| Response | [`FolderDeleteAssetsResponse`](./src/resources/folders.ts) |
 
 ```ts
-const deleteAssetsFrom = await client.folders.deleteAssetsFrom('workspaceId', {
+const deleteAssets = await client.folders.deleteAssets('workspaceId', {
   asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],
 });
 ```

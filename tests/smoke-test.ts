@@ -99,11 +99,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'retrieveStatus',
+    operation: 'retrieveDetails',
     method: 'GET',
     path: '/video/assets/{asset_id}',
     run: async () => {
-      const retrieveStatus = await client.videoAssets.retrieveStatus('assetId');
+      const retrieveDetails = await client.videoAssets.retrieveDetails('assetId');
     },
   },
 
@@ -128,47 +128,47 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'selectFrom',
+    operation: 'thumbnailSelect',
     method: 'POST',
     path: '/video/assets/{asset_id}/thumbnail-select',
     run: async () => {
-      const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+      const thumbnailSelect = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
     },
   },
 
   {
-    operation: 'selectFromImageFile',
+    operation: 'thumbnailUpload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/thumbnail',
     run: async () => {
-      const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');
+      const thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');
     },
   },
 
   {
-    operation: 'upload2',
+    operation: 'subtitleUpload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/subtitle/upload',
     run: async () => {
-      const upload2 = await client.videoAssets.upload2('assetId');
+      const subtitleUpload = await client.videoAssets.subtitleUpload('assetId');
     },
   },
 
   {
-    operation: 'subtitleUploadComplete',
+    operation: 'completeSubtitleUpload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/subtitle/upload/event',
     run: async () => {
-      const subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');
+      const completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');
     },
   },
 
   {
-    operation: 'upload3',
+    operation: 'audioUpload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/audio/upload',
     run: async () => {
-      const upload3 = await client.videoAssets.upload3('assetId');
+      const audioUpload = await client.videoAssets.audioUpload('assetId');
     },
   },
 
@@ -193,22 +193,22 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'postVideoassetrecover',
+    operation: 'recover',
     method: 'POST',
     path: '/video/asset/recover',
     run: async () => {
-      await client.videoAssets.postVideoassetrecover({
+      await client.videoAssets.recover({
         asset_id: '',
       });
     },
   },
 
   {
-    operation: 'listWorkspaceContent',
+    operation: 'list',
     method: 'GET',
     path: '/video/workspaces/{workspace_id}/list',
     run: async () => {
-      const listWorkspaceContent = await client.videoAssets.listWorkspaceContent('workspaceId', {
+      const list = await client.videoAssets.list('workspaceId', {
         type: 'all',
         offset: 0,
         size: 20,
@@ -217,11 +217,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'list',
+    operation: 'listDeprecated',
     method: 'GET',
     path: '/video/assets/list/{workspace_id}',
     run: async () => {
-      const list = await client.videoAssets.list('workspaceId', {
+      const listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {
         sortBy: 'created_at',
         orderBy: 'desc',
       });
@@ -229,11 +229,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'create',
+    operation: 'retrieve',
     method: 'POST',
     path: '/video/analytics',
     run: async () => {
-      const create = await client.videoUsageAnalytics.create({
+      const retrieve = await client.videoUsageAnalytics.retrieve({
         metrics: [],
         date_range: {},
         top_assets_count: '5',
@@ -243,24 +243,25 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'streamingDuration',
+    operation: 'topAssets',
     method: 'GET',
     path: '/video/streaming-duration',
     run: async () => {
-      const streamingDuration = await client.videoUsageAnalytics.streamingDuration({
-        start_at: 'startAt',
-        end_at: 'endAt',
+      const topAssets = await client.videoUsageAnalytics.topAssets({
+        start_at: '2026-06-21',
+        end_at: '2026-06-30',
+        page: '1',
         page_size: '1000',
       });
     },
   },
 
   {
-    operation: 'signPart',
+    operation: 'retrievePartUrl',
     method: 'GET',
     path: '/video/assets/{asset_id}/multipartupload/{part_number}/sign',
     run: async () => {
-      const signPart = await client.multipartUpload.signPart('partNumber', {
+      const retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {
         asset_id: 'assetId',
       });
     },
@@ -349,11 +350,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'createAssetTo',
+    operation: 'createAsset',
     method: 'POST',
     path: '/video/playlist/{playlist_id}/asset',
     run: async () => {
-      const createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {
+      const createAsset = await client.videoPlaylists.createAsset('playlistId', {
         asset_list: [
           { asset_id: '6508790283e4d60611846790' },
           { position: 1, asset_id: '650878f883e4d6061184677d' },
@@ -366,11 +367,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'deleteAssetFrom',
+    operation: 'deleteAsset',
     method: 'DELETE',
     path: '/video/playlist/{playlist_id}/asset',
     run: async () => {
-      const deleteAssetFrom = await client.videoPlaylists.deleteAssetFrom('playlistId', {
+      const deleteAsset = await client.videoPlaylists.deleteAsset('playlistId', {
         delete_list: ['6508790783e4d606118467a3'],
       });
     },
@@ -386,11 +387,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'deleteId',
+    operation: 'delete',
     method: 'DELETE',
     path: '/video/playlist/{playlist_id}',
     run: async () => {
-      await client.videoPlaylists.deleteID('playlistId');
+      await client.videoPlaylists.delete('playlistId');
     },
   },
 
@@ -408,11 +409,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'reorderAssets2',
+    operation: 'reorderAsset',
     method: 'POST',
     path: '/video/playlists/{playlist_id}/reorder',
     run: async () => {
-      const reorderAssets2 = await client.videoPlaylists.reorderAssets2('playlistId', {
+      const reorderAsset = await client.videoPlaylists.reorderAsset('playlistId', {
         asset_id: '6e82bf783e88be000ab45ed2',
         page_number: 1,
         page_size: 10,
@@ -583,11 +584,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'postVideoliveassetsId',
+    operation: 'start',
     method: 'POST',
     path: '/video/live/assets/{live_asset_id}/start',
     run: async () => {
-      await client.liveStreamAssets.postVideoliveassetsID('liveAssetId');
+      await client.liveStreamAssets.start('liveAssetId');
     },
   },
 
@@ -604,11 +605,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'listStatusCopy',
+    operation: 'statusHistory',
     method: 'GET',
     path: '/video/live/assets/{live_asset_id}/history',
     run: async () => {
-      const listStatusCopy = await client.liveStreamAssets.listStatusCopy('liveAssetId');
+      const statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');
     },
   },
 
@@ -665,11 +666,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'create1',
+    operation: 'create',
     method: 'POST',
     path: '/video/workspaces/{workspace_id}/folders',
     run: async () => {
-      const create1 = await client.folders.create1('workspaceId', { name: 'Course Assets', parent_id: null });
+      const create = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });
     },
   },
 
@@ -716,11 +717,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'deleteAssetsFrom',
+    operation: 'deleteAssets',
     method: 'POST',
     path: '/video/workspaces/{workspace_id}/remove-assets-from-folder',
     run: async () => {
-      const deleteAssetsFrom = await client.folders.deleteAssetsFrom('workspaceId', {
+      const deleteAssets = await client.folders.deleteAssets('workspaceId', {
         asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],
       });
     },

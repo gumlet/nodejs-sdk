@@ -1614,7 +1614,7 @@
       "get": {
         "summary": "Asset Details",
         "description": "This endpoint retrieves the details of an asset that has previously been created.",
-        "operationId": "get-asset-status",
+        "operationId": "get-asset-details",
         "parameters": [
           {
             "name": "asset_id",
@@ -2454,7 +2454,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst retrieveStatus = await client.videoAssets.retrieveStatus('assetId');\n\nconsole.log(retrieveStatus);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst retrieveDetails = await client.videoAssets.retrieveDetails('assetId');\n\nconsole.log(retrieveDetails);"
           }
         ]
       },
@@ -2718,7 +2718,7 @@
       "post": {
         "summary": "Update thumbnail from video",
         "description": "Select frame from video to use as thumbnail.",
-        "operationId": "select-from-video",
+        "operationId": "thumbnail-select",
         "parameters": [
           {
             "name": "asset_id",
@@ -2807,7 +2807,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });\n\nconsole.log(selectFrom);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst thumbnailSelect = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });\n\nconsole.log(thumbnailSelect);"
           }
         ]
       },
@@ -2827,7 +2827,7 @@
       "post": {
         "summary": "Update thumbnail via upload",
         "description": "Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.\n\nHere is the sample curl request.\n\n```bash\ncurl --location --request PUT '<upload_url>' \\\n--data '<YOUR_FILE_PATH>'\n```",
-        "operationId": "select-from-image-file",
+        "operationId": "thumbnail-upload",
         "parameters": [
           {
             "name": "asset_ID",
@@ -2905,16 +2905,16 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');\n\nconsole.log(selectFromImageFile);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');\n\nconsole.log(thumbnailUpload);"
           }
         ]
       }
     },
     "/video/assets/{asset_ID}/subtitle/upload": {
       "post": {
-        "summary": "Upload Subtitle",
+        "summary": "Add Subtitles",
         "description": "Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.",
-        "operationId": "video-asset-upload-subtitle",
+        "operationId": "start-subtitle-upload",
         "parameters": [
           {
             "name": "asset_ID",
@@ -3039,16 +3039,16 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst upload2 = await client.videoAssets.upload2('assetId');\n\nconsole.log(upload2);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst subtitleUpload = await client.videoAssets.subtitleUpload('assetId');\n\nconsole.log(subtitleUpload);"
           }
         ]
       }
     },
     "/video/assets/{asset_ID}/subtitle/upload/event": {
       "post": {
-        "summary": "Subtitle Upload Complete",
-        "description": "This API must be called after uploading subtitles; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.",
-        "operationId": "subtitle-upload-complete",
+        "summary": "Complete Subtitle Upload",
+        "description": "This API must be called after adding subtitles; the add subtitle call gives you URLs to upload, and you complete a `PUT` request to those URLs. \nOnce that is done, calling this initiates the process to actually add the subtitle to the video.",
+        "operationId": "complete-subtitle-upload",
         "parameters": [
           {
             "name": "asset_ID",
@@ -3151,16 +3151,16 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');\n\nconsole.log(subtitleUploadComplete);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');\n\nconsole.log(completeSubtitleUpload);"
           }
         ]
       }
     },
     "/video/assets/{asset_ID}/audio/upload": {
       "post": {
-        "summary": "Upload Audio",
-        "description": "Upload any audio file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.",
-        "operationId": "video-asset-upload-audio",
+        "summary": "Add Audio",
+        "description": "Add any audio file to the video asset. \nThe response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.",
+        "operationId": "start-audio-upload",
         "parameters": [
           {
             "name": "asset_ID",
@@ -3268,7 +3268,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst upload3 = await client.videoAssets.upload3('assetId');\n\nconsole.log(upload3);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst audioUpload = await client.videoAssets.audioUpload('assetId');\n\nconsole.log(audioUpload);"
           }
         ]
       }
@@ -3276,7 +3276,7 @@
     "/video/assets/{asset_ID}/audio/upload/event": {
       "post": {
         "summary": "Complete Audio Upload",
-        "description": "This API must be called after uploading audio; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.",
+        "description": "This API must be called after adding audio(s); The add audio call gives you URLs to upload, and you complete a `PUT` request to those URLs. \nOnce that is done, calling this initiates the process to actually add the subtitle to the video.",
         "operationId": "complete-audio-upload",
         "parameters": [
           {
@@ -3464,9 +3464,9 @@
     },
     "/video/analytics": {
       "post": {
-        "summary": "Video Analytics",
+        "summary": "Video Usage Analytics",
         "description": "This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption",
-        "operationId": "video-analytics",
+        "operationId": "retrieve-analytics",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3652,16 +3652,16 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst create = await client.videoUsageAnalytics.create({\n  metrics: [],\n  date_range: {},\n  top_assets_count: '5',\n  top_assets_page: '0',\n});\n\nconsole.log(create);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst retrieve = await client.videoUsageAnalytics.retrieve({\n  metrics: [],\n  date_range: {},\n  top_assets_count: '5',\n  top_assets_page: '0',\n});\n\nconsole.log(retrieve);"
           }
         ]
       }
     },
     "/video/streaming-duration": {
       "get": {
-        "summary": "Streaming Duration",
+        "summary": "Top Streamed Assets",
         "description": "This endpoint lists top streamed assets in a video collection",
-        "operationId": "streaming-duration",
+        "operationId": "top-assets",
         "parameters": [
           {
             "name": "start_at",
@@ -3669,7 +3669,10 @@
             "description": "Date string in \"yyyy-mm-dd\" format",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "examples": [
+                "2026-06-21"
+              ]
             }
           },
           {
@@ -3678,7 +3681,10 @@
             "description": "Date string in \"yyyy-mm-dd\" format",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "examples": [
+                "2026-06-30"
+              ]
             }
           },
           {
@@ -3694,7 +3700,8 @@
             "description": "Page number of the response.",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "1"
             }
           },
           {
@@ -3835,16 +3842,16 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst streamingDuration = await client.videoUsageAnalytics.streamingDuration({\n  start_at: 'startAt',\n  end_at: 'endAt',\n  page_size: '1000',\n});\n\nconsole.log(streamingDuration);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst topAssets = await client.videoUsageAnalytics.topAssets({\n  start_at: '2026-06-21',\n  end_at: '2026-06-30',\n  page: '1',\n  page_size: '1000',\n});\n\nconsole.log(topAssets);"
           }
         ]
       }
     },
     "/video/assets/{asset_id}/multipartupload/{part_number}/sign": {
       "get": {
-        "summary": "Single Part",
-        "description": "Use this endpoint to retrieve pre-signed upload URL for each part.",
-        "operationId": "sign-part",
+        "summary": "Get Part Upload URL",
+        "description": "Use this endpoint to retrieve a pre-signed upload URL for the given part number.",
+        "operationId": "retrieve-part-url",
         "parameters": [
           {
             "name": "asset_id",
@@ -3927,7 +3934,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst signPart = await client.multipartUpload.signPart('partNumber', {\n  asset_id: 'assetId',\n});\n\nconsole.log(signPart);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {\n  asset_id: 'assetId',\n});\n\nconsole.log(retrievePartURL);"
           }
         ]
       }
@@ -6008,7 +6015,7 @@
       "post": {
         "summary": "Add asset to playlist",
         "description": "This operation adds a single asset or a list of assets to a playlist.",
-        "operationId": "add-asset-to-playlist",
+        "operationId": "add-asset-playlist",
         "parameters": [
           {
             "name": "playlist_id",
@@ -6153,14 +6160,14 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst createAssetTo = await client.videoPlaylists.createAssetTo('playlistId', {\n  asset_list: [\n    { asset_id: '6508790283e4d60611846790' },\n    { position: 1, asset_id: '650878f883e4d6061184677d' },\n    { asset_id: '650878de83e4d6061184676a' },\n    { position: 2, asset_id: '650878d883e4d60611846757' },\n    { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },\n  ],\n});\n\nconsole.log(createAssetTo);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst createAsset = await client.videoPlaylists.createAsset('playlistId', {\n  asset_list: [\n    { asset_id: '6508790283e4d60611846790' },\n    { position: 1, asset_id: '650878f883e4d6061184677d' },\n    { asset_id: '650878de83e4d6061184676a' },\n    { position: 2, asset_id: '650878d883e4d60611846757' },\n    { position: 3, asset_id: '65578dd87eebc22dcdd549a2' },\n  ],\n});\n\nconsole.log(createAsset);"
           }
         ]
       },
       "delete": {
         "summary": "Remove asset from playlist",
         "description": "Removed an asset or list of assets from a given playlist.",
-        "operationId": "remove-asset-from-playlist",
+        "operationId": "remove-asset-playlist",
         "parameters": [
           {
             "name": "playlist_id",
@@ -6279,7 +6286,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst deleteAssetFrom = await client.videoPlaylists.deleteAssetFrom('playlistId', {\n  delete_list: ['6508790783e4d606118467a3'],\n});\n\nconsole.log(deleteAssetFrom);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst deleteAsset = await client.videoPlaylists.deleteAsset('playlistId', {\n  delete_list: ['6508790783e4d606118467a3'],\n});\n\nconsole.log(deleteAsset);"
           }
         ]
       }
@@ -6645,7 +6652,7 @@
             "required": true
           }
         ],
-        "operationId": "delete_video-playlist-playlist-id",
+        "operationId": "delete-playlist",
         "tags": [
           "Video Playlists"
         ],
@@ -6656,7 +6663,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoPlaylists.deleteID('playlistId');"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoPlaylists.delete('playlistId');"
           }
         ]
       }
@@ -6916,7 +6923,7 @@
       "post": {
         "summary": "Arrange Videos In Playlist",
         "description": "Reorder videos inside a playlist either by moving a single asset to a position or by sorting the playlist by title or created date.",
-        "operationId": "reorder-playlist-assets-2",
+        "operationId": "reorder-asset-playlist",
         "parameters": [
           {
             "name": "playlist_id",
@@ -7128,7 +7135,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst reorderAssets2 = await client.videoPlaylists.reorderAssets2('playlistId', {\n  asset_id: '6e82bf783e88be000ab45ed2',\n  page_number: 1,\n  page_size: 10,\n  asset_position: 0,\n});\n\nconsole.log(reorderAssets2);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst reorderAsset = await client.videoPlaylists.reorderAsset('playlistId', {\n  asset_id: '6e82bf783e88be000ab45ed2',\n  page_number: 1,\n  page_size: 10,\n  asset_position: 0,\n});\n\nconsole.log(reorderAsset);"
           }
         ]
       }
@@ -11073,8 +11080,8 @@
     "/video/asset/recover": {
       "post": {
         "summary": "Recover Deleted Asset",
-        "description": "Recovers asset from the recycle bin.",
-        "operationId": "post_videoassetrecover",
+        "description": "Recovers a deleted asset from the recycle bin.",
+        "operationId": "recover",
         "responses": {
           "200": {
             "description": "",
@@ -11126,7 +11133,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoAssets.postVideoassetrecover({\n  asset_id: '',\n});"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.videoAssets.recover({\n  asset_id: '',\n});"
           }
         ]
       }
@@ -11134,7 +11141,7 @@
     "/video/live/assets/{live_asset_id}/start": {
       "post": {
         "description": "Start a live stream.",
-        "operationId": "post_videoliveassets:live_asset_id",
+        "operationId": "start-live",
         "responses": {
           "200": {
             "description": "",
@@ -11195,7 +11202,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.liveStreamAssets.postVideoliveassetsID('liveAssetId');"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nawait client.liveStreamAssets.start('liveAssetId');"
           }
         ]
       }
@@ -11204,7 +11211,7 @@
       "post": {
         "summary": "Upload Live Thumbnails",
         "description": "Generate presigned upload URLs for live stream thumbnails. Supported thumbnail states are `preparing`, `disconnected`, and `end`.",
-        "operationId": "upload-live-asset-thumbnails",
+        "operationId": "thumbnail-upload-live",
         "requestBody": {
           "content": {
             "application/json": {
@@ -13710,7 +13717,7 @@
       "post": {
         "summary": "Create Folder",
         "description": "Create a folder inside a video workspace. Optionally provide `parent_id` to create a nested folder.",
-        "operationId": "create-folder-1",
+        "operationId": "create-folder",
         "parameters": [
           {
             "name": "workspace_id",
@@ -13890,7 +13897,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst create1 = await client.folders.create1('workspaceId', { name: 'Course Assets', parent_id: null });\n\nconsole.log(create1);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst create = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });\n\nconsole.log(create);"
           }
         ]
       },
@@ -14720,7 +14727,7 @@
       "post": {
         "summary": "Remove Assets From Folder",
         "description": "Remove one or more assets from their current folder assignment inside the workspace.",
-        "operationId": "remove-assets-from-folder",
+        "operationId": "remove-assets-folder",
         "parameters": [
           {
             "name": "workspace_id",
@@ -14841,7 +14848,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst deleteAssetsFrom = await client.folders.deleteAssetsFrom('workspaceId', {\n  asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],\n});\n\nconsole.log(deleteAssetsFrom);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst deleteAssets = await client.folders.deleteAssets('workspaceId', {\n  asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],\n});\n\nconsole.log(deleteAssets);"
           }
         ]
       }
@@ -14850,7 +14857,7 @@
       "get": {
         "summary": "List Assets",
         "description": "List folders and assets for a workspace in a single response. Use `parent_id` to browse a specific folder, or filters like `title`, `status`, and `playlist_id` to search assets.",
-        "operationId": "list-workspace-content",
+        "operationId": "list-assets",
         "parameters": [
           {
             "name": "workspace_id",
@@ -15369,7 +15376,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst listWorkspaceContent = await client.videoAssets.listWorkspaceContent('workspaceId', {\n  type: 'all',\n  offset: 0,\n  size: 20,\n});\n\nconsole.log(listWorkspaceContent);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst list = await client.videoAssets.list('workspaceId', {\n  type: 'all',\n  offset: 0,\n  size: 20,\n});\n\nconsole.log(list);"
           }
         ]
       }
@@ -15777,7 +15784,7 @@
       "get": {
         "summary": "List Assets",
         "description": "[Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.",
-        "operationId": "list-assets",
+        "operationId": "list-assets-deprecated",
         "parameters": [
           {
             "name": "status",
@@ -16286,7 +16293,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst list = await client.videoAssets.list('workspaceId', {\n  sortBy: 'created_at',\n  orderBy: 'desc',\n});\n\nconsole.log(list);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {\n  sortBy: 'created_at',\n  orderBy: 'desc',\n});\n\nconsole.log(listDeprecated);"
           }
         ]
       }
@@ -16295,7 +16302,7 @@
       "get": {
         "summary": "Get Live Asset Status History",
         "description": "This endpoint retrieves the history of a live video asset that has previously been created.",
-        "operationId": "get-live-asset-status-copy",
+        "operationId": "asset-status-history",
         "parameters": [
           {
             "name": "live_asset_id",
@@ -16474,7 +16481,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst listStatusCopy = await client.liveStreamAssets.listStatusCopy('liveAssetId');\n\nconsole.log(listStatusCopy);"
+            "source": "import Gumlet from '@gumlet/nodejs-sdk';\n\nconst client = new Gumlet({\n  apiKey: process.env['API_KEY'], // defaults to the API_KEY env var\n});\n\nconst statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');\n\nconsole.log(statusHistory);"
           }
         ]
       }

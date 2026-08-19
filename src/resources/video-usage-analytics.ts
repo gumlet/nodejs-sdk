@@ -8,13 +8,13 @@ export class VideoUsageAnalytics extends APIResource {
   /**
    * This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption
    *
-   * @param {VideoUsageAnalyticCreateParams} body - The request body to send.
+   * @param {VideoUsageAnalyticRetrieveParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoUsageAnalyticCreateResponse>} 200
+   * @returns {APIPromise<VideoUsageAnalyticRetrieveResponse>} 200
    *
    * @example
    * ```ts
-   * const create = await client.videoUsageAnalytics.create({
+   * const retrieve = await client.videoUsageAnalytics.retrieve({
    *   metrics: [],
    *   date_range: {},
    *   top_assets_count: '5',
@@ -22,38 +22,39 @@ export class VideoUsageAnalytics extends APIResource {
    * });
    * ```
    */
-  create(
-    body: VideoUsageAnalyticCreateParams,
+  retrieve(
+    body: VideoUsageAnalyticRetrieveParams,
     options?: RequestOptions,
-  ): APIPromise<VideoUsageAnalyticCreateResponse> {
+  ): APIPromise<VideoUsageAnalyticRetrieveResponse> {
     return this._client.post('/video/analytics', { body, ...options });
   }
 
   /**
    * This endpoint lists top streamed assets in a video collection
    *
-   * @param {VideoUsageAnalyticStreamingDurationParams} query - The parameters to send with the request.
+   * @param {VideoUsageAnalyticTopAssetsParams} query - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoUsageAnalyticStreamingDurationResponse>} 200
+   * @returns {APIPromise<VideoUsageAnalyticTopAssetsResponse>} 200
    *
    * @example
    * ```ts
-   * const streamingDuration = await client.videoUsageAnalytics.streamingDuration({
-   *   start_at: 'startAt',
-   *   end_at: 'endAt',
+   * const topAssets = await client.videoUsageAnalytics.topAssets({
+   *   start_at: '2026-06-21',
+   *   end_at: '2026-06-30',
+   *   page: '1',
    *   page_size: '1000',
    * });
    * ```
    */
-  streamingDuration(
-    query: VideoUsageAnalyticStreamingDurationParams,
+  topAssets(
+    query: VideoUsageAnalyticTopAssetsParams,
     options?: RequestOptions,
-  ): APIPromise<VideoUsageAnalyticStreamingDurationResponse> {
+  ): APIPromise<VideoUsageAnalyticTopAssetsResponse> {
     return this._client.get('/video/streaming-duration', { query, ...options });
   }
 }
 
-export interface VideoUsageAnalyticCreateParams {
+export interface VideoUsageAnalyticRetrieveParams {
   /**
    * Define the metric you need the data for, currently we only support `bandwidth_consumption`, `asset_duration`, `storage_unit`, `top_assets`, `bandwidth_consumption_by_collection`, `errored_videos` and `widget_data`
    */
@@ -61,8 +62,8 @@ export interface VideoUsageAnalyticCreateParams {
   /**
    * The timeframe to get the data for. Currently we only support a maximum of 60 days between `start_at` and `end_at`.
    */
-  date_range: VideoUsageAnalyticCreateParams.DateRange;
-  filters?: VideoUsageAnalyticCreateParams.Filters;
+  date_range: VideoUsageAnalyticRetrieveParams.DateRange;
+  filters?: VideoUsageAnalyticRetrieveParams.Filters;
   /**
    * Count of video assets that should be returned. Max assets count is 1000 per page.
    * @default 5
@@ -75,7 +76,7 @@ export interface VideoUsageAnalyticCreateParams {
   top_assets_page?: string;
 }
 
-export namespace VideoUsageAnalyticCreateParams {
+export namespace VideoUsageAnalyticRetrieveParams {
   export interface DateRange {
     /**
      * The starting date to consider
@@ -97,11 +98,11 @@ export namespace VideoUsageAnalyticCreateParams {
   }
 }
 
-export interface VideoUsageAnalyticCreateResponse {
-  top_assets?: Array<VideoUsageAnalyticCreateResponse.TopAsset>;
+export interface VideoUsageAnalyticRetrieveResponse {
+  top_assets?: Array<VideoUsageAnalyticRetrieveResponse.TopAsset>;
 }
 
-export namespace VideoUsageAnalyticCreateResponse {
+export namespace VideoUsageAnalyticRetrieveResponse {
   export interface TopAsset {
     collection_id?: string;
     asset_id?: string;
@@ -113,7 +114,7 @@ export namespace VideoUsageAnalyticCreateResponse {
   }
 }
 
-export interface VideoUsageAnalyticStreamingDurationParams {
+export interface VideoUsageAnalyticTopAssetsParams {
   /**
    * Date string in "yyyy-mm-dd" format
    */
@@ -128,6 +129,7 @@ export interface VideoUsageAnalyticStreamingDurationParams {
   collection_id?: string;
   /**
    * Page number of the response.
+   * @default 1
    */
   page?: string;
   /**
@@ -137,15 +139,15 @@ export interface VideoUsageAnalyticStreamingDurationParams {
   page_size?: string;
 }
 
-export interface VideoUsageAnalyticStreamingDurationResponse {
-  data?: Array<VideoUsageAnalyticStreamingDurationResponse.Data>;
+export interface VideoUsageAnalyticTopAssetsResponse {
+  data?: Array<VideoUsageAnalyticTopAssetsResponse.Data>;
   /**
    * @default true
    */
   has_next_page?: boolean;
 }
 
-export namespace VideoUsageAnalyticStreamingDurationResponse {
+export namespace VideoUsageAnalyticTopAssetsResponse {
   export interface Data {
     asset_id?: string;
     /**
@@ -156,9 +158,9 @@ export namespace VideoUsageAnalyticStreamingDurationResponse {
 }
 export declare namespace VideoUsageAnalytics {
   export {
-    type VideoUsageAnalyticCreateResponse as VideoUsageAnalyticCreateResponse,
-    type VideoUsageAnalyticStreamingDurationResponse as VideoUsageAnalyticStreamingDurationResponse,
-    type VideoUsageAnalyticCreateParams as VideoUsageAnalyticCreateParams,
-    type VideoUsageAnalyticStreamingDurationParams as VideoUsageAnalyticStreamingDurationParams,
+    type VideoUsageAnalyticRetrieveResponse as VideoUsageAnalyticRetrieveResponse,
+    type VideoUsageAnalyticTopAssetsResponse as VideoUsageAnalyticTopAssetsResponse,
+    type VideoUsageAnalyticRetrieveParams as VideoUsageAnalyticRetrieveParams,
+    type VideoUsageAnalyticTopAssetsParams as VideoUsageAnalyticTopAssetsParams,
   };
 }

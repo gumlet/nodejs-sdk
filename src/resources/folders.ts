@@ -10,20 +10,20 @@ export class Folders extends APIResource {
    * Create a folder inside a video workspace. Optionally provide `parent_id` to create a nested folder.
    *
    * @param {string} workspaceID - Video workspace id.
-   * @param {FolderCreate1Params} body - The request body to send.
+   * @param {FolderCreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<FolderCreate1Response>} 200
+   * @returns {APIPromise<FolderCreateResponse>} 200
    *
    * @example
    * ```ts
-   * const create1 = await client.folders.create1('workspaceId', { name: 'Course Assets', parent_id: null });
+   * const create = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });
    * ```
    */
-  create1(
+  create(
     workspaceID: string,
-    body: FolderCreate1Params,
+    body: FolderCreateParams,
     options?: RequestOptions,
-  ): APIPromise<FolderCreate1Response> {
+  ): APIPromise<FolderCreateResponse> {
     return this._client.post(__scalarPath`/video/workspaces/${workspaceID}/folders`, { body, ...options });
   }
 
@@ -127,22 +127,22 @@ export class Folders extends APIResource {
    * Remove one or more assets from their current folder assignment inside the workspace.
    *
    * @param {string} workspaceID - Video workspace id.
-   * @param {FolderDeleteAssetsFromParams} body - The request body to send.
+   * @param {FolderDeleteAssetsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<FolderDeleteAssetsFromResponse>} 200
+   * @returns {APIPromise<FolderDeleteAssetsResponse>} 200
    *
    * @example
    * ```ts
-   * const deleteAssetsFrom = await client.folders.deleteAssetsFrom('workspaceId', {
+   * const deleteAssets = await client.folders.deleteAssets('workspaceId', {
    *   asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],
    * });
    * ```
    */
-  deleteAssetsFrom(
+  deleteAssets(
     workspaceID: string,
-    body: FolderDeleteAssetsFromParams,
+    body: FolderDeleteAssetsParams,
     options?: RequestOptions,
-  ): APIPromise<FolderDeleteAssetsFromResponse> {
+  ): APIPromise<FolderDeleteAssetsResponse> {
     return this._client.post(__scalarPath`/video/workspaces/${workspaceID}/remove-assets-from-folder`, {
       body,
       ...options,
@@ -150,7 +150,7 @@ export class Folders extends APIResource {
   }
 }
 
-export interface FolderCreate1Params {
+export interface FolderCreateParams {
   /**
    * Folder name.
    */
@@ -161,7 +161,7 @@ export interface FolderCreate1Params {
   parent_id?: string | null;
 }
 
-export interface FolderCreate1Response {
+export interface FolderCreateResponse {
   id?: string;
   name?: string;
   video_source_id?: string;
@@ -342,11 +342,11 @@ export interface FolderDeleteResponse {
   message?: string;
 }
 
-export interface FolderDeleteAssetsFromParams {
+export interface FolderDeleteAssetsParams {
   asset_ids: Array<string>;
 }
 
-export interface FolderDeleteAssetsFromResponse {
+export interface FolderDeleteAssetsResponse {
   message?: string;
   /**
    * @default 0
@@ -355,17 +355,17 @@ export interface FolderDeleteAssetsFromResponse {
 }
 export declare namespace Folders {
   export {
-    type FolderCreate1Response as FolderCreate1Response,
+    type FolderCreateResponse as FolderCreateResponse,
     type FolderListResponse as FolderListResponse,
     type FolderRetrieveResponse as FolderRetrieveResponse,
     type FolderUpdateResponse as FolderUpdateResponse,
     type FolderDeleteResponse as FolderDeleteResponse,
-    type FolderDeleteAssetsFromResponse as FolderDeleteAssetsFromResponse,
-    type FolderCreate1Params as FolderCreate1Params,
+    type FolderDeleteAssetsResponse as FolderDeleteAssetsResponse,
+    type FolderCreateParams as FolderCreateParams,
     type FolderListParams as FolderListParams,
     type FolderRetrieveParams as FolderRetrieveParams,
     type FolderUpdateParams as FolderUpdateParams,
     type FolderDeleteParams as FolderDeleteParams,
-    type FolderDeleteAssetsFromParams as FolderDeleteAssetsFromParams,
+    type FolderDeleteAssetsParams as FolderDeleteAssetsParams,
   };
 }

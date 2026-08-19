@@ -92,14 +92,14 @@ export class VideoAssets extends APIResource {
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetRetrieveStatusResponse>} 200
+   * @returns {APIPromise<VideoAssetRetrieveDetailsResponse>} 200
    *
    * @example
    * ```ts
-   * const retrieveStatus = await client.videoAssets.retrieveStatus('assetId');
+   * const retrieveDetails = await client.videoAssets.retrieveDetails('assetId');
    * ```
    */
-  retrieveStatus(assetID: string, options?: RequestOptions): APIPromise<VideoAssetRetrieveStatusResponse> {
+  retrieveDetails(assetID: string, options?: RequestOptions): APIPromise<VideoAssetRetrieveDetailsResponse> {
     return this._client.get(__scalarPath`/video/assets/${assetID}`, options);
   }
 
@@ -144,20 +144,20 @@ export class VideoAssets extends APIResource {
    * Select frame from video to use as thumbnail.
    *
    * @param {string} assetID - Asset id of the video asset which needs to be deleted.
-   * @param {VideoAssetSelectFromParams} body - The request body to send.
+   * @param {VideoAssetThumbnailSelectParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetSelectFromResponse>} 200
+   * @returns {APIPromise<VideoAssetThumbnailSelectResponse>} 200
    *
    * @example
    * ```ts
-   * const selectFrom = await client.videoAssets.selectFrom('assetId', { frame_at_second: 2 });
+   * const thumbnailSelect = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
    * ```
    */
-  selectFrom(
+  thumbnailSelect(
     assetID: string,
-    body: VideoAssetSelectFromParams,
+    body: VideoAssetThumbnailSelectParams,
     options?: RequestOptions,
-  ): APIPromise<VideoAssetSelectFromResponse> {
+  ): APIPromise<VideoAssetThumbnailSelectResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail-select`, {
       body,
       ...options,
@@ -177,17 +177,14 @@ export class VideoAssets extends APIResource {
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetSelectFromImageFileResponse>}
+   * @returns {APIPromise<VideoAssetThumbnailUploadResponse>}
    *
    * @example
    * ```ts
-   * const selectFromImageFile = await client.videoAssets.selectFromImageFile('assetId');
+   * const thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');
    * ```
    */
-  selectFromImageFile(
-    assetID: string,
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetSelectFromImageFileResponse> {
+  thumbnailUpload(assetID: string, options?: RequestOptions): APIPromise<VideoAssetThumbnailUploadResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, options);
   }
 
@@ -195,41 +192,42 @@ export class VideoAssets extends APIResource {
    * Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
    *
    * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetUpload2Params} [body] - The request body to send.
+   * @param {VideoAssetSubtitleUploadParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetUpload2Response>} 200
+   * @returns {APIPromise<VideoAssetSubtitleUploadResponse>} 200
    *
    * @example
    * ```ts
-   * const upload2 = await client.videoAssets.upload2('assetId');
+   * const subtitleUpload = await client.videoAssets.subtitleUpload('assetId');
    * ```
    */
-  upload2(
+  subtitleUpload(
     assetID: string,
-    body: VideoAssetUpload2Params | null | undefined = {},
+    body: VideoAssetSubtitleUploadParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<VideoAssetUpload2Response> {
+  ): APIPromise<VideoAssetSubtitleUploadResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/subtitle/upload`, { body, ...options });
   }
 
   /**
-   * This API must be called after uploading subtitles; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
+   * This API must be called after adding subtitles; the add subtitle call gives you URLs to upload, and you complete a `PUT` request to those URLs.
+   * Once that is done, calling this initiates the process to actually add the subtitle to the video.
    *
    * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetSubtitleUploadCompleteParams} [body] - The request body to send.
+   * @param {VideoAssetCompleteSubtitleUploadParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetSubtitleUploadCompleteResponse>} 200
+   * @returns {APIPromise<VideoAssetCompleteSubtitleUploadResponse>} 200
    *
    * @example
    * ```ts
-   * const subtitleUploadComplete = await client.videoAssets.subtitleUploadComplete('assetId');
+   * const completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');
    * ```
    */
-  subtitleUploadComplete(
+  completeSubtitleUpload(
     assetID: string,
-    body: VideoAssetSubtitleUploadCompleteParams | null | undefined = {},
+    body: VideoAssetCompleteSubtitleUploadParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<VideoAssetSubtitleUploadCompleteResponse> {
+  ): APIPromise<VideoAssetCompleteSubtitleUploadResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/subtitle/upload/event`, {
       body,
       ...options,
@@ -237,28 +235,30 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Upload any audio file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
+   * Add any audio file to the video asset.
+   * The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
    *
    * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetUpload3Params} [body] - The request body to send.
+   * @param {VideoAssetAudioUploadParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetUpload3Response>} 200
+   * @returns {APIPromise<VideoAssetAudioUploadResponse>} 200
    *
    * @example
    * ```ts
-   * const upload3 = await client.videoAssets.upload3('assetId');
+   * const audioUpload = await client.videoAssets.audioUpload('assetId');
    * ```
    */
-  upload3(
+  audioUpload(
     assetID: string,
-    body: VideoAssetUpload3Params | null | undefined = {},
+    body: VideoAssetAudioUploadParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<VideoAssetUpload3Response> {
+  ): APIPromise<VideoAssetAudioUploadResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/audio/upload`, { body, ...options });
   }
 
   /**
-   * This API must be called after uploading audio; the call gives you URLs to upload, and you complete a `PUT` request to those URLs. Calling this initiates the process to actually add the subtitle to the video.
+   * This API must be called after adding audio(s); The add audio call gives you URLs to upload, and you complete a `PUT` request to those URLs.
+   * Once that is done, calling this initiates the process to actually add the subtitle to the video.
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {VideoAssetCompleteAudioUploadParams} [body] - The request body to send.
@@ -302,22 +302,19 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Recovers asset from the recycle bin.
+   * Recovers a deleted asset from the recycle bin.
    *
-   * @param {VideoAssetPostVideoassetrecoverParams} body - The request body to send.
+   * @param {VideoAssetRecoverParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    *
    * @example
    * ```ts
-   * await client.videoAssets.postVideoassetrecover({
+   * await client.videoAssets.recover({
    *   asset_id: '',
    * });
    * ```
    */
-  postVideoassetrecover(
-    body: VideoAssetPostVideoassetrecoverParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
+  recover(body: VideoAssetRecoverParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/video/asset/recover', {
       body,
       ...options,
@@ -329,31 +326,6 @@ export class VideoAssets extends APIResource {
    * List folders and assets for a workspace in a single response. Use `parent_id` to browse a specific folder, or filters like `title`, `status`, and `playlist_id` to search assets.
    *
    * @param {string} workspaceID - Video workspace id.
-   * @param {VideoAssetListWorkspaceContentParams} [query] - The parameters to send with the request.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetListWorkspaceContentResponse>} 200
-   *
-   * @example
-   * ```ts
-   * const listWorkspaceContent = await client.videoAssets.listWorkspaceContent('workspaceId', {
-   *   type: 'all',
-   *   offset: 0,
-   *   size: 20,
-   * });
-   * ```
-   */
-  listWorkspaceContent(
-    workspaceID: string,
-    query: VideoAssetListWorkspaceContentParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetListWorkspaceContentResponse> {
-    return this._client.get(__scalarPath`/video/workspaces/${workspaceID}/list`, { query, ...options });
-  }
-
-  /**
-   * [Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.
-   *
-   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {VideoAssetListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoAssetListResponse>} 200
@@ -361,6 +333,31 @@ export class VideoAssets extends APIResource {
    * @example
    * ```ts
    * const list = await client.videoAssets.list('workspaceId', {
+   *   type: 'all',
+   *   offset: 0,
+   *   size: 20,
+   * });
+   * ```
+   */
+  list(
+    workspaceID: string,
+    query: VideoAssetListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VideoAssetListResponse> {
+    return this._client.get(__scalarPath`/video/workspaces/${workspaceID}/list`, { query, ...options });
+  }
+
+  /**
+   * [Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.
+   *
+   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
+   * @param {VideoAssetListDeprecatedParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<VideoAssetListDeprecatedResponse>} 200
+   *
+   * @example
+   * ```ts
+   * const listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {
    *   sortBy: 'created_at',
    *   orderBy: 'desc',
    * });
@@ -368,11 +365,11 @@ export class VideoAssets extends APIResource {
    *
    * @deprecated
    */
-  list(
+  listDeprecated(
     workspaceID: string,
-    query: VideoAssetListParams | null | undefined = {},
+    query: VideoAssetListDeprecatedParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<VideoAssetListResponse> {
+  ): APIPromise<VideoAssetListDeprecatedResponse> {
     return this._client.get(__scalarPath`/video/assets/list/${workspaceID}`, { query, ...options });
   }
 }
@@ -1236,7 +1233,7 @@ export namespace VideoAssetUploadResponse {
   }
 }
 
-export interface VideoAssetRetrieveStatusResponse {
+export interface VideoAssetRetrieveDetailsResponse {
   asset_id?: string;
   /**
    * @default 0
@@ -1254,8 +1251,8 @@ export interface VideoAssetRetrieveStatusResponse {
   tag?: Array<string>;
   source_id?: string;
   collection_id?: string;
-  input?: VideoAssetRetrieveStatusResponse.Input;
-  output?: VideoAssetRetrieveStatusResponse.Output;
+  input?: VideoAssetRetrieveDetailsResponse.Input;
+  output?: VideoAssetRetrieveDetailsResponse.Output;
   /**
    * @default 0
    */
@@ -1267,7 +1264,7 @@ export interface VideoAssetRetrieveStatusResponse {
   playlists?: Array<string>;
 }
 
-export namespace VideoAssetRetrieveStatusResponse {
+export namespace VideoAssetRetrieveDetailsResponse {
   export interface Input {
     transformations?: Input.Transformations;
     profile_id?: string;
@@ -1523,7 +1520,7 @@ export namespace VideoAssetUpdateParams {
 
 export type VideoAssetUpdateResponse = Record<string, unknown>;
 
-export interface VideoAssetSelectFromParams {
+export interface VideoAssetThumbnailSelectParams {
   /**
    * Frame secound
    * @format int32
@@ -1531,7 +1528,7 @@ export interface VideoAssetSelectFromParams {
   frame_at_second: number;
 }
 
-export interface VideoAssetSelectFromResponse {
+export interface VideoAssetThumbnailSelectResponse {
   success?: boolean;
   asset_id?: string;
   /**
@@ -1540,7 +1537,7 @@ export interface VideoAssetSelectFromResponse {
   thumbnail_updated_at?: number;
 }
 
-export interface VideoAssetSelectFromImageFileResponse {
+export interface VideoAssetThumbnailUploadResponse {
   upload_url?: string;
   asset_id?: string;
   /**
@@ -1549,33 +1546,33 @@ export interface VideoAssetSelectFromImageFileResponse {
   thumbnail_updated_at?: number;
 }
 
-export interface VideoAssetUpload2Params {
+export interface VideoAssetSubtitleUploadParams {
   /**
    * List of language Code to upload subtitle file  (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
    */
   language_codes?: Array<string>;
 }
 
-export interface VideoAssetUpload2Response {
+export interface VideoAssetSubtitleUploadResponse {
   /**
    * Asset ID of Gumlet
    */
   asset_id: string;
-  signed_urls: Array<VideoAssetUpload2Response.SignedURL>;
+  signed_urls: Array<VideoAssetSubtitleUploadResponse.SignedURL>;
 }
 
-export namespace VideoAssetUpload2Response {
+export namespace VideoAssetSubtitleUploadResponse {
   export interface SignedURL {
     language_code: string;
     upload_url: string;
   }
 }
 
-export interface VideoAssetSubtitleUploadCompleteParams {
-  upload_responses?: Array<VideoAssetSubtitleUploadCompleteParams.UploadResponse>;
+export interface VideoAssetCompleteSubtitleUploadParams {
+  upload_responses?: Array<VideoAssetCompleteSubtitleUploadParams.UploadResponse>;
 }
 
-export namespace VideoAssetSubtitleUploadCompleteParams {
+export namespace VideoAssetCompleteSubtitleUploadParams {
   export interface UploadResponse {
     /**
      * Language Code for uploaded .srt or .vtt file.
@@ -1588,24 +1585,24 @@ export namespace VideoAssetSubtitleUploadCompleteParams {
   }
 }
 
-export type VideoAssetSubtitleUploadCompleteResponse = Record<string, unknown>;
+export type VideoAssetCompleteSubtitleUploadResponse = Record<string, unknown>;
 
-export interface VideoAssetUpload3Params {
+export interface VideoAssetAudioUploadParams {
   /**
    * List of language Code to upload audio file  (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
    */
   language_codes?: Array<string>;
 }
 
-export interface VideoAssetUpload3Response {
+export interface VideoAssetAudioUploadResponse {
   /**
    * Gumlet Asset ID
    */
   asset_id: string;
-  signed_urls: Array<VideoAssetUpload3Response.SignedURL>;
+  signed_urls: Array<VideoAssetAudioUploadResponse.SignedURL>;
 }
 
-export namespace VideoAssetUpload3Response {
+export namespace VideoAssetAudioUploadResponse {
   export interface SignedURL {
     language_code: string;
     upload_url: string;
@@ -1647,14 +1644,14 @@ export namespace VideoAssetCreateUpdateChapterParams {
 
 export type VideoAssetCreateUpdateChapterResponse = Record<string, unknown>;
 
-export interface VideoAssetPostVideoassetrecoverParams {
+export interface VideoAssetRecoverParams {
   /**
    * Gumlet Video Asset Id which needs to be recovered.
    */
   asset_id: string;
 }
 
-export interface VideoAssetListWorkspaceContentParams {
+export interface VideoAssetListParams {
   /**
    * Return `folders`, `videos`, or `all`. Default is `all`.
    */
@@ -1720,9 +1717,9 @@ export interface VideoAssetListWorkspaceContentParams {
   size?: number;
 }
 
-export interface VideoAssetListWorkspaceContentResponse {
-  folders?: Array<VideoAssetListWorkspaceContentResponse.Folder>;
-  all_assets?: Array<VideoAssetListWorkspaceContentResponse.AllAsset>;
+export interface VideoAssetListResponse {
+  folders?: Array<VideoAssetListResponse.Folder>;
+  all_assets?: Array<VideoAssetListResponse.AllAsset>;
   /**
    * @default 0
    */
@@ -1741,7 +1738,7 @@ export interface VideoAssetListWorkspaceContentResponse {
   current_offset?: number;
 }
 
-export namespace VideoAssetListWorkspaceContentResponse {
+export namespace VideoAssetListResponse {
   export interface Folder {
     id?: string;
     name?: string;
@@ -1857,7 +1854,7 @@ export namespace VideoAssetListWorkspaceContentResponse {
   }
 }
 
-export interface VideoAssetListParams {
+export interface VideoAssetListDeprecatedParams {
   /**
    * To filter assets on the basis of their current status. Can be specified as a single status value string or comma-separated status values. The status value can be one of `queued`, `processing`, `ready`, `errored`, and `deleted`.
    */
@@ -1902,8 +1899,8 @@ export interface VideoAssetListParams {
   type?: string;
 }
 
-export interface VideoAssetListResponse {
-  all_assets?: Array<VideoAssetListResponse.AllAsset>;
+export interface VideoAssetListDeprecatedResponse {
+  all_assets?: Array<VideoAssetListDeprecatedResponse.AllAsset>;
   /**
    * @default 0
    */
@@ -1915,7 +1912,7 @@ export interface VideoAssetListResponse {
   distinct_tags?: Array<string>;
 }
 
-export namespace VideoAssetListResponse {
+export namespace VideoAssetListDeprecatedResponse {
   export interface AllAsset {
     asset_id?: string;
     /**
@@ -2011,28 +2008,28 @@ export declare namespace VideoAssets {
   export {
     type VideoAssetCreateResponse as VideoAssetCreateResponse,
     type VideoAssetUploadResponse as VideoAssetUploadResponse,
-    type VideoAssetRetrieveStatusResponse as VideoAssetRetrieveStatusResponse,
+    type VideoAssetRetrieveDetailsResponse as VideoAssetRetrieveDetailsResponse,
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
-    type VideoAssetSelectFromResponse as VideoAssetSelectFromResponse,
-    type VideoAssetSelectFromImageFileResponse as VideoAssetSelectFromImageFileResponse,
-    type VideoAssetUpload2Response as VideoAssetUpload2Response,
-    type VideoAssetSubtitleUploadCompleteResponse as VideoAssetSubtitleUploadCompleteResponse,
-    type VideoAssetUpload3Response as VideoAssetUpload3Response,
+    type VideoAssetThumbnailSelectResponse as VideoAssetThumbnailSelectResponse,
+    type VideoAssetThumbnailUploadResponse as VideoAssetThumbnailUploadResponse,
+    type VideoAssetSubtitleUploadResponse as VideoAssetSubtitleUploadResponse,
+    type VideoAssetCompleteSubtitleUploadResponse as VideoAssetCompleteSubtitleUploadResponse,
+    type VideoAssetAudioUploadResponse as VideoAssetAudioUploadResponse,
     type VideoAssetCompleteAudioUploadResponse as VideoAssetCompleteAudioUploadResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
-    type VideoAssetListWorkspaceContentResponse as VideoAssetListWorkspaceContentResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
+    type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
-    type VideoAssetSelectFromParams as VideoAssetSelectFromParams,
-    type VideoAssetUpload2Params as VideoAssetUpload2Params,
-    type VideoAssetSubtitleUploadCompleteParams as VideoAssetSubtitleUploadCompleteParams,
-    type VideoAssetUpload3Params as VideoAssetUpload3Params,
+    type VideoAssetThumbnailSelectParams as VideoAssetThumbnailSelectParams,
+    type VideoAssetSubtitleUploadParams as VideoAssetSubtitleUploadParams,
+    type VideoAssetCompleteSubtitleUploadParams as VideoAssetCompleteSubtitleUploadParams,
+    type VideoAssetAudioUploadParams as VideoAssetAudioUploadParams,
     type VideoAssetCompleteAudioUploadParams as VideoAssetCompleteAudioUploadParams,
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
-    type VideoAssetPostVideoassetrecoverParams as VideoAssetPostVideoassetrecoverParams,
-    type VideoAssetListWorkspaceContentParams as VideoAssetListWorkspaceContentParams,
+    type VideoAssetRecoverParams as VideoAssetRecoverParams,
     type VideoAssetListParams as VideoAssetListParams,
+    type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
   };
 }

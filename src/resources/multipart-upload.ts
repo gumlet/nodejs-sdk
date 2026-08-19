@@ -7,25 +7,25 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class MultipartUpload extends APIResource {
   /**
-   * Use this endpoint to retrieve pre-signed upload URL for each part.
+   * Use this endpoint to retrieve a pre-signed upload URL for the given part number.
    *
    * @param {string} partNumber - Part number of multiple parts of the original video which you you are uploading
-   * @param {MultipartUploadSignPartParams} params - The parameters to send with the request.
+   * @param {MultipartUploadRetrievePartURLParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<MultipartUploadSignPartResponse>} 200
+   * @returns {APIPromise<MultipartUploadRetrievePartURLResponse>} 200
    *
    * @example
    * ```ts
-   * const signPart = await client.multipartUpload.signPart('partNumber', {
+   * const retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {
    *   asset_id: 'assetId',
    * });
    * ```
    */
-  signPart(
+  retrievePartURL(
     partNumber: string,
-    params: MultipartUploadSignPartParams,
+    params: MultipartUploadRetrievePartURLParams,
     options?: RequestOptions,
-  ): APIPromise<MultipartUploadSignPartResponse> {
+  ): APIPromise<MultipartUploadRetrievePartURLResponse> {
     const { asset_id } = params;
     return this._client.get(
       __scalarPath`/video/assets/${asset_id}/multipartupload/${partNumber}/sign`,
@@ -58,14 +58,14 @@ export class MultipartUpload extends APIResource {
   }
 }
 
-export interface MultipartUploadSignPartParams {
+export interface MultipartUploadRetrievePartURLParams {
   /**
    * An asset id of the created asset for which you are uploading parts
    */
   asset_id: string;
 }
 
-export interface MultipartUploadSignPartResponse {
+export interface MultipartUploadRetrievePartURLResponse {
   asset_id?: string;
   part_number?: string;
   part_upload_url?: string;
@@ -94,9 +94,9 @@ export namespace MultipartUploadCompleteParams {
 export type MultipartUploadCompleteResponse = Record<string, unknown>;
 export declare namespace MultipartUpload {
   export {
-    type MultipartUploadSignPartResponse as MultipartUploadSignPartResponse,
+    type MultipartUploadRetrievePartURLResponse as MultipartUploadRetrievePartURLResponse,
     type MultipartUploadCompleteResponse as MultipartUploadCompleteResponse,
-    type MultipartUploadSignPartParams as MultipartUploadSignPartParams,
+    type MultipartUploadRetrievePartURLParams as MultipartUploadRetrievePartURLParams,
     type MultipartUploadCompleteParams as MultipartUploadCompleteParams,
   };
 }

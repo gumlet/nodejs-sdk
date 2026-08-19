@@ -130,10 +130,10 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * await client.liveStreamAssets.postVideoliveassetsID('liveAssetId');
+   * await client.liveStreamAssets.start('liveAssetId');
    * ```
    */
-  postVideoliveassetsID(liveAssetID: string, options?: RequestOptions): APIPromise<void> {
+  start(liveAssetID: string, options?: RequestOptions): APIPromise<void> {
     return this._client.post(__scalarPath`/video/live/assets/${liveAssetID}/start`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -167,17 +167,17 @@ export class LiveStreamAssets extends APIResource {
    *
    * @param {string} liveAssetID - An live asset id for the previously created asset.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<LiveStreamAssetListStatusCopyResponse>} 200
+   * @returns {APIPromise<LiveStreamAssetStatusHistoryResponse>} 200
    *
    * @example
    * ```ts
-   * const listStatusCopy = await client.liveStreamAssets.listStatusCopy('liveAssetId');
+   * const statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');
    * ```
    */
-  listStatusCopy(
+  statusHistory(
     liveAssetID: string,
     options?: RequestOptions,
-  ): APIPromise<LiveStreamAssetListStatusCopyResponse> {
+  ): APIPromise<LiveStreamAssetStatusHistoryResponse> {
     return this._client.get(__scalarPath`/video/live/assets/${liveAssetID}/history`, options);
   }
 }
@@ -436,14 +436,14 @@ export namespace LiveStreamAssetUploadResponse {
   }
 }
 
-export interface LiveStreamAssetListStatusCopyResponse {
+export interface LiveStreamAssetStatusHistoryResponse {
   status?: string;
   stream_key?: string;
   live_asset_id?: string;
   live_video_source_id?: string;
-  input?: LiveStreamAssetListStatusCopyResponse.Input;
+  input?: LiveStreamAssetStatusHistoryResponse.Input;
   stream_url?: string;
-  output?: LiveStreamAssetListStatusCopyResponse.Output;
+  output?: LiveStreamAssetStatusHistoryResponse.Output;
   /**
    * @default 0
    */
@@ -454,7 +454,7 @@ export interface LiveStreamAssetListStatusCopyResponse {
   updated_at?: number;
 }
 
-export namespace LiveStreamAssetListStatusCopyResponse {
+export namespace LiveStreamAssetStatusHistoryResponse {
   export interface Input {
     resolution?: Array<string>;
   }
@@ -472,7 +472,7 @@ export declare namespace LiveStreamAssets {
     type LiveStreamAssetCompleteResponse as LiveStreamAssetCompleteResponse,
     type LiveStreamAssetFilterResponse as LiveStreamAssetFilterResponse,
     type LiveStreamAssetUploadResponse as LiveStreamAssetUploadResponse,
-    type LiveStreamAssetListStatusCopyResponse as LiveStreamAssetListStatusCopyResponse,
+    type LiveStreamAssetStatusHistoryResponse as LiveStreamAssetStatusHistoryResponse,
     type LiveStreamAssetCreateParams as LiveStreamAssetCreateParams,
     type LiveStreamAssetUpdateParams as LiveStreamAssetUpdateParams,
     type LiveStreamAssetFilterParams as LiveStreamAssetFilterParams,
