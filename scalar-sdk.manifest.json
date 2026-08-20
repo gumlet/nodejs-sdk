@@ -4513,7 +4513,7 @@
         },
         {
           "name": "filters",
-          "required": true
+          "required": false
         }
       ],
       "pathParamDetails": [],
