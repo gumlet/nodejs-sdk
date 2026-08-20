@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.19](https://github.com/gumlet/nodejs-sdk/compare/v1.0.18...v1.0.19) (2026-08-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Added required body field `filters` to `imageUsageAnalytics.retrieve`.
+
+### Features
+
+* **api:** add body field filters on imageUsageAnalytics.retrieve ([e0f18f0](https://github.com/gumlet/nodejs-sdk/commit/e0f18f0f87db440d9989094cc4b2d3124f2320c5))
+
+
+### Chores
+
+* release 1.0.19 ([562a0a1](https://github.com/gumlet/nodejs-sdk/commit/562a0a1a25f18889e713a3407f5e1b66b6568d61))
+
 ## [1.0.18](https://github.com/gumlet/nodejs-sdk/compare/v1.0.17...v1.0.18) (2026-08-20)
 
 
