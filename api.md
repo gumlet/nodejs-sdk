@@ -52,6 +52,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Update Source](#update-source)
   - [Delete Source](#delete-source)
   - [Purge Cache](#purge-cache)
+- [`ImageUsageAnalytics`](#imageusageanalytics)
   - [Image Usage Analytics](#image-usage-analytics)
 - [`LiveStreamAssets`](#livestreamassets)
   - [Create Live Asset](#create-live-asset)
@@ -742,17 +743,19 @@ You can purge cache for any image by using our cache purge API.
 await client.imageSources.purgeCache('subdomain');
 ```
 
+## `ImageUsageAnalytics`
+
 ### Image Usage Analytics
 
 This endpoint helps you get image analytics data like bandwidth consumption, request count, CDN hit ratio, etc.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`ImageSourceAnalyticsParams`](./src/resources/image-sources.ts) |
-| Response | [`ImageSourceAnalyticsResponse`](./src/resources/image-sources.ts) |
+| Request | [`ImageUsageAnalyticRetrieveParams`](./src/resources/image-usage-analytics.ts) |
+| Response | [`ImageUsageAnalyticRetrieveResponse`](./src/resources/image-usage-analytics.ts) |
 
 ```ts
-const analytics = await client.imageSources.analytics({
+const retrieve = await client.imageUsageAnalytics.retrieve({
   metrics: [],
   date_range: {},
   group_by: 'daily',
