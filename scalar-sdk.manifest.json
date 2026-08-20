@@ -4489,12 +4489,14 @@
       "bodyParams": [
         "metrics",
         "date_range",
-        "group_by"
+        "group_by",
+        "filters"
       ],
       "publicBodyParams": [
         "metrics",
         "date_range",
-        "group_by"
+        "group_by",
+        "filters"
       ],
       "bodyParamDetails": [
         {
@@ -4508,6 +4510,10 @@
         {
           "name": "group_by",
           "required": false
+        },
+        {
+          "name": "filters",
+          "required": true
         }
       ],
       "pathParamDetails": [],
