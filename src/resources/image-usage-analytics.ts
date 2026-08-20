@@ -84,6 +84,7 @@ export interface ImageUsageAnalyticRetrieveResponse {
   origin_hit_rate?: Array<ImageUsageAnalyticRetrieveResponse.OriginHitRate>;
   avg_transformation_response_time?: Array<ImageUsageAnalyticRetrieveResponse.AvgTransformationResponseTime>;
   content_type?: Array<ImageUsageAnalyticRetrieveResponse.ContentType>;
+  bandwidth_savings?: Array<ImageUsageAnalyticRetrieveResponse.BandwidthSaving>;
 }
 
 export namespace ImageUsageAnalyticRetrieveResponse {
@@ -249,6 +250,20 @@ export namespace ImageUsageAnalyticRetrieveResponse {
      * Seconds since epoch.
      */
     timestamp: number;
+  }
+
+  export interface BandwidthSaving {
+    /**
+     * Timestamp of data point in seconds since epoch.
+     */
+    timestamp: number;
+    /**
+     * Number between 0 and 1 depicting bandwidth savings percentage.
+     * @format float
+     * @minimum 0
+     * @maximum 1
+     */
+    units?: number;
   }
 }
 export declare namespace ImageUsageAnalytics {
