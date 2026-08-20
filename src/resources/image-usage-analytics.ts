@@ -46,6 +46,7 @@ export interface ImageUsageAnalyticRetrieveParams {
     | 'content_type'
     | 'status_2xx'
     | 'avg_response_time'
+    | 'top_assets'
   >;
   /**
    * The timeframe to get the data for. Currently we only support a maximum of 30 days between `start_at` and `end_at`.
