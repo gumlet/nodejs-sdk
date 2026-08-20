@@ -88,9 +88,12 @@ export type {
   ImageSourceUpdateResponse,
   ImageSourceDeleteResponse,
   ImageSourcePurgeCacheParams,
-  ImageSourceAnalyticsParams,
-  ImageSourceAnalyticsResponse,
 } from './image-sources';
+export { ImageUsageAnalytics } from './image-usage-analytics';
+export type {
+  ImageUsageAnalyticRetrieveParams,
+  ImageUsageAnalyticRetrieveResponse,
+} from './image-usage-analytics';
 export { LiveStreamAssets } from './live-stream-assets';
 export type {
   LiveStreamAssetCreateParams,

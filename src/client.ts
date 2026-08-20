@@ -110,12 +110,15 @@ import {
   type ImageSourceRetrieveResponse,
   type ImageSourceUpdateResponse,
   type ImageSourceDeleteResponse,
-  type ImageSourceAnalyticsResponse,
   type ImageSourceCreateParams,
   type ImageSourceUpdateParams,
   type ImageSourcePurgeCacheParams,
-  type ImageSourceAnalyticsParams,
 } from './resources/image-sources';
+import {
+  ImageUsageAnalytics,
+  type ImageUsageAnalyticRetrieveResponse,
+  type ImageUsageAnalyticRetrieveParams,
+} from './resources/image-usage-analytics';
 import {
   LiveStreamAssets,
   type LiveStreamAssetCreateResponse,
@@ -968,6 +971,7 @@ export class Gumlet {
   videoPlaylists: VideoPlaylists = new VideoPlaylists(this);
   webhookAPIs: WebhookAPIs = new WebhookAPIs(this);
   imageSources: ImageSources = new ImageSources(this);
+  imageUsageAnalytics: ImageUsageAnalytics = new ImageUsageAnalytics(this);
   liveStreamAssets: LiveStreamAssets = new LiveStreamAssets(this);
   videoWorkspaces: VideoWorkspaces = new VideoWorkspaces(this);
   folders: Folders = new Folders(this);
@@ -982,6 +986,7 @@ Gumlet.VideoProfiles = VideoProfiles;
 Gumlet.VideoPlaylists = VideoPlaylists;
 Gumlet.WebhookAPIs = WebhookAPIs;
 Gumlet.ImageSources = ImageSources;
+Gumlet.ImageUsageAnalytics = ImageUsageAnalytics;
 Gumlet.LiveStreamAssets = LiveStreamAssets;
 Gumlet.VideoWorkspaces = VideoWorkspaces;
 Gumlet.Folders = Folders;
@@ -1081,11 +1086,15 @@ export declare namespace Gumlet {
     type ImageSourceRetrieveResponse as ImageSourceRetrieveResponse,
     type ImageSourceUpdateResponse as ImageSourceUpdateResponse,
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
-    type ImageSourceAnalyticsResponse as ImageSourceAnalyticsResponse,
     type ImageSourceCreateParams as ImageSourceCreateParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,
     type ImageSourcePurgeCacheParams as ImageSourcePurgeCacheParams,
-    type ImageSourceAnalyticsParams as ImageSourceAnalyticsParams,
+  };
+
+  export {
+    ImageUsageAnalytics as ImageUsageAnalytics,
+    type ImageUsageAnalyticRetrieveResponse as ImageUsageAnalyticRetrieveResponse,
+    type ImageUsageAnalyticRetrieveParams as ImageUsageAnalyticRetrieveParams,
   };
 
   export {

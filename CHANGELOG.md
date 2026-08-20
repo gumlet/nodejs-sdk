@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.16](https://github.com/gumlet/nodejs-sdk/compare/v1.0.15...v1.0.16) (2026-08-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Removed operation `imageSources.analytics` (`POST /image/analytics`).
+
+### Features
+
+* **api:** remove operation imageSources.analytics (+1 more change) ([134b4c0](https://github.com/gumlet/nodejs-sdk/commit/134b4c099da458d8f7407fd8a7b113120662661c))
+
+
+### Chores
+
+* release 1.0.16 ([c41de73](https://github.com/gumlet/nodejs-sdk/commit/c41de733853f7205db85eaa174963faf6045cfcf))
+
 ## [1.0.15](https://github.com/gumlet/nodejs-sdk/compare/v1.0.14...v1.0.15) (2026-08-20)
 
 

@@ -513,11 +513,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'analytics',
+    operation: 'retrieve',
     method: 'POST',
     path: '/image/analytics',
     run: async () => {
-      const analytics = await client.imageSources.analytics({
+      const retrieve = await client.imageUsageAnalytics.retrieve({
         metrics: [],
         date_range: {},
         group_by: 'daily',

@@ -30,6 +30,7 @@
     "videoPlaylists",
     "webhookApis",
     "imageSources",
+    "imageUsageAnalytics",
     "liveStreamAssets",
     "videoWorkspaces",
     "folders",
@@ -44,6 +45,7 @@
     "videoPlaylists",
     "webhookApis",
     "imageSources",
+    "imageUsageAnalytics",
     "liveStreamAssets",
     "videoWorkspaces",
     "folders",
@@ -4471,10 +4473,10 @@
       "transport": "http"
     },
     {
-      "resource": "imageSources",
-      "publicResource": "imageSources",
-      "operation": "analytics",
-      "publicOperation": "analytics",
+      "resource": "imageUsageAnalytics",
+      "publicResource": "imageUsageAnalytics",
+      "operation": "retrieve",
+      "publicOperation": "retrieve",
       "deprecated": false,
       "method": "POST",
       "path": "/image/analytics",
@@ -4515,7 +4517,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "ImageSourceAnalyticsParams"
+        "publicName": "ImageUsageAnalyticRetrieveParams"
       },
       "requestBody": {
         "contentType": "application/json",
