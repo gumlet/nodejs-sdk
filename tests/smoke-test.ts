@@ -520,6 +520,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
         metrics: [],
         date_range: {},
         group_by: 'daily',
+        filters: {},
       });
     },
   },
