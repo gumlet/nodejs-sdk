@@ -18,7 +18,6 @@ export class ImageUsageAnalytics extends APIResource {
    *   metrics: [],
    *   date_range: {},
    *   group_by: 'daily',
-   *   filters: {},
    * });
    * ```
    */
@@ -52,11 +51,11 @@ export interface ImageUsageAnalyticRetrieveParams {
    * The timeframe to get the data for. Currently we only support a maximum of 30 days between `start_at` and `end_at`.
    */
   date_range: ImageUsageAnalyticRetrieveParams.DateRange;
-  filters: ImageUsageAnalyticRetrieveParams.Filters;
   /**
    * @default daily
    */
   group_by?: 'daily' | 'weekly' | 'monthly' | 'hourly';
+  filters?: ImageUsageAnalyticRetrieveParams.Filters;
 }
 
 export namespace ImageUsageAnalyticRetrieveParams {

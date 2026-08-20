@@ -758,7 +758,6 @@ const retrieve = await client.imageUsageAnalytics.retrieve({
   metrics: [],
   date_range: {},
   group_by: 'daily',
-  filters: {},
 });
 ```
 
