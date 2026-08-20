@@ -18,6 +18,7 @@ export class ImageUsageAnalytics extends APIResource {
    *   metrics: [],
    *   date_range: {},
    *   group_by: 'daily',
+   *   filters: {},
    * });
    * ```
    */
@@ -51,10 +52,11 @@ export interface ImageUsageAnalyticRetrieveParams {
    * The timeframe to get the data for. Currently we only support a maximum of 30 days between `start_at` and `end_at`.
    */
   date_range: ImageUsageAnalyticRetrieveParams.DateRange;
+  filters: ImageUsageAnalyticRetrieveParams.Filters;
   /**
    * @default daily
    */
-  group_by?: 'daily' | 'weekly' | 'monthly';
+  group_by?: 'daily' | 'weekly' | 'monthly' | 'hourly';
 }
 
 export namespace ImageUsageAnalyticRetrieveParams {
@@ -69,6 +71,13 @@ export namespace ImageUsageAnalyticRetrieveParams {
      * @format date
      */
     end_at?: string;
+  }
+
+  export interface Filters {
+    /**
+     * Source ID
+     */
+    source_id?: string;
   }
 }
 
@@ -206,15 +215,20 @@ export namespace ImageUsageAnalyticRetrieveResponse {
 
   export interface AvgTransformationResponseTime {
     /**
-     * Seconds it takes for image transform
-     * @format float
-     * @minimum 0
-     */
-    units: number;
-    /**
      * Seconds since epoch for the unit given.
      */
     timestamp: number;
+    /**
+     * Seconds it took to fetch image from origin
+     * @format float
+     * @minimum 0
+     */
+    fetch_time: number;
+    /**
+     * Seconds it took to prepare final image and send response.
+     * @format float
+     */
+    response_time: number;
   }
 
   export interface ContentType {
@@ -254,16 +268,16 @@ export namespace ImageUsageAnalyticRetrieveResponse {
 
   export interface BandwidthSaving {
     /**
-     * Timestamp of data point in seconds since epoch.
-     */
-    timestamp: number;
-    /**
      * Number between 0 and 1 depicting bandwidth savings percentage.
      * @format float
      * @minimum 0
      * @maximum 1
      */
-    units?: number;
+    units: number;
+    /**
+     * Timestamp of data point in seconds since epoch.
+     */
+    timestamp: number;
   }
 }
 export declare namespace ImageUsageAnalytics {
