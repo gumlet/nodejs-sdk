@@ -15,10 +15,9 @@ export class VideoUsageAnalytics extends APIResource {
    * @example
    * ```ts
    * const retrieve = await client.videoUsageAnalytics.retrieve({
-   *   metrics: [],
-   *   date_range: {},
-   *   top_assets_count: '5',
-   *   top_assets_page: '0',
+   *   metrics: ['bandwidth_consumption', 'asset_duration', 'storage_unit', 'top_assets', 'drm_requests'],
+   *   date_range: { start_at: '2026-08-01', end_at: '2026-08-20' },
+   *   group_by: 'daily',
    * });
    * ```
    */
@@ -99,18 +98,99 @@ export namespace VideoUsageAnalyticRetrieveParams {
 }
 
 export interface VideoUsageAnalyticRetrieveResponse {
+  drm_requests?: Array<VideoUsageAnalyticRetrieveResponse.DrmRequest>;
+  /**
+   * The unit for bandwidth saving data.
+   */
+  bandwidth_saving_unit?: '';
+  /**
+   * The unit for the storage data.
+   */
+  storage_data_unit?: 'gb' | 'min';
+  bandwidth_consumption?: Array<VideoUsageAnalyticRetrieveResponse.BandwidthConsumption>;
+  storage_unit?: Array<VideoUsageAnalyticRetrieveResponse.StorageUnit>;
+  asset_duration?: Array<VideoUsageAnalyticRetrieveResponse.AssetDuration>;
   top_assets?: Array<VideoUsageAnalyticRetrieveResponse.TopAsset>;
 }
 
 export namespace VideoUsageAnalyticRetrieveResponse {
-  export interface TopAsset {
-    collection_id?: string;
-    asset_id?: string;
+  export interface DrmRequest {
     /**
-     * @default 0
+     * Number of DRM requests.
+     * @format int64
      */
-    units?: number;
-    collection_name?: string;
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     * @format int64
+     */
+    timestamp: number;
+  }
+
+  export interface BandwidthConsumption {
+    /**
+     * The bandwidth consumption data in bytes.
+     * @format int64
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     * @format int64
+     */
+    timestamp: number;
+  }
+
+  export interface StorageUnit {
+    /**
+     * The storage data in bytes or seconds.
+     * @format int64
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     * @format int64
+     */
+    timestamp: number;
+  }
+
+  export interface AssetDuration {
+    /**
+     * Total transcoding duration in seconds.
+     * @format int64
+     */
+    units: number;
+    /**
+     * Seconds since epoch for the unit given.
+     * @format int64
+     */
+    timestamp: number;
+  }
+
+  export interface TopAsset {
+    /**
+     * Asset ID
+     */
+    asset_id: string;
+    /**
+     * Bandwidth consumption by this asset in bytes.
+     */
+    units: string;
+    /**
+     * Workspace ID
+     */
+    workspace_id: string;
+    /**
+     * Seconds of streaming minutes consumed by this asset.
+     */
+    duration: string;
+    /**
+     * Asset Title
+     */
+    title: string;
+    /**
+     * Workspace Name
+     */
+    collection_name: string;
   }
 }
 

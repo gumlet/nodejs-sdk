@@ -234,10 +234,9 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     path: '/video/analytics',
     run: async () => {
       const retrieve = await client.videoUsageAnalytics.retrieve({
-        metrics: [],
-        date_range: {},
-        top_assets_count: '5',
-        top_assets_page: '0',
+        metrics: ['bandwidth_consumption', 'asset_duration', 'storage_unit', 'top_assets', 'drm_requests'],
+        date_range: { start_at: '2026-08-01', end_at: '2026-08-20' },
+        group_by: 'daily',
       });
     },
   },
