@@ -97,6 +97,8 @@ const client = new Gumlet({
 
 ## `VideoAssets`
 
+Upload, manage, and retrieve video assets, including thumbnails, subtitles, audio tracks, and chapters.
+
 ### Create Asset
 
 An asset refers to a media content/video that is processed, stored, and delivered through Gumlet. This endpoint creates an asset allowing users to ingest media content into the Gumlet system for processing and delivery.
@@ -357,6 +359,8 @@ const listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {
 
 ## `VideoUsageAnalytics`
 
+Query video analytics and streaming duration usage data.
+
 ### Video Usage Analytics
 
 This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption
@@ -394,6 +398,8 @@ const topAssets = await client.videoUsageAnalytics.topAssets({
 
 ## `MultipartUpload`
 
+Upload large video files in parts and complete the multipart upload.
+
 ### Get Part Upload URL
 
 Use this endpoint to retrieve a pre-signed upload URL for the given part number.
@@ -423,6 +429,8 @@ const complete = await client.multipartUpload.complete('assetId');
 ```
 
 ## `VideoProfiles`
+
+Create and manage encoding/output profiles for video assets.
 
 ### Create Profile
 
@@ -494,6 +502,8 @@ const delete_ = await client.videoProfiles.delete('profileId');
 ```
 
 ## `VideoPlaylists`
+
+Create and manage playlists, and control which assets belong to them.
 
 ### Create Playlist
 
@@ -619,6 +629,8 @@ const reorderAsset = await client.videoPlaylists.reorderAsset('playlistId', {
 
 ## `WebhookApis`
 
+Configure webhooks for account and asset events.
+
 ### Create Webhook
 
 Creates a new webhook listener.
@@ -663,6 +675,8 @@ const delete_ = await client.webhookAPIs.delete('webhookId');
 ```
 
 ## `ImageSources`
+
+Manage image sources, view image analytics, and purge the image cache.
 
 ### Create Source
 
@@ -744,6 +758,8 @@ await client.imageSources.purgeCache('subdomain');
 
 ## `ImageUsageAnalytics`
 
+Query aggregated and chart-ready image usage analytics data.
+
 ### Image Usage Analytics
 
 This endpoint helps you get image analytics data like bandwidth consumption, request count, CDN hit ratio, etc.
@@ -762,6 +778,8 @@ const retrieve = await client.imageUsageAnalytics.retrieve({
 ```
 
 ## `LiveStreamAssets`
+
+Create, control, and monitor live stream assets.
 
 ### Create Live Asset
 
@@ -881,6 +899,8 @@ const statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId')
 
 ## `VideoWorkspaces`
 
+Create and manage video workspaces.
+
 ### List Workspaces
 
 This endpoint list video workspace which are assigned to the user or token.
@@ -952,6 +972,8 @@ const delete_ = await client.videoWorkspaces.delete('workspaceId');
 ```
 
 ## `Folders`
+
+Organize video assets into folders within a workspace.
 
 ### Create Folder
 
@@ -1041,6 +1063,8 @@ const deleteAssets = await client.folders.deleteAssets('workspaceId', {
 
 ## `ChannelViewers`
 
+Invite and remove viewers on a private video channel.
+
 ### Invite Channel Viewers
 
 Invite one or more viewers to a members-only channel.
@@ -1089,6 +1113,8 @@ const inviteCsv = await client.channelViewers.inviteCsv('videoWorkspaceId', { vi
 ```
 
 ## `DataApi`
+
+Query aggregated and chart-ready analytics/insights data.
 
 ### Chart Data
 
