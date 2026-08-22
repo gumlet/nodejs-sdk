@@ -146,42 +146,6 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'subtitleUpload',
-    method: 'POST',
-    path: '/video/assets/{asset_ID}/subtitle/upload',
-    run: async () => {
-      const subtitleUpload = await client.videoAssets.subtitleUpload('assetId');
-    },
-  },
-
-  {
-    operation: 'completeSubtitleUpload',
-    method: 'POST',
-    path: '/video/assets/{asset_ID}/subtitle/upload/event',
-    run: async () => {
-      const completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');
-    },
-  },
-
-  {
-    operation: 'audioUpload',
-    method: 'POST',
-    path: '/video/assets/{asset_ID}/audio/upload',
-    run: async () => {
-      const audioUpload = await client.videoAssets.audioUpload('assetId');
-    },
-  },
-
-  {
-    operation: 'completeAudioUpload',
-    method: 'POST',
-    path: '/video/assets/{asset_ID}/audio/upload/event',
-    run: async () => {
-      const completeAudioUpload = await client.videoAssets.completeAudioUpload('assetId');
-    },
-  },
-
-  {
     operation: 'createUpdateChapter',
     method: 'POST',
     path: '/video/assets/{asset_id}/chapters',
@@ -225,6 +189,42 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
         sortBy: 'created_at',
         orderBy: 'desc',
       });
+    },
+  },
+
+  {
+    operation: 'upload',
+    method: 'POST',
+    path: '/video/assets/{asset_ID}/subtitle/upload',
+    run: async () => {
+      const upload = await client.subtitleUpload.upload('assetId');
+    },
+  },
+
+  {
+    operation: 'complete',
+    method: 'POST',
+    path: '/video/assets/{asset_ID}/subtitle/upload/event',
+    run: async () => {
+      const complete = await client.subtitleUpload.complete('assetId');
+    },
+  },
+
+  {
+    operation: 'upload',
+    method: 'POST',
+    path: '/video/assets/{asset_ID}/audio/upload',
+    run: async () => {
+      const upload = await client.audioUpload.upload('assetId');
+    },
+  },
+
+  {
+    operation: 'complete',
+    method: 'POST',
+    path: '/video/assets/{asset_ID}/audio/upload/event',
+    run: async () => {
+      const complete = await client.audioUpload.complete('assetId');
     },
   },
 

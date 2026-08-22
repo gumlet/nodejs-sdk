@@ -33,10 +33,6 @@ import {
   type VideoAssetUpdateResponse,
   type VideoAssetThumbnailSelectResponse,
   type VideoAssetThumbnailUploadResponse,
-  type VideoAssetSubtitleUploadResponse,
-  type VideoAssetCompleteSubtitleUploadResponse,
-  type VideoAssetAudioUploadResponse,
-  type VideoAssetCompleteAudioUploadResponse,
   type VideoAssetCreateUpdateChapterResponse,
   type VideoAssetListResponse,
   type VideoAssetListDeprecatedResponse,
@@ -44,15 +40,25 @@ import {
   type VideoAssetUploadParams,
   type VideoAssetUpdateParams,
   type VideoAssetThumbnailSelectParams,
-  type VideoAssetSubtitleUploadParams,
-  type VideoAssetCompleteSubtitleUploadParams,
-  type VideoAssetAudioUploadParams,
-  type VideoAssetCompleteAudioUploadParams,
   type VideoAssetCreateUpdateChapterParams,
   type VideoAssetRecoverParams,
   type VideoAssetListParams,
   type VideoAssetListDeprecatedParams,
 } from './resources/video-assets';
+import {
+  SubtitleUpload,
+  type SubtitleUploadUploadResponse,
+  type SubtitleUploadCompleteResponse,
+  type SubtitleUploadUploadParams,
+  type SubtitleUploadCompleteParams,
+} from './resources/subtitle-upload';
+import {
+  AudioUpload,
+  type AudioUploadUploadResponse,
+  type AudioUploadCompleteResponse,
+  type AudioUploadUploadParams,
+  type AudioUploadCompleteParams,
+} from './resources/audio-upload';
 import {
   VideoUsageAnalytics,
   type VideoUsageAnalyticRetrieveResponse,
@@ -965,6 +971,8 @@ export class Gumlet {
   static toFile = toFile;
 
   videoAssets: VideoAssets = new VideoAssets(this);
+  subtitleUpload: SubtitleUpload = new SubtitleUpload(this);
+  audioUpload: AudioUpload = new AudioUpload(this);
   videoUsageAnalytics: VideoUsageAnalytics = new VideoUsageAnalytics(this);
   multipartUpload: MultipartUpload = new MultipartUpload(this);
   videoProfiles: VideoProfiles = new VideoProfiles(this);
@@ -980,6 +988,8 @@ export class Gumlet {
 }
 
 Gumlet.VideoAssets = VideoAssets;
+Gumlet.SubtitleUpload = SubtitleUpload;
+Gumlet.AudioUpload = AudioUpload;
 Gumlet.VideoUsageAnalytics = VideoUsageAnalytics;
 Gumlet.MultipartUpload = MultipartUpload;
 Gumlet.VideoProfiles = VideoProfiles;
@@ -1003,10 +1013,6 @@ export declare namespace Gumlet {
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
     type VideoAssetThumbnailSelectResponse as VideoAssetThumbnailSelectResponse,
     type VideoAssetThumbnailUploadResponse as VideoAssetThumbnailUploadResponse,
-    type VideoAssetSubtitleUploadResponse as VideoAssetSubtitleUploadResponse,
-    type VideoAssetCompleteSubtitleUploadResponse as VideoAssetCompleteSubtitleUploadResponse,
-    type VideoAssetAudioUploadResponse as VideoAssetAudioUploadResponse,
-    type VideoAssetCompleteAudioUploadResponse as VideoAssetCompleteAudioUploadResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
     type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
@@ -1014,14 +1020,26 @@ export declare namespace Gumlet {
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
     type VideoAssetThumbnailSelectParams as VideoAssetThumbnailSelectParams,
-    type VideoAssetSubtitleUploadParams as VideoAssetSubtitleUploadParams,
-    type VideoAssetCompleteSubtitleUploadParams as VideoAssetCompleteSubtitleUploadParams,
-    type VideoAssetAudioUploadParams as VideoAssetAudioUploadParams,
-    type VideoAssetCompleteAudioUploadParams as VideoAssetCompleteAudioUploadParams,
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
     type VideoAssetRecoverParams as VideoAssetRecoverParams,
     type VideoAssetListParams as VideoAssetListParams,
     type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
+  };
+
+  export {
+    SubtitleUpload as SubtitleUpload,
+    type SubtitleUploadUploadResponse as SubtitleUploadUploadResponse,
+    type SubtitleUploadCompleteResponse as SubtitleUploadCompleteResponse,
+    type SubtitleUploadUploadParams as SubtitleUploadUploadParams,
+    type SubtitleUploadCompleteParams as SubtitleUploadCompleteParams,
+  };
+
+  export {
+    AudioUpload as AudioUpload,
+    type AudioUploadUploadResponse as AudioUploadUploadResponse,
+    type AudioUploadCompleteResponse as AudioUploadCompleteResponse,
+    type AudioUploadUploadParams as AudioUploadUploadParams,
+    type AudioUploadCompleteParams as AudioUploadCompleteParams,
   };
 
   export {
