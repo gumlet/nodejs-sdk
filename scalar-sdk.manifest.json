@@ -24,6 +24,8 @@
   "schemas": [],
   "resources": [
     "videoAssets",
+    "subtitleUpload",
+    "audioUpload",
     "videoUsageAnalytics",
     "multipartUpload",
     "videoProfiles",
@@ -39,6 +41,8 @@
   ],
   "publicResources": [
     "videoAssets",
+    "subtitleUpload",
+    "audioUpload",
     "videoUsageAnalytics",
     "multipartUpload",
     "videoProfiles",
@@ -979,374 +983,6 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "subtitleUpload",
-      "publicOperation": "subtitleUpload",
-      "deprecated": false,
-      "method": "POST",
-      "path": "/video/assets/{asset_ID}/subtitle/upload",
-      "pathParams": [
-        "asset_ID"
-      ],
-      "publicPathParams": [
-        "asset_ID"
-      ],
-      "queryParams": [],
-      "publicQueryParams": [],
-      "headerParams": [],
-      "publicHeaderParams": [],
-      "bodyParams": [
-        "language_codes"
-      ],
-      "publicBodyParams": [
-        "language_codes"
-      ],
-      "bodyParamDetails": [
-        {
-          "name": "language_codes",
-          "required": false
-        }
-      ],
-      "pathParamDetails": [
-        {
-          "name": "asset_ID",
-          "required": true,
-          "style": "simple",
-          "explode": false
-        }
-      ],
-      "queryParamDetails": [],
-      "headerParamDetails": [],
-      "cookieParams": [],
-      "publicCookieParams": [],
-      "cookieParamDetails": [],
-      "paramsModel": {
-        "publicName": "VideoAssetSubtitleUploadParams"
-      },
-      "requestBody": {
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ],
-        "required": false,
-        "publicName": "body",
-        "publicIdentifier": "body"
-      },
-      "response": {
-        "status": "200",
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ]
-      },
-      "result": {
-        "successStatus": "200",
-        "errorStatuses": [
-          "400"
-        ]
-      },
-      "errorResponses": [
-        {
-          "status": "400",
-          "contentType": "application/json",
-          "encoding": "json",
-          "contents": [
-            {
-              "contentType": "application/json",
-              "encoding": "json"
-            }
-          ]
-        }
-      ],
-      "responseLinks": [],
-      "transport": "http"
-    },
-    {
-      "resource": "videoAssets",
-      "publicResource": "videoAssets",
-      "operation": "completeSubtitleUpload",
-      "publicOperation": "completeSubtitleUpload",
-      "deprecated": false,
-      "method": "POST",
-      "path": "/video/assets/{asset_ID}/subtitle/upload/event",
-      "pathParams": [
-        "asset_ID"
-      ],
-      "publicPathParams": [
-        "asset_ID"
-      ],
-      "queryParams": [],
-      "publicQueryParams": [],
-      "headerParams": [],
-      "publicHeaderParams": [],
-      "bodyParams": [
-        "upload_responses"
-      ],
-      "publicBodyParams": [
-        "upload_responses"
-      ],
-      "bodyParamDetails": [
-        {
-          "name": "upload_responses",
-          "required": false
-        }
-      ],
-      "pathParamDetails": [
-        {
-          "name": "asset_ID",
-          "required": true,
-          "style": "simple",
-          "explode": false
-        }
-      ],
-      "queryParamDetails": [],
-      "headerParamDetails": [],
-      "cookieParams": [],
-      "publicCookieParams": [],
-      "cookieParamDetails": [],
-      "paramsModel": {
-        "publicName": "VideoAssetCompleteSubtitleUploadParams"
-      },
-      "requestBody": {
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ],
-        "required": false,
-        "publicName": "body",
-        "publicIdentifier": "body"
-      },
-      "response": {
-        "status": "200",
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ]
-      },
-      "result": {
-        "successStatus": "200",
-        "errorStatuses": [
-          "400"
-        ]
-      },
-      "errorResponses": [
-        {
-          "status": "400",
-          "contentType": "application/json",
-          "encoding": "json",
-          "contents": [
-            {
-              "contentType": "application/json",
-              "encoding": "json"
-            }
-          ]
-        }
-      ],
-      "responseLinks": [],
-      "transport": "http"
-    },
-    {
-      "resource": "videoAssets",
-      "publicResource": "videoAssets",
-      "operation": "audioUpload",
-      "publicOperation": "audioUpload",
-      "deprecated": false,
-      "method": "POST",
-      "path": "/video/assets/{asset_ID}/audio/upload",
-      "pathParams": [
-        "asset_ID"
-      ],
-      "publicPathParams": [
-        "asset_ID"
-      ],
-      "queryParams": [],
-      "publicQueryParams": [],
-      "headerParams": [],
-      "publicHeaderParams": [],
-      "bodyParams": [
-        "language_codes"
-      ],
-      "publicBodyParams": [
-        "language_codes"
-      ],
-      "bodyParamDetails": [
-        {
-          "name": "language_codes",
-          "required": false
-        }
-      ],
-      "pathParamDetails": [
-        {
-          "name": "asset_ID",
-          "required": true,
-          "style": "simple",
-          "explode": false
-        }
-      ],
-      "queryParamDetails": [],
-      "headerParamDetails": [],
-      "cookieParams": [],
-      "publicCookieParams": [],
-      "cookieParamDetails": [],
-      "paramsModel": {
-        "publicName": "VideoAssetAudioUploadParams"
-      },
-      "requestBody": {
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ],
-        "required": false,
-        "publicName": "body",
-        "publicIdentifier": "body"
-      },
-      "response": {
-        "status": "200",
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ]
-      },
-      "result": {
-        "successStatus": "200",
-        "errorStatuses": [
-          "400"
-        ]
-      },
-      "errorResponses": [
-        {
-          "status": "400",
-          "contentType": "application/json",
-          "encoding": "json",
-          "contents": [
-            {
-              "contentType": "application/json",
-              "encoding": "json"
-            }
-          ]
-        }
-      ],
-      "responseLinks": [],
-      "transport": "http"
-    },
-    {
-      "resource": "videoAssets",
-      "publicResource": "videoAssets",
-      "operation": "completeAudioUpload",
-      "publicOperation": "completeAudioUpload",
-      "deprecated": false,
-      "method": "POST",
-      "path": "/video/assets/{asset_ID}/audio/upload/event",
-      "pathParams": [
-        "asset_ID"
-      ],
-      "publicPathParams": [
-        "asset_ID"
-      ],
-      "queryParams": [],
-      "publicQueryParams": [],
-      "headerParams": [],
-      "publicHeaderParams": [],
-      "bodyParams": [
-        "upload_responses"
-      ],
-      "publicBodyParams": [
-        "upload_responses"
-      ],
-      "bodyParamDetails": [
-        {
-          "name": "upload_responses",
-          "required": false
-        }
-      ],
-      "pathParamDetails": [
-        {
-          "name": "asset_ID",
-          "required": true,
-          "style": "simple",
-          "explode": false
-        }
-      ],
-      "queryParamDetails": [],
-      "headerParamDetails": [],
-      "cookieParams": [],
-      "publicCookieParams": [],
-      "cookieParamDetails": [],
-      "paramsModel": {
-        "publicName": "VideoAssetCompleteAudioUploadParams"
-      },
-      "requestBody": {
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ],
-        "required": false,
-        "publicName": "body",
-        "publicIdentifier": "body"
-      },
-      "response": {
-        "status": "200",
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ]
-      },
-      "result": {
-        "successStatus": "200",
-        "errorStatuses": [
-          "400"
-        ]
-      },
-      "errorResponses": [
-        {
-          "status": "400",
-          "contentType": "application/json",
-          "encoding": "json",
-          "contents": [
-            {
-              "contentType": "application/json",
-              "encoding": "json"
-            }
-          ]
-        }
-      ],
-      "responseLinks": [],
-      "transport": "http"
-    },
-    {
-      "resource": "videoAssets",
-      "publicResource": "videoAssets",
       "operation": "createUpdateChapter",
       "publicOperation": "createUpdateChapter",
       "deprecated": false,
@@ -1849,6 +1485,374 @@
         },
         {
           "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "subtitleUpload",
+      "publicResource": "subtitleUpload",
+      "operation": "upload",
+      "publicOperation": "upload",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_ID}/subtitle/upload",
+      "pathParams": [
+        "asset_ID"
+      ],
+      "publicPathParams": [
+        "asset_ID"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "language_codes"
+      ],
+      "publicBodyParams": [
+        "language_codes"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "language_codes",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_ID",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "SubtitleUploadUploadParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "subtitleUpload",
+      "publicResource": "subtitleUpload",
+      "operation": "complete",
+      "publicOperation": "complete",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_ID}/subtitle/upload/event",
+      "pathParams": [
+        "asset_ID"
+      ],
+      "publicPathParams": [
+        "asset_ID"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "upload_responses"
+      ],
+      "publicBodyParams": [
+        "upload_responses"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "upload_responses",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_ID",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "SubtitleUploadCompleteParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "audioUpload",
+      "publicResource": "audioUpload",
+      "operation": "upload",
+      "publicOperation": "upload",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_ID}/audio/upload",
+      "pathParams": [
+        "asset_ID"
+      ],
+      "publicPathParams": [
+        "asset_ID"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "language_codes"
+      ],
+      "publicBodyParams": [
+        "language_codes"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "language_codes",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_ID",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "AudioUploadUploadParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "audioUpload",
+      "publicResource": "audioUpload",
+      "operation": "complete",
+      "publicOperation": "complete",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_ID}/audio/upload/event",
+      "pathParams": [
+        "asset_ID"
+      ],
+      "publicPathParams": [
+        "asset_ID"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "upload_responses"
+      ],
+      "publicBodyParams": [
+        "upload_responses"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "upload_responses",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_ID",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "AudioUploadCompleteParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
           "contentType": "application/json",
           "encoding": "json",
           "contents": [
