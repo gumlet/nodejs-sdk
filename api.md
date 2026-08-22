@@ -12,14 +12,16 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Update Asset](#update-asset)
   - [Update thumbnail from video](#update-thumbnail-from-video)
   - [Update thumbnail via upload](#update-thumbnail-via-upload)
-  - [Upload Subtitles](#upload-subtitles)
-  - [Complete Subtitle Upload](#complete-subtitle-upload)
-  - [Add Audio](#add-audio)
-  - [Complete Audio Upload](#complete-audio-upload)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
   - [Recover Deleted Asset](#recover-deleted-asset)
   - [List Assets](#list-assets)
   - [List Assets](#list-assets-1)
+- [`SubtitleUpload`](#subtitleupload)
+  - [Upload Subtitles](#upload-subtitles)
+  - [Complete Subtitle Upload](#complete-subtitle-upload)
+- [`AudioUpload`](#audioupload)
+  - [Add Audio](#add-audio)
+  - [Complete Audio Upload](#complete-audio-upload)
 - [`VideoUsageAnalytics`](#videousageanalytics)
   - [Video Usage Analytics](#video-usage-analytics)
   - [Top Streamed Assets](#top-streamed-assets)
@@ -240,61 +242,6 @@ curl --location --request PUT '<upload_url>' \
 const thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');
 ```
 
-### Upload Subtitles
-
-Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`VideoAssetSubtitleUploadParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetSubtitleUploadResponse`](./src/resources/video-assets.ts) |
-
-```ts
-const subtitleUpload = await client.videoAssets.subtitleUpload('assetId');
-```
-
-### Complete Subtitle Upload
-
-This API must be called after adding subtitles; the add subtitle call gives you URLs to upload, and you complete a `PUT` request to those URLs. 
-Once that is done, calling this initiates the process to actually add the subtitle to the video.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`VideoAssetCompleteSubtitleUploadParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetCompleteSubtitleUploadResponse`](./src/resources/video-assets.ts) |
-
-```ts
-const completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');
-```
-
-### Add Audio
-
-Add any audio file to the video asset. 
-The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`VideoAssetAudioUploadParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetAudioUploadResponse`](./src/resources/video-assets.ts) |
-
-```ts
-const audioUpload = await client.videoAssets.audioUpload('assetId');
-```
-
-### Complete Audio Upload
-
-This API must be called after adding audio(s); The add audio call gives you URLs to upload, and you complete a `PUT` request to those URLs. 
-Once that is done, calling this initiates the process to actually add the subtitle to the video.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`VideoAssetCompleteAudioUploadParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetCompleteAudioUploadResponse`](./src/resources/video-assets.ts) |
-
-```ts
-const completeAudioUpload = await client.videoAssets.completeAudioUpload('assetId');
-```
-
 ### Create/Update Video Asset Chapters
 
 This endpoint will create/update video asset chapters.
@@ -355,6 +302,69 @@ const listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {
   sortBy: 'created_at',
   orderBy: 'desc',
 });
+```
+
+## `SubtitleUpload`
+
+Add subtitles to an existing asset.
+
+### Upload Subtitles
+
+Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`SubtitleUploadUploadParams`](./src/resources/subtitle-upload.ts) |
+| Response | [`SubtitleUploadUploadResponse`](./src/resources/subtitle-upload.ts) |
+
+```ts
+const upload = await client.subtitleUpload.upload('assetId');
+```
+
+### Complete Subtitle Upload
+
+This API must be called after adding subtitles; the add subtitle call gives you URLs to upload, and you complete a `PUT` request to those URLs. 
+Once that is done, calling this initiates the process to actually add the subtitle to the video.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`SubtitleUploadCompleteParams`](./src/resources/subtitle-upload.ts) |
+| Response | [`SubtitleUploadCompleteResponse`](./src/resources/subtitle-upload.ts) |
+
+```ts
+const complete = await client.subtitleUpload.complete('assetId');
+```
+
+## `AudioUpload`
+
+Add additional audio tracks to an existing asset.
+
+### Add Audio
+
+Add any audio file to the video asset. 
+The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`AudioUploadUploadParams`](./src/resources/audio-upload.ts) |
+| Response | [`AudioUploadUploadResponse`](./src/resources/audio-upload.ts) |
+
+```ts
+const upload = await client.audioUpload.upload('assetId');
+```
+
+### Complete Audio Upload
+
+This API must be called after adding audio(s); The add audio call gives you URLs to upload, and you complete a `PUT` request to those URLs. 
+Once that is done, calling this initiates the process to actually add the subtitle to the video.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`AudioUploadCompleteParams`](./src/resources/audio-upload.ts) |
+| Response | [`AudioUploadCompleteResponse`](./src/resources/audio-upload.ts) |
+
+```ts
+const complete = await client.audioUpload.complete('assetId');
 ```
 
 ## `VideoUsageAnalytics`

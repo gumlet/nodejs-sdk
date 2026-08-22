@@ -189,96 +189,6 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
-   *
-   * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetSubtitleUploadParams} [body] - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetSubtitleUploadResponse>} 200
-   *
-   * @example
-   * ```ts
-   * const subtitleUpload = await client.videoAssets.subtitleUpload('assetId');
-   * ```
-   */
-  subtitleUpload(
-    assetID: string,
-    body: VideoAssetSubtitleUploadParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetSubtitleUploadResponse> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/subtitle/upload`, { body, ...options });
-  }
-
-  /**
-   * This API must be called after adding subtitles; the add subtitle call gives you URLs to upload, and you complete a `PUT` request to those URLs.
-   * Once that is done, calling this initiates the process to actually add the subtitle to the video.
-   *
-   * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetCompleteSubtitleUploadParams} [body] - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetCompleteSubtitleUploadResponse>} 200
-   *
-   * @example
-   * ```ts
-   * const completeSubtitleUpload = await client.videoAssets.completeSubtitleUpload('assetId');
-   * ```
-   */
-  completeSubtitleUpload(
-    assetID: string,
-    body: VideoAssetCompleteSubtitleUploadParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetCompleteSubtitleUploadResponse> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/subtitle/upload/event`, {
-      body,
-      ...options,
-    });
-  }
-
-  /**
-   * Add any audio file to the video asset.
-   * The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the audio files to those URLs. Once that's done, you need to call the audio upload complete API. Only after that will Gumlet add audio to the asset.
-   *
-   * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetAudioUploadParams} [body] - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetAudioUploadResponse>} 200
-   *
-   * @example
-   * ```ts
-   * const audioUpload = await client.videoAssets.audioUpload('assetId');
-   * ```
-   */
-  audioUpload(
-    assetID: string,
-    body: VideoAssetAudioUploadParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetAudioUploadResponse> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/audio/upload`, { body, ...options });
-  }
-
-  /**
-   * This API must be called after adding audio(s); The add audio call gives you URLs to upload, and you complete a `PUT` request to those URLs.
-   * Once that is done, calling this initiates the process to actually add the subtitle to the video.
-   *
-   * @param {string} assetID - An asset id for the previously created asset.
-   * @param {VideoAssetCompleteAudioUploadParams} [body] - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetCompleteAudioUploadResponse>} 200
-   *
-   * @example
-   * ```ts
-   * const completeAudioUpload = await client.videoAssets.completeAudioUpload('assetId');
-   * ```
-   */
-  completeAudioUpload(
-    assetID: string,
-    body: VideoAssetCompleteAudioUploadParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetCompleteAudioUploadResponse> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/audio/upload/event`, { body, ...options });
-  }
-
-  /**
    * This endpoint will create/update video asset chapters.
    *
    * @param {string} assetID - Gumlet asset ID
@@ -1546,88 +1456,6 @@ export interface VideoAssetThumbnailUploadResponse {
   thumbnail_updated_at?: number;
 }
 
-export interface VideoAssetSubtitleUploadParams {
-  /**
-   * List of language Code to upload subtitle file  (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
-   */
-  language_codes?: Array<string>;
-}
-
-export interface VideoAssetSubtitleUploadResponse {
-  /**
-   * Asset ID of Gumlet
-   */
-  asset_id: string;
-  signed_urls: Array<VideoAssetSubtitleUploadResponse.SignedURL>;
-}
-
-export namespace VideoAssetSubtitleUploadResponse {
-  export interface SignedURL {
-    language_code: string;
-    upload_url: string;
-  }
-}
-
-export interface VideoAssetCompleteSubtitleUploadParams {
-  upload_responses?: Array<VideoAssetCompleteSubtitleUploadParams.UploadResponse>;
-}
-
-export namespace VideoAssetCompleteSubtitleUploadParams {
-  export interface UploadResponse {
-    /**
-     * Language Code for uploaded .srt or .vtt file.
-     */
-    language_code?: string;
-    /**
-     * Status of language uploaded .srt or .vtt file. (If status code was 200, You can mark true else false)
-     */
-    uploaded?: boolean;
-  }
-}
-
-export type VideoAssetCompleteSubtitleUploadResponse = Record<string, unknown>;
-
-export interface VideoAssetAudioUploadParams {
-  /**
-   * List of language Code to upload audio file  (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
-   */
-  language_codes?: Array<string>;
-}
-
-export interface VideoAssetAudioUploadResponse {
-  /**
-   * Gumlet Asset ID
-   */
-  asset_id: string;
-  signed_urls: Array<VideoAssetAudioUploadResponse.SignedURL>;
-}
-
-export namespace VideoAssetAudioUploadResponse {
-  export interface SignedURL {
-    language_code: string;
-    upload_url: string;
-  }
-}
-
-export interface VideoAssetCompleteAudioUploadParams {
-  upload_responses?: Array<VideoAssetCompleteAudioUploadParams.UploadResponse>;
-}
-
-export namespace VideoAssetCompleteAudioUploadParams {
-  export interface UploadResponse {
-    /**
-     * Language Code for uploaded audio file.
-     */
-    language_code?: string;
-    /**
-     * Status of language uploaded audio file. (If status code was 200, You can mark true else false)
-     */
-    uploaded?: boolean;
-  }
-}
-
-export type VideoAssetCompleteAudioUploadResponse = Record<string, unknown>;
-
 export interface VideoAssetCreateUpdateChapterParams {
   chapters: Array<VideoAssetCreateUpdateChapterParams.Chapter>;
 }
@@ -2012,10 +1840,6 @@ export declare namespace VideoAssets {
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
     type VideoAssetThumbnailSelectResponse as VideoAssetThumbnailSelectResponse,
     type VideoAssetThumbnailUploadResponse as VideoAssetThumbnailUploadResponse,
-    type VideoAssetSubtitleUploadResponse as VideoAssetSubtitleUploadResponse,
-    type VideoAssetCompleteSubtitleUploadResponse as VideoAssetCompleteSubtitleUploadResponse,
-    type VideoAssetAudioUploadResponse as VideoAssetAudioUploadResponse,
-    type VideoAssetCompleteAudioUploadResponse as VideoAssetCompleteAudioUploadResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
     type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
@@ -2023,10 +1847,6 @@ export declare namespace VideoAssets {
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
     type VideoAssetThumbnailSelectParams as VideoAssetThumbnailSelectParams,
-    type VideoAssetSubtitleUploadParams as VideoAssetSubtitleUploadParams,
-    type VideoAssetCompleteSubtitleUploadParams as VideoAssetCompleteSubtitleUploadParams,
-    type VideoAssetAudioUploadParams as VideoAssetAudioUploadParams,
-    type VideoAssetCompleteAudioUploadParams as VideoAssetCompleteAudioUploadParams,
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
     type VideoAssetRecoverParams as VideoAssetRecoverParams,
     type VideoAssetListParams as VideoAssetListParams,

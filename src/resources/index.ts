@@ -12,14 +12,6 @@ export type {
   VideoAssetThumbnailSelectParams,
   VideoAssetThumbnailSelectResponse,
   VideoAssetThumbnailUploadResponse,
-  VideoAssetSubtitleUploadParams,
-  VideoAssetSubtitleUploadResponse,
-  VideoAssetCompleteSubtitleUploadParams,
-  VideoAssetCompleteSubtitleUploadResponse,
-  VideoAssetAudioUploadParams,
-  VideoAssetAudioUploadResponse,
-  VideoAssetCompleteAudioUploadParams,
-  VideoAssetCompleteAudioUploadResponse,
   VideoAssetCreateUpdateChapterParams,
   VideoAssetCreateUpdateChapterResponse,
   VideoAssetRecoverParams,
@@ -28,6 +20,20 @@ export type {
   VideoAssetListDeprecatedParams,
   VideoAssetListDeprecatedResponse,
 } from './video-assets';
+export { SubtitleUpload } from './subtitle-upload';
+export type {
+  SubtitleUploadUploadParams,
+  SubtitleUploadUploadResponse,
+  SubtitleUploadCompleteParams,
+  SubtitleUploadCompleteResponse,
+} from './subtitle-upload';
+export { AudioUpload } from './audio-upload';
+export type {
+  AudioUploadUploadParams,
+  AudioUploadUploadResponse,
+  AudioUploadCompleteParams,
+  AudioUploadCompleteResponse,
+} from './audio-upload';
 export { VideoUsageAnalytics } from './video-usage-analytics';
 export type {
   VideoUsageAnalyticRetrieveParams,
