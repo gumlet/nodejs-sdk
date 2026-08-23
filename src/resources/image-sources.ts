@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
 import type { RequestOptions } from '../internal/request-options';
-import { buildHeaders } from '../internal/headers';
 import { path as __scalarPath } from '../internal/utils/path';
 
 export class ImageSources extends APIResource {
@@ -101,23 +100,21 @@ export class ImageSources extends APIResource {
    * @param {string} subdomain - Subdomain is same subdomain you created while creating source. If you serve image from example.gumlet.com, please enter only 'example' for this parameter.
    * @param {ImageSourcePurgeCacheParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns 200
+   * @returns {APIPromise<ImageSourcePurgeCacheResponse>} 200
    *
    * @example
    * ```ts
-   * await client.imageSources.purgeCache('subdomain');
+   * const purgeCache = await client.imageSources.purgeCache('subdomain');
    * ```
+   *
+   * @deprecated
    */
   purgeCache(
     subdomain: string,
     body: ImageSourcePurgeCacheParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
-    return this._client.post(__scalarPath`/purge/${subdomain}`, {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  ): APIPromise<ImageSourcePurgeCacheResponse> {
+    return this._client.post(__scalarPath`/purge/${subdomain}`, { body, ...options });
   }
 }
 
@@ -932,6 +929,10 @@ export interface ImageSourcePurgeCacheParams {
    */
   paths?: Array<string>;
 }
+
+export interface ImageSourcePurgeCacheResponse {
+  status: string;
+}
 export declare namespace ImageSources {
   export {
     type ImageSourceCreateResponse as ImageSourceCreateResponse,
@@ -939,6 +940,7 @@ export declare namespace ImageSources {
     type ImageSourceRetrieveResponse as ImageSourceRetrieveResponse,
     type ImageSourceUpdateResponse as ImageSourceUpdateResponse,
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
+    type ImageSourcePurgeCacheResponse as ImageSourcePurgeCacheResponse,
     type ImageSourceCreateParams as ImageSourceCreateParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,
     type ImageSourcePurgeCacheParams as ImageSourcePurgeCacheParams,
