@@ -131,9 +131,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.videoAssets.update({
-   *   asset_id: '',
-   * });
+   * const update = await client.videoAssets.update({ asset_id: '<YOUR_ASSET_ID>', title: 'Updated Title' });
    * ```
    */
   update(body: VideoAssetUpdateParams, options?: RequestOptions): APIPromise<VideoAssetUpdateResponse> {
@@ -199,7 +197,10 @@ export class VideoAssets extends APIResource {
    * @example
    * ```ts
    * const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetId', {
-   *   chapters: [],
+   *   chapters: [
+   *     { label: 'Chapter 1', startTime: 0 },
+   *     { label: 'Chapter 2', startTime: 10 },
+   *   ],
    * });
    * ```
    */
@@ -1462,11 +1463,15 @@ export interface VideoAssetCreateUpdateChapterParams {
 
 export namespace VideoAssetCreateUpdateChapterParams {
   export interface Chapter {
+    /**
+     * Label for the chapter.
+     */
     label: string;
     /**
+     * Start time of chapter in seconds. 0 means chapter is put as the video starts.
      * @format int32
      */
-    endTime: number;
+    startTime: number;
   }
 }
 
