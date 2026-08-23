@@ -508,7 +508,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/purge/{subdomain}',
     run: async () => {
-      await client.imageSources.purgeCache('subdomain');
+      const purgeCache = await client.imageSources.purgeCache('subdomain');
     },
   },
 
