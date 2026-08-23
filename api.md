@@ -54,6 +54,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Update Source](#update-source)
   - [Delete Source](#delete-source)
   - [Purge Cache](#purge-cache)
+  - [Purge Image Cache](#purge-image-cache)
 - [`ImageUsageAnalytics`](#imageusageanalytics)
   - [Image Usage Analytics](#image-usage-analytics)
 - [`LiveStreamAssets`](#livestreamassets)
@@ -766,6 +767,19 @@ You can purge cache for any image by using our cache purge API.
 
 ```ts
 const purgeCache = await client.imageSources.purgeCache('subdomain');
+```
+
+### Purge Image Cache
+
+You can purge the cache for any image path by using this cache purge API.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ImageSourcePurgeParams`](./src/resources/image-sources.ts) |
+| Response | [`ImageSourcePurgeResponse`](./src/resources/image-sources.ts) |
+
+```ts
+const purge = await client.imageSources.purge('sourceId', { paths: ['image.jpeg', 'image2.png'] });
 ```
 
 ## `ImageUsageAnalytics`

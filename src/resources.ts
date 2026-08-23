@@ -87,6 +87,8 @@ export type {
   ImageSourceDeleteResponse,
   ImageSourcePurgeCacheParams,
   ImageSourcePurgeCacheResponse,
+  ImageSourcePurgeParams,
+  ImageSourcePurgeResponse,
   ImageUsageAnalyticRetrieveParams,
   ImageUsageAnalyticRetrieveResponse,
   LiveStreamAssetCreateParams,
