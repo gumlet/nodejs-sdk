@@ -116,6 +116,27 @@ export class ImageSources extends APIResource {
   ): APIPromise<ImageSourcePurgeCacheResponse> {
     return this._client.post(__scalarPath`/purge/${subdomain}`, { body, ...options });
   }
+
+  /**
+   * You can purge the cache for any image path by using this cache purge API.
+   *
+   * @param {string} sourceID - Image Source ID
+   * @param {ImageSourcePurgeParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ImageSourcePurgeResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const purge = await client.imageSources.purge('sourceId', { paths: ['image.jpeg', 'image2.png'] });
+   * ```
+   */
+  purge(
+    sourceID: string,
+    body: ImageSourcePurgeParams,
+    options?: RequestOptions,
+  ): APIPromise<ImageSourcePurgeResponse> {
+    return this._client.post(__scalarPath`/image/purge/${sourceID}`, { body, ...options });
+  }
 }
 
 export interface ImageSourceCreateParams {
@@ -933,6 +954,17 @@ export interface ImageSourcePurgeCacheParams {
 export interface ImageSourcePurgeCacheResponse {
   status: string;
 }
+
+export interface ImageSourcePurgeParams {
+  /**
+   * An array of path of images to purge. It should be provided without any query parameters.
+   */
+  paths: Array<string>;
+}
+
+export interface ImageSourcePurgeResponse {
+  status: string;
+}
 export declare namespace ImageSources {
   export {
     type ImageSourceCreateResponse as ImageSourceCreateResponse,
@@ -941,8 +973,10 @@ export declare namespace ImageSources {
     type ImageSourceUpdateResponse as ImageSourceUpdateResponse,
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
     type ImageSourcePurgeCacheResponse as ImageSourcePurgeCacheResponse,
+    type ImageSourcePurgeResponse as ImageSourcePurgeResponse,
     type ImageSourceCreateParams as ImageSourceCreateParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,
     type ImageSourcePurgeCacheParams as ImageSourcePurgeCacheParams,
+    type ImageSourcePurgeParams as ImageSourcePurgeParams,
   };
 }

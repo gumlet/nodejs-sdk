@@ -95,6 +95,8 @@ export type {
   ImageSourceDeleteResponse,
   ImageSourcePurgeCacheParams,
   ImageSourcePurgeCacheResponse,
+  ImageSourcePurgeParams,
+  ImageSourcePurgeResponse,
 } from './image-sources';
 export { ImageUsageAnalytics } from './image-usage-analytics';
 export type {
