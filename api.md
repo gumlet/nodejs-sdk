@@ -762,9 +762,10 @@ You can purge cache for any image by using our cache purge API.
 | Direction | Type |
 | --- | --- |
 | Request | [`ImageSourcePurgeCacheParams`](./src/resources/image-sources.ts) |
+| Response | [`ImageSourcePurgeCacheResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-await client.imageSources.purgeCache('subdomain');
+const purgeCache = await client.imageSources.purgeCache('subdomain');
 ```
 
 ## `ImageUsageAnalytics`
