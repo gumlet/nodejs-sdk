@@ -205,9 +205,7 @@ This endpoint allows users to update video asset that has previously been create
 | Response | [`VideoAssetUpdateResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const update = await client.videoAssets.update({
-  asset_id: '',
-});
+const update = await client.videoAssets.update({ asset_id: '<YOUR_ASSET_ID>', title: 'Updated Title' });
 ```
 
 ### Update thumbnail from video
@@ -253,7 +251,10 @@ This endpoint will create/update video asset chapters.
 
 ```ts
 const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetId', {
-  chapters: [],
+  chapters: [
+    { label: 'Chapter 1', startTime: 0 },
+    { label: 'Chapter 2', startTime: 10 },
+  ],
 });
 ```
 

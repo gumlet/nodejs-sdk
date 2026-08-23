@@ -121,9 +121,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/assets/update',
     run: async () => {
-      const update = await client.videoAssets.update({
-        asset_id: '',
-      });
+      const update = await client.videoAssets.update({ asset_id: '<YOUR_ASSET_ID>', title: 'Updated Title' });
     },
   },
 
@@ -151,7 +149,10 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     path: '/video/assets/{asset_id}/chapters',
     run: async () => {
       const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetId', {
-        chapters: [],
+        chapters: [
+          { label: 'Chapter 1', startTime: 0 },
+          { label: 'Chapter 2', startTime: 10 },
+        ],
       });
     },
   },
