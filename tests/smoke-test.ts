@@ -513,6 +513,15 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
+    operation: 'purge',
+    method: 'POST',
+    path: '/image/purge/{source_id}',
+    run: async () => {
+      const purge = await client.imageSources.purge('sourceId', { paths: ['image.jpeg', 'image2.png'] });
+    },
+  },
+
+  {
     operation: 'retrieve',
     method: 'POST',
     path: '/image/analytics',

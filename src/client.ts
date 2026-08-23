@@ -117,9 +117,11 @@ import {
   type ImageSourceUpdateResponse,
   type ImageSourceDeleteResponse,
   type ImageSourcePurgeCacheResponse,
+  type ImageSourcePurgeResponse,
   type ImageSourceCreateParams,
   type ImageSourceUpdateParams,
   type ImageSourcePurgeCacheParams,
+  type ImageSourcePurgeParams,
 } from './resources/image-sources';
 import {
   ImageUsageAnalytics,
@@ -1106,9 +1108,11 @@ export declare namespace Gumlet {
     type ImageSourceUpdateResponse as ImageSourceUpdateResponse,
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
     type ImageSourcePurgeCacheResponse as ImageSourcePurgeCacheResponse,
+    type ImageSourcePurgeResponse as ImageSourcePurgeResponse,
     type ImageSourceCreateParams as ImageSourceCreateParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,
     type ImageSourcePurgeCacheParams as ImageSourcePurgeCacheParams,
+    type ImageSourcePurgeParams as ImageSourcePurgeParams,
   };
 
   export {

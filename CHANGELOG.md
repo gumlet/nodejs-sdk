@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.1](https://github.com/gumlet/nodejs-sdk/compare/v1.1.0...v1.1.1) (2026-08-23)
+
+
+### Features
+
+* **api:** add operation imageSources.purge ([0a2fd9c](https://github.com/gumlet/nodejs-sdk/commit/0a2fd9cde9c1acfabe25ffc4e371eae4c49c29a0))
+
+
+### Chores
+
+* release 1.1.1 ([5eeafc9](https://github.com/gumlet/nodejs-sdk/commit/5eeafc9c7eb0e0df0116974f84d1c3ba9271b9b4))
+
 ## [1.1.0](https://github.com/gumlet/nodejs-sdk/compare/v1.0.24...v1.1.0) (2026-08-23)
 
 
