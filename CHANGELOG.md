@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/gumlet/nodejs-sdk/compare/v1.0.24...v1.1.0) (2026-08-23)
+
+
+### Features
+
+* **api:** update operation imageSources.purgeCache ([20b48b3](https://github.com/gumlet/nodejs-sdk/commit/20b48b3a30d4d1033e64d38b6fcdbe1fc15f44d9))
+
 ## [1.0.24](https://github.com/gumlet/nodejs-sdk/compare/v1.0.23...v1.0.24) (2026-08-23)
 
 
