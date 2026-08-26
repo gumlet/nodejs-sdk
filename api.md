@@ -112,7 +112,7 @@ An asset refers to a media content/video that is processed, stored, and delivere
 | Response | [`VideoAssetCreateResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const create = await client.videoAssets.create({
+const videoAsset = await client.videoAssets.create({
   format: 'ABR',
   collection_id: '646df1c9173a4a2fcac180b4',
   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
@@ -149,7 +149,7 @@ This endpoint creates a video asset allowing to upload of the video from the loc
 | Response | [`VideoAssetUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const upload = await client.videoAssets.upload({
+const videoAsset = await client.videoAssets.upload({
   format: 'ABR',
   collection_id: '646df1c9173a4a2fcac180b4',
   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
@@ -185,7 +185,7 @@ This endpoint retrieves the details of an asset that has previously been created
 | Response | [`VideoAssetRetrieveDetailsResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const retrieveDetails = await client.videoAssets.retrieveDetails('assetId');
+const videoAsset = await client.videoAssets.retrieveDetails('assetId');
 ```
 
 ### Delete Asset
@@ -206,7 +206,7 @@ This endpoint allows users to update video asset that has previously been create
 | Response | [`VideoAssetUpdateResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const update = await client.videoAssets.update({ asset_id: '<YOUR_ASSET_ID>', title: 'Updated Title' });
+const videoAsset = await client.videoAssets.update({ asset_id: '<YOUR_ASSET_ID>', title: 'Updated Title' });
 ```
 
 ### Update thumbnail from video
@@ -219,7 +219,7 @@ Select frame from video to use as thumbnail.
 | Response | [`VideoAssetThumbnailSelectResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const thumbnailSelect = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
+const videoAsset = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
 ```
 
 ### Update thumbnail via upload
@@ -238,7 +238,7 @@ curl --location --request PUT '<upload_url>' \
 | Response | [`VideoAssetThumbnailUploadResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');
+const videoAsset = await client.videoAssets.thumbnailUpload('assetId');
 ```
 
 ### Create/Update Video Asset Chapters
@@ -251,7 +251,7 @@ This endpoint will create/update video asset chapters.
 | Response | [`VideoAssetCreateUpdateChapterResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetId', {
+const videoAsset = await client.videoAssets.createUpdateChapter('assetId', {
   chapters: [
     { label: 'Chapter 1', startTime: 0 },
     { label: 'Chapter 2', startTime: 10 },
@@ -283,7 +283,7 @@ List folders and assets for a workspace in a single response. Use `parent_id` to
 | Response | [`VideoAssetListResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const list = await client.videoAssets.list('workspaceId', {
+const videoAsset = await client.videoAssets.list('workspaceId', {
   type: 'all',
   offset: 0,
   size: 20,
@@ -300,7 +300,7 @@ const list = await client.videoAssets.list('workspaceId', {
 | Response | [`VideoAssetListDeprecatedResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {
+const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
   sortBy: 'created_at',
   orderBy: 'desc',
 });
@@ -320,7 +320,7 @@ Upload `.srt` or `.vtt`  file to the video asset. The response of this API call 
 | Response | [`SubtitleUploadUploadResponse`](./src/resources/subtitle-upload.ts) |
 
 ```ts
-const upload = await client.subtitleUpload.upload('assetId');
+const subtitleUpload = await client.subtitleUpload.upload('assetId');
 ```
 
 ### Complete Subtitle Upload
@@ -334,7 +334,7 @@ Once that is done, calling this initiates the process to actually add the subtit
 | Response | [`SubtitleUploadCompleteResponse`](./src/resources/subtitle-upload.ts) |
 
 ```ts
-const complete = await client.subtitleUpload.complete('assetId');
+const subtitleUpload = await client.subtitleUpload.complete('assetId');
 ```
 
 ## `AudioUpload`
@@ -352,7 +352,7 @@ The response of this API call gives `upload_url` for each language specified. Yo
 | Response | [`AudioUploadUploadResponse`](./src/resources/audio-upload.ts) |
 
 ```ts
-const upload = await client.audioUpload.upload('assetId');
+const audioUpload = await client.audioUpload.upload('assetId');
 ```
 
 ### Complete Audio Upload
@@ -366,7 +366,7 @@ Once that is done, calling this initiates the process to actually add the subtit
 | Response | [`AudioUploadCompleteResponse`](./src/resources/audio-upload.ts) |
 
 ```ts
-const complete = await client.audioUpload.complete('assetId');
+const audioUpload = await client.audioUpload.complete('assetId');
 ```
 
 ## `VideoUsageAnalytics`
@@ -383,7 +383,7 @@ This endpoint gives usage analytics data of your videos. Ex - top assets, bandwi
 | Response | [`VideoUsageAnalyticRetrieveResponse`](./src/resources/video-usage-analytics.ts) |
 
 ```ts
-const retrieve = await client.videoUsageAnalytics.retrieve({
+const videoUsageAnalytic = await client.videoUsageAnalytics.retrieve({
   metrics: ['bandwidth_consumption', 'asset_duration', 'storage_unit', 'top_assets', 'drm_requests'],
   date_range: { start_at: '2026-08-01', end_at: '2026-08-20' },
   group_by: 'daily',
@@ -400,7 +400,7 @@ This endpoint lists top streamed assets in a video collection
 | Response | [`VideoUsageAnalyticTopAssetsResponse`](./src/resources/video-usage-analytics.ts) |
 
 ```ts
-const topAssets = await client.videoUsageAnalytics.topAssets({
+const videoUsageAnalytic = await client.videoUsageAnalytics.topAssets({
   start_at: '2026-06-21',
   end_at: '2026-06-30',
   page: '1',
@@ -422,7 +422,7 @@ Use this endpoint to retrieve a pre-signed upload URL for the given part number.
 | Response | [`MultipartUploadRetrievePartURLResponse`](./src/resources/multipart-upload.ts) |
 
 ```ts
-const retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {
+const multipartUpload = await client.multipartUpload.retrievePartURL('partNumber', {
   asset_id: 'assetId',
 });
 ```
@@ -437,7 +437,7 @@ Once you upload all parts to S3 bucket via pre-signed URL, use this endpoint to 
 | Response | [`MultipartUploadCompleteResponse`](./src/resources/multipart-upload.ts) |
 
 ```ts
-const complete = await client.multipartUpload.complete('assetId');
+const multipartUpload = await client.multipartUpload.complete('assetId');
 ```
 
 ## `VideoProfiles`
@@ -454,7 +454,7 @@ Gumlet provides the functionality of creating multiple video assets using the sa
 | Response | [`VideoProfileCreateResponse`](./src/resources/video-profiles.ts) |
 
 ```ts
-const create = await client.videoProfiles.create({
+const videoProfile = await client.videoProfiles.create({
   name: 'Gumlet-Profile-1',
   format: 'ABR',
 });
@@ -470,7 +470,7 @@ This endpoint retrieves the details of all profiles that have previously been cr
 | Response | [`VideoProfileListResponse`](./src/resources/video-profiles.ts) |
 
 ```ts
-const list = await client.videoProfiles.list();
+const videoProfile = await client.videoProfiles.list();
 ```
 
 ### Update Profile
@@ -483,7 +483,7 @@ Update an existing profile. Settings provided in body parameters will only be up
 | Response | [`VideoProfileUpdateResponse`](./src/resources/video-profiles.ts) |
 
 ```ts
-const update = await client.videoProfiles.update('profileId', {
+const videoProfile = await client.videoProfiles.update('profileId', {
   profile_id: '',
   format: 'ABR',
 });
@@ -498,7 +498,7 @@ This endpoint retrieves the details of a video profile that has previously been 
 | Response | [`VideoProfileRetrieveResponse`](./src/resources/video-profiles.ts) |
 
 ```ts
-const retrieve = await client.videoProfiles.retrieve('profileId');
+const videoProfile = await client.videoProfiles.retrieve('profileId');
 ```
 
 ### Delete Profile
@@ -510,7 +510,7 @@ This endpoint removes a profile given its unique `profile_id`. The profile will 
 | Response | [`VideoProfileDeleteResponse`](./src/resources/video-profiles.ts) |
 
 ```ts
-const delete_ = await client.videoProfiles.delete('profileId');
+const videoProfile = await client.videoProfiles.delete('profileId');
 ```
 
 ## `VideoPlaylists`
@@ -527,7 +527,7 @@ Create new playlist inside video wprkspace
 | Response | [`VideoPlaylistCreateResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const create = await client.videoPlaylists.create({
+const videoPlaylist = await client.videoPlaylists.create({
   title: 'Playlist-Title',
   description: 'This is description for playlist.',
   collection_id: '{{video-source-id}}',
@@ -544,7 +544,7 @@ Get all playlists for given workspace
 | Response | [`VideoPlaylistListAllResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const listAll = await client.videoPlaylists.listAll();
+const videoPlaylist = await client.videoPlaylists.listAll();
 ```
 
 ### Add asset to playlist
@@ -557,7 +557,7 @@ This operation adds a single asset or a list of assets to a playlist.
 | Response | [`VideoPlaylistCreateAssetResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const createAsset = await client.videoPlaylists.createAsset('playlistId', {
+const videoPlaylist = await client.videoPlaylists.createAsset('playlistId', {
   asset_list: [
     { asset_id: '6508790283e4d60611846790' },
     { position: 1, asset_id: '650878f883e4d6061184677d' },
@@ -578,7 +578,7 @@ Removed an asset or list of assets from a given playlist.
 | Response | [`VideoPlaylistDeleteAssetResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const deleteAsset = await client.videoPlaylists.deleteAsset('playlistId', {
+const videoPlaylist = await client.videoPlaylists.deleteAsset('playlistId', {
   delete_list: ['6508790783e4d606118467a3'],
 });
 ```
@@ -593,7 +593,7 @@ This endpoint allows you to update playlist name, channel visibility, or playlis
 | Response | [`VideoPlaylistUpdateResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const update = await client.videoPlaylists.update('playlistId');
+const videoPlaylist = await client.videoPlaylists.update('playlistId');
 ```
 
 ### `delete`
@@ -614,7 +614,7 @@ Get a list of all assets inside playlist. You can choose in which order are asse
 | Response | [`VideoPlaylistListAssetsResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const listAssets = await client.videoPlaylists.listAssets('playlistId', {
+const videoPlaylist = await client.videoPlaylists.listAssets('playlistId', {
   sort_order: 1,
   page_number: 1,
   page_size: '10',
@@ -631,7 +631,7 @@ Reorder videos inside a playlist either by moving a single asset to a position o
 | Response | [`VideoPlaylistReorderAssetResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const reorderAsset = await client.videoPlaylists.reorderAsset('playlistId', {
+const videoPlaylist = await client.videoPlaylists.reorderAsset('playlistId', {
   asset_id: '6e82bf783e88be000ab45ed2',
   page_number: 1,
   page_size: 10,
@@ -653,7 +653,7 @@ Creates a new webhook listener.
 | Response | [`WebhookAPICreateResponse`](./src/resources/webhook-apis.ts) |
 
 ```ts
-const create = await client.webhookAPIs.create({
+const webhookAPI = await client.webhookAPIs.create({
   url: '',
   secret_token: '',
   triggers: [],
@@ -671,7 +671,7 @@ Update a webhook listener.
 | Response | [`WebhookAPIUpdateResponse`](./src/resources/webhook-apis.ts) |
 
 ```ts
-const update = await client.webhookAPIs.update('webhookId');
+const webhookAPI = await client.webhookAPIs.update('webhookId');
 ```
 
 ### Delete Webhook
@@ -683,7 +683,7 @@ Delete webhook listener endpoint.
 | Response | [`WebhookAPIDeleteResponse`](./src/resources/webhook-apis.ts) |
 
 ```ts
-const delete_ = await client.webhookAPIs.delete('webhookId');
+const webhookAPI = await client.webhookAPIs.delete('webhookId');
 ```
 
 ## `ImageSources`
@@ -700,7 +700,7 @@ This endpoint allows users to create image source.
 | Response | [`ImageSourceCreateResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const create = await client.imageSources.create({
+const imageSource = await client.imageSources.create({
   type: 'webfolder',
   webfolder: { base_url: 'https://www.google.com' },
   namespace: 'google-demo',
@@ -713,10 +713,14 @@ This endpoint list image sources which are assigned to the user or token.
 
 | Direction | Type |
 | --- | --- |
+| Request | [`ImageSourceListParams`](./src/resources/image-sources.ts) |
 | Response | [`ImageSourceListResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const list = await client.imageSources.list();
+const imageSource = await client.imageSources.list({
+  offset: 0,
+  size: 20,
+});
 ```
 
 ### Get Image Source
@@ -728,7 +732,7 @@ Get all details about image source.
 | Response | [`ImageSourceRetrieveResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const retrieve = await client.imageSources.retrieve('imageSourceId');
+const imageSource = await client.imageSources.retrieve('imageSourceId');
 ```
 
 ### Update Source
@@ -741,7 +745,7 @@ This endpoint allows users to update image source that has previously been creat
 | Response | [`ImageSourceUpdateResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const update = await client.imageSources.update('imageSourceId');
+const imageSource = await client.imageSources.update('imageSourceId');
 ```
 
 ### Delete Source
@@ -753,7 +757,7 @@ This endpoint removes a image source. All image delivery using this subdomain wi
 | Response | [`ImageSourceDeleteResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const delete_ = await client.imageSources.delete('imageSourceId');
+const imageSource = await client.imageSources.delete('imageSourceId');
 ```
 
 ### Purge Cache
@@ -766,7 +770,7 @@ You can purge cache for any image by using our cache purge API.
 | Response | [`ImageSourcePurgeCacheResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const purgeCache = await client.imageSources.purgeCache('subdomain');
+const imageSource = await client.imageSources.purgeCache('subdomain');
 ```
 
 ### Purge Image Cache
@@ -779,7 +783,7 @@ You can purge the cache for any image path by using this cache purge API.
 | Response | [`ImageSourcePurgeResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const purge = await client.imageSources.purge('sourceId', { paths: ['image.jpeg', 'image2.png'] });
+const imageSource = await client.imageSources.purge('sourceId', { paths: ['image.jpeg', 'image2.png'] });
 ```
 
 ## `ImageUsageAnalytics`
@@ -796,7 +800,7 @@ This endpoint helps you get image analytics data like bandwidth consumption, req
 | Response | [`ImageUsageAnalyticRetrieveResponse`](./src/resources/image-usage-analytics.ts) |
 
 ```ts
-const retrieve = await client.imageUsageAnalytics.retrieve({
+const imageUsageAnalytic = await client.imageUsageAnalytics.retrieve({
   metrics: [],
   date_range: {},
   group_by: 'daily',
@@ -817,7 +821,7 @@ A live asset refers to a media content/video that is live-streamed through Gumle
 | Response | [`LiveStreamAssetCreateResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const create = await client.liveStreamAssets.create({
+const liveStreamAsset = await client.liveStreamAssets.create({
   live_source_id: '',
   resolution: '',
 });
@@ -833,7 +837,7 @@ A live asset refers to a media content/video that is live-streamed through Gumle
 | Response | [`LiveStreamAssetUpdateResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const update = await client.liveStreamAssets.update({
+const liveStreamAsset = await client.liveStreamAssets.update({
   live_asset_id: '',
 });
 ```
@@ -847,7 +851,7 @@ This endpoint retrieves the details of a live video asset that has previously be
 | Response | [`LiveStreamAssetRetrieveStatusResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const retrieveStatus = await client.liveStreamAssets.retrieveStatus('liveAssetId');
+const liveStreamAsset = await client.liveStreamAssets.retrieveStatus('liveAssetId');
 ```
 
 ### Delete Live Asset
@@ -859,7 +863,7 @@ This endpoint removes a live asset given its unique live asset id. The live asse
 | Response | [`LiveStreamAssetDeleteResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const delete_ = await client.liveStreamAssets.delete('liveAssetId');
+const liveStreamAsset = await client.liveStreamAssets.delete('liveAssetId');
 ```
 
 ### Complete Live Stream
@@ -871,7 +875,7 @@ This endpoint allows marking live assets complete. Once the live asset is marked
 | Response | [`LiveStreamAssetCompleteResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const complete = await client.liveStreamAssets.complete('liveAssetId');
+const liveStreamAsset = await client.liveStreamAssets.complete('liveAssetId');
 ```
 
 ### Filter Live Assets
@@ -884,7 +888,7 @@ This endpoint lists live assets on the basis of `status` for the given `live_sou
 | Response | [`LiveStreamAssetFilterResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const filter = await client.liveStreamAssets.filter('liveSourceId');
+const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId');
 ```
 
 ### `start`
@@ -905,7 +909,7 @@ Generate presigned upload URLs for live stream thumbnails. Supported thumbnail s
 | Response | [`LiveStreamAssetUploadResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const upload = await client.liveStreamAssets.upload({
+const liveStreamAsset = await client.liveStreamAssets.upload({
   live_asset_id: '68c406b147f9ad0c0d584ce2',
   statuses: ['preparing', 'disconnected'],
 });
@@ -920,7 +924,7 @@ This endpoint retrieves the history of a live video asset that has previously be
 | Response | [`LiveStreamAssetStatusHistoryResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');
+const liveStreamAsset = await client.liveStreamAssets.statusHistory('liveAssetId');
 ```
 
 ## `VideoWorkspaces`
@@ -937,7 +941,7 @@ This endpoint list video workspace which are assigned to the user or token.
 | Response | [`VideoWorkspaceListResponse`](./src/resources/video-workspaces.ts) |
 
 ```ts
-const list = await client.videoWorkspaces.list({
+const videoWorkspace = await client.videoWorkspaces.list({
   offset: '0',
   size: '10',
 });
@@ -953,7 +957,7 @@ Video workspaces are top-level entities in Gumlet. You can use them to organize 
 | Response | [`VideoWorkspaceCreateResponse`](./src/resources/video-workspaces.ts) |
 
 ```ts
-const create = await client.videoWorkspaces.create({
+const videoWorkspace = await client.videoWorkspaces.create({
   name: 'zoom-workspace',
   type: 'zoom',
   zoom: { secret: 'yourSecret' },
@@ -970,7 +974,7 @@ This endpoint allows users to update video workspace that has previously been cr
 | Response | [`VideoWorkspaceUpdateResponse`](./src/resources/video-workspaces.ts) |
 
 ```ts
-const update = await client.videoWorkspaces.update('workspaceId');
+const videoWorkspace = await client.videoWorkspaces.update('workspaceId');
 ```
 
 ### Get Workspace
@@ -982,7 +986,7 @@ This endpoint get all the data of video workspace that has previously been creat
 | Response | [`VideoWorkspaceRetrieveResponse`](./src/resources/video-workspaces.ts) |
 
 ```ts
-const retrieve = await client.videoWorkspaces.retrieve('workspaceId');
+const videoWorkspace = await client.videoWorkspaces.retrieve('workspaceId');
 ```
 
 ### Delete Workspace
@@ -994,7 +998,7 @@ This endpoint removes a video workspace given its unique asset id. All the asset
 | Response | [`VideoWorkspaceDeleteResponse`](./src/resources/video-workspaces.ts) |
 
 ```ts
-const delete_ = await client.videoWorkspaces.delete('workspaceId');
+const videoWorkspace = await client.videoWorkspaces.delete('workspaceId');
 ```
 
 ## `Folders`
@@ -1011,7 +1015,7 @@ Create a folder inside a video workspace. Optionally provide `parent_id` to crea
 | Response | [`FolderCreateResponse`](./src/resources/folders.ts) |
 
 ```ts
-const create = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });
+const folder = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });
 ```
 
 ### List Folders
@@ -1024,7 +1028,7 @@ List folders for a video workspace. Use `parent_id` to list only folders inside 
 | Response | [`FolderListResponse`](./src/resources/folders.ts) |
 
 ```ts
-const list = await client.folders.list('workspaceId');
+const folder = await client.folders.list('workspaceId');
 ```
 
 ### Get Folder
@@ -1037,7 +1041,7 @@ Get a single folder by id.
 | Response | [`FolderRetrieveResponse`](./src/resources/folders.ts) |
 
 ```ts
-const retrieve = await client.folders.retrieve('folderId', {
+const folder = await client.folders.retrieve('folderId', {
   workspace_id: 'workspaceId',
 });
 ```
@@ -1052,7 +1056,7 @@ Rename a folder, move it to another parent folder, or move assets into the folde
 | Response | [`FolderUpdateResponse`](./src/resources/folders.ts) |
 
 ```ts
-const update = await client.folders.update('folderId', {
+const folder = await client.folders.update('folderId', {
   workspace_id: 'workspaceId',
 });
 ```
@@ -1067,7 +1071,7 @@ Delete a folder. Descendant folders and assets inside them are deleted by the ba
 | Response | [`FolderDeleteResponse`](./src/resources/folders.ts) |
 
 ```ts
-const delete_ = await client.folders.delete('folderId', {
+const folder = await client.folders.delete('folderId', {
   workspace_id: 'workspaceId',
 });
 ```
@@ -1082,7 +1086,7 @@ Remove one or more assets from their current folder assignment inside the worksp
 | Response | [`FolderDeleteAssetsResponse`](./src/resources/folders.ts) |
 
 ```ts
-const deleteAssets = await client.folders.deleteAssets('workspaceId', {
+const folder = await client.folders.deleteAssets('workspaceId', {
   asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],
 });
 ```
@@ -1101,7 +1105,7 @@ Invite one or more viewers to a members-only channel.
 | Response | [`ChannelViewerInviteResponse`](./src/resources/channel-viewers.ts) |
 
 ```ts
-const invite = await client.channelViewers.invite('videoWorkspaceId', {
+const channelViewer = await client.channelViewers.invite('videoWorkspaceId', {
   users: [
     { email: 'test@gumlet.com', name: 'Test User-0' },
     { email: 'test+1@gumlet.com', name: 'Test User-1' },
@@ -1120,7 +1124,7 @@ Remove one or more viewers from a channel by email address.
 | Response | [`ChannelViewerDeleteResponse`](./src/resources/channel-viewers.ts) |
 
 ```ts
-const delete_ = await client.channelViewers.delete('videoWorkspaceId', {
+const channelViewer = await client.channelViewers.delete('videoWorkspaceId', {
   emails: ['test@gumlet.com', 'test+2@gumlet.com'],
 });
 ```
@@ -1135,7 +1139,9 @@ Invite viewers to a channel by uploading a CSV file.
 | Response | [`ChannelViewerInviteCsvResponse`](./src/resources/channel-viewers.ts) |
 
 ```ts
-const inviteCsv = await client.channelViewers.inviteCsv('videoWorkspaceId', { viewers_csv: 'viewers.csv' });
+const channelViewer = await client.channelViewers.inviteCsv('videoWorkspaceId', {
+  viewers_csv: 'viewers.csv',
+});
 ```
 
 ## `DataApi`
@@ -1152,7 +1158,7 @@ This endpoint retrieves metrics data to plot the chart.
 | Response | [`DataAPIInsightsChartResponse`](./src/resources/data-api.ts) |
 
 ```ts
-const insightsChart = await client.dataAPI.insightsChart({
+const dataAPI = await client.dataAPI.insightsChart({
   metrics: [],
   workspace_id: '',
   date_range: {
@@ -1173,7 +1179,7 @@ This endpoint retrieves aggregated data of the given metrics.
 | Response | [`DataAPIInsightsAggregatedResponse`](./src/resources/data-api.ts) |
 
 ```ts
-const insightsAggregated = await client.dataAPI.insightsAggregated({
+const dataAPI = await client.dataAPI.insightsAggregated({
   aggregate: [],
   workspace_id: '',
   timeframe: {},

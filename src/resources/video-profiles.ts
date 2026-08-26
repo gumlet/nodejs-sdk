@@ -15,7 +15,7 @@ export class VideoProfiles extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.videoProfiles.create({
+   * const videoProfile = await client.videoProfiles.create({
    *   name: 'Gumlet-Profile-1',
    *   format: 'ABR',
    * });
@@ -34,7 +34,7 @@ export class VideoProfiles extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.videoProfiles.list();
+   * const videoProfile = await client.videoProfiles.list();
    * ```
    */
   list(
@@ -54,7 +54,7 @@ export class VideoProfiles extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.videoProfiles.update('profileId', {
+   * const videoProfile = await client.videoProfiles.update('profileId', {
    *   profile_id: '',
    *   format: 'ABR',
    * });
@@ -77,7 +77,7 @@ export class VideoProfiles extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.videoProfiles.retrieve('profileId');
+   * const videoProfile = await client.videoProfiles.retrieve('profileId');
    * ```
    */
   retrieve(profileID: string, options?: RequestOptions): APIPromise<VideoProfileRetrieveResponse> {
@@ -93,7 +93,7 @@ export class VideoProfiles extends APIResource {
    *
    * @example
    * ```ts
-   * const delete_ = await client.videoProfiles.delete('profileId');
+   * const videoProfile = await client.videoProfiles.delete('profileId');
    * ```
    */
   delete(profileID: string, options?: RequestOptions): APIPromise<VideoProfileDeleteResponse> {

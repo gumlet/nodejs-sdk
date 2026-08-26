@@ -17,7 +17,7 @@ export class AudioUpload extends APIResource {
    *
    * @example
    * ```ts
-   * const upload = await client.audioUpload.upload('assetId');
+   * const audioUpload = await client.audioUpload.upload('assetId');
    * ```
    */
   upload(
@@ -39,7 +39,7 @@ export class AudioUpload extends APIResource {
    *
    * @example
    * ```ts
-   * const complete = await client.audioUpload.complete('assetId');
+   * const audioUpload = await client.audioUpload.complete('assetId');
    * ```
    */
   complete(

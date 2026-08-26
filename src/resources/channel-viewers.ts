@@ -18,7 +18,7 @@ export class ChannelViewers extends APIResource {
    *
    * @example
    * ```ts
-   * const invite = await client.channelViewers.invite('videoWorkspaceId', {
+   * const channelViewer = await client.channelViewers.invite('videoWorkspaceId', {
    *   users: [
    *     { email: 'test@gumlet.com', name: 'Test User-0' },
    *     { email: 'test+1@gumlet.com', name: 'Test User-1' },
@@ -45,7 +45,7 @@ export class ChannelViewers extends APIResource {
    *
    * @example
    * ```ts
-   * const delete_ = await client.channelViewers.delete('videoWorkspaceId', {
+   * const channelViewer = await client.channelViewers.delete('videoWorkspaceId', {
    *   emails: ['test@gumlet.com', 'test+2@gumlet.com'],
    * });
    * ```
@@ -68,7 +68,9 @@ export class ChannelViewers extends APIResource {
    *
    * @example
    * ```ts
-   * const inviteCsv = await client.channelViewers.inviteCsv('videoWorkspaceId', { viewers_csv: 'viewers.csv' });
+   * const channelViewer = await client.channelViewers.inviteCsv('videoWorkspaceId', {
+   *   viewers_csv: 'viewers.csv',
+   * });
    * ```
    */
   inviteCsv(

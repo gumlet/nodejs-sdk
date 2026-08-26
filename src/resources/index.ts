@@ -88,6 +88,7 @@ export { ImageSources } from './image-sources';
 export type {
   ImageSourceCreateParams,
   ImageSourceCreateResponse,
+  ImageSourceListParams,
   ImageSourceListResponse,
   ImageSourceRetrieveResponse,
   ImageSourceUpdateParams,

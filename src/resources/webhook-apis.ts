@@ -15,7 +15,7 @@ export class WebhookAPIs extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.webhookAPIs.create({
+   * const webhookAPI = await client.webhookAPIs.create({
    *   url: '',
    *   secret_token: '',
    *   triggers: [],
@@ -37,7 +37,7 @@ export class WebhookAPIs extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.webhookAPIs.update('webhookId');
+   * const webhookAPI = await client.webhookAPIs.update('webhookId');
    * ```
    */
   update(
@@ -57,7 +57,7 @@ export class WebhookAPIs extends APIResource {
    *
    * @example
    * ```ts
-   * const delete_ = await client.webhookAPIs.delete('webhookId');
+   * const webhookAPI = await client.webhookAPIs.delete('webhookId');
    * ```
    */
   delete(webhookID: string, options?: RequestOptions): APIPromise<WebhookAPIDeleteResponse> {

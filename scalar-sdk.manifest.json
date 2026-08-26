@@ -1,7 +1,7 @@
 {
   "name": "Gumlet",
   "slug": "gumlet",
-  "generatorVersion": "0.27.2",
+  "generatorVersion": "0.30.0",
   "servers": [
     "https://api.gumlet.com/v1"
   ],
@@ -4010,19 +4010,43 @@
       "path": "/image/sources",
       "pathParams": [],
       "publicPathParams": [],
-      "queryParams": [],
-      "publicQueryParams": [],
+      "queryParams": [
+        "offset",
+        "size"
+      ],
+      "publicQueryParams": [
+        "offset",
+        "size"
+      ],
       "headerParams": [],
       "publicHeaderParams": [],
       "bodyParams": [],
       "publicBodyParams": [],
       "bodyParamDetails": [],
       "pathParamDetails": [],
-      "queryParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "offset",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 0
+        },
+        {
+          "name": "size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        }
+      ],
       "headerParamDetails": [],
       "cookieParams": [],
       "publicCookieParams": [],
       "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ImageSourceListParams"
+      },
       "response": {
         "status": "200",
         "contentType": "application/json",

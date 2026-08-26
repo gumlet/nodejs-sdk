@@ -16,7 +16,7 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.liveStreamAssets.create({
+   * const liveStreamAsset = await client.liveStreamAssets.create({
    *   live_source_id: '',
    *   resolution: '',
    * });
@@ -38,7 +38,7 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.liveStreamAssets.update({
+   * const liveStreamAsset = await client.liveStreamAssets.update({
    *   live_asset_id: '',
    * });
    * ```
@@ -59,7 +59,7 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieveStatus = await client.liveStreamAssets.retrieveStatus('liveAssetId');
+   * const liveStreamAsset = await client.liveStreamAssets.retrieveStatus('liveAssetId');
    * ```
    */
   retrieveStatus(
@@ -78,7 +78,7 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const delete_ = await client.liveStreamAssets.delete('liveAssetId');
+   * const liveStreamAsset = await client.liveStreamAssets.delete('liveAssetId');
    * ```
    */
   delete(liveAssetID: string, options?: RequestOptions): APIPromise<LiveStreamAssetDeleteResponse> {
@@ -94,7 +94,7 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const complete = await client.liveStreamAssets.complete('liveAssetId');
+   * const liveStreamAsset = await client.liveStreamAssets.complete('liveAssetId');
    * ```
    */
   complete(liveAssetID: string, options?: RequestOptions): APIPromise<LiveStreamAssetCompleteResponse> {
@@ -111,7 +111,7 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const filter = await client.liveStreamAssets.filter('liveSourceId');
+   * const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId');
    * ```
    */
   filter(
@@ -149,7 +149,7 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const upload = await client.liveStreamAssets.upload({
+   * const liveStreamAsset = await client.liveStreamAssets.upload({
    *   live_asset_id: '68c406b147f9ad0c0d584ce2',
    *   statuses: ['preparing', 'disconnected'],
    * });
@@ -171,7 +171,7 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');
+   * const liveStreamAsset = await client.liveStreamAssets.statusHistory('liveAssetId');
    * ```
    */
   statusHistory(

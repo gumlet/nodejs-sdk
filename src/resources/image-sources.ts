@@ -15,7 +15,7 @@ export class ImageSources extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.imageSources.create({
+   * const imageSource = await client.imageSources.create({
    *   type: 'webfolder',
    *   webfolder: { base_url: 'https://www.google.com' },
    *   namespace: 'google-demo',
@@ -29,16 +29,23 @@ export class ImageSources extends APIResource {
   /**
    * This endpoint list image sources which are assigned to the user or token.
    *
+   * @param {ImageSourceListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<ImageSourceListResponse>} List all image sources
    *
    * @example
    * ```ts
-   * const list = await client.imageSources.list();
+   * const imageSource = await client.imageSources.list({
+   *   offset: 0,
+   *   size: 20,
+   * });
    * ```
    */
-  list(options?: RequestOptions): APIPromise<ImageSourceListResponse> {
-    return this._client.get('/image/sources', options);
+  list(
+    query: ImageSourceListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ImageSourceListResponse> {
+    return this._client.get('/image/sources', { query, ...options });
   }
 
   /**
@@ -50,7 +57,7 @@ export class ImageSources extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.imageSources.retrieve('imageSourceId');
+   * const imageSource = await client.imageSources.retrieve('imageSourceId');
    * ```
    */
   retrieve(imageSourceID: string, options?: RequestOptions): APIPromise<ImageSourceRetrieveResponse> {
@@ -67,7 +74,7 @@ export class ImageSources extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.imageSources.update('imageSourceId');
+   * const imageSource = await client.imageSources.update('imageSourceId');
    * ```
    */
   update(
@@ -87,7 +94,7 @@ export class ImageSources extends APIResource {
    *
    * @example
    * ```ts
-   * const delete_ = await client.imageSources.delete('imageSourceId');
+   * const imageSource = await client.imageSources.delete('imageSourceId');
    * ```
    */
   delete(imageSourceID: string, options?: RequestOptions): APIPromise<ImageSourceDeleteResponse> {
@@ -104,7 +111,7 @@ export class ImageSources extends APIResource {
    *
    * @example
    * ```ts
-   * const purgeCache = await client.imageSources.purgeCache('subdomain');
+   * const imageSource = await client.imageSources.purgeCache('subdomain');
    * ```
    *
    * @deprecated
@@ -127,7 +134,7 @@ export class ImageSources extends APIResource {
    *
    * @example
    * ```ts
-   * const purge = await client.imageSources.purge('sourceId', { paths: ['image.jpeg', 'image2.png'] });
+   * const imageSource = await client.imageSources.purge('sourceId', { paths: ['image.jpeg', 'image2.png'] });
    * ```
    */
   purge(
@@ -310,14 +317,28 @@ export namespace ImageSourceCreateResponse {
   }
 }
 
+export interface ImageSourceListParams {
+  /**
+   * Skip number of items. Helpful for pagination.
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Results per page.
+   * @default 20
+   */
+  size?: number;
+}
+
 export interface ImageSourceListResponse {
   all_sources?: Array<ImageSourceListResponse.AllSource>;
 }
 
 export namespace ImageSourceListResponse {
   export interface AllSource {
-    id?: string;
-    name?: string;
+    id: string;
+    namespace: string;
+    subdomain: string;
     type?: string;
     created_at?: string;
     updated_at?: string;
@@ -329,6 +350,11 @@ export namespace ImageSourceListResponse {
     embed_details?: AllSource.EmbedDetails;
     folders?: Array<string>;
     channel_settings?: AllSource.ChannelSettings;
+    webfolder?: AllSource.Webfolder;
+    /**
+     * Custom domains assigned to this source.
+     */
+    cname?: Array<string>;
   }
 
   export namespace AllSource {
@@ -489,6 +515,10 @@ export namespace ImageSourceListResponse {
       cname?: Array<string>;
       temp_cname?: Array<string>;
     }
+
+    export interface Webfolder {
+      base_url: string;
+    }
   }
 }
 
@@ -551,6 +581,14 @@ export interface ImageSourceRetrieveResponse {
   request_headers?: Array<Record<string, unknown>>;
   subdomain?: string;
   is_active?: boolean;
+  /**
+   * Gives information if signed URLs are enabled.
+   */
+  secure_urls?: boolean;
+  /**
+   * This is the token that you can use to sign URLs.
+   */
+  secure_token?: string;
 }
 
 export namespace ImageSourceRetrieveResponse {
@@ -975,6 +1013,7 @@ export declare namespace ImageSources {
     type ImageSourcePurgeCacheResponse as ImageSourcePurgeCacheResponse,
     type ImageSourcePurgeResponse as ImageSourcePurgeResponse,
     type ImageSourceCreateParams as ImageSourceCreateParams,
+    type ImageSourceListParams as ImageSourceListParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,
     type ImageSourcePurgeCacheParams as ImageSourcePurgeCacheParams,
     type ImageSourcePurgeParams as ImageSourcePurgeParams,

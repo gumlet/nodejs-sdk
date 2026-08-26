@@ -36,7 +36,7 @@ const client = new Gumlet({
   apiKey: process.env['API_KEY'], // defaults to the API_KEY env var
 });
 
-const create = await client.videoAssets.create({
+const videoAsset = await client.videoAssets.create({
   format: 'ABR',
   collection_id: '646df1c9173a4a2fcac180b4',
   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
@@ -62,7 +62,7 @@ const create = await client.videoAssets.create({
   folder: '697375fbfa2d1037283140e4',
 });
 
-console.log(create);
+console.log(videoAsset);
 ```
 
 Method names, parameter shapes, and response types are generated from the API description — do not guess them. Look up the exact call signature in [api.md](./api.md) before writing a call.
@@ -75,7 +75,7 @@ Non-success responses throw generated API errors. Error objects expose status, h
 import { APIError } from '@gumlet/nodejs-sdk';
 
 try {
-  const create = await client.videoAssets.create({
+  const videoAsset = await client.videoAssets.create({
     format: 'ABR',
     collection_id: '646df1c9173a4a2fcac180b4',
     input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',

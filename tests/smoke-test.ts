@@ -23,21 +23,30 @@ type SmokeResult = {
   operation: string;
   method: string;
   path: string;
+  label?: string;
   status: 'passed' | 'failed';
   durationMs: number;
   error?: string;
 };
 
-// One entry per generated operation. `run` performs the real SDK call; the other fields are
-// metadata used for filtering and reporting. This list is generated, so it stays in sync with
-// the SDK surface.
-const cases: { operation: string; method: string; path: string; run: () => Promise<unknown> }[] = [
+// One or two entries per generated operation: the first passes only the arguments the method
+// requires, the second also fills every optional parameter and body property. `label` says which
+// is which, and is absent when the operation has no optional argument and so has only one case.
+// `run` performs the real SDK call; the other fields are metadata used for filtering and
+// reporting. This list is generated, so it stays in sync with the SDK surface.
+const cases: {
+  operation: string;
+  method: string;
+  path: string;
+  label?: string;
+  run: () => Promise<unknown>;
+}[] = [
   {
     operation: 'create',
     method: 'POST',
     path: '/video/assets',
     run: async () => {
-      const create = await client.videoAssets.create({
+      const videoAsset = await client.videoAssets.create({
         format: 'ABR',
         collection_id: '646df1c9173a4a2fcac180b4',
         input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
@@ -70,7 +79,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/assets/upload',
     run: async () => {
-      const upload = await client.videoAssets.upload({
+      const videoAsset = await client.videoAssets.upload({
         format: 'ABR',
         collection_id: '646df1c9173a4a2fcac180b4',
         input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
@@ -103,7 +112,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/video/assets/{asset_id}',
     run: async () => {
-      const retrieveDetails = await client.videoAssets.retrieveDetails('assetId');
+      const videoAsset = await client.videoAssets.retrieveDetails('assetId');
     },
   },
 
@@ -121,7 +130,10 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/assets/update',
     run: async () => {
-      const update = await client.videoAssets.update({ asset_id: '<YOUR_ASSET_ID>', title: 'Updated Title' });
+      const videoAsset = await client.videoAssets.update({
+        asset_id: '<YOUR_ASSET_ID>',
+        title: 'Updated Title',
+      });
     },
   },
 
@@ -130,7 +142,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/assets/{asset_id}/thumbnail-select',
     run: async () => {
-      const thumbnailSelect = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
+      const videoAsset = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
     },
   },
 
@@ -139,7 +151,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/assets/{asset_ID}/thumbnail',
     run: async () => {
-      const thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');
+      const videoAsset = await client.videoAssets.thumbnailUpload('assetId');
     },
   },
 
@@ -148,7 +160,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/assets/{asset_id}/chapters',
     run: async () => {
-      const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetId', {
+      const videoAsset = await client.videoAssets.createUpdateChapter('assetId', {
         chapters: [
           { label: 'Chapter 1', startTime: 0 },
           { label: 'Chapter 2', startTime: 10 },
@@ -172,9 +184,36 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'list',
     method: 'GET',
     path: '/video/workspaces/{workspace_id}/list',
+    label: 'required params',
     run: async () => {
-      const list = await client.videoAssets.list('workspaceId', {
+      const videoAsset = await client.videoAssets.list('workspaceId', {
         type: 'all',
+        offset: 0,
+        size: 20,
+      });
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/video/workspaces/{workspace_id}/list',
+    label: 'all params',
+    run: async () => {
+      const videoAsset = await client.videoAssets.list('workspaceId', {
+        type: 'all',
+        parent_id: 'parentId',
+        title: 'title',
+        status: 'status',
+        tag: 'tag',
+        playlist_id: 'playlistId',
+        start_date: 'startDate',
+        end_date: 'endDate',
+        min_duration: 1,
+        max_duration: 1,
+        sortBy: 'title',
+        orderBy: 'asc',
+        searchIndex: 'search_index_for_asset_list',
         offset: 0,
         size: 20,
       });
@@ -185,10 +224,32 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'listDeprecated',
     method: 'GET',
     path: '/video/assets/list/{workspace_id}',
+    label: 'required params',
     run: async () => {
-      const listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {
+      const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
         sortBy: 'created_at',
         orderBy: 'desc',
+      });
+    },
+  },
+
+  {
+    operation: 'listDeprecated',
+    method: 'GET',
+    path: '/video/assets/list/{workspace_id}',
+    label: 'all params',
+    run: async () => {
+      const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
+        status: 'queued',
+        tag: 'tag',
+        title: 'title',
+        folder: 'folder',
+        offset: 'offset',
+        size: 'size',
+        playlist_id: 'playlistId',
+        sortBy: 'created_at',
+        orderBy: 'desc',
+        type: 'type',
       });
     },
   },
@@ -197,8 +258,19 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'upload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/subtitle/upload',
+    label: 'required params',
     run: async () => {
-      const upload = await client.subtitleUpload.upload('assetId');
+      const subtitleUpload = await client.subtitleUpload.upload('assetId');
+    },
+  },
+
+  {
+    operation: 'upload',
+    method: 'POST',
+    path: '/video/assets/{asset_ID}/subtitle/upload',
+    label: 'all params',
+    run: async () => {
+      const subtitleUpload = await client.subtitleUpload.upload('assetId', { language_codes: ['en'] });
     },
   },
 
@@ -206,8 +278,21 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'complete',
     method: 'POST',
     path: '/video/assets/{asset_ID}/subtitle/upload/event',
+    label: 'required params',
     run: async () => {
-      const complete = await client.subtitleUpload.complete('assetId');
+      const subtitleUpload = await client.subtitleUpload.complete('assetId');
+    },
+  },
+
+  {
+    operation: 'complete',
+    method: 'POST',
+    path: '/video/assets/{asset_ID}/subtitle/upload/event',
+    label: 'all params',
+    run: async () => {
+      const subtitleUpload = await client.subtitleUpload.complete('assetId', {
+        upload_responses: [{ language_code: 'en', uploaded: true }],
+      });
     },
   },
 
@@ -215,8 +300,19 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'upload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/audio/upload',
+    label: 'required params',
     run: async () => {
-      const upload = await client.audioUpload.upload('assetId');
+      const audioUpload = await client.audioUpload.upload('assetId');
+    },
+  },
+
+  {
+    operation: 'upload',
+    method: 'POST',
+    path: '/video/assets/{asset_ID}/audio/upload',
+    label: 'all params',
+    run: async () => {
+      const audioUpload = await client.audioUpload.upload('assetId', { language_codes: ['en'] });
     },
   },
 
@@ -224,8 +320,21 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'complete',
     method: 'POST',
     path: '/video/assets/{asset_ID}/audio/upload/event',
+    label: 'required params',
     run: async () => {
-      const complete = await client.audioUpload.complete('assetId');
+      const audioUpload = await client.audioUpload.complete('assetId');
+    },
+  },
+
+  {
+    operation: 'complete',
+    method: 'POST',
+    path: '/video/assets/{asset_ID}/audio/upload/event',
+    label: 'all params',
+    run: async () => {
+      const audioUpload = await client.audioUpload.complete('assetId', {
+        upload_responses: [{ language_codes: ['en'], uploaded: true }],
+      });
     },
   },
 
@@ -234,7 +343,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/analytics',
     run: async () => {
-      const retrieve = await client.videoUsageAnalytics.retrieve({
+      const videoUsageAnalytic = await client.videoUsageAnalytics.retrieve({
         metrics: ['bandwidth_consumption', 'asset_duration', 'storage_unit', 'top_assets', 'drm_requests'],
         date_range: { start_at: '2026-08-01', end_at: '2026-08-20' },
         group_by: 'daily',
@@ -246,10 +355,27 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'topAssets',
     method: 'GET',
     path: '/video/streaming-duration',
+    label: 'required params',
     run: async () => {
-      const topAssets = await client.videoUsageAnalytics.topAssets({
+      const videoUsageAnalytic = await client.videoUsageAnalytics.topAssets({
         start_at: '2026-06-21',
         end_at: '2026-06-30',
+        page: '1',
+        page_size: '1000',
+      });
+    },
+  },
+
+  {
+    operation: 'topAssets',
+    method: 'GET',
+    path: '/video/streaming-duration',
+    label: 'all params',
+    run: async () => {
+      const videoUsageAnalytic = await client.videoUsageAnalytics.topAssets({
+        start_at: '2026-06-21',
+        end_at: '2026-06-30',
+        collection_id: 'collectionId',
         page: '1',
         page_size: '1000',
       });
@@ -261,7 +387,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/video/assets/{asset_id}/multipartupload/{part_number}/sign',
     run: async () => {
-      const retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {
+      const multipartUpload = await client.multipartUpload.retrievePartURL('partNumber', {
         asset_id: 'assetId',
       });
     },
@@ -271,8 +397,21 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'complete',
     method: 'POST',
     path: '/video/assets/{asset_id}/multipartupload/complete',
+    label: 'required params',
     run: async () => {
-      const complete = await client.multipartUpload.complete('assetId');
+      const multipartUpload = await client.multipartUpload.complete('assetId');
+    },
+  },
+
+  {
+    operation: 'complete',
+    method: 'POST',
+    path: '/video/assets/{asset_id}/multipartupload/complete',
+    label: 'all params',
+    run: async () => {
+      const multipartUpload = await client.multipartUpload.complete('assetId', {
+        parts: [],
+      });
     },
   },
 
@@ -280,10 +419,51 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'create',
     method: 'POST',
     path: '/video/profiles',
+    label: 'required params',
     run: async () => {
-      const create = await client.videoProfiles.create({
+      const videoProfile = await client.videoProfiles.create({
         name: 'Gumlet-Profile-1',
         format: 'ABR',
+      });
+    },
+  },
+
+  {
+    operation: 'create',
+    method: 'POST',
+    path: '/video/profiles',
+    label: 'all params',
+    run: async () => {
+      const videoProfile = await client.videoProfiles.create({
+        name: 'Gumlet-Profile-1',
+        format: 'ABR',
+        width: '',
+        height: '',
+        resolution: '',
+        crop: {
+          width: '',
+          height: '',
+        },
+        pad: {},
+        trim: {
+          start_offset: 0,
+          end_offset: 0,
+        },
+        image_overlay: {
+          url: '',
+        },
+        text_overlay: {
+          text: '',
+        },
+        animated_gif: {},
+        generate_subtitles: {
+          transcribe: true,
+        },
+        mp4_access: false,
+        per_title_encoding: false,
+        process_low_resolution_input: false,
+        audio_only: false,
+        enable_drm: false,
       });
     },
   },
@@ -292,8 +472,22 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'list',
     method: 'GET',
     path: '/video/profiles',
+    label: 'required params',
     run: async () => {
-      const list = await client.videoProfiles.list();
+      const videoProfile = await client.videoProfiles.list();
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/video/profiles',
+    label: 'all params',
+    run: async () => {
+      const videoProfile = await client.videoProfiles.list({
+        offset: 1,
+        size: 1,
+      });
     },
   },
 
@@ -301,10 +495,52 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'update',
     method: 'POST',
     path: '/video/profiles/{profile_id}',
+    label: 'required params',
     run: async () => {
-      const update = await client.videoProfiles.update('profileId', {
+      const videoProfile = await client.videoProfiles.update('profileId', {
         profile_id: '',
         format: 'ABR',
+      });
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'POST',
+    path: '/video/profiles/{profile_id}',
+    label: 'all params',
+    run: async () => {
+      const videoProfile = await client.videoProfiles.update('profileId', {
+        profile_id: '',
+        name: '',
+        format: 'ABR',
+        width: '',
+        height: '',
+        resolution: '',
+        crop: {
+          width: '',
+          height: '',
+        },
+        pad: {},
+        trim: {
+          start_offset: 0,
+          end_offset: 0,
+        },
+        image_overlay: {
+          url: '',
+        },
+        text_overlay: {
+          text: '',
+        },
+        animated_gif: {},
+        generate_subtitles: {
+          transcribe: true,
+        },
+        mp4_access: false,
+        per_title_encoding: false,
+        process_low_resolution_input: false,
+        audio_only: false,
+        enable_drm: false,
       });
     },
   },
@@ -314,7 +550,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/video/profiles/{profile_id}',
     run: async () => {
-      const retrieve = await client.videoProfiles.retrieve('profileId');
+      const videoProfile = await client.videoProfiles.retrieve('profileId');
     },
   },
 
@@ -323,7 +559,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'DELETE',
     path: '/video/profiles/{profile_id}',
     run: async () => {
-      const delete_ = await client.videoProfiles.delete('profileId');
+      const videoProfile = await client.videoProfiles.delete('profileId');
     },
   },
 
@@ -332,7 +568,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/playlist',
     run: async () => {
-      const create = await client.videoPlaylists.create({
+      const videoPlaylist = await client.videoPlaylists.create({
         title: 'Playlist-Title',
         description: 'This is description for playlist.',
         collection_id: '{{video-source-id}}',
@@ -344,8 +580,21 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'listAll',
     method: 'GET',
     path: '/video/playlist',
+    label: 'required params',
     run: async () => {
-      const listAll = await client.videoPlaylists.listAll();
+      const videoPlaylist = await client.videoPlaylists.listAll();
+    },
+  },
+
+  {
+    operation: 'listAll',
+    method: 'GET',
+    path: '/video/playlist',
+    label: 'all params',
+    run: async () => {
+      const videoPlaylist = await client.videoPlaylists.listAll({
+        collection_id: 'collectionId',
+      });
     },
   },
 
@@ -354,7 +603,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/playlist/{playlist_id}/asset',
     run: async () => {
-      const createAsset = await client.videoPlaylists.createAsset('playlistId', {
+      const videoPlaylist = await client.videoPlaylists.createAsset('playlistId', {
         asset_list: [
           { asset_id: '6508790283e4d60611846790' },
           { position: 1, asset_id: '650878f883e4d6061184677d' },
@@ -371,7 +620,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'DELETE',
     path: '/video/playlist/{playlist_id}/asset',
     run: async () => {
-      const deleteAsset = await client.videoPlaylists.deleteAsset('playlistId', {
+      const videoPlaylist = await client.videoPlaylists.deleteAsset('playlistId', {
         delete_list: ['6508790783e4d606118467a3'],
       });
     },
@@ -381,8 +630,43 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'update',
     method: 'POST',
     path: '/video/playlist/{playlist_id}',
+    label: 'required params',
     run: async () => {
-      const update = await client.videoPlaylists.update('playlistId');
+      const videoPlaylist = await client.videoPlaylists.update('playlistId');
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'POST',
+    path: '/video/playlist/{playlist_id}',
+    label: 'all params',
+    run: async () => {
+      const videoPlaylist = await client.videoPlaylists.update('playlistId', {
+        title: 'Playlist-Title-Updated',
+        position: 6,
+        description: 'This is updated description',
+        player_config: {
+          preload: true,
+          autoplay: false,
+          disable_seek: true,
+          disable_player_controls: false,
+          powered_by_gumlet_overlay: false,
+          allow_drm_protected_videos: false,
+          loop: false,
+          player_color: '#6658ea',
+          include_seo: true,
+          subtitle_enabled: true,
+          pixel_tags: {},
+          logo_width: 51,
+          logo_height: 100,
+          dynamic_watermark: false,
+          watermark_font_size: 1,
+          watermark_font_color: '#ff0000',
+          watermark_bg_color: 'transparent',
+          watermark_interval: 1000,
+        },
+      });
     },
   },
 
@@ -399,8 +683,24 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'listAssets',
     method: 'GET',
     path: '/video/playlist/{playlist_id}/assets',
+    label: 'required params',
     run: async () => {
-      const listAssets = await client.videoPlaylists.listAssets('playlistId', {
+      const videoPlaylist = await client.videoPlaylists.listAssets('playlistId', {
+        sort_order: 1,
+        page_number: 1,
+        page_size: '10',
+      });
+    },
+  },
+
+  {
+    operation: 'listAssets',
+    method: 'GET',
+    path: '/video/playlist/{playlist_id}/assets',
+    label: 'all params',
+    run: async () => {
+      const videoPlaylist = await client.videoPlaylists.listAssets('playlistId', {
+        sort_by: 'sortBy',
         sort_order: 1,
         page_number: 1,
         page_size: '10',
@@ -413,7 +713,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/playlists/{playlist_id}/reorder',
     run: async () => {
-      const reorderAsset = await client.videoPlaylists.reorderAsset('playlistId', {
+      const videoPlaylist = await client.videoPlaylists.reorderAsset('playlistId', {
         asset_id: '6e82bf783e88be000ab45ed2',
         page_number: 1,
         page_size: 10,
@@ -427,7 +727,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/org/webhooks',
     run: async () => {
-      const create = await client.webhookAPIs.create({
+      const webhookAPI = await client.webhookAPIs.create({
         url: '',
         secret_token: '',
         triggers: [],
@@ -440,8 +740,24 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'update',
     method: 'POST',
     path: '/org/webhooks/{webhook_id}',
+    label: 'required params',
     run: async () => {
-      const update = await client.webhookAPIs.update('webhookId');
+      const webhookAPI = await client.webhookAPIs.update('webhookId');
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'POST',
+    path: '/org/webhooks/{webhook_id}',
+    label: 'all params',
+    run: async () => {
+      const webhookAPI = await client.webhookAPIs.update('webhookId', {
+        url: '',
+        secret_token: '',
+        triggers: '',
+        sources: '',
+      });
     },
   },
 
@@ -450,7 +766,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'DELETE',
     path: '/org/webhooks/{webhook_id}',
     run: async () => {
-      const delete_ = await client.webhookAPIs.delete('webhookId');
+      const webhookAPI = await client.webhookAPIs.delete('webhookId');
     },
   },
 
@@ -459,7 +775,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/image/sources',
     run: async () => {
-      const create = await client.imageSources.create({
+      const imageSource = await client.imageSources.create({
         type: 'webfolder',
         webfolder: { base_url: 'https://www.google.com' },
         namespace: 'google-demo',
@@ -472,7 +788,10 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/image/sources',
     run: async () => {
-      const list = await client.imageSources.list();
+      const imageSource = await client.imageSources.list({
+        offset: 0,
+        size: 20,
+      });
     },
   },
 
@@ -481,7 +800,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/image/sources/{image_source_id}',
     run: async () => {
-      const retrieve = await client.imageSources.retrieve('imageSourceId');
+      const imageSource = await client.imageSources.retrieve('imageSourceId');
     },
   },
 
@@ -489,8 +808,29 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'update',
     method: 'POST',
     path: '/image/sources/{image_source_id}',
+    label: 'required params',
     run: async () => {
-      const update = await client.imageSources.update('imageSourceId');
+      const imageSource = await client.imageSources.update('imageSourceId');
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'POST',
+    path: '/image/sources/{image_source_id}',
+    label: 'all params',
+    run: async () => {
+      const imageSource = await client.imageSources.update('imageSourceId', {
+        default_profile_id: '646df1c9173a4a2fcac180b7',
+        name: 'awsrename',
+        type: 'aws',
+        aws: {
+          bucket_name: 'my-bucket-test',
+          bucket_region: 'ap-southeast-1',
+          access_key: 'BQUA6QFXVWHAAB6IO2X1',
+          secret: 'aws_secret',
+        },
+      });
     },
   },
 
@@ -499,7 +839,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'DELETE',
     path: '/image/sources/{image_source_id}',
     run: async () => {
-      const delete_ = await client.imageSources.delete('imageSourceId');
+      const imageSource = await client.imageSources.delete('imageSourceId');
     },
   },
 
@@ -507,8 +847,21 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'purgeCache',
     method: 'POST',
     path: '/purge/{subdomain}',
+    label: 'required params',
     run: async () => {
-      const purgeCache = await client.imageSources.purgeCache('subdomain');
+      const imageSource = await client.imageSources.purgeCache('subdomain');
+    },
+  },
+
+  {
+    operation: 'purgeCache',
+    method: 'POST',
+    path: '/purge/{subdomain}',
+    label: 'all params',
+    run: async () => {
+      const imageSource = await client.imageSources.purgeCache('subdomain', {
+        paths: ['image.jpeg', 'image2.png'],
+      });
     },
   },
 
@@ -517,7 +870,9 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/image/purge/{source_id}',
     run: async () => {
-      const purge = await client.imageSources.purge('sourceId', { paths: ['image.jpeg', 'image2.png'] });
+      const imageSource = await client.imageSources.purge('sourceId', {
+        paths: ['image.jpeg', 'image2.png'],
+      });
     },
   },
 
@@ -525,8 +880,9 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'retrieve',
     method: 'POST',
     path: '/image/analytics',
+    label: 'required params',
     run: async () => {
-      const retrieve = await client.imageUsageAnalytics.retrieve({
+      const imageUsageAnalytic = await client.imageUsageAnalytics.retrieve({
         metrics: [],
         date_range: {},
         group_by: 'daily',
@@ -535,13 +891,46 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
+    operation: 'retrieve',
+    method: 'POST',
+    path: '/image/analytics',
+    label: 'all params',
+    run: async () => {
+      const imageUsageAnalytic = await client.imageUsageAnalytics.retrieve({
+        metrics: [],
+        date_range: {},
+        group_by: 'daily',
+        filters: {},
+      });
+    },
+  },
+
+  {
     operation: 'create',
     method: 'POST',
     path: '/video/live/assets',
+    label: 'required params',
     run: async () => {
-      const create = await client.liveStreamAssets.create({
+      const liveStreamAsset = await client.liveStreamAssets.create({
         live_source_id: '',
         resolution: '',
+      });
+    },
+  },
+
+  {
+    operation: 'create',
+    method: 'POST',
+    path: '/video/live/assets',
+    label: 'all params',
+    run: async () => {
+      const liveStreamAsset = await client.liveStreamAssets.create({
+        live_source_id: '',
+        resolution: '',
+        title: '',
+        mp4_access: false,
+        orientation: 'landscape',
+        start_at: '2024-01-01T00:00:00.000Z',
       });
     },
   },
@@ -550,9 +939,24 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'update',
     method: 'POST',
     path: '/video/live/assets/update',
+    label: 'required params',
     run: async () => {
-      const update = await client.liveStreamAssets.update({
+      const liveStreamAsset = await client.liveStreamAssets.update({
         live_asset_id: '',
+      });
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'POST',
+    path: '/video/live/assets/update',
+    label: 'all params',
+    run: async () => {
+      const liveStreamAsset = await client.liveStreamAssets.update({
+        live_asset_id: '',
+        title: '',
+        start_at: '2024-01-01T00:00:00.000Z',
       });
     },
   },
@@ -562,7 +966,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/video/live/assets/{live_asset_id}',
     run: async () => {
-      const retrieveStatus = await client.liveStreamAssets.retrieveStatus('liveAssetId');
+      const liveStreamAsset = await client.liveStreamAssets.retrieveStatus('liveAssetId');
     },
   },
 
@@ -571,7 +975,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'DELETE',
     path: '/video/live/assets/{live_asset_id}',
     run: async () => {
-      const delete_ = await client.liveStreamAssets.delete('liveAssetId');
+      const liveStreamAsset = await client.liveStreamAssets.delete('liveAssetId');
     },
   },
 
@@ -580,7 +984,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/live/assets/{live_asset_id}/complete',
     run: async () => {
-      const complete = await client.liveStreamAssets.complete('liveAssetId');
+      const liveStreamAsset = await client.liveStreamAssets.complete('liveAssetId');
     },
   },
 
@@ -588,8 +992,23 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'filter',
     method: 'GET',
     path: '/video/live/assets/list/{live_source_id}',
+    label: 'required params',
     run: async () => {
-      const filter = await client.liveStreamAssets.filter('liveSourceId');
+      const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId');
+    },
+  },
+
+  {
+    operation: 'filter',
+    method: 'GET',
+    path: '/video/live/assets/list/{live_source_id}',
+    label: 'all params',
+    run: async () => {
+      const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId', {
+        status: 'status',
+        offset: 1,
+        size: 1,
+      });
     },
   },
 
@@ -607,7 +1026,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/live/assets/thumbnail/upload',
     run: async () => {
-      const upload = await client.liveStreamAssets.upload({
+      const liveStreamAsset = await client.liveStreamAssets.upload({
         live_asset_id: '68c406b147f9ad0c0d584ce2',
         statuses: ['preparing', 'disconnected'],
       });
@@ -619,7 +1038,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/video/live/assets/{live_asset_id}/history',
     run: async () => {
-      const statusHistory = await client.liveStreamAssets.statusHistory('liveAssetId');
+      const liveStreamAsset = await client.liveStreamAssets.statusHistory('liveAssetId');
     },
   },
 
@@ -628,7 +1047,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/video/workspaces',
     run: async () => {
-      const list = await client.videoWorkspaces.list({
+      const videoWorkspace = await client.videoWorkspaces.list({
         offset: '0',
         size: '10',
       });
@@ -640,7 +1059,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/workspaces',
     run: async () => {
-      const create = await client.videoWorkspaces.create({
+      const videoWorkspace = await client.videoWorkspaces.create({
         name: 'zoom-workspace',
         type: 'zoom',
         zoom: { secret: 'yourSecret' },
@@ -652,8 +1071,29 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'update',
     method: 'POST',
     path: '/video/workspaces/{workspace_id}',
+    label: 'required params',
     run: async () => {
-      const update = await client.videoWorkspaces.update('workspaceId');
+      const videoWorkspace = await client.videoWorkspaces.update('workspaceId');
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'POST',
+    path: '/video/workspaces/{workspace_id}',
+    label: 'all params',
+    run: async () => {
+      const videoWorkspace = await client.videoWorkspaces.update('workspaceId', {
+        default_profile_id: '646df1c9173a4a2fcac180b7',
+        name: 'awsrename',
+        type: 'aws',
+        aws: {
+          bucket_name: 'my-bucket-test',
+          bucket_region: 'ap-southeast-1',
+          access_key: 'BQUA6QFXVWHAAB6IO2X1',
+          secret: 'aws_secret',
+        },
+      });
     },
   },
 
@@ -662,7 +1102,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/video/workspaces/{workspace_id}',
     run: async () => {
-      const retrieve = await client.videoWorkspaces.retrieve('workspaceId');
+      const videoWorkspace = await client.videoWorkspaces.retrieve('workspaceId');
     },
   },
 
@@ -671,7 +1111,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'DELETE',
     path: '/video/workspaces/{workspace_id}',
     run: async () => {
-      const delete_ = await client.videoWorkspaces.delete('workspaceId');
+      const videoWorkspace = await client.videoWorkspaces.delete('workspaceId');
     },
   },
 
@@ -680,7 +1120,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/workspaces/{workspace_id}/folders',
     run: async () => {
-      const create = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });
+      const folder = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });
     },
   },
 
@@ -688,8 +1128,21 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'list',
     method: 'GET',
     path: '/video/workspaces/{workspace_id}/folders',
+    label: 'required params',
     run: async () => {
-      const list = await client.folders.list('workspaceId');
+      const folder = await client.folders.list('workspaceId');
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/video/workspaces/{workspace_id}/folders',
+    label: 'all params',
+    run: async () => {
+      const folder = await client.folders.list('workspaceId', {
+        parent_id: 'parentId',
+      });
     },
   },
 
@@ -698,7 +1151,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/video/workspaces/{workspace_id}/folders/{folder_id}',
     run: async () => {
-      const retrieve = await client.folders.retrieve('folderId', {
+      const folder = await client.folders.retrieve('folderId', {
         workspace_id: 'workspaceId',
       });
     },
@@ -708,9 +1161,27 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'update',
     method: 'POST',
     path: '/video/workspaces/{workspace_id}/folders/{folder_id}',
+    label: 'required params',
     run: async () => {
-      const update = await client.folders.update('folderId', {
+      const folder = await client.folders.update('folderId', {
         workspace_id: 'workspaceId',
+      });
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'POST',
+    path: '/video/workspaces/{workspace_id}/folders/{folder_id}',
+    label: 'all params',
+    run: async () => {
+      const folder = await client.folders.update('folderId', {
+        workspace_id: 'workspaceId',
+        body: {
+          name: '',
+          parent_id: '',
+          asset_ids: [],
+        },
       });
     },
   },
@@ -720,7 +1191,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'DELETE',
     path: '/video/workspaces/{workspace_id}/folders/{folder_id}',
     run: async () => {
-      const delete_ = await client.folders.delete('folderId', {
+      const folder = await client.folders.delete('folderId', {
         workspace_id: 'workspaceId',
       });
     },
@@ -731,7 +1202,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/video/workspaces/{workspace_id}/remove-assets-from-folder',
     run: async () => {
-      const deleteAssets = await client.folders.deleteAssets('workspaceId', {
+      const folder = await client.folders.deleteAssets('workspaceId', {
         asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],
       });
     },
@@ -742,7 +1213,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/channel/{video_workspace_id}/viewers/invite',
     run: async () => {
-      const invite = await client.channelViewers.invite('videoWorkspaceId', {
+      const channelViewer = await client.channelViewers.invite('videoWorkspaceId', {
         users: [
           { email: 'test@gumlet.com', name: 'Test User-0' },
           { email: 'test+1@gumlet.com', name: 'Test User-1' },
@@ -757,7 +1228,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/channel/{video_workspace_id}/viewers/remove',
     run: async () => {
-      const delete_ = await client.channelViewers.delete('videoWorkspaceId', {
+      const channelViewer = await client.channelViewers.delete('videoWorkspaceId', {
         emails: ['test@gumlet.com', 'test+2@gumlet.com'],
       });
     },
@@ -768,7 +1239,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/channel/{video_workspace_id}/viewers/invite/csv',
     run: async () => {
-      const inviteCsv = await client.channelViewers.inviteCsv('videoWorkspaceId', {
+      const channelViewer = await client.channelViewers.inviteCsv('videoWorkspaceId', {
         viewers_csv: 'viewers.csv',
       });
     },
@@ -778,8 +1249,9 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     operation: 'insightsChart',
     method: 'POST',
     path: '/video/viewer-analytics',
+    label: 'required params',
     run: async () => {
-      const insightsChart = await client.dataAPI.insightsChart({
+      const dataAPI = await client.dataAPI.insightsChart({
         metrics: [],
         workspace_id: '',
         date_range: {
@@ -792,14 +1264,50 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
+    operation: 'insightsChart',
+    method: 'POST',
+    path: '/video/viewer-analytics',
+    label: 'all params',
+    run: async () => {
+      const dataAPI = await client.dataAPI.insightsChart({
+        metrics: [],
+        workspace_id: '',
+        date_range: {
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
+        },
+        filters: [],
+        group_by: 'daily',
+        chart_dimension: {},
+      });
+    },
+  },
+
+  {
     operation: 'insightsAggregated',
     method: 'POST',
     path: '/insights/aggregated-data',
+    label: 'required params',
     run: async () => {
-      const insightsAggregated = await client.dataAPI.insightsAggregated({
+      const dataAPI = await client.dataAPI.insightsAggregated({
         aggregate: [],
         workspace_id: '',
         timeframe: {},
+      });
+    },
+  },
+
+  {
+    operation: 'insightsAggregated',
+    method: 'POST',
+    path: '/insights/aggregated-data',
+    label: 'all params',
+    run: async () => {
+      const dataAPI = await client.dataAPI.insightsAggregated({
+        aggregate: [],
+        workspace_id: '',
+        timeframe: {},
+        filters: [],
       });
     },
   },
@@ -827,26 +1335,21 @@ const main = async (): Promise<void> => {
   const settled = await Promise.allSettled(
     selected.map(async (testCase): Promise<SmokeResult> => {
       const startedAt = Date.now();
+      // `label` distinguishes the required-params run from the all-params run of the same
+      // operation; it is omitted entirely when the operation contributed only one case.
+      const identity = {
+        operation: testCase.operation,
+        method: testCase.method,
+        path: testCase.path,
+        ...(testCase.label ? { label: testCase.label } : {}),
+      };
       try {
         await testCase.run();
-        return {
-          operation: testCase.operation,
-          method: testCase.method,
-          path: testCase.path,
-          status: 'passed',
-          durationMs: Date.now() - startedAt,
-        };
+        return { ...identity, status: 'passed', durationMs: Date.now() - startedAt };
       } catch (error) {
         // Prefer the stack so a failure points at the failing SDK call; fall back to the message.
         const message = error instanceof Error ? (error.stack ?? error.message) : String(error);
-        return {
-          operation: testCase.operation,
-          method: testCase.method,
-          path: testCase.path,
-          status: 'failed',
-          durationMs: Date.now() - startedAt,
-          error: message,
-        };
+        return { ...identity, status: 'failed', durationMs: Date.now() - startedAt, error: message };
       }
     }),
   );
@@ -872,10 +1375,15 @@ const main = async (): Promise<void> => {
     writeFileSync(reportPath, JSON.stringify({ total: results.length, failed: failed.length, results }));
   } else {
     for (const result of results) {
+      const suffix = result.label ? ` [${result.label}]` : '';
       if (result.status === 'passed')
-        console.log(`\u2714 ${result.operation} (${result.method} ${result.path}) ${result.durationMs}ms`);
+        console.log(
+          `\u2714 ${result.operation}${suffix} (${result.method} ${result.path}) ${result.durationMs}ms`,
+        );
       else
-        console.error(`\u2718 ${result.operation} (${result.method} ${result.path})\n${result.error ?? ''}`);
+        console.error(
+          `\u2718 ${result.operation}${suffix} (${result.method} ${result.path})\n${result.error ?? ''}`,
+        );
     }
     if (results.length === 0) {
       console.error('No code samples ran (empty SDK or a SCALAR_SMOKE_FILTER that matched nothing).');

@@ -16,7 +16,7 @@ export class SubtitleUpload extends APIResource {
    *
    * @example
    * ```ts
-   * const upload = await client.subtitleUpload.upload('assetId');
+   * const subtitleUpload = await client.subtitleUpload.upload('assetId');
    * ```
    */
   upload(
@@ -38,7 +38,7 @@ export class SubtitleUpload extends APIResource {
    *
    * @example
    * ```ts
-   * const complete = await client.subtitleUpload.complete('assetId');
+   * const subtitleUpload = await client.subtitleUpload.complete('assetId');
    * ```
    */
   complete(

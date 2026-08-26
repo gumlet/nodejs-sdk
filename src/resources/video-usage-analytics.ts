@@ -14,7 +14,7 @@ export class VideoUsageAnalytics extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.videoUsageAnalytics.retrieve({
+   * const videoUsageAnalytic = await client.videoUsageAnalytics.retrieve({
    *   metrics: ['bandwidth_consumption', 'asset_duration', 'storage_unit', 'top_assets', 'drm_requests'],
    *   date_range: { start_at: '2026-08-01', end_at: '2026-08-20' },
    *   group_by: 'daily',
@@ -37,7 +37,7 @@ export class VideoUsageAnalytics extends APIResource {
    *
    * @example
    * ```ts
-   * const topAssets = await client.videoUsageAnalytics.topAssets({
+   * const videoUsageAnalytic = await client.videoUsageAnalytics.topAssets({
    *   start_at: '2026-06-21',
    *   end_at: '2026-06-30',
    *   page: '1',
