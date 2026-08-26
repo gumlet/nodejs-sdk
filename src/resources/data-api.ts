@@ -14,7 +14,7 @@ export class DataAPI extends APIResource {
    *
    * @example
    * ```ts
-   * const insightsChart = await client.dataAPI.insightsChart({
+   * const dataAPI = await client.dataAPI.insightsChart({
    *   metrics: [],
    *   workspace_id: '',
    *   date_range: {
@@ -41,7 +41,7 @@ export class DataAPI extends APIResource {
    *
    * @example
    * ```ts
-   * const insightsAggregated = await client.dataAPI.insightsAggregated({
+   * const dataAPI = await client.dataAPI.insightsAggregated({
    *   aggregate: [],
    *   workspace_id: '',
    *   timeframe: {},

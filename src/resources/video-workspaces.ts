@@ -15,7 +15,7 @@ export class VideoWorkspaces extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.videoWorkspaces.list({
+   * const videoWorkspace = await client.videoWorkspaces.list({
    *   offset: '0',
    *   size: '10',
    * });
@@ -37,7 +37,7 @@ export class VideoWorkspaces extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.videoWorkspaces.create({
+   * const videoWorkspace = await client.videoWorkspaces.create({
    *   name: 'zoom-workspace',
    *   type: 'zoom',
    *   zoom: { secret: 'yourSecret' },
@@ -61,7 +61,7 @@ export class VideoWorkspaces extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.videoWorkspaces.update('workspaceId');
+   * const videoWorkspace = await client.videoWorkspaces.update('workspaceId');
    * ```
    */
   update(
@@ -81,7 +81,7 @@ export class VideoWorkspaces extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.videoWorkspaces.retrieve('workspaceId');
+   * const videoWorkspace = await client.videoWorkspaces.retrieve('workspaceId');
    * ```
    */
   retrieve(workspaceID: string, options?: RequestOptions): APIPromise<VideoWorkspaceRetrieveResponse> {
@@ -97,7 +97,7 @@ export class VideoWorkspaces extends APIResource {
    *
    * @example
    * ```ts
-   * const delete_ = await client.videoWorkspaces.delete('workspaceId');
+   * const videoWorkspace = await client.videoWorkspaces.delete('workspaceId');
    * ```
    */
   delete(workspaceID: string, options?: RequestOptions): APIPromise<VideoWorkspaceDeleteResponse> {

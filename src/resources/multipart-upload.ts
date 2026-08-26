@@ -16,7 +16,7 @@ export class MultipartUpload extends APIResource {
    *
    * @example
    * ```ts
-   * const retrievePartURL = await client.multipartUpload.retrievePartURL('partNumber', {
+   * const multipartUpload = await client.multipartUpload.retrievePartURL('partNumber', {
    *   asset_id: 'assetId',
    * });
    * ```
@@ -43,7 +43,7 @@ export class MultipartUpload extends APIResource {
    *
    * @example
    * ```ts
-   * const complete = await client.multipartUpload.complete('assetId');
+   * const multipartUpload = await client.multipartUpload.complete('assetId');
    * ```
    */
   complete(

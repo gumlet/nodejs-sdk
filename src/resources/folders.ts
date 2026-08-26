@@ -16,7 +16,7 @@ export class Folders extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });
+   * const folder = await client.folders.create('workspaceId', { name: 'Course Assets', parent_id: null });
    * ```
    */
   create(
@@ -37,7 +37,7 @@ export class Folders extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.folders.list('workspaceId');
+   * const folder = await client.folders.list('workspaceId');
    * ```
    */
   list(
@@ -58,7 +58,7 @@ export class Folders extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.folders.retrieve('folderId', {
+   * const folder = await client.folders.retrieve('folderId', {
    *   workspace_id: 'workspaceId',
    * });
    * ```
@@ -82,7 +82,7 @@ export class Folders extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.folders.update('folderId', {
+   * const folder = await client.folders.update('folderId', {
    *   workspace_id: 'workspaceId',
    * });
    * ```
@@ -109,7 +109,7 @@ export class Folders extends APIResource {
    *
    * @example
    * ```ts
-   * const delete_ = await client.folders.delete('folderId', {
+   * const folder = await client.folders.delete('folderId', {
    *   workspace_id: 'workspaceId',
    * });
    * ```
@@ -133,7 +133,7 @@ export class Folders extends APIResource {
    *
    * @example
    * ```ts
-   * const deleteAssets = await client.folders.deleteAssets('workspaceId', {
+   * const folder = await client.folders.deleteAssets('workspaceId', {
    *   asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],
    * });
    * ```
