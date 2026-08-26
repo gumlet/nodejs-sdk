@@ -85,6 +85,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
+          registry-url: "https://registry.npmjs.org"
       - run: npm install
       - run: npm run build
       # OIDC trusted publishing needs npm >= 11.5; pinned to the major (not `latest`) so a new

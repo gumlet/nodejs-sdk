@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.2](https://github.com/gumlet/nodejs-sdk/compare/v1.1.1...v1.1.2) (2026-08-26)
+
+
+### Features
+
+* **api:** add query param offset on imageSources.list (+2 more changes) ([e610968](https://github.com/gumlet/nodejs-sdk/commit/e610968348071baf5360494be2202d3f18d79ae1))
+
+
+### Chores
+
+* release 1.1.2 ([b2b2feb](https://github.com/gumlet/nodejs-sdk/commit/b2b2feb35f41ee1575213822db82e9f4920e1470))
+* release 1.1.2 ([8f58595](https://github.com/gumlet/nodejs-sdk/commit/8f58595c80a15ca82a4741f218ff5ad1259cb93c))
+
 ## [1.1.1](https://github.com/gumlet/nodejs-sdk/compare/v1.1.0...v1.1.1) (2026-08-23)
 
 

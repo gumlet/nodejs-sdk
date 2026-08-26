@@ -80,6 +80,7 @@ export type {
   WebhookAPIDeleteResponse,
   ImageSourceCreateParams,
   ImageSourceCreateResponse,
+  ImageSourceListParams,
   ImageSourceListResponse,
   ImageSourceRetrieveResponse,
   ImageSourceUpdateParams,

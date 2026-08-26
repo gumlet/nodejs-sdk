@@ -16,7 +16,7 @@ export class VideoPlaylists extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.videoPlaylists.create({
+   * const videoPlaylist = await client.videoPlaylists.create({
    *   title: 'Playlist-Title',
    *   description: 'This is description for playlist.',
    *   collection_id: '{{video-source-id}}',
@@ -36,7 +36,7 @@ export class VideoPlaylists extends APIResource {
    *
    * @example
    * ```ts
-   * const listAll = await client.videoPlaylists.listAll();
+   * const videoPlaylist = await client.videoPlaylists.listAll();
    * ```
    */
   listAll(
@@ -56,7 +56,7 @@ export class VideoPlaylists extends APIResource {
    *
    * @example
    * ```ts
-   * const createAsset = await client.videoPlaylists.createAsset('playlistId', {
+   * const videoPlaylist = await client.videoPlaylists.createAsset('playlistId', {
    *   asset_list: [
    *     { asset_id: '6508790283e4d60611846790' },
    *     { position: 1, asset_id: '650878f883e4d6061184677d' },
@@ -85,7 +85,7 @@ export class VideoPlaylists extends APIResource {
    *
    * @example
    * ```ts
-   * const deleteAsset = await client.videoPlaylists.deleteAsset('playlistId', {
+   * const videoPlaylist = await client.videoPlaylists.deleteAsset('playlistId', {
    *   delete_list: ['6508790783e4d606118467a3'],
    * });
    * ```
@@ -108,7 +108,7 @@ export class VideoPlaylists extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.videoPlaylists.update('playlistId');
+   * const videoPlaylist = await client.videoPlaylists.update('playlistId');
    * ```
    */
   update(
@@ -147,7 +147,7 @@ export class VideoPlaylists extends APIResource {
    *
    * @example
    * ```ts
-   * const listAssets = await client.videoPlaylists.listAssets('playlistId', {
+   * const videoPlaylist = await client.videoPlaylists.listAssets('playlistId', {
    *   sort_order: 1,
    *   page_number: 1,
    *   page_size: '10',
@@ -172,7 +172,7 @@ export class VideoPlaylists extends APIResource {
    *
    * @example
    * ```ts
-   * const reorderAsset = await client.videoPlaylists.reorderAsset('playlistId', {
+   * const videoPlaylist = await client.videoPlaylists.reorderAsset('playlistId', {
    *   asset_id: '6e82bf783e88be000ab45ed2',
    *   page_number: 1,
    *   page_size: 10,

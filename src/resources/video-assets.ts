@@ -16,7 +16,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.videoAssets.create({
+   * const videoAsset = await client.videoAssets.create({
    *   format: 'ABR',
    *   collection_id: '646df1c9173a4a2fcac180b4',
    *   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
@@ -56,7 +56,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const upload = await client.videoAssets.upload({
+   * const videoAsset = await client.videoAssets.upload({
    *   format: 'ABR',
    *   collection_id: '646df1c9173a4a2fcac180b4',
    *   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
@@ -96,7 +96,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieveDetails = await client.videoAssets.retrieveDetails('assetId');
+   * const videoAsset = await client.videoAssets.retrieveDetails('assetId');
    * ```
    */
   retrieveDetails(assetID: string, options?: RequestOptions): APIPromise<VideoAssetRetrieveDetailsResponse> {
@@ -131,7 +131,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.videoAssets.update({ asset_id: '<YOUR_ASSET_ID>', title: 'Updated Title' });
+   * const videoAsset = await client.videoAssets.update({ asset_id: '<YOUR_ASSET_ID>', title: 'Updated Title' });
    * ```
    */
   update(body: VideoAssetUpdateParams, options?: RequestOptions): APIPromise<VideoAssetUpdateResponse> {
@@ -148,7 +148,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const thumbnailSelect = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
+   * const videoAsset = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
    * ```
    */
   thumbnailSelect(
@@ -179,7 +179,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const thumbnailUpload = await client.videoAssets.thumbnailUpload('assetId');
+   * const videoAsset = await client.videoAssets.thumbnailUpload('assetId');
    * ```
    */
   thumbnailUpload(assetID: string, options?: RequestOptions): APIPromise<VideoAssetThumbnailUploadResponse> {
@@ -196,7 +196,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const createUpdateChapter = await client.videoAssets.createUpdateChapter('assetId', {
+   * const videoAsset = await client.videoAssets.createUpdateChapter('assetId', {
    *   chapters: [
    *     { label: 'Chapter 1', startTime: 0 },
    *     { label: 'Chapter 2', startTime: 10 },
@@ -243,7 +243,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.videoAssets.list('workspaceId', {
+   * const videoAsset = await client.videoAssets.list('workspaceId', {
    *   type: 'all',
    *   offset: 0,
    *   size: 20,
@@ -268,7 +268,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const listDeprecated = await client.videoAssets.listDeprecated('workspaceId', {
+   * const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
    *   sortBy: 'created_at',
    *   orderBy: 'desc',
    * });
