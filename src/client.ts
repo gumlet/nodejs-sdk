@@ -181,9 +181,7 @@ import {
 } from './resources/channel-viewers';
 import {
   DataAPI,
-  type DataAPIInsightsChartResponse,
   type DataAPIInsightsAggregatedResponse,
-  type DataAPIInsightsChartParams,
   type DataAPIInsightsAggregatedParams,
 } from './resources/data-api';
 
@@ -1179,9 +1177,7 @@ export declare namespace Gumlet {
 
   export {
     DataAPI as DataAPI,
-    type DataAPIInsightsChartResponse as DataAPIInsightsChartResponse,
     type DataAPIInsightsAggregatedResponse as DataAPIInsightsAggregatedResponse,
-    type DataAPIInsightsChartParams as DataAPIInsightsChartParams,
     type DataAPIInsightsAggregatedParams as DataAPIInsightsAggregatedParams,
   };
 }

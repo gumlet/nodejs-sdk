@@ -130,8 +130,6 @@ export type {
   ChannelViewerDeleteResponse,
   ChannelViewerInviteCsvParams,
   ChannelViewerInviteCsvResponse,
-  DataAPIInsightsChartParams,
-  DataAPIInsightsChartResponse,
   DataAPIInsightsAggregatedParams,
   DataAPIInsightsAggregatedResponse,
 } from './resources/index';
