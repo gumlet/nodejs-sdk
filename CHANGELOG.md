@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.6](https://github.com/gumlet/nodejs-sdk/compare/v1.1.5...v1.1.6) (2026-08-27)
+
+
+### Features
+
+* **api:** add body field fallback_origins on imageSources.update ([459857c](https://github.com/gumlet/nodejs-sdk/commit/459857cba80ae368cbe7310cac46f9e740902079))
+
+
+### Chores
+
+* release 1.1.6 ([0c67954](https://github.com/gumlet/nodejs-sdk/commit/0c679543f3094a1f456092fdbaeab0ec20b0dc36))
+* release 1.1.6 ([dd8bf03](https://github.com/gumlet/nodejs-sdk/commit/dd8bf039a79f80bf2c48a0353775549572ff6a20))
+
 ## [1.1.5](https://github.com/gumlet/nodejs-sdk/compare/v1.1.4...v1.1.5) (2026-08-27)
 
 
