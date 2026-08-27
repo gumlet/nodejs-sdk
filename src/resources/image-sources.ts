@@ -355,6 +355,13 @@ export namespace ImageSourceListResponse {
      * Custom domains assigned to this source.
      */
     cname?: Array<string>;
+    wasabi?: AllSource.Wasabi;
+    gcs?: AllSource.Gcs;
+    wordpress?: AllSource.Wordpress;
+    backblaze?: AllSource.Backblaze;
+    hetzner?: AllSource.Hetzner;
+    dostorage?: AllSource.Dostorage;
+    azure?: AllSource.Azure;
   }
 
   export namespace AllSource {
@@ -434,6 +441,7 @@ export namespace ImageSourceListResponse {
       bucket_region?: string;
       access_key?: string;
       secret?: string;
+      base_path?: string;
     }
 
     export interface EmbedDetails {
@@ -519,13 +527,59 @@ export namespace ImageSourceListResponse {
     export interface Webfolder {
       base_url: string;
     }
+
+    export interface Wasabi {
+      bucket_name: string;
+      base_path?: string;
+    }
+
+    export interface Gcs {
+      bucket_name: string;
+      base_path?: string;
+    }
+
+    export interface Wordpress {
+      website_url: string;
+    }
+
+    export interface Backblaze {
+      bucket_name: string;
+      base_path?: string;
+    }
+
+    export interface Hetzner {
+      bucket_name?: string;
+      base_path?: string;
+    }
+
+    export interface Dostorage {
+      bucket_name: string;
+      base_path?: string;
+    }
+
+    export interface Azure {
+      azure_account_name: string;
+      azure_path: string;
+      azure_container_name?: string;
+    }
   }
 }
 
 export interface ImageSourceRetrieveResponse {
+  type:
+    | 'dostorage'
+    | 'aws'
+    | 'wasabi'
+    | 'hetzner'
+    | 'backblaze'
+    | 'webfolder'
+    | 'gcs'
+    | 'azure'
+    | 'cloudflare'
+    | 'imgix'
+    | 'cloudinary';
   id?: string;
   namespace?: string;
-  type?: string;
   cdn_type?: string;
   cdn_cache_time?: number;
   canonical_url?: boolean;
@@ -753,6 +807,10 @@ export interface ImageSourceUpdateParams {
    * Enable / disable source.
    */
   is_active?: boolean;
+  /**
+   * List of verified CNAMEs
+   */
+  cname?: Array<string>;
 }
 
 export namespace ImageSourceUpdateParams {
@@ -896,6 +954,8 @@ export interface ImageSourceUpdateResponse {
   request_headers?: Array<Record<string, unknown>>;
   subdomain?: string;
   is_active?: boolean;
+  secure_urls?: boolean;
+  secure_token?: string;
 }
 
 export namespace ImageSourceUpdateResponse {
