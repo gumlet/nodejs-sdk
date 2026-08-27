@@ -661,6 +661,7 @@ export interface ImageSourceRetrieveResponse {
   hetzner?: Record<string, unknown>;
   fallback_origins?: Array<ImageSourceRetrieveResponse.FallbackOrigin>;
   wordpress?: ImageSourceRetrieveResponse.Wordpress;
+  response_headers?: Array<Record<string, unknown>>;
 }
 
 export namespace ImageSourceRetrieveResponse {
@@ -1306,6 +1307,7 @@ export interface ImageSourceUpdateResponse {
   is_active?: boolean;
   secure_urls?: boolean;
   secure_token?: string;
+  response_headers?: Array<Record<string, unknown>>;
 }
 
 export namespace ImageSourceUpdateResponse {
