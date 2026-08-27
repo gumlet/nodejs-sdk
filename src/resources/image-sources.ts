@@ -362,6 +362,8 @@ export namespace ImageSourceListResponse {
     hetzner?: AllSource.Hetzner;
     dostorage?: AllSource.Dostorage;
     azure?: AllSource.Azure;
+    linode?: AllSource.Linode;
+    cloudinary?: AllSource.Cloudinary;
   }
 
   export namespace AllSource {
@@ -562,10 +564,21 @@ export namespace ImageSourceListResponse {
       azure_path: string;
       azure_container_name?: string;
     }
+
+    export interface Linode {
+      bucket_name: string;
+      bucket_region: string;
+    }
+
+    export interface Cloudinary {
+      cloud_name: string;
+    }
   }
 }
 
 export interface ImageSourceRetrieveResponse {
+  id: string;
+  namespace: string;
   type:
     | 'dostorage'
     | 'aws'
@@ -577,9 +590,8 @@ export interface ImageSourceRetrieveResponse {
     | 'azure'
     | 'cloudflare'
     | 'imgix'
-    | 'cloudinary';
-  id?: string;
-  namespace?: string;
+    | 'cloudinary'
+    | 'proxy';
   cdn_type?: string;
   cdn_cache_time?: number;
   canonical_url?: boolean;
@@ -643,6 +655,8 @@ export interface ImageSourceRetrieveResponse {
    * This is the token that you can use to sign URLs.
    */
   secure_token?: string;
+  imgix?: Record<string, unknown>;
+  hetzner?: Record<string, unknown>;
 }
 
 export namespace ImageSourceRetrieveResponse {
