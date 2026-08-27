@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.4](https://github.com/gumlet/nodejs-sdk/compare/v1.1.3...v1.1.4) (2026-08-27)
+
+
+### Features
+
+* **api:** add body field cname on imageSources.update ([92f6c1f](https://github.com/gumlet/nodejs-sdk/commit/92f6c1fecdcac29881ced9e964633620d28de028))
+
+
+### Chores
+
+* **api:** update generated SDK content ([dc95e2d](https://github.com/gumlet/nodejs-sdk/commit/dc95e2d124dd839df768c9299181c441f29b9755))
+* release 1.1.4 ([722d9b3](https://github.com/gumlet/nodejs-sdk/commit/722d9b3d91b086a8da19287b5a7ae38568761f08))
+* release 1.1.4 ([a86f7b6](https://github.com/gumlet/nodejs-sdk/commit/a86f7b6c48d15c75a31d9b5f76d678ff5f98809d))
+
 ## [1.1.3](https://github.com/gumlet/nodejs-sdk/compare/v1.1.2...v1.1.3) (2026-08-27)
 
 
