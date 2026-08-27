@@ -660,6 +660,7 @@ export interface ImageSourceRetrieveResponse {
   imgix?: Record<string, unknown>;
   hetzner?: Record<string, unknown>;
   fallback_origins?: Array<ImageSourceRetrieveResponse.FallbackOrigin>;
+  wordpress?: ImageSourceRetrieveResponse.Wordpress;
 }
 
 export namespace ImageSourceRetrieveResponse {
@@ -893,6 +894,10 @@ export namespace ImageSourceRetrieveResponse {
       azure_shared_token: string;
       azure_path: string;
     }
+  }
+
+  export interface Wordpress {
+    website_url: string;
   }
 }
 
