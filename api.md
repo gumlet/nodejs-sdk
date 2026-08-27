@@ -85,7 +85,6 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Remove Channel Viewers](#remove-channel-viewers)
   - [Invite Channel Viewers via CSV](#invite-channel-viewers-via-csv)
 - [`DataApi`](#dataapi)
-  - [Chart Data](#chart-data)
   - [Aggregated Data](#aggregated-data)
 
 ## Setup
@@ -1147,27 +1146,6 @@ const channelViewer = await client.channelViewers.inviteCsv('videoWorkspaceId', 
 ## `DataApi`
 
 Query aggregated and chart-ready analytics/insights data.
-
-### Chart Data
-
-This endpoint retrieves metrics data to plot the chart.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`DataAPIInsightsChartParams`](./src/resources/data-api.ts) |
-| Response | [`DataAPIInsightsChartResponse`](./src/resources/data-api.ts) |
-
-```ts
-const dataAPI = await client.dataAPI.insightsChart({
-  metrics: [],
-  workspace_id: '',
-  date_range: {
-    start_at: '2024-01-01',
-    end_at: '2024-01-01',
-  },
-  group_by: 'daily',
-});
-```
 
 ### Aggregated Data
 
