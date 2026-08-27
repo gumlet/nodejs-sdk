@@ -1,3 +1,3 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-export const VERSION = '1.1.4'; // x-release-please-version
+export const VERSION = '1.1.5'; // x-release-please-version
