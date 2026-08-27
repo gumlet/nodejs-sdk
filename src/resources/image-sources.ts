@@ -577,7 +577,6 @@ export namespace ImageSourceListResponse {
 }
 
 export interface ImageSourceRetrieveResponse {
-  id: string;
   namespace: string;
   type:
     | 'dostorage'
@@ -591,7 +590,10 @@ export interface ImageSourceRetrieveResponse {
     | 'cloudflare'
     | 'imgix'
     | 'cloudinary'
-    | 'proxy';
+    | 'proxy'
+    | 'wordpress'
+    | 'linode';
+  id?: string;
   cdn_type?: string;
   cdn_cache_time?: number;
   canonical_url?: boolean;
@@ -657,6 +659,7 @@ export interface ImageSourceRetrieveResponse {
   secure_token?: string;
   imgix?: Record<string, unknown>;
   hetzner?: Record<string, unknown>;
+  fallback_origins?: Array<ImageSourceRetrieveResponse.FallbackOrigin>;
 }
 
 export namespace ImageSourceRetrieveResponse {
@@ -738,6 +741,158 @@ export namespace ImageSourceRetrieveResponse {
     azure_container_name: string;
     azure_shared_token: string;
     azure_path: string;
+  }
+
+  export interface FallbackOrigin {
+    name: string;
+    type:
+      | 'dostorage'
+      | 'aws'
+      | 'wasabi'
+      | 'hetzner'
+      | 'backblaze'
+      | 'webfolder'
+      | 'gcs'
+      | 'azure'
+      | 'cloudflare'
+      | 'imgix'
+      | 'cloudinary'
+      | 'proxy'
+      | 'wordpress'
+      | 'linode';
+    conditions?: Array<string>;
+    replace_operation?: FallbackOrigin.ReplaceOperation;
+    /**
+     * This is a required field if source type is webfolder.
+     */
+    webfolder?: FallbackOrigin.Webfolder;
+    /**
+     * This is a required field if source type is aws.
+     */
+    aws?: FallbackOrigin.Aws;
+    /**
+     * This is a required field if source type is proxy.
+     */
+    proxy?: FallbackOrigin.Proxy;
+    /**
+     * This is a required field if source type is gcs.
+     */
+    gcs?: FallbackOrigin.Gcs;
+    /**
+     * This is a required field if source type is dostorage.
+     */
+    dostorage?: FallbackOrigin.Dostorage;
+    /**
+     * This is a required field if source type is wasabi.
+     */
+    wasabi?: FallbackOrigin.Wasabi;
+    /**
+     * This is a required field if source type is linode.
+     */
+    linode?: FallbackOrigin.Linode;
+    /**
+     * This is a required field if source type is backblaze.
+     */
+    backblaze?: FallbackOrigin.Backblaze;
+    /**
+     * This is a required field if source type is cloudflare.
+     */
+    cloudflare?: FallbackOrigin.Cloudflare;
+    /**
+     * This is a required field if source type is cloudinary.
+     */
+    cloudinary?: FallbackOrigin.Cloudinary;
+    /**
+     * This is a required field if source type is azure.
+     */
+    azure?: FallbackOrigin.Azure;
+  }
+
+  export namespace FallbackOrigin {
+    export interface ReplaceOperation {
+      from?: string;
+      to?: string;
+    }
+
+    export interface Webfolder {
+      base_url?: string;
+    }
+
+    export interface Aws {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+      base_path?: string;
+      endpoint?: string;
+    }
+
+    export interface Proxy {
+      whitelisted_domains: string;
+    }
+
+    export interface Gcs {
+      bucket_name: string;
+      service_account_key: string;
+    }
+
+    export interface Dostorage {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+      base_path?: string;
+    }
+
+    export interface Wasabi {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+      base_path?: string;
+    }
+
+    export interface Linode {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+    }
+
+    export interface Backblaze {
+      bucket_name: string;
+      access_key: string;
+      secret: string;
+      /**
+       * bucket_region or endpoint
+       */
+      bucket_region?: string;
+      /**
+       * bucket_region or endpoint
+       */
+      endpoint?: string;
+      base_path?: string;
+    }
+
+    export interface Cloudflare {
+      bucket_name: string;
+      access_key: string;
+      account_id: string;
+      secret: string;
+      base_path?: string;
+    }
+
+    export interface Cloudinary {
+      host_name: string;
+      cloud_name: string;
+    }
+
+    export interface Azure {
+      azure_account_name: string;
+      azure_container_name: string;
+      azure_shared_token: string;
+      azure_path: string;
+    }
   }
 }
 
@@ -825,6 +980,10 @@ export interface ImageSourceUpdateParams {
    * List of verified CNAMEs
    */
   cname?: Array<string>;
+  /**
+   * List of fallback origins
+   */
+  fallback_origins?: Array<ImageSourceUpdateParams.FallbackOrigin>;
 }
 
 export namespace ImageSourceUpdateParams {
@@ -907,12 +1066,184 @@ export namespace ImageSourceUpdateParams {
     azure_shared_token: string;
     azure_path: string;
   }
+
+  export interface FallbackOrigin {
+    conditions: Array<string>;
+    /**
+     * Name of fallback
+     */
+    name: string;
+    /**
+     * Type of fallback origin
+     */
+    type:
+      | 'dostorage'
+      | 'aws'
+      | 'wasabi'
+      | 'hetzner'
+      | 'backblaze'
+      | 'webfolder'
+      | 'gcs'
+      | 'azure'
+      | 'cloudflare'
+      | 'imgix'
+      | 'cloudinary'
+      | 'proxy'
+      | 'wordpress'
+      | 'linode';
+    replace_operation: FallbackOrigin.ReplaceOperation;
+    /**
+     * This is a required field if source type is webfolder.
+     */
+    webfolder?: FallbackOrigin.Webfolder;
+    /**
+     * This is a required field if source type is aws.
+     */
+    aws?: FallbackOrigin.Aws;
+    /**
+     * This is a required field if source type is proxy.
+     */
+    proxy?: FallbackOrigin.Proxy;
+    /**
+     * This is a required field if source type is gcs.
+     */
+    gcs?: FallbackOrigin.Gcs;
+    /**
+     * This is a required field if source type is dostorage.
+     */
+    dostorage?: FallbackOrigin.Dostorage;
+    /**
+     * This is a required field if source type is wasabi.
+     */
+    wasabi?: FallbackOrigin.Wasabi;
+    /**
+     * This is a required field if source type is linode.
+     */
+    linode?: FallbackOrigin.Linode;
+    /**
+     * This is a required field if source type is backblaze.
+     */
+    backblaze?: FallbackOrigin.Backblaze;
+    /**
+     * This is a required field if source type is cloudflare.
+     */
+    cloudflare?: FallbackOrigin.Cloudflare;
+    /**
+     * This is a required field if source type is cloudinary.
+     */
+    cloudinary?: FallbackOrigin.Cloudinary;
+    /**
+     * This is a required field if source type is azure.
+     */
+    azure?: FallbackOrigin.Azure;
+  }
+
+  export namespace FallbackOrigin {
+    export interface ReplaceOperation {
+      from?: string;
+      to?: string;
+    }
+
+    export interface Webfolder {
+      base_url?: string;
+    }
+
+    export interface Aws {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+      base_path?: string;
+      endpoint?: string;
+    }
+
+    export interface Proxy {
+      whitelisted_domains: string;
+    }
+
+    export interface Gcs {
+      bucket_name: string;
+      service_account_key: string;
+    }
+
+    export interface Dostorage {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+      base_path?: string;
+    }
+
+    export interface Wasabi {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+      base_path?: string;
+    }
+
+    export interface Linode {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+    }
+
+    export interface Backblaze {
+      bucket_name: string;
+      access_key: string;
+      secret: string;
+      /**
+       * bucket_region or endpoint
+       */
+      bucket_region?: string;
+      /**
+       * bucket_region or endpoint
+       */
+      endpoint?: string;
+      base_path?: string;
+    }
+
+    export interface Cloudflare {
+      bucket_name: string;
+      access_key: string;
+      account_id: string;
+      secret: string;
+      base_path?: string;
+    }
+
+    export interface Cloudinary {
+      host_name: string;
+      cloud_name: string;
+    }
+
+    export interface Azure {
+      azure_account_name: string;
+      azure_container_name: string;
+      azure_shared_token: string;
+      azure_path: string;
+    }
+  }
 }
 
 export interface ImageSourceUpdateResponse {
+  type:
+    | 'dostorage'
+    | 'aws'
+    | 'wasabi'
+    | 'hetzner'
+    | 'backblaze'
+    | 'webfolder'
+    | 'gcs'
+    | 'azure'
+    | 'cloudflare'
+    | 'imgix'
+    | 'cloudinary'
+    | 'proxy'
+    | 'wordpress'
+    | 'linode';
   id?: string;
   namespace?: string;
-  type?: string;
   cdn_type?: string;
   cdn_cache_time?: number;
   canonical_url?: boolean;
