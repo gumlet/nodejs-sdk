@@ -1246,44 +1246,6 @@ const cases: {
   },
 
   {
-    operation: 'insightsChart',
-    method: 'POST',
-    path: '/video/viewer-analytics',
-    label: 'required params',
-    run: async () => {
-      const dataAPI = await client.dataAPI.insightsChart({
-        metrics: [],
-        workspace_id: '',
-        date_range: {
-          start_at: '2024-01-01',
-          end_at: '2024-01-01',
-        },
-        group_by: 'daily',
-      });
-    },
-  },
-
-  {
-    operation: 'insightsChart',
-    method: 'POST',
-    path: '/video/viewer-analytics',
-    label: 'all params',
-    run: async () => {
-      const dataAPI = await client.dataAPI.insightsChart({
-        metrics: [],
-        workspace_id: '',
-        date_range: {
-          start_at: '2024-01-01',
-          end_at: '2024-01-01',
-        },
-        filters: [],
-        group_by: 'daily',
-        chart_dimension: {},
-      });
-    },
-  },
-
-  {
     operation: 'insightsAggregated',
     method: 'POST',
     path: '/insights/aggregated-data',

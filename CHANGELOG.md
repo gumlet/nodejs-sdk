@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.3](https://github.com/gumlet/nodejs-sdk/compare/v1.1.2...v1.1.3) (2026-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Removed operation `dataApi.insightsChart` (`POST /video/viewer-analytics`).
+
+### Features
+
+* **api:** remove operation dataApi.insightsChart (+1 more change) ([be1a2ed](https://github.com/gumlet/nodejs-sdk/commit/be1a2edb0ca426aee6501b06ba0edcea50866525))
+
+
+### Chores
+
+* release 1.1.3 ([f9d78c3](https://github.com/gumlet/nodejs-sdk/commit/f9d78c3594d2321192ae1ca33f5e9b1481414726))
+* release 1.1.3 ([bed4e22](https://github.com/gumlet/nodejs-sdk/commit/bed4e2292c1c6bb70e745a9734b2b56d60069c56))
+
 ## [1.1.2](https://github.com/gumlet/nodejs-sdk/compare/v1.1.1...v1.1.2) (2026-08-26)
 
 

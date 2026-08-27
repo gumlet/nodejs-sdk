@@ -1,7 +1,7 @@
 {
   "name": "Gumlet",
   "slug": "gumlet",
-  "generatorVersion": "0.30.0",
+  "generatorVersion": "0.30.1",
   "servers": [
     "https://api.gumlet.com/v1"
   ],
@@ -6918,129 +6918,6 @@
       "errorResponses": [
         {
           "status": "400",
-          "contentType": "application/json",
-          "encoding": "json",
-          "contents": [
-            {
-              "contentType": "application/json",
-              "encoding": "json"
-            }
-          ]
-        }
-      ],
-      "responseLinks": [],
-      "transport": "http"
-    },
-    {
-      "resource": "dataApi",
-      "publicResource": "dataApi",
-      "operation": "insightsChart",
-      "publicOperation": "insightsChart",
-      "deprecated": false,
-      "method": "POST",
-      "path": "/video/viewer-analytics",
-      "pathParams": [],
-      "publicPathParams": [],
-      "queryParams": [],
-      "publicQueryParams": [],
-      "headerParams": [],
-      "publicHeaderParams": [],
-      "bodyParams": [
-        "metrics",
-        "workspace_id",
-        "date_range",
-        "filters",
-        "group_by",
-        "chart_dimension"
-      ],
-      "publicBodyParams": [
-        "metrics",
-        "workspace_id",
-        "date_range",
-        "filters",
-        "group_by",
-        "chart_dimension"
-      ],
-      "bodyParamDetails": [
-        {
-          "name": "metrics",
-          "required": true
-        },
-        {
-          "name": "workspace_id",
-          "required": true
-        },
-        {
-          "name": "date_range",
-          "required": true
-        },
-        {
-          "name": "filters",
-          "required": false
-        },
-        {
-          "name": "group_by",
-          "required": false
-        },
-        {
-          "name": "chart_dimension",
-          "required": false
-        }
-      ],
-      "pathParamDetails": [],
-      "queryParamDetails": [],
-      "headerParamDetails": [],
-      "cookieParams": [],
-      "publicCookieParams": [],
-      "cookieParamDetails": [],
-      "paramsModel": {
-        "publicName": "DataApiInsightsChartParams"
-      },
-      "requestBody": {
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ],
-        "required": false,
-        "publicName": "body",
-        "publicIdentifier": "body"
-      },
-      "response": {
-        "status": "200",
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ]
-      },
-      "result": {
-        "successStatus": "200",
-        "errorStatuses": [
-          "400",
-          "401"
-        ]
-      },
-      "errorResponses": [
-        {
-          "status": "400",
-          "contentType": "application/json",
-          "encoding": "json",
-          "contents": [
-            {
-              "contentType": "application/json",
-              "encoding": "json"
-            }
-          ]
-        },
-        {
-          "status": "401",
           "contentType": "application/json",
           "encoding": "json",
           "contents": [
