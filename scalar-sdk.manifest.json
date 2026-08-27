@@ -4171,7 +4171,8 @@
         "browser_cache_time",
         "cdn_cache_time",
         "is_active",
-        "cname"
+        "cname",
+        "fallback_origins"
       ],
       "publicBodyParams": [
         "type",
@@ -4194,7 +4195,8 @@
         "browser_cache_time",
         "cdn_cache_time",
         "is_active",
-        "cname"
+        "cname",
+        "fallback_origins"
       ],
       "bodyParamDetails": [
         {
@@ -4279,6 +4281,10 @@
         },
         {
           "name": "cname",
+          "required": false
+        },
+        {
+          "name": "fallback_origins",
           "required": false
         }
       ],
