@@ -808,6 +808,8 @@ export namespace ImageSourceRetrieveResponse {
      * This is a required field if source type is azure.
      */
     azure?: FallbackOrigin.Azure;
+    _id?: string;
+    hetzner?: Record<string, unknown>;
   }
 
   export namespace FallbackOrigin {
@@ -1269,6 +1271,7 @@ export interface ImageSourceUpdateResponse {
    * This is a required field if source type is proxy.
    */
   proxy?: ImageSourceUpdateResponse.Proxy;
+  fallback_origins?: Array<ImageSourceUpdateResponse.FallbackOrigin>;
   /**
    * This is a required field if source type is gcs.
    */
@@ -1326,6 +1329,160 @@ export namespace ImageSourceUpdateResponse {
 
   export interface Proxy {
     whitelisted_domains: string;
+  }
+
+  export interface FallbackOrigin {
+    name: string;
+    type:
+      | 'dostorage'
+      | 'aws'
+      | 'wasabi'
+      | 'hetzner'
+      | 'backblaze'
+      | 'webfolder'
+      | 'gcs'
+      | 'azure'
+      | 'cloudflare'
+      | 'imgix'
+      | 'cloudinary'
+      | 'proxy'
+      | 'wordpress'
+      | 'linode';
+    conditions?: Array<string>;
+    replace_operation?: FallbackOrigin.ReplaceOperation;
+    /**
+     * This is a required field if source type is webfolder.
+     */
+    webfolder?: FallbackOrigin.Webfolder;
+    /**
+     * This is a required field if source type is aws.
+     */
+    aws?: FallbackOrigin.Aws;
+    /**
+     * This is a required field if source type is proxy.
+     */
+    proxy?: FallbackOrigin.Proxy;
+    /**
+     * This is a required field if source type is gcs.
+     */
+    gcs?: FallbackOrigin.Gcs;
+    /**
+     * This is a required field if source type is dostorage.
+     */
+    dostorage?: FallbackOrigin.Dostorage;
+    /**
+     * This is a required field if source type is wasabi.
+     */
+    wasabi?: FallbackOrigin.Wasabi;
+    /**
+     * This is a required field if source type is linode.
+     */
+    linode?: FallbackOrigin.Linode;
+    /**
+     * This is a required field if source type is backblaze.
+     */
+    backblaze?: FallbackOrigin.Backblaze;
+    /**
+     * This is a required field if source type is cloudflare.
+     */
+    cloudflare?: FallbackOrigin.Cloudflare;
+    /**
+     * This is a required field if source type is cloudinary.
+     */
+    cloudinary?: FallbackOrigin.Cloudinary;
+    /**
+     * This is a required field if source type is azure.
+     */
+    azure?: FallbackOrigin.Azure;
+    _id?: string;
+    hetzner?: Record<string, unknown>;
+  }
+
+  export namespace FallbackOrigin {
+    export interface ReplaceOperation {
+      from?: string;
+      to?: string;
+    }
+
+    export interface Webfolder {
+      base_url?: string;
+    }
+
+    export interface Aws {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+      base_path?: string;
+      endpoint?: string;
+    }
+
+    export interface Proxy {
+      whitelisted_domains: string;
+    }
+
+    export interface Gcs {
+      bucket_name: string;
+      service_account_key: string;
+    }
+
+    export interface Dostorage {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+      base_path?: string;
+    }
+
+    export interface Wasabi {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+      base_path?: string;
+    }
+
+    export interface Linode {
+      bucket_name: string;
+      bucket_region: string;
+      access_key: string;
+      secret: string;
+    }
+
+    export interface Backblaze {
+      bucket_name: string;
+      access_key: string;
+      secret: string;
+      /**
+       * bucket_region or endpoint
+       */
+      bucket_region?: string;
+      /**
+       * bucket_region or endpoint
+       */
+      endpoint?: string;
+      base_path?: string;
+    }
+
+    export interface Cloudflare {
+      bucket_name: string;
+      access_key: string;
+      account_id: string;
+      secret: string;
+      base_path?: string;
+    }
+
+    export interface Cloudinary {
+      host_name: string;
+      cloud_name: string;
+    }
+
+    export interface Azure {
+      azure_account_name: string;
+      azure_container_name: string;
+      azure_shared_token: string;
+      azure_path: string;
+    }
   }
 
   export interface Gcs {
