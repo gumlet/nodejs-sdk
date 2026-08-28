@@ -810,6 +810,7 @@ export namespace ImageSourceRetrieveResponse {
     azure?: FallbackOrigin.Azure;
     _id?: string;
     hetzner?: Record<string, unknown>;
+    imgix?: Record<string, unknown>;
   }
 
   export namespace FallbackOrigin {
@@ -1311,6 +1312,7 @@ export interface ImageSourceUpdateResponse {
   secure_urls?: boolean;
   secure_token?: string;
   response_headers?: Array<Record<string, unknown>>;
+  imgix?: Record<string, unknown>;
 }
 
 export namespace ImageSourceUpdateResponse {
@@ -1396,6 +1398,7 @@ export namespace ImageSourceUpdateResponse {
     azure?: FallbackOrigin.Azure;
     _id?: string;
     hetzner?: Record<string, unknown>;
+    imgix?: Record<string, unknown>;
   }
 
   export namespace FallbackOrigin {
