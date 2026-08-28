@@ -16,6 +16,8 @@ export {
   Folders,
   ChannelViewers,
   DataAPI,
+  OrganizationData,
+  UserData,
 } from './resources/index';
 export type {
   VideoAssetCreateParams,
@@ -130,6 +132,10 @@ export type {
   ChannelViewerDeleteResponse,
   ChannelViewerInviteCsvParams,
   ChannelViewerInviteCsvResponse,
+  DataAPIInsightsChartParams,
+  DataAPIInsightsChartResponse,
   DataAPIInsightsAggregatedParams,
   DataAPIInsightsAggregatedResponse,
+  OrganizationDataRetrieveOrgResponse,
+  UserDataRetrieveResponse,
 } from './resources/index';

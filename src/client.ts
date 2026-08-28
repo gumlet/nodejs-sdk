@@ -181,9 +181,13 @@ import {
 } from './resources/channel-viewers';
 import {
   DataAPI,
+  type DataAPIInsightsChartResponse,
   type DataAPIInsightsAggregatedResponse,
+  type DataAPIInsightsChartParams,
   type DataAPIInsightsAggregatedParams,
 } from './resources/data-api';
+import { OrganizationData, type OrganizationDataRetrieveOrgResponse } from './resources/organization-data';
+import { UserData, type UserDataRetrieveResponse } from './resources/user-data';
 
 export type AuthTokenProvider = () => string | Promise<string>;
 
@@ -987,6 +991,8 @@ export class Gumlet {
   folders: Folders = new Folders(this);
   channelViewers: ChannelViewers = new ChannelViewers(this);
   dataAPI: DataAPI = new DataAPI(this);
+  organizationData: OrganizationData = new OrganizationData(this);
+  userData: UserData = new UserData(this);
 }
 
 Gumlet.VideoAssets = VideoAssets;
@@ -1004,6 +1010,8 @@ Gumlet.VideoWorkspaces = VideoWorkspaces;
 Gumlet.Folders = Folders;
 Gumlet.ChannelViewers = ChannelViewers;
 Gumlet.DataAPI = DataAPI;
+Gumlet.OrganizationData = OrganizationData;
+Gumlet.UserData = UserData;
 
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
@@ -1177,9 +1185,18 @@ export declare namespace Gumlet {
 
   export {
     DataAPI as DataAPI,
+    type DataAPIInsightsChartResponse as DataAPIInsightsChartResponse,
     type DataAPIInsightsAggregatedResponse as DataAPIInsightsAggregatedResponse,
+    type DataAPIInsightsChartParams as DataAPIInsightsChartParams,
     type DataAPIInsightsAggregatedParams as DataAPIInsightsAggregatedParams,
   };
+
+  export {
+    OrganizationData as OrganizationData,
+    type OrganizationDataRetrieveOrgResponse as OrganizationDataRetrieveOrgResponse,
+  };
+
+  export { UserData as UserData, type UserDataRetrieveResponse as UserDataRetrieveResponse };
 }
 
 const headerExplicitlyOmitted = (source: HeadersLike | undefined, name: string): boolean => {

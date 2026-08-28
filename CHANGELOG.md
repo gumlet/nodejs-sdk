@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.11](https://github.com/gumlet/nodejs-sdk/compare/v1.1.10...v1.1.11) (2026-08-28)
+
+
+### Features
+
+* **api:** add operation dataApi.insightsChart (+2 more changes) ([6fdce93](https://github.com/gumlet/nodejs-sdk/commit/6fdce934fd47433464429a25bdfc2168d8747471))
+
+
+### Chores
+
+* **api:** update generated SDK content ([0f9a1c6](https://github.com/gumlet/nodejs-sdk/commit/0f9a1c612798254263bb94e8d86955bbdca84598))
+* release 1.1.11 ([fe3b137](https://github.com/gumlet/nodejs-sdk/commit/fe3b137bbe78370afa7f2ead85ea06894fe5e8d6))
+* release 1.1.11 ([850ad85](https://github.com/gumlet/nodejs-sdk/commit/850ad85916568ef18927d7936e384b6cdbb9c805))
+
 ## [1.1.10](https://github.com/gumlet/nodejs-sdk/compare/v1.1.9...v1.1.10) (2026-08-28)
 
 
