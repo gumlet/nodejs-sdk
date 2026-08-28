@@ -1246,6 +1246,44 @@ const cases: {
   },
 
   {
+    operation: 'insightsChart',
+    method: 'POST',
+    path: '/insights/viewer-analytics',
+    label: 'required params',
+    run: async () => {
+      const dataAPI = await client.dataAPI.insightsChart({
+        metrics: [],
+        workspace_id: '',
+        date_range: {
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
+        },
+        group_by: 'daily',
+      });
+    },
+  },
+
+  {
+    operation: 'insightsChart',
+    method: 'POST',
+    path: '/insights/viewer-analytics',
+    label: 'all params',
+    run: async () => {
+      const dataAPI = await client.dataAPI.insightsChart({
+        metrics: [],
+        workspace_id: '',
+        date_range: {
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
+        },
+        filters: [],
+        group_by: 'daily',
+        chart_dimension: {},
+      });
+    },
+  },
+
+  {
     operation: 'insightsAggregated',
     method: 'POST',
     path: '/insights/aggregated-data',
@@ -1271,6 +1309,24 @@ const cases: {
         timeframe: {},
         filters: [],
       });
+    },
+  },
+
+  {
+    operation: 'retrieveOrg',
+    method: 'GET',
+    path: '/org/data',
+    run: async () => {
+      const organizationData = await client.organizationData.retrieveOrg();
+    },
+  },
+
+  {
+    operation: 'retrieve',
+    method: 'GET',
+    path: '/user/data',
+    run: async () => {
+      const userData = await client.userData.retrieve();
     },
   },
 ];
