@@ -85,7 +85,12 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Remove Channel Viewers](#remove-channel-viewers)
   - [Invite Channel Viewers via CSV](#invite-channel-viewers-via-csv)
 - [`DataApi`](#dataapi)
+  - [Viewer Analytics](#viewer-analytics)
   - [Aggregated Data](#aggregated-data)
+- [`OrganizationData`](#organizationdata)
+  - [Get Organization Details](#get-organization-details)
+- [`UserData`](#userdata)
+  - [Get User](#get-user)
 
 ## Setup
 
@@ -1147,6 +1152,27 @@ const channelViewer = await client.channelViewers.inviteCsv('videoWorkspaceId', 
 
 Query aggregated and chart-ready analytics/insights data.
 
+### Viewer Analytics
+
+This endpoint retrieves viewer analytics data.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`DataAPIInsightsChartParams`](./src/resources/data-api.ts) |
+| Response | [`DataAPIInsightsChartResponse`](./src/resources/data-api.ts) |
+
+```ts
+const dataAPI = await client.dataAPI.insightsChart({
+  metrics: [],
+  workspace_id: '',
+  date_range: {
+    start_at: '2024-01-01',
+    end_at: '2024-01-01',
+  },
+  group_by: 'daily',
+});
+```
+
 ### Aggregated Data
 
 This endpoint retrieves aggregated data of the given metrics.
@@ -1162,4 +1188,36 @@ const dataAPI = await client.dataAPI.insightsAggregated({
   workspace_id: '',
   timeframe: {},
 });
+```
+
+## `OrganizationData`
+
+Endpoints to get organization details.
+
+### Get Organization Details
+
+You can get organization data using this API.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`OrganizationDataRetrieveOrgResponse`](./src/resources/organization-data.ts) |
+
+```ts
+const organizationData = await client.organizationData.retrieveOrg();
+```
+
+## `UserData`
+
+Endpoints to get user details.
+
+### Get User
+
+This endpoint gives information about the user account.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`UserDataRetrieveResponse`](./src/resources/user-data.ts) |
+
+```ts
+const userData = await client.userData.retrieve();
 ```

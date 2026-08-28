@@ -155,4 +155,13 @@ export type {
   ChannelViewerInviteCsvResponse,
 } from './channel-viewers';
 export { DataAPI } from './data-api';
-export type { DataAPIInsightsAggregatedParams, DataAPIInsightsAggregatedResponse } from './data-api';
+export type {
+  DataAPIInsightsChartParams,
+  DataAPIInsightsChartResponse,
+  DataAPIInsightsAggregatedParams,
+  DataAPIInsightsAggregatedResponse,
+} from './data-api';
+export { OrganizationData } from './organization-data';
+export type { OrganizationDataRetrieveOrgResponse } from './organization-data';
+export { UserData } from './user-data';
+export type { UserDataRetrieveResponse } from './user-data';
