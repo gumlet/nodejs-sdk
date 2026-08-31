@@ -111,6 +111,10 @@ export interface VideoUsageAnalyticRetrieveResponse {
   storage_unit?: Array<VideoUsageAnalyticRetrieveResponse.StorageUnit>;
   asset_duration?: Array<VideoUsageAnalyticRetrieveResponse.AssetDuration>;
   top_assets?: Array<VideoUsageAnalyticRetrieveResponse.TopAsset>;
+  /**
+   * Indicates whether the list of top assets is exhaustive or if it has more assets.
+   */
+  has_more_top_asset?: boolean;
 }
 
 export namespace VideoUsageAnalyticRetrieveResponse {
