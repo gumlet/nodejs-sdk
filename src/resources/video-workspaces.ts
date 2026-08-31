@@ -107,7 +107,7 @@ export class VideoWorkspaces extends APIResource {
 
 export interface VideoWorkspaceListParams {
   /**
-   * Number of workspaces to skip. For example, if you need to list 11 to 20th workspaces, pass offset as 10 and size as 10.
+   * Number of workspaces to skip. For example if you need to list 11 to 20th workspaces, pass offset as 10 and size as 10.
    * @default 0
    */
   offset?: string;

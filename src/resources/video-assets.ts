@@ -1733,64 +1733,19 @@ export interface VideoAssetListDeprecatedParams {
 }
 
 export interface VideoAssetListDeprecatedResponse {
-  folders: Array<VideoAssetListDeprecatedResponse.Folder>;
   all_assets?: Array<VideoAssetListDeprecatedResponse.AllAsset>;
+  /**
+   * @default 0
+   */
+  total_asset_count?: number;
   /**
    * @default 0
    */
   current_offset?: number;
   distinct_tags?: Array<string>;
-  /**
-   * Count of folders in library.
-   */
-  folder_count?: number;
-  /**
-   * Total number of assets in library
-   * @default 0
-   */
-  asset_count?: number;
-  /**
-   * Total number of items in library including folders and assets.
-   */
-  total_count?: number;
 }
 
 export namespace VideoAssetListDeprecatedResponse {
-  export interface Folder {
-    /**
-     * Folder ID
-     */
-    id: string;
-    /**
-     * Name of the folder
-     */
-    name: string;
-    /**
-     * ID of parent folder
-     */
-    parent_id: string | null;
-    /**
-     * Depth of folder.
-     */
-    depth: number;
-    /**
-     * Number of subfolders insidet this folder.
-     */
-    subdirectory_count: number;
-    /**
-     * Number of assets in this folder.
-     */
-    asset_count: number;
-    /**
-     * ISO-8601 formatted date string.
-     */
-    created_at: string;
-    /**
-     * ISO-8601 formatted date string.
-     */
-    updated_at: string;
-  }
-
   export interface AllAsset {
     asset_id?: string;
     /**
