@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
 import type { RequestOptions } from '../internal/request-options';
-import { buildHeaders } from '../internal/headers';
 
 export class UserData extends APIResource {
   /**
@@ -18,10 +17,7 @@ export class UserData extends APIResource {
    * ```
    */
   retrieve(options?: RequestOptions): APIPromise<UserDataRetrieveResponse> {
-    return this._client.get('/user/data', {
-      ...options,
-      headers: buildHeaders([{ Accept: 'application/javascript' }, options?.headers]),
-    });
+    return this._client.get('/user/data', options);
   }
 }
 

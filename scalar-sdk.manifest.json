@@ -7255,12 +7255,12 @@
       "cookieParamDetails": [],
       "response": {
         "status": "200",
-        "contentType": "application/javascript",
-        "encoding": "binary",
+        "contentType": "application/json",
+        "encoding": "json",
         "contents": [
           {
-            "contentType": "application/javascript",
-            "encoding": "binary"
+            "contentType": "application/json",
+            "encoding": "json"
           }
         ]
       },

@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.13](https://github.com/gumlet/nodejs-sdk/compare/v1.1.12...v1.1.13) (2026-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Response content type of `userData.retrieve` changed from `application/javascript` to `application/json`.
+
+### Features
+
+* **api:** update response of userData.retrieve ([54bc273](https://github.com/gumlet/nodejs-sdk/commit/54bc2735ba1e596dfbe0f1361bfe124310926e72))
+
+
+### Chores
+
+* release 1.1.13 ([d4dd80f](https://github.com/gumlet/nodejs-sdk/commit/d4dd80f1af142df2c728ad7d4ae63e3337765cdf))
+* release 1.1.13 ([fcea015](https://github.com/gumlet/nodejs-sdk/commit/fcea015d40823495e777e079057ae783065b9dfb))
+
 ## [1.1.12](https://github.com/gumlet/nodejs-sdk/compare/v1.1.11...v1.1.12) (2026-08-31)
 
 
