@@ -202,4 +202,3 @@ Generated clients support request timeouts and retry temporary failures such as 
 
 - Node.js 20+, a modern browser, or any runtime with `fetch` support
 
-Powered by Scalar.
