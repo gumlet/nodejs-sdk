@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.1.15](https://github.com/gumlet/nodejs-sdk/compare/v1.1.13...v1.1.15) (2026-09-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `organizationData.retrieveOrg` (`GET /org/data`).
+    - Removed operation `userData.retrieve` (`GET /user/data`).
+
+### Features
+
+* **api:** update SDK surface (5 changes) ([e9df731](https://github.com/gumlet/nodejs-sdk/commit/e9df73143e87307137a43dbf312e86211a16a926))
+
+
+### Chores
+
+* **api:** update generated SDK content ([7f71b70](https://github.com/gumlet/nodejs-sdk/commit/7f71b706b1a4e7a845cae4b1dcafc7e4c7cbbf31))
+* release 1.1.15 ([a5958c1](https://github.com/gumlet/nodejs-sdk/commit/a5958c1ae181ba273ba9ea914cb6e84b935c53a6))
+* release 1.1.15 ([682ef39](https://github.com/gumlet/nodejs-sdk/commit/682ef396c85c556ee7c6de17d5bce072365f66cc))
+
 ## [1.1.13](https://github.com/gumlet/nodejs-sdk/compare/v1.1.12...v1.1.13) (2026-08-31)
 
 
