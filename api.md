@@ -91,6 +91,8 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Get Organization Details](#get-organization-details)
 - [`UserData`](#userdata)
   - [Get User](#get-user)
+- [`AuditLogs`](#auditlogs)
+  - [Fetch Audit Logs](#fetch-audit-logs)
 
 ## Setup
 
@@ -1200,10 +1202,10 @@ You can get organization data using this API.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`OrganizationDataRetrieveOrgResponse`](./src/resources/organization-data.ts) |
+| Response | [`OrganizationDataFetchOrgResponse`](./src/resources/organization-data.ts) |
 
 ```ts
-const organizationData = await client.organizationData.retrieveOrg();
+const organizationData = await client.organizationData.fetchOrg();
 ```
 
 ## `UserData`
@@ -1216,8 +1218,27 @@ This endpoint gives information about the user account.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`UserDataRetrieveResponse`](./src/resources/user-data.ts) |
+| Response | [`UserDataFetchResponse`](./src/resources/user-data.ts) |
 
 ```ts
-const userData = await client.userData.retrieve();
+const userData = await client.userData.fetch();
+```
+
+## `AuditLogs`
+
+Get detailed user activity logs for the entire organisation.
+
+### Fetch Audit Logs
+
+Get audit logs for the user activity in your organisation. Please note that this endpoint can only be accessed by `owner` and `admin` role users.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`AuditLogFetchParams`](./src/resources/audit-logs.ts) |
+| Response | [`AuditLogFetchResponse`](./src/resources/audit-logs.ts) |
+
+```ts
+const auditLog = await client.auditLogs.fetch({
+  date_range: { start_at: '2026-08-25', end_at: '2026-08-29' },
+});
 ```

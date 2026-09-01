@@ -9,19 +9,19 @@ export class OrganizationData extends APIResource {
    * You can get organization data using this API.
    *
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<OrganizationDataRetrieveOrgResponse>} Successful response
+   * @returns {APIPromise<OrganizationDataFetchOrgResponse>} Successful response
    *
    * @example
    * ```ts
-   * const organizationData = await client.organizationData.retrieveOrg();
+   * const organizationData = await client.organizationData.fetchOrg();
    * ```
    */
-  retrieveOrg(options?: RequestOptions): APIPromise<OrganizationDataRetrieveOrgResponse> {
+  fetchOrg(options?: RequestOptions): APIPromise<OrganizationDataFetchOrgResponse> {
     return this._client.get('/org/data', options);
   }
 }
 
-export interface OrganizationDataRetrieveOrgResponse {
+export interface OrganizationDataFetchOrgResponse {
   /**
    * Organization ID
    */
@@ -46,17 +46,17 @@ export interface OrganizationDataRetrieveOrgResponse {
    * Billing cycle. `monthly` or `yearly`.
    */
   plan_cycle: 'monthly' | 'yearly';
-  plan_data: OrganizationDataRetrieveOrgResponse.PlanData;
+  plan_data: OrganizationDataFetchOrgResponse.PlanData;
   stripe_account_loc: 'ind' | 'sgp';
   /**
    * Flag if SSO is enabled for org.
    */
   sso_enabled?: boolean;
   got_free_trial?: boolean;
-  metadata?: OrganizationDataRetrieveOrgResponse.Metadata;
+  metadata?: OrganizationDataFetchOrgResponse.Metadata;
 }
 
-export namespace OrganizationDataRetrieveOrgResponse {
+export namespace OrganizationDataFetchOrgResponse {
   export interface PlanData {
     image: PlanData.Image;
     video: PlanData.Video;
@@ -106,5 +106,5 @@ export namespace OrganizationDataRetrieveOrgResponse {
   }
 }
 export declare namespace OrganizationData {
-  export { type OrganizationDataRetrieveOrgResponse as OrganizationDataRetrieveOrgResponse };
+  export { type OrganizationDataFetchOrgResponse as OrganizationDataFetchOrgResponse };
 }

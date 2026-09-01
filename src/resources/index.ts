@@ -162,6 +162,8 @@ export type {
   DataAPIInsightsAggregatedResponse,
 } from './data-api';
 export { OrganizationData } from './organization-data';
-export type { OrganizationDataRetrieveOrgResponse } from './organization-data';
+export type { OrganizationDataFetchOrgResponse } from './organization-data';
 export { UserData } from './user-data';
-export type { UserDataRetrieveResponse } from './user-data';
+export type { UserDataFetchResponse } from './user-data';
+export { AuditLogs } from './audit-logs';
+export type { AuditLogFetchParams, AuditLogFetchResponse } from './audit-logs';
