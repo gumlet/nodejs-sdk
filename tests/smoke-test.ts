@@ -1313,20 +1313,31 @@ const cases: {
   },
 
   {
-    operation: 'retrieveOrg',
+    operation: 'fetchOrg',
     method: 'GET',
     path: '/org/data',
     run: async () => {
-      const organizationData = await client.organizationData.retrieveOrg();
+      const organizationData = await client.organizationData.fetchOrg();
     },
   },
 
   {
-    operation: 'retrieve',
+    operation: 'fetch',
     method: 'GET',
     path: '/user/data',
     run: async () => {
-      const userData = await client.userData.retrieve();
+      const userData = await client.userData.fetch();
+    },
+  },
+
+  {
+    operation: 'fetch',
+    method: 'POST',
+    path: '/user/audit-log',
+    run: async () => {
+      const auditLog = await client.auditLogs.fetch({
+        date_range: { start_at: '2026-08-25', end_at: '2026-08-29' },
+      });
     },
   },
 ];

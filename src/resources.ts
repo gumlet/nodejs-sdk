@@ -18,6 +18,7 @@ export {
   DataAPI,
   OrganizationData,
   UserData,
+  AuditLogs,
 } from './resources/index';
 export type {
   VideoAssetCreateParams,
@@ -136,6 +137,8 @@ export type {
   DataAPIInsightsChartResponse,
   DataAPIInsightsAggregatedParams,
   DataAPIInsightsAggregatedResponse,
-  OrganizationDataRetrieveOrgResponse,
-  UserDataRetrieveResponse,
+  OrganizationDataFetchOrgResponse,
+  UserDataFetchResponse,
+  AuditLogFetchParams,
+  AuditLogFetchResponse,
 } from './resources/index';
