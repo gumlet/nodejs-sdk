@@ -186,8 +186,9 @@ import {
   type DataAPIInsightsChartParams,
   type DataAPIInsightsAggregatedParams,
 } from './resources/data-api';
-import { OrganizationData, type OrganizationDataRetrieveOrgResponse } from './resources/organization-data';
-import { UserData, type UserDataRetrieveResponse } from './resources/user-data';
+import { OrganizationData, type OrganizationDataFetchOrgResponse } from './resources/organization-data';
+import { UserData, type UserDataFetchResponse } from './resources/user-data';
+import { AuditLogs, type AuditLogFetchResponse, type AuditLogFetchParams } from './resources/audit-logs';
 
 export type AuthTokenProvider = () => string | Promise<string>;
 
@@ -993,6 +994,7 @@ export class Gumlet {
   dataAPI: DataAPI = new DataAPI(this);
   organizationData: OrganizationData = new OrganizationData(this);
   userData: UserData = new UserData(this);
+  auditLogs: AuditLogs = new AuditLogs(this);
 }
 
 Gumlet.VideoAssets = VideoAssets;
@@ -1012,6 +1014,7 @@ Gumlet.ChannelViewers = ChannelViewers;
 Gumlet.DataAPI = DataAPI;
 Gumlet.OrganizationData = OrganizationData;
 Gumlet.UserData = UserData;
+Gumlet.AuditLogs = AuditLogs;
 
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
@@ -1193,10 +1196,16 @@ export declare namespace Gumlet {
 
   export {
     OrganizationData as OrganizationData,
-    type OrganizationDataRetrieveOrgResponse as OrganizationDataRetrieveOrgResponse,
+    type OrganizationDataFetchOrgResponse as OrganizationDataFetchOrgResponse,
   };
 
-  export { UserData as UserData, type UserDataRetrieveResponse as UserDataRetrieveResponse };
+  export { UserData as UserData, type UserDataFetchResponse as UserDataFetchResponse };
+
+  export {
+    AuditLogs as AuditLogs,
+    type AuditLogFetchResponse as AuditLogFetchResponse,
+    type AuditLogFetchParams as AuditLogFetchParams,
+  };
 }
 
 const headerExplicitlyOmitted = (source: HeadersLike | undefined, name: string): boolean => {

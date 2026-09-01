@@ -9,19 +9,19 @@ export class UserData extends APIResource {
    * This endpoint gives information about the user account.
    *
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<UserDataRetrieveResponse>} Successful response
+   * @returns {APIPromise<UserDataFetchResponse>} Successful response
    *
    * @example
    * ```ts
-   * const userData = await client.userData.retrieve();
+   * const userData = await client.userData.fetch();
    * ```
    */
-  retrieve(options?: RequestOptions): APIPromise<UserDataRetrieveResponse> {
+  fetch(options?: RequestOptions): APIPromise<UserDataFetchResponse> {
     return this._client.get('/user/data', options);
   }
 }
 
-export interface UserDataRetrieveResponse {
+export interface UserDataFetchResponse {
   /**
    * User ID
    */
@@ -55,10 +55,10 @@ export interface UserDataRetrieveResponse {
    * Timezone selected by user.
    */
   timezone: string;
-  metadata: UserDataRetrieveResponse.Metadata;
+  metadata: UserDataFetchResponse.Metadata;
 }
 
-export namespace UserDataRetrieveResponse {
+export namespace UserDataFetchResponse {
   export interface Metadata {
     /**
      * Dashboard theme.
@@ -67,5 +67,5 @@ export namespace UserDataRetrieveResponse {
   }
 }
 export declare namespace UserData {
-  export { type UserDataRetrieveResponse as UserDataRetrieveResponse };
+  export { type UserDataFetchResponse as UserDataFetchResponse };
 }

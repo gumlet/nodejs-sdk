@@ -39,7 +39,8 @@
     "channelViewers",
     "dataApi",
     "organizationData",
-    "userData"
+    "userData",
+    "auditLogs"
   ],
   "publicResources": [
     "videoAssets",
@@ -58,7 +59,8 @@
     "channelViewers",
     "dataApi",
     "organizationData",
-    "userData"
+    "userData",
+    "auditLogs"
   ],
   "operations": [
     {
@@ -7184,8 +7186,8 @@
     {
       "resource": "organizationData",
       "publicResource": "organizationData",
-      "operation": "retrieveOrg",
-      "publicOperation": "retrieveOrg",
+      "operation": "fetchOrg",
+      "publicOperation": "fetchOrg",
       "deprecated": false,
       "method": "GET",
       "path": "/org/data",
@@ -7233,8 +7235,8 @@
     {
       "resource": "userData",
       "publicResource": "userData",
-      "operation": "retrieve",
-      "publicOperation": "retrieve",
+      "operation": "fetch",
+      "publicOperation": "fetch",
       "deprecated": false,
       "method": "GET",
       "path": "/user/data",
@@ -7276,6 +7278,93 @@
           "contents": []
         }
       ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "auditLogs",
+      "publicResource": "auditLogs",
+      "operation": "fetch",
+      "publicOperation": "fetch",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/user/audit-log",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "date_range",
+        "page_number",
+        "page_size",
+        "user_email",
+        "activity_type"
+      ],
+      "publicBodyParams": [
+        "date_range",
+        "page_number",
+        "page_size",
+        "user_email",
+        "activity_type"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "date_range",
+          "required": true
+        },
+        {
+          "name": "page_number",
+          "required": false
+        },
+        {
+          "name": "page_size",
+          "required": false
+        },
+        {
+          "name": "user_email",
+          "required": false
+        },
+        {
+          "name": "activity_type",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "AuditLogFetchParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     }
