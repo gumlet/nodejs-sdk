@@ -1156,7 +1156,7 @@ Query aggregated and chart-ready analytics/insights data.
 
 ### Viewer Analytics
 
-This endpoint retrieves viewer analytics data.
+This endpoint retrieves viewer analytics data. This endpoint is use for deep insights on the analytics data.
 
 | Direction | Type |
 | --- | --- |
