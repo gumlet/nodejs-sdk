@@ -6,7 +6,7 @@ import type { RequestOptions } from '../internal/request-options';
 
 export class DataAPI extends APIResource {
   /**
-   * This endpoint retrieves viewer analytics data.
+   * This endpoint retrieves viewer analytics data. This endpoint is use for deep insights on the analytics data.
    *
    * @param {DataAPIInsightsChartParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
