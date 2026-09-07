@@ -317,7 +317,7 @@ const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
 
 ### List Recycle Bin
 
-List all assets in a recycle bin for a given workspace.
+List all assets in a recycle bin for a given workspace. The deleted assets are available for 30 days. After that, assets are permanently deleted.
 
 | Direction | Type |
 | --- | --- |

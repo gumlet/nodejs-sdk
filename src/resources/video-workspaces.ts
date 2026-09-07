@@ -137,6 +137,10 @@ export namespace VideoWorkspaceListResponse {
     embed_details?: AllSource.EmbedDetails;
     folders?: Array<string>;
     channel_settings?: AllSource.ChannelSettings;
+    /**
+     * Whether the workspace is disabled for streaming. `true` means it's disabled.
+     */
+    on_streaming_halt?: boolean;
   }
 
   export namespace AllSource {
@@ -772,7 +776,7 @@ export namespace VideoWorkspaceUpdateParams {
      * Example: ["IN","USA"]
      */
     blacklisted_countries?: Array<string>;
-    whitelisted_referrers?: string;
+    whitelisted_referrers?: Array<string>;
   }
 
   export interface ChannelSettings {
@@ -879,6 +883,10 @@ export namespace VideoWorkspaceUpdateParams {
 }
 
 export interface VideoWorkspaceUpdateResponse {
+  /**
+   * Whether Gumlet video analytics is enabled for this workspace.
+   */
+  insights_enabled: boolean;
   id?: string;
   name?: string;
   type?: string;
@@ -1220,6 +1228,10 @@ export namespace VideoWorkspaceRetrieveResponse {
      * Enable / disable channel invite email.
      */
     disable_invite_email: boolean;
+    /**
+     * Password for the channel.
+     */
+    password?: string;
   }
 
   export interface VideoProtection {
@@ -1239,6 +1251,10 @@ export namespace VideoWorkspaceRetrieveResponse {
      * List of whitelisted of 2 letter country codes.
      */
     whitelisted_countries?: string;
+    /**
+     * Signed URL for the workspace.
+     */
+    signed_url?: string;
   }
 }
 
