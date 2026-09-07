@@ -19,6 +19,8 @@ export type {
   VideoAssetListResponse,
   VideoAssetListDeprecatedParams,
   VideoAssetListDeprecatedResponse,
+  VideoAssetListRecycleBinParams,
+  VideoAssetListRecycleBinResponse,
 } from './video-assets';
 export { SubtitleUpload } from './subtitle-upload';
 export type {

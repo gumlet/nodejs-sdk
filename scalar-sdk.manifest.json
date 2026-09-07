@@ -1514,6 +1514,75 @@
       "transport": "http"
     },
     {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "listRecycleBin",
+      "publicOperation": "listRecycleBin",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/asset/recoverable/list",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [
+        "offset",
+        "size",
+        "workspace_id"
+      ],
+      "publicQueryParams": [
+        "offset",
+        "size",
+        "workspace_id"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "offset",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        },
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "form",
+          "explode": true
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetListRecycleBinParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
       "resource": "subtitleUpload",
       "publicResource": "subtitleUpload",
       "operation": "upload",
