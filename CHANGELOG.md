@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0](https://github.com/gumlet/nodejs-sdk/compare/v1.1.17...v1.2.0) (2026-09-07)
+
+
+### Features
+
+* **api:** add operation dataApi.insightsBreakdown ([b0792ec](https://github.com/gumlet/nodejs-sdk/commit/b0792ec0f134492d96e277a10a59f90fa42d898e))
+* **api:** add query param signed_token on videoAssets.list ([dd744c5](https://github.com/gumlet/nodejs-sdk/commit/dd744c5f3c2b8277f8ab5e184c980894a31d5492))
+
+
+### Chores
+
+* **api:** update generated SDK content ([8deec20](https://github.com/gumlet/nodejs-sdk/commit/8deec20a4506d7440403b63f0d2744b68ea1b82b))
+* **api:** update generated SDK content ([101f8bb](https://github.com/gumlet/nodejs-sdk/commit/101f8bb900d8acd585b6fc86e6d7136db08f832a))
+* **api:** update generated SDK content ([998babc](https://github.com/gumlet/nodejs-sdk/commit/998babcf686b5a359decf99e7d4656447d3a3414))
+
 ## [1.1.17](https://github.com/gumlet/nodejs-sdk/compare/v1.1.16...v1.1.17) (2026-09-03)
 
 
