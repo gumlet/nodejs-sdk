@@ -1170,7 +1170,8 @@
         "orderBy",
         "searchIndex",
         "offset",
-        "size"
+        "size",
+        "signed_token"
       ],
       "publicQueryParams": [
         "type",
@@ -1187,7 +1188,8 @@
         "orderBy",
         "searchIndex",
         "offset",
-        "size"
+        "size",
+        "signed_token"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -1295,6 +1297,13 @@
           "style": "form",
           "explode": true,
           "defaultValue": 20
+        },
+        {
+          "name": "signed_token",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "false"
         }
       ],
       "headerParamDetails": [],

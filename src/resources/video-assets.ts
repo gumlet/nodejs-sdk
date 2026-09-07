@@ -247,6 +247,7 @@ export class VideoAssets extends APIResource {
    *   type: 'all',
    *   offset: 0,
    *   size: 20,
+   *   signed_token: 'false',
    * });
    * ```
    */
@@ -1548,6 +1549,10 @@ export interface VideoAssetListParams {
    * @maximum 100
    */
   size?: number;
+  /**
+   * Whether URLs should be pre-signed in the API response. Possible values: `true` and `false`. Default is `false`.
+   */
+  signed_token?: 'true' | 'false';
 }
 
 export interface VideoAssetListResponse {

@@ -293,6 +293,7 @@ const videoAsset = await client.videoAssets.list('workspaceId', {
   type: 'all',
   offset: 0,
   size: 20,
+  signed_token: 'false',
 });
 ```
 

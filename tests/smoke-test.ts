@@ -190,6 +190,7 @@ const cases: {
         type: 'all',
         offset: 0,
         size: 20,
+        signed_token: 'false',
       });
     },
   },
@@ -216,6 +217,7 @@ const cases: {
         searchIndex: 'search_index_for_asset_list',
         offset: 0,
         size: 20,
+        signed_token: 'false',
       });
     },
   },
