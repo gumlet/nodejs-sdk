@@ -158,6 +158,8 @@ export { DataAPI } from './data-api';
 export type {
   DataAPIInsightsChartParams,
   DataAPIInsightsChartResponse,
+  DataAPIInsightsBreakdownParams,
+  DataAPIInsightsBreakdownResponse,
   DataAPIInsightsAggregatedParams,
   DataAPIInsightsAggregatedResponse,
 } from './data-api';

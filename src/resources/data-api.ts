@@ -33,6 +33,33 @@ export class DataAPI extends APIResource {
   }
 
   /**
+   * This endpoint retrieves breakdown data of the given metrics by given breakdown field
+   *
+   * @param {DataAPIInsightsBreakdownParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<DataAPIInsightsBreakdownResponse>} 200
+   *
+   * @example
+   * ```ts
+   * const dataAPI = await client.dataAPI.insightsBreakdown({
+   *   date_range: { start_at: '2026-07-20', end_at: '2026-08-20' },
+   *   filters: [],
+   *   breakdowns: [
+   *     { name: 'custom_video_id', metric: 'views', page: 1, page_size: 10 },
+   *     { name: 'custom_video_title', metric: 'completion_percent_by_views', page: 1, page_size: 10 },
+   *   ],
+   *   workspace_id: '6694c405e63913eecf3cf5fb',
+   * });
+   * ```
+   */
+  insightsBreakdown(
+    body: DataAPIInsightsBreakdownParams,
+    options?: RequestOptions,
+  ): APIPromise<DataAPIInsightsBreakdownResponse> {
+    return this._client.post('/insights/breakdown-data', { body, ...options });
+  }
+
+  /**
    * This endpoint retrieves aggregated data of the given metrics.
    *
    * @param {DataAPIInsightsAggregatedParams} body - The request body to send.
@@ -223,6 +250,180 @@ export namespace DataAPIInsightsChartResponse {
   }
 }
 
+export interface DataAPIInsightsBreakdownParams {
+  /**
+   * The timeframe to get the data for.
+   * Currently, we only support a maximum of *60 days* between `start_at` and `end_at`.
+   */
+  date_range: DataAPIInsightsBreakdownParams.DateRange;
+  /**
+   * Breakdown fields and metrics to retrieve data for. Supports 1 to 3 breakdowns per request.
+   * @minItems 1
+   * @maxItems 3
+   */
+  breakdowns: Array<DataAPIInsightsBreakdownParams.Breakdown>;
+  /**
+   * The five to ten character unique identifier of the Gumlet workspace ID available on the Video Workspaces.
+   */
+  workspace_id: string;
+  /**
+   * Build *segments* of users using multiple filters on the data, `value` should be an *exact match*
+   */
+  filters?: Array<DataAPIInsightsBreakdownParams.Filter>;
+}
+
+export namespace DataAPIInsightsBreakdownParams {
+  export interface DateRange {
+    /**
+     * Use <b>yyyy-MM-dd</b> format
+     * @format date
+     */
+    start_at: string;
+    /**
+     * Use <b>yyyy-MM-dd</b> format
+     * @format date
+     */
+    end_at: string;
+  }
+
+  export interface Breakdown {
+    /**
+     * Name of the field to break down the data by.
+     */
+    name:
+      | 'meta_browser'
+      | 'meta_operating_system'
+      | 'meta_operating_system_version'
+      | 'meta_device_category'
+      | 'meta_device_manufacturer'
+      | 'meta_device_name'
+      | 'meta_device_display_width'
+      | 'meta_device_display_height'
+      | 'meta_country'
+      | 'meta_city'
+      | 'meta_region'
+      | 'player_software'
+      | 'player_software_version'
+      | 'player_language_code'
+      | 'player_name'
+      | 'meta_page_url'
+      | 'meta_asn'
+      | 'custom_user_id'
+      | 'custom_user_email'
+      | 'custom_video_id'
+      | 'custom_video_title'
+      | 'video_source_url'
+      | 'custom_video_variant_name'
+      | 'custom_video_language'
+      | 'custom_video_variant'
+      | 'custom_data_1'
+      | 'custom_data_2'
+      | 'custom_data_3'
+      | 'custom_data_4'
+      | 'custom_data_5';
+    /**
+     * The metric to retrieve breakdown data for.
+     */
+    metric:
+      | 'views'
+      | 'unique_views'
+      | 'impressions'
+      | 'completion_percent_by_views'
+      | 'playing_time'
+      | 'concurrent_users'
+      | 'widget_form_submitted'
+      | 'cta_clicks';
+    /**
+     * Page number for paginated results.
+     * @default 1
+     */
+    page?: number;
+    /**
+     * Number of results per page.
+     * @default 100
+     */
+    page_size?: number;
+  }
+
+  export interface Filter {
+    /**
+     * Name of the breakdown to filter data on.
+     */
+    name:
+      | 'meta_browser'
+      | 'meta_operating_system'
+      | 'meta_operating_system_version'
+      | 'meta_device_category'
+      | 'meta_device_manufacturer'
+      | 'meta_device_name'
+      | 'meta_device_display_width'
+      | 'meta_device_display_height'
+      | 'meta_country'
+      | 'meta_city'
+      | 'meta_region'
+      | 'player_software'
+      | 'player_software_version'
+      | 'player_language_code'
+      | 'player_name'
+      | 'meta_page_url'
+      | 'meta_asn'
+      | 'custom_user_id'
+      | 'custom_user_email'
+      | 'custom_video_id'
+      | 'custom_video_title'
+      | 'video_source_url'
+      | 'custom_video_variant_name'
+      | 'custom_video_language'
+      | 'custom_video_variant'
+      | 'custom_data_1'
+      | 'custom_data_2'
+      | 'custom_data_3'
+      | 'custom_data_4'
+      | 'custom_data_5';
+    /**
+     * Value to be matched for the given filter name. Currently we support exact matches.
+     */
+    value: string;
+    /**
+     * Operator to be used while filtering the data
+     * @default equals
+     */
+    operator?: 'equals' | 'does not equal' | 'contains' | 'does not contain' | 'is set' | 'is not set';
+  }
+}
+
+export interface DataAPIInsightsBreakdownResponse {
+  views?: DataAPIInsightsBreakdownResponse.Views;
+}
+
+export namespace DataAPIInsightsBreakdownResponse {
+  export interface Views {
+    data?: Array<Views.Data>;
+    /**
+     * Whether there is another page of results
+     */
+    has_next_page?: boolean;
+    /**
+     * Current page number
+     */
+    current_page?: number;
+  }
+
+  export namespace Views {
+    export interface Data {
+      /**
+       * Breakdown field value
+       */
+      key?: string;
+      /**
+       * Metric value for the breakdown key
+       */
+      value?: number;
+      unit?: string;
+    }
+  }
+}
+
 export interface DataAPIInsightsAggregatedParams {
   /**
    * Aggregate multiple metrics at the same time
@@ -347,8 +548,10 @@ export namespace DataAPIInsightsAggregatedResponse {
 export declare namespace DataAPI {
   export {
     type DataAPIInsightsChartResponse as DataAPIInsightsChartResponse,
+    type DataAPIInsightsBreakdownResponse as DataAPIInsightsBreakdownResponse,
     type DataAPIInsightsAggregatedResponse as DataAPIInsightsAggregatedResponse,
     type DataAPIInsightsChartParams as DataAPIInsightsChartParams,
+    type DataAPIInsightsBreakdownParams as DataAPIInsightsBreakdownParams,
     type DataAPIInsightsAggregatedParams as DataAPIInsightsAggregatedParams,
   };
 }
