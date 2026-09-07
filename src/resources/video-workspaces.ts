@@ -1205,9 +1205,9 @@ export namespace VideoWorkspaceRetrieveResponse {
      */
     active: boolean;
     /**
-     * Privacy type of channel.
+     * Privacy type of videos in this workspace
      */
-    privacy_type: 'private' | 'public';
+    privacy_type: 'private' | 'public' | 'password' | 'dashboardOnly';
     /**
      * Whether channel can be accessed publicly or it's invite only channel.
      */
