@@ -286,7 +286,7 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * List all assets in a recycle bin for a given workspace.
+   * List all assets in a recycle bin for a given workspace. The deleted assets are available for 30 days. After that, assets are permanently deleted.
    *
    * @param {VideoAssetListRecycleBinParams} query - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -1578,8 +1578,8 @@ export interface VideoAssetListParams {
 }
 
 export interface VideoAssetListResponse {
+  all_assets: Array<VideoAssetListResponse.AllAsset>;
   folders?: Array<VideoAssetListResponse.Folder>;
-  all_assets?: Array<VideoAssetListResponse.AllAsset>;
   /**
    * @default 0
    */
@@ -1599,29 +1599,6 @@ export interface VideoAssetListResponse {
 }
 
 export namespace VideoAssetListResponse {
-  export interface Folder {
-    id?: string;
-    name?: string;
-    video_source_id?: string;
-    parent_id?: string | null;
-    path?: Array<string>;
-    path_names?: Array<string>;
-    /**
-     * @default 0
-     */
-    depth?: number;
-    /**
-     * @default 0
-     */
-    subdirectory_count?: number;
-    /**
-     * @default 0
-     */
-    asset_count?: number;
-    created_at?: string;
-    updated_at?: string;
-  }
-
   export interface AllAsset {
     asset_id?: string;
     /**
@@ -1665,6 +1642,10 @@ export namespace VideoAssetListResponse {
        */
       height?: number;
       additional_tracks?: Array<Input.AdditionalTrack>;
+      /**
+       * Title of the asset.
+       */
+      title?: string;
     }
 
     export namespace Input {
@@ -1711,6 +1692,29 @@ export namespace VideoAssetListResponse {
       playback_url?: string;
       thumbnail_url?: Array<string>;
     }
+  }
+
+  export interface Folder {
+    id?: string;
+    name?: string;
+    video_source_id?: string;
+    parent_id?: string | null;
+    path?: Array<string>;
+    path_names?: Array<string>;
+    /**
+     * @default 0
+     */
+    depth?: number;
+    /**
+     * @default 0
+     */
+    subdirectory_count?: number;
+    /**
+     * @default 0
+     */
+    asset_count?: number;
+    created_at?: string;
+    updated_at?: string;
   }
 }
 
