@@ -16,6 +16,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Recover Deleted Asset](#recover-deleted-asset)
   - [List Assets](#list-assets)
   - [List Assets](#list-assets-1)
+  - [List Recycle Bin](#list-recycle-bin)
 - [`SubtitleUpload`](#subtitleupload)
   - [Upload Subtitles](#upload-subtitles)
   - [Complete Subtitle Upload](#complete-subtitle-upload)
@@ -311,6 +312,22 @@ const videoAsset = await client.videoAssets.list('workspaceId', {
 const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
   sortBy: 'created_at',
   orderBy: 'desc',
+});
+```
+
+### List Recycle Bin
+
+List all assets in a recycle bin for a given workspace.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`VideoAssetListRecycleBinParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetListRecycleBinResponse`](./src/resources/video-assets.ts) |
+
+```ts
+const videoAsset = await client.videoAssets.listRecycleBin({
+  size: 20,
+  workspace_id: 'workspaceId',
 });
 ```
 

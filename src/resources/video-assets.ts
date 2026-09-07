@@ -284,6 +284,28 @@ export class VideoAssets extends APIResource {
   ): APIPromise<VideoAssetListDeprecatedResponse> {
     return this._client.get(__scalarPath`/video/assets/list/${workspaceID}`, { query, ...options });
   }
+
+  /**
+   * List all assets in a recycle bin for a given workspace.
+   *
+   * @param {VideoAssetListRecycleBinParams} query - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<VideoAssetListRecycleBinResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const videoAsset = await client.videoAssets.listRecycleBin({
+   *   size: 20,
+   *   workspace_id: 'workspaceId',
+   * });
+   * ```
+   */
+  listRecycleBin(
+    query: VideoAssetListRecycleBinParams,
+    options?: RequestOptions,
+  ): APIPromise<VideoAssetListRecycleBinResponse> {
+    return this._client.get('/video/asset/recoverable/list', { query, ...options });
+  }
 }
 
 export interface VideoAssetCreateParams {
@@ -1842,6 +1864,73 @@ export namespace VideoAssetListDeprecatedResponse {
     }
   }
 }
+
+export interface VideoAssetListRecycleBinParams {
+  /**
+   * Number of items to skip from start of page response.
+   * @minimum 0
+   */
+  offset?: number;
+  /**
+   * Number of items to return for a single page.
+   * @default 20
+   * @minimum 10
+   */
+  size?: number;
+  /**
+   * ID of workspace for which you want to list the recycle bin items.
+   */
+  workspace_id: string;
+}
+
+export interface VideoAssetListRecycleBinResponse {
+  /**
+   * Number of total assets in recycle bin.
+   */
+  total_asset_count: number;
+  /**
+   * Number of total assets in current offset.
+   */
+  current_offset: number;
+  all_assets: Array<VideoAssetListRecycleBinResponse.AllAsset>;
+}
+
+export namespace VideoAssetListRecycleBinResponse {
+  export interface AllAsset {
+    /**
+     * Asset ID of the deleted asset.
+     */
+    asset_id: string;
+    /**
+     * Workspace ID for the asset.
+     */
+    workspace_id: string;
+    /**
+     * Title of the asset.
+     */
+    title: string;
+    /**
+     * Description of the video.
+     */
+    description: string | null;
+    /**
+     * Tags associated with the asset.
+     */
+    tags: Array<string>;
+    /**
+     * Duration of the asset in seconds.
+     */
+    duration: number;
+    /**
+     * Deleted timestamp of asset in milliseconds since epoch.
+     */
+    deleted_at: number;
+    /**
+     * User ID of the user who deleted the asset.
+     */
+    deleted_by: string;
+  }
+}
 export declare namespace VideoAssets {
   export {
     type VideoAssetCreateResponse as VideoAssetCreateResponse,
@@ -1853,6 +1942,7 @@ export declare namespace VideoAssets {
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
     type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
+    type VideoAssetListRecycleBinResponse as VideoAssetListRecycleBinResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
@@ -1861,5 +1951,6 @@ export declare namespace VideoAssets {
     type VideoAssetRecoverParams as VideoAssetRecoverParams,
     type VideoAssetListParams as VideoAssetListParams,
     type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
+    type VideoAssetListRecycleBinParams as VideoAssetListRecycleBinParams,
   };
 }

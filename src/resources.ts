@@ -38,6 +38,8 @@ export type {
   VideoAssetListResponse,
   VideoAssetListDeprecatedParams,
   VideoAssetListDeprecatedResponse,
+  VideoAssetListRecycleBinParams,
+  VideoAssetListRecycleBinResponse,
   SubtitleUploadUploadParams,
   SubtitleUploadUploadResponse,
   SubtitleUploadCompleteParams,
