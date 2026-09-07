@@ -1227,6 +1227,18 @@ export namespace VideoWorkspaceRetrieveResponse {
      * Secret that is to be used to sign URLs
      */
     signed_url_secret?: string;
+    /**
+     * Blacklist of 2 letter country codes.
+     */
+    blacklisted_countries?: Array<string>;
+    /**
+     * List of whitelisted domains which allow playback for the videos.
+     */
+    whitelisted_referrers?: Array<string>;
+    /**
+     * List of whitelisted of 2 letter country codes.
+     */
+    whitelisted_countries?: string;
   }
 }
 
