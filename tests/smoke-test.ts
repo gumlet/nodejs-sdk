@@ -1286,6 +1286,23 @@ const cases: {
   },
 
   {
+    operation: 'insightsBreakdown',
+    method: 'POST',
+    path: '/insights/breakdown-data',
+    run: async () => {
+      const dataAPI = await client.dataAPI.insightsBreakdown({
+        date_range: { start_at: '2026-07-20', end_at: '2026-08-20' },
+        filters: [],
+        breakdowns: [
+          { name: 'custom_video_id', metric: 'views', page: 1, page_size: 10 },
+          { name: 'custom_video_title', metric: 'completion_percent_by_views', page: 1, page_size: 10 },
+        ],
+        workspace_id: '6694c405e63913eecf3cf5fb',
+      });
+    },
+  },
+
+  {
     operation: 'insightsAggregated',
     method: 'POST',
     path: '/insights/aggregated-data',

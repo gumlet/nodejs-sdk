@@ -182,8 +182,10 @@ import {
 import {
   DataAPI,
   type DataAPIInsightsChartResponse,
+  type DataAPIInsightsBreakdownResponse,
   type DataAPIInsightsAggregatedResponse,
   type DataAPIInsightsChartParams,
+  type DataAPIInsightsBreakdownParams,
   type DataAPIInsightsAggregatedParams,
 } from './resources/data-api';
 import { OrganizationData, type OrganizationDataFetchOrgResponse } from './resources/organization-data';
@@ -1189,8 +1191,10 @@ export declare namespace Gumlet {
   export {
     DataAPI as DataAPI,
     type DataAPIInsightsChartResponse as DataAPIInsightsChartResponse,
+    type DataAPIInsightsBreakdownResponse as DataAPIInsightsBreakdownResponse,
     type DataAPIInsightsAggregatedResponse as DataAPIInsightsAggregatedResponse,
     type DataAPIInsightsChartParams as DataAPIInsightsChartParams,
+    type DataAPIInsightsBreakdownParams as DataAPIInsightsBreakdownParams,
     type DataAPIInsightsAggregatedParams as DataAPIInsightsAggregatedParams,
   };
 

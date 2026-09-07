@@ -86,6 +86,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Invite Channel Viewers via CSV](#invite-channel-viewers-via-csv)
 - [`DataApi`](#dataapi)
   - [Viewer Analytics](#viewer-analytics)
+  - [Breakdown Data](#breakdown-data)
   - [Aggregated Data](#aggregated-data)
 - [`OrganizationData`](#organizationdata)
   - [Get Organization Details](#get-organization-details)
@@ -1173,6 +1174,27 @@ const dataAPI = await client.dataAPI.insightsChart({
     end_at: '2024-01-01',
   },
   group_by: 'daily',
+});
+```
+
+### Breakdown Data
+
+This endpoint retrieves breakdown data of the given metrics by given breakdown field
+
+| Direction | Type |
+| --- | --- |
+| Request | [`DataAPIInsightsBreakdownParams`](./src/resources/data-api.ts) |
+| Response | [`DataAPIInsightsBreakdownResponse`](./src/resources/data-api.ts) |
+
+```ts
+const dataAPI = await client.dataAPI.insightsBreakdown({
+  date_range: { start_at: '2026-07-20', end_at: '2026-08-20' },
+  filters: [],
+  breakdowns: [
+    { name: 'custom_video_id', metric: 'views', page: 1, page_size: 10 },
+    { name: 'custom_video_title', metric: 'completion_percent_by_views', page: 1, page_size: 10 },
+  ],
+  workspace_id: '6694c405e63913eecf3cf5fb',
 });
 ```
 
