@@ -135,6 +135,8 @@ export type {
   ChannelViewerInviteCsvResponse,
   DataAPIInsightsChartParams,
   DataAPIInsightsChartResponse,
+  DataAPIInsightsBreakdownParams,
+  DataAPIInsightsBreakdownResponse,
   DataAPIInsightsAggregatedParams,
   DataAPIInsightsAggregatedResponse,
   OrganizationDataFetchOrgResponse,

@@ -1054,7 +1054,193 @@ export namespace VideoWorkspaceUpdateResponse {
   }
 }
 
-export type VideoWorkspaceRetrieveResponse = Record<string, unknown>;
+export interface VideoWorkspaceRetrieveResponse {
+  /**
+   * Workspace ID
+   */
+  id: string;
+  /**
+   * Workspace Name
+   */
+  name: string;
+  /**
+   * Workspace Type
+   */
+  type: string;
+  /**
+   * ISO 8601 formatted creation timestamp of this workspace.
+   */
+  created_at: string;
+  /**
+   * ISO 8601 formatted update timestamp of this workspace.
+   */
+  updated_at: string;
+  /**
+   * Whether Gumlet video analytics is enabled for video embeds in this workspace.
+   */
+  insights_enabled: boolean;
+  /**
+   * Video player configuration
+   */
+  player_config: VideoWorkspaceRetrieveResponse.PlayerConfig;
+  /**
+   * List of folder names in this workspace.
+   */
+  folders: Array<string>;
+  channel_settings: VideoWorkspaceRetrieveResponse.ChannelSettings;
+  /**
+   * List of distinct tags in entire workspace.
+   */
+  distinct_tags: Array<string>;
+  /**
+   * Profile ID for the default profile of this workspace
+   */
+  default_profile_id?: string;
+  /**
+   * ISO 8601 formatted profile update timestamp
+   */
+  default_profile_updated_at?: string;
+  video_protection?: VideoWorkspaceRetrieveResponse.VideoProtection;
+}
+
+export namespace VideoWorkspaceRetrieveResponse {
+  export interface PlayerConfig {
+    /**
+     * Video autoplay enable flag. True means autoplay is enabled.
+     */
+    autoplay: boolean;
+    /**
+     * Seek bar enable / disable
+     */
+    disable_seek: boolean;
+    /**
+     * Disable / enable all player controls
+     */
+    disable_player_controls: boolean;
+    /**
+     * Whether Gumlet logo shows on player.
+     */
+    powered_by_gumlet_overlay: boolean;
+    /**
+     * Whether video should loop once it ends. `true` value means video will loop
+     */
+    loop: boolean;
+    /**
+     * Hex color string of video player color
+     */
+    player_color: string;
+    /**
+     * Enable / disable download button on player.
+     */
+    enable_download_button: boolean;
+    /**
+     * Enable / disable video captions on player.
+     */
+    caption_enabled: boolean;
+    /**
+     * Flag if dynamic watermark is enabled.
+     */
+    dynamic_watermark: boolean;
+    /**
+     * Enable / disable video title on player.
+     */
+    show_video_title: boolean;
+    /**
+     * Enable / disable cast button on player.
+     */
+    cast: boolean;
+    /**
+     * Enable / disable playback from last viewed position. `true` means the playback will resume from last position.
+     */
+    resume_where_left: boolean;
+    /**
+     * Logo display width in pixels.
+     */
+    logo_width?: number;
+    /**
+     * Logo display height in pixels.
+     */
+    logo_height?: number;
+    /**
+     * Dynamic watermark font size in pixels.
+     */
+    watermark_font_size?: number;
+    /**
+     * Hex color code of dynamic watermark text.
+     */
+    watermark_font_color?: string;
+    /**
+     * Hex color code of background for dynamic watermark text.
+     */
+    watermark_bg_color?: string;
+    /**
+     * Interval in milliseconds between dynamic watermark flashing.
+     */
+    watermark_interval?: number;
+    /**
+     * Duration for which the dynamic watermark will be visible on screen.
+     */
+    watermark_visiblity_duration?: number;
+    /**
+     * Closed captions  / subtitle color.
+     */
+    cc_color?: string;
+    /**
+     * Closed captions / subtitle background color.
+     */
+    cc_bg_color?: string;
+    /**
+     * Font size of closed captions.
+     */
+    cc_font_size?: 'small' | 'medium' | 'large';
+  }
+
+  export interface ChannelSettings {
+    /**
+     * Channel title.
+     */
+    title: string;
+    /**
+     * Whether the channel is active.
+     */
+    active: boolean;
+    /**
+     * Privacy type of videos in this workspace
+     */
+    privacy_type: 'private' | 'public' | 'password' | 'dashboardOnly';
+    /**
+     * Whether channel can be accessed publicly or it's invite only channel.
+     */
+    channel_access_control: 'private' | 'public';
+    /**
+     * What to show in dynamic watermark.
+     */
+    dynamic_watermark_type: string;
+    /**
+     * Enable / disable channel invite email.
+     */
+    disable_invite_email: boolean;
+  }
+
+  export interface VideoProtection {
+    /**
+     * Secret that is to be used to sign URLs
+     */
+    signed_url_secret?: string;
+    /**
+     * Blacklist of 2 letter country codes.
+     */
+    blacklisted_countries?: Array<string>;
+    /**
+     * List of whitelisted domains which allow playback for the videos.
+     */
+    whitelisted_referrers?: Array<string>;
+    /**
+     * List of whitelisted of 2 letter country codes.
+     */
+    whitelisted_countries?: string;
+  }
+}
 
 export type VideoWorkspaceDeleteResponse = Record<string, unknown>;
 export declare namespace VideoWorkspaces {

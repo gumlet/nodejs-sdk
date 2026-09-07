@@ -1170,7 +1170,8 @@
         "orderBy",
         "searchIndex",
         "offset",
-        "size"
+        "size",
+        "signed_token"
       ],
       "publicQueryParams": [
         "type",
@@ -1187,7 +1188,8 @@
         "orderBy",
         "searchIndex",
         "offset",
-        "size"
+        "size",
+        "signed_token"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -1295,6 +1297,13 @@
           "style": "form",
           "explode": true,
           "defaultValue": 20
+        },
+        {
+          "name": "signed_token",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "false"
         }
       ],
       "headerParamDetails": [],
@@ -7013,6 +7022,117 @@
       "cookieParamDetails": [],
       "paramsModel": {
         "publicName": "DataApiInsightsChartParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "dataApi",
+      "publicResource": "dataApi",
+      "operation": "insightsBreakdown",
+      "publicOperation": "insightsBreakdown",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/insights/breakdown-data",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "date_range",
+        "filters",
+        "breakdowns",
+        "workspace_id"
+      ],
+      "publicBodyParams": [
+        "date_range",
+        "filters",
+        "breakdowns",
+        "workspace_id"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "date_range",
+          "required": true
+        },
+        {
+          "name": "filters",
+          "required": false
+        },
+        {
+          "name": "breakdowns",
+          "required": true
+        },
+        {
+          "name": "workspace_id",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "DataApiInsightsBreakdownParams"
       },
       "requestBody": {
         "contentType": "application/json",
