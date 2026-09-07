@@ -1252,9 +1252,9 @@ export namespace VideoWorkspaceRetrieveResponse {
      */
     whitelisted_countries?: string;
     /**
-     * Signed URL for the workspace.
+     * Boolean value indicating whether signed URL is enabled.
      */
-    signed_url?: string;
+    signed_url?: boolean;
   }
 }
 
