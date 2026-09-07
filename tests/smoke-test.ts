@@ -257,6 +257,33 @@ const cases: {
   },
 
   {
+    operation: 'listRecycleBin',
+    method: 'GET',
+    path: '/video/asset/recoverable/list',
+    label: 'required params',
+    run: async () => {
+      const videoAsset = await client.videoAssets.listRecycleBin({
+        size: 20,
+        workspace_id: 'workspaceId',
+      });
+    },
+  },
+
+  {
+    operation: 'listRecycleBin',
+    method: 'GET',
+    path: '/video/asset/recoverable/list',
+    label: 'all params',
+    run: async () => {
+      const videoAsset = await client.videoAssets.listRecycleBin({
+        offset: 1,
+        size: 20,
+        workspace_id: 'workspaceId',
+      });
+    },
+  },
+
+  {
     operation: 'upload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/subtitle/upload',

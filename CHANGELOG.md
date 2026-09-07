@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.1](https://github.com/gumlet/nodejs-sdk/compare/v1.2.0...v1.2.1) (2026-09-07)
+
+
+### Features
+
+* **api:** add operation videoAssets.listRecycleBin ([71cba3b](https://github.com/gumlet/nodejs-sdk/commit/71cba3b53de96753975532b022fe66ff8754236e))
+
+
+### Chores
+
+* **api:** update generated SDK content ([04235a0](https://github.com/gumlet/nodejs-sdk/commit/04235a00b8d2bbb4ed307b353c98a486a4487632))
+* release 1.2.1 ([5f31645](https://github.com/gumlet/nodejs-sdk/commit/5f316457246159f67afd758a9d4293b0d90ceab5))
+* release 1.2.1 ([cf999e6](https://github.com/gumlet/nodejs-sdk/commit/cf999e62a6bcf98ac42db984a5e7b0f860d16235))
+
 ## [1.2.0](https://github.com/gumlet/nodejs-sdk/compare/v1.1.17...v1.2.0) (2026-09-07)
 
 
