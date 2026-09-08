@@ -13,10 +13,8 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Update thumbnail from video](#update-thumbnail-from-video)
   - [Update thumbnail via upload](#update-thumbnail-via-upload)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
-  - [Recover Deleted Asset](#recover-deleted-asset)
   - [List Assets](#list-assets)
   - [List Assets](#list-assets-1)
-  - [List Recycle Bin](#list-recycle-bin)
 - [`SubtitleUpload`](#subtitleupload)
   - [Upload Subtitles](#upload-subtitles)
   - [Complete Subtitle Upload](#complete-subtitle-upload)
@@ -68,6 +66,9 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [`start`](#start)
   - [Upload Live Thumbnails](#upload-live-thumbnails)
   - [Get Live Asset Status History](#get-live-asset-status-history)
+- [`RecycleBin`](#recyclebin)
+  - [Recover Deleted Asset](#recover-deleted-asset)
+  - [List Recycle Bin](#list-recycle-bin)
 - [`VideoWorkspaces`](#videoworkspaces)
   - [List Workspaces](#list-workspaces)
   - [Create Workspace](#create-workspace)
@@ -267,20 +268,6 @@ const videoAsset = await client.videoAssets.createUpdateChapter('assetId', {
 });
 ```
 
-### Recover Deleted Asset
-
-Recovers a deleted asset from the recycle bin.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`VideoAssetRecoverParams`](./src/resources/video-assets.ts) |
-
-```ts
-await client.videoAssets.recover({
-  asset_id: '',
-});
-```
-
 ### List Assets
 
 List folders and assets for a workspace in a single response. Use `parent_id` to browse a specific folder, or filters like `title`, `status`, and `playlist_id` to search assets.
@@ -312,22 +299,6 @@ const videoAsset = await client.videoAssets.list('workspaceId', {
 const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
   sortBy: 'created_at',
   orderBy: 'desc',
-});
-```
-
-### List Recycle Bin
-
-List all assets in a recycle bin for a given workspace. The deleted assets are available for 30 days. After that, assets are permanently deleted.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`VideoAssetListRecycleBinParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetListRecycleBinResponse`](./src/resources/video-assets.ts) |
-
-```ts
-const videoAsset = await client.videoAssets.listRecycleBin({
-  size: 20,
-  workspace_id: 'workspaceId',
 });
 ```
 
@@ -950,6 +921,40 @@ This endpoint retrieves the history of a live video asset that has previously be
 
 ```ts
 const liveStreamAsset = await client.liveStreamAssets.statusHistory('liveAssetId');
+```
+
+## `RecycleBin`
+
+Endpoints to list deleted assets and restore them.
+
+### Recover Deleted Asset
+
+Recovers a deleted asset from the recycle bin.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`RecycleBinRecoverParams`](./src/resources/recycle-bin.ts) |
+
+```ts
+await client.recycleBin.recover({
+  asset_id: '',
+});
+```
+
+### List Recycle Bin
+
+List all assets in a recycle bin for a given workspace. The deleted assets are available for 30 days. After that, assets are permanently deleted.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`RecycleBinListParams`](./src/resources/recycle-bin.ts) |
+| Response | [`RecycleBinListResponse`](./src/resources/recycle-bin.ts) |
+
+```ts
+const recycleBin = await client.recycleBin.list({
+  size: 20,
+  workspace_id: 'workspaceId',
+});
 ```
 
 ## `VideoWorkspaces`
