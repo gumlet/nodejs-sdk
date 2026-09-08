@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.2.4](https://github.com/gumlet/nodejs-sdk/compare/v1.2.3...v1.2.4) (2026-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `videoAssets.recover` (`POST /video/asset/recover`).
+    - Removed operation `videoAssets.listRecycleBin` (`GET /video/asset/recoverable/list`).
+
+### Features
+
+* **api:** remove operation videoAssets.recover (+3 more changes) ([cea2eed](https://github.com/gumlet/nodejs-sdk/commit/cea2eede00e4b45d0f797eb344646bdb6182d9fb))
+
+
+### Chores
+
+* **api:** update generated SDK content ([e92e88c](https://github.com/gumlet/nodejs-sdk/commit/e92e88c75d8663d503fce5bbc3e7ac524a1916b3))
+* release 1.2.4 ([3f09225](https://github.com/gumlet/nodejs-sdk/commit/3f09225871d3369aaa733410cc1496c6e1830c9f))
+* release 1.2.4 ([4839502](https://github.com/gumlet/nodejs-sdk/commit/48395028caab0923fd293438c0d6fa56d29a5d16))
+
 ## [1.2.3](https://github.com/gumlet/nodejs-sdk/compare/v1.2.2...v1.2.3) (2026-09-07)
 
 
