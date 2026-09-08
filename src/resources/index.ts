@@ -14,13 +14,10 @@ export type {
   VideoAssetThumbnailUploadResponse,
   VideoAssetCreateUpdateChapterParams,
   VideoAssetCreateUpdateChapterResponse,
-  VideoAssetRecoverParams,
   VideoAssetListParams,
   VideoAssetListResponse,
   VideoAssetListDeprecatedParams,
   VideoAssetListDeprecatedResponse,
-  VideoAssetListRecycleBinParams,
-  VideoAssetListRecycleBinResponse,
 } from './video-assets';
 export { SubtitleUpload } from './subtitle-upload';
 export type {
@@ -121,6 +118,8 @@ export type {
   LiveStreamAssetUploadResponse,
   LiveStreamAssetStatusHistoryResponse,
 } from './live-stream-assets';
+export { RecycleBin } from './recycle-bin';
+export type { RecycleBinRecoverParams, RecycleBinListParams, RecycleBinListResponse } from './recycle-bin';
 export { VideoWorkspaces } from './video-workspaces';
 export type {
   VideoWorkspaceListParams,

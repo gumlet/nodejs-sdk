@@ -170,17 +170,6 @@ const cases: {
   },
 
   {
-    operation: 'recover',
-    method: 'POST',
-    path: '/video/asset/recover',
-    run: async () => {
-      await client.videoAssets.recover({
-        asset_id: '',
-      });
-    },
-  },
-
-  {
     operation: 'list',
     method: 'GET',
     path: '/video/workspaces/{workspace_id}/list',
@@ -252,33 +241,6 @@ const cases: {
         sortBy: 'created_at',
         orderBy: 'desc',
         type: 'type',
-      });
-    },
-  },
-
-  {
-    operation: 'listRecycleBin',
-    method: 'GET',
-    path: '/video/asset/recoverable/list',
-    label: 'required params',
-    run: async () => {
-      const videoAsset = await client.videoAssets.listRecycleBin({
-        size: 20,
-        workspace_id: 'workspaceId',
-      });
-    },
-  },
-
-  {
-    operation: 'listRecycleBin',
-    method: 'GET',
-    path: '/video/asset/recoverable/list',
-    label: 'all params',
-    run: async () => {
-      const videoAsset = await client.videoAssets.listRecycleBin({
-        offset: 1,
-        size: 20,
-        workspace_id: 'workspaceId',
       });
     },
   },
@@ -1068,6 +1030,44 @@ const cases: {
     path: '/video/live/assets/{live_asset_id}/history',
     run: async () => {
       const liveStreamAsset = await client.liveStreamAssets.statusHistory('liveAssetId');
+    },
+  },
+
+  {
+    operation: 'recover',
+    method: 'POST',
+    path: '/video/asset/recover',
+    run: async () => {
+      await client.recycleBin.recover({
+        asset_id: '',
+      });
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/video/asset/recoverable/list',
+    label: 'required params',
+    run: async () => {
+      const recycleBin = await client.recycleBin.list({
+        size: 20,
+        workspace_id: 'workspaceId',
+      });
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/video/asset/recoverable/list',
+    label: 'all params',
+    run: async () => {
+      const recycleBin = await client.recycleBin.list({
+        offset: 1,
+        size: 20,
+        workspace_id: 'workspaceId',
+      });
     },
   },
 

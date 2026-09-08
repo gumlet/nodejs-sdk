@@ -36,16 +36,13 @@ import {
   type VideoAssetCreateUpdateChapterResponse,
   type VideoAssetListResponse,
   type VideoAssetListDeprecatedResponse,
-  type VideoAssetListRecycleBinResponse,
   type VideoAssetCreateParams,
   type VideoAssetUploadParams,
   type VideoAssetUpdateParams,
   type VideoAssetThumbnailSelectParams,
   type VideoAssetCreateUpdateChapterParams,
-  type VideoAssetRecoverParams,
   type VideoAssetListParams,
   type VideoAssetListDeprecatedParams,
-  type VideoAssetListRecycleBinParams,
 } from './resources/video-assets';
 import {
   SubtitleUpload,
@@ -146,6 +143,12 @@ import {
   type LiveStreamAssetFilterParams,
   type LiveStreamAssetUploadParams,
 } from './resources/live-stream-assets';
+import {
+  RecycleBin,
+  type RecycleBinListResponse,
+  type RecycleBinRecoverParams,
+  type RecycleBinListParams,
+} from './resources/recycle-bin';
 import {
   VideoWorkspaces,
   type VideoWorkspaceListResponse,
@@ -992,6 +995,7 @@ export class Gumlet {
   imageSources: ImageSources = new ImageSources(this);
   imageUsageAnalytics: ImageUsageAnalytics = new ImageUsageAnalytics(this);
   liveStreamAssets: LiveStreamAssets = new LiveStreamAssets(this);
+  recycleBin: RecycleBin = new RecycleBin(this);
   videoWorkspaces: VideoWorkspaces = new VideoWorkspaces(this);
   folders: Folders = new Folders(this);
   channelViewers: ChannelViewers = new ChannelViewers(this);
@@ -1012,6 +1016,7 @@ Gumlet.WebhookAPIs = WebhookAPIs;
 Gumlet.ImageSources = ImageSources;
 Gumlet.ImageUsageAnalytics = ImageUsageAnalytics;
 Gumlet.LiveStreamAssets = LiveStreamAssets;
+Gumlet.RecycleBin = RecycleBin;
 Gumlet.VideoWorkspaces = VideoWorkspaces;
 Gumlet.Folders = Folders;
 Gumlet.ChannelViewers = ChannelViewers;
@@ -1033,16 +1038,13 @@ export declare namespace Gumlet {
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
     type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
-    type VideoAssetListRecycleBinResponse as VideoAssetListRecycleBinResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
     type VideoAssetThumbnailSelectParams as VideoAssetThumbnailSelectParams,
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
-    type VideoAssetRecoverParams as VideoAssetRecoverParams,
     type VideoAssetListParams as VideoAssetListParams,
     type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
-    type VideoAssetListRecycleBinParams as VideoAssetListRecycleBinParams,
   };
 
   export {
@@ -1152,6 +1154,13 @@ export declare namespace Gumlet {
     type LiveStreamAssetUpdateParams as LiveStreamAssetUpdateParams,
     type LiveStreamAssetFilterParams as LiveStreamAssetFilterParams,
     type LiveStreamAssetUploadParams as LiveStreamAssetUploadParams,
+  };
+
+  export {
+    RecycleBin as RecycleBin,
+    type RecycleBinListResponse as RecycleBinListResponse,
+    type RecycleBinRecoverParams as RecycleBinRecoverParams,
+    type RecycleBinListParams as RecycleBinListParams,
   };
 
   export {

@@ -34,6 +34,7 @@
     "imageSources",
     "imageUsageAnalytics",
     "liveStreamAssets",
+    "recycleBin",
     "videoWorkspaces",
     "folders",
     "channelViewers",
@@ -54,6 +55,7 @@
     "imageSources",
     "imageUsageAnalytics",
     "liveStreamAssets",
+    "recycleBin",
     "videoWorkspaces",
     "folders",
     "channelViewers",
@@ -1081,69 +1083,6 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "recover",
-      "publicOperation": "recover",
-      "deprecated": false,
-      "method": "POST",
-      "path": "/video/asset/recover",
-      "pathParams": [],
-      "publicPathParams": [],
-      "queryParams": [],
-      "publicQueryParams": [],
-      "headerParams": [],
-      "publicHeaderParams": [],
-      "bodyParams": [
-        "asset_id"
-      ],
-      "publicBodyParams": [
-        "asset_id"
-      ],
-      "bodyParamDetails": [
-        {
-          "name": "asset_id",
-          "required": true
-        }
-      ],
-      "pathParamDetails": [],
-      "queryParamDetails": [],
-      "headerParamDetails": [],
-      "cookieParams": [],
-      "publicCookieParams": [],
-      "cookieParamDetails": [],
-      "paramsModel": {
-        "publicName": "VideoAssetRecoverParams"
-      },
-      "requestBody": {
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ],
-        "required": false,
-        "publicName": "body",
-        "publicIdentifier": "body"
-      },
-      "response": {
-        "status": "200",
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ]
-      },
-      "errorResponses": [],
-      "responseLinks": [],
-      "transport": "http"
-    },
-    {
-      "resource": "videoAssets",
-      "publicResource": "videoAssets",
       "operation": "list",
       "publicOperation": "list",
       "deprecated": false,
@@ -1510,75 +1449,6 @@
           ]
         }
       ],
-      "responseLinks": [],
-      "transport": "http"
-    },
-    {
-      "resource": "videoAssets",
-      "publicResource": "videoAssets",
-      "operation": "listRecycleBin",
-      "publicOperation": "listRecycleBin",
-      "deprecated": false,
-      "method": "GET",
-      "path": "/video/asset/recoverable/list",
-      "pathParams": [],
-      "publicPathParams": [],
-      "queryParams": [
-        "offset",
-        "size",
-        "workspace_id"
-      ],
-      "publicQueryParams": [
-        "offset",
-        "size",
-        "workspace_id"
-      ],
-      "headerParams": [],
-      "publicHeaderParams": [],
-      "bodyParams": [],
-      "publicBodyParams": [],
-      "bodyParamDetails": [],
-      "pathParamDetails": [],
-      "queryParamDetails": [
-        {
-          "name": "offset",
-          "required": false,
-          "style": "form",
-          "explode": true
-        },
-        {
-          "name": "size",
-          "required": false,
-          "style": "form",
-          "explode": true,
-          "defaultValue": 20
-        },
-        {
-          "name": "workspace_id",
-          "required": true,
-          "style": "form",
-          "explode": true
-        }
-      ],
-      "headerParamDetails": [],
-      "cookieParams": [],
-      "publicCookieParams": [],
-      "cookieParamDetails": [],
-      "paramsModel": {
-        "publicName": "VideoAssetListRecycleBinParams"
-      },
-      "response": {
-        "status": "200",
-        "contentType": "application/json",
-        "encoding": "json",
-        "contents": [
-          {
-            "contentType": "application/json",
-            "encoding": "json"
-          }
-        ]
-      },
-      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     },
@@ -5588,6 +5458,138 @@
           ]
         }
       ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "recycleBin",
+      "publicResource": "recycleBin",
+      "operation": "recover",
+      "publicOperation": "recover",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/asset/recover",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "asset_id"
+      ],
+      "publicBodyParams": [
+        "asset_id"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "RecycleBinRecoverParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "recycleBin",
+      "publicResource": "recycleBin",
+      "operation": "list",
+      "publicOperation": "list",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/video/asset/recoverable/list",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [
+        "offset",
+        "size",
+        "workspace_id"
+      ],
+      "publicQueryParams": [
+        "offset",
+        "size",
+        "workspace_id"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "offset",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        },
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "form",
+          "explode": true
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "RecycleBinListParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     },
