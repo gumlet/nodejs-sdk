@@ -43,7 +43,6 @@ const videoAsset = await client.videoAssets.create({
   description: 'some description',
   tag: ['ball'],
   profile_id: '646df1c9173a4a2fcac180b7',
-  cluster_type: 'prod',
   playlist_id: '6597acd5ed6f26a9c5ca9633',
   metadata: { headermeta: 'metavalue' },
   call_to_actions: [
@@ -54,7 +53,6 @@ const videoAsset = await client.videoAssets.create({
       url: 'https://some-url.com',
       position_from_top: 11,
       position_from_right: 23,
-      border_radius: '11',
       font_color: '#000001',
       background_color: '#ffffff',
     },
@@ -82,7 +80,6 @@ try {
     description: 'some description',
     tag: ['ball'],
     profile_id: '646df1c9173a4a2fcac180b7',
-    cluster_type: 'prod',
     playlist_id: '6597acd5ed6f26a9c5ca9633',
     metadata: { headermeta: 'metavalue' },
     call_to_actions: [
@@ -93,7 +90,6 @@ try {
         url: 'https://some-url.com',
         position_from_top: 11,
         position_from_right: 23,
-        border_radius: '11',
         font_color: '#000001',
         background_color: '#ffffff',
       },

@@ -23,7 +23,6 @@ export class VideoAssets extends APIResource {
    *   description: 'some description',
    *   tag: ['ball'],
    *   profile_id: '646df1c9173a4a2fcac180b7',
-   *   cluster_type: 'prod',
    *   playlist_id: '6597acd5ed6f26a9c5ca9633',
    *   metadata: { headermeta: 'metavalue' },
    *   call_to_actions: [
@@ -34,7 +33,6 @@ export class VideoAssets extends APIResource {
    *       url: 'https://some-url.com',
    *       position_from_top: 11,
    *       position_from_right: 23,
-   *       border_radius: '11',
    *       font_color: '#000001',
    *       background_color: '#ffffff',
    *     },
@@ -59,11 +57,9 @@ export class VideoAssets extends APIResource {
    * const videoAsset = await client.videoAssets.upload({
    *   format: 'ABR',
    *   collection_id: '646df1c9173a4a2fcac180b4',
-   *   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
    *   description: 'some description',
    *   tag: ['ball'],
    *   profile_id: '646df1c9173a4a2fcac180b7',
-   *   cluster_type: 'prod',
    *   playlist_id: '6597acd5ed6f26a9c5ca9633',
    *   metadata: { headermeta: 'metavalue' },
    *   call_to_actions: [
@@ -74,7 +70,6 @@ export class VideoAssets extends APIResource {
    *       url: 'https://some-url.com',
    *       position_from_top: 11,
    *       position_from_right: 23,
-   *       border_radius: '11',
    *       font_color: '#000001',
    *       background_color: '#ffffff',
    *     },
