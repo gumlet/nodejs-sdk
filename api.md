@@ -128,7 +128,6 @@ const videoAsset = await client.videoAssets.create({
   description: 'some description',
   tag: ['ball'],
   profile_id: '646df1c9173a4a2fcac180b7',
-  cluster_type: 'prod',
   playlist_id: '6597acd5ed6f26a9c5ca9633',
   metadata: { headermeta: 'metavalue' },
   call_to_actions: [
@@ -139,7 +138,6 @@ const videoAsset = await client.videoAssets.create({
       url: 'https://some-url.com',
       position_from_top: 11,
       position_from_right: 23,
-      border_radius: '11',
       font_color: '#000001',
       background_color: '#ffffff',
     },
@@ -161,11 +159,9 @@ This endpoint creates a video asset allowing to upload of the video from the loc
 const videoAsset = await client.videoAssets.upload({
   format: 'ABR',
   collection_id: '646df1c9173a4a2fcac180b4',
-  input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
   description: 'some description',
   tag: ['ball'],
   profile_id: '646df1c9173a4a2fcac180b7',
-  cluster_type: 'prod',
   playlist_id: '6597acd5ed6f26a9c5ca9633',
   metadata: { headermeta: 'metavalue' },
   call_to_actions: [
@@ -176,7 +172,6 @@ const videoAsset = await client.videoAssets.upload({
       url: 'https://some-url.com',
       position_from_top: 11,
       position_from_right: 23,
-      border_radius: '11',
       font_color: '#000001',
       background_color: '#ffffff',
     },
@@ -382,7 +377,6 @@ This endpoint gives usage analytics data of your videos. Ex - top assets, bandwi
 const videoUsageAnalytic = await client.videoUsageAnalytics.retrieve({
   metrics: ['bandwidth_consumption', 'asset_duration', 'storage_unit', 'top_assets', 'drm_requests'],
   date_range: { start_at: '2026-08-01', end_at: '2026-08-20' },
-  group_by: 'daily',
 });
 ```
 
@@ -652,8 +646,8 @@ Creates a new webhook listener.
 const webhookAPI = await client.webhookAPIs.create({
   url: '',
   secret_token: '',
-  triggers: [],
-  sources: [],
+  triggers: [''],
+  sources: [''],
 });
 ```
 
@@ -797,7 +791,7 @@ This endpoint helps you get image analytics data like bandwidth consumption, req
 
 ```ts
 const imageUsageAnalytic = await client.imageUsageAnalytics.retrieve({
-  metrics: [],
+  metrics: ['bandwidth_consumption'],
   date_range: {},
   group_by: 'daily',
 });
@@ -1189,7 +1183,7 @@ This endpoint retrieves viewer analytics data. This endpoint is use for deep ins
 
 ```ts
 const dataAPI = await client.dataAPI.insightsChart({
-  metrics: [],
+  metrics: [''],
   workspace_id: '',
   date_range: {
     start_at: '2024-01-01',
@@ -1231,7 +1225,12 @@ This endpoint retrieves aggregated data of the given metrics.
 
 ```ts
 const dataAPI = await client.dataAPI.insightsAggregated({
-  aggregate: [],
+  aggregate: [
+    {
+      metric: 'views',
+      function: 'sum',
+    },
+  ],
   workspace_id: '',
   timeframe: {},
 });

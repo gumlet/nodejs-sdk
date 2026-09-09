@@ -18,8 +18,8 @@ export class WebhookAPIs extends APIResource {
    * const webhookAPI = await client.webhookAPIs.create({
    *   url: '',
    *   secret_token: '',
-   *   triggers: [],
-   *   sources: [],
+   *   triggers: [''],
+   *   sources: [''],
    * });
    * ```
    */

@@ -15,7 +15,7 @@ export class DataAPI extends APIResource {
    * @example
    * ```ts
    * const dataAPI = await client.dataAPI.insightsChart({
-   *   metrics: [],
+   *   metrics: [''],
    *   workspace_id: '',
    *   date_range: {
    *     start_at: '2024-01-01',
@@ -69,7 +69,12 @@ export class DataAPI extends APIResource {
    * @example
    * ```ts
    * const dataAPI = await client.dataAPI.insightsAggregated({
-   *   aggregate: [],
+   *   aggregate: [
+   *     {
+   *       metric: 'views',
+   *       function: 'sum',
+   *     },
+   *   ],
    *   workspace_id: '',
    *   timeframe: {},
    * });

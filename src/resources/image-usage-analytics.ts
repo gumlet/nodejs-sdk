@@ -15,7 +15,7 @@ export class ImageUsageAnalytics extends APIResource {
    * @example
    * ```ts
    * const imageUsageAnalytic = await client.imageUsageAnalytics.retrieve({
-   *   metrics: [],
+   *   metrics: ['bandwidth_consumption'],
    *   date_range: {},
    *   group_by: 'daily',
    * });
@@ -48,6 +48,7 @@ export interface ImageUsageAnalyticRetrieveParams {
     | 'avg_response_time'
     | 'top_assets'
     | 'bandwidth_consumption_by_source'
+    | 'ai_credit_usage'
   >;
   /**
    * The timeframe to get the data for. Currently we only support a maximum of 30 days between `start_at` and `end_at`.
@@ -96,6 +97,7 @@ export interface ImageUsageAnalyticRetrieveResponse {
   content_type?: Array<ImageUsageAnalyticRetrieveResponse.ContentType>;
   bandwidth_savings?: Array<ImageUsageAnalyticRetrieveResponse.BandwidthSaving>;
   bandwidth_consumption_by_source?: Array<ImageUsageAnalyticRetrieveResponse.BandwidthConsumptionBySource>;
+  ai_credit_usage?: Array<ImageUsageAnalyticRetrieveResponse.AICreditUsage>;
 }
 
 export namespace ImageUsageAnalyticRetrieveResponse {
@@ -291,6 +293,21 @@ export namespace ImageUsageAnalyticRetrieveResponse {
      * Domain name of the source.
      */
     domain: string;
+  }
+
+  export interface AICreditUsage {
+    /**
+     * Timestamp of data point in seconds since epoch.
+     */
+    timestamp: number;
+    /**
+     * Background removal credits used.
+     */
+    bg_removal?: number;
+    /**
+     * Shadow generation credits used.
+     */
+    shadow_gen?: number;
   }
 }
 export declare namespace ImageUsageAnalytics {
