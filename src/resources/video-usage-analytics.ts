@@ -63,6 +63,7 @@ export interface VideoUsageAnalyticRetrieveParams {
     | 'top_assets'
     | 'drm_requests'
     | 'ai_credit_usage'
+    | 'errored_videos'
   >;
   /**
    * The timeframe to get the data for. Currently we only support a maximum of 60 days between `start_at` and `end_at`.
@@ -121,7 +122,8 @@ export interface VideoUsageAnalyticRetrieveResponse {
    * Indicates whether the list of top assets is exhaustive or if it has more assets.
    */
   has_more_top_asset?: boolean;
-  ai_credit_usage?: Array<Record<string, unknown>>;
+  ai_credit_usage?: Array<VideoUsageAnalyticRetrieveResponse.AICreditUsage>;
+  errored_videos?: Array<VideoUsageAnalyticRetrieveResponse.ErroredVideo>;
 }
 
 export namespace VideoUsageAnalyticRetrieveResponse {
@@ -202,6 +204,24 @@ export namespace VideoUsageAnalyticRetrieveResponse {
      * Workspace Name
      */
     collection_name: string;
+  }
+
+  export interface AICreditUsage {
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+  }
+
+  export interface ErroredVideo {
+    /**
+     * Seconds since epoch for the unit given.
+     */
+    timestamp: number;
+    /**
+     * Number of errored videos in the timeframe
+     */
+    units: number;
   }
 }
 
