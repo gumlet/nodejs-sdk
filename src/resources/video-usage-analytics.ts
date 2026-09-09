@@ -100,7 +100,7 @@ export namespace VideoUsageAnalyticRetrieveParams {
     /**
      * The ID of the `collection` you want to filter the data for
      */
-    collection_id?: string;
+    source_id?: string;
   }
 }
 
