@@ -17,6 +17,7 @@ export class VideoUsageAnalytics extends APIResource {
    * const videoUsageAnalytic = await client.videoUsageAnalytics.retrieve({
    *   metrics: ['bandwidth_consumption', 'asset_duration', 'storage_unit', 'top_assets', 'drm_requests'],
    *   date_range: { start_at: '2026-08-01', end_at: '2026-08-20' },
+   *   group_by: 'daily',
    * });
    * ```
    */
@@ -69,6 +70,7 @@ export interface VideoUsageAnalyticRetrieveParams {
    * The timeframe to get the data for. Currently we only support a maximum of 60 days between `start_at` and `end_at`.
    */
   date_range: VideoUsageAnalyticRetrieveParams.DateRange;
+  group_by: 'hourly' | 'daily' | 'weekly';
   filters?: VideoUsageAnalyticRetrieveParams.Filters;
   /**
    * Count of video assets that should be returned. Max assets count is 1000 per page.
