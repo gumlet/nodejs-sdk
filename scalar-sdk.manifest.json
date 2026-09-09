@@ -1839,14 +1839,16 @@
         "date_range",
         "filters",
         "top_assets_count",
-        "top_assets_page"
+        "top_assets_page",
+        "group_by"
       ],
       "publicBodyParams": [
         "metrics",
         "date_range",
         "filters",
         "top_assets_count",
-        "top_assets_page"
+        "top_assets_page",
+        "group_by"
       ],
       "bodyParamDetails": [
         {
@@ -1868,6 +1870,10 @@
         {
           "name": "top_assets_page",
           "required": false
+        },
+        {
+          "name": "group_by",
+          "required": true
         }
       ],
       "pathParamDetails": [],
