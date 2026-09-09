@@ -332,6 +332,7 @@ const cases: {
       const videoUsageAnalytic = await client.videoUsageAnalytics.retrieve({
         metrics: ['bandwidth_consumption', 'asset_duration', 'storage_unit', 'top_assets', 'drm_requests'],
         date_range: { start_at: '2026-08-01', end_at: '2026-08-20' },
+        group_by: 'daily',
       });
     },
   },
