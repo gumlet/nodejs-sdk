@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.6](https://github.com/gumlet/nodejs-sdk/compare/v1.2.5...v1.2.6) (2026-09-09)
+
+
+### Chores
+
+* **api:** update generated SDK content ([81abc17](https://github.com/gumlet/nodejs-sdk/commit/81abc17a5a0962e61f08d76322dfb62909dcb490))
+
 ## [1.2.5](https://github.com/gumlet/nodejs-sdk/compare/v1.2.4...v1.2.5) (2026-09-09)
 
 
