@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.8](https://github.com/gumlet/nodejs-sdk/compare/v1.2.7...v1.2.8) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Added required body field `group_by` to `videoUsageAnalytics.retrieve`.
+
+### Features
+
+* **api:** add body field group_by on videoUsageAnalytics.retrieve ([4428da0](https://github.com/gumlet/nodejs-sdk/commit/4428da0b70a099adff8c66a3365b3dc4f8a69db9))
+
+
+### Chores
+
+* **api:** update generated SDK content ([74ce01e](https://github.com/gumlet/nodejs-sdk/commit/74ce01ed1f2278474f8281d47d3ef2dc69a66117))
+* release 1.2.8 ([79afd59](https://github.com/gumlet/nodejs-sdk/commit/79afd59dc6c1f709513c011fe182d04d3f21c155))
+* release 1.2.8 ([fef26d0](https://github.com/gumlet/nodejs-sdk/commit/fef26d04064fb27e411e71dd539a544abc9b8379))
+
 ## [1.2.7](https://github.com/gumlet/nodejs-sdk/compare/v1.2.6...v1.2.7) (2026-09-09)
 
 
