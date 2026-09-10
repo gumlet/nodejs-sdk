@@ -883,11 +883,11 @@ export namespace VideoWorkspaceUpdateParams {
 }
 
 export interface VideoWorkspaceUpdateResponse {
+  id: string;
   /**
    * Whether Gumlet video analytics is enabled for this workspace.
    */
   insights_enabled: boolean;
-  id?: string;
   name?: string;
   type?: string;
   created_at?: string;
