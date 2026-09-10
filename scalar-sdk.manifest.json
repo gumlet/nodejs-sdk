@@ -1873,7 +1873,7 @@
         },
         {
           "name": "group_by",
-          "required": true
+          "required": false
         }
       ],
       "pathParamDetails": [],
