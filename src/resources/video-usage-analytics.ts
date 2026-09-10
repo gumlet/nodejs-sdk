@@ -70,7 +70,7 @@ export interface VideoUsageAnalyticRetrieveParams {
    * The timeframe to get the data for. Currently we only support a maximum of 60 days between `start_at` and `end_at`.
    */
   date_range: VideoUsageAnalyticRetrieveParams.DateRange;
-  group_by: 'hourly' | 'daily' | 'weekly';
+  group_by: 'hourly' | 'daily' | 'monthly';
   filters?: VideoUsageAnalyticRetrieveParams.Filters;
   /**
    * Count of video assets that should be returned. Max assets count is 1000 per page.
