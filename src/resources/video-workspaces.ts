@@ -1097,10 +1097,6 @@ export interface VideoWorkspaceRetrieveResponse {
   folders: Array<string>;
   channel_settings: VideoWorkspaceRetrieveResponse.ChannelSettings;
   /**
-   * List of distinct tags in entire workspace.
-   */
-  distinct_tags: Array<string>;
-  /**
    * Profile ID for the default profile of this workspace
    */
   default_profile_id?: string;
@@ -1110,10 +1106,13 @@ export interface VideoWorkspaceRetrieveResponse {
   default_profile_updated_at?: string;
   video_protection?: VideoWorkspaceRetrieveResponse.VideoProtection;
   /**
+   * List of distinct tags in entire workspace.
+   */
+  distinct_tags?: Array<string>;
+  /**
    * `true` means the workspace is disabled for streaming. No videos will stream from this workspace.
    */
   on_streaming_halt?: boolean;
-  visible_playlists?: Array<VideoWorkspaceRetrieveResponse.VisiblePlaylist>;
 }
 
 export namespace VideoWorkspaceRetrieveResponse {
@@ -1234,6 +1233,10 @@ export namespace VideoWorkspaceRetrieveResponse {
      */
     disable_invite_email: boolean;
     /**
+     * ISO 8601 logo update timestamp.
+     */
+    logo_updated_at: string;
+    /**
      * Password for the channel.
      */
     password?: string;
@@ -1273,6 +1276,24 @@ export namespace VideoWorkspaceRetrieveResponse {
      * Array of custom domains which are not yet verified.
      */
     temp_cname?: Array<string>;
+    /**
+     * Logo URL
+     */
+    logo_url?: string;
+    visible_playlists?: Array<ChannelSettings.VisiblePlaylist>;
+  }
+
+  export namespace ChannelSettings {
+    export interface VisiblePlaylist {
+      /**
+       * Playlist ID
+       */
+      _id: string;
+      /**
+       * Playlist Title
+       */
+      title: string;
+    }
   }
 
   export interface VideoProtection {
@@ -1296,17 +1317,6 @@ export namespace VideoWorkspaceRetrieveResponse {
      * Boolean value indicating whether signed URL is enabled.
      */
     signed_url?: boolean;
-  }
-
-  export interface VisiblePlaylist {
-    /**
-     * Playlist ID
-     */
-    _id: string;
-    /**
-     * Playlist Title
-     */
-    title: string;
   }
 }
 

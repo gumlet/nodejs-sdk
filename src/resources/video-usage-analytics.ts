@@ -104,7 +104,12 @@ export namespace VideoUsageAnalyticRetrieveParams {
 
   export interface Filters {
     /**
-     * The ID of the `collection` you want to filter the data for
+     * The ID of the `workspace` you want to filter the data for.
+     */
+    collection_id?: string;
+    /**
+     * The ID of the `workspace` you want to filter the data for. Deprecated.
+     * @deprecated
      */
     source_id?: string;
   }

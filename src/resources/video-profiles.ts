@@ -516,6 +516,18 @@ export interface VideoProfileUpdateParams {
    * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and Fairplay DRMs.
    */
   enable_drm?: boolean;
+  /**
+   * Video Codecs
+   */
+  vc?: Array<string>;
+  /**
+   * Whether Gumlet should generate chapters.
+   */
+  generate_chapters?: boolean;
+  /**
+   * Whether Gumlet should generate descriptions.
+   */
+  generate_description?: boolean;
 }
 
 export namespace VideoProfileUpdateParams {

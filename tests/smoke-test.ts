@@ -527,6 +527,9 @@ const cases: {
         process_low_resolution_input: false,
         audio_only: false,
         enable_drm: false,
+        vc: [''],
+        generate_chapters: false,
+        generate_description: false,
       });
     },
   },
