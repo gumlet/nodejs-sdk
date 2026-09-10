@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.10](https://github.com/gumlet/nodejs-sdk/compare/v1.2.9...v1.2.10) (2026-09-10)
+
+
+### Features
+
+* **api:** add body field vc on videoProfiles.update (+2 more changes) ([cdd315f](https://github.com/gumlet/nodejs-sdk/commit/cdd315fef9450581c0c4f0348a1e6dc392290136))
+
+
+### Chores
+
+* **api:** update generated SDK content ([a320729](https://github.com/gumlet/nodejs-sdk/commit/a320729273140033364562c9a34075949da8e526))
+* release 1.2.10 ([492e073](https://github.com/gumlet/nodejs-sdk/commit/492e0736c777845f28ae8fef1c80d2a94be032c2))
+* release 1.2.10 ([63e6bd3](https://github.com/gumlet/nodejs-sdk/commit/63e6bd39df2cdee50bd448a6e3b1dc66786fad21))
+
 ## [1.2.9](https://github.com/gumlet/nodejs-sdk/compare/v1.2.8...v1.2.9) (2026-09-10)
 
 
