@@ -1109,6 +1109,11 @@ export interface VideoWorkspaceRetrieveResponse {
    */
   default_profile_updated_at?: string;
   video_protection?: VideoWorkspaceRetrieveResponse.VideoProtection;
+  /**
+   * `true` means the workspace is disabled for streaming. No videos will stream from this workspace.
+   */
+  on_streaming_halt?: boolean;
+  visible_playlists?: Array<VideoWorkspaceRetrieveResponse.VisiblePlaylist>;
 }
 
 export namespace VideoWorkspaceRetrieveResponse {
@@ -1232,6 +1237,42 @@ export namespace VideoWorkspaceRetrieveResponse {
      * Password for the channel.
      */
     password?: string;
+    /**
+     * Color scheme for the channel UI.
+     */
+    color_scheme?: string;
+    /**
+     * Channel description.
+     */
+    description?: string;
+    /**
+     * Dark / light theme preference for the channel.
+     */
+    theme_preference?: string;
+    /**
+     * Custom domains assigned to this channel.
+     */
+    cname?: Array<string>;
+    /**
+     * Hero banner URL
+     */
+    hero_url?: string;
+    /**
+     * ISO 8601 hero banner update timestamp.
+     */
+    hero_updated_at?: string;
+    /**
+     * Channel icon URL
+     */
+    icon_url?: string;
+    /**
+     * ISO 8601 channel icon update timestamp.
+     */
+    icon_updated_at?: string;
+    /**
+     * Array of custom domains which are not yet verified.
+     */
+    temp_cname?: Array<string>;
   }
 
   export interface VideoProtection {
@@ -1255,6 +1296,17 @@ export namespace VideoWorkspaceRetrieveResponse {
      * Boolean value indicating whether signed URL is enabled.
      */
     signed_url?: boolean;
+  }
+
+  export interface VisiblePlaylist {
+    /**
+     * Playlist ID
+     */
+    _id: string;
+    /**
+     * Playlist Title
+     */
+    title: string;
   }
 }
 
