@@ -1873,7 +1873,7 @@
         },
         {
           "name": "group_by",
-          "required": true
+          "required": false
         }
       ],
       "pathParamDetails": [],
@@ -2490,7 +2490,10 @@
         "per_title_encoding",
         "process_low_resolution_input",
         "audio_only",
-        "enable_drm"
+        "enable_drm",
+        "vc",
+        "generate_chapters",
+        "generate_description"
       ],
       "publicBodyParams": [
         "profile_id",
@@ -2510,7 +2513,10 @@
         "per_title_encoding",
         "process_low_resolution_input",
         "audio_only",
-        "enable_drm"
+        "enable_drm",
+        "vc",
+        "generate_chapters",
+        "generate_description"
       ],
       "bodyParamDetails": [
         {
@@ -2583,6 +2589,18 @@
         },
         {
           "name": "enable_drm",
+          "required": false
+        },
+        {
+          "name": "vc",
+          "required": false
+        },
+        {
+          "name": "generate_chapters",
+          "required": false
+        },
+        {
+          "name": "generate_description",
           "required": false
         }
       ],
