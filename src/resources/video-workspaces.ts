@@ -884,33 +884,25 @@ export namespace VideoWorkspaceUpdateParams {
 
 export interface VideoWorkspaceUpdateResponse {
   id: string;
+  name: string;
+  type: string;
+  created_at: string;
+  updated_at: string;
+  player_config: VideoWorkspaceUpdateResponse.PlayerConfig;
+  folders: Array<string>;
+  channel_settings: VideoWorkspaceUpdateResponse.ChannelSettings;
   /**
    * Whether Gumlet video analytics is enabled for this workspace.
    */
   insights_enabled: boolean;
-  name?: string;
-  type?: string;
-  created_at?: string;
-  updated_at?: string;
   video_protection?: VideoWorkspaceUpdateResponse.VideoProtection;
-  player_config?: VideoWorkspaceUpdateResponse.PlayerConfig;
   default_profile_id?: string;
   insight_property_id?: string;
   aws?: VideoWorkspaceUpdateResponse.Aws;
   embed_details?: VideoWorkspaceUpdateResponse.EmbedDetails;
-  folders?: Array<string>;
-  channel_settings?: VideoWorkspaceUpdateResponse.ChannelSettings;
 }
 
 export namespace VideoWorkspaceUpdateResponse {
-  export interface VideoProtection {
-    /**
-     * @default true
-     */
-    signed_url?: boolean;
-    signed_url_secret?: string;
-  }
-
   export interface PlayerConfig {
     /**
      * @default true
@@ -972,6 +964,31 @@ export namespace VideoWorkspaceUpdateResponse {
      * @default 0
      */
     watermark_interval?: number;
+  }
+
+  export interface ChannelSettings {
+    title?: string;
+    /**
+     * @default true
+     */
+    active?: boolean;
+    description?: string;
+    privacy_type?: string;
+    /**
+     * @default true
+     */
+    custom_logo?: boolean;
+    logo_url?: string;
+    cname?: Array<string>;
+    temp_cname?: Array<string>;
+  }
+
+  export interface VideoProtection {
+    /**
+     * @default true
+     */
+    signed_url?: boolean;
+    signed_url_secret?: string;
   }
 
   export interface Aws {
@@ -1043,23 +1060,6 @@ export namespace VideoWorkspaceUpdateResponse {
      */
     subtitle_enabled?: boolean;
   }
-
-  export interface ChannelSettings {
-    title?: string;
-    /**
-     * @default true
-     */
-    active?: boolean;
-    description?: string;
-    privacy_type?: string;
-    /**
-     * @default true
-     */
-    custom_logo?: boolean;
-    logo_url?: string;
-    cname?: Array<string>;
-    temp_cname?: Array<string>;
-  }
 }
 
 export interface VideoWorkspaceRetrieveResponse {
@@ -1113,6 +1113,7 @@ export interface VideoWorkspaceRetrieveResponse {
    * `true` means the workspace is disabled for streaming. No videos will stream from this workspace.
    */
   on_streaming_halt?: boolean;
+  storage_event_listener?: Array<VideoWorkspaceRetrieveResponse.StorageEventListener>;
 }
 
 export namespace VideoWorkspaceRetrieveResponse {
@@ -1317,6 +1318,33 @@ export namespace VideoWorkspaceRetrieveResponse {
      * Boolean value indicating whether signed URL is enabled.
      */
     signed_url?: boolean;
+  }
+
+  export interface StorageEventListener {
+    /**
+     * Storage event id
+     */
+    event_id: string;
+    /**
+     * Profile ID associated with storage event
+     */
+    profile_id: string;
+    /**
+     * If this webhook listener is verified.
+     */
+    is_varified: boolean;
+    /**
+     * Profile Name
+     */
+    profile_name?: string;
+    /**
+     * Callback URL
+     */
+    callback_url?: string;
+    /**
+     * Status
+     */
+    status?: string;
   }
 }
 
