@@ -1113,6 +1113,7 @@ export interface VideoWorkspaceRetrieveResponse {
    * `true` means the workspace is disabled for streaming. No videos will stream from this workspace.
    */
   on_streaming_halt?: boolean;
+  storage_event_listener?: Array<VideoWorkspaceRetrieveResponse.StorageEventListener>;
 }
 
 export namespace VideoWorkspaceRetrieveResponse {
@@ -1317,6 +1318,33 @@ export namespace VideoWorkspaceRetrieveResponse {
      * Boolean value indicating whether signed URL is enabled.
      */
     signed_url?: boolean;
+  }
+
+  export interface StorageEventListener {
+    /**
+     * Storage event id
+     */
+    event_id: string;
+    /**
+     * Profile ID associated with storage event
+     */
+    profile_id: string;
+    /**
+     * If this webhook listener is verified.
+     */
+    is_varified: boolean;
+    /**
+     * Profile Name
+     */
+    profile_name?: string;
+    /**
+     * Callback URL
+     */
+    callback_url?: string;
+    /**
+     * Status
+     */
+    status?: string;
   }
 }
 
