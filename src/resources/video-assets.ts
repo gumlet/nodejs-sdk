@@ -1370,6 +1370,10 @@ export interface VideoAssetUpdateParams {
    * `{workspace_id}/{asset_id}/origin-{asset_id}`
    */
   input?: string;
+  /**
+   * To reprocess same video, pass this as true.
+   */
+  reprocess?: boolean;
 }
 
 export namespace VideoAssetUpdateParams {
