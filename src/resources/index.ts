@@ -22,8 +22,6 @@ export type {
   VideoAssetDeleteManyResponse,
   VideoAssetTagManyParams,
   VideoAssetTagManyResponse,
-  VideoAssetAnalyticsParams,
-  VideoAssetAnalyticsResponse,
 } from './video-assets';
 export { SubtitleUpload } from './subtitle-upload';
 export type {
@@ -162,8 +160,6 @@ export type {
   ChannelViewerDeleteResponse,
   ChannelViewerInviteCsvParams,
   ChannelViewerInviteCsvResponse,
-  ChannelViewerListSubscribersParams,
-  ChannelViewerListSubscribersResponse,
 } from './channel-viewers';
 export { DataAPI } from './data-api';
 export type {
