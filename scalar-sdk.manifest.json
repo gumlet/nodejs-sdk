@@ -30,7 +30,7 @@
     "multipartUpload",
     "videoProfiles",
     "videoPlaylists",
-    "webhookApis",
+    "webhooks",
     "imageSources",
     "imageUsageAnalytics",
     "liveStreamAssets",
@@ -51,7 +51,7 @@
     "multipartUpload",
     "videoProfiles",
     "videoPlaylists",
-    "webhookApis",
+    "webhooks",
     "imageSources",
     "imageUsageAnalytics",
     "liveStreamAssets",
@@ -3823,8 +3823,8 @@
       "transport": "http"
     },
     {
-      "resource": "webhookApis",
-      "publicResource": "webhookApis",
+      "resource": "webhooks",
+      "publicResource": "webhooks",
       "operation": "create",
       "publicOperation": "create",
       "deprecated": false,
@@ -3873,7 +3873,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "WebhookApiCreateParams"
+        "publicName": "WebhookCreateParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -3922,8 +3922,46 @@
       "transport": "http"
     },
     {
-      "resource": "webhookApis",
-      "publicResource": "webhookApis",
+      "resource": "webhooks",
+      "publicResource": "webhooks",
+      "operation": "list",
+      "publicOperation": "list",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/org/webhooks",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "webhooks",
+      "publicResource": "webhooks",
       "operation": "update",
       "publicOperation": "update",
       "deprecated": false,
@@ -3983,7 +4021,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "WebhookApiUpdateParams"
+        "publicName": "WebhookUpdateParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -4032,8 +4070,8 @@
       "transport": "http"
     },
     {
-      "resource": "webhookApis",
-      "publicResource": "webhookApis",
+      "resource": "webhooks",
+      "publicResource": "webhooks",
       "operation": "delete",
       "publicOperation": "delete",
       "deprecated": false,
@@ -4066,7 +4104,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "WebhookApiDeleteParams"
+        "publicName": "WebhookDeleteParams"
       },
       "response": {
         "status": "204",
@@ -4098,6 +4136,58 @@
           ]
         }
       ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "webhooks",
+      "publicResource": "webhooks",
+      "operation": "history",
+      "publicOperation": "history",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/org/webhook/{webhook_id}/history",
+      "pathParams": [
+        "webhook_id"
+      ],
+      "publicPathParams": [
+        "webhook_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "webhook_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "WebhookHistoryParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     },

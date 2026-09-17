@@ -81,14 +81,16 @@ export type {
   VideoPlaylistReorderAssetParams,
   VideoPlaylistReorderAssetResponse,
 } from './video-playlists';
-export { WebhookAPIs } from './webhook-apis';
+export { Webhooks } from './webhooks';
 export type {
-  WebhookAPICreateParams,
-  WebhookAPICreateResponse,
-  WebhookAPIUpdateParams,
-  WebhookAPIUpdateResponse,
-  WebhookAPIDeleteResponse,
-} from './webhook-apis';
+  WebhookCreateParams,
+  WebhookCreateResponse,
+  WebhookListResponse,
+  WebhookUpdateParams,
+  WebhookUpdateResponse,
+  WebhookDeleteResponse,
+  WebhookHistoryResponse,
+} from './webhooks';
 export { ImageSources } from './image-sources';
 export type {
   ImageSourceCreateParams,
