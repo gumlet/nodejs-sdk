@@ -267,6 +267,42 @@ const cases: {
   },
 
   {
+    operation: 'analytics',
+    method: 'POST',
+    path: '/v1/video/assets/{asset_id}/analytics',
+    label: 'required params',
+    run: async () => {
+      const videoAsset = await client.videoAssets.analytics('assetId', {
+        group_by: 'daily',
+        date_range: {
+          start_at: '',
+          end_at: '',
+        },
+        metrics: ['impressions'],
+      });
+    },
+  },
+
+  {
+    operation: 'analytics',
+    method: 'POST',
+    path: '/v1/video/assets/{asset_id}/analytics',
+    label: 'all params',
+    run: async () => {
+      const videoAsset = await client.videoAssets.analytics('assetId', {
+        group_by: 'daily',
+        date_range: {
+          start_at: '',
+          end_at: '',
+        },
+        metrics: ['impressions'],
+        page_number: 0,
+        page_size: 0,
+      });
+    },
+  },
+
+  {
     operation: 'upload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/subtitle/upload',
@@ -1292,6 +1328,18 @@ const cases: {
     run: async () => {
       const channelViewer = await client.channelViewers.inviteCsv('videoWorkspaceId', {
         viewers_csv: 'viewers.csv',
+      });
+    },
+  },
+
+  {
+    operation: 'listSubscribers',
+    method: 'GET',
+    path: '/v1/channel/{workspace_id}/viewers',
+    run: async () => {
+      const channelViewer = await client.channelViewers.listSubscribers('workspaceId', {
+        page_number: 1,
+        page_size: 10,
       });
     },
   },

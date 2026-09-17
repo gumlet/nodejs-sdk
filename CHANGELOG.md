@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.15](https://github.com/gumlet/nodejs-sdk/compare/v1.2.14...v1.2.15) (2026-09-17)
+
+
+### Features
+
+* **api:** add operation videoAssets.analytics (+1 more change) ([928b640](https://github.com/gumlet/nodejs-sdk/commit/928b640dd6a441e1b47bd28cf0fd0dd24856ad1d))
+
+
+### Chores
+
+* **api:** update generated SDK content ([f2966bd](https://github.com/gumlet/nodejs-sdk/commit/f2966bd2a0ebfc11baad53af7236242fe694b094))
+* release 1.2.15 ([0904e7d](https://github.com/gumlet/nodejs-sdk/commit/0904e7d754b51c30702cc1284062e20acc9e13d8))
+* release 1.2.15 ([bc30e14](https://github.com/gumlet/nodejs-sdk/commit/bc30e141caaf4c07024665b4264fc4ddd2665ac3))
+
 ## [1.2.14](https://github.com/gumlet/nodejs-sdk/compare/v1.2.12...v1.2.14) (2026-09-17)
 
 

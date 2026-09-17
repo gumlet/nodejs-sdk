@@ -38,6 +38,7 @@ import {
   type VideoAssetListDeprecatedResponse,
   type VideoAssetDeleteManyResponse,
   type VideoAssetTagManyResponse,
+  type VideoAssetAnalyticsResponse,
   type VideoAssetCreateParams,
   type VideoAssetUploadParams,
   type VideoAssetUpdateParams,
@@ -47,6 +48,7 @@ import {
   type VideoAssetListDeprecatedParams,
   type VideoAssetDeleteManyParams,
   type VideoAssetTagManyParams,
+  type VideoAssetAnalyticsParams,
 } from './resources/video-assets';
 import {
   SubtitleUpload,
@@ -184,9 +186,11 @@ import {
   type ChannelViewerInviteResponse,
   type ChannelViewerDeleteResponse,
   type ChannelViewerInviteCsvResponse,
+  type ChannelViewerListSubscribersResponse,
   type ChannelViewerInviteParams,
   type ChannelViewerDeleteParams,
   type ChannelViewerInviteCsvParams,
+  type ChannelViewerListSubscribersParams,
 } from './resources/channel-viewers';
 import {
   DataAPI,
@@ -1044,6 +1048,7 @@ export declare namespace Gumlet {
     type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
     type VideoAssetDeleteManyResponse as VideoAssetDeleteManyResponse,
     type VideoAssetTagManyResponse as VideoAssetTagManyResponse,
+    type VideoAssetAnalyticsResponse as VideoAssetAnalyticsResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
@@ -1053,6 +1058,7 @@ export declare namespace Gumlet {
     type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
     type VideoAssetDeleteManyParams as VideoAssetDeleteManyParams,
     type VideoAssetTagManyParams as VideoAssetTagManyParams,
+    type VideoAssetAnalyticsParams as VideoAssetAnalyticsParams,
   };
 
   export {
@@ -1204,9 +1210,11 @@ export declare namespace Gumlet {
     type ChannelViewerInviteResponse as ChannelViewerInviteResponse,
     type ChannelViewerDeleteResponse as ChannelViewerDeleteResponse,
     type ChannelViewerInviteCsvResponse as ChannelViewerInviteCsvResponse,
+    type ChannelViewerListSubscribersResponse as ChannelViewerListSubscribersResponse,
     type ChannelViewerInviteParams as ChannelViewerInviteParams,
     type ChannelViewerDeleteParams as ChannelViewerDeleteParams,
     type ChannelViewerInviteCsvParams as ChannelViewerInviteCsvParams,
+    type ChannelViewerListSubscribersParams as ChannelViewerListSubscribersParams,
   };
 
   export {
