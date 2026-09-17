@@ -1496,6 +1496,50 @@ const cases: {
       });
     },
   },
+
+  {
+    operation: 'listInvoices',
+    method: 'GET',
+    path: '/mixed/billing/invoice/history',
+    run: async () => {
+      const billing = await client.billing.listInvoices();
+    },
+  },
+
+  {
+    operation: 'fetchDetails',
+    method: 'GET',
+    path: '/mixed/billing/details',
+    run: async () => {
+      const billing = await client.billing.fetchDetails();
+    },
+  },
+
+  {
+    operation: 'updateDetails',
+    method: 'POST',
+    path: '/mixed/billing/details',
+    run: async () => {
+      const billing = await client.billing.updateDetails({
+        address_line: '',
+        city: '',
+        company_name: '',
+        country_code: '',
+        gst_number: '',
+        postal: '',
+        state_code: '',
+      });
+    },
+  },
+
+  {
+    operation: 'fetchUpcomingInvoice',
+    method: 'GET',
+    path: '/mixed/billing/invoice/upcoming',
+    run: async () => {
+      const billing = await client.billing.fetchUpcomingInvoice();
+    },
+  },
 ];
 
 /**
