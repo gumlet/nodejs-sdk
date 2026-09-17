@@ -778,7 +778,7 @@ const cases: {
     method: 'POST',
     path: '/org/webhooks',
     run: async () => {
-      const webhookAPI = await client.webhookAPIs.create({
+      const webhook = await client.webhooksResource.create({
         url: '',
         secret_token: '',
         triggers: [''],
@@ -792,7 +792,7 @@ const cases: {
     method: 'GET',
     path: '/org/webhooks',
     run: async () => {
-      const webhookAPI = await client.webhookAPIs.list();
+      const webhook = await client.webhooksResource.list();
     },
   },
 
@@ -802,7 +802,7 @@ const cases: {
     path: '/org/webhooks/{webhook_id}',
     label: 'required params',
     run: async () => {
-      const webhookAPI = await client.webhookAPIs.update('webhookId');
+      const webhook = await client.webhooksResource.update('webhookId');
     },
   },
 
@@ -812,7 +812,7 @@ const cases: {
     path: '/org/webhooks/{webhook_id}',
     label: 'all params',
     run: async () => {
-      const webhookAPI = await client.webhookAPIs.update('webhookId', {
+      const webhook = await client.webhooksResource.update('webhookId', {
         url: '',
         secret_token: '',
         triggers: '',
@@ -826,7 +826,7 @@ const cases: {
     method: 'DELETE',
     path: '/org/webhooks/{webhook_id}',
     run: async () => {
-      const webhookAPI = await client.webhookAPIs.delete('webhookId');
+      const webhook = await client.webhooksResource.delete('webhookId');
     },
   },
 
@@ -835,7 +835,7 @@ const cases: {
     method: 'GET',
     path: '/org/webhook/{webhook_id}/history',
     run: async () => {
-      const webhookAPI = await client.webhookAPIs.history('webhookId');
+      const webhook = await client.webhooksResource.history('webhookId');
     },
   },
 

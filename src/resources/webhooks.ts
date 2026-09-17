@@ -5,17 +5,17 @@ import { APIPromise } from '../api-promise';
 import type { RequestOptions } from '../internal/request-options';
 import { path as __scalarPath } from '../internal/utils/path';
 
-export class WebhookAPIs extends APIResource {
+export class Webhooks extends APIResource {
   /**
    * Creates a new webhook listener.
    *
-   * @param {WebhookAPICreateParams} body - The request body to send.
+   * @param {WebhookCreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<WebhookAPICreateResponse>} 200
+   * @returns {APIPromise<WebhookCreateResponse>} 200
    *
    * @example
    * ```ts
-   * const webhookAPI = await client.webhookAPIs.create({
+   * const webhook = await client.webhooksResource.create({
    *   url: '',
    *   secret_token: '',
    *   triggers: [''],
@@ -23,7 +23,7 @@ export class WebhookAPIs extends APIResource {
    * });
    * ```
    */
-  create(body: WebhookAPICreateParams, options?: RequestOptions): APIPromise<WebhookAPICreateResponse> {
+  create(body: WebhookCreateParams, options?: RequestOptions): APIPromise<WebhookCreateResponse> {
     return this._client.post('/org/webhooks', { body, ...options });
   }
 
@@ -31,14 +31,14 @@ export class WebhookAPIs extends APIResource {
    * List all webhooks.
    *
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<WebhookAPIListResponse>} Successful response
+   * @returns {APIPromise<WebhookListResponse>} Successful response
    *
    * @example
    * ```ts
-   * const webhookAPI = await client.webhookAPIs.list();
+   * const webhook = await client.webhooksResource.list();
    * ```
    */
-  list(options?: RequestOptions): APIPromise<WebhookAPIListResponse> {
+  list(options?: RequestOptions): APIPromise<WebhookListResponse> {
     return this._client.get('/org/webhooks', options);
   }
 
@@ -46,20 +46,20 @@ export class WebhookAPIs extends APIResource {
    * Update a webhook listener.
    *
    * @param {string} webhookID - Unique identifier for the Gumlet Webhook which needs to be updated.
-   * @param {WebhookAPIUpdateParams} [body] - The request body to send.
+   * @param {WebhookUpdateParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<WebhookAPIUpdateResponse>} 200
+   * @returns {APIPromise<WebhookUpdateResponse>} 200
    *
    * @example
    * ```ts
-   * const webhookAPI = await client.webhookAPIs.update('webhookId');
+   * const webhook = await client.webhooksResource.update('webhookId');
    * ```
    */
   update(
     webhookID: string,
-    body: WebhookAPIUpdateParams | null | undefined = {},
+    body: WebhookUpdateParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<WebhookAPIUpdateResponse> {
+  ): APIPromise<WebhookUpdateResponse> {
     return this._client.post(__scalarPath`/org/webhooks/${webhookID}`, { body, ...options });
   }
 
@@ -68,14 +68,14 @@ export class WebhookAPIs extends APIResource {
    *
    * @param {string} webhookID - Unique identifier for the Gumlet Webhook which needs to be deleted.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<WebhookAPIDeleteResponse>} 204
+   * @returns {APIPromise<WebhookDeleteResponse>} 204
    *
    * @example
    * ```ts
-   * const webhookAPI = await client.webhookAPIs.delete('webhookId');
+   * const webhook = await client.webhooksResource.delete('webhookId');
    * ```
    */
-  delete(webhookID: string, options?: RequestOptions): APIPromise<WebhookAPIDeleteResponse> {
+  delete(webhookID: string, options?: RequestOptions): APIPromise<WebhookDeleteResponse> {
     return this._client.delete(__scalarPath`/org/webhooks/${webhookID}`, options);
   }
 
@@ -84,19 +84,19 @@ export class WebhookAPIs extends APIResource {
    *
    * @param {string} webhookID - Webhook ID. You can get it using list webhook endpoint.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<WebhookAPIHistoryResponse>} Successful response
+   * @returns {APIPromise<WebhookHistoryResponse>} Successful response
    *
    * @example
    * ```ts
-   * const webhookAPI = await client.webhookAPIs.history('webhookId');
+   * const webhook = await client.webhooksResource.history('webhookId');
    * ```
    */
-  history(webhookID: string, options?: RequestOptions): APIPromise<WebhookAPIHistoryResponse> {
+  history(webhookID: string, options?: RequestOptions): APIPromise<WebhookHistoryResponse> {
     return this._client.get(__scalarPath`/org/webhook/${webhookID}/history`, options);
   }
 }
 
-export interface WebhookAPICreateParams {
+export interface WebhookCreateParams {
   /**
    * URL from the application you want to send data to.
    */
@@ -115,7 +115,7 @@ export interface WebhookAPICreateParams {
   sources: Array<string>;
 }
 
-export interface WebhookAPICreateResponse {
+export interface WebhookCreateResponse {
   id?: string;
   url?: string;
   triggers?: Array<string>;
@@ -125,7 +125,7 @@ export interface WebhookAPICreateResponse {
   secret_token?: string;
 }
 
-export interface WebhookAPIListResponse {
+export interface WebhookListResponse {
   /**
    * Webhook ID
    */
@@ -156,7 +156,7 @@ export interface WebhookAPIListResponse {
   secret_token?: string;
 }
 
-export interface WebhookAPIUpdateParams {
+export interface WebhookUpdateParams {
   /**
    * URL from the application you want to send data to.
    */
@@ -175,7 +175,7 @@ export interface WebhookAPIUpdateParams {
   sources?: string;
 }
 
-export interface WebhookAPIUpdateResponse {
+export interface WebhookUpdateResponse {
   id?: string;
   url?: string;
   triggers?: Array<string>;
@@ -185,12 +185,12 @@ export interface WebhookAPIUpdateResponse {
   secret_token?: string;
 }
 
-export type WebhookAPIDeleteResponse = Record<string, unknown>;
+export type WebhookDeleteResponse = Record<string, unknown>;
 
-export type WebhookAPIHistoryResponse = Array<WebhookAPIHistoryResponse.WebhookAPIHistoryResponseItem>;
+export type WebhookHistoryResponse = Array<WebhookHistoryResponse.WebhookHistoryResponseItem>;
 
-export namespace WebhookAPIHistoryResponse {
-  export interface WebhookAPIHistoryResponseItem {
+export namespace WebhookHistoryResponse {
+  export interface WebhookHistoryResponseItem {
     /**
      * Webhook event ID
      */
@@ -217,14 +217,14 @@ export namespace WebhookAPIHistoryResponse {
     created_at: string;
   }
 }
-export declare namespace WebhookAPIs {
+export declare namespace Webhooks {
   export {
-    type WebhookAPICreateResponse as WebhookAPICreateResponse,
-    type WebhookAPIListResponse as WebhookAPIListResponse,
-    type WebhookAPIUpdateResponse as WebhookAPIUpdateResponse,
-    type WebhookAPIDeleteResponse as WebhookAPIDeleteResponse,
-    type WebhookAPIHistoryResponse as WebhookAPIHistoryResponse,
-    type WebhookAPICreateParams as WebhookAPICreateParams,
-    type WebhookAPIUpdateParams as WebhookAPIUpdateParams,
+    type WebhookCreateResponse as WebhookCreateResponse,
+    type WebhookListResponse as WebhookListResponse,
+    type WebhookUpdateResponse as WebhookUpdateResponse,
+    type WebhookDeleteResponse as WebhookDeleteResponse,
+    type WebhookHistoryResponse as WebhookHistoryResponse,
+    type WebhookCreateParams as WebhookCreateParams,
+    type WebhookUpdateParams as WebhookUpdateParams,
   };
 }

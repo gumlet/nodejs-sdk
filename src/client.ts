@@ -107,15 +107,15 @@ import {
   type VideoPlaylistReorderAssetParams,
 } from './resources/video-playlists';
 import {
-  WebhookAPIs,
-  type WebhookAPICreateResponse,
-  type WebhookAPIListResponse,
-  type WebhookAPIUpdateResponse,
-  type WebhookAPIDeleteResponse,
-  type WebhookAPIHistoryResponse,
-  type WebhookAPICreateParams,
-  type WebhookAPIUpdateParams,
-} from './resources/webhook-apis';
+  Webhooks,
+  type WebhookCreateResponse,
+  type WebhookListResponse,
+  type WebhookUpdateResponse,
+  type WebhookDeleteResponse,
+  type WebhookHistoryResponse,
+  type WebhookCreateParams,
+  type WebhookUpdateParams,
+} from './resources/webhooks';
 import {
   ImageSources,
   type ImageSourceCreateResponse,
@@ -1001,7 +1001,7 @@ export class Gumlet {
   multipartUpload: MultipartUpload = new MultipartUpload(this);
   videoProfiles: VideoProfiles = new VideoProfiles(this);
   videoPlaylists: VideoPlaylists = new VideoPlaylists(this);
-  webhookAPIs: WebhookAPIs = new WebhookAPIs(this);
+  webhooksResource: Webhooks = new Webhooks(this);
   imageSources: ImageSources = new ImageSources(this);
   imageUsageAnalytics: ImageUsageAnalytics = new ImageUsageAnalytics(this);
   liveStreamAssets: LiveStreamAssets = new LiveStreamAssets(this);
@@ -1022,7 +1022,7 @@ Gumlet.VideoUsageAnalytics = VideoUsageAnalytics;
 Gumlet.MultipartUpload = MultipartUpload;
 Gumlet.VideoProfiles = VideoProfiles;
 Gumlet.VideoPlaylists = VideoPlaylists;
-Gumlet.WebhookAPIs = WebhookAPIs;
+Gumlet.Webhooks = Webhooks;
 Gumlet.ImageSources = ImageSources;
 Gumlet.ImageUsageAnalytics = ImageUsageAnalytics;
 Gumlet.LiveStreamAssets = LiveStreamAssets;
@@ -1126,14 +1126,14 @@ export declare namespace Gumlet {
   };
 
   export {
-    WebhookAPIs as WebhookAPIs,
-    type WebhookAPICreateResponse as WebhookAPICreateResponse,
-    type WebhookAPIListResponse as WebhookAPIListResponse,
-    type WebhookAPIUpdateResponse as WebhookAPIUpdateResponse,
-    type WebhookAPIDeleteResponse as WebhookAPIDeleteResponse,
-    type WebhookAPIHistoryResponse as WebhookAPIHistoryResponse,
-    type WebhookAPICreateParams as WebhookAPICreateParams,
-    type WebhookAPIUpdateParams as WebhookAPIUpdateParams,
+    Webhooks as Webhooks,
+    type WebhookCreateResponse as WebhookCreateResponse,
+    type WebhookListResponse as WebhookListResponse,
+    type WebhookUpdateResponse as WebhookUpdateResponse,
+    type WebhookDeleteResponse as WebhookDeleteResponse,
+    type WebhookHistoryResponse as WebhookHistoryResponse,
+    type WebhookCreateParams as WebhookCreateParams,
+    type WebhookUpdateParams as WebhookUpdateParams,
   };
 
   export {

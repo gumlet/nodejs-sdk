@@ -45,7 +45,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [`delete`](#delete)
   - [Get playlist assets](#get-playlist-assets)
   - [Arrange Videos In Playlist](#arrange-videos-in-playlist)
-- [`WebhookApis`](#webhookapis)
+- [`Webhooks`](#webhooks)
   - [Create Webhook](#create-webhook)
   - [List Webhooks](#list-webhooks)
   - [Update Webhook](#update-webhook)
@@ -690,7 +690,7 @@ const videoPlaylist = await client.videoPlaylists.reorderAsset('playlistId', {
 });
 ```
 
-## `WebhookApis`
+## `Webhooks`
 
 Configure webhooks for account and asset events.
 
@@ -700,11 +700,11 @@ Creates a new webhook listener.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`WebhookAPICreateParams`](./src/resources/webhook-apis.ts) |
-| Response | [`WebhookAPICreateResponse`](./src/resources/webhook-apis.ts) |
+| Request | [`WebhookCreateParams`](./src/resources/webhooks.ts) |
+| Response | [`WebhookCreateResponse`](./src/resources/webhooks.ts) |
 
 ```ts
-const webhookAPI = await client.webhookAPIs.create({
+const webhook = await client.webhooksResource.create({
   url: '',
   secret_token: '',
   triggers: [''],
@@ -718,10 +718,10 @@ List all webhooks.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`WebhookAPIListResponse`](./src/resources/webhook-apis.ts) |
+| Response | [`WebhookListResponse`](./src/resources/webhooks.ts) |
 
 ```ts
-const webhookAPI = await client.webhookAPIs.list();
+const webhook = await client.webhooksResource.list();
 ```
 
 ### Update Webhook
@@ -730,11 +730,11 @@ Update a webhook listener.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`WebhookAPIUpdateParams`](./src/resources/webhook-apis.ts) |
-| Response | [`WebhookAPIUpdateResponse`](./src/resources/webhook-apis.ts) |
+| Request | [`WebhookUpdateParams`](./src/resources/webhooks.ts) |
+| Response | [`WebhookUpdateResponse`](./src/resources/webhooks.ts) |
 
 ```ts
-const webhookAPI = await client.webhookAPIs.update('webhookId');
+const webhook = await client.webhooksResource.update('webhookId');
 ```
 
 ### Delete Webhook
@@ -743,10 +743,10 @@ Delete webhook listener endpoint.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`WebhookAPIDeleteResponse`](./src/resources/webhook-apis.ts) |
+| Response | [`WebhookDeleteResponse`](./src/resources/webhooks.ts) |
 
 ```ts
-const webhookAPI = await client.webhookAPIs.delete('webhookId');
+const webhook = await client.webhooksResource.delete('webhookId');
 ```
 
 ### Get History
@@ -755,10 +755,10 @@ Get logs history for a given webhook.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`WebhookAPIHistoryResponse`](./src/resources/webhook-apis.ts) |
+| Response | [`WebhookHistoryResponse`](./src/resources/webhooks.ts) |
 
 ```ts
-const webhookAPI = await client.webhookAPIs.history('webhookId');
+const webhook = await client.webhooksResource.history('webhookId');
 ```
 
 ## `ImageSources`
