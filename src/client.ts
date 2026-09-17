@@ -109,8 +109,10 @@ import {
 import {
   WebhookAPIs,
   type WebhookAPICreateResponse,
+  type WebhookAPIListResponse,
   type WebhookAPIUpdateResponse,
   type WebhookAPIDeleteResponse,
+  type WebhookAPIHistoryResponse,
   type WebhookAPICreateParams,
   type WebhookAPIUpdateParams,
 } from './resources/webhook-apis';
@@ -1126,8 +1128,10 @@ export declare namespace Gumlet {
   export {
     WebhookAPIs as WebhookAPIs,
     type WebhookAPICreateResponse as WebhookAPICreateResponse,
+    type WebhookAPIListResponse as WebhookAPIListResponse,
     type WebhookAPIUpdateResponse as WebhookAPIUpdateResponse,
     type WebhookAPIDeleteResponse as WebhookAPIDeleteResponse,
+    type WebhookAPIHistoryResponse as WebhookAPIHistoryResponse,
     type WebhookAPICreateParams as WebhookAPICreateParams,
     type WebhookAPIUpdateParams as WebhookAPIUpdateParams,
   };

@@ -28,6 +28,21 @@ export class WebhookAPIs extends APIResource {
   }
 
   /**
+   * List all webhooks.
+   *
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<WebhookAPIListResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const webhookAPI = await client.webhookAPIs.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<WebhookAPIListResponse> {
+    return this._client.get('/org/webhooks', options);
+  }
+
+  /**
    * Update a webhook listener.
    *
    * @param {string} webhookID - Unique identifier for the Gumlet Webhook which needs to be updated.
@@ -63,6 +78,22 @@ export class WebhookAPIs extends APIResource {
   delete(webhookID: string, options?: RequestOptions): APIPromise<WebhookAPIDeleteResponse> {
     return this._client.delete(__scalarPath`/org/webhooks/${webhookID}`, options);
   }
+
+  /**
+   * Get logs history for a given webhook.
+   *
+   * @param {string} webhookID - Webhook ID. You can get it using list webhook endpoint.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<WebhookAPIHistoryResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const webhookAPI = await client.webhookAPIs.history('webhookId');
+   * ```
+   */
+  history(webhookID: string, options?: RequestOptions): APIPromise<WebhookAPIHistoryResponse> {
+    return this._client.get(__scalarPath`/org/webhook/${webhookID}/history`, options);
+  }
 }
 
 export interface WebhookAPICreateParams {
@@ -91,6 +122,37 @@ export interface WebhookAPICreateResponse {
   created_at?: string;
   updated_at?: string;
   sources?: Array<string>;
+  secret_token?: string;
+}
+
+export interface WebhookAPIListResponse {
+  /**
+   * Webhook ID
+   */
+  id: string;
+  /**
+   * Webhook URL
+   */
+  url: string;
+  /**
+   * List of triggers configured for this webhook
+   */
+  triggers: Array<string>;
+  /**
+   * Creation timestamp in ISO 8601 format
+   */
+  created_at: string;
+  /**
+   * Update timestamp in ISO 8601 format
+   */
+  updated_at: string;
+  /**
+   * List of workspace IDs for which the webhook is enabled.
+   */
+  sources: Array<string>;
+  /**
+   * The token which you must validate when you receive the webhook. It's given by you when you create the webhook.
+   */
   secret_token?: string;
 }
 
@@ -124,11 +186,44 @@ export interface WebhookAPIUpdateResponse {
 }
 
 export type WebhookAPIDeleteResponse = Record<string, unknown>;
+
+export type WebhookAPIHistoryResponse = Array<WebhookAPIHistoryResponse.WebhookAPIHistoryResponseItem>;
+
+export namespace WebhookAPIHistoryResponse {
+  export interface WebhookAPIHistoryResponseItem {
+    /**
+     * Webhook event ID
+     */
+    id: string;
+    /**
+     * Status of webhook event
+     */
+    status: string;
+    /**
+     * Number of retries it needed to deliver webhook.
+     */
+    retry_count: number;
+    /**
+     * Name of the webhook event
+     */
+    event: string;
+    /**
+     * Asset ID for which the event was fired
+     */
+    asset_id: string;
+    /**
+     * Event timestamp in ISO 8601 format
+     */
+    created_at: string;
+  }
+}
 export declare namespace WebhookAPIs {
   export {
     type WebhookAPICreateResponse as WebhookAPICreateResponse,
+    type WebhookAPIListResponse as WebhookAPIListResponse,
     type WebhookAPIUpdateResponse as WebhookAPIUpdateResponse,
     type WebhookAPIDeleteResponse as WebhookAPIDeleteResponse,
+    type WebhookAPIHistoryResponse as WebhookAPIHistoryResponse,
     type WebhookAPICreateParams as WebhookAPICreateParams,
     type WebhookAPIUpdateParams as WebhookAPIUpdateParams,
   };
