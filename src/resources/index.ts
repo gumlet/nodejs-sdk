@@ -180,3 +180,11 @@ export { UserData } from './user-data';
 export type { UserDataFetchResponse } from './user-data';
 export { AuditLogs } from './audit-logs';
 export type { AuditLogFetchParams, AuditLogFetchResponse } from './audit-logs';
+export { Billing } from './billing';
+export type {
+  BillingListInvoicesResponse,
+  BillingFetchDetailsResponse,
+  BillingUpdateDetailsParams,
+  BillingUpdateDetailsResponse,
+  BillingFetchUpcomingInvoiceResponse,
+} from './billing';

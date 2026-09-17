@@ -20,6 +20,7 @@ export {
   OrganizationData,
   UserData,
   AuditLogs,
+  Billing,
 } from './resources/index';
 export type {
   VideoAssetCreateParams,
@@ -156,4 +157,9 @@ export type {
   UserDataFetchResponse,
   AuditLogFetchParams,
   AuditLogFetchResponse,
+  BillingListInvoicesResponse,
+  BillingFetchDetailsResponse,
+  BillingUpdateDetailsParams,
+  BillingUpdateDetailsResponse,
+  BillingFetchUpcomingInvoiceResponse,
 } from './resources/index';
