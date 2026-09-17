@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.14](https://github.com/gumlet/nodejs-sdk/compare/v1.2.12...v1.2.14) (2026-09-17)
+
+
+### Features
+
+* **api:** add operation videoAssets.deleteMany (+1 more change) ([b9f9617](https://github.com/gumlet/nodejs-sdk/commit/b9f9617c51a3911b65f4699398ef5885115b1c6a))
+* **api:** update SDK surface (2 changes) ([e732855](https://github.com/gumlet/nodejs-sdk/commit/e73285589ae07423d555d632ed20850540536595))
+
+
+### Chores
+
+* release 1.2.14 ([32bbdf3](https://github.com/gumlet/nodejs-sdk/commit/32bbdf3a5fcded4d28c4ea435b419d4fb2f8f781))
+* release 1.2.14 ([282cc0e](https://github.com/gumlet/nodejs-sdk/commit/282cc0efcc475d44f87636bc79cd86448f2d2cf7))
+
 ## [1.2.12](https://github.com/gumlet/nodejs-sdk/compare/v1.2.11...v1.2.12) (2026-09-15)
 
 

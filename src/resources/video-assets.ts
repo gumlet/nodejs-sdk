@@ -258,6 +258,49 @@ export class VideoAssets extends APIResource {
   ): APIPromise<VideoAssetListDeprecatedResponse> {
     return this._client.get(__scalarPath`/video/assets/list/${workspaceID}`, { query, ...options });
   }
+
+  /**
+   * Delete multiple VOD assets at once.
+   *
+   * @param {VideoAssetDeleteManyParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<VideoAssetDeleteManyResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const videoAsset = await client.videoAssets.deleteMany({
+   *   source_id: '60bd2ba353ff754d28179ee6',
+   *   asset_list: ['64249a8858fd3a208b987702', '64784bae843b155b829bbf84'],
+   * });
+   * ```
+   */
+  deleteMany(
+    body: VideoAssetDeleteManyParams,
+    options?: RequestOptions,
+  ): APIPromise<VideoAssetDeleteManyResponse> {
+    return this._client.delete('/video/assets/bulk/delete', { body, ...options });
+  }
+
+  /**
+   * Add / remove tags from multiple assets at once.
+   *
+   * @param {VideoAssetTagManyParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<VideoAssetTagManyResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const videoAsset = await client.videoAssets.tagMany({
+   *   source_id: '60bd2ba353ff754d28179ee6',
+   *   add_tags: ['tag-1'],
+   *   remove_tags: ['playlist-1'],
+   *   asset_list: ['6221db301c8b821b0519fba0', '61e8f2726ec832ab2ac4fa6e'],
+   * });
+   * ```
+   */
+  tagMany(body: VideoAssetTagManyParams, options?: RequestOptions): APIPromise<VideoAssetTagManyResponse> {
+    return this._client.post('/video/assets/bulk/tag', { body, ...options });
+  }
 }
 
 export interface VideoAssetCreateParams {
@@ -1370,6 +1413,10 @@ export interface VideoAssetUpdateParams {
    * `{workspace_id}/{asset_id}/origin-{asset_id}`
    */
   input?: string;
+  /**
+   * To reprocess same video, pass this as true.
+   */
+  reprocess?: boolean;
 }
 
 export namespace VideoAssetUpdateParams {
@@ -1813,6 +1860,50 @@ export namespace VideoAssetListDeprecatedResponse {
     }
   }
 }
+
+export interface VideoAssetDeleteManyParams {
+  /**
+   * LIst of asset ids to delete
+   */
+  asset_list: Array<string>;
+  /**
+   * Workspace ID from which assets needs to be deleted.
+   */
+  source_id: string;
+}
+
+export interface VideoAssetDeleteManyResponse {
+  /**
+   * Boolean parameter indicating if the delete was successful.
+   */
+  success: boolean;
+}
+
+export interface VideoAssetTagManyParams {
+  /**
+   * List of asset ids to update the tags for.
+   */
+  asset_list: Array<string>;
+  /**
+   * Workspace ID in which the videos needs the operation
+   */
+  source_id: string;
+  /**
+   * List of tags to add to given assets.
+   */
+  add_tags: Array<string>;
+  /**
+   * List of tags to remove from given assets. Pass empty array if nothing is to be removed.
+   */
+  remove_tags: Array<string>;
+}
+
+export interface VideoAssetTagManyResponse {
+  /**
+   * Boolean flag indicating if operation was successful.
+   */
+  success: boolean;
+}
 export declare namespace VideoAssets {
   export {
     type VideoAssetCreateResponse as VideoAssetCreateResponse,
@@ -1824,6 +1915,8 @@ export declare namespace VideoAssets {
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
     type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
+    type VideoAssetDeleteManyResponse as VideoAssetDeleteManyResponse,
+    type VideoAssetTagManyResponse as VideoAssetTagManyResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
@@ -1831,5 +1924,7 @@ export declare namespace VideoAssets {
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
     type VideoAssetListParams as VideoAssetListParams,
     type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
+    type VideoAssetDeleteManyParams as VideoAssetDeleteManyParams,
+    type VideoAssetTagManyParams as VideoAssetTagManyParams,
   };
 }

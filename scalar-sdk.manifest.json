@@ -1,7 +1,7 @@
 {
   "name": "Gumlet",
   "slug": "gumlet",
-  "generatorVersion": "0.32.13",
+  "generatorVersion": "0.32.14",
   "servers": [
     "https://api.gumlet.com/v1"
   ],
@@ -743,7 +743,8 @@
         "call_to_actions",
         "metadata",
         "remove_subtitles",
-        "input"
+        "input",
+        "reprocess"
       ],
       "publicBodyParams": [
         "asset_id",
@@ -753,7 +754,8 @@
         "call_to_actions",
         "metadata",
         "remove_subtitles",
-        "input"
+        "input",
+        "reprocess"
       ],
       "bodyParamDetails": [
         {
@@ -786,6 +788,10 @@
         },
         {
           "name": "input",
+          "required": false
+        },
+        {
+          "name": "reprocess",
           "required": false
         }
       ],
@@ -1447,6 +1453,178 @@
               "encoding": "json"
             }
           ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "deleteMany",
+      "publicOperation": "deleteMany",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/video/assets/bulk/delete",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "asset_list",
+        "source_id"
+      ],
+      "publicBodyParams": [
+        "asset_list",
+        "source_id"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "asset_list",
+          "required": true
+        },
+        {
+          "name": "source_id",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetDeleteManyParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contents": []
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "tagMany",
+      "publicOperation": "tagMany",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/bulk/tag",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "asset_list",
+        "source_id",
+        "add_tags",
+        "remove_tags"
+      ],
+      "publicBodyParams": [
+        "asset_list",
+        "source_id",
+        "add_tags",
+        "remove_tags"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "asset_list",
+          "required": true
+        },
+        {
+          "name": "source_id",
+          "required": true
+        },
+        {
+          "name": "add_tags",
+          "required": true
+        },
+        {
+          "name": "remove_tags",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetTagManyParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contents": []
         }
       ],
       "responseLinks": [],

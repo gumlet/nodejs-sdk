@@ -241,6 +241,32 @@ const cases: {
   },
 
   {
+    operation: 'deleteMany',
+    method: 'DELETE',
+    path: '/video/assets/bulk/delete',
+    run: async () => {
+      const videoAsset = await client.videoAssets.deleteMany({
+        source_id: '60bd2ba353ff754d28179ee6',
+        asset_list: ['64249a8858fd3a208b987702', '64784bae843b155b829bbf84'],
+      });
+    },
+  },
+
+  {
+    operation: 'tagMany',
+    method: 'POST',
+    path: '/video/assets/bulk/tag',
+    run: async () => {
+      const videoAsset = await client.videoAssets.tagMany({
+        source_id: '60bd2ba353ff754d28179ee6',
+        add_tags: ['tag-1'],
+        remove_tags: ['playlist-1'],
+        asset_list: ['6221db301c8b821b0519fba0', '61e8f2726ec832ab2ac4fa6e'],
+      });
+    },
+  },
+
+  {
     operation: 'upload',
     method: 'POST',
     path: '/video/assets/{asset_ID}/subtitle/upload',

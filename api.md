@@ -15,6 +15,8 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
   - [List Assets](#list-assets)
   - [List Assets](#list-assets-1)
+  - [Bulk Delete](#bulk-delete)
+  - [Bulk Tag](#bulk-tag)
 - [`SubtitleUpload`](#subtitleupload)
   - [Upload Subtitles](#upload-subtitles)
   - [Complete Subtitle Upload](#complete-subtitle-upload)
@@ -294,6 +296,40 @@ const videoAsset = await client.videoAssets.list('workspaceId', {
 const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
   sortBy: 'created_at',
   orderBy: 'desc',
+});
+```
+
+### Bulk Delete
+
+Delete multiple VOD assets at once.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`VideoAssetDeleteManyParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetDeleteManyResponse`](./src/resources/video-assets.ts) |
+
+```ts
+const videoAsset = await client.videoAssets.deleteMany({
+  source_id: '60bd2ba353ff754d28179ee6',
+  asset_list: ['64249a8858fd3a208b987702', '64784bae843b155b829bbf84'],
+});
+```
+
+### Bulk Tag
+
+Add / remove tags from multiple assets at once.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`VideoAssetTagManyParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetTagManyResponse`](./src/resources/video-assets.ts) |
+
+```ts
+const videoAsset = await client.videoAssets.tagMany({
+  source_id: '60bd2ba353ff754d28179ee6',
+  add_tags: ['tag-1'],
+  remove_tags: ['playlist-1'],
+  asset_list: ['6221db301c8b821b0519fba0', '61e8f2726ec832ab2ac4fa6e'],
 });
 ```
 
