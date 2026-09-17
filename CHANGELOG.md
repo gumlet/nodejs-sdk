@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.2.18](https://github.com/gumlet/nodejs-sdk/compare/v1.2.17...v1.2.18) (2026-09-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `videoAssets.analytics` (`POST /v1/video/assets/{asset_id}/analytics`).
+    - Removed operation `channelViewers.listSubscribers` (`GET /v1/channel/{workspace_id}/viewers`).
+
+### Features
+
+* **api:** add operation videoAssets.analytics (+1 more change) ([44ea0b1](https://github.com/gumlet/nodejs-sdk/commit/44ea0b1c834f57f047e57444c90d1c7ebd398b0c))
+* **api:** remove operation videoAssets.analytics (+1 more change) ([b7ffe5d](https://github.com/gumlet/nodejs-sdk/commit/b7ffe5d3824f0f0be306255507b2274a7138bcf3))
+
+
+### Chores
+
+* release 1.2.18 ([b6a0379](https://github.com/gumlet/nodejs-sdk/commit/b6a0379b336db9b316ca151838105e62f3ba3f85))
+* release 1.2.18 ([8282d5a](https://github.com/gumlet/nodejs-sdk/commit/8282d5a323ed3c926a124843214eaa32b90c2587))
+
 ## [1.2.17](https://github.com/gumlet/nodejs-sdk/compare/v1.2.16...v1.2.17) (2026-09-17)
 
 
