@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.2.16](https://github.com/gumlet/nodejs-sdk/compare/v1.2.15...v1.2.16) (2026-09-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 5 breaking changes to the SDK surface.
+    - Removed operation `webhookApis.create` (`POST /org/webhooks`).
+    - Removed operation `webhookApis.list` (`GET /org/webhooks`).
+    - Removed operation `webhookApis.update` (`POST /org/webhooks/{webhook_id}`).
+    - Removed operation `webhookApis.delete` (`DELETE /org/webhooks/{webhook_id}`).
+    - Removed operation `webhookApis.history` (`GET /org/webhook/{webhook_id}/history`).
+
+### Features
+
+* **api:** add operation webhookApis.list (+1 more change) ([ec8d148](https://github.com/gumlet/nodejs-sdk/commit/ec8d148edcf57d93d8d06d3cfb3392b80822d112))
+* **api:** remove operation webhookApis.create (+9 more changes) ([a88faad](https://github.com/gumlet/nodejs-sdk/commit/a88faad75e163bffbe498a10728f1fde9986f432))
+
+
+### Chores
+
+* **api:** update generated SDK content ([80b0884](https://github.com/gumlet/nodejs-sdk/commit/80b088464a748275df8af7de2f8a819ef8bc6909))
+* release 1.2.16 ([5d9140f](https://github.com/gumlet/nodejs-sdk/commit/5d9140fdfb5f079fae87b3570257a3264e2ad438))
+* release 1.2.16 ([49775d8](https://github.com/gumlet/nodejs-sdk/commit/49775d8e3269a97de0da906ec1a9f5830fc85da2))
+
 ## [1.2.15](https://github.com/gumlet/nodejs-sdk/compare/v1.2.14...v1.2.15) (2026-09-17)
 
 
