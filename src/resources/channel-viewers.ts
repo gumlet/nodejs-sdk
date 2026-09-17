@@ -83,6 +83,30 @@ export class ChannelViewers extends APIResource {
       multipartFormRequestOptions({ body, ...options }, this._client),
     );
   }
+
+  /**
+   * List all channel subscribers.
+   *
+   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
+   * @param {ChannelViewerListSubscribersParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ChannelViewerListSubscribersResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const channelViewer = await client.channelViewers.listSubscribers('workspaceId', {
+   *   page_number: 1,
+   *   page_size: 10,
+   * });
+   * ```
+   */
+  listSubscribers(
+    workspaceID: string,
+    query: ChannelViewerListSubscribersParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ChannelViewerListSubscribersResponse> {
+    return this._client.get(__scalarPath`/channel/${workspaceID}/viewers`, { query, ...options });
+  }
 }
 
 export interface ChannelViewerInviteParams {
@@ -137,13 +161,81 @@ export interface ChannelViewerInviteCsvParams {
 export interface ChannelViewerInviteCsvResponse {
   success?: boolean;
 }
+
+export interface ChannelViewerListSubscribersParams {
+  /**
+   * Page number to retrieve. Starts at 1.
+   * @default 1
+   * @minimum 1
+   * @multipleOf 1
+   */
+  page_number?: number;
+  /**
+   * Number of items to return per page
+   * @default 10
+   * @minimum 1
+   * @multipleOf 1
+   */
+  page_size?: number;
+}
+
+export interface ChannelViewerListSubscribersResponse {
+  /**
+   * Details about subscribers
+   */
+  subscriptions: Array<ChannelViewerListSubscribersResponse.Subscription>;
+  /**
+   * Number of total subscribers
+   */
+  total_count: number;
+}
+
+export namespace ChannelViewerListSubscribersResponse {
+  export interface Subscription {
+    /**
+     * Subscriber ID
+     */
+    id: string;
+    /**
+     * Email ID of the subscriber
+     * @format email
+     */
+    email: string;
+    /**
+     * Name of the subscriber
+     */
+    name: string;
+    /**
+     * Current status of the subscriber
+     */
+    status: string;
+    /**
+     * Title of channel
+     */
+    channel_title: string;
+    /**
+     * ISO 8601 timestamp of the invitation time
+     */
+    invited_at?: string;
+    /**
+     * User ID of the user who invited this subscriber
+     */
+    invited_by?: string;
+    /**
+     * URL of the invitation from where the person can accept the invite.
+     */
+    invitation_link?: string;
+  }
+}
 export declare namespace ChannelViewers {
   export {
     type ChannelViewerInviteResponse as ChannelViewerInviteResponse,
     type ChannelViewerDeleteResponse as ChannelViewerDeleteResponse,
     type ChannelViewerInviteCsvResponse as ChannelViewerInviteCsvResponse,
+    type ChannelViewerListSubscribersResponse as ChannelViewerListSubscribersResponse,
     type ChannelViewerInviteParams as ChannelViewerInviteParams,
     type ChannelViewerDeleteParams as ChannelViewerDeleteParams,
     type ChannelViewerInviteCsvParams as ChannelViewerInviteCsvParams,
+    type ChannelViewerListSubscribersParams as ChannelViewerListSubscribersParams,
   };
 }

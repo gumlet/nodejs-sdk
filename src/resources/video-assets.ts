@@ -301,6 +301,34 @@ export class VideoAssets extends APIResource {
   tagMany(body: VideoAssetTagManyParams, options?: RequestOptions): APIPromise<VideoAssetTagManyResponse> {
     return this._client.post('/video/assets/bulk/tag', { body, ...options });
   }
+
+  /**
+   * Get video analytics for a single asset.
+   *
+   * @param {string} assetID - Gumlet asset ID
+   * @param {VideoAssetAnalyticsParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<VideoAssetAnalyticsResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const videoAsset = await client.videoAssets.analytics('assetId', {
+   *   group_by: 'daily',
+   *   date_range: {
+   *     start_at: '',
+   *     end_at: '',
+   *   },
+   *   metrics: ['impressions'],
+   * });
+   * ```
+   */
+  analytics(
+    assetID: string,
+    body: VideoAssetAnalyticsParams,
+    options?: RequestOptions,
+  ): APIPromise<VideoAssetAnalyticsResponse> {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/analytics`, { body, ...options });
+  }
 }
 
 export interface VideoAssetCreateParams {
@@ -1904,6 +1932,241 @@ export interface VideoAssetTagManyResponse {
    */
   success: boolean;
 }
+
+export interface VideoAssetAnalyticsParams {
+  /**
+   * Group the data by this period.
+   */
+  group_by: 'daily' | 'monthly' | 'weekly';
+  date_range: VideoAssetAnalyticsParams.DateRange;
+  /**
+   * List of metrics to return in response.
+   */
+  metrics: Array<
+    | 'impressions'
+    | 'views'
+    | 'playing_time'
+    | 'top_countries'
+    | 'top_pages'
+    | 'top_cities'
+    | 'top_device_types'
+    | 'top_browsers'
+    | 'heatmap'
+    | 'widget_data'
+  >;
+  /**
+   * Page number to fetch. Starting at 1
+   */
+  page_number?: number;
+  /**
+   * Number of items to return per page
+   */
+  page_size?: number;
+}
+
+export namespace VideoAssetAnalyticsParams {
+  export interface DateRange {
+    /**
+     * ISO 8601 start timestamp
+     */
+    start_at: string;
+    /**
+     * ISO 8601 end timestamp
+     */
+    end_at: string;
+  }
+}
+
+export interface VideoAssetAnalyticsResponse {
+  playing_time: Array<VideoAssetAnalyticsResponse.PlayingTime>;
+  /**
+   * Heatmap data
+   */
+  heatmap?: Array<VideoAssetAnalyticsResponse.Heatmap>;
+  /**
+   * Views data
+   */
+  views?: Array<VideoAssetAnalyticsResponse.View>;
+  '01M2QP6KS1HM1JE912S8K9DJ2N'?: unknown;
+  impressions?: Array<VideoAssetAnalyticsResponse.Impression>;
+  /**
+   * Data for top countries
+   */
+  top_countries?: Array<VideoAssetAnalyticsResponse.TopCountry>;
+  /**
+   * Data for top pages
+   */
+  top_pages?: Array<Record<string, unknown>>;
+  /**
+   * Data for top cities
+   */
+  top_cities?: Array<VideoAssetAnalyticsResponse.TopCity>;
+  /**
+   * Data for top browsers
+   */
+  top_browsers?: Array<VideoAssetAnalyticsResponse.TopBrowser>;
+  /**
+   * Data for top device types
+   */
+  top_device_types?: Array<VideoAssetAnalyticsResponse.TopDeviceType>;
+  widget_data?: VideoAssetAnalyticsResponse.WidgetData;
+}
+
+export namespace VideoAssetAnalyticsResponse {
+  export interface PlayingTime {
+    /**
+     * Milliseconds since epoch timestamp for the data point
+     * @format uint64
+     */
+    date: number;
+    /**
+     * Milliseconds of watch time for the timestamp above. A value of 10000 means 10 seconds of watch time.
+     * @format uint64
+     */
+    value: number;
+  }
+
+  export interface Heatmap {
+    /**
+     * Buckets of seconds of video. E.g. '0-10', '10-20' etc.
+     */
+    bucket: string;
+    /**
+     * Percent of viewers who viewed that portion of video
+     */
+    count: number;
+  }
+
+  export interface View {
+    /**
+     * Milliseconds since epoch timestamp for the data point
+     * @format uint64
+     */
+    date: number;
+    /**
+     * Count of views for the given timestamp
+     * @format uint64
+     */
+    value: number;
+  }
+
+  export interface Impression {
+    /**
+     * Milliseconds since epoch timestamp for the data point
+     * @format uint64
+     */
+    date: number;
+    /**
+     * Number of impressions
+     * @format uint64
+     */
+    value: number;
+  }
+
+  export interface TopCountry {
+    /**
+     * Name of the country
+     */
+    key: string;
+    /**
+     * Number of views from a given country
+     */
+    views: string;
+    /**
+     * Number of impressions from a given country
+     */
+    impressions: string;
+  }
+
+  export interface TopCity {
+    /**
+     * Name of the city
+     */
+    key: string;
+    /**
+     * Number of views from a given city
+     */
+    views: string;
+    /**
+     * Number of impressions from a given city
+     */
+    impressions: string;
+  }
+
+  export interface TopBrowser {
+    /**
+     * Name of the browser
+     */
+    key: string;
+    /**
+     * Number of views from a given browser
+     */
+    views: string;
+    /**
+     * Number of impressions from a given browser
+     */
+    impressions: string;
+  }
+
+  export interface TopDeviceType {
+    /**
+     * Name of the platform
+     */
+    key: string;
+    /**
+     * Number of views from a given platform
+     */
+    views: string;
+    /**
+     * Number of impressions from a given platform
+     */
+    impressions: string;
+  }
+
+  export interface WidgetData {
+    /**
+     * If there are more items apart from the response given.
+     */
+    hasMore: boolean;
+    /**
+     * Data about the lead form submission
+     */
+    widgetData: Array<WidgetData.WidgetData>;
+  }
+
+  export namespace WidgetData {
+    export interface WidgetData {
+      /**
+       * Asset ID
+       */
+      asset_id: string;
+      /**
+       * Page URL where lead was captured
+       */
+      page_url: string;
+      /**
+       * Video time in milliseconds when the lead was captured
+       */
+      playback_time_instant_milli: string;
+      /**
+       * Workspace ID
+       */
+      workspace_id: string;
+      /**
+       * Lead capture time in seconds since epoch
+       */
+      timestamp: string;
+      /**
+       * Email id submitted
+       */
+      email: string;
+      /**
+       * Name submitted
+       */
+      name: string;
+    }
+  }
+}
 export declare namespace VideoAssets {
   export {
     type VideoAssetCreateResponse as VideoAssetCreateResponse,
@@ -1917,6 +2180,7 @@ export declare namespace VideoAssets {
     type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
     type VideoAssetDeleteManyResponse as VideoAssetDeleteManyResponse,
     type VideoAssetTagManyResponse as VideoAssetTagManyResponse,
+    type VideoAssetAnalyticsResponse as VideoAssetAnalyticsResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
@@ -1926,5 +2190,6 @@ export declare namespace VideoAssets {
     type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
     type VideoAssetDeleteManyParams as VideoAssetDeleteManyParams,
     type VideoAssetTagManyParams as VideoAssetTagManyParams,
+    type VideoAssetAnalyticsParams as VideoAssetAnalyticsParams,
   };
 }

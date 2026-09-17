@@ -17,6 +17,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [List Assets](#list-assets-1)
   - [Bulk Delete](#bulk-delete)
   - [Bulk Tag](#bulk-tag)
+  - [Asset Analytics](#asset-analytics)
 - [`SubtitleUpload`](#subtitleupload)
   - [Upload Subtitles](#upload-subtitles)
   - [Complete Subtitle Upload](#complete-subtitle-upload)
@@ -90,6 +91,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Invite Channel Viewers](#invite-channel-viewers)
   - [Remove Channel Viewers](#remove-channel-viewers)
   - [Invite Channel Viewers via CSV](#invite-channel-viewers-via-csv)
+  - [List Subscribers](#list-subscribers)
 - [`DataApi`](#dataapi)
   - [Viewer Analytics](#viewer-analytics)
   - [Breakdown Data](#breakdown-data)
@@ -337,6 +339,26 @@ const videoAsset = await client.videoAssets.tagMany({
   add_tags: ['tag-1'],
   remove_tags: ['playlist-1'],
   asset_list: ['6221db301c8b821b0519fba0', '61e8f2726ec832ab2ac4fa6e'],
+});
+```
+
+### Asset Analytics
+
+Get video analytics for a single asset.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`VideoAssetAnalyticsParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetAnalyticsResponse`](./src/resources/video-assets.ts) |
+
+```ts
+const videoAsset = await client.videoAssets.analytics('assetId', {
+  group_by: 'daily',
+  date_range: {
+    start_at: '',
+    end_at: '',
+  },
+  metrics: ['impressions'],
 });
 ```
 
@@ -1233,6 +1255,22 @@ Invite viewers to a channel by uploading a CSV file.
 ```ts
 const channelViewer = await client.channelViewers.inviteCsv('videoWorkspaceId', {
   viewers_csv: 'viewers.csv',
+});
+```
+
+### List Subscribers
+
+List all channel subscribers.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ChannelViewerListSubscribersParams`](./src/resources/channel-viewers.ts) |
+| Response | [`ChannelViewerListSubscribersResponse`](./src/resources/channel-viewers.ts) |
+
+```ts
+const channelViewer = await client.channelViewers.listSubscribers('workspaceId', {
+  page_number: 1,
+  page_size: 10,
 });
 ```
 
