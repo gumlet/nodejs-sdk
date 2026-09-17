@@ -36,6 +36,8 @@ import {
   type VideoAssetCreateUpdateChapterResponse,
   type VideoAssetListResponse,
   type VideoAssetListDeprecatedResponse,
+  type VideoAssetDeleteManyResponse,
+  type VideoAssetTagManyResponse,
   type VideoAssetCreateParams,
   type VideoAssetUploadParams,
   type VideoAssetUpdateParams,
@@ -43,6 +45,8 @@ import {
   type VideoAssetCreateUpdateChapterParams,
   type VideoAssetListParams,
   type VideoAssetListDeprecatedParams,
+  type VideoAssetDeleteManyParams,
+  type VideoAssetTagManyParams,
 } from './resources/video-assets';
 import {
   SubtitleUpload,
@@ -1038,6 +1042,8 @@ export declare namespace Gumlet {
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
     type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
+    type VideoAssetDeleteManyResponse as VideoAssetDeleteManyResponse,
+    type VideoAssetTagManyResponse as VideoAssetTagManyResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
@@ -1045,6 +1051,8 @@ export declare namespace Gumlet {
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
     type VideoAssetListParams as VideoAssetListParams,
     type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
+    type VideoAssetDeleteManyParams as VideoAssetDeleteManyParams,
+    type VideoAssetTagManyParams as VideoAssetTagManyParams,
   };
 
   export {
