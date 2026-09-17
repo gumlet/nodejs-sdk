@@ -47,8 +47,10 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Arrange Videos In Playlist](#arrange-videos-in-playlist)
 - [`WebhookApis`](#webhookapis)
   - [Create Webhook](#create-webhook)
+  - [List Webhooks](#list-webhooks)
   - [Update Webhook](#update-webhook)
   - [Delete Webhook](#delete-webhook)
+  - [Get History](#get-history)
 - [`ImageSources`](#imagesources)
   - [Create Source](#create-source)
   - [List Sources](#list-sources)
@@ -710,6 +712,18 @@ const webhookAPI = await client.webhookAPIs.create({
 });
 ```
 
+### List Webhooks
+
+List all webhooks.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`WebhookAPIListResponse`](./src/resources/webhook-apis.ts) |
+
+```ts
+const webhookAPI = await client.webhookAPIs.list();
+```
+
 ### Update Webhook
 
 Update a webhook listener.
@@ -733,6 +747,18 @@ Delete webhook listener endpoint.
 
 ```ts
 const webhookAPI = await client.webhookAPIs.delete('webhookId');
+```
+
+### Get History
+
+Get logs history for a given webhook.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`WebhookAPIHistoryResponse`](./src/resources/webhook-apis.ts) |
+
+```ts
+const webhookAPI = await client.webhookAPIs.history('webhookId');
 ```
 
 ## `ImageSources`

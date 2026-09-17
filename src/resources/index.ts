@@ -85,9 +85,11 @@ export { WebhookAPIs } from './webhook-apis';
 export type {
   WebhookAPICreateParams,
   WebhookAPICreateResponse,
+  WebhookAPIListResponse,
   WebhookAPIUpdateParams,
   WebhookAPIUpdateResponse,
   WebhookAPIDeleteResponse,
+  WebhookAPIHistoryResponse,
 } from './webhook-apis';
 export { ImageSources } from './image-sources';
 export type {

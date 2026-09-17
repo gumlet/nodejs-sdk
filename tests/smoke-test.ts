@@ -788,6 +788,15 @@ const cases: {
   },
 
   {
+    operation: 'list',
+    method: 'GET',
+    path: '/org/webhooks',
+    run: async () => {
+      const webhookAPI = await client.webhookAPIs.list();
+    },
+  },
+
+  {
     operation: 'update',
     method: 'POST',
     path: '/org/webhooks/{webhook_id}',
@@ -818,6 +827,15 @@ const cases: {
     path: '/org/webhooks/{webhook_id}',
     run: async () => {
       const webhookAPI = await client.webhookAPIs.delete('webhookId');
+    },
+  },
+
+  {
+    operation: 'history',
+    method: 'GET',
+    path: '/org/webhook/{webhook_id}/history',
+    run: async () => {
+      const webhookAPI = await client.webhookAPIs.history('webhookId');
     },
   },
 
