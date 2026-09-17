@@ -18,6 +18,10 @@ export type {
   VideoAssetListResponse,
   VideoAssetListDeprecatedParams,
   VideoAssetListDeprecatedResponse,
+  VideoAssetDeleteManyParams,
+  VideoAssetDeleteManyResponse,
+  VideoAssetTagManyParams,
+  VideoAssetTagManyResponse,
 } from './video-assets';
 export { SubtitleUpload } from './subtitle-upload';
 export type {
