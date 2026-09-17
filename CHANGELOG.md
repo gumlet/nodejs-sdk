@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.17](https://github.com/gumlet/nodejs-sdk/compare/v1.2.16...v1.2.17) (2026-09-17)
+
+
+### Features
+
+* **api:** add operation billing.listInvoices (+3 more changes) ([7d03440](https://github.com/gumlet/nodejs-sdk/commit/7d0344093f44cc72aa644f3ce90fd8ea0eac0341))
+
+
+### Chores
+
+* **api:** update generated SDK content ([8056d83](https://github.com/gumlet/nodejs-sdk/commit/8056d83a27150c1b92c2988122a45c4997babae7))
+* release 1.2.17 ([7e32a2e](https://github.com/gumlet/nodejs-sdk/commit/7e32a2e4b085a2eacd399d263ad2b4363b082992))
+* release 1.2.17 ([3928579](https://github.com/gumlet/nodejs-sdk/commit/3928579eb864ef95717708aff5bad393f63b20c9))
+
 ## [1.2.16](https://github.com/gumlet/nodejs-sdk/compare/v1.2.15...v1.2.16) (2026-09-17)
 
 

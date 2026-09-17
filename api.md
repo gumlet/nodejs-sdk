@@ -102,6 +102,11 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Get User](#get-user)
 - [`AuditLogs`](#auditlogs)
   - [Fetch Audit Logs](#fetch-audit-logs)
+- [`Billing`](#billing)
+  - [List Invoices](#list-invoices)
+  - [Get Billing Details](#get-billing-details)
+  - [Update Billing Details](#update-billing-details)
+  - [Upcoming Invoice](#upcoming-invoice)
 
 ## Setup
 
@@ -1386,4 +1391,65 @@ Get audit logs for the user activity in your organisation. Please note that this
 const auditLog = await client.auditLogs.fetch({
   date_range: { start_at: '2026-08-25', end_at: '2026-08-29' },
 });
+```
+
+## `Billing`
+
+Get / change all details about billing and invoices.
+
+### List Invoices
+
+Liost all invoices that are generated so far.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`BillingListInvoicesResponse`](./src/resources/billing.ts) |
+
+```ts
+const billing = await client.billing.listInvoices();
+```
+
+### Get Billing Details
+
+Get billing details for this organization.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`BillingFetchDetailsResponse`](./src/resources/billing.ts) |
+
+```ts
+const billing = await client.billing.fetchDetails();
+```
+
+### Update Billing Details
+
+Update billing details
+
+| Direction | Type |
+| --- | --- |
+| Request | [`BillingUpdateDetailsParams`](./src/resources/billing.ts) |
+| Response | [`BillingUpdateDetailsResponse`](./src/resources/billing.ts) |
+
+```ts
+const billing = await client.billing.updateDetails({
+  address_line: '',
+  city: '',
+  company_name: '',
+  country_code: '',
+  gst_number: '',
+  postal: '',
+  state_code: '',
+});
+```
+
+### Upcoming Invoice
+
+Get details about upcoming invoice.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`BillingFetchUpcomingInvoiceResponse`](./src/resources/billing.ts) |
+
+```ts
+const billing = await client.billing.fetchUpcomingInvoice();
 ```

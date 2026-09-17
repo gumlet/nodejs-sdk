@@ -41,7 +41,8 @@
     "dataApi",
     "organizationData",
     "userData",
-    "auditLogs"
+    "auditLogs",
+    "billing"
   ],
   "publicResources": [
     "videoAssets",
@@ -62,7 +63,8 @@
     "dataApi",
     "organizationData",
     "userData",
-    "auditLogs"
+    "auditLogs",
+    "billing"
   ],
   "operations": [
     {
@@ -8007,6 +8009,219 @@
         "publicName": "body",
         "publicIdentifier": "body"
       },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "billing",
+      "publicResource": "billing",
+      "operation": "listInvoices",
+      "publicOperation": "listInvoices",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/mixed/billing/invoice/history",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "billing",
+      "publicResource": "billing",
+      "operation": "fetchDetails",
+      "publicOperation": "fetchDetails",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/mixed/billing/details",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "billing",
+      "publicResource": "billing",
+      "operation": "updateDetails",
+      "publicOperation": "updateDetails",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/mixed/billing/details",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "address_line",
+        "city",
+        "company_name",
+        "country_code",
+        "gst_number",
+        "postal",
+        "state_code"
+      ],
+      "publicBodyParams": [
+        "address_line",
+        "city",
+        "company_name",
+        "country_code",
+        "gst_number",
+        "postal",
+        "state_code"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "address_line",
+          "required": true
+        },
+        {
+          "name": "city",
+          "required": true
+        },
+        {
+          "name": "company_name",
+          "required": true
+        },
+        {
+          "name": "country_code",
+          "required": true
+        },
+        {
+          "name": "gst_number",
+          "required": true
+        },
+        {
+          "name": "postal",
+          "required": true
+        },
+        {
+          "name": "state_code",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "BillingUpdateDetailsParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "billing",
+      "publicResource": "billing",
+      "operation": "fetchUpcomingInvoice",
+      "publicOperation": "fetchUpcomingInvoice",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/mixed/billing/invoice/upcoming",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
       "response": {
         "status": "200",
         "contentType": "application/json",

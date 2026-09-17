@@ -206,6 +206,14 @@ import {
 import { OrganizationData, type OrganizationDataFetchOrgResponse } from './resources/organization-data';
 import { UserData, type UserDataFetchResponse } from './resources/user-data';
 import { AuditLogs, type AuditLogFetchResponse, type AuditLogFetchParams } from './resources/audit-logs';
+import {
+  Billing,
+  type BillingListInvoicesResponse,
+  type BillingFetchDetailsResponse,
+  type BillingUpdateDetailsResponse,
+  type BillingFetchUpcomingInvoiceResponse,
+  type BillingUpdateDetailsParams,
+} from './resources/billing';
 
 export type AuthTokenProvider = () => string | Promise<string>;
 
@@ -1013,6 +1021,7 @@ export class Gumlet {
   organizationData: OrganizationData = new OrganizationData(this);
   userData: UserData = new UserData(this);
   auditLogs: AuditLogs = new AuditLogs(this);
+  billing: Billing = new Billing(this);
 }
 
 Gumlet.VideoAssets = VideoAssets;
@@ -1034,6 +1043,7 @@ Gumlet.DataAPI = DataAPI;
 Gumlet.OrganizationData = OrganizationData;
 Gumlet.UserData = UserData;
 Gumlet.AuditLogs = AuditLogs;
+Gumlet.Billing = Billing;
 
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
@@ -1242,6 +1252,15 @@ export declare namespace Gumlet {
     AuditLogs as AuditLogs,
     type AuditLogFetchResponse as AuditLogFetchResponse,
     type AuditLogFetchParams as AuditLogFetchParams,
+  };
+
+  export {
+    Billing as Billing,
+    type BillingListInvoicesResponse as BillingListInvoicesResponse,
+    type BillingFetchDetailsResponse as BillingFetchDetailsResponse,
+    type BillingUpdateDetailsResponse as BillingUpdateDetailsResponse,
+    type BillingFetchUpcomingInvoiceResponse as BillingFetchUpcomingInvoiceResponse,
+    type BillingUpdateDetailsParams as BillingUpdateDetailsParams,
   };
 }
 
