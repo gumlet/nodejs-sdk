@@ -1633,6 +1633,104 @@
       "transport": "http"
     },
     {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
+      "operation": "analytics",
+      "publicOperation": "analytics",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/{asset_id}/analytics",
+      "pathParams": [
+        "asset_id"
+      ],
+      "publicPathParams": [
+        "asset_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "group_by",
+        "date_range",
+        "metrics",
+        "page_number",
+        "page_size"
+      ],
+      "publicBodyParams": [
+        "group_by",
+        "date_range",
+        "metrics",
+        "page_number",
+        "page_size"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "group_by",
+          "required": true
+        },
+        {
+          "name": "date_range",
+          "required": true
+        },
+        {
+          "name": "metrics",
+          "required": true
+        },
+        {
+          "name": "page_number",
+          "required": false
+        },
+        {
+          "name": "page_size",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "asset_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetAnalyticsParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
       "resource": "subtitleUpload",
       "publicResource": "subtitleUpload",
       "operation": "upload",
@@ -7320,6 +7418,79 @@
           ]
         }
       ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "channelViewers",
+      "publicResource": "channelViewers",
+      "operation": "listSubscribers",
+      "publicOperation": "listSubscribers",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/channel/{workspace_id}/viewers",
+      "pathParams": [
+        "workspace_id"
+      ],
+      "publicPathParams": [
+        "workspace_id"
+      ],
+      "queryParams": [
+        "page_number",
+        "page_size"
+      ],
+      "publicQueryParams": [
+        "page_number",
+        "page_size"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [
+        {
+          "name": "page_number",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 1
+        },
+        {
+          "name": "page_size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 10
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "ChannelViewerListSubscribersParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     },
