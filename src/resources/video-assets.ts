@@ -327,7 +327,7 @@ export class VideoAssets extends APIResource {
     body: VideoAssetAnalyticsParams,
     options?: RequestOptions,
   ): APIPromise<VideoAssetAnalyticsResponse> {
-    return this._client.post(__scalarPath`/v1/video/assets/${assetID}/analytics`, { body, ...options });
+    return this._client.post(__scalarPath`/video/assets/${assetID}/analytics`, { body, ...options });
   }
 }
 

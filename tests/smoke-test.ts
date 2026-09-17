@@ -269,7 +269,7 @@ const cases: {
   {
     operation: 'analytics',
     method: 'POST',
-    path: '/v1/video/assets/{asset_id}/analytics',
+    path: '/video/assets/{asset_id}/analytics',
     label: 'required params',
     run: async () => {
       const videoAsset = await client.videoAssets.analytics('assetId', {
@@ -286,7 +286,7 @@ const cases: {
   {
     operation: 'analytics',
     method: 'POST',
-    path: '/v1/video/assets/{asset_id}/analytics',
+    path: '/video/assets/{asset_id}/analytics',
     label: 'all params',
     run: async () => {
       const videoAsset = await client.videoAssets.analytics('assetId', {
@@ -1353,7 +1353,7 @@ const cases: {
   {
     operation: 'listSubscribers',
     method: 'GET',
-    path: '/v1/channel/{workspace_id}/viewers',
+    path: '/channel/{workspace_id}/viewers',
     run: async () => {
       const channelViewer = await client.channelViewers.listSubscribers('workspaceId', {
         page_number: 1,

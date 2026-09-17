@@ -105,7 +105,7 @@ export class ChannelViewers extends APIResource {
     query: ChannelViewerListSubscribersParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<ChannelViewerListSubscribersResponse> {
-    return this._client.get(__scalarPath`/v1/channel/${workspaceID}/viewers`, { query, ...options });
+    return this._client.get(__scalarPath`/channel/${workspaceID}/viewers`, { query, ...options });
   }
 }
 

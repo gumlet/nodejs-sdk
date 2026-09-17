@@ -1639,7 +1639,7 @@
       "publicOperation": "analytics",
       "deprecated": false,
       "method": "POST",
-      "path": "/v1/video/assets/{asset_id}/analytics",
+      "path": "/video/assets/{asset_id}/analytics",
       "pathParams": [
         "asset_id"
       ],
@@ -7428,7 +7428,7 @@
       "publicOperation": "listSubscribers",
       "deprecated": false,
       "method": "GET",
-      "path": "/v1/channel/{workspace_id}/viewers",
+      "path": "/channel/{workspace_id}/viewers",
       "pathParams": [
         "workspace_id"
       ],
