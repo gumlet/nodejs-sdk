@@ -21,7 +21,7 @@ export {
   UserData,
   AuditLogs,
   Billing,
-  LiveStreamCollections,
+  LiveStreamWorkspaces,
 } from './resources/index';
 export type {
   VideoAssetCreateParams,
@@ -163,7 +163,10 @@ export type {
   BillingUpdateDetailsParams,
   BillingUpdateDetailsResponse,
   BillingFetchUpcomingInvoiceResponse,
-  LiveStreamCollectionListResponse,
-  LiveStreamCollectionCreateParams,
-  LiveStreamCollectionCreateResponse,
+  LiveStreamWorkspaceListResponse,
+  LiveStreamWorkspaceCreateParams,
+  LiveStreamWorkspaceCreateResponse,
+  LiveStreamWorkspaceUpdateParams,
+  LiveStreamWorkspaceUpdateResponse,
+  LiveStreamWorkspaceDeleteResponse,
 } from './resources/index';

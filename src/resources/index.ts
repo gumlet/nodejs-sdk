@@ -188,9 +188,12 @@ export type {
   BillingUpdateDetailsResponse,
   BillingFetchUpcomingInvoiceResponse,
 } from './billing';
-export { LiveStreamCollections } from './live-stream-collections';
+export { LiveStreamWorkspaces } from './live-stream-workspaces';
 export type {
-  LiveStreamCollectionListResponse,
-  LiveStreamCollectionCreateParams,
-  LiveStreamCollectionCreateResponse,
-} from './live-stream-collections';
+  LiveStreamWorkspaceListResponse,
+  LiveStreamWorkspaceCreateParams,
+  LiveStreamWorkspaceCreateResponse,
+  LiveStreamWorkspaceUpdateParams,
+  LiveStreamWorkspaceUpdateResponse,
+  LiveStreamWorkspaceDeleteResponse,
+} from './live-stream-workspaces';

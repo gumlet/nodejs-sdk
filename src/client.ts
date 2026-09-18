@@ -215,11 +215,14 @@ import {
   type BillingUpdateDetailsParams,
 } from './resources/billing';
 import {
-  LiveStreamCollections,
-  type LiveStreamCollectionListResponse,
-  type LiveStreamCollectionCreateResponse,
-  type LiveStreamCollectionCreateParams,
-} from './resources/live-stream-collections';
+  LiveStreamWorkspaces,
+  type LiveStreamWorkspaceListResponse,
+  type LiveStreamWorkspaceCreateResponse,
+  type LiveStreamWorkspaceUpdateResponse,
+  type LiveStreamWorkspaceDeleteResponse,
+  type LiveStreamWorkspaceCreateParams,
+  type LiveStreamWorkspaceUpdateParams,
+} from './resources/live-stream-workspaces';
 
 export type AuthTokenProvider = () => string | Promise<string>;
 
@@ -1028,7 +1031,7 @@ export class Gumlet {
   userData: UserData = new UserData(this);
   auditLogs: AuditLogs = new AuditLogs(this);
   billing: Billing = new Billing(this);
-  liveStreamCollections: LiveStreamCollections = new LiveStreamCollections(this);
+  liveStreamWorkspaces: LiveStreamWorkspaces = new LiveStreamWorkspaces(this);
 }
 
 Gumlet.VideoAssets = VideoAssets;
@@ -1051,7 +1054,7 @@ Gumlet.OrganizationData = OrganizationData;
 Gumlet.UserData = UserData;
 Gumlet.AuditLogs = AuditLogs;
 Gumlet.Billing = Billing;
-Gumlet.LiveStreamCollections = LiveStreamCollections;
+Gumlet.LiveStreamWorkspaces = LiveStreamWorkspaces;
 
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
@@ -1272,10 +1275,13 @@ export declare namespace Gumlet {
   };
 
   export {
-    LiveStreamCollections as LiveStreamCollections,
-    type LiveStreamCollectionListResponse as LiveStreamCollectionListResponse,
-    type LiveStreamCollectionCreateResponse as LiveStreamCollectionCreateResponse,
-    type LiveStreamCollectionCreateParams as LiveStreamCollectionCreateParams,
+    LiveStreamWorkspaces as LiveStreamWorkspaces,
+    type LiveStreamWorkspaceListResponse as LiveStreamWorkspaceListResponse,
+    type LiveStreamWorkspaceCreateResponse as LiveStreamWorkspaceCreateResponse,
+    type LiveStreamWorkspaceUpdateResponse as LiveStreamWorkspaceUpdateResponse,
+    type LiveStreamWorkspaceDeleteResponse as LiveStreamWorkspaceDeleteResponse,
+    type LiveStreamWorkspaceCreateParams as LiveStreamWorkspaceCreateParams,
+    type LiveStreamWorkspaceUpdateParams as LiveStreamWorkspaceUpdateParams,
   };
 }
 

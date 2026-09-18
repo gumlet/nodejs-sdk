@@ -1546,7 +1546,7 @@ const cases: {
     method: 'GET',
     path: '/video/sources/live',
     run: async () => {
-      const liveStreamCollection = await client.liveStreamCollections.list();
+      const liveStreamWorkspace = await client.liveStreamWorkspaces.list();
     },
   },
 
@@ -1555,9 +1555,41 @@ const cases: {
     method: 'POST',
     path: '/video/sources/live',
     run: async () => {
-      const liveStreamCollection = await client.liveStreamCollections.create({
+      const liveStreamWorkspace = await client.liveStreamWorkspaces.create({
         name: '',
       });
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'POST',
+    path: '/video/sources/live/{live_workspace_id}',
+    label: 'required params',
+    run: async () => {
+      const liveStreamWorkspace = await client.liveStreamWorkspaces.update('liveWorkspaceId');
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'POST',
+    path: '/video/sources/live/{live_workspace_id}',
+    label: 'all params',
+    run: async () => {
+      const liveStreamWorkspace = await client.liveStreamWorkspaces.update('liveWorkspaceId', {
+        name: 'live-stream-collections',
+        video_source_id: '67bea1d66ca0059a95bf7de9',
+      });
+    },
+  },
+
+  {
+    operation: 'delete',
+    method: 'DELETE',
+    path: '/video/sources/live/{live_workspace_id}',
+    run: async () => {
+      const liveStreamWorkspace = await client.liveStreamWorkspaces.delete('liveWorkspaceId');
     },
   },
 ];

@@ -43,7 +43,7 @@
     "userData",
     "auditLogs",
     "billing",
-    "liveStreamCollections"
+    "liveStreamWorkspaces"
   ],
   "publicResources": [
     "videoAssets",
@@ -66,7 +66,7 @@
     "userData",
     "auditLogs",
     "billing",
-    "liveStreamCollections"
+    "liveStreamWorkspaces"
   ],
   "operations": [
     {
@@ -8240,8 +8240,8 @@
       "transport": "http"
     },
     {
-      "resource": "liveStreamCollections",
-      "publicResource": "liveStreamCollections",
+      "resource": "liveStreamWorkspaces",
+      "publicResource": "liveStreamWorkspaces",
       "operation": "list",
       "publicOperation": "list",
       "deprecated": false,
@@ -8278,8 +8278,8 @@
       "transport": "http"
     },
     {
-      "resource": "liveStreamCollections",
-      "publicResource": "liveStreamCollections",
+      "resource": "liveStreamWorkspaces",
+      "publicResource": "liveStreamWorkspaces",
       "operation": "create",
       "publicOperation": "create",
       "deprecated": false,
@@ -8310,7 +8310,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "LiveStreamCollectionCreateParams"
+        "publicName": "LiveStreamWorkspaceCreateParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -8324,6 +8324,138 @@
         "required": false,
         "publicName": "body",
         "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamWorkspaces",
+      "publicResource": "liveStreamWorkspaces",
+      "operation": "update",
+      "publicOperation": "update",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/sources/live/{live_workspace_id}",
+      "pathParams": [
+        "live_workspace_id"
+      ],
+      "publicPathParams": [
+        "live_workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "name",
+        "video_source_id"
+      ],
+      "publicBodyParams": [
+        "name",
+        "video_source_id"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "name",
+          "required": false
+        },
+        {
+          "name": "video_source_id",
+          "required": false
+        }
+      ],
+      "pathParamDetails": [
+        {
+          "name": "live_workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamWorkspaceUpdateParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "liveStreamWorkspaces",
+      "publicResource": "liveStreamWorkspaces",
+      "operation": "delete",
+      "publicOperation": "delete",
+      "deprecated": false,
+      "method": "DELETE",
+      "path": "/video/sources/live/{live_workspace_id}",
+      "pathParams": [
+        "live_workspace_id"
+      ],
+      "publicPathParams": [
+        "live_workspace_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "live_workspace_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "LiveStreamWorkspaceDeleteParams"
       },
       "response": {
         "status": "200",
