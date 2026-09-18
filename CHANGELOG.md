@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.2.20](https://github.com/gumlet/nodejs-sdk/compare/v1.2.19...v1.2.20) (2026-09-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `liveStreamCollections.list` (`GET /video/sources/live`).
+    - Removed operation `liveStreamCollections.create` (`POST /video/sources/live`).
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `liveStreamCollections.update` (`POST /video/sources/live/{live_collection_id}`).
+    - Removed operation `liveStreamCollections.delete` (`DELETE /video/sources/live/{live_collection_id}`).
+
+### Features
+
+* **api:** add operation liveStreamCollections.list (+3 more changes) ([46bdfb1](https://github.com/gumlet/nodejs-sdk/commit/46bdfb148b5b3aa58955ba076b16eedde546deeb))
+* **api:** update SDK surface (2 changes) ([caf1396](https://github.com/gumlet/nodejs-sdk/commit/caf1396d5bb8d4da23091b82c06334b4718b9ff4))
+* **api:** update SDK surface (6 changes) ([f7fe0e9](https://github.com/gumlet/nodejs-sdk/commit/f7fe0e9b909ba2ce6b0e4b19e23b4692310a86e1))
+
+
+### Chores
+
+* **api:** update generated SDK content ([5045c72](https://github.com/gumlet/nodejs-sdk/commit/5045c7243a7e7dd013b3a9ccc0861a9e2df66de9))
+* **api:** update generated SDK content ([7fd660b](https://github.com/gumlet/nodejs-sdk/commit/7fd660b975dbc6a4e39dce428041642bc8ae4efe))
+* release 1.2.20 ([d3420d4](https://github.com/gumlet/nodejs-sdk/commit/d3420d4c99afe883605e832c7f197a2fc2cc0fa5))
+* release 1.2.20 ([2929b1e](https://github.com/gumlet/nodejs-sdk/commit/2929b1ef78eedbb9689989e20afe06f5a95006a3))
+
 ## [1.2.19](https://github.com/gumlet/nodejs-sdk/compare/v1.2.18...v1.2.19) (2026-09-18)
 
 

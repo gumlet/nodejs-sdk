@@ -107,6 +107,11 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Get Billing Details](#get-billing-details)
   - [Update Billing Details](#update-billing-details)
   - [Upcoming Invoice](#upcoming-invoice)
+- [`LiveStreamWorkspaces`](#livestreamworkspaces)
+  - [List Workspaces](#list-workspaces-1)
+  - [Create Workspace](#create-workspace-1)
+  - [Update Workspace](#update-workspace-1)
+  - [Delete Workspace](#delete-workspace-1)
 
 ## Setup
 
@@ -1452,4 +1457,60 @@ Get details about upcoming invoice.
 
 ```ts
 const billing = await client.billing.fetchUpcomingInvoice();
+```
+
+## `LiveStreamWorkspaces`
+
+Create and manage live stream workspaces.
+
+### List Workspaces
+
+List all live stream workspaces.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`LiveStreamWorkspaceListResponse`](./src/resources/live-stream-workspaces.ts) |
+
+```ts
+const liveStreamWorkspace = await client.liveStreamWorkspaces.list();
+```
+
+### Create Workspace
+
+Create live stream workspace.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`LiveStreamWorkspaceCreateParams`](./src/resources/live-stream-workspaces.ts) |
+| Response | [`LiveStreamWorkspaceCreateResponse`](./src/resources/live-stream-workspaces.ts) |
+
+```ts
+const liveStreamWorkspace = await client.liveStreamWorkspaces.create({
+  name: '',
+});
+```
+
+### Update Workspace
+
+Update live stream workspace.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`LiveStreamWorkspaceUpdateParams`](./src/resources/live-stream-workspaces.ts) |
+| Response | [`LiveStreamWorkspaceUpdateResponse`](./src/resources/live-stream-workspaces.ts) |
+
+```ts
+const liveStreamWorkspace = await client.liveStreamWorkspaces.update('liveWorkspaceId');
+```
+
+### Delete Workspace
+
+Delete the live stream workspace.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`LiveStreamWorkspaceDeleteResponse`](./src/resources/live-stream-workspaces.ts) |
+
+```ts
+const liveStreamWorkspace = await client.liveStreamWorkspaces.delete('liveWorkspaceId');
 ```
