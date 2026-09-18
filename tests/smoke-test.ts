@@ -1560,38 +1560,6 @@ const cases: {
       });
     },
   },
-
-  {
-    operation: 'update',
-    method: 'POST',
-    path: '/video/sources/live/{live_collection_id}',
-    label: 'required params',
-    run: async () => {
-      const liveStreamCollection = await client.liveStreamCollections.update('liveCollectionId');
-    },
-  },
-
-  {
-    operation: 'update',
-    method: 'POST',
-    path: '/video/sources/live/{live_collection_id}',
-    label: 'all params',
-    run: async () => {
-      const liveStreamCollection = await client.liveStreamCollections.update('liveCollectionId', {
-        name: 'live-stream-collections',
-        video_source_id: '67bea1d66ca0059a95bf7de9',
-      });
-    },
-  },
-
-  {
-    operation: 'delete',
-    method: 'DELETE',
-    path: '/video/sources/live/{live_collection_id}',
-    run: async () => {
-      const liveStreamCollection = await client.liveStreamCollections.delete('liveCollectionId');
-    },
-  },
 ];
 
 /**

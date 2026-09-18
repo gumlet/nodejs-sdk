@@ -108,10 +108,8 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Update Billing Details](#update-billing-details)
   - [Upcoming Invoice](#upcoming-invoice)
 - [`LiveStreamCollections`](#livestreamcollections)
-  - [List Collections](#list-collections)
-  - [Create Collection](#create-collection)
-  - [Update Collection](#update-collection)
-  - [Delete Collection](#delete-collection)
+  - [List Workspaces](#list-workspaces-1)
+  - [Create Workspace](#create-workspace-1)
 
 ## Setup
 
@@ -1461,11 +1459,11 @@ const billing = await client.billing.fetchUpcomingInvoice();
 
 ## `LiveStreamCollections`
 
-Create and manage live stream collections.
+Create and manage live stream workspaces.
 
-### List Collections
+### List Workspaces
 
-List all live stream collections
+List all live stream workspaces.
 
 | Direction | Type |
 | --- | --- |
@@ -1475,9 +1473,9 @@ List all live stream collections
 const liveStreamCollection = await client.liveStreamCollections.list();
 ```
 
-### Create Collection
+### Create Workspace
 
-Create live stream collection.
+Create live stream workspace.
 
 | Direction | Type |
 | --- | --- |
@@ -1488,29 +1486,4 @@ Create live stream collection.
 const liveStreamCollection = await client.liveStreamCollections.create({
   name: '',
 });
-```
-
-### Update Collection
-
-Update live stream collection.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`LiveStreamCollectionUpdateParams`](./src/resources/live-stream-collections.ts) |
-| Response | [`LiveStreamCollectionUpdateResponse`](./src/resources/live-stream-collections.ts) |
-
-```ts
-const liveStreamCollection = await client.liveStreamCollections.update('liveCollectionId');
-```
-
-### Delete Collection
-
-Delete the live stream collection.
-
-| Direction | Type |
-| --- | --- |
-| Response | [`LiveStreamCollectionDeleteResponse`](./src/resources/live-stream-collections.ts) |
-
-```ts
-const liveStreamCollection = await client.liveStreamCollections.delete('liveCollectionId');
 ```
