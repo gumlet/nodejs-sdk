@@ -38,7 +38,7 @@
     "videoWorkspaces",
     "folders",
     "channelViewers",
-    "dataApi",
+    "videoAnalytics",
     "organizationData",
     "userData",
     "auditLogs",
@@ -60,7 +60,7 @@
     "videoWorkspaces",
     "folders",
     "channelViewers",
-    "dataApi",
+    "videoAnalytics",
     "organizationData",
     "userData",
     "auditLogs",
@@ -7495,10 +7495,10 @@
       "transport": "http"
     },
     {
-      "resource": "dataApi",
-      "publicResource": "dataApi",
-      "operation": "insightsChart",
-      "publicOperation": "insightsChart",
+      "resource": "videoAnalytics",
+      "publicResource": "videoAnalytics",
+      "operation": "chartData",
+      "publicOperation": "chartData",
       "deprecated": false,
       "method": "POST",
       "path": "/insights/viewer-analytics",
@@ -7557,7 +7557,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "DataApiInsightsChartParams"
+        "publicName": "VideoAnalyticChartDataParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -7618,10 +7618,10 @@
       "transport": "http"
     },
     {
-      "resource": "dataApi",
-      "publicResource": "dataApi",
-      "operation": "insightsBreakdown",
-      "publicOperation": "insightsBreakdown",
+      "resource": "videoAnalytics",
+      "publicResource": "videoAnalytics",
+      "operation": "breakdownData",
+      "publicOperation": "breakdownData",
       "deprecated": false,
       "method": "POST",
       "path": "/insights/breakdown-data",
@@ -7668,7 +7668,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "DataApiInsightsBreakdownParams"
+        "publicName": "VideoAnalyticBreakdownDataParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -7729,10 +7729,10 @@
       "transport": "http"
     },
     {
-      "resource": "dataApi",
-      "publicResource": "dataApi",
-      "operation": "insightsAggregated",
-      "publicOperation": "insightsAggregated",
+      "resource": "videoAnalytics",
+      "publicResource": "videoAnalytics",
+      "operation": "aggregatedData",
+      "publicOperation": "aggregatedData",
       "deprecated": false,
       "method": "POST",
       "path": "/insights/aggregated-data",
@@ -7779,7 +7779,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "DataApiInsightsAggregatedParams"
+        "publicName": "VideoAnalyticAggregatedDataParams"
       },
       "requestBody": {
         "contentType": "application/json",

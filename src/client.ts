@@ -195,14 +195,14 @@ import {
   type ChannelViewerListSubscribersParams,
 } from './resources/channel-viewers';
 import {
-  DataAPI,
-  type DataAPIInsightsChartResponse,
-  type DataAPIInsightsBreakdownResponse,
-  type DataAPIInsightsAggregatedResponse,
-  type DataAPIInsightsChartParams,
-  type DataAPIInsightsBreakdownParams,
-  type DataAPIInsightsAggregatedParams,
-} from './resources/data-api';
+  VideoAnalytics,
+  type VideoAnalyticChartDataResponse,
+  type VideoAnalyticBreakdownDataResponse,
+  type VideoAnalyticAggregatedDataResponse,
+  type VideoAnalyticChartDataParams,
+  type VideoAnalyticBreakdownDataParams,
+  type VideoAnalyticAggregatedDataParams,
+} from './resources/video-analytics';
 import { OrganizationData, type OrganizationDataFetchOrgResponse } from './resources/organization-data';
 import { UserData, type UserDataFetchResponse } from './resources/user-data';
 import { AuditLogs, type AuditLogFetchResponse, type AuditLogFetchParams } from './resources/audit-logs';
@@ -1017,7 +1017,7 @@ export class Gumlet {
   videoWorkspaces: VideoWorkspaces = new VideoWorkspaces(this);
   folders: Folders = new Folders(this);
   channelViewers: ChannelViewers = new ChannelViewers(this);
-  dataAPI: DataAPI = new DataAPI(this);
+  videoAnalytics: VideoAnalytics = new VideoAnalytics(this);
   organizationData: OrganizationData = new OrganizationData(this);
   userData: UserData = new UserData(this);
   auditLogs: AuditLogs = new AuditLogs(this);
@@ -1039,7 +1039,7 @@ Gumlet.RecycleBin = RecycleBin;
 Gumlet.VideoWorkspaces = VideoWorkspaces;
 Gumlet.Folders = Folders;
 Gumlet.ChannelViewers = ChannelViewers;
-Gumlet.DataAPI = DataAPI;
+Gumlet.VideoAnalytics = VideoAnalytics;
 Gumlet.OrganizationData = OrganizationData;
 Gumlet.UserData = UserData;
 Gumlet.AuditLogs = AuditLogs;
@@ -1232,13 +1232,13 @@ export declare namespace Gumlet {
   };
 
   export {
-    DataAPI as DataAPI,
-    type DataAPIInsightsChartResponse as DataAPIInsightsChartResponse,
-    type DataAPIInsightsBreakdownResponse as DataAPIInsightsBreakdownResponse,
-    type DataAPIInsightsAggregatedResponse as DataAPIInsightsAggregatedResponse,
-    type DataAPIInsightsChartParams as DataAPIInsightsChartParams,
-    type DataAPIInsightsBreakdownParams as DataAPIInsightsBreakdownParams,
-    type DataAPIInsightsAggregatedParams as DataAPIInsightsAggregatedParams,
+    VideoAnalytics as VideoAnalytics,
+    type VideoAnalyticChartDataResponse as VideoAnalyticChartDataResponse,
+    type VideoAnalyticBreakdownDataResponse as VideoAnalyticBreakdownDataResponse,
+    type VideoAnalyticAggregatedDataResponse as VideoAnalyticAggregatedDataResponse,
+    type VideoAnalyticChartDataParams as VideoAnalyticChartDataParams,
+    type VideoAnalyticBreakdownDataParams as VideoAnalyticBreakdownDataParams,
+    type VideoAnalyticAggregatedDataParams as VideoAnalyticAggregatedDataParams,
   };
 
   export {

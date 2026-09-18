@@ -165,15 +165,15 @@ export type {
   ChannelViewerListSubscribersParams,
   ChannelViewerListSubscribersResponse,
 } from './channel-viewers';
-export { DataAPI } from './data-api';
+export { VideoAnalytics } from './video-analytics';
 export type {
-  DataAPIInsightsChartParams,
-  DataAPIInsightsChartResponse,
-  DataAPIInsightsBreakdownParams,
-  DataAPIInsightsBreakdownResponse,
-  DataAPIInsightsAggregatedParams,
-  DataAPIInsightsAggregatedResponse,
-} from './data-api';
+  VideoAnalyticChartDataParams,
+  VideoAnalyticChartDataResponse,
+  VideoAnalyticBreakdownDataParams,
+  VideoAnalyticBreakdownDataResponse,
+  VideoAnalyticAggregatedDataParams,
+  VideoAnalyticAggregatedDataResponse,
+} from './video-analytics';
 export { OrganizationData } from './organization-data';
 export type { OrganizationDataFetchOrgResponse } from './organization-data';
 export { UserData } from './user-data';

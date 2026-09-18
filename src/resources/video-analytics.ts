@@ -4,17 +4,17 @@ import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
 import type { RequestOptions } from '../internal/request-options';
 
-export class DataAPI extends APIResource {
+export class VideoAnalytics extends APIResource {
   /**
    * This endpoint retrieves viewer analytics data. This endpoint is use for deep insights on the analytics data.
    *
-   * @param {DataAPIInsightsChartParams} body - The request body to send.
+   * @param {VideoAnalyticChartDataParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<DataAPIInsightsChartResponse>} 200
+   * @returns {APIPromise<VideoAnalyticChartDataResponse>} 200
    *
    * @example
    * ```ts
-   * const dataAPI = await client.dataAPI.insightsChart({
+   * const videoAnalytic = await client.videoAnalytics.chartData({
    *   metrics: [''],
    *   workspace_id: '',
    *   date_range: {
@@ -25,23 +25,23 @@ export class DataAPI extends APIResource {
    * });
    * ```
    */
-  insightsChart(
-    body: DataAPIInsightsChartParams,
+  chartData(
+    body: VideoAnalyticChartDataParams,
     options?: RequestOptions,
-  ): APIPromise<DataAPIInsightsChartResponse> {
+  ): APIPromise<VideoAnalyticChartDataResponse> {
     return this._client.post('/insights/viewer-analytics', { body, ...options });
   }
 
   /**
    * This endpoint retrieves breakdown data of the given metrics by given breakdown field
    *
-   * @param {DataAPIInsightsBreakdownParams} body - The request body to send.
+   * @param {VideoAnalyticBreakdownDataParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<DataAPIInsightsBreakdownResponse>} 200
+   * @returns {APIPromise<VideoAnalyticBreakdownDataResponse>} 200
    *
    * @example
    * ```ts
-   * const dataAPI = await client.dataAPI.insightsBreakdown({
+   * const videoAnalytic = await client.videoAnalytics.breakdownData({
    *   date_range: { start_at: '2026-07-20', end_at: '2026-08-20' },
    *   filters: [],
    *   breakdowns: [
@@ -52,23 +52,23 @@ export class DataAPI extends APIResource {
    * });
    * ```
    */
-  insightsBreakdown(
-    body: DataAPIInsightsBreakdownParams,
+  breakdownData(
+    body: VideoAnalyticBreakdownDataParams,
     options?: RequestOptions,
-  ): APIPromise<DataAPIInsightsBreakdownResponse> {
+  ): APIPromise<VideoAnalyticBreakdownDataResponse> {
     return this._client.post('/insights/breakdown-data', { body, ...options });
   }
 
   /**
    * This endpoint retrieves aggregated data of the given metrics.
    *
-   * @param {DataAPIInsightsAggregatedParams} body - The request body to send.
+   * @param {VideoAnalyticAggregatedDataParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<DataAPIInsightsAggregatedResponse>} 200
+   * @returns {APIPromise<VideoAnalyticAggregatedDataResponse>} 200
    *
    * @example
    * ```ts
-   * const dataAPI = await client.dataAPI.insightsAggregated({
+   * const videoAnalytic = await client.videoAnalytics.aggregatedData({
    *   aggregate: [
    *     {
    *       metric: 'views',
@@ -80,15 +80,15 @@ export class DataAPI extends APIResource {
    * });
    * ```
    */
-  insightsAggregated(
-    body: DataAPIInsightsAggregatedParams,
+  aggregatedData(
+    body: VideoAnalyticAggregatedDataParams,
     options?: RequestOptions,
-  ): APIPromise<DataAPIInsightsAggregatedResponse> {
+  ): APIPromise<VideoAnalyticAggregatedDataResponse> {
     return this._client.post('/insights/aggregated-data', { body, ...options });
   }
 }
 
-export interface DataAPIInsightsChartParams {
+export interface VideoAnalyticChartDataParams {
   /**
    * Get data for one or more `metrics` in the same request. Please add any of these metrics. `views`, `unique_views`, `impressions`. `completion_percent_by_views`, `playing_time`, `concurrent_users`, `widget_form_submitted`, `cta_clicks`
    */
@@ -101,11 +101,11 @@ export interface DataAPIInsightsChartParams {
    * The timeframe to get the data for.
    * Currently, we only support a maximum of *60 days* between `start_at` and `end_at`.
    */
-  date_range: DataAPIInsightsChartParams.DateRange;
+  date_range: VideoAnalyticChartDataParams.DateRange;
   /**
    * Build *segments* of users using multiple filters on the data, `value` should be an *exact match*
    */
-  filters?: Array<DataAPIInsightsChartParams.Filter>;
+  filters?: Array<VideoAnalyticChartDataParams.Filter>;
   /**
    * Data can be grouped by `daily`, `weekly` or `monthly`.
    * @default daily
@@ -114,10 +114,10 @@ export interface DataAPIInsightsChartParams {
   /**
    * Metrics result Group by selected dimension, You can select upto 3 dimensions to get nested category result. result will follow selection orders.
    */
-  chart_dimension?: DataAPIInsightsChartParams.ChartDimension;
+  chart_dimension?: VideoAnalyticChartDataParams.ChartDimension;
 }
 
-export namespace DataAPIInsightsChartParams {
+export namespace VideoAnalyticChartDataParams {
   export interface DateRange {
     /**
      * Use <b>yyyy-MM-dd</b> format
@@ -211,13 +211,13 @@ export namespace DataAPIInsightsChartParams {
   }
 }
 
-export interface DataAPIInsightsChartResponse {
-  views?: Array<DataAPIInsightsChartResponse.View>;
-  unique_views?: Array<DataAPIInsightsChartResponse.UniqueView>;
-  analytics_data?: DataAPIInsightsChartResponse.AnalyticsData;
+export interface VideoAnalyticChartDataResponse {
+  views?: Array<VideoAnalyticChartDataResponse.View>;
+  unique_views?: Array<VideoAnalyticChartDataResponse.UniqueView>;
+  analytics_data?: VideoAnalyticChartDataResponse.AnalyticsData;
 }
 
-export namespace DataAPIInsightsChartResponse {
+export namespace VideoAnalyticChartDataResponse {
   export interface View {
     /**
      * @default 0
@@ -255,18 +255,18 @@ export namespace DataAPIInsightsChartResponse {
   }
 }
 
-export interface DataAPIInsightsBreakdownParams {
+export interface VideoAnalyticBreakdownDataParams {
   /**
    * The timeframe to get the data for.
    * Currently, we only support a maximum of *60 days* between `start_at` and `end_at`.
    */
-  date_range: DataAPIInsightsBreakdownParams.DateRange;
+  date_range: VideoAnalyticBreakdownDataParams.DateRange;
   /**
    * Breakdown fields and metrics to retrieve data for. Supports 1 to 3 breakdowns per request.
    * @minItems 1
    * @maxItems 3
    */
-  breakdowns: Array<DataAPIInsightsBreakdownParams.Breakdown>;
+  breakdowns: Array<VideoAnalyticBreakdownDataParams.Breakdown>;
   /**
    * The five to ten character unique identifier of the Gumlet workspace ID available on the Video Workspaces.
    */
@@ -274,10 +274,10 @@ export interface DataAPIInsightsBreakdownParams {
   /**
    * Build *segments* of users using multiple filters on the data, `value` should be an *exact match*
    */
-  filters?: Array<DataAPIInsightsBreakdownParams.Filter>;
+  filters?: Array<VideoAnalyticBreakdownDataParams.Filter>;
 }
 
-export namespace DataAPIInsightsBreakdownParams {
+export namespace VideoAnalyticBreakdownDataParams {
   export interface DateRange {
     /**
      * Use <b>yyyy-MM-dd</b> format
@@ -397,11 +397,11 @@ export namespace DataAPIInsightsBreakdownParams {
   }
 }
 
-export interface DataAPIInsightsBreakdownResponse {
-  views?: DataAPIInsightsBreakdownResponse.Views;
+export interface VideoAnalyticBreakdownDataResponse {
+  views?: VideoAnalyticBreakdownDataResponse.Views;
 }
 
-export namespace DataAPIInsightsBreakdownResponse {
+export namespace VideoAnalyticBreakdownDataResponse {
   export interface Views {
     data?: Array<Views.Data>;
     /**
@@ -429,11 +429,11 @@ export namespace DataAPIInsightsBreakdownResponse {
   }
 }
 
-export interface DataAPIInsightsAggregatedParams {
+export interface VideoAnalyticAggregatedDataParams {
   /**
    * Aggregate multiple metrics at the same time
    */
-  aggregate: Array<DataAPIInsightsAggregatedParams.Aggregate>;
+  aggregate: Array<VideoAnalyticAggregatedDataParams.Aggregate>;
   /**
    * The unique identifier of the Gumlet workspace ID available on the Video Workspaces.
    */
@@ -441,14 +441,14 @@ export interface DataAPIInsightsAggregatedParams {
   /**
    * The timeframe to get the data for. Currently we only support maximum difference between `start_at` and `end_at` to be *60 days*
    */
-  timeframe: DataAPIInsightsAggregatedParams.Timeframe;
+  timeframe: VideoAnalyticAggregatedDataParams.Timeframe;
   /**
    * Get aggregations for metrics with multiple filters, `value` should be an exact match
    */
-  filters?: Array<DataAPIInsightsAggregatedParams.Filter>;
+  filters?: Array<VideoAnalyticAggregatedDataParams.Filter>;
 }
 
-export namespace DataAPIInsightsAggregatedParams {
+export namespace VideoAnalyticAggregatedDataParams {
   export interface Aggregate {
     /**
      * The metric to be aggregated for this request.
@@ -531,11 +531,11 @@ export namespace DataAPIInsightsAggregatedParams {
   }
 }
 
-export interface DataAPIInsightsAggregatedResponse {
-  views?: DataAPIInsightsAggregatedResponse.Views;
+export interface VideoAnalyticAggregatedDataResponse {
+  views?: VideoAnalyticAggregatedDataResponse.Views;
 }
 
-export namespace DataAPIInsightsAggregatedResponse {
+export namespace VideoAnalyticAggregatedDataResponse {
   export interface Views {
     sum?: Views.Sum;
   }
@@ -550,13 +550,13 @@ export namespace DataAPIInsightsAggregatedResponse {
     }
   }
 }
-export declare namespace DataAPI {
+export declare namespace VideoAnalytics {
   export {
-    type DataAPIInsightsChartResponse as DataAPIInsightsChartResponse,
-    type DataAPIInsightsBreakdownResponse as DataAPIInsightsBreakdownResponse,
-    type DataAPIInsightsAggregatedResponse as DataAPIInsightsAggregatedResponse,
-    type DataAPIInsightsChartParams as DataAPIInsightsChartParams,
-    type DataAPIInsightsBreakdownParams as DataAPIInsightsBreakdownParams,
-    type DataAPIInsightsAggregatedParams as DataAPIInsightsAggregatedParams,
+    type VideoAnalyticChartDataResponse as VideoAnalyticChartDataResponse,
+    type VideoAnalyticBreakdownDataResponse as VideoAnalyticBreakdownDataResponse,
+    type VideoAnalyticAggregatedDataResponse as VideoAnalyticAggregatedDataResponse,
+    type VideoAnalyticChartDataParams as VideoAnalyticChartDataParams,
+    type VideoAnalyticBreakdownDataParams as VideoAnalyticBreakdownDataParams,
+    type VideoAnalyticAggregatedDataParams as VideoAnalyticAggregatedDataParams,
   };
 }
