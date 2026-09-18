@@ -218,10 +218,7 @@ import {
   LiveStreamCollections,
   type LiveStreamCollectionListResponse,
   type LiveStreamCollectionCreateResponse,
-  type LiveStreamCollectionUpdateResponse,
-  type LiveStreamCollectionDeleteResponse,
   type LiveStreamCollectionCreateParams,
-  type LiveStreamCollectionUpdateParams,
 } from './resources/live-stream-collections';
 
 export type AuthTokenProvider = () => string | Promise<string>;
@@ -1278,10 +1275,7 @@ export declare namespace Gumlet {
     LiveStreamCollections as LiveStreamCollections,
     type LiveStreamCollectionListResponse as LiveStreamCollectionListResponse,
     type LiveStreamCollectionCreateResponse as LiveStreamCollectionCreateResponse,
-    type LiveStreamCollectionUpdateResponse as LiveStreamCollectionUpdateResponse,
-    type LiveStreamCollectionDeleteResponse as LiveStreamCollectionDeleteResponse,
     type LiveStreamCollectionCreateParams as LiveStreamCollectionCreateParams,
-    type LiveStreamCollectionUpdateParams as LiveStreamCollectionUpdateParams,
   };
 }
 

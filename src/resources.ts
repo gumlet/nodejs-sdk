@@ -166,7 +166,4 @@ export type {
   LiveStreamCollectionListResponse,
   LiveStreamCollectionCreateParams,
   LiveStreamCollectionCreateResponse,
-  LiveStreamCollectionUpdateParams,
-  LiveStreamCollectionUpdateResponse,
-  LiveStreamCollectionDeleteResponse,
 } from './resources/index';

@@ -193,7 +193,4 @@ export type {
   LiveStreamCollectionListResponse,
   LiveStreamCollectionCreateParams,
   LiveStreamCollectionCreateResponse,
-  LiveStreamCollectionUpdateParams,
-  LiveStreamCollectionUpdateResponse,
-  LiveStreamCollectionDeleteResponse,
 } from './live-stream-collections';
