@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.2.19](https://github.com/gumlet/nodejs-sdk/compare/v1.2.18...v1.2.19) (2026-09-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 3 breaking changes to the SDK surface.
+    - Removed operation `dataApi.insightsChart` (`POST /insights/viewer-analytics`).
+    - Removed operation `dataApi.insightsBreakdown` (`POST /insights/breakdown-data`).
+    - Removed operation `dataApi.insightsAggregated` (`POST /insights/aggregated-data`).
+
+### Features
+
+* **api:** remove operation dataApi.insightsChart (+5 more changes) ([fbd3bfe](https://github.com/gumlet/nodejs-sdk/commit/fbd3bfe439e0fa11965f2dcc1d3ad8ddd1661c62))
+
+
+### Chores
+
+* **api:** update generated SDK content ([309454a](https://github.com/gumlet/nodejs-sdk/commit/309454ab0a34497bff2b2625a8c8a097b438d490))
+* release 1.2.19 ([ef870e4](https://github.com/gumlet/nodejs-sdk/commit/ef870e49dff2c5b4926f76efb3d8f4298e85842a))
+* release 1.2.19 ([a73e5b0](https://github.com/gumlet/nodejs-sdk/commit/a73e5b033467e6ed57a284b215af9c5ca967eef5))
+
 ## [1.2.18](https://github.com/gumlet/nodejs-sdk/compare/v1.2.17...v1.2.18) (2026-09-17)
 
 
