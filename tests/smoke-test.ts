@@ -1363,12 +1363,12 @@ const cases: {
   },
 
   {
-    operation: 'insightsChart',
+    operation: 'chartData',
     method: 'POST',
     path: '/insights/viewer-analytics',
     label: 'required params',
     run: async () => {
-      const dataAPI = await client.dataAPI.insightsChart({
+      const videoAnalytic = await client.videoAnalytics.chartData({
         metrics: [''],
         workspace_id: '',
         date_range: {
@@ -1381,12 +1381,12 @@ const cases: {
   },
 
   {
-    operation: 'insightsChart',
+    operation: 'chartData',
     method: 'POST',
     path: '/insights/viewer-analytics',
     label: 'all params',
     run: async () => {
-      const dataAPI = await client.dataAPI.insightsChart({
+      const videoAnalytic = await client.videoAnalytics.chartData({
         metrics: [''],
         workspace_id: '',
         date_range: {
@@ -1407,11 +1407,11 @@ const cases: {
   },
 
   {
-    operation: 'insightsBreakdown',
+    operation: 'breakdownData',
     method: 'POST',
     path: '/insights/breakdown-data',
     run: async () => {
-      const dataAPI = await client.dataAPI.insightsBreakdown({
+      const videoAnalytic = await client.videoAnalytics.breakdownData({
         date_range: { start_at: '2026-07-20', end_at: '2026-08-20' },
         filters: [],
         breakdowns: [
@@ -1424,12 +1424,12 @@ const cases: {
   },
 
   {
-    operation: 'insightsAggregated',
+    operation: 'aggregatedData',
     method: 'POST',
     path: '/insights/aggregated-data',
     label: 'required params',
     run: async () => {
-      const dataAPI = await client.dataAPI.insightsAggregated({
+      const videoAnalytic = await client.videoAnalytics.aggregatedData({
         aggregate: [
           {
             metric: 'views',
@@ -1443,12 +1443,12 @@ const cases: {
   },
 
   {
-    operation: 'insightsAggregated',
+    operation: 'aggregatedData',
     method: 'POST',
     path: '/insights/aggregated-data',
     label: 'all params',
     run: async () => {
-      const dataAPI = await client.dataAPI.insightsAggregated({
+      const videoAnalytic = await client.videoAnalytics.aggregatedData({
         aggregate: [
           {
             metric: 'views',

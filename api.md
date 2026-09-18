@@ -92,7 +92,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Remove Channel Viewers](#remove-channel-viewers)
   - [Invite Channel Viewers via CSV](#invite-channel-viewers-via-csv)
   - [List Subscribers](#list-subscribers)
-- [`DataApi`](#dataapi)
+- [`VideoAnalytics`](#videoanalytics)
   - [Viewer Analytics](#viewer-analytics)
   - [Breakdown Data](#breakdown-data)
   - [Aggregated Data](#aggregated-data)
@@ -1274,9 +1274,9 @@ const channelViewer = await client.channelViewers.listSubscribers('workspaceId',
 });
 ```
 
-## `DataApi`
+## `VideoAnalytics`
 
-Query aggregated and chart-ready analytics/insights data.
+Query aggregated and chart-ready video analytics data.
 
 ### Viewer Analytics
 
@@ -1284,11 +1284,11 @@ This endpoint retrieves viewer analytics data. This endpoint is use for deep ins
 
 | Direction | Type |
 | --- | --- |
-| Request | [`DataAPIInsightsChartParams`](./src/resources/data-api.ts) |
-| Response | [`DataAPIInsightsChartResponse`](./src/resources/data-api.ts) |
+| Request | [`VideoAnalyticChartDataParams`](./src/resources/video-analytics.ts) |
+| Response | [`VideoAnalyticChartDataResponse`](./src/resources/video-analytics.ts) |
 
 ```ts
-const dataAPI = await client.dataAPI.insightsChart({
+const videoAnalytic = await client.videoAnalytics.chartData({
   metrics: [''],
   workspace_id: '',
   date_range: {
@@ -1305,11 +1305,11 @@ This endpoint retrieves breakdown data of the given metrics by given breakdown f
 
 | Direction | Type |
 | --- | --- |
-| Request | [`DataAPIInsightsBreakdownParams`](./src/resources/data-api.ts) |
-| Response | [`DataAPIInsightsBreakdownResponse`](./src/resources/data-api.ts) |
+| Request | [`VideoAnalyticBreakdownDataParams`](./src/resources/video-analytics.ts) |
+| Response | [`VideoAnalyticBreakdownDataResponse`](./src/resources/video-analytics.ts) |
 
 ```ts
-const dataAPI = await client.dataAPI.insightsBreakdown({
+const videoAnalytic = await client.videoAnalytics.breakdownData({
   date_range: { start_at: '2026-07-20', end_at: '2026-08-20' },
   filters: [],
   breakdowns: [
@@ -1326,11 +1326,11 @@ This endpoint retrieves aggregated data of the given metrics.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`DataAPIInsightsAggregatedParams`](./src/resources/data-api.ts) |
-| Response | [`DataAPIInsightsAggregatedResponse`](./src/resources/data-api.ts) |
+| Request | [`VideoAnalyticAggregatedDataParams`](./src/resources/video-analytics.ts) |
+| Response | [`VideoAnalyticAggregatedDataResponse`](./src/resources/video-analytics.ts) |
 
 ```ts
-const dataAPI = await client.dataAPI.insightsAggregated({
+const videoAnalytic = await client.videoAnalytics.aggregatedData({
   aggregate: [
     {
       metric: 'views',
