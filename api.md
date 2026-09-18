@@ -111,7 +111,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [List Workspaces](#list-workspaces-1)
   - [Create Workspace](#create-workspace-1)
   - [Update Workspace](#update-workspace-1)
-  - [Delete Collection](#delete-collection)
+  - [Delete Workspace](#delete-workspace-1)
 
 ## Setup
 
@@ -1503,7 +1503,7 @@ Update live stream workspace.
 const liveStreamWorkspace = await client.liveStreamWorkspaces.update('liveWorkspaceId');
 ```
 
-### Delete Collection
+### Delete Workspace
 
 Delete the live stream workspace.
 
