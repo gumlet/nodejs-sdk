@@ -1276,7 +1276,7 @@ const channelViewer = await client.channelViewers.listSubscribers('workspaceId',
 
 ## `DataApi`
 
-Query aggregated and chart-ready analytics/insights data.
+Query aggregated and chart-ready video analytics data.
 
 ### Viewer Analytics
 
