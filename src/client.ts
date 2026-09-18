@@ -214,6 +214,15 @@ import {
   type BillingFetchUpcomingInvoiceResponse,
   type BillingUpdateDetailsParams,
 } from './resources/billing';
+import {
+  LiveStreamCollections,
+  type LiveStreamCollectionListResponse,
+  type LiveStreamCollectionCreateResponse,
+  type LiveStreamCollectionUpdateResponse,
+  type LiveStreamCollectionDeleteResponse,
+  type LiveStreamCollectionCreateParams,
+  type LiveStreamCollectionUpdateParams,
+} from './resources/live-stream-collections';
 
 export type AuthTokenProvider = () => string | Promise<string>;
 
@@ -1022,6 +1031,7 @@ export class Gumlet {
   userData: UserData = new UserData(this);
   auditLogs: AuditLogs = new AuditLogs(this);
   billing: Billing = new Billing(this);
+  liveStreamCollections: LiveStreamCollections = new LiveStreamCollections(this);
 }
 
 Gumlet.VideoAssets = VideoAssets;
@@ -1044,6 +1054,7 @@ Gumlet.OrganizationData = OrganizationData;
 Gumlet.UserData = UserData;
 Gumlet.AuditLogs = AuditLogs;
 Gumlet.Billing = Billing;
+Gumlet.LiveStreamCollections = LiveStreamCollections;
 
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
@@ -1261,6 +1272,16 @@ export declare namespace Gumlet {
     type BillingUpdateDetailsResponse as BillingUpdateDetailsResponse,
     type BillingFetchUpcomingInvoiceResponse as BillingFetchUpcomingInvoiceResponse,
     type BillingUpdateDetailsParams as BillingUpdateDetailsParams,
+  };
+
+  export {
+    LiveStreamCollections as LiveStreamCollections,
+    type LiveStreamCollectionListResponse as LiveStreamCollectionListResponse,
+    type LiveStreamCollectionCreateResponse as LiveStreamCollectionCreateResponse,
+    type LiveStreamCollectionUpdateResponse as LiveStreamCollectionUpdateResponse,
+    type LiveStreamCollectionDeleteResponse as LiveStreamCollectionDeleteResponse,
+    type LiveStreamCollectionCreateParams as LiveStreamCollectionCreateParams,
+    type LiveStreamCollectionUpdateParams as LiveStreamCollectionUpdateParams,
   };
 }
 

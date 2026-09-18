@@ -107,6 +107,11 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Get Billing Details](#get-billing-details)
   - [Update Billing Details](#update-billing-details)
   - [Upcoming Invoice](#upcoming-invoice)
+- [`LiveStreamCollections`](#livestreamcollections)
+  - [List Collections](#list-collections)
+  - [Create Collection](#create-collection)
+  - [Update Collection](#update-collection)
+  - [Delete Collection](#delete-collection)
 
 ## Setup
 
@@ -1452,4 +1457,60 @@ Get details about upcoming invoice.
 
 ```ts
 const billing = await client.billing.fetchUpcomingInvoice();
+```
+
+## `LiveStreamCollections`
+
+Create and manage live stream collections.
+
+### List Collections
+
+List all live stream collections
+
+| Direction | Type |
+| --- | --- |
+| Response | [`LiveStreamCollectionListResponse`](./src/resources/live-stream-collections.ts) |
+
+```ts
+const liveStreamCollection = await client.liveStreamCollections.list();
+```
+
+### Create Collection
+
+Create live stream collection.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`LiveStreamCollectionCreateParams`](./src/resources/live-stream-collections.ts) |
+| Response | [`LiveStreamCollectionCreateResponse`](./src/resources/live-stream-collections.ts) |
+
+```ts
+const liveStreamCollection = await client.liveStreamCollections.create({
+  name: '',
+});
+```
+
+### Update Collection
+
+Update live stream collection.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`LiveStreamCollectionUpdateParams`](./src/resources/live-stream-collections.ts) |
+| Response | [`LiveStreamCollectionUpdateResponse`](./src/resources/live-stream-collections.ts) |
+
+```ts
+const liveStreamCollection = await client.liveStreamCollections.update('liveCollectionId');
+```
+
+### Delete Collection
+
+Delete the live stream collection.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`LiveStreamCollectionDeleteResponse`](./src/resources/live-stream-collections.ts) |
+
+```ts
+const liveStreamCollection = await client.liveStreamCollections.delete('liveCollectionId');
 ```
