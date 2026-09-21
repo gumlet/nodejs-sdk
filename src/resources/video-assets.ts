@@ -1377,12 +1377,12 @@ export namespace VideoAssetRetrieveDetailsResponse {
 
   export namespace Output {
     export interface StorageDetails {
-      video?: Array<StorageDetails.Video>;
-      audio?: Array<StorageDetails.Audio>;
-      playlist?: Array<StorageDetails.Playlist>;
-      thumbnail?: Array<StorageDetails.Thumbnail>;
-      subtitle?: Array<StorageDetails.Subtitle>;
-      previewThumbnail?: Array<StorageDetails.PreviewThumbnail>;
+      video: Array<StorageDetails.Video>;
+      audio: Array<StorageDetails.Audio>;
+      playlist: Array<StorageDetails.Playlist>;
+      thumbnail: Array<StorageDetails.Thumbnail>;
+      subtitle: Array<StorageDetails.Subtitle>;
+      previewThumbnail: Array<StorageDetails.PreviewThumbnail>;
     }
 
     export namespace StorageDetails {
