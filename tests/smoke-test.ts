@@ -48,7 +48,7 @@ const cases: {
     run: async () => {
       const videoAsset = await client.videoAssets.create({
         format: 'ABR',
-        collection_id: '<your workspace id>',
+        workspace_id: '<your workspace id>',
         title: 'Example Title',
         input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
       });

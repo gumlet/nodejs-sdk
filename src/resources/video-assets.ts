@@ -18,7 +18,7 @@ export class VideoAssets extends APIResource {
    * ```ts
    * const videoAsset = await client.videoAssets.create({
    *   format: 'ABR',
-   *   collection_id: '<your workspace id>',
+   *   workspace_id: '<your workspace id>',
    *   title: 'Example Title',
    *   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
    * });
@@ -320,13 +320,13 @@ export interface VideoAssetCreateParams {
    */
   input: string;
   /**
-   * Gumlet video workspace id.
-   */
-  collection_id: string;
-  /**
    * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and`MP4`.
    */
   format: 'ABR' | 'MP4';
+  /**
+   * Gumlet video workspace id.
+   */
+  workspace_id: string;
   /**
    * Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `collection_id`) from the video profile.
    */
