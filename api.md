@@ -114,6 +114,8 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Delete Workspace](#delete-workspace-1)
 - [`LiveStreamAnalytics`](#livestreamanalytics)
   - [Usage Analytics](#usage-analytics)
+- [`GlobalSearch`](#globalsearch)
+  - [Global Search](#global-search)
 
 ## Setup
 
@@ -1538,5 +1540,29 @@ const liveStreamAnalytic = await client.liveStreamAnalytics.usage({
   },
   group_by: 'daily',
   metrics: ['bandwidth_consumption'],
+});
+```
+
+## `GlobalSearch`
+
+Search all video assets / playlists / folders etc across workspaces.
+
+### Global Search
+
+Search all video assets / playlists / folders etc across workspaces.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`GlobalSearchSearchParams`](./src/resources/global-search.ts) |
+| Response | [`GlobalSearchSearchResponse`](./src/resources/global-search.ts) |
+
+```ts
+const globalSearch = await client.globalSearch.search({
+  search_query: 'searchQuery',
+  size: 20,
+  assets_offset: 0,
+  folders_offset: 0,
+  playlists_offset: 0,
+  channels_offset: 0,
 });
 ```

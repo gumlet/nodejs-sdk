@@ -23,6 +23,7 @@ export {
   Billing,
   LiveStreamWorkspaces,
   LiveStreamAnalytics,
+  GlobalSearch,
 } from './resources/index';
 export type {
   VideoAssetCreateParams,
@@ -172,4 +173,6 @@ export type {
   LiveStreamWorkspaceDeleteResponse,
   LiveStreamAnalyticUsageParams,
   LiveStreamAnalyticUsageResponse,
+  GlobalSearchSearchParams,
+  GlobalSearchSearchResponse,
 } from './resources/index';

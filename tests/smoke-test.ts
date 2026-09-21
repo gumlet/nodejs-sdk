@@ -1608,6 +1608,41 @@ const cases: {
       });
     },
   },
+
+  {
+    operation: 'search',
+    method: 'GET',
+    path: '/entities/global-search',
+    label: 'required params',
+    run: async () => {
+      const globalSearch = await client.globalSearch.search({
+        search_query: 'searchQuery',
+        size: 20,
+        assets_offset: 0,
+        folders_offset: 0,
+        playlists_offset: 0,
+        channels_offset: 0,
+      });
+    },
+  },
+
+  {
+    operation: 'search',
+    method: 'GET',
+    path: '/entities/global-search',
+    label: 'all params',
+    run: async () => {
+      const globalSearch = await client.globalSearch.search({
+        search_query: 'searchQuery',
+        collection_id: 'collectionId',
+        size: 20,
+        assets_offset: 0,
+        folders_offset: 0,
+        playlists_offset: 0,
+        channels_offset: 0,
+      });
+    },
+  },
 ];
 
 /**
