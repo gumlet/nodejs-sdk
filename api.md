@@ -364,8 +364,8 @@ Get video analytics for a single asset.
 const videoAsset = await client.videoAssets.analytics('assetId', {
   group_by: 'daily',
   date_range: {
-    start_at: '',
-    end_at: '',
+    start_at: '2024-01-01',
+    end_at: '2024-01-01',
   },
   metrics: ['impressions'],
 });
@@ -891,7 +891,10 @@ This endpoint helps you get image analytics data like bandwidth consumption, req
 ```ts
 const imageUsageAnalytic = await client.imageUsageAnalytics.retrieve({
   metrics: ['bandwidth_consumption'],
-  date_range: {},
+  date_range: {
+    start_at: '2024-01-01',
+    end_at: '2024-01-01',
+  },
   group_by: 'daily',
 });
 ```
