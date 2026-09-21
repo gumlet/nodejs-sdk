@@ -223,6 +223,11 @@ import {
   type LiveStreamWorkspaceCreateParams,
   type LiveStreamWorkspaceUpdateParams,
 } from './resources/live-stream-workspaces';
+import {
+  LiveStreamAnalytics,
+  type LiveStreamAnalyticUsageResponse,
+  type LiveStreamAnalyticUsageParams,
+} from './resources/live-stream-analytics';
 
 export type AuthTokenProvider = () => string | Promise<string>;
 
@@ -1032,6 +1037,7 @@ export class Gumlet {
   auditLogs: AuditLogs = new AuditLogs(this);
   billing: Billing = new Billing(this);
   liveStreamWorkspaces: LiveStreamWorkspaces = new LiveStreamWorkspaces(this);
+  liveStreamAnalytics: LiveStreamAnalytics = new LiveStreamAnalytics(this);
 }
 
 Gumlet.VideoAssets = VideoAssets;
@@ -1055,6 +1061,7 @@ Gumlet.UserData = UserData;
 Gumlet.AuditLogs = AuditLogs;
 Gumlet.Billing = Billing;
 Gumlet.LiveStreamWorkspaces = LiveStreamWorkspaces;
+Gumlet.LiveStreamAnalytics = LiveStreamAnalytics;
 
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
@@ -1282,6 +1289,12 @@ export declare namespace Gumlet {
     type LiveStreamWorkspaceDeleteResponse as LiveStreamWorkspaceDeleteResponse,
     type LiveStreamWorkspaceCreateParams as LiveStreamWorkspaceCreateParams,
     type LiveStreamWorkspaceUpdateParams as LiveStreamWorkspaceUpdateParams,
+  };
+
+  export {
+    LiveStreamAnalytics as LiveStreamAnalytics,
+    type LiveStreamAnalyticUsageResponse as LiveStreamAnalyticUsageResponse,
+    type LiveStreamAnalyticUsageParams as LiveStreamAnalyticUsageParams,
   };
 }
 
