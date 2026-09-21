@@ -196,7 +196,7 @@ export interface VideoPlaylistCreateParams {
 }
 
 export interface VideoPlaylistCreateResponse {
-  id?: string;
+  id: string;
   collection_id?: string;
   title?: string;
   description?: string;
@@ -379,7 +379,7 @@ export namespace VideoPlaylistUpdateParams {
 }
 
 export interface VideoPlaylistUpdateResponse {
-  id?: string;
+  id: string;
   collection_id?: string;
   title?: string;
   description?: string;
