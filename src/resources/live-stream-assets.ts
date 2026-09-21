@@ -8,7 +8,7 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class LiveStreamAssets extends APIResource {
   /**
-   * A live asset refers to a media content/video that is live-streamed through Gumlet. This endpoint creates a live streaming asset allowing users to live stream a video that will be pushed to Gumlet.
+   * A live asset refers to media content/video that is live-streamed through Gumlet. This endpoint creates a live streaming asset allowing users to live stream a video that will be pushed to Gumlet.
    *
    * @param {LiveStreamAssetCreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -30,7 +30,7 @@ export class LiveStreamAssets extends APIResource {
   }
 
   /**
-   * A live asset refers to a media content/video that is live-streamed through Gumlet. This endpoint allows user to update a live streaming asset.
+   * A live asset refers to media content/video that is live-streamed through Gumlet. This endpoint allows users to update a live streaming asset.
    *
    * @param {LiveStreamAssetUpdateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -53,7 +53,7 @@ export class LiveStreamAssets extends APIResource {
   /**
    * This endpoint retrieves the details of a live video asset that has previously been created.
    *
-   * @param {string} liveAssetID - An live asset id for the previously created asset.
+   * @param {string} liveAssetID - A live asset id for the previously created asset.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<LiveStreamAssetRetrieveStatusResponse>} 200
    *
@@ -165,7 +165,7 @@ export class LiveStreamAssets extends APIResource {
   /**
    * This endpoint retrieves the history of a live video asset that has previously been created.
    *
-   * @param {string} liveAssetID - An live asset id for the previously created asset.
+   * @param {string} liveAssetID - A live asset id for the previously created asset.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<LiveStreamAssetStatusHistoryResponse>} 200
    *
@@ -188,7 +188,7 @@ export interface LiveStreamAssetCreateParams {
    */
   live_source_id: string;
   /**
-   * Required resolutions in HLS delivery format for live stream. Can be an array of string out of the following values:  `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Re-sized rendition will retain the input aspect ratio.
+   * Required resolutions in HLS delivery format for live stream. Can be an array of string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Resized rendition will retain the input aspect ratio.
    */
   resolution: string;
   /**

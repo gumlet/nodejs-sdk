@@ -53,7 +53,7 @@ export class AudioUpload extends APIResource {
 
 export interface AudioUploadUploadParams {
   /**
-   * List of language Code to upload audio file  (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
+   * List of language codes to upload audio file (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
    */
   language_codes?: Array<string>;
 }
@@ -80,7 +80,7 @@ export interface AudioUploadCompleteParams {
 export namespace AudioUploadCompleteParams {
   export interface UploadResponse {
     /**
-     * Language Code for uploaded audio file.
+     * Language code for uploaded audio file.
      */
     language_code?: string;
     /**

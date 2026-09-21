@@ -119,7 +119,7 @@ export interface VideoProfileCreateParams {
    */
   height?: string;
   /**
-   * Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values:  `240p`, `360p`, `480p`, `540p`, `720p`,  and `1080p `. Re-sized rendition will retain the input aspect ratio.
+   * Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma-separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p `. Resized rendition will retain the input aspect ratio.
    */
   resolution?: string;
   /**
@@ -147,7 +147,7 @@ export interface VideoProfileCreateParams {
    */
   animated_gif?: VideoProfileCreateParams.AnimatedGif;
   /**
-   * Gumlet allows to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes). Remove this object if you do not want to generate AI subtitles.
+   * Gumlet allows you to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes). Remove this object if you do not want to generate AI subtitles.
    */
   generate_subtitles?: VideoProfileCreateParams.GenerateSubtitles;
   /**
@@ -167,7 +167,7 @@ export interface VideoProfileCreateParams {
    */
   audio_only?: boolean;
   /**
-   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and Fairplay DRMs.
+   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and FairPlay DRMs.
    */
   enable_drm?: boolean;
 }
@@ -235,7 +235,7 @@ export namespace VideoProfileCreateParams {
 
   export interface ImageOverlay {
     /**
-     * This is the required parameter for image overlay, it can be a URL to an image that needs to be overlayed.
+     * This is the required parameter for image overlay; it can be a URL to an image that needs to be overlaid.
      */
     url: string;
     /**
@@ -247,34 +247,34 @@ export namespace VideoProfileCreateParams {
      */
     vertical_margin?: string;
     /**
-     * This parameter specifies the horizontal alignment of the overlayed image and can be either `left` or `right`. **Default: `right`**
+     * This parameter specifies the horizontal alignment of the overlaid image and can be either `left` or `right`. **Default: `right`**
      */
     horizontal_align?: string;
     /**
-     * This parameter specifies the vertical alignment of the overlayed image and can be either `top` or `bottom`. **Default: `bottom`**
+     * This parameter specifies the vertical alignment of the overlaid image and can be either `top` or `bottom`. **Default: `bottom`**
      */
     vertical_align?: string;
     /**
-     * Width of the overlayed image. **Default: `image width`**
+     * Width of the overlaid image. **Default: `image width`**
      */
     width?: string;
     /**
-     * Height of the overlayed image. **Default: `image height`**
+     * Height of the overlaid image. **Default: `image height`**
      */
     height?: string;
   }
 
   export interface TextOverlay {
     /**
-     * Text to be overlayed on video.
+     * Text to be overlaid on video.
      */
     text: string;
     /**
-     * This parameter specifies the horizontal alignment of the overlayed image and can be either `left` or `right`. **Default: `right`**
+     * This parameter specifies the horizontal alignment of the overlaid text and can be either `left` or `right`. **Default: `right`**
      */
     horizontal_align?: string;
     /**
-     * This parameter specifies the vertical alignment of the overlayed image and can be either `top` or `bottom`. **Default: `bottom`**
+     * This parameter specifies the vertical alignment of the overlaid text and can be either `top` or `bottom`. **Default: `bottom`**
      */
     vertical_align?: string;
     /**
@@ -302,7 +302,7 @@ export namespace VideoProfileCreateParams {
      */
     opacity?: string;
     /**
-     * This parameter allows rectangular drawing a box over the overlayed text. **Default: `false`**
+     * This parameter allows drawing a rectangular box over the overlaid text. **Default: `false`**
      */
     box?: boolean;
     /**
@@ -493,7 +493,7 @@ export interface VideoProfileUpdateParams {
    */
   animated_gif?: VideoProfileUpdateParams.AnimatedGif;
   /**
-   * Gumlet allows to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes). You can remove this object if don't want to generate AI subtitles.
+   * Gumlet allows you to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes). You can remove this object if you don't want to generate AI subtitles.
    */
   generate_subtitles?: VideoProfileUpdateParams.GenerateSubtitles;
   /**
@@ -513,7 +513,7 @@ export interface VideoProfileUpdateParams {
    */
   audio_only?: boolean;
   /**
-   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and Fairplay DRMs.
+   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and FairPlay DRMs.
    */
   enable_drm?: boolean;
   /**
@@ -593,7 +593,7 @@ export namespace VideoProfileUpdateParams {
 
   export interface ImageOverlay {
     /**
-     * This is the required parameter for image overlay, it can be a URL to an image that needs to be overlayed.
+     * This is the required parameter for image overlay; it can be a URL to an image that needs to be overlaid.
      */
     url: string;
     /**
@@ -605,34 +605,34 @@ export namespace VideoProfileUpdateParams {
      */
     vertical_margin?: string;
     /**
-     * This parameter specifies the horizontal alignment of the overlayed image and can be either `left` or `right`. **Default: `right`**
+     * This parameter specifies the horizontal alignment of the overlaid image and can be either `left` or `right`. **Default: `right`**
      */
     horizontal_align?: string;
     /**
-     * This parameter specifies the vertical alignment of the overlayed image and can be either `top` or `bottom`. **Default: `bottom`**
+     * This parameter specifies the vertical alignment of the overlaid image and can be either `top` or `bottom`. **Default: `bottom`**
      */
     vertical_align?: string;
     /**
-     * Width of the overlayed image. **Default: `image width`**
+     * Width of the overlaid image. **Default: `image width`**
      */
     width?: string;
     /**
-     * Height of the overlayed image. **Default: `image height`**
+     * Height of the overlaid image. **Default: `image height`**
      */
     height?: string;
   }
 
   export interface TextOverlay {
     /**
-     * Text to be overlayed on video.
+     * Text to be overlaid on video.
      */
     text: string;
     /**
-     * This parameter specifies the horizontal alignment of the overlayed image and can be either `left` or `right`. **Default: `right`**
+     * This parameter specifies the horizontal alignment of the overlaid text and can be either `left` or `right`. **Default: `right`**
      */
     horizontal_align?: string;
     /**
-     * This parameter specifies the vertical alignment of the overlayed image and can be either `top` or `bottom`. **Default: `bottom`**
+     * This parameter specifies the vertical alignment of the overlaid text and can be either `top` or `bottom`. **Default: `bottom`**
      */
     vertical_align?: string;
     /**
@@ -660,7 +660,7 @@ export namespace VideoProfileUpdateParams {
      */
     opacity?: string;
     /**
-     * This parameter allows rectangular drawing a box over the overlayed text. **Default: `false`**
+     * This parameter allows drawing a rectangular box over the overlaid text. **Default: `false`**
      */
     box?: boolean;
     /**
