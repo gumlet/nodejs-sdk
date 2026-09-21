@@ -34,7 +34,7 @@ export class ImageUsageAnalytics extends APIResource {
 
 export interface ImageUsageAnalyticRetrieveParams {
   /**
-   * Define the metric you need the data for, currently we support "bandwidth_consumption", "requests_count","status_4xx","status_5xx","avg_response_time""
+   * Define the metric you need the data for. Currently we support `bandwidth_consumption`, `requests_count`, `status_4xx`, `status_5xx`, and `avg_response_time`.
    */
   metrics: Array<
     | 'bandwidth_consumption'

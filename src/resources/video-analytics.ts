@@ -112,7 +112,7 @@ export interface VideoAnalyticChartDataParams {
    */
   group_by?: 'daily' | 'weekly' | 'monthly';
   /**
-   * Metrics result Group by selected dimension, You can select upto 3 dimensions to get nested category result. result will follow selection orders.
+   * Group metrics by the selected dimension. You can select up to 3 dimensions for nested category results; results follow the selection order.
    */
   chart_dimension?: VideoAnalyticChartDataParams.ChartDimension;
 }

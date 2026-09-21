@@ -7,7 +7,7 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class SubtitleUpload extends APIResource {
   /**
-   * Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
+   * Upload `.srt` or `.vtt` file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {SubtitleUploadUploadParams} [body] - The request body to send.
@@ -55,7 +55,7 @@ export class SubtitleUpload extends APIResource {
 
 export interface SubtitleUploadUploadParams {
   /**
-   * List of language Code to upload subtitle file  (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
+   * List of language codes to upload subtitle file (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
    */
   language_codes?: Array<string>;
 }
@@ -82,7 +82,7 @@ export interface SubtitleUploadCompleteParams {
 export namespace SubtitleUploadCompleteParams {
   export interface UploadResponse {
     /**
-     * Language Code for uploaded .srt or .vtt file.
+     * Language code for uploaded .srt or .vtt file.
      */
     language_code?: string;
     /**

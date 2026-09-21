@@ -55,7 +55,7 @@ export class VideoUsageAnalytics extends APIResource {
 
 export interface VideoUsageAnalyticRetrieveParams {
   /**
-   * Define the metric you need the data for, currently we only support `bandwidth_consumption`, `asset_duration`, `storage_unit`, `top_assets`, `bandwidth_consumption_by_collection`, `errored_videos` and `widget_data`
+   * Define the metric you need the data for. Currently we only support `bandwidth_consumption`, `asset_duration`, `storage_unit`, `top_assets`, `bandwidth_consumption_by_collection`, `errored_videos` and `widget_data`
    */
   metrics: Array<
     | 'bandwidth_consumption'
