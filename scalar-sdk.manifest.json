@@ -89,7 +89,6 @@
       "publicHeaderParams": [],
       "bodyParams": [
         "input",
-        "collection_id",
         "profile_id",
         "format",
         "tag",
@@ -114,11 +113,11 @@
         "enable_drm",
         "call_to_actions",
         "playlist_id",
-        "folder"
+        "folder",
+        "workspace_id"
       ],
       "publicBodyParams": [
         "input",
-        "collection_id",
         "profile_id",
         "format",
         "tag",
@@ -143,15 +142,12 @@
         "enable_drm",
         "call_to_actions",
         "playlist_id",
-        "folder"
+        "folder",
+        "workspace_id"
       ],
       "bodyParamDetails": [
         {
           "name": "input",
-          "required": true
-        },
-        {
-          "name": "collection_id",
           "required": true
         },
         {
@@ -253,6 +249,10 @@
         {
           "name": "folder",
           "required": false
+        },
+        {
+          "name": "workspace_id",
+          "required": true
         }
       ],
       "pathParamDetails": [],
