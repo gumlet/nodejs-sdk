@@ -1197,8 +1197,6 @@ export interface VideoAssetRetrieveDetailsResponse {
    */
   updated_at?: number;
   tag?: Array<string>;
-  source_id?: string;
-  collection_id?: string;
   input?: VideoAssetRetrieveDetailsResponse.Input;
   output?: VideoAssetRetrieveDetailsResponse.Output;
   /**
@@ -1226,6 +1224,10 @@ export interface VideoAssetRetrieveDetailsResponse {
    */
   access_control?: 'private' | 'public' | 'password-protected' | 'dashboardOnly';
   access_controls?: VideoAssetRetrieveDetailsResponse.AccessControls;
+  /**
+   * Workspace ID
+   */
+  workspace_id?: string;
 }
 
 export namespace VideoAssetRetrieveDetailsResponse {
