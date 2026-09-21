@@ -463,13 +463,13 @@ export interface VideoPlaylistListAssetsParams {
    */
   sort_order?: number;
   /**
-   * Optional, Minimun 1
+   * Optional. Minimum: 1
    * @default 1
    * @format int32
    */
   page_number?: number;
   /**
-   * Optional, Minimun 10
+   * Optional. Minimum: 10
    * @default 10
    */
   page_size?: string;

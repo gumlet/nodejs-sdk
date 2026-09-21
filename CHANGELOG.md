@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.4](https://github.com/gumlet/nodejs-sdk/compare/v1.3.3...v1.3.4) (2026-09-21)
+
+
+### Chores
+
+* **api:** update generated SDK content ([a2b9bed](https://github.com/gumlet/nodejs-sdk/commit/a2b9bed535fcc7cf863bacd62350633428516a1c))
+* **api:** update generated SDK content ([614e1c7](https://github.com/gumlet/nodejs-sdk/commit/614e1c7806d00cee883e1c1e3d7f180f597d2aae))
+* **api:** update generated SDK content ([21bd9cb](https://github.com/gumlet/nodejs-sdk/commit/21bd9cb5fcd9fa771ec8f853aebd584d9d779bed))
+
 ## [1.3.3](https://github.com/gumlet/nodejs-sdk/compare/v1.3.2...v1.3.3) (2026-09-21)
 
 

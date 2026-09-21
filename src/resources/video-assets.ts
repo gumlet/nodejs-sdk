@@ -8,7 +8,7 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class VideoAssets extends APIResource {
   /**
-   * An asset refers to a media content/video that is processed, stored, and delivered through Gumlet. This endpoint creates an asset allowing users to ingest media content into the Gumlet system for processing and delivery.
+   * An asset refers to media content/video that is processed, stored, and delivered through Gumlet. This endpoint creates an asset allowing users to ingest media content into the Gumlet system for processing and delivery.
    *
    * @param {VideoAssetCreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -29,7 +29,7 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * This endpoint creates a video asset allowing to upload of the video from the local file system and ingest media content into the Gumlet system for processing and delivery.Body Parameters are the same as the Create Asset Body Parameters except for the `input` parameter which this endpoint does not take.A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [this](https://docs.gumlet.com/docs/direct-upload#2-use-the-url-to-upload-a-file).
+   * This endpoint creates a video asset allowing upload of a video from the local file system and ingest media content into the Gumlet system for processing and delivery. Body parameters are the same as the Create Asset body parameters except for the `input` parameter, which this endpoint does not take. A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [this](https://docs.gumlet.com/docs/direct-upload#2-use-the-url-to-upload-a-file).
    *
    * @param {VideoAssetUploadParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -320,7 +320,7 @@ export interface VideoAssetCreateParams {
    */
   input: string;
   /**
-   * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and`MP4`.
+   * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and `MP4`.
    */
   format: 'ABR' | 'MP4';
   /**
@@ -356,7 +356,7 @@ export interface VideoAssetCreateParams {
    */
   height?: string;
   /**
-   * Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Re-sized rendition will retain the input aspect ratio.
+   * Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma-separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Resized rendition will retain the input aspect ratio.
    */
   resolution?: string;
   /**
@@ -388,7 +388,7 @@ export interface VideoAssetCreateParams {
    */
   additional_tracks?: Array<VideoAssetCreateParams.AdditionalTrack>;
   /**
-   * Gumlet allows to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
+   * Gumlet allows you to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
    */
   generate_subtitles?: VideoAssetCreateParams.GenerateSubtitles;
   /**
@@ -408,11 +408,11 @@ export interface VideoAssetCreateParams {
    */
   audio_only?: boolean;
   /**
-   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and Fairplay DRMs.
+   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and FairPlay DRMs.
    */
   enable_drm?: boolean;
   /**
-   * CTA, is an explicit prompt within the video content encouraging viewers to take a particular action.
+   * A CTA is an explicit prompt within the video content encouraging viewers to take a particular action.
    */
   call_to_actions?: Array<VideoAssetCreateParams.CallToAction>;
   /**
@@ -488,7 +488,7 @@ export namespace VideoAssetCreateParams {
 
   export interface ImageOverlay {
     /**
-     * This is the required parameter for image overlay, it can be a URL to an image that needs to be overlayed.
+     * This is the required parameter for image overlay; it can be a URL to an image that needs to be overlaid.
      */
     url: string;
     /**
@@ -500,34 +500,34 @@ export namespace VideoAssetCreateParams {
      */
     vertical_margin?: string;
     /**
-     * This parameter specifies the horizontal alignment of the overlayed image and can be either `left` or `right`. **Default: `right`**
+     * This parameter specifies the horizontal alignment of the overlaid image and can be either `left` or `right`. **Default: `right`**
      */
     horizontal_align?: string;
     /**
-     * This parameter specifies the vertical alignment of the overlayed image and can be either `top` or `bottom`. **Default: `bottom`**
+     * This parameter specifies the vertical alignment of the overlaid image and can be either `top` or `bottom`. **Default: `bottom`**
      */
     vertical_align?: string;
     /**
-     * Width of the overlayed image. **Default: `image width`**
+     * Width of the overlaid image. **Default: `image width`**
      */
     width?: string;
     /**
-     * Height of the overlayed image. **Default: `image height`**
+     * Height of the overlaid image. **Default: `image height`**
      */
     height?: string;
   }
 
   export interface TextOverlay {
     /**
-     * Text to be overlayed on video.
+     * Text to be overlaid on video.
      */
     text: string;
     /**
-     * This parameter specifies the horizontal alignment of the overlayed image and can be either `left` or `right`. **Default: `right`**
+     * This parameter specifies the horizontal alignment of the overlaid text and can be either `left` or `right`. **Default: `right`**
      */
     horizontal_align?: string;
     /**
-     * This parameter specifies the vertical alignment of the overlayed image and can be either `top` or `bottom`. **Default: `bottom`**
+     * This parameter specifies the vertical alignment of the overlaid text and can be either `top` or `bottom`. **Default: `bottom`**
      */
     vertical_align?: string;
     /**
@@ -555,7 +555,7 @@ export namespace VideoAssetCreateParams {
      */
     opacity?: string;
     /**
-     * This parameter allows rectangular drawing a box over the overlayed text. **Default: `false`**
+     * This parameter allows drawing a rectangular box over the overlaid text. **Default: `false`**
      */
     box?: boolean;
     /**
@@ -760,7 +760,7 @@ export interface VideoAssetUploadParams {
    */
   profile_id?: string;
   /**
-   * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and`MP4`.
+   * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and `MP4`.
    */
   format?: 'ABR' | 'MP4';
   /**
@@ -788,7 +788,7 @@ export interface VideoAssetUploadParams {
    */
   height?: string;
   /**
-   * Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Re-sized rendition will retain the input aspect ratio.
+   * Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma-separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Resized rendition will retain the input aspect ratio.
    */
   resolution?: string;
   /**
@@ -820,7 +820,7 @@ export interface VideoAssetUploadParams {
    */
   additional_tracks?: Array<VideoAssetUploadParams.AdditionalTrack>;
   /**
-   * Gumlet allows to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
+   * Gumlet allows you to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
    */
   generate_subtitles?: VideoAssetUploadParams.GenerateSubtitles;
   /**
@@ -840,11 +840,11 @@ export interface VideoAssetUploadParams {
    */
   audio_only?: boolean;
   /**
-   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and Fairplay DRMs.
+   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and FairPlay DRMs.
    */
   enable_drm?: boolean;
   /**
-   * CTA, is an explicit prompt within the video content encouraging viewers to take a particular action.
+   * A CTA is an explicit prompt within the video content encouraging viewers to take a particular action.
    */
   call_to_actions?: Array<VideoAssetUploadParams.CallToAction>;
   /**
@@ -920,7 +920,7 @@ export namespace VideoAssetUploadParams {
 
   export interface ImageOverlay {
     /**
-     * This is the required parameter for image overlay, it can be a URL to an image that needs to be overlayed.
+     * This is the required parameter for image overlay; it can be a URL to an image that needs to be overlaid.
      */
     url: string;
     /**
@@ -932,34 +932,34 @@ export namespace VideoAssetUploadParams {
      */
     vertical_margin?: string;
     /**
-     * This parameter specifies the horizontal alignment of the overlayed image and can be either `left` or `right`. **Default: `right`**
+     * This parameter specifies the horizontal alignment of the overlaid image and can be either `left` or `right`. **Default: `right`**
      */
     horizontal_align?: string;
     /**
-     * This parameter specifies the vertical alignment of the overlayed image and can be either `top` or `bottom`. **Default: `bottom`**
+     * This parameter specifies the vertical alignment of the overlaid image and can be either `top` or `bottom`. **Default: `bottom`**
      */
     vertical_align?: string;
     /**
-     * Width of the overlayed image. **Default: `image width`**
+     * Width of the overlaid image. **Default: `image width`**
      */
     width?: string;
     /**
-     * Height of the overlayed image. **Default: `image height`**
+     * Height of the overlaid image. **Default: `image height`**
      */
     height?: string;
   }
 
   export interface TextOverlay {
     /**
-     * Text to be overlayed on video.
+     * Text to be overlaid on video.
      */
     text: string;
     /**
-     * This parameter specifies the horizontal alignment of the overlayed image and can be either `left` or `right`. **Default: `right`**
+     * This parameter specifies the horizontal alignment of the overlaid text and can be either `left` or `right`. **Default: `right`**
      */
     horizontal_align?: string;
     /**
-     * This parameter specifies the vertical alignment of the overlayed image and can be either `top` or `bottom`. **Default: `bottom`**
+     * This parameter specifies the vertical alignment of the overlaid text and can be either `top` or `bottom`. **Default: `bottom`**
      */
     vertical_align?: string;
     /**
@@ -987,7 +987,7 @@ export namespace VideoAssetUploadParams {
      */
     opacity?: string;
     /**
-     * This parameter allows rectangular drawing a box over the overlayed text. **Default: `false`**
+     * This parameter allows drawing a rectangular box over the overlaid text. **Default: `false`**
      */
     box?: boolean;
     /**
@@ -1185,7 +1185,7 @@ export interface VideoAssetRetrieveDetailsResponse {
    * Collection updated timestamp in milliseconds since epoch
    * @format int64
    */
-  collection_updated_at: number;
+  workspace_updated_at: number;
   /**
    * @default 0
    */
@@ -1197,8 +1197,6 @@ export interface VideoAssetRetrieveDetailsResponse {
    */
   updated_at?: number;
   tag?: Array<string>;
-  source_id?: string;
-  collection_id?: string;
   input?: VideoAssetRetrieveDetailsResponse.Input;
   output?: VideoAssetRetrieveDetailsResponse.Output;
   /**
@@ -1226,6 +1224,10 @@ export interface VideoAssetRetrieveDetailsResponse {
    */
   access_control?: 'private' | 'public' | 'password-protected' | 'dashboardOnly';
   access_controls?: VideoAssetRetrieveDetailsResponse.AccessControls;
+  /**
+   * Workspace ID
+   */
+  workspace_id?: string;
 }
 
 export namespace VideoAssetRetrieveDetailsResponse {
@@ -1468,11 +1470,11 @@ export interface VideoAssetUpdateParams {
    */
   description?: string;
   /**
-   * Specify a text string or identifier which can identify an asset or bunch of assets later. You can pass multiple comma separated values.
+   * Specify a text string or identifier which can identify an asset or bunch of assets later. You can pass multiple comma-separated values.
    */
   tag?: string;
   /**
-   * CTA, is an explicit prompt within the video content encouraging viewers to take a particular action.
+   * A CTA is an explicit prompt within the video content encouraging viewers to take a particular action.
    */
   call_to_actions?: Array<VideoAssetUpdateParams.CallToAction>;
   /**

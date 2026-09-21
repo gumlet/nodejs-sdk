@@ -1195,7 +1195,7 @@ export namespace VideoWorkspaceRetrieveResponse {
      */
     watermark_visiblity_duration?: number;
     /**
-     * Closed captions  / subtitle color.
+     * Closed captions / subtitle color.
      */
     cc_color?: string;
     /**

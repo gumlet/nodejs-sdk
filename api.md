@@ -133,7 +133,7 @@ Upload, manage, and retrieve video assets, including thumbnails, subtitles, audi
 
 ### Create Asset
 
-An asset refers to a media content/video that is processed, stored, and delivered through Gumlet. This endpoint creates an asset allowing users to ingest media content into the Gumlet system for processing and delivery.
+An asset refers to media content/video that is processed, stored, and delivered through Gumlet. This endpoint creates an asset allowing users to ingest media content into the Gumlet system for processing and delivery.
 
 | Direction | Type |
 | --- | --- |
@@ -151,7 +151,7 @@ const videoAsset = await client.videoAssets.create({
 
 ### Create Asset Direct Upload
 
-This endpoint creates a video asset allowing to upload of the video from the local file system and ingest media content into the Gumlet system for processing and delivery.Body Parameters are the same as the Create Asset Body Parameters except for the `input` parameter which this endpoint does not take.A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [this](https://docs.gumlet.com/docs/direct-upload#2-use-the-url-to-upload-a-file).
+This endpoint creates a video asset allowing upload of a video from the local file system and ingest media content into the Gumlet system for processing and delivery. Body parameters are the same as the Create Asset body parameters except for the `input` parameter, which this endpoint does not take. A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [this](https://docs.gumlet.com/docs/direct-upload#2-use-the-url-to-upload-a-file).
 
 | Direction | Type |
 | --- | --- |
@@ -360,7 +360,7 @@ Add subtitles to an existing asset.
 
 ### Upload Subtitles
 
-Upload `.srt` or `.vtt`  file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
+Upload `.srt` or `.vtt` file to the video asset. The response of this API call gives `upload_url` for each language specified. You need to send a `PUT` request of the subtitle files to those URLs. Once that's done, you need to call the subtitle upload complete API. Only after that, Gumlet will add subtitles to asset.
 
 | Direction | Type |
 | --- | --- |
@@ -888,7 +888,7 @@ Create, control, and monitor live stream assets.
 
 ### Create Live Asset
 
-A live asset refers to a media content/video that is live-streamed through Gumlet. This endpoint creates a live streaming asset allowing users to live stream a video that will be pushed to Gumlet.
+A live asset refers to media content/video that is live-streamed through Gumlet. This endpoint creates a live streaming asset allowing users to live stream a video that will be pushed to Gumlet.
 
 | Direction | Type |
 | --- | --- |
@@ -904,7 +904,7 @@ const liveStreamAsset = await client.liveStreamAssets.create({
 
 ### Update Live Asset
 
-A live asset refers to a media content/video that is live-streamed through Gumlet. This endpoint allows user to update a live streaming asset.
+A live asset refers to media content/video that is live-streamed through Gumlet. This endpoint allows users to update a live streaming asset.
 
 | Direction | Type |
 | --- | --- |
