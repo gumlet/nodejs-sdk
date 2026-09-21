@@ -44,7 +44,8 @@
     "auditLogs",
     "billing",
     "liveStreamWorkspaces",
-    "liveStreamAnalytics"
+    "liveStreamAnalytics",
+    "globalSearch"
   ],
   "publicResources": [
     "videoAssets",
@@ -68,7 +69,8 @@
     "auditLogs",
     "billing",
     "liveStreamWorkspaces",
-    "liveStreamAnalytics"
+    "liveStreamAnalytics",
+    "globalSearch"
   ],
   "operations": [
     {
@@ -8557,6 +8559,111 @@
           "contents": []
         }
       ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "globalSearch",
+      "publicResource": "globalSearch",
+      "operation": "search",
+      "publicOperation": "search",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/entities/global-search",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [
+        "search_query",
+        "collection_id",
+        "size",
+        "assets_offset",
+        "folders_offset",
+        "playlists_offset",
+        "channels_offset"
+      ],
+      "publicQueryParams": [
+        "search_query",
+        "collection_id",
+        "size",
+        "assets_offset",
+        "folders_offset",
+        "playlists_offset",
+        "channels_offset"
+      ],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "search_query",
+          "required": true,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "collection_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        },
+        {
+          "name": "assets_offset",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 0
+        },
+        {
+          "name": "folders_offset",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 0
+        },
+        {
+          "name": "playlists_offset",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 0
+        },
+        {
+          "name": "channels_offset",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 0
+        }
+      ],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "GlobalSearchSearchParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "errorResponses": [],
       "responseLinks": [],
       "transport": "http"
     }

@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/gumlet/nodejs-sdk/compare/v1.2.26...v1.3.0) (2026-09-21)
+
+
+### Features
+
+* **api:** add operation globalSearch.search ([70aa804](https://github.com/gumlet/nodejs-sdk/commit/70aa8046e41066e43ac18278912158718c426964))
+
+
+### Chores
+
+* **api:** update generated SDK content ([a7a58dd](https://github.com/gumlet/nodejs-sdk/commit/a7a58ddd11b813f3276c43df3e633d001c8cd275))
+
 ## [1.2.26](https://github.com/gumlet/nodejs-sdk/compare/v1.2.25...v1.2.26) (2026-09-21)
 
 

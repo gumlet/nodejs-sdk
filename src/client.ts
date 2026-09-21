@@ -228,6 +228,11 @@ import {
   type LiveStreamAnalyticUsageResponse,
   type LiveStreamAnalyticUsageParams,
 } from './resources/live-stream-analytics';
+import {
+  GlobalSearch,
+  type GlobalSearchSearchResponse,
+  type GlobalSearchSearchParams,
+} from './resources/global-search';
 
 export type AuthTokenProvider = () => string | Promise<string>;
 
@@ -1038,6 +1043,7 @@ export class Gumlet {
   billing: Billing = new Billing(this);
   liveStreamWorkspaces: LiveStreamWorkspaces = new LiveStreamWorkspaces(this);
   liveStreamAnalytics: LiveStreamAnalytics = new LiveStreamAnalytics(this);
+  globalSearch: GlobalSearch = new GlobalSearch(this);
 }
 
 Gumlet.VideoAssets = VideoAssets;
@@ -1062,6 +1068,7 @@ Gumlet.AuditLogs = AuditLogs;
 Gumlet.Billing = Billing;
 Gumlet.LiveStreamWorkspaces = LiveStreamWorkspaces;
 Gumlet.LiveStreamAnalytics = LiveStreamAnalytics;
+Gumlet.GlobalSearch = GlobalSearch;
 
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
@@ -1295,6 +1302,12 @@ export declare namespace Gumlet {
     LiveStreamAnalytics as LiveStreamAnalytics,
     type LiveStreamAnalyticUsageResponse as LiveStreamAnalyticUsageResponse,
     type LiveStreamAnalyticUsageParams as LiveStreamAnalyticUsageParams,
+  };
+
+  export {
+    GlobalSearch as GlobalSearch,
+    type GlobalSearchSearchResponse as GlobalSearchSearchResponse,
+    type GlobalSearchSearchParams as GlobalSearchSearchParams,
   };
 }
 
