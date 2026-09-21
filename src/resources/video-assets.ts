@@ -1185,7 +1185,7 @@ export interface VideoAssetRetrieveDetailsResponse {
    * Collection updated timestamp in milliseconds since epoch
    * @format int64
    */
-  collection_updated_at: number;
+  workspace_updated_at: number;
   /**
    * @default 0
    */
