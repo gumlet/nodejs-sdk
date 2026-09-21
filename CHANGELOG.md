@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.3.2](https://github.com/gumlet/nodejs-sdk/compare/v1.3.1...v1.3.2) (2026-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 2 breaking changes to the SDK surface.
+    - Added required body field `workspace_id` to `videoAssets.create`.
+    - Removed body field `collection_id` from `videoAssets.create`.
+
+### Features
+
+* **api:** update SDK surface (2 changes) ([ef9543d](https://github.com/gumlet/nodejs-sdk/commit/ef9543d2614c996b604a11795ae1e05f84e1a048))
+
+
+### Chores
+
+* **api:** update generated SDK content ([82c61c5](https://github.com/gumlet/nodejs-sdk/commit/82c61c5a53398dcab3868b16f19623d3b262a7ca))
+* **api:** update generated SDK content ([3833542](https://github.com/gumlet/nodejs-sdk/commit/3833542d0ce8717f886ffe8c33636fb46c34098a))
+* release 1.3.2 ([9744ea2](https://github.com/gumlet/nodejs-sdk/commit/9744ea2d176a2a4b657e4f2577a9a90f5aead804))
+* release 1.3.2 ([e39cc59](https://github.com/gumlet/nodejs-sdk/commit/e39cc5918e1f5448f781004ddd7765afc78ad089))
+
 ## [1.3.1](https://github.com/gumlet/nodejs-sdk/compare/v1.3.0...v1.3.1) (2026-09-21)
 
 
