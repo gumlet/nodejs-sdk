@@ -315,8 +315,8 @@ export class VideoAssets extends APIResource {
    * const videoAsset = await client.videoAssets.analytics('assetId', {
    *   group_by: 'daily',
    *   date_range: {
-   *     start_at: '',
-   *     end_at: '',
+   *     start_at: '2024-01-01',
+   *     end_at: '2024-01-01',
    *   },
    *   metrics: ['impressions'],
    * });
@@ -2035,10 +2035,12 @@ export namespace VideoAssetAnalyticsParams {
   export interface DateRange {
     /**
      * ISO 8601 start timestamp
+     * @format date
      */
     start_at: string;
     /**
      * ISO 8601 end timestamp
+     * @format date
      */
     end_at: string;
   }
