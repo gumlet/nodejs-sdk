@@ -427,7 +427,7 @@ export class Gumlet {
   }
 
   private getUserAgent(): string {
-    return `${this.constructor.name}/JS ${VERSION}`;
+    return `Gumlet/JS ${VERSION}`;
   }
 
   protected defaultIdempotencyKey(): string {
@@ -690,7 +690,8 @@ export class Gumlet {
   ): Promise<Response> {
     const { signal, method, ...options } = init || {};
     const abort = this._makeAbort(controller);
-    if (signal) signal.addEventListener('abort', abort, { once: true });
+    if (signal?.aborted) abort();
+    else if (signal) signal.addEventListener('abort', abort, { once: true });
 
     const timeout = setTimeout(abort, ms);
 

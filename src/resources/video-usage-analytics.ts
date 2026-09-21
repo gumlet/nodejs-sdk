@@ -94,12 +94,12 @@ export namespace VideoUsageAnalyticRetrieveParams {
      * The starting date to consider
      * @format date
      */
-    start_at?: string;
+    start_at: string;
     /**
      * The ending date to consider
      * @format date
      */
-    end_at?: string;
+    end_at: string;
   }
 
   export interface Filters {

@@ -16,7 +16,7 @@ import { writeFileSync } from 'node:fs';
 import Gumlet from '@gumlet/nodejs-sdk';
 
 // One shared client runs every case.
-const client = new Gumlet();
+const client = new Gumlet({ maxRetries: 2, timeout: 10_000 });
 
 // The result of running one case, collected for the JSON report or the printed table.
 type SmokeResult = {
@@ -275,8 +275,8 @@ const cases: {
       const videoAsset = await client.videoAssets.analytics('assetId', {
         group_by: 'daily',
         date_range: {
-          start_at: '',
-          end_at: '',
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
         },
         metrics: ['impressions'],
       });
@@ -292,8 +292,8 @@ const cases: {
       const videoAsset = await client.videoAssets.analytics('assetId', {
         group_by: 'daily',
         date_range: {
-          start_at: '',
-          end_at: '',
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
         },
         metrics: ['impressions'],
         page_number: 0,
@@ -951,7 +951,10 @@ const cases: {
     run: async () => {
       const imageUsageAnalytic = await client.imageUsageAnalytics.retrieve({
         metrics: ['bandwidth_consumption'],
-        date_range: {},
+        date_range: {
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
+        },
         group_by: 'daily',
       });
     },
@@ -965,7 +968,10 @@ const cases: {
     run: async () => {
       const imageUsageAnalytic = await client.imageUsageAnalytics.retrieve({
         metrics: ['bandwidth_consumption'],
-        date_range: {},
+        date_range: {
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
+        },
         group_by: 'daily',
         filters: {},
       });

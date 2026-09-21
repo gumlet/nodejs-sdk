@@ -16,7 +16,10 @@ export class ImageUsageAnalytics extends APIResource {
    * ```ts
    * const imageUsageAnalytic = await client.imageUsageAnalytics.retrieve({
    *   metrics: ['bandwidth_consumption'],
-   *   date_range: {},
+   *   date_range: {
+   *     start_at: '2024-01-01',
+   *     end_at: '2024-01-01',
+   *   },
    *   group_by: 'daily',
    * });
    * ```
@@ -67,12 +70,12 @@ export namespace ImageUsageAnalyticRetrieveParams {
      * The starting date to consider
      * @format date
      */
-    start_at?: string;
+    start_at: string;
     /**
      * The ending date to consider
      * @format date
      */
-    end_at?: string;
+    end_at: string;
   }
 
   export interface Filters {
