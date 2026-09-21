@@ -1191,17 +1191,26 @@ export namespace VideoAssetUploadResponse {
 }
 
 export interface VideoAssetRetrieveDetailsResponse {
-  asset_id?: string;
+  asset_id: string;
+  /**
+   * Collection updated timestamp in milliseconds since epoch
+   * @format int64
+   */
+  collection_updated_at: number;
   /**
    * @default 0
    */
   progress?: number;
   /**
+   * Asset created timestamp in milliseconds since epoch
    * @default 0
+   * @format int64
    */
   created_at?: number;
   /**
+   * Asset updated timestamp in milliseconds since epoch
    * @default 0
+   * @format int64
    */
   updated_at?: number;
   status?: string;
@@ -1219,6 +1228,21 @@ export interface VideoAssetRetrieveDetailsResponse {
    * Array of Playlist IDs
    */
   playlists?: Array<string>;
+  /**
+   * Thumbnail updated timestamp in milliseconds since epoch
+   * @format int64
+   */
+  thumbnail_updated_at?: number;
+  warning?: Array<VideoAssetRetrieveDetailsResponse.Warning>;
+  /**
+   * If `true` the asset is audio only
+   */
+  audioOnly?: boolean;
+  video_protection?: VideoAssetRetrieveDetailsResponse.VideoProtection;
+  /**
+   * Access control
+   */
+  access_control?: 'private' | 'public' | 'password' | 'dashboardOnly';
 }
 
 export namespace VideoAssetRetrieveDetailsResponse {
@@ -1279,6 +1303,14 @@ export namespace VideoAssetRetrieveDetailsResponse {
       per_title_encoding?: boolean;
       generate_subtitles?: Transformations.GenerateSubtitles;
       preview_thumbnails?: Transformations.PreviewThumbnails;
+      /**
+       * Flag indicating if the pre-processing was successful
+       */
+      pre_processing_successful?: boolean;
+      /**
+       * Flag if chapter generation is enabled
+       */
+      generate_chapters?: boolean;
     }
 
     export namespace Transformations {
@@ -1402,6 +1434,24 @@ export namespace VideoAssetRetrieveDetailsResponse {
         size?: number;
       }
     }
+  }
+
+  export interface Warning {
+    /**
+     * Warning code for the asset
+     */
+    code: string;
+    /**
+     * Human friendly warning message
+     */
+    message: string;
+  }
+
+  export interface VideoProtection {
+    /**
+     * Flag is signed URL is enabled for this asset
+     */
+    signed_url?: boolean;
   }
 }
 
