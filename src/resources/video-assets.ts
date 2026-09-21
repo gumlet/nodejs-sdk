@@ -1247,6 +1247,7 @@ export interface VideoAssetRetrieveDetailsResponse {
 
 export namespace VideoAssetRetrieveDetailsResponse {
   export interface Input {
+    file_size: string;
     transformations?: Input.Transformations;
     profile_id?: string;
     title?: string;
@@ -1278,7 +1279,7 @@ export namespace VideoAssetRetrieveDetailsResponse {
 
   export namespace Input {
     export interface Transformations {
-      format?: string;
+      format: string;
       resolution?: Array<string>;
       audio_codec?: Array<string>;
       video_codec?: Array<string>;
