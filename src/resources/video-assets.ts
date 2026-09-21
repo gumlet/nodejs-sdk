@@ -1242,7 +1242,7 @@ export interface VideoAssetRetrieveDetailsResponse {
   /**
    * Access control
    */
-  access_control?: 'private' | 'public' | 'password' | 'dashboardOnly';
+  access_control?: 'private' | 'public' | 'password-protected' | 'dashboardOnly';
 }
 
 export namespace VideoAssetRetrieveDetailsResponse {
