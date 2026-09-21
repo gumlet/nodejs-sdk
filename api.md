@@ -112,6 +112,8 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Create Workspace](#create-workspace-1)
   - [Update Workspace](#update-workspace-1)
   - [Delete Workspace](#delete-workspace-1)
+- [`LiveStreamAnalytics`](#livestreamanalytics)
+  - [Usage Analytics](#usage-analytics)
 
 ## Setup
 
@@ -1513,4 +1515,28 @@ Delete the live stream workspace.
 
 ```ts
 const liveStreamWorkspace = await client.liveStreamWorkspaces.delete('liveWorkspaceId');
+```
+
+## `LiveStreamAnalytics`
+
+Get usage analytics for live streams.
+
+### Usage Analytics
+
+Get usage analytics for your live streams.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`LiveStreamAnalyticUsageParams`](./src/resources/live-stream-analytics.ts) |
+| Response | [`LiveStreamAnalyticUsageResponse`](./src/resources/live-stream-analytics.ts) |
+
+```ts
+const liveStreamAnalytic = await client.liveStreamAnalytics.usage({
+  date_range: {
+    start_at: '2024-01-01',
+    end_at: '2024-01-01',
+  },
+  group_by: 'daily',
+  metrics: ['bandwidth_consumption'],
+});
 ```
