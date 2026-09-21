@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.22](https://github.com/gumlet/nodejs-sdk/compare/v1.2.21...v1.2.22) (2026-09-21)
+
+
+### Features
+
+* **api:** add operation liveStreamAnalytics.usage ([5a0b462](https://github.com/gumlet/nodejs-sdk/commit/5a0b462ff64fb0325ac769b867d4e47c0e473b53))
+
+
+### Chores
+
+* **api:** update generated SDK content ([9716a79](https://github.com/gumlet/nodejs-sdk/commit/9716a7969e49739274bdc120a91e7160be362258))
+* release 1.2.22 ([042132f](https://github.com/gumlet/nodejs-sdk/commit/042132faf137788e0932538f3aa90c4817755b08))
+
 ## [1.2.21](https://github.com/gumlet/nodejs-sdk/compare/v1.2.20...v1.2.21) (2026-09-21)
 
 

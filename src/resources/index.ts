@@ -197,3 +197,5 @@ export type {
   LiveStreamWorkspaceUpdateResponse,
   LiveStreamWorkspaceDeleteResponse,
 } from './live-stream-workspaces';
+export { LiveStreamAnalytics } from './live-stream-analytics';
+export type { LiveStreamAnalyticUsageParams, LiveStreamAnalyticUsageResponse } from './live-stream-analytics';

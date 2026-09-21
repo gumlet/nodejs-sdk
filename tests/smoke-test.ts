@@ -1592,6 +1592,22 @@ const cases: {
       const liveStreamWorkspace = await client.liveStreamWorkspaces.delete('liveWorkspaceId');
     },
   },
+
+  {
+    operation: 'usage',
+    method: 'POST',
+    path: '/video/live/analytics',
+    run: async () => {
+      const liveStreamAnalytic = await client.liveStreamAnalytics.usage({
+        date_range: {
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
+        },
+        group_by: 'daily',
+        metrics: ['bandwidth_consumption'],
+      });
+    },
+  },
 ];
 
 /**
