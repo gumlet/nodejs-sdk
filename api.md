@@ -143,26 +143,9 @@ An asset refers to a media content/video that is processed, stored, and delivere
 ```ts
 const videoAsset = await client.videoAssets.create({
   format: 'ABR',
-  collection_id: '646df1c9173a4a2fcac180b4',
+  collection_id: '<your workspace id>',
+  title: 'Example Title',
   input: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
-  description: 'some description',
-  tag: ['ball'],
-  profile_id: '646df1c9173a4a2fcac180b7',
-  playlist_id: '6597acd5ed6f26a9c5ca9633',
-  metadata: { headermeta: 'metavalue' },
-  call_to_actions: [
-    {
-      start_time: 1,
-      end_time: 90,
-      text: 'some test',
-      url: 'https://some-url.com',
-      position_from_top: 11,
-      position_from_right: 23,
-      font_color: '#000001',
-      background_color: '#ffffff',
-    },
-  ],
-  folder: '697375fbfa2d1037283140e4',
 });
 ```
 
