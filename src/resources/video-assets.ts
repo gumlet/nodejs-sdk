@@ -1193,6 +1193,12 @@ export namespace VideoAssetUploadResponse {
 export interface VideoAssetRetrieveDetailsResponse {
   asset_id: string;
   /**
+   * Asset created timestamp in milliseconds since epoch
+   * @format int64
+   */
+  created_at: number;
+  status: string;
+  /**
    * Collection updated timestamp in milliseconds since epoch
    * @format int64
    */
@@ -1202,18 +1208,11 @@ export interface VideoAssetRetrieveDetailsResponse {
    */
   progress?: number;
   /**
-   * Asset created timestamp in milliseconds since epoch
-   * @default 0
-   * @format int64
-   */
-  created_at?: number;
-  /**
    * Asset updated timestamp in milliseconds since epoch
    * @default 0
    * @format int64
    */
   updated_at?: number;
-  status?: string;
   tag?: Array<string>;
   source_id?: string;
   collection_id?: string;
@@ -1243,6 +1242,7 @@ export interface VideoAssetRetrieveDetailsResponse {
    * Access control
    */
   access_control?: 'private' | 'public' | 'password-protected' | 'dashboardOnly';
+  access_controls?: VideoAssetRetrieveDetailsResponse.AccessControls;
 }
 
 export namespace VideoAssetRetrieveDetailsResponse {
@@ -1308,9 +1308,14 @@ export namespace VideoAssetRetrieveDetailsResponse {
        */
       pre_processing_successful?: boolean;
       /**
-       * Flag if chapter generation is enabled
+       * Flag if AI chapter generation is enabled
        */
       generate_chapters?: boolean;
+      drm?: Transformations.Drm;
+      /**
+       * Flag if AI description generation is enabled
+       */
+      generate_description?: boolean;
     }
 
     export namespace Transformations {
@@ -1338,6 +1343,10 @@ export namespace VideoAssetRetrieveDetailsResponse {
          * @default 0
          */
         max_tiles?: number;
+      }
+
+      export interface Drm {
+        type: 'widevine' | 'fairplay' | 'clearkey' | 'widevine,fairplay' | 'fairplay,widevine';
       }
     }
 
@@ -1452,6 +1461,13 @@ export namespace VideoAssetRetrieveDetailsResponse {
      * Flag is signed URL is enabled for this asset
      */
     signed_url?: boolean;
+  }
+
+  export interface AccessControls {
+    /**
+     * Hidden password field
+     */
+    password?: string;
   }
 }
 

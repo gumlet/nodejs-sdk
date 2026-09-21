@@ -775,6 +775,10 @@ export namespace VideoProfileRetrieveResponse {
      */
     per_title_encoding?: boolean;
     resolution?: string;
+    /**
+     * Flag that shows if AI generated chapters are enabled
+     */
+    generate_chapters?: boolean;
   }
 }
 
