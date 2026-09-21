@@ -199,3 +199,5 @@ export type {
 } from './live-stream-workspaces';
 export { LiveStreamAnalytics } from './live-stream-analytics';
 export type { LiveStreamAnalyticUsageParams, LiveStreamAnalyticUsageResponse } from './live-stream-analytics';
+export { GlobalSearch } from './global-search';
+export type { GlobalSearchSearchParams, GlobalSearchSearchResponse } from './global-search';
