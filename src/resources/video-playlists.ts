@@ -280,7 +280,7 @@ export type VideoPlaylistListAllResponse =
 
 export namespace VideoPlaylistListAllResponse {
   export interface VideoPlaylistListAllResponseItem {
-    id?: string;
+    id: string;
     collection_id?: string;
     title?: string;
     description?: string;
