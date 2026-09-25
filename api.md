@@ -30,6 +30,8 @@ Complete reference of every operation, grouped by resource. See [the README](./R
 - [`MultipartUpload`](#multipartupload)
   - [Get Part Upload URL](#get-part-upload-url)
   - [Complete Multipart Upload](#complete-multipart-upload)
+  - [Abort Upload](#abort-upload)
+  - [List Uploads](#list-uploads)
 - [`VideoProfiles`](#videoprofiles)
   - [Create Profile](#create-profile)
   - [List Profiles](#list-profiles)
@@ -486,6 +488,32 @@ Once you upload all parts to S3 bucket via pre-signed URL, use this endpoint to 
 
 ```ts
 const multipartUpload = await client.multipartUpload.complete('assetId');
+```
+
+### Abort Upload
+
+This call aborts multi-part upload and deletes the already uploaded parts from the storage.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`MultipartUploadAbortParams`](./src/resources/multipart-upload.ts) |
+| Response | [`MultipartUploadAbortResponse`](./src/resources/multipart-upload.ts) |
+
+```ts
+const multipartUpload = await client.multipartUpload.abort('assetId');
+```
+
+### List Uploads
+
+Lists all parts uploaded so far.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`MultipartUploadListParams`](./src/resources/multipart-upload.ts) |
+| Response | [`MultipartUploadListResponse`](./src/resources/multipart-upload.ts) |
+
+```ts
+const multipartUpload = await client.multipartUpload.list('assetId');
 ```
 
 ## `VideoProfiles`

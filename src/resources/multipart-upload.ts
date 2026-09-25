@@ -56,6 +56,54 @@ export class MultipartUpload extends APIResource {
       ...options,
     });
   }
+
+  /**
+   * This call aborts multi-part upload and deletes the already uploaded parts from the storage.
+   *
+   * @param {string} assetID - An asset id for the asset.
+   * @param {MultipartUploadAbortParams} [body] - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<MultipartUploadAbortResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const multipartUpload = await client.multipartUpload.abort('assetId');
+   * ```
+   */
+  abort(
+    assetID: string,
+    body: MultipartUploadAbortParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MultipartUploadAbortResponse> {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/multipartupload/abort`, {
+      body,
+      ...options,
+    });
+  }
+
+  /**
+   * Lists all parts uploaded so far.
+   *
+   * @param {string} assetID - An asset id for the asset.
+   * @param {MultipartUploadListParams} [body] - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<MultipartUploadListResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const multipartUpload = await client.multipartUpload.list('assetId');
+   * ```
+   */
+  list(
+    assetID: string,
+    body: MultipartUploadListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MultipartUploadListResponse> {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/multipartupload/list`, {
+      body,
+      ...options,
+    });
+  }
 }
 
 export interface MultipartUploadRetrievePartURLParams {
@@ -92,11 +140,43 @@ export namespace MultipartUploadCompleteParams {
 }
 
 export type MultipartUploadCompleteResponse = Record<string, unknown>;
+
+export type MultipartUploadAbortParams = Record<string, unknown>;
+
+export type MultipartUploadAbortResponse = Record<string, unknown>;
+
+export type MultipartUploadListParams = Record<string, unknown>;
+
+export interface MultipartUploadListResponse {
+  parts: Array<MultipartUploadListResponse.Part>;
+}
+
+export namespace MultipartUploadListResponse {
+  export interface Part {
+    /**
+     * Part number
+     */
+    PartNumber: number;
+    /**
+     * Size of the uploaded part
+     * @format uint64
+     */
+    Size?: number;
+    /**
+     * ETag of the uploaded part
+     */
+    ETag?: string;
+  }
+}
 export declare namespace MultipartUpload {
   export {
     type MultipartUploadRetrievePartURLResponse as MultipartUploadRetrievePartURLResponse,
     type MultipartUploadCompleteResponse as MultipartUploadCompleteResponse,
+    type MultipartUploadAbortResponse as MultipartUploadAbortResponse,
+    type MultipartUploadListResponse as MultipartUploadListResponse,
     type MultipartUploadRetrievePartURLParams as MultipartUploadRetrievePartURLParams,
     type MultipartUploadCompleteParams as MultipartUploadCompleteParams,
+    type MultipartUploadAbortParams as MultipartUploadAbortParams,
+    type MultipartUploadListParams as MultipartUploadListParams,
   };
 }

@@ -52,6 +52,10 @@ export type {
   MultipartUploadRetrievePartURLResponse,
   MultipartUploadCompleteParams,
   MultipartUploadCompleteResponse,
+  MultipartUploadAbortParams,
+  MultipartUploadAbortResponse,
+  MultipartUploadListParams,
+  MultipartUploadListResponse,
 } from './multipart-upload';
 export { VideoProfiles } from './video-profiles';
 export type {
