@@ -14,6 +14,7 @@ import {
   formatRequestDetails,
   loggerFor,
   parseLogLevel,
+  redactUrl,
   type LogLevel,
   type Logger,
 } from './internal/utils/log';
@@ -75,8 +76,12 @@ import {
   MultipartUpload,
   type MultipartUploadRetrievePartURLResponse,
   type MultipartUploadCompleteResponse,
+  type MultipartUploadAbortResponse,
+  type MultipartUploadListResponse,
   type MultipartUploadRetrievePartURLParams,
   type MultipartUploadCompleteParams,
+  type MultipartUploadAbortParams,
+  type MultipartUploadListParams,
 } from './resources/multipart-upload';
 import {
   VideoProfiles,
@@ -613,7 +618,7 @@ export class Gumlet {
       throw new Errors.APIConnectionError({ cause: response });
     }
 
-    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${
+    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${redactUrl(url)} ${
       response.ok ? 'succeeded' : 'failed'
     } with status ${response.status} in ${headersTime - startTime}ms`;
 
@@ -1127,8 +1132,12 @@ export declare namespace Gumlet {
     MultipartUpload as MultipartUpload,
     type MultipartUploadRetrievePartURLResponse as MultipartUploadRetrievePartURLResponse,
     type MultipartUploadCompleteResponse as MultipartUploadCompleteResponse,
+    type MultipartUploadAbortResponse as MultipartUploadAbortResponse,
+    type MultipartUploadListResponse as MultipartUploadListResponse,
     type MultipartUploadRetrievePartURLParams as MultipartUploadRetrievePartURLParams,
     type MultipartUploadCompleteParams as MultipartUploadCompleteParams,
+    type MultipartUploadAbortParams as MultipartUploadAbortParams,
+    type MultipartUploadListParams as MultipartUploadListParams,
   };
 
   export {

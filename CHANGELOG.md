@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.5](https://github.com/gumlet/nodejs-sdk/compare/v1.3.4...v1.3.5) (2026-09-25)
+
+
+### Features
+
+* **api:** add operation multipartUpload.abort (+1 more change) ([066c9bf](https://github.com/gumlet/nodejs-sdk/commit/066c9bf897a9c46c084cc34cc1b1da8662e20440))
+
+
+### Chores
+
+* **api:** regenerate SDK ([cf6c3ad](https://github.com/gumlet/nodejs-sdk/commit/cf6c3adb0f1c6216536ba2e19300a938a2e62ec2))
+* release 1.3.5 ([4f43a21](https://github.com/gumlet/nodejs-sdk/commit/4f43a21b30dd4b88ec490344fdf06dc214844b7b))
+* release 1.3.5 ([5e81fed](https://github.com/gumlet/nodejs-sdk/commit/5e81fed88a94db71ec652d1b8edb91124da1000c))
+
 ## [1.3.4](https://github.com/gumlet/nodejs-sdk/compare/v1.3.3...v1.3.4) (2026-09-21)
 
 
