@@ -447,6 +447,46 @@ const cases: {
   },
 
   {
+    operation: 'abort',
+    method: 'POST',
+    path: '/video/assets/{asset_id}/multipartupload/abort',
+    label: 'required params',
+    run: async () => {
+      const multipartUpload = await client.multipartUpload.abort('assetId');
+    },
+  },
+
+  {
+    operation: 'abort',
+    method: 'POST',
+    path: '/video/assets/{asset_id}/multipartupload/abort',
+    label: 'all params',
+    run: async () => {
+      const multipartUpload = await client.multipartUpload.abort('assetId', {});
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'POST',
+    path: '/video/assets/{asset_id}/multipartupload/list',
+    label: 'required params',
+    run: async () => {
+      const multipartUpload = await client.multipartUpload.list('assetId');
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'POST',
+    path: '/video/assets/{asset_id}/multipartupload/list',
+    label: 'all params',
+    run: async () => {
+      const multipartUpload = await client.multipartUpload.list('assetId', {});
+    },
+  },
+
+  {
     operation: 'create',
     method: 'POST',
     path: '/video/profiles',

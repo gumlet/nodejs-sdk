@@ -76,8 +76,12 @@ import {
   MultipartUpload,
   type MultipartUploadRetrievePartURLResponse,
   type MultipartUploadCompleteResponse,
+  type MultipartUploadAbortResponse,
+  type MultipartUploadListResponse,
   type MultipartUploadRetrievePartURLParams,
   type MultipartUploadCompleteParams,
+  type MultipartUploadAbortParams,
+  type MultipartUploadListParams,
 } from './resources/multipart-upload';
 import {
   VideoProfiles,
@@ -1128,8 +1132,12 @@ export declare namespace Gumlet {
     MultipartUpload as MultipartUpload,
     type MultipartUploadRetrievePartURLResponse as MultipartUploadRetrievePartURLResponse,
     type MultipartUploadCompleteResponse as MultipartUploadCompleteResponse,
+    type MultipartUploadAbortResponse as MultipartUploadAbortResponse,
+    type MultipartUploadListResponse as MultipartUploadListResponse,
     type MultipartUploadRetrievePartURLParams as MultipartUploadRetrievePartURLParams,
     type MultipartUploadCompleteParams as MultipartUploadCompleteParams,
+    type MultipartUploadAbortParams as MultipartUploadAbortParams,
+    type MultipartUploadListParams as MultipartUploadListParams,
   };
 
   export {
