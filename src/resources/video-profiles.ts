@@ -57,6 +57,7 @@ export class VideoProfiles extends APIResource {
    * const videoProfile = await client.videoProfiles.update('profileId', {
    *   profile_id: '',
    *   format: 'ABR',
+   *   vc: ['libx264'],
    * });
    * ```
    */
@@ -518,8 +519,9 @@ export interface VideoProfileUpdateParams {
   enable_drm?: boolean;
   /**
    * Video Codecs
+   * @default ["libx264"]
    */
-  vc?: Array<string>;
+  vc?: Array<'libx264' | 'libsvtav1'>;
   /**
    * Whether Gumlet should generate chapters.
    */

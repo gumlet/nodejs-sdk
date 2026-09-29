@@ -562,6 +562,7 @@ Update an existing profile. Settings provided in body parameters will only be up
 const videoProfile = await client.videoProfiles.update('profileId', {
   profile_id: '',
   format: 'ABR',
+  vc: ['libx264'],
 });
 ```
 
