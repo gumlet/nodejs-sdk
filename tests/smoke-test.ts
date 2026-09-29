@@ -571,6 +571,7 @@ const cases: {
       const videoProfile = await client.videoProfiles.update('profileId', {
         profile_id: '',
         format: 'ABR',
+        vc: ['libx264'],
       });
     },
   },
@@ -612,7 +613,7 @@ const cases: {
         process_low_resolution_input: false,
         audio_only: false,
         enable_drm: false,
-        vc: [''],
+        vc: ['libx264'],
         generate_chapters: false,
         generate_description: false,
       });
