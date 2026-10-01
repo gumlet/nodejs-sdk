@@ -290,19 +290,44 @@ export namespace ImageSourceCreateParams {
 }
 
 export interface ImageSourceCreateResponse {
+  /**
+   * Image source ID
+   */
   id?: string;
+  /**
+   * Souce namespace
+   */
   namespace?: string;
+  /**
+   * Source type
+   */
   type?: string;
-  cdn_type?: string;
+  /**
+   * CDN cache time in seconds
+   */
   cdn_cache_time?: number;
   canonical_url?: boolean;
+  /**
+   * Browser cache time in seconds
+   */
   browser_cache_time?: number;
   is_cloudfront?: boolean;
+  /**
+   * Source created timestamp in ISO 8601
+   * @format date-time
+   */
   created_at?: string;
+  /**
+   * Source updated timestamp in ISO 8601
+   * @format date-time
+   */
   updated_at?: string;
   webfolder?: ImageSourceCreateResponse.Webfolder;
   default_params?: ImageSourceCreateResponse.DefaultParams;
   subdomain?: string;
+  /**
+   * Boolean flag indicating if source is active
+   */
   is_active?: boolean;
 }
 
@@ -336,20 +361,29 @@ export interface ImageSourceListResponse {
 
 export namespace ImageSourceListResponse {
   export interface AllSource {
+    /**
+     * Image source ID
+     */
     id: string;
+    /**
+     * Source namespace (i.e. subdomain of gumlet.io)
+     */
     namespace: string;
-    subdomain: string;
-    type?: string;
+    /**
+     * Source type
+     */
+    type?: string | null;
+    /**
+     * Created at timestamo in ISO 8601
+     * @format date-time
+     */
     created_at?: string;
+    /**
+     * Updated at timestamo in ISO 8601
+     * @format date-time
+     */
     updated_at?: string;
-    video_protection?: AllSource.VideoProtection;
-    player_config?: AllSource.PlayerConfig;
-    default_profile_id?: string;
-    insight_property_id?: string;
     aws?: AllSource.Aws;
-    embed_details?: AllSource.EmbedDetails;
-    folders?: Array<string>;
-    channel_settings?: AllSource.ChannelSettings;
     webfolder?: AllSource.Webfolder;
     /**
      * Custom domains assigned to this source.
@@ -367,163 +401,12 @@ export namespace ImageSourceListResponse {
   }
 
   export namespace AllSource {
-    export interface VideoProtection {
-      /**
-       * @default true
-       */
-      signed_url?: boolean;
-      signed_url_secret?: string;
-    }
-
-    export interface PlayerConfig {
-      /**
-       * @default true
-       */
-      preload?: boolean;
-      /**
-       * @default true
-       */
-      autoplay?: boolean;
-      /**
-       * @default true
-       */
-      disable_seek?: boolean;
-      /**
-       * @default true
-       */
-      disable_player_controls?: boolean;
-      /**
-       * @default true
-       */
-      powered_by_gumlet_overlay?: boolean;
-      /**
-       * @default true
-       */
-      allow_drm_protected_videos?: boolean;
-      /**
-       * @default true
-       */
-      loop?: boolean;
-      player_color?: string;
-      /**
-       * @default true
-       */
-      include_seo?: boolean;
-      /**
-       * @default true
-       */
-      subtitle_enabled?: boolean;
-      pixel_tags?: Record<string, unknown>;
-      /**
-       * @default 0
-       */
-      logo_width?: number;
-      /**
-       * @default 0
-       */
-      logo_height?: number;
-      /**
-       * @default true
-       */
-      dynamic_watermark?: boolean;
-      /**
-       * @default 0
-       */
-      watermark_font_size?: number;
-      watermark_font_color?: string;
-      watermark_bg_color?: string;
-      /**
-       * @default 0
-       */
-      watermark_interval?: number;
-    }
-
     export interface Aws {
       bucket_name?: string;
       bucket_region?: string;
       access_key?: string;
       secret?: string;
       base_path?: string;
-    }
-
-    export interface EmbedDetails {
-      pixel_tags?: Record<string, unknown>;
-      /**
-       * @default true
-       */
-      preload?: boolean;
-      /**
-       * @default true
-       */
-      autoplay?: boolean;
-      /**
-       * @default 0
-       */
-      logo_width?: number;
-      /**
-       * @default 0
-       */
-      logo_height?: number;
-      player_color?: string;
-      /**
-       * @default true
-       */
-      is_seo?: boolean;
-      /**
-       * @default true
-       */
-      dynamic_watermark?: boolean;
-      /**
-       * @default true
-       */
-      disable_seek?: boolean;
-      /**
-       * @default true
-       */
-      disable_player_controls?: boolean;
-      /**
-       * @default true
-       */
-      allow_drm_protected_videos?: boolean;
-      /**
-       * @default true
-       */
-      powered_by_gumlet_overlay?: boolean;
-      /**
-       * @default true
-       */
-      loop?: boolean;
-      /**
-       * @default true
-       */
-      subtitle_enabled?: boolean;
-      watermark_bg_color?: string;
-      watermark_font_color?: string;
-      /**
-       * @default 0
-       */
-      watermark_font_size?: number;
-      /**
-       * @default 0
-       */
-      watermark_interval?: number;
-    }
-
-    export interface ChannelSettings {
-      title?: string;
-      /**
-       * @default true
-       */
-      active?: boolean;
-      description?: string;
-      privacy_type?: string;
-      /**
-       * @default true
-       */
-      custom_logo?: boolean;
-      logo_url?: string;
-      cname?: Array<string>;
-      temp_cname?: Array<string>;
     }
 
     export interface Webfolder {
@@ -577,6 +460,13 @@ export namespace ImageSourceListResponse {
 }
 
 export interface ImageSourceRetrieveResponse {
+  /**
+   * Image source ID
+   */
+  id: string;
+  /**
+   * Source namespace (i.e. subdomain of gumlet.io)
+   */
   namespace: string;
   type:
     | 'dostorage'
@@ -593,13 +483,25 @@ export interface ImageSourceRetrieveResponse {
     | 'proxy'
     | 'wordpress'
     | 'linode';
-  id?: string;
-  cdn_type?: string;
+  /**
+   * CDN cache time in seconds
+   */
   cdn_cache_time?: number;
   canonical_url?: boolean;
+  /**
+   * Browser cache time in seconds
+   */
   browser_cache_time?: number;
   is_cloudfront?: boolean;
+  /**
+   * Created timestamp in ISO 8601
+   * @format date-time
+   */
   created_at?: string;
+  /**
+   * Updated timestamp in ISO 8601
+   * @format date-time
+   */
   updated_at?: string;
   /**
    * This is a required field if source type is webfolder.
@@ -1251,14 +1153,31 @@ export interface ImageSourceUpdateResponse {
     | 'proxy'
     | 'wordpress'
     | 'linode';
+  /**
+   * Image source ID
+   */
   id?: string;
+  /**
+   * Source namespace
+   */
   namespace?: string;
-  cdn_type?: string;
+  /**
+   * CDN cache time in seconds
+   */
   cdn_cache_time?: number;
   canonical_url?: boolean;
+  /**
+   * Browser cache time in seconds
+   */
   browser_cache_time?: number;
   is_cloudfront?: boolean;
+  /**
+   * @format date-time
+   */
   created_at?: string;
+  /**
+   * @format date-time
+   */
   updated_at?: string;
   /**
    * This is a required field if source type is webfolder.
