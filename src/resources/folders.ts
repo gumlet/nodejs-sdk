@@ -162,25 +162,51 @@ export interface FolderCreateParams {
 }
 
 export interface FolderCreateResponse {
+  /**
+   * Folder ID
+   */
   id?: string;
+  /**
+   * Folder name
+   */
   name?: string;
+  /**
+   * Workspace ID
+   */
   video_source_id?: string;
+  /**
+   * Parent folder ID
+   */
   parent_id?: string | null;
+  /**
+   * Path details
+   */
   path?: Array<string>;
   path_names?: Array<string>;
   /**
+   * Depth of this folder from root
    * @default 0
    */
   depth?: number;
   /**
+   * Number of subfolders inside this folder
    * @default 0
    */
   subdirectory_count?: number;
   /**
+   * Number of assets inside this folder
    * @default 0
    */
   asset_count?: number;
+  /**
+   * Folder creation time in ISO 8601 format
+   * @format date-time
+   */
   created_at?: string;
+  /**
+   * Folder update time in ISO 8601 format
+   * @format date-time
+   */
   updated_at?: string;
 }
 
@@ -195,25 +221,51 @@ export type FolderListResponse = Array<FolderListResponse.FolderListResponseItem
 
 export namespace FolderListResponse {
   export interface FolderListResponseItem {
+    /**
+     * Folder ID
+     */
     id?: string;
+    /**
+     * Folder name
+     */
     name?: string;
+    /**
+     * Workspace ID
+     */
     video_source_id?: string;
+    /**
+     * Parent folder ID
+     */
     parent_id?: string | null;
+    /**
+     * Path of the folder
+     */
     path?: Array<string>;
     path_names?: Array<string>;
     /**
+     * Depth from root folder
      * @default 0
      */
     depth?: number;
     /**
+     * Number of child folders
      * @default 0
      */
     subdirectory_count?: number;
     /**
+     * Number of assets inside this folder
      * @default 0
      */
     asset_count?: number;
+    /**
+     * Folder creation time in ISO 8601 format
+     * @format date-time
+     */
     created_at?: string;
+    /**
+     * Folder update time in ISO 8601 format
+     * @format date-time
+     */
     updated_at?: string;
   }
 }
@@ -226,25 +278,51 @@ export interface FolderRetrieveParams {
 }
 
 export interface FolderRetrieveResponse {
+  /**
+   * Folder ID
+   */
   id?: string;
+  /**
+   * Folder name
+   */
   name?: string;
+  /**
+   * Workspace ID
+   */
   video_source_id?: string;
+  /**
+   * Parent folder ID
+   */
   parent_id?: string | null;
+  /**
+   * Path for this folder
+   */
   path?: Array<string>;
   path_names?: Array<string>;
   /**
+   * Depth of this folder from the root
    * @default 0
    */
   depth?: number;
   /**
+   * Number of folders inside this folder
    * @default 0
    */
   subdirectory_count?: number;
   /**
+   * Number of assets in this folder
    * @default 0
    */
   asset_count?: number;
+  /**
+   * Folder creation time in ISO 8601 format
+   * @format date-time
+   */
   created_at?: string;
+  /**
+   * Folder update time in ISO 8601 format
+   * @format date-time
+   */
   updated_at?: string;
 }
 

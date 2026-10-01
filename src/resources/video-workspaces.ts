@@ -124,10 +124,27 @@ export interface VideoWorkspaceListResponse {
 
 export namespace VideoWorkspaceListResponse {
   export interface AllSource {
+    /**
+     * Workspace ID
+     */
     id?: string;
+    /**
+     * Workspace name
+     */
     name?: string;
+    /**
+     * Workspace type
+     */
     type?: string;
+    /**
+     * Workspace created time in ISO 8601
+     * @format date-time
+     */
     created_at?: string;
+    /**
+     * Workspace updated timestamo in ISO 8601
+     * @format date-time
+     */
     updated_at?: string;
     video_protection?: AllSource.VideoProtection;
     player_config?: AllSource.PlayerConfig;
@@ -480,17 +497,43 @@ export namespace VideoWorkspaceCreateParams {
 }
 
 export interface VideoWorkspaceCreateResponse {
+  /**
+   * Workspace ID
+   */
   id?: string;
+  /**
+   * Workspace name
+   */
   name?: string;
+  /**
+   * Workspace type
+   */
   type?: string;
+  /**
+   * Created at time in ISO 8601 format
+   * @format date-time
+   */
   created_at?: string;
+  /**
+   * Updated at time in ISO 8601
+   * @format date-time
+   */
   updated_at?: string;
   video_protection?: Record<string, unknown>;
+  /**
+   * Player configuration for this workspace
+   */
   player_config?: VideoWorkspaceCreateResponse.PlayerConfig;
+  /**
+   * Default profile for this workspace
+   */
   default_profile_id?: string;
   insight_property_id?: string;
   zoom?: VideoWorkspaceCreateResponse.Zoom;
   embed_details?: VideoWorkspaceCreateResponse.EmbedDetails;
+  /**
+   * List of folders inside this workspace
+   */
   folders?: Array<string>;
   channel_settings?: VideoWorkspaceCreateResponse.ChannelSettings;
 }
@@ -883,10 +926,25 @@ export namespace VideoWorkspaceUpdateParams {
 }
 
 export interface VideoWorkspaceUpdateResponse {
+  /**
+   * Workspace ID
+   */
   id: string;
+  /**
+   * Workspace name
+   */
   name: string;
+  /**
+   * Workspace type
+   */
   type: string;
+  /**
+   * @format date-time
+   */
   created_at: string;
+  /**
+   * @format date-time
+   */
   updated_at: string;
   player_config: VideoWorkspaceUpdateResponse.PlayerConfig;
   folders: Array<string>;
