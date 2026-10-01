@@ -1338,9 +1338,11 @@ export namespace VideoAssetRetrieveDetailsResponse {
     export interface Chapter {
       /**
        * @default 0
+       * @deprecated
        */
       endTime?: number;
       label?: string;
+      startTime?: number;
     }
   }
 
