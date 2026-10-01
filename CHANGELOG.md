@@ -1,5 +1,474 @@
 # Changelog
 
+## [1.3.5](https://github.com/gumlet/nodejs-sdk/compare/v1.3.7...v1.3.5) (2026-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 187 breaking changes to the SDK surface.
+    - `401` error response of `videoAssets.create` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.create` changed from `application/json` to `error`.
+    - `422` error response of `videoAssets.create` changed from `application/json` to `error`.
+    - `500` error response of `videoAssets.create` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.upload` changed from `application/json` to `error`.
+    - `422` error response of `videoAssets.upload` changed from `application/json` to `error`.
+    - `500` error response of `videoAssets.upload` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.delete` changed from `application/json` to `error`.
+    - `401` error response of `videoAssets.update` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.update` changed from `application/json` to `error`.
+    - `422` error response of `videoAssets.update` changed from `application/json` to `error`.
+    - `401` error response of `videoAssets.thumbnailSelect` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.thumbnailSelect` changed from `application/json` to `error`.
+    - `500` error response of `videoAssets.thumbnailSelect` changed from `application/json` to `error`.
+    - `401` error response of `videoAssets.thumbnailUpload` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.thumbnailUpload` changed from `application/json` to `error`.
+    - `500` error response of `videoAssets.thumbnailUpload` changed from `application/json` to `error`.
+    - `401` error response of `videoAssets.createUpdateChapter` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.createUpdateChapter` changed from `application/json` to `error`.
+    - `500` error response of `videoAssets.createUpdateChapter` changed from `application/json` to `error`.
+    - `401` error response of `videoAssets.list` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.list` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.listDeprecated` changed from `application/json` to `error`.
+    - `401` error response of `videoAssets.deleteMany` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.deleteMany` changed from `application/json` to `error`.
+    - `500` error response of `videoAssets.deleteMany` changed from `application/json` to `error`.
+    - `401` error response of `videoAssets.tagMany` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.tagMany` changed from `application/json` to `error`.
+    - `500` error response of `videoAssets.tagMany` changed from `application/json` to `error`.
+    - `401` error response of `videoAssets.analytics` changed from `application/json` to `error`.
+    - `403` error response of `videoAssets.analytics` changed from `application/json` to `error`.
+    - `500` error response of `videoAssets.analytics` changed from `application/json` to `error`.
+    - `401` error response of `subtitleUpload.upload` changed from `application/json` to `error`.
+    - `403` error response of `subtitleUpload.upload` changed from `application/json` to `error`.
+    - `500` error response of `subtitleUpload.upload` changed from `application/json` to `error`.
+    - `401` error response of `subtitleUpload.complete` changed from `application/json` to `error`.
+    - `403` error response of `subtitleUpload.complete` changed from `application/json` to `error`.
+    - `500` error response of `subtitleUpload.complete` changed from `application/json` to `error`.
+    - `401` error response of `audioUpload.upload` changed from `application/json` to `error`.
+    - `403` error response of `audioUpload.upload` changed from `application/json` to `error`.
+    - `500` error response of `audioUpload.upload` changed from `application/json` to `error`.
+    - `401` error response of `audioUpload.complete` changed from `application/json` to `error`.
+    - `403` error response of `audioUpload.complete` changed from `application/json` to `error`.
+    - `500` error response of `audioUpload.complete` changed from `application/json` to `error`.
+    - `401` error response of `videoUsageAnalytics.retrieve` changed from `application/json` to `error`.
+    - `403` error response of `videoUsageAnalytics.retrieve` changed from `application/json` to `error`.
+    - `401` error response of `videoUsageAnalytics.topAssets` changed from `application/json` to `error`.
+    - `403` error response of `videoUsageAnalytics.topAssets` changed from `application/json` to `error`.
+    - `401` error response of `multipartUpload.retrievePartUrl` changed from `application/json` to `error`.
+    - `403` error response of `multipartUpload.retrievePartUrl` changed from `application/json` to `error`.
+    - `401` error response of `multipartUpload.complete` changed from `application/json` to `error`.
+    - `403` error response of `multipartUpload.complete` changed from `application/json` to `error`.
+    - `403` error response of `videoProfiles.create` changed from `application/json` to `error`.
+    - `422` error response of `videoProfiles.create` changed from `application/json` to `error`.
+    - `500` error response of `videoProfiles.create` changed from `application/json` to `error`.
+    - `401` error response of `videoProfiles.list` changed from `application/json` to `error`.
+    - `403` error response of `videoProfiles.list` changed from `application/json` to `error`.
+    - `401` error response of `videoProfiles.update` changed from `application/json` to `error`.
+    - `403` error response of `videoProfiles.update` changed from `application/json` to `error`.
+    - `500` error response of `videoProfiles.update` changed from `application/json` to `error`.
+    - `403` error response of `videoProfiles.retrieve` changed from `application/json` to `error`.
+    - `403` error response of `videoProfiles.delete` changed from `application/json` to `error`.
+    - `401` error response of `videoPlaylists.create` changed from `application/json` to `error`.
+    - `403` error response of `videoPlaylists.create` changed from `application/json` to `error`.
+    - `422` error response of `videoPlaylists.create` changed from `application/json` to `error`.
+    - `401` error response of `videoPlaylists.listAll` changed from `application/json` to `error`.
+    - `403` error response of `videoPlaylists.listAll` changed from `application/json` to `error`.
+    - `401` error response of `videoPlaylists.createAsset` changed from `application/json` to `error`.
+    - `403` error response of `videoPlaylists.createAsset` changed from `application/json` to `error`.
+    - `401` error response of `videoPlaylists.deleteAsset` changed from `application/json` to `error`.
+    - `403` error response of `videoPlaylists.deleteAsset` changed from `application/json` to `error`.
+    - `401` error response of `videoPlaylists.update` changed from `application/json` to `error`.
+    - `403` error response of `videoPlaylists.update` changed from `application/json` to `error`.
+    - `401` error response of `videoPlaylists.delete` changed from `application/json` to `error`.
+    - `403` error response of `videoPlaylists.delete` changed from `application/json` to `error`.
+    - `401` error response of `videoPlaylists.listAssets` changed from `application/json` to `error`.
+    - `403` error response of `videoPlaylists.listAssets` changed from `application/json` to `error`.
+    - `401` error response of `videoPlaylists.reorderAsset` changed from `application/json` to `error`.
+    - `403` error response of `videoPlaylists.reorderAsset` changed from `application/json` to `error`.
+    - `401` error response of `webhooks.create` changed from `application/json` to `error`.
+    - `403` error response of `webhooks.create` changed from `application/json` to `error`.
+    - `422` error response of `webhooks.create` changed from `application/json` to `error`.
+    - `401` error response of `webhooks.list` changed from `application/json` to `error`.
+    - `403` error response of `webhooks.list` changed from `application/json` to `error`.
+    - `401` error response of `webhooks.update` changed from `application/json` to `error`.
+    - `403` error response of `webhooks.update` changed from `application/json` to `error`.
+    - `401` error response of `webhooks.delete` changed from `application/json` to `error`.
+    - `403` error response of `webhooks.delete` changed from `application/json` to `error`.
+    - `401` error response of `webhooks.history` changed from `application/json` to `error`.
+    - `403` error response of `webhooks.history` changed from `application/json` to `error`.
+    - `401` error response of `imageSources.create` changed from `application/json` to `error`.
+    - `422` error response of `imageSources.create` changed from `application/json` to `error`.
+    - `401` error response of `imageSources.list` changed from `application/json` to `error`.
+    - `403` error response of `imageSources.list` changed from `application/json` to `error`.
+    - `401` error response of `imageSources.retrieve` changed from `application/json` to `error`.
+    - `403` error response of `imageSources.retrieve` changed from `application/json` to `error`.
+    - `401` error response of `imageSources.update` changed from `application/json` to `error`.
+    - `403` error response of `imageSources.update` changed from `application/json` to `error`.
+    - `401` error response of `imageSources.delete` changed from `application/json` to `error`.
+    - `403` error response of `imageSources.delete` changed from `application/json` to `error`.
+    - `401` error response of `imageSources.purgeCache` changed from `application/json` to `error`.
+    - `403` error response of `imageSources.purgeCache` changed from `application/json` to `error`.
+    - `401` error response of `imageSources.purge` changed from `application/json` to `error`.
+    - `403` error response of `imageSources.purge` changed from `application/json` to `error`.
+    - `401` error response of `imageUsageAnalytics.retrieve` changed from `application/json` to `error`.
+    - `403` error response of `imageUsageAnalytics.retrieve` changed from `application/json` to `error`.
+    - `422` error response of `liveStreamAssets.create` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamAssets.update` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamAssets.retrieveStatus` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamAssets.delete` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamAssets.complete` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamAssets.filter` changed from `application/json` to `error`.
+    - `401` error response of `liveStreamAssets.start` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamAssets.start` changed from `application/json` to `error`.
+    - `401` error response of `liveStreamAssets.upload` changed from `application/json` to `error`.
+    - `500` error response of `liveStreamAssets.upload` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamAssets.statusHistory` changed from `application/json` to `error`.
+    - `401` error response of `recycleBin.recover` changed from `application/json` to `error`.
+    - `403` error response of `recycleBin.recover` changed from `application/json` to `error`.
+    - `401` error response of `recycleBin.list` changed from `application/json` to `error`.
+    - `403` error response of `recycleBin.list` changed from `application/json` to `error`.
+    - `401` error response of `videoWorkspaces.list` changed from `application/json` to `error`.
+    - `403` error response of `videoWorkspaces.list` changed from `application/json` to `error`.
+    - `401` error response of `videoWorkspaces.create` changed from `application/json` to `error`.
+    - `422` error response of `videoWorkspaces.create` changed from `application/json` to `error`.
+    - `401` error response of `videoWorkspaces.update` changed from `application/json` to `error`.
+    - `403` error response of `videoWorkspaces.update` changed from `application/json` to `error`.
+    - `401` error response of `videoWorkspaces.retrieve` changed from `application/json` to `error`.
+    - `403` error response of `videoWorkspaces.retrieve` changed from `application/json` to `error`.
+    - `401` error response of `videoWorkspaces.delete` changed from `application/json` to `error`.
+    - `403` error response of `videoWorkspaces.delete` changed from `application/json` to `error`.
+    - `401` error response of `folders.create` changed from `application/json` to `error`.
+    - `403` error response of `folders.create` changed from `application/json` to `error`.
+    - `422` error response of `folders.create` changed from `application/json` to `error`.
+    - `401` error response of `folders.list` changed from `application/json` to `error`.
+    - `403` error response of `folders.list` changed from `application/json` to `error`.
+    - `401` error response of `folders.retrieve` changed from `application/json` to `error`.
+    - `403` error response of `folders.retrieve` changed from `application/json` to `error`.
+    - `401` error response of `folders.update` changed from `application/json` to `error`.
+    - `403` error response of `folders.update` changed from `application/json` to `error`.
+    - `401` error response of `folders.delete` changed from `application/json` to `error`.
+    - `403` error response of `folders.delete` changed from `application/json` to `error`.
+    - `401` error response of `folders.deleteAssets` changed from `application/json` to `error`.
+    - `403` error response of `folders.deleteAssets` changed from `application/json` to `error`.
+    - `401` error response of `channelViewers.invite` changed from `application/json` to `error`.
+    - `403` error response of `channelViewers.invite` changed from `application/json` to `error`.
+    - `401` error response of `channelViewers.delete` changed from `application/json` to `error`.
+    - `403` error response of `channelViewers.delete` changed from `application/json` to `error`.
+    - `401` error response of `channelViewers.inviteCsv` changed from `application/json` to `error`.
+    - `403` error response of `channelViewers.inviteCsv` changed from `application/json` to `error`.
+    - `401` error response of `channelViewers.listSubscribers` changed from `application/json` to `error`.
+    - `403` error response of `channelViewers.listSubscribers` changed from `application/json` to `error`.
+    - `403` error response of `videoAnalytics.chartData` changed from `application/json` to `error`.
+    - `500` error response of `videoAnalytics.chartData` changed from `application/json` to `error`.
+    - `403` error response of `videoAnalytics.breakdownData` changed from `application/json` to `error`.
+    - `500` error response of `videoAnalytics.breakdownData` changed from `application/json` to `error`.
+    - `403` error response of `videoAnalytics.aggregatedData` changed from `application/json` to `error`.
+    - `500` error response of `videoAnalytics.aggregatedData` changed from `application/json` to `error`.
+    - `401` error response of `organizationData.fetchOrg` changed from `application/json` to `error`.
+    - `403` error response of `organizationData.fetchOrg` changed from `application/json` to `error`.
+    - `401` error response of `userData.fetch` changed from `application/json` to `error`.
+    - `403` error response of `userData.fetch` changed from `application/json` to `error`.
+    - `401` error response of `auditLogs.fetch` changed from `application/json` to `error`.
+    - `403` error response of `auditLogs.fetch` changed from `application/json` to `error`.
+    - `422` error response of `auditLogs.fetch` changed from `application/json` to `error`.
+    - `401` error response of `billing.listInvoices` changed from `application/json` to `error`.
+    - `403` error response of `billing.listInvoices` changed from `application/json` to `error`.
+    - `401` error response of `billing.fetchDetails` changed from `application/json` to `error`.
+    - `403` error response of `billing.fetchDetails` changed from `application/json` to `error`.
+    - `401` error response of `billing.updateDetails` changed from `application/json` to `error`.
+    - `403` error response of `billing.updateDetails` changed from `application/json` to `error`.
+    - `500` error response of `billing.updateDetails` changed from `application/json` to `error`.
+    - `401` error response of `billing.fetchUpcomingInvoice` changed from `application/json` to `error`.
+    - `403` error response of `billing.fetchUpcomingInvoice` changed from `application/json` to `error`.
+    - `500` error response of `billing.fetchUpcomingInvoice` changed from `application/json` to `error`.
+    - `401` error response of `liveStreamWorkspaces.list` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamWorkspaces.list` changed from `application/json` to `error`.
+    - `401` error response of `liveStreamWorkspaces.create` changed from `application/json` to `error`.
+    - `422` error response of `liveStreamWorkspaces.create` changed from `application/json` to `error`.
+    - `401` error response of `liveStreamWorkspaces.update` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamWorkspaces.update` changed from `application/json` to `error`.
+    - `401` error response of `liveStreamWorkspaces.delete` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamWorkspaces.delete` changed from `application/json` to `error`.
+    - `401` error response of `liveStreamAnalytics.usage` changed from `application/json` to `error`.
+    - `403` error response of `liveStreamAnalytics.usage` changed from `application/json` to `error`.
+    - `401` error response of `globalSearch.search` changed from `application/json` to `error`.
+    - `403` error response of `globalSearch.search` changed from `application/json` to `error`.
+* **api:** 4 breaking changes to the SDK surface.
+    - `400` error response of `videoAssets.deleteMany` changed from `none` to `application/json`.
+    - `400` error response of `videoAssets.tagMany` changed from `none` to `application/json`.
+    - `400` error response of `userData.fetch` changed from `none` to `application/json`.
+    - `400` error response of `liveStreamAnalytics.usage` changed from `none` to `application/json`.
+* **api:** 2 breaking changes to the SDK surface.
+    - Added required body field `workspace_id` to `videoAssets.create`.
+    - Removed body field `collection_id` from `videoAssets.create`.
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `liveStreamCollections.list` (`GET /video/sources/live`).
+    - Removed operation `liveStreamCollections.create` (`POST /video/sources/live`).
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `liveStreamCollections.update` (`POST /video/sources/live/{live_collection_id}`).
+    - Removed operation `liveStreamCollections.delete` (`DELETE /video/sources/live/{live_collection_id}`).
+* **api:** 3 breaking changes to the SDK surface.
+    - Removed operation `dataApi.insightsChart` (`POST /insights/viewer-analytics`).
+    - Removed operation `dataApi.insightsBreakdown` (`POST /insights/breakdown-data`).
+    - Removed operation `dataApi.insightsAggregated` (`POST /insights/aggregated-data`).
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `videoAssets.analytics` (`POST /v1/video/assets/{asset_id}/analytics`).
+    - Removed operation `channelViewers.listSubscribers` (`GET /v1/channel/{workspace_id}/viewers`).
+* **api:** 5 breaking changes to the SDK surface.
+    - Removed operation `webhookApis.create` (`POST /org/webhooks`).
+    - Removed operation `webhookApis.list` (`GET /org/webhooks`).
+    - Removed operation `webhookApis.update` (`POST /org/webhooks/{webhook_id}`).
+    - Removed operation `webhookApis.delete` (`DELETE /org/webhooks/{webhook_id}`).
+    - Removed operation `webhookApis.history` (`GET /org/webhook/{webhook_id}/history`).
+* **api:** Added required body field `group_by` to `videoUsageAnalytics.retrieve`.
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `videoAssets.recover` (`POST /video/asset/recover`).
+    - Removed operation `videoAssets.listRecycleBin` (`GET /video/asset/recoverable/list`).
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `organizationData.retrieveOrg` (`GET /org/data`).
+    - Removed operation `userData.retrieve` (`GET /user/data`).
+* **api:** Response content type of `userData.retrieve` changed from `application/javascript` to `application/json`.
+* **api:** Removed operation `dataApi.insightsChart` (`POST /video/viewer-analytics`).
+* **api:** 4 breaking changes to the SDK surface.
+    - Removed operation `videoAssets.subtitleUpload` (`POST /video/assets/{asset_ID}/subtitle/upload`).
+    - Removed operation `videoAssets.completeSubtitleUpload` (`POST /video/assets/{asset_ID}/subtitle/upload/event`).
+    - Removed operation `videoAssets.audioUpload` (`POST /video/assets/{asset_ID}/audio/upload`).
+    - Removed operation `videoAssets.completeAudioUpload` (`POST /video/assets/{asset_ID}/audio/upload/event`).
+* **api:** Added required body field `filters` to `imageUsageAnalytics.retrieve`.
+* **api:** Removed operation `imageSources.analytics` (`POST /image/analytics`).
+* **api:** 6 breaking changes to the SDK surface.
+    - Removed operation `videoAssets.retrieveStatus` (`GET /video/assets/{asset_id}`).
+    - Removed operation `videoAssets.upload2` (`POST /video/assets/{asset_ID}/subtitle/upload`).
+    - Removed operation `videoAssets.upload3` (`POST /video/assets/{asset_ID}/audio/upload`).
+    - Removed operation `videoUsageAnalytics.createDetails` (`POST /video/analytics`).
+    - Removed operation `multipartUpload.listPartUrl` (`GET /video/assets/{asset_id}/multipartupload/{part_number}/sign`).
+    - Removed operation `liveStreamAssets.listStatusCopy` (`GET /video/live/assets/{live_asset_id}/history`).
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `videoAssets.subtitleUploadComplete` (`POST /video/assets/{asset_ID}/subtitle/upload/event`).
+    - Removed operation `liveStreamAssets.postVideoliveassetsId` (`POST /video/live/assets/{live_asset_id}/start`).
+* **api:** 20 breaking changes to the SDK surface.
+    - Operation `videoAssets.list` route changed from `GET /video/assets/list/{workspace_id}` to `GET /video/workspaces/{workspace_id}/list`.
+    - Serialization or defaults of query param `type` on `videoAssets.list` changed.
+    - Serialization or defaults of query param `sortBy` on `videoAssets.list` changed.
+    - Serialization or defaults of query param `orderBy` on `videoAssets.list` changed.
+    - Serialization or defaults of query param `offset` on `videoAssets.list` changed.
+    - Serialization or defaults of query param `size` on `videoAssets.list` changed.
+    - Removed query param `folder` from `videoAssets.list`.
+    - Removed operation `videoAssets.selectFrom` (`POST /video/assets/{asset_id}/thumbnail-select`).
+    - Removed operation `videoAssets.selectFromImageFile` (`POST /video/assets/{asset_ID}/thumbnail`).
+    - Removed operation `videoAssets.postVideoassetrecover` (`POST /video/asset/recover`).
+    - Removed operation `videoAssets.listWorkspaceContent` (`GET /video/workspaces/{workspace_id}/list`).
+    - Removed operation `videoUsageAnalytics.create` (`POST /video/analytics`).
+    - Removed operation `videoUsageAnalytics.streamingDuration` (`GET /video/streaming-duration`).
+    - Removed operation `multipartUpload.signPart` (`GET /video/assets/{asset_id}/multipartupload/{part_number}/sign`).
+    - Removed operation `videoPlaylists.createAssetTo` (`POST /video/playlist/{playlist_id}/asset`).
+    - Removed operation `videoPlaylists.deleteAssetFrom` (`DELETE /video/playlist/{playlist_id}/asset`).
+    - Removed operation `videoPlaylists.deleteId` (`DELETE /video/playlist/{playlist_id}`).
+    - Removed operation `videoPlaylists.reorderAssets2` (`POST /video/playlists/{playlist_id}/reorder`).
+    - Removed operation `folders.create1` (`POST /video/workspaces/{workspace_id}/folders`).
+    - Removed operation `folders.deleteAssetsFrom` (`POST /video/workspaces/{workspace_id}/remove-assets-from-folder`).
+* **api:** Serialization or defaults of query param `page` on `videoUsageAnalytics.streamingDuration` changed.
+* **api:** Renamed SDK from `GumletPteLtd` to `Gumlet`.
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed operation `videoAssets.uploadSubtitleCompletion` (`POST /video/assets/{asset_ID}/subtitle/upload/event`).
+    - Removed operation `videoAssets.uploadAudioCompletion` (`POST /video/assets/{asset_ID}/audio/upload/event`).
+* **api:** Renamed SDK from `Gumlet` to `GumletPteLtd`.
+* **api:** Response content type of `imageSources.retrieve` changed from `none` to `application/json`.
+
+### Features
+
+* **api:** add body field cname on imageSources.update ([92f6c1f](https://github.com/gumlet/nodejs-sdk/commit/92f6c1fecdcac29881ced9e964633620d28de028))
+* **api:** add body field fallback_origins on imageSources.update ([459857c](https://github.com/gumlet/nodejs-sdk/commit/459857cba80ae368cbe7310cac46f9e740902079))
+* **api:** add body field filters on imageUsageAnalytics.retrieve ([e0f18f0](https://github.com/gumlet/nodejs-sdk/commit/e0f18f0f87db440d9989094cc4b2d3124f2320c5))
+* **api:** add body field group_by on imageSources.analytics ([7316216](https://github.com/gumlet/nodejs-sdk/commit/7316216f0c6ce173e20c680bf1dc3b4cce62ed0d))
+* **api:** add body field group_by on videoUsageAnalytics.retrieve ([4428da0](https://github.com/gumlet/nodejs-sdk/commit/4428da0b70a099adff8c66a3365b3dc4f8a69db9))
+* **api:** add body field vc on videoProfiles.update (+2 more changes) ([cdd315f](https://github.com/gumlet/nodejs-sdk/commit/cdd315fef9450581c0c4f0348a1e6dc392290136))
+* **api:** add operation billing.listInvoices (+3 more changes) ([7d03440](https://github.com/gumlet/nodejs-sdk/commit/7d0344093f44cc72aa644f3ce90fd8ea0eac0341))
+* **api:** add operation dataApi.insightsBreakdown ([b0792ec](https://github.com/gumlet/nodejs-sdk/commit/b0792ec0f134492d96e277a10a59f90fa42d898e))
+* **api:** add operation dataApi.insightsChart (+2 more changes) ([6fdce93](https://github.com/gumlet/nodejs-sdk/commit/6fdce934fd47433464429a25bdfc2168d8747471))
+* **api:** add operation globalSearch.search ([70aa804](https://github.com/gumlet/nodejs-sdk/commit/70aa8046e41066e43ac18278912158718c426964))
+* **api:** add operation imageSources.purge ([0a2fd9c](https://github.com/gumlet/nodejs-sdk/commit/0a2fd9cde9c1acfabe25ffc4e371eae4c49c29a0))
+* **api:** add operation liveStreamAnalytics.usage ([5a0b462](https://github.com/gumlet/nodejs-sdk/commit/5a0b462ff64fb0325ac769b867d4e47c0e473b53))
+* **api:** add operation liveStreamCollections.list (+3 more changes) ([46bdfb1](https://github.com/gumlet/nodejs-sdk/commit/46bdfb148b5b3aa58955ba076b16eedde546deeb))
+* **api:** add operation multipartUpload.abort (+1 more change) ([066c9bf](https://github.com/gumlet/nodejs-sdk/commit/066c9bf897a9c46c084cc34cc1b1da8662e20440))
+* **api:** add operation videoAssets.analytics (+1 more change) ([44ea0b1](https://github.com/gumlet/nodejs-sdk/commit/44ea0b1c834f57f047e57444c90d1c7ebd398b0c))
+* **api:** add operation videoAssets.analytics (+1 more change) ([928b640](https://github.com/gumlet/nodejs-sdk/commit/928b640dd6a441e1b47bd28cf0fd0dd24856ad1d))
+* **api:** add operation videoAssets.deleteMany (+1 more change) ([b9f9617](https://github.com/gumlet/nodejs-sdk/commit/b9f9617c51a3911b65f4699398ef5885115b1c6a))
+* **api:** add operation videoAssets.listRecycleBin ([71cba3b](https://github.com/gumlet/nodejs-sdk/commit/71cba3b53de96753975532b022fe66ff8754236e))
+* **api:** add operation videoAssets.selectFrom (+1 more change) ([fe97207](https://github.com/gumlet/nodejs-sdk/commit/fe97207b38f6998908b737152bcaf708be33638c))
+* **api:** add operation webhookApis.list (+1 more change) ([ec8d148](https://github.com/gumlet/nodejs-sdk/commit/ec8d148edcf57d93d8d06d3cfb3392b80822d112))
+* **api:** add query param offset on imageSources.list (+2 more changes) ([e610968](https://github.com/gumlet/nodejs-sdk/commit/e610968348071baf5360494be2202d3f18d79ae1))
+* **api:** add query param signed_token on videoAssets.list ([dd744c5](https://github.com/gumlet/nodejs-sdk/commit/dd744c5f3c2b8277f8ab5e184c980894a31d5492))
+* **api:** remove operation dataApi.insightsChart (+1 more change) ([be1a2ed](https://github.com/gumlet/nodejs-sdk/commit/be1a2edb0ca426aee6501b06ba0edcea50866525))
+* **api:** remove operation dataApi.insightsChart (+5 more changes) ([fbd3bfe](https://github.com/gumlet/nodejs-sdk/commit/fbd3bfe439e0fa11965f2dcc1d3ad8ddd1661c62))
+* **api:** remove operation imageSources.analytics (+1 more change) ([134b4c0](https://github.com/gumlet/nodejs-sdk/commit/134b4c099da458d8f7407fd8a7b113120662661c))
+* **api:** remove operation videoAssets.analytics (+1 more change) ([b7ffe5d](https://github.com/gumlet/nodejs-sdk/commit/b7ffe5d3824f0f0be306255507b2274a7138bcf3))
+* **api:** remove operation videoAssets.recover (+3 more changes) ([cea2eed](https://github.com/gumlet/nodejs-sdk/commit/cea2eede00e4b45d0f797eb344646bdb6182d9fb))
+* **api:** remove operation webhookApis.create (+9 more changes) ([a88faad](https://github.com/gumlet/nodejs-sdk/commit/a88faad75e163bffbe498a10728f1fde9986f432))
+* **api:** update operation imageSources.purgeCache ([20b48b3](https://github.com/gumlet/nodejs-sdk/commit/20b48b3a30d4d1033e64d38b6fcdbe1fc15f44d9))
+* **api:** update operation videoAssets.list (+39 more changes) ([00b3b34](https://github.com/gumlet/nodejs-sdk/commit/00b3b343fafad88b708787bd119009bf36e5d492))
+* **api:** update response of imageSources.retrieve (+8 more changes) ([c50a08a](https://github.com/gumlet/nodejs-sdk/commit/c50a08aa55ad0e7afa0c12fcbffae71124de2a15))
+* **api:** update response of userData.retrieve ([54bc273](https://github.com/gumlet/nodejs-sdk/commit/54bc2735ba1e596dfbe0f1361bfe124310926e72))
+* **api:** update SDK name ([8cfa385](https://github.com/gumlet/nodejs-sdk/commit/8cfa38550946b69af7b97ecf4c4c2c4fbe43b0ab))
+* **api:** update SDK name ([58ba716](https://github.com/gumlet/nodejs-sdk/commit/58ba7165414ecf596cdd01ef524464c84e203861))
+* **api:** update SDK surface (1 change) ([380a4d6](https://github.com/gumlet/nodejs-sdk/commit/380a4d61f5f4c4e76f1b3ae62ac76f867a38184d))
+* **api:** update SDK surface (12 changes) ([7fbaf3c](https://github.com/gumlet/nodejs-sdk/commit/7fbaf3c965e45f108fc0a4185f4bace938de814a))
+* **api:** update SDK surface (188 changes) ([f8a4db5](https://github.com/gumlet/nodejs-sdk/commit/f8a4db5e9367477554ce4d470a1b6bbfb671e3ba))
+* **api:** update SDK surface (2 changes) ([ef9543d](https://github.com/gumlet/nodejs-sdk/commit/ef9543d2614c996b604a11795ae1e05f84e1a048))
+* **api:** update SDK surface (2 changes) ([caf1396](https://github.com/gumlet/nodejs-sdk/commit/caf1396d5bb8d4da23091b82c06334b4718b9ff4))
+* **api:** update SDK surface (2 changes) ([e732855](https://github.com/gumlet/nodejs-sdk/commit/e73285589ae07423d555d632ed20850540536595))
+* **api:** update SDK surface (240 changes) ([51bfdd1](https://github.com/gumlet/nodejs-sdk/commit/51bfdd138e0370a312f5b9612f0ea531d4d5e24b))
+* **api:** update SDK surface (4 changes) ([6cc0991](https://github.com/gumlet/nodejs-sdk/commit/6cc0991b976966341466cb0b7008c7dba80ae91c))
+* **api:** update SDK surface (4 changes) ([6759d57](https://github.com/gumlet/nodejs-sdk/commit/6759d5769ccc1eef251d9b00c6af5ad3b8bf31f9))
+* **api:** update SDK surface (5 changes) ([e9df731](https://github.com/gumlet/nodejs-sdk/commit/e9df73143e87307137a43dbf312e86211a16a926))
+* **api:** update SDK surface (6 changes) ([f7fe0e9](https://github.com/gumlet/nodejs-sdk/commit/f7fe0e9b909ba2ce6b0e4b19e23b4692310a86e1))
+* **api:** update SDK surface (8 changes) ([5a3e160](https://github.com/gumlet/nodejs-sdk/commit/5a3e1601df2a2c509774400d003e5c85d414d17a))
+
+
+### Chores
+
+* **api:** regenerate SDK ([d655ca8](https://github.com/gumlet/nodejs-sdk/commit/d655ca81f4317b6ee695d2e39d888c83f1c08e00))
+* **api:** regenerate SDK ([737a74d](https://github.com/gumlet/nodejs-sdk/commit/737a74dfd7c64706abc9a2f0849a04b768655eea))
+* **api:** regenerate SDK ([cf6c3ad](https://github.com/gumlet/nodejs-sdk/commit/cf6c3adb0f1c6216536ba2e19300a938a2e62ec2))
+* **api:** regenerate SDK ([8b67129](https://github.com/gumlet/nodejs-sdk/commit/8b671296ac733e54b3217085565e760da4e9771b))
+* **api:** regenerate SDK ([75d59ff](https://github.com/gumlet/nodejs-sdk/commit/75d59ffc5c8907a6007f2e7d50d0d2542025896c))
+* **api:** regenerate SDK ([4c5a36d](https://github.com/gumlet/nodejs-sdk/commit/4c5a36dd05bc2b2ba12a7930c416d3920bc0cbcb))
+* **api:** regenerate SDK ([2767922](https://github.com/gumlet/nodejs-sdk/commit/2767922511c7b7e791784c4a7268418ce5465044))
+* **api:** regenerate SDK ([c3643ba](https://github.com/gumlet/nodejs-sdk/commit/c3643ba889cc09e1003b6822592cba09089382d9))
+* **api:** regenerate SDK ([86ac498](https://github.com/gumlet/nodejs-sdk/commit/86ac498a20f40b8b59d80acddf091fbbcfb70cbc))
+* **api:** regenerate SDK ([6ebec4a](https://github.com/gumlet/nodejs-sdk/commit/6ebec4a269d7e7fa634a5d38916c02ca2a5c5dd9))
+* **api:** update generated SDK content ([91c46df](https://github.com/gumlet/nodejs-sdk/commit/91c46dfd3687825458d9e748eeaca8adb8076459))
+* **api:** update generated SDK content ([a375ce3](https://github.com/gumlet/nodejs-sdk/commit/a375ce30188fa67818606174552a07ec3b3a140c))
+* **api:** update generated SDK content ([2ed8582](https://github.com/gumlet/nodejs-sdk/commit/2ed85826813a29bacf12d8ce13aaabd455e2d830))
+* **api:** update generated SDK content ([a2b9bed](https://github.com/gumlet/nodejs-sdk/commit/a2b9bed535fcc7cf863bacd62350633428516a1c))
+* **api:** update generated SDK content ([614e1c7](https://github.com/gumlet/nodejs-sdk/commit/614e1c7806d00cee883e1c1e3d7f180f597d2aae))
+* **api:** update generated SDK content ([21bd9cb](https://github.com/gumlet/nodejs-sdk/commit/21bd9cb5fcd9fa771ec8f853aebd584d9d779bed))
+* **api:** update generated SDK content ([26b43d7](https://github.com/gumlet/nodejs-sdk/commit/26b43d7f330d0e423065dcc8587ae38fdee5ca08))
+* **api:** update generated SDK content ([82c61c5](https://github.com/gumlet/nodejs-sdk/commit/82c61c5a53398dcab3868b16f19623d3b262a7ca))
+* **api:** update generated SDK content ([3833542](https://github.com/gumlet/nodejs-sdk/commit/3833542d0ce8717f886ffe8c33636fb46c34098a))
+* **api:** update generated SDK content ([fd0db0f](https://github.com/gumlet/nodejs-sdk/commit/fd0db0fccf93aeb7235b2b6cec8ddcf2055a3e5e))
+* **api:** update generated SDK content ([a7a58dd](https://github.com/gumlet/nodejs-sdk/commit/a7a58ddd11b813f3276c43df3e633d001c8cd275))
+* **api:** update generated SDK content ([5a4d8b9](https://github.com/gumlet/nodejs-sdk/commit/5a4d8b9db1af7e709d24623f8fb1f6aeb7a745b8))
+* **api:** update generated SDK content ([c9f78f4](https://github.com/gumlet/nodejs-sdk/commit/c9f78f488fc02995eadbedb3d1177e7bcd4de652))
+* **api:** update generated SDK content ([abce9a0](https://github.com/gumlet/nodejs-sdk/commit/abce9a0a2fb9f07b690e64925c725b27098b5847))
+* **api:** update generated SDK content ([93db123](https://github.com/gumlet/nodejs-sdk/commit/93db12386ac9bcf3fdc8526e240c0ab8e035d262))
+* **api:** update generated SDK content ([97f0e03](https://github.com/gumlet/nodejs-sdk/commit/97f0e039509b419d083df5313ec086b7735706a9))
+* **api:** update generated SDK content ([9716a79](https://github.com/gumlet/nodejs-sdk/commit/9716a7969e49739274bdc120a91e7160be362258))
+* **api:** update generated SDK content ([f0f6a60](https://github.com/gumlet/nodejs-sdk/commit/f0f6a600e97981b95060a157fb529a847bb1b269))
+* **api:** update generated SDK content ([5045c72](https://github.com/gumlet/nodejs-sdk/commit/5045c7243a7e7dd013b3a9ccc0861a9e2df66de9))
+* **api:** update generated SDK content ([7fd660b](https://github.com/gumlet/nodejs-sdk/commit/7fd660b975dbc6a4e39dce428041642bc8ae4efe))
+* **api:** update generated SDK content ([309454a](https://github.com/gumlet/nodejs-sdk/commit/309454ab0a34497bff2b2625a8c8a097b438d490))
+* **api:** update generated SDK content ([8056d83](https://github.com/gumlet/nodejs-sdk/commit/8056d83a27150c1b92c2988122a45c4997babae7))
+* **api:** update generated SDK content ([80b0884](https://github.com/gumlet/nodejs-sdk/commit/80b088464a748275df8af7de2f8a819ef8bc6909))
+* **api:** update generated SDK content ([f2966bd](https://github.com/gumlet/nodejs-sdk/commit/f2966bd2a0ebfc11baad53af7236242fe694b094))
+* **api:** update generated SDK content ([444a67e](https://github.com/gumlet/nodejs-sdk/commit/444a67e0ddf4ad2ce0c209fa829cd8e117f1a671))
+* **api:** update generated SDK content ([0758056](https://github.com/gumlet/nodejs-sdk/commit/0758056e827c6baef5fb42f07c8a2629a0117aa7))
+* **api:** update generated SDK content ([a320729](https://github.com/gumlet/nodejs-sdk/commit/a320729273140033364562c9a34075949da8e526))
+* **api:** update generated SDK content ([5507767](https://github.com/gumlet/nodejs-sdk/commit/550776785078fac4aeeb283af5ffd7a6dd62a86b))
+* **api:** update generated SDK content ([b7ad5bc](https://github.com/gumlet/nodejs-sdk/commit/b7ad5bcb7f9bd054f4c740c95aaf8a7c81640d49))
+* **api:** update generated SDK content ([74ce01e](https://github.com/gumlet/nodejs-sdk/commit/74ce01ed1f2278474f8281d47d3ef2dc69a66117))
+* **api:** update generated SDK content ([63a2050](https://github.com/gumlet/nodejs-sdk/commit/63a2050740788e0513bc4d328b4ec28470626660))
+* **api:** update generated SDK content ([81abc17](https://github.com/gumlet/nodejs-sdk/commit/81abc17a5a0962e61f08d76322dfb62909dcb490))
+* **api:** update generated SDK content ([e92e88c](https://github.com/gumlet/nodejs-sdk/commit/e92e88c75d8663d503fce5bbc3e7ac524a1916b3))
+* **api:** update generated SDK content ([6998b56](https://github.com/gumlet/nodejs-sdk/commit/6998b5676e5f5a35ffc1ced4624c4ac2942c07d9))
+* **api:** update generated SDK content ([bfda0eb](https://github.com/gumlet/nodejs-sdk/commit/bfda0eb6319b65aee4b779f841b883cf06f5f4e8))
+* **api:** update generated SDK content ([04235a0](https://github.com/gumlet/nodejs-sdk/commit/04235a00b8d2bbb4ed307b353c98a486a4487632))
+* **api:** update generated SDK content ([8deec20](https://github.com/gumlet/nodejs-sdk/commit/8deec20a4506d7440403b63f0d2744b68ea1b82b))
+* **api:** update generated SDK content ([101f8bb](https://github.com/gumlet/nodejs-sdk/commit/101f8bb900d8acd585b6fc86e6d7136db08f832a))
+* **api:** update generated SDK content ([998babc](https://github.com/gumlet/nodejs-sdk/commit/998babcf686b5a359decf99e7d4656447d3a3414))
+* **api:** update generated SDK content ([73286fe](https://github.com/gumlet/nodejs-sdk/commit/73286fe07383173165e1981fb1f6d96aadfc2829))
+* **api:** update generated SDK content ([c0e5a92](https://github.com/gumlet/nodejs-sdk/commit/c0e5a92604e309d3bdeb639a0b3af87c07b79a7a))
+* **api:** update generated SDK content ([7f71b70](https://github.com/gumlet/nodejs-sdk/commit/7f71b706b1a4e7a845cae4b1dcafc7e4c7cbbf31))
+* **api:** update generated SDK content ([147dc26](https://github.com/gumlet/nodejs-sdk/commit/147dc26eef23f809424819d770a04863e5e37195))
+* **api:** update generated SDK content ([b54e8d8](https://github.com/gumlet/nodejs-sdk/commit/b54e8d8d6050658c0323fe81f8c8829f82612ef3))
+* **api:** update generated SDK content ([0f9a1c6](https://github.com/gumlet/nodejs-sdk/commit/0f9a1c612798254263bb94e8d86955bbdca84598))
+* **api:** update generated SDK content ([22e2711](https://github.com/gumlet/nodejs-sdk/commit/22e27111991a87ff47fae734e67d816c03418f41))
+* **api:** update generated SDK content ([78de0fe](https://github.com/gumlet/nodejs-sdk/commit/78de0fe5f5a4b7e15ab276ba5d545119a17a956b))
+* **api:** update generated SDK content ([549c54a](https://github.com/gumlet/nodejs-sdk/commit/549c54a5a64606531223d8c1fb7be83f3ed73ba4))
+* **api:** update generated SDK content ([4229966](https://github.com/gumlet/nodejs-sdk/commit/4229966e1ba9bc5df5bd8f3b6e2f990579745395))
+* **api:** update generated SDK content ([eb0e761](https://github.com/gumlet/nodejs-sdk/commit/eb0e7615cc586456d0a3b2b455617ed7f5cfe501))
+* **api:** update generated SDK content ([dc95e2d](https://github.com/gumlet/nodejs-sdk/commit/dc95e2d124dd839df768c9299181c441f29b9755))
+* **api:** update generated SDK content ([33d4a1a](https://github.com/gumlet/nodejs-sdk/commit/33d4a1a088f3c910ac25aac75c4ee217149c23dd))
+* **api:** update generated SDK content ([c4d856c](https://github.com/gumlet/nodejs-sdk/commit/c4d856c049cc9ef457d0ac5c0c4eab07cf406ef9))
+* **api:** update generated SDK content ([453553a](https://github.com/gumlet/nodejs-sdk/commit/453553a11404f62e46a8c5bc6dd8e334e8ab6853))
+* **api:** update generated SDK content ([ee08bc4](https://github.com/gumlet/nodejs-sdk/commit/ee08bc447cef4adbd246d61b09f4243e344bb6c6))
+* **api:** update generated SDK content ([48fdc31](https://github.com/gumlet/nodejs-sdk/commit/48fdc31fee7a87a989a7d34f365c71d3f959a0b8))
+* **api:** update generated SDK content ([286142f](https://github.com/gumlet/nodejs-sdk/commit/286142f4ea36e6bf114872496de129721ae61be4))
+* **api:** update generated SDK content ([4645167](https://github.com/gumlet/nodejs-sdk/commit/4645167e62909a6bb2b31fe281fb2e8f7438f933))
+* **api:** update generated SDK content ([3a3482c](https://github.com/gumlet/nodejs-sdk/commit/3a3482c83ef4af759ee38a0c02eca42c41d7342b))
+* **api:** update generated SDK content ([dc01475](https://github.com/gumlet/nodejs-sdk/commit/dc01475e315454e7222d5f2eb3f90c2f0eed5ebf))
+* **api:** update generated SDK content ([9b52f1a](https://github.com/gumlet/nodejs-sdk/commit/9b52f1a49654fe4adbede92f322c97b89b1f0335))
+* **api:** update generated SDK content ([2a44dec](https://github.com/gumlet/nodejs-sdk/commit/2a44dec9fe9ca192656ff35f9a21ac10d1184d80))
+* **api:** update generated SDK content ([1e004ad](https://github.com/gumlet/nodejs-sdk/commit/1e004adc57128e597c5d571642fb84d296223106))
+* **api:** update generated SDK content ([b96850b](https://github.com/gumlet/nodejs-sdk/commit/b96850b8d1b7e4b01bc0a2bc2d28dbb95e5032c4))
+* **api:** update generated SDK content ([4cf0bd4](https://github.com/gumlet/nodejs-sdk/commit/4cf0bd4313bda37481bf271fa613946f3b4a34f2))
+* **api:** update generated SDK content ([63054b0](https://github.com/gumlet/nodejs-sdk/commit/63054b067dc490624cf0bf6f1afe2123ddc6b12f))
+* **api:** update generated SDK content ([8bc507d](https://github.com/gumlet/nodejs-sdk/commit/8bc507d74a5bcd53a147e3b378e4c4de20d17673))
+* **api:** update generated SDK content ([83e8b66](https://github.com/gumlet/nodejs-sdk/commit/83e8b664477355ddca1addc5f92e22567c8c343b))
+* **api:** update generated SDK content ([1272dbc](https://github.com/gumlet/nodejs-sdk/commit/1272dbc211ba84e7effcc1e99b6af6ba61dda5af))
+* **api:** update generated SDK content ([52f9e2f](https://github.com/gumlet/nodejs-sdk/commit/52f9e2f2e7e1bf4ed27c3cf426c679774b7ae97c))
+* **api:** update generated SDK content ([a3daf9d](https://github.com/gumlet/nodejs-sdk/commit/a3daf9d0aeb0db24700341257519b22c4439e939))
+* **api:** update generated SDK content ([30990bc](https://github.com/gumlet/nodejs-sdk/commit/30990bc63d7ac7a3f795a1f402e9df091637111c))
+* **api:** update generated SDK content ([c8128bf](https://github.com/gumlet/nodejs-sdk/commit/c8128bfaa9cf852564b1a868afb08fcabed16cf3))
+* **api:** update generated SDK content ([29c0932](https://github.com/gumlet/nodejs-sdk/commit/29c0932e7c7f2301abd509f9718cce7102ade160))
+* **api:** update generated SDK content ([75abc43](https://github.com/gumlet/nodejs-sdk/commit/75abc43dc1696c4f90df60c6e363dba2d024af61))
+* release 1.0.1 ([87d0945](https://github.com/gumlet/nodejs-sdk/commit/87d0945e8fa83ee4f31be5a7524b75c8efcdca4b))
+* release 1.0.1 ([dbb26fb](https://github.com/gumlet/nodejs-sdk/commit/dbb26fba6fbba0c5e861a6718337b40b956c8c89))
+* release 1.0.10 ([992af3d](https://github.com/gumlet/nodejs-sdk/commit/992af3d72890922b9c51abdc65ee77574941f569))
+* release 1.0.12 ([5b399d7](https://github.com/gumlet/nodejs-sdk/commit/5b399d78c03abeefdd39d1517e464dbb74fba932))
+* release 1.0.13 ([c57ab68](https://github.com/gumlet/nodejs-sdk/commit/c57ab686b789666896667412d1a2554cab469362))
+* release 1.0.14 ([ba07ae8](https://github.com/gumlet/nodejs-sdk/commit/ba07ae8e343e64b5cbb972a0d085d72b754d17b4))
+* release 1.0.16 ([c41de73](https://github.com/gumlet/nodejs-sdk/commit/c41de733853f7205db85eaa174963faf6045cfcf))
+* release 1.0.19 ([562a0a1](https://github.com/gumlet/nodejs-sdk/commit/562a0a1a25f18889e713a3407f5e1b66b6568d61))
+* release 1.0.23 ([e3702a6](https://github.com/gumlet/nodejs-sdk/commit/e3702a6254d4ae54140e836e9258375834bdb985))
+* release 1.0.4 ([33a1260](https://github.com/gumlet/nodejs-sdk/commit/33a12608a225562e483dbdeccd6554dbad00a686))
+* release 1.0.5 ([85af2f3](https://github.com/gumlet/nodejs-sdk/commit/85af2f343305cb06b634fd21661ff5ac316d748b))
+* release 1.1.1 ([5eeafc9](https://github.com/gumlet/nodejs-sdk/commit/5eeafc9c7eb0e0df0116974f84d1c3ba9271b9b4))
+* release 1.1.11 ([fe3b137](https://github.com/gumlet/nodejs-sdk/commit/fe3b137bbe78370afa7f2ead85ea06894fe5e8d6))
+* release 1.1.11 ([850ad85](https://github.com/gumlet/nodejs-sdk/commit/850ad85916568ef18927d7936e384b6cdbb9c805))
+* release 1.1.13 ([d4dd80f](https://github.com/gumlet/nodejs-sdk/commit/d4dd80f1af142df2c728ad7d4ae63e3337765cdf))
+* release 1.1.13 ([fcea015](https://github.com/gumlet/nodejs-sdk/commit/fcea015d40823495e777e079057ae783065b9dfb))
+* release 1.1.15 ([a5958c1](https://github.com/gumlet/nodejs-sdk/commit/a5958c1ae181ba273ba9ea914cb6e84b935c53a6))
+* release 1.1.15 ([682ef39](https://github.com/gumlet/nodejs-sdk/commit/682ef396c85c556ee7c6de17d5bce072365f66cc))
+* release 1.1.2 ([b2b2feb](https://github.com/gumlet/nodejs-sdk/commit/b2b2feb35f41ee1575213822db82e9f4920e1470))
+* release 1.1.2 ([8f58595](https://github.com/gumlet/nodejs-sdk/commit/8f58595c80a15ca82a4741f218ff5ad1259cb93c))
+* release 1.1.3 ([f9d78c3](https://github.com/gumlet/nodejs-sdk/commit/f9d78c3594d2321192ae1ca33f5e9b1481414726))
+* release 1.1.3 ([bed4e22](https://github.com/gumlet/nodejs-sdk/commit/bed4e2292c1c6bb70e745a9734b2b56d60069c56))
+* release 1.1.4 ([722d9b3](https://github.com/gumlet/nodejs-sdk/commit/722d9b3d91b086a8da19287b5a7ae38568761f08))
+* release 1.1.4 ([a86f7b6](https://github.com/gumlet/nodejs-sdk/commit/a86f7b6c48d15c75a31d9b5f76d678ff5f98809d))
+* release 1.1.6 ([0c67954](https://github.com/gumlet/nodejs-sdk/commit/0c679543f3094a1f456092fdbaeab0ec20b0dc36))
+* release 1.1.6 ([dd8bf03](https://github.com/gumlet/nodejs-sdk/commit/dd8bf039a79f80bf2c48a0353775549572ff6a20))
+* release 1.2.1 ([5f31645](https://github.com/gumlet/nodejs-sdk/commit/5f316457246159f67afd758a9d4293b0d90ceab5))
+* release 1.2.1 ([cf999e6](https://github.com/gumlet/nodejs-sdk/commit/cf999e62a6bcf98ac42db984a5e7b0f860d16235))
+* release 1.2.10 ([492e073](https://github.com/gumlet/nodejs-sdk/commit/492e0736c777845f28ae8fef1c80d2a94be032c2))
+* release 1.2.10 ([63e6bd3](https://github.com/gumlet/nodejs-sdk/commit/63e6bd39df2cdee50bd448a6e3b1dc66786fad21))
+* release 1.2.14 ([32bbdf3](https://github.com/gumlet/nodejs-sdk/commit/32bbdf3a5fcded4d28c4ea435b419d4fb2f8f781))
+* release 1.2.14 ([282cc0e](https://github.com/gumlet/nodejs-sdk/commit/282cc0efcc475d44f87636bc79cd86448f2d2cf7))
+* release 1.2.15 ([0904e7d](https://github.com/gumlet/nodejs-sdk/commit/0904e7d754b51c30702cc1284062e20acc9e13d8))
+* release 1.2.15 ([bc30e14](https://github.com/gumlet/nodejs-sdk/commit/bc30e141caaf4c07024665b4264fc4ddd2665ac3))
+* release 1.2.16 ([5d9140f](https://github.com/gumlet/nodejs-sdk/commit/5d9140fdfb5f079fae87b3570257a3264e2ad438))
+* release 1.2.16 ([49775d8](https://github.com/gumlet/nodejs-sdk/commit/49775d8e3269a97de0da906ec1a9f5830fc85da2))
+* release 1.2.17 ([7e32a2e](https://github.com/gumlet/nodejs-sdk/commit/7e32a2e4b085a2eacd399d263ad2b4363b082992))
+* release 1.2.17 ([3928579](https://github.com/gumlet/nodejs-sdk/commit/3928579eb864ef95717708aff5bad393f63b20c9))
+* release 1.2.18 ([b6a0379](https://github.com/gumlet/nodejs-sdk/commit/b6a0379b336db9b316ca151838105e62f3ba3f85))
+* release 1.2.18 ([8282d5a](https://github.com/gumlet/nodejs-sdk/commit/8282d5a323ed3c926a124843214eaa32b90c2587))
+* release 1.2.19 ([ef870e4](https://github.com/gumlet/nodejs-sdk/commit/ef870e49dff2c5b4926f76efb3d8f4298e85842a))
+* release 1.2.19 ([a73e5b0](https://github.com/gumlet/nodejs-sdk/commit/a73e5b033467e6ed57a284b215af9c5ca967eef5))
+* release 1.2.20 ([d3420d4](https://github.com/gumlet/nodejs-sdk/commit/d3420d4c99afe883605e832c7f197a2fc2cc0fa5))
+* release 1.2.20 ([2929b1e](https://github.com/gumlet/nodejs-sdk/commit/2929b1ef78eedbb9689989e20afe06f5a95006a3))
+* release 1.2.22 ([b3c3569](https://github.com/gumlet/nodejs-sdk/commit/b3c35696ad14dbecb753fac17987c4d732f84734))
+* release 1.2.22 ([042132f](https://github.com/gumlet/nodejs-sdk/commit/042132faf137788e0932538f3aa90c4817755b08))
+* release 1.2.4 ([3f09225](https://github.com/gumlet/nodejs-sdk/commit/3f09225871d3369aaa733410cc1496c6e1830c9f))
+* release 1.2.4 ([4839502](https://github.com/gumlet/nodejs-sdk/commit/48395028caab0923fd293438c0d6fa56d29a5d16))
+* release 1.2.8 ([79afd59](https://github.com/gumlet/nodejs-sdk/commit/79afd59dc6c1f709513c011fe182d04d3f21c155))
+* release 1.2.8 ([fef26d0](https://github.com/gumlet/nodejs-sdk/commit/fef26d04064fb27e411e71dd539a544abc9b8379))
+* release 1.3.2 ([9744ea2](https://github.com/gumlet/nodejs-sdk/commit/9744ea2d176a2a4b657e4f2577a9a90f5aead804))
+* release 1.3.2 ([e39cc59](https://github.com/gumlet/nodejs-sdk/commit/e39cc5918e1f5448f781004ddd7765afc78ad089))
+* release 1.3.3 ([e31db04](https://github.com/gumlet/nodejs-sdk/commit/e31db043b30d801a3112f307a0ed7c09501203b2))
+* release 1.3.3 ([ecfbda7](https://github.com/gumlet/nodejs-sdk/commit/ecfbda75ac4c0dd9ff044c851044f8cb1a99a1e5))
+* release 1.3.5 ([4f43a21](https://github.com/gumlet/nodejs-sdk/commit/4f43a21b30dd4b88ec490344fdf06dc214844b7b))
+* release 1.3.5 ([5e81fed](https://github.com/gumlet/nodejs-sdk/commit/5e81fed88a94db71ec652d1b8edb91124da1000c))
+
 ## [1.3.7](https://github.com/gumlet/nodejs-sdk/compare/v1.3.6...v1.3.7) (2026-10-01)
 
 
