@@ -63,12 +63,21 @@ export interface AudioUploadUploadResponse {
    * Gumlet Asset ID
    */
   asset_id: string;
+  /**
+   * Details about signed URLs for each language
+   */
   signed_urls: Array<AudioUploadUploadResponse.SignedURL>;
 }
 
 export namespace AudioUploadUploadResponse {
   export interface SignedURL {
+    /**
+     * Audio language code
+     */
     language_code: string;
+    /**
+     * Upload URL on which actual audio file should be uploaded using a PUT request
+     */
     upload_url: string;
   }
 }

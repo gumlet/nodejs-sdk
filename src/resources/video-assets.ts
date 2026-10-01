@@ -658,26 +658,48 @@ export namespace VideoAssetCreateParams {
 }
 
 export interface VideoAssetCreateResponse {
+  /**
+   * Asset ID of created asset.
+   */
   asset_id?: string;
   /**
+   * Processing progress percentage showing value between 0 and 100.
    * @default 0
+   * @minimum 0
+   * @maximum 100
    */
   progress?: number;
   /**
+   * Created at time in milliseconds since epoch
    * @default 0
    */
   created_at?: number;
   /**
+   * Updated at time in milliseconds since epoch
    * @default 0
    */
   updated_at?: number;
+  /**
+   * Status of video
+   */
   status?: string;
+  /**
+   * List of tags
+   */
   tag?: Array<string>;
-  source_id?: string;
-  collection_id?: string;
+  /**
+   * Input parameters
+   */
   input?: VideoAssetCreateResponse.Input;
+  /**
+   * Output parameters
+   */
   output?: VideoAssetCreateResponse.Output;
   playlists?: Array<string>;
+  /**
+   * Workdspace ID
+   */
+  workspace_id?: string;
 }
 
 export namespace VideoAssetCreateResponse {
@@ -1090,27 +1112,49 @@ export namespace VideoAssetUploadParams {
 }
 
 export interface VideoAssetUploadResponse {
+  /**
+   * Asset ID of the created asset
+   */
   asset_id?: string;
   /**
+   * Processing progress percentage number between 0 and 100
    * @default 0
+   * @minimum 0
+   * @maximum 100
    */
   progress?: number;
   /**
+   * Created at timestamp in milliseconds since epoch
    * @default 0
    */
   created_at?: number;
   /**
+   * Updated at timestamp in milliseconds since epoch
    * @default 0
    */
   updated_at?: number;
+  /**
+   * Status of asset
+   */
   status?: string;
   tag?: Array<string>;
-  source_id?: string;
-  collection_id?: string;
   input?: VideoAssetUploadResponse.Input;
+  /**
+   * Output data information
+   */
   output?: VideoAssetUploadResponse.Output;
+  /**
+   * Upload URL on which you need to send actual file using PUT request
+   */
   upload_url?: string;
+  /**
+   * Information about playlists
+   */
   playlists?: Array<string>;
+  /**
+   * Workdspace ID
+   */
+  workspace_id?: string;
 }
 
 export namespace VideoAssetUploadResponse {
@@ -1536,14 +1580,16 @@ export type VideoAssetUpdateResponse = Record<string, unknown>;
 
 export interface VideoAssetThumbnailSelectParams {
   /**
-   * Frame secound
-   * @format int32
+   * Actual time in second at which thumbnail extraction needs to be done. It can be a fraction of a second as well
    */
   frame_at_second: number;
 }
 
 export interface VideoAssetThumbnailSelectResponse {
   success?: boolean;
+  /**
+   * Asset ID
+   */
   asset_id?: string;
   /**
    * Milliseconds since epoch for the updated time.
@@ -1552,7 +1598,13 @@ export interface VideoAssetThumbnailSelectResponse {
 }
 
 export interface VideoAssetThumbnailUploadResponse {
+  /**
+   * Upload URL on which new thumbnail must be uploaded using a PUT request
+   */
   upload_url?: string;
+  /**
+   * Asset ID
+   */
   asset_id?: string;
   /**
    * Thumbnail updated at timestamp in milliseconds since epoch
@@ -1561,13 +1613,16 @@ export interface VideoAssetThumbnailUploadResponse {
 }
 
 export interface VideoAssetCreateUpdateChapterParams {
+  /**
+   * List of chapters
+   */
   chapters: Array<VideoAssetCreateUpdateChapterParams.Chapter>;
 }
 
 export namespace VideoAssetCreateUpdateChapterParams {
   export interface Chapter {
     /**
-     * Label for the chapter.
+     * Label for the chapter
      */
     label: string;
     /**
