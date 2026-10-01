@@ -292,7 +292,7 @@ export namespace VideoWorkspaceListResponse {
        */
       active?: boolean;
       description?: string;
-      privacy_type?: string;
+      privacy_type?: 'public' | 'private' | 'password-protected' | 'dashboardOnly';
       /**
        * @default true
        */
@@ -973,7 +973,7 @@ export namespace VideoWorkspaceUpdateResponse {
      */
     active?: boolean;
     description?: string;
-    privacy_type?: string;
+    privacy_type?: 'password-protected' | 'public' | 'private' | 'dashboardOnly';
     /**
      * @default true
      */
@@ -1220,7 +1220,7 @@ export namespace VideoWorkspaceRetrieveResponse {
     /**
      * Privacy type of videos in this workspace
      */
-    privacy_type: 'private' | 'public' | 'password' | 'dashboardOnly';
+    privacy_type: 'private' | 'public' | 'password-protected' | 'dashboardOnly';
     /**
      * Whether channel can be accessed publicly or it's invite only channel.
      */
