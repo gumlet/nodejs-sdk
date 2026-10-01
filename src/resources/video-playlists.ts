@@ -120,7 +120,7 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Deletes this playlist.
+   * Deletes a playlist by plalist ID.
    *
    * @param {string} playlistID - Playlist ID that is to be deleted.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -536,6 +536,9 @@ export interface VideoPlaylistListAssetsParams {
 }
 
 export interface VideoPlaylistListAssetsResponse {
+  /**
+   * List of assets inside playlist
+   */
   asset_list?: Array<VideoPlaylistListAssetsResponse.AssetList>;
   /**
    * @default true
@@ -549,12 +552,25 @@ export interface VideoPlaylistListAssetsResponse {
 
 export namespace VideoPlaylistListAssetsResponse {
   export interface AssetList {
+    /**
+     * Asset ID
+     */
     id?: string;
+    /**
+     * Asset title
+     */
     title?: string;
+    /**
+     * Asset description
+     */
     description?: string;
+    /**
+     * Status
+     */
     status?: string;
     created_at?: string;
     /**
+     * Asset duration
      * @default 0
      */
     duration?: number;
