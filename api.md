@@ -44,7 +44,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Add asset to playlist](#add-asset-to-playlist)
   - [Remove asset from playlist](#remove-asset-from-playlist)
   - [Update Playlist](#update-playlist)
-  - [`delete`](#delete)
+  - [Delete Playlist](#delete-playlist)
   - [Get playlist assets](#get-playlist-assets)
   - [Arrange Videos In Playlist](#arrange-videos-in-playlist)
 - [`Webhooks`](#webhooks)
@@ -673,9 +673,9 @@ This endpoint allows you to update playlist name, channel visibility, or playlis
 const videoPlaylist = await client.videoPlaylists.update('playlistId');
 ```
 
-### `delete`
+### Delete Playlist
 
-Deletes this playlist.
+Deletes a playlist by plalist ID.
 
 ```ts
 await client.videoPlaylists.delete('playlistId');

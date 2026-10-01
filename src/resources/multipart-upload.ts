@@ -114,9 +114,18 @@ export interface MultipartUploadRetrievePartURLParams {
 }
 
 export interface MultipartUploadRetrievePartURLResponse {
-  asset_id?: string;
-  part_number?: string;
-  part_upload_url?: string;
+  /**
+   * Asset ID
+   */
+  asset_id: string;
+  /**
+   * Part number of the part that is to be uploaded
+   */
+  part_number: string;
+  /**
+   * Upload URL for the part on which you need to send PUT request for blob of that part
+   */
+  part_upload_url: string;
 }
 
 export interface MultipartUploadCompleteParams {
@@ -129,6 +138,7 @@ export interface MultipartUploadCompleteParams {
 export namespace MultipartUploadCompleteParams {
   export interface Part {
     /**
+     * Part number
      * @format int32
      */
     PartNumber?: number;

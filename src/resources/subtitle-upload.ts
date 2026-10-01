@@ -65,17 +65,29 @@ export interface SubtitleUploadUploadResponse {
    * Asset ID of Gumlet
    */
   asset_id: string;
+  /**
+   * List of objects with signed URLs for each language
+   */
   signed_urls: Array<SubtitleUploadUploadResponse.SignedURL>;
 }
 
 export namespace SubtitleUploadUploadResponse {
   export interface SignedURL {
+    /**
+     * Language code
+     */
     language_code: string;
+    /**
+     * Upload URL on which PUT request should be fired to upload the subtitle
+     */
     upload_url: string;
   }
 }
 
 export interface SubtitleUploadCompleteParams {
+  /**
+   * Array of objects of uploaded languages
+   */
   upload_responses?: Array<SubtitleUploadCompleteParams.UploadResponse>;
 }
 

@@ -116,8 +116,17 @@ export interface WebhookCreateParams {
 }
 
 export interface WebhookCreateResponse {
+  /**
+   * Webhook ID
+   */
   id?: string;
+  /**
+   * Webhook URL
+   */
   url?: string;
+  /**
+   * List of triggers
+   */
   triggers?: Array<string>;
   created_at?: string;
   updated_at?: string;
@@ -176,7 +185,13 @@ export interface WebhookUpdateParams {
 }
 
 export interface WebhookUpdateResponse {
+  /**
+   * Webhook ID
+   */
   id?: string;
+  /**
+   * Webhook URL
+   */
   url?: string;
   triggers?: Array<string>;
   created_at?: string;

@@ -120,7 +120,7 @@ export class VideoPlaylists extends APIResource {
   }
 
   /**
-   * Deletes this playlist.
+   * Deletes a playlist by plalist ID.
    *
    * @param {string} playlistID - Playlist ID that is to be deleted.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -190,16 +190,40 @@ export class VideoPlaylists extends APIResource {
 }
 
 export interface VideoPlaylistCreateParams {
+  /**
+   * Workspace ID in which the playlist should be created
+   */
   collection_id: string;
+  /**
+   * Playlist title
+   */
   title: string;
+  /**
+   * Playlist description
+   */
   description?: string;
 }
 
 export interface VideoPlaylistCreateResponse {
+  /**
+   * Playlist ID
+   */
   id: string;
+  /**
+   * Workspace ID
+   */
   collection_id?: string;
+  /**
+   * Playlist title
+   */
   title?: string;
+  /**
+   * Playlist description
+   */
   description?: string;
+  /**
+   * Player config for assets in the playlist
+   */
   player_config?: VideoPlaylistCreateResponse.PlayerConfig;
 }
 
@@ -270,7 +294,7 @@ export namespace VideoPlaylistCreateResponse {
 
 export interface VideoPlaylistListAllParams {
   /**
-   * Video Collection ID
+   * Workspace ID
    */
   collection_id?: string;
 }
@@ -280,10 +304,25 @@ export type VideoPlaylistListAllResponse =
 
 export namespace VideoPlaylistListAllResponse {
   export interface VideoPlaylistListAllResponseItem {
+    /**
+     * Playlist ID
+     */
     id: string;
+    /**
+     * Workspace ID
+     */
     collection_id?: string;
+    /**
+     * Title of the playlist
+     */
     title?: string;
+    /**
+     * Description of the playlist
+     */
     description?: string;
+    /**
+     * Player configuration for the playlist
+     */
     player_config?: Record<string, unknown>;
   }
 }
@@ -294,6 +333,9 @@ export interface VideoPlaylistCreateAssetParams {
 
 export namespace VideoPlaylistCreateAssetParams {
   export interface AssetList {
+    /**
+     * Asset ID
+     */
     asset_id?: string;
     /**
      * Optional, if not provided asset will added at the back/last of playlist
@@ -312,7 +354,7 @@ export interface VideoPlaylistCreateAssetResponse {
 
 export interface VideoPlaylistDeleteAssetParams {
   /**
-   * Array of video asset ids.
+   * Array of video asset ids to delete
    */
   delete_list: Array<string>;
 }
@@ -325,7 +367,13 @@ export interface VideoPlaylistDeleteAssetResponse {
 }
 
 export interface VideoPlaylistUpdateParams {
+  /**
+   * Playlist title
+   */
   title?: string;
+  /**
+   * Playlist description
+   */
   description?: string;
   /**
    * Playlists have order in which they will be shown on the channel page.
@@ -379,9 +427,21 @@ export namespace VideoPlaylistUpdateParams {
 }
 
 export interface VideoPlaylistUpdateResponse {
+  /**
+   * Playlist ID
+   */
   id: string;
+  /**
+   * Workspace ID
+   */
   collection_id?: string;
+  /**
+   * Updated playlist title
+   */
   title?: string;
+  /**
+   * Updated playlist description
+   */
   description?: string;
   player_config?: VideoPlaylistUpdateResponse.PlayerConfig;
 }
@@ -476,6 +536,9 @@ export interface VideoPlaylistListAssetsParams {
 }
 
 export interface VideoPlaylistListAssetsResponse {
+  /**
+   * List of assets inside playlist
+   */
   asset_list?: Array<VideoPlaylistListAssetsResponse.AssetList>;
   /**
    * @default true
@@ -489,12 +552,25 @@ export interface VideoPlaylistListAssetsResponse {
 
 export namespace VideoPlaylistListAssetsResponse {
   export interface AssetList {
+    /**
+     * Asset ID
+     */
     id?: string;
+    /**
+     * Asset title
+     */
     title?: string;
+    /**
+     * Asset description
+     */
     description?: string;
+    /**
+     * Status
+     */
     status?: string;
     created_at?: string;
     /**
+     * Asset duration
      * @default 0
      */
     duration?: number;
