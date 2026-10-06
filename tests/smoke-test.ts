@@ -805,7 +805,7 @@ const cases: {
       const webhook = await client.webhooksResource.create({
         url: '',
         secret_token: '',
-        triggers: [''],
+        triggers: ['status'],
         sources: [''],
       });
     },
@@ -839,7 +839,7 @@ const cases: {
       const webhook = await client.webhooksResource.update('webhookId', {
         url: '',
         secret_token: '',
-        triggers: '',
+        triggers: ['status'],
         sources: '',
       });
     },
