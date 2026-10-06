@@ -7,7 +7,7 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class Webhooks extends APIResource {
   /**
-   * Creates a new webhook listener.
+   * Creates a new webhook listener. Gumlet POSTs JSON to `url` for each matching event and sends `secret_token` in the `x-gumlet-token` header. Payload schemas are documented in the webhooks section.
    *
    * @param {WebhookCreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -18,7 +18,7 @@ export class Webhooks extends APIResource {
    * const webhook = await client.webhooksResource.create({
    *   url: '',
    *   secret_token: '',
-   *   triggers: [''],
+   *   triggers: ['status'],
    *   sources: [''],
    * });
    * ```
@@ -102,13 +102,43 @@ export interface WebhookCreateParams {
    */
   url: string;
   /**
-   * Authentication token to ensure legitimacy of Gumlet Webhook request on your application.
+   * Secret sent back in the `x-gumlet-token` header of each webhook POST so you can confirm the request came from Gumlet.
    */
   secret_token: string;
   /**
-   * Triggers for the invocation of webhookos, supported option is `status`.
+   * Events that invoke this webhook. `status` subscribes to every video asset status event. `live-video-status` subscribes to every live video status event. Any other value subscribes to that event only.
    */
-  triggers: Array<string>;
+  triggers: Array<
+    | 'status'
+    | 'live-video-status'
+    | 'video.status.created'
+    | 'video.status.downloaded'
+    | 'video.status.optimized'
+    | 'video.status.ready'
+    | 'video.status.errored'
+    | 'video.status.deleted'
+    | 'video.status.repackaged'
+    | 'video.status.stream_ready'
+    | 'live.video.status.created'
+    | 'live.video.status.ready'
+    | 'live.video.status.preparing'
+    | 'live.video.status.connected'
+    | 'live.video.status.active'
+    | 'live.video.status.complete'
+    | 'live.video.status.disconnected'
+    | 'event.embed.viewed'
+    | 'event.embed.cta_clicked'
+    | 'event.video.updated'
+    | 'event.video.uploaded'
+    | 'event.playlist.created'
+    | 'event.playlist.asset'
+    | 'event.playlist.deleted'
+    | 'event.video.analytics'
+    | 'event.image.analytics'
+    | 'event.embed.form_submitted'
+    | 'event.comment.all'
+    | 'event.channel.member_joined'
+  >;
   /**
    * List of video collection identifiers for which webhooks are needed to be invoked.
    */
@@ -144,9 +174,39 @@ export interface WebhookListResponse {
    */
   url: string;
   /**
-   * List of triggers configured for this webhook
+   * Events that invoke this webhook. `status` subscribes to every video asset status event. `live-video-status` subscribes to every live video status event. Any other value subscribes to that event only.
    */
-  triggers: Array<string>;
+  triggers: Array<
+    | 'status'
+    | 'live-video-status'
+    | 'video.status.created'
+    | 'video.status.downloaded'
+    | 'video.status.optimized'
+    | 'video.status.ready'
+    | 'video.status.errored'
+    | 'video.status.deleted'
+    | 'video.status.repackaged'
+    | 'video.status.stream_ready'
+    | 'live.video.status.created'
+    | 'live.video.status.ready'
+    | 'live.video.status.preparing'
+    | 'live.video.status.connected'
+    | 'live.video.status.active'
+    | 'live.video.status.complete'
+    | 'live.video.status.disconnected'
+    | 'event.embed.viewed'
+    | 'event.embed.cta_clicked'
+    | 'event.video.updated'
+    | 'event.video.uploaded'
+    | 'event.playlist.created'
+    | 'event.playlist.asset'
+    | 'event.playlist.deleted'
+    | 'event.video.analytics'
+    | 'event.image.analytics'
+    | 'event.embed.form_submitted'
+    | 'event.comment.all'
+    | 'event.channel.member_joined'
+  >;
   /**
    * Creation timestamp in ISO 8601 format
    */
@@ -160,7 +220,7 @@ export interface WebhookListResponse {
    */
   sources: Array<string>;
   /**
-   * The token which you must validate when you receive the webhook. It's given by you when you create the webhook.
+   * Secret you supplied when creating the webhook. Gumlet sends this value in the `x-gumlet-token` header of each webhook POST.
    */
   secret_token?: string;
 }
@@ -171,13 +231,43 @@ export interface WebhookUpdateParams {
    */
   url?: string;
   /**
-   * Authentication token to ensure legitimacy of Gumlet Webhook request on your application.
+   * Secret sent back in the `x-gumlet-token` header of each webhook POST so you can confirm the request came from Gumlet.
    */
   secret_token?: string;
   /**
-   * Triggers for the invocation of webhookos, supported option is `status`.
+   * Events that invoke this webhook. `status` subscribes to every video asset status event. `live-video-status` subscribes to every live video status event. Any other value subscribes to that event only.
    */
-  triggers?: string;
+  triggers?: Array<
+    | 'status'
+    | 'live-video-status'
+    | 'video.status.created'
+    | 'video.status.downloaded'
+    | 'video.status.optimized'
+    | 'video.status.ready'
+    | 'video.status.errored'
+    | 'video.status.deleted'
+    | 'video.status.repackaged'
+    | 'video.status.stream_ready'
+    | 'live.video.status.created'
+    | 'live.video.status.ready'
+    | 'live.video.status.preparing'
+    | 'live.video.status.connected'
+    | 'live.video.status.active'
+    | 'live.video.status.complete'
+    | 'live.video.status.disconnected'
+    | 'event.embed.viewed'
+    | 'event.embed.cta_clicked'
+    | 'event.video.updated'
+    | 'event.video.uploaded'
+    | 'event.playlist.created'
+    | 'event.playlist.asset'
+    | 'event.playlist.deleted'
+    | 'event.video.analytics'
+    | 'event.image.analytics'
+    | 'event.embed.form_submitted'
+    | 'event.comment.all'
+    | 'event.channel.member_joined'
+  >;
   /**
    * List of video collection identifiers for which webhooks are needed to be invoked.
    */
@@ -211,7 +301,7 @@ export namespace WebhookHistoryResponse {
      */
     id: string;
     /**
-     * Status of webhook event
+     * Delivery status stored for the event: `success`, `retrying`, or `failed`. `success` means the endpoint returned a 2xx response. `retrying` means that attempt did not.
      */
     status: string;
     /**
@@ -219,9 +309,36 @@ export namespace WebhookHistoryResponse {
      */
     retry_count: number;
     /**
-     * Name of the webhook event
+     * Webhook event name. One of the video status, live video status, or product events.
      */
-    event: string;
+    event:
+      | 'video.status.created'
+      | 'video.status.downloaded'
+      | 'video.status.optimized'
+      | 'video.status.ready'
+      | 'video.status.errored'
+      | 'video.status.deleted'
+      | 'video.status.repackaged'
+      | 'video.status.stream_ready'
+      | 'live.video.status.created'
+      | 'live.video.status.ready'
+      | 'live.video.status.preparing'
+      | 'live.video.status.connected'
+      | 'live.video.status.active'
+      | 'live.video.status.complete'
+      | 'live.video.status.disconnected'
+      | 'event.embed.viewed'
+      | 'event.embed.cta_clicked'
+      | 'event.video.updated'
+      | 'event.video.uploaded'
+      | 'event.playlist.created'
+      | 'event.playlist.asset'
+      | 'event.playlist.deleted'
+      | 'event.video.analytics'
+      | 'event.image.analytics'
+      | 'event.embed.form_submitted'
+      | 'event.comment.all'
+      | 'event.channel.member_joined';
     /**
      * Asset ID for which the event was fired
      */

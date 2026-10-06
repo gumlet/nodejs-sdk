@@ -61,7 +61,7 @@ Pass credentials to the generated client constructor. Environment variables are 
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `apiKey` | `string \| provider` | - | Credential for the API_KEY scheme. Defaults to API_KEY. |
+| `apiKey` | `string \| AuthTokenProvider` | - | Credential for the API_KEY scheme. Defaults to API_KEY. |
 
 Declared schemes:
 
