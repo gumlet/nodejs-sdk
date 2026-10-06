@@ -1152,7 +1152,7 @@
     "multipartUpload",
     "videoProfiles",
     "videoPlaylists",
-    "webhooks",
+    "webhookEndpoints",
     "imageSources",
     "imageUsageAnalytics",
     "liveStreamAssets",
@@ -1177,7 +1177,7 @@
     "multipartUpload",
     "videoProfiles",
     "videoPlaylists",
-    "webhooks",
+    "webhookEndpoints",
     "imageSources",
     "imageUsageAnalytics",
     "liveStreamAssets",
@@ -6529,8 +6529,8 @@
       "transport": "http"
     },
     {
-      "resource": "webhooks",
-      "publicResource": "webhooks",
+      "resource": "webhookEndpoints",
+      "publicResource": "webhookEndpoints",
       "operation": "create",
       "publicOperation": "create",
       "deprecated": false,
@@ -6579,7 +6579,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "WebhookCreateParams"
+        "publicName": "WebhookEndpointCreateParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -6676,8 +6676,8 @@
       "transport": "http"
     },
     {
-      "resource": "webhooks",
-      "publicResource": "webhooks",
+      "resource": "webhookEndpoints",
+      "publicResource": "webhookEndpoints",
       "operation": "list",
       "publicOperation": "list",
       "deprecated": false,
@@ -6752,8 +6752,8 @@
       "transport": "http"
     },
     {
-      "resource": "webhooks",
-      "publicResource": "webhooks",
+      "resource": "webhookEndpoints",
+      "publicResource": "webhookEndpoints",
       "operation": "update",
       "publicOperation": "update",
       "deprecated": false,
@@ -6813,7 +6813,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "WebhookUpdateParams"
+        "publicName": "WebhookEndpointUpdateParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -6894,8 +6894,8 @@
       "transport": "http"
     },
     {
-      "resource": "webhooks",
-      "publicResource": "webhooks",
+      "resource": "webhookEndpoints",
+      "publicResource": "webhookEndpoints",
       "operation": "delete",
       "publicOperation": "delete",
       "deprecated": false,
@@ -6928,7 +6928,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "WebhookDeleteParams"
+        "publicName": "WebhookEndpointDeleteParams"
       },
       "response": {
         "status": "204",
@@ -7008,8 +7008,8 @@
       "transport": "http"
     },
     {
-      "resource": "webhooks",
-      "publicResource": "webhooks",
+      "resource": "webhookEndpoints",
+      "publicResource": "webhookEndpoints",
       "operation": "history",
       "publicOperation": "history",
       "deprecated": false,
@@ -7042,7 +7042,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "WebhookHistoryParams"
+        "publicName": "WebhookEndpointHistoryParams"
       },
       "response": {
         "status": "200",
