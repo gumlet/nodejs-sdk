@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.4.0](https://github.com/gumlet/nodejs-sdk/compare/v1.3.9...v1.4.0) (2026-10-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 5 breaking changes to the SDK surface.
+    - Removed operation `webhooks.create` (`POST /org/webhooks`).
+    - Removed operation `webhooks.list` (`GET /org/webhooks`).
+    - Removed operation `webhooks.update` (`POST /org/webhooks/{webhook_id}`).
+    - Removed operation `webhooks.delete` (`DELETE /org/webhooks/{webhook_id}`).
+    - Removed operation `webhooks.history` (`GET /org/webhook/{webhook_id}/history`).
+
+### Features
+
+* **api:** add schema webhook_error_detail (+10 more changes) ([96129d6](https://github.com/gumlet/nodejs-sdk/commit/96129d684f58b45e86f6cfcfc4cac65df81854fd))
+* **api:** remove operation webhooks.create (+9 more changes) ([0b9ffd8](https://github.com/gumlet/nodejs-sdk/commit/0b9ffd8abbb0a8141b76b2e1d612e27bce55a56b))
+
+
+### Chores
+
+* release 1.4.0 ([896b46f](https://github.com/gumlet/nodejs-sdk/commit/896b46fd7816075f0943fc9377421d3714290a97))
+* release 1.4.0 ([fb0a7de](https://github.com/gumlet/nodejs-sdk/commit/fb0a7de0fee0e552a3976bfe4d6eb5c98b8eed8f))
+
 ## [1.3.9](https://github.com/gumlet/nodejs-sdk/compare/v1.3.8...v1.3.9) (2026-10-06)
 
 
