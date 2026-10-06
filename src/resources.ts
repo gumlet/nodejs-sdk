@@ -24,7 +24,6 @@ export {
   LiveStreamWorkspaces,
   LiveStreamAnalytics,
   GlobalSearch,
-  Webhooks,
 } from './resources/index';
 export type {
   VideoAssetCreateParams,
@@ -180,8 +179,4 @@ export type {
   LiveStreamAnalyticUsageResponse,
   GlobalSearchSearchParams,
   GlobalSearchSearchResponse,
-  VideoAssetStatusWebhookEvent,
-  LiveVideoStatusWebhookEvent,
-  ProductEventWebhookEvent,
-  ParsedWebhookEvent,
 } from './resources/index';
