@@ -718,7 +718,7 @@ const videoPlaylist = await client.videoPlaylists.reorderAsset('playlistId', {
 
 ## `Webhooks`
 
-Configure webhooks for account and asset events.
+Create webhook listeners and receive video status, live video status, and product events. Gumlet POSTs JSON to your URL with the `x-gumlet-token` header.
 
 ### Create Webhook
 

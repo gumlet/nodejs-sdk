@@ -238,6 +238,13 @@ import {
   type GlobalSearchSearchResponse,
   type GlobalSearchSearchParams,
 } from './resources/global-search';
+import {
+  Webhooks,
+  type VideoAssetStatusWebhookEvent,
+  type LiveVideoStatusWebhookEvent,
+  type ProductEventWebhookEvent,
+  type ParsedWebhookEvent,
+} from './resources/webhooks';
 
 export type AuthTokenProvider = () => string | Promise<string>;
 
@@ -246,6 +253,11 @@ export interface ClientOptions {
    * The token used for authentication.
    */
   apiKey?: string | AuthTokenProvider | undefined;
+
+  /**
+   * Secret used to verify incoming webhook signatures.
+   */
+  webhookSecret?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -324,6 +336,7 @@ export type GumletOptions = ClientOptions;
  */
 export class Gumlet {
   apiKey: string | AuthTokenProvider;
+  webhookSecret: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -342,6 +355,7 @@ export class Gumlet {
    * API Client for interfacing with the Gumlet API.
    *
    * @param {string | AuthTokenProvider | undefined} [opts.apiKey=process.env["API_KEY"] ?? undefined]
+   * @param {string | null | undefined} [opts.webhookSecret=process.env["GUMLET_WEBHOOK_SECRET"] ?? null]
    * @param {string} [opts.baseURL=process.env["GUMLET_BASE_URL"] ?? https://api.gumlet.com/v1] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -353,6 +367,7 @@ export class Gumlet {
   constructor({
     baseURL = readEnv('GUMLET_BASE_URL'),
     apiKey = readEnv('API_KEY'),
+    webhookSecret = readEnv('GUMLET_WEBHOOK_SECRET') ?? null,
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
@@ -363,6 +378,7 @@ export class Gumlet {
 
     const options: ClientOptions = {
       apiKey,
+      webhookSecret,
       ...opts,
       baseURL: baseURL || 'https://api.gumlet.com/v1',
     };
@@ -400,6 +416,7 @@ export class Gumlet {
     this._defaultBaseURL = defaultBaseURL;
 
     this.apiKey = apiKey;
+    this.webhookSecret = webhookSecret;
   }
 
   withOptions(options: Partial<ClientOptions>): this {
@@ -413,6 +430,7 @@ export class Gumlet {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
+      webhookSecret: this.webhookSecret,
       ...options,
     });
     return client;
@@ -1052,6 +1070,7 @@ export class Gumlet {
   liveStreamWorkspaces: LiveStreamWorkspaces = new LiveStreamWorkspaces(this);
   liveStreamAnalytics: LiveStreamAnalytics = new LiveStreamAnalytics(this);
   globalSearch: GlobalSearch = new GlobalSearch(this);
+  webhooks: Webhooks = new Webhooks(this);
 }
 
 Gumlet.VideoAssets = VideoAssets;
@@ -1077,6 +1096,7 @@ Gumlet.Billing = Billing;
 Gumlet.LiveStreamWorkspaces = LiveStreamWorkspaces;
 Gumlet.LiveStreamAnalytics = LiveStreamAnalytics;
 Gumlet.GlobalSearch = GlobalSearch;
+Gumlet.Webhooks = Webhooks;
 
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
@@ -1320,6 +1340,14 @@ export declare namespace Gumlet {
     GlobalSearch as GlobalSearch,
     type GlobalSearchSearchResponse as GlobalSearchSearchResponse,
     type GlobalSearchSearchParams as GlobalSearchSearchParams,
+  };
+
+  export {
+    Webhooks as Webhooks,
+    type VideoAssetStatusWebhookEvent as VideoAssetStatusWebhookEvent,
+    type LiveVideoStatusWebhookEvent as LiveVideoStatusWebhookEvent,
+    type ProductEventWebhookEvent as ProductEventWebhookEvent,
+    type ParsedWebhookEvent as ParsedWebhookEvent,
   };
 }
 
