@@ -1,5 +1,35 @@
 # Changelog
 
+## [1.3.9](https://github.com/gumlet/nodejs-sdk/compare/v1.3.8...v1.3.9) (2026-10-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 11 breaking changes to the SDK surface.
+    - Removed schema `webhook_error_detail`.
+    - Removed schema `webhook_warning`.
+    - Removed schema `video_webhook_transformations`.
+    - Removed schema `video_webhook_input`.
+    - Removed schema `video_webhook_output`.
+    - Removed schema `video_webhook_payload`.
+    - Removed schema `live_video_webhook_input`.
+    - Removed schema `live_video_webhook_output`.
+    - Removed schema `live_video_webhook_payload`.
+    - Removed schema `event_webhook_payload`.
+    - Removed webhook `Unwrap` (`productEvent`).
+
+### Features
+
+* **api:** add schema webhook_error_detail (+10 more changes) ([80b5674](https://github.com/gumlet/nodejs-sdk/commit/80b56744c1d1f40a41a9aa87a511dd236d53e97e))
+* **api:** remove schema webhook_error_detail (+10 more changes) ([e1918eb](https://github.com/gumlet/nodejs-sdk/commit/e1918eb23166098d92d9e51ce66eddcf18eeb352))
+
+
+### Chores
+
+* **api:** regenerate SDK ([cf748d1](https://github.com/gumlet/nodejs-sdk/commit/cf748d1d0ac02f4b90c6dc606ca03b653a3a2f87))
+* release 1.3.9 ([348e787](https://github.com/gumlet/nodejs-sdk/commit/348e78754a8b4f3ce7fa1851e753c5615d780ae2))
+* release 1.3.9 ([a3c93aa](https://github.com/gumlet/nodejs-sdk/commit/a3c93aa30c5e1f242fa5929e5e187e38f5fc52fc))
+
 ## [1.3.8](https://github.com/gumlet/nodejs-sdk/compare/v1.3.7...v1.3.8) (2026-10-01)
 
 
