@@ -205,3 +205,10 @@ export { LiveStreamAnalytics } from './live-stream-analytics';
 export type { LiveStreamAnalyticUsageParams, LiveStreamAnalyticUsageResponse } from './live-stream-analytics';
 export { GlobalSearch } from './global-search';
 export type { GlobalSearchSearchParams, GlobalSearchSearchResponse } from './global-search';
+export { Webhooks } from './webhooks';
+export type {
+  VideoAssetStatusWebhookEvent,
+  LiveVideoStatusWebhookEvent,
+  ProductEventWebhookEvent,
+  ParsedWebhookEvent,
+} from './webhooks';

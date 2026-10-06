@@ -75,6 +75,1073 @@
         ],
         "additionalProperties": false
       }
+    },
+    {
+      "name": "webhook_error_detail",
+      "source": "webhook_error_detail",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "code",
+            "publicName": "code",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "message",
+            "publicName": "message",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "webhook_warning",
+      "source": "webhook_warning",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "code",
+            "publicName": "code",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "literal",
+              "value": "WRN_LOW_FRAME_SIZE"
+            }
+          },
+          {
+            "name": "message",
+            "publicName": "message",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "literal",
+              "value": "Video Asset dimensions are lower than minimum supported frame size (240 pixels for HLS/DASH and 145 pixels for mp4). Any types transformation (resize, crop, pad, overlay etc.) specified would not be applied."
+            }
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "video_webhook_transformations",
+      "source": "video_webhook_transformations",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "format",
+            "publicName": "format",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "publicName": "width",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "height",
+            "publicName": "height",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "resolution",
+            "publicName": "resolution",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "primitive",
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "audio_codec",
+            "publicName": "audio_codec",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "primitive",
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "video_codec",
+            "publicName": "video_codec",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "primitive",
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "secondary_video_codec",
+            "publicName": "secondary_video_codec",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "thumbnail",
+            "publicName": "thumbnail",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "unknown"
+              }
+            }
+          },
+          {
+            "name": "thumbnail_format",
+            "publicName": "thumbnail_format",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "audio_only",
+            "publicName": "audio_only",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "mp4_access",
+            "publicName": "mp4_access",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "keep_original",
+            "publicName": "keep_original",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "per_title_encoding",
+            "publicName": "per_title_encoding",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "process_low_resolution_input",
+            "publicName": "process_low_resolution_input",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pad",
+            "publicName": "pad",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "object",
+              "properties": [],
+              "additionalProperties": {
+                "kind": "unknown"
+              }
+            }
+          },
+          {
+            "name": "crop",
+            "publicName": "crop",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "object",
+              "properties": [],
+              "additionalProperties": {
+                "kind": "unknown"
+              }
+            }
+          },
+          {
+            "name": "trim",
+            "publicName": "trim",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "object",
+              "properties": [],
+              "additionalProperties": {
+                "kind": "unknown"
+              }
+            }
+          },
+          {
+            "name": "text_overlay",
+            "publicName": "text_overlay",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "object",
+              "properties": [],
+              "additionalProperties": {
+                "kind": "unknown"
+              }
+            }
+          },
+          {
+            "name": "image_overlay",
+            "publicName": "image_overlay",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "object",
+              "properties": [],
+              "additionalProperties": {
+                "kind": "unknown"
+              }
+            }
+          },
+          {
+            "name": "animated_gif",
+            "publicName": "animated_gif",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "unknown"
+            }
+          },
+          {
+            "name": "generate_subtitles",
+            "publicName": "generate_subtitles",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "unknown"
+            }
+          },
+          {
+            "name": "preview_thumbnails",
+            "publicName": "preview_thumbnails",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "unknown"
+            }
+          }
+        ],
+        "additionalProperties": {
+          "kind": "unknown"
+        }
+      }
+    },
+    {
+      "name": "video_webhook_input",
+      "source": "video_webhook_input",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "source_url",
+            "publicName": "source_url",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "transformations",
+            "publicName": "transformations",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "ref",
+              "name": "video_webhook_transformations"
+            }
+          },
+          {
+            "name": "fps",
+            "publicName": "fps",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "publicName": "size",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "number"
+            }
+          },
+          {
+            "name": "width",
+            "publicName": "width",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "height",
+            "publicName": "height",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "duration",
+            "publicName": "duration",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "number"
+            }
+          },
+          {
+            "name": "aspect_ratio",
+            "publicName": "aspect_ratio",
+            "required": false,
+            "deprecated": false,
+            "extensions": {
+              "source": [
+                "examples"
+              ],
+              "examples": "16:9"
+            },
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "metadata",
+            "publicName": "metadata",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "unknown"
+            }
+          },
+          {
+            "name": "profile_id",
+            "publicName": "profile_id",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "vimeo_id",
+            "publicName": "vimeo_id",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "video_webhook_output",
+      "source": "video_webhook_output",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "format",
+            "publicName": "format",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "status_url",
+            "publicName": "status_url",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          {
+            "name": "playback_url",
+            "publicName": "playback_url",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          {
+            "name": "dash_playback_url",
+            "publicName": "dash_playback_url",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          {
+            "name": "thumbnail_url",
+            "publicName": "thumbnail_url",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "primitive",
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          {
+            "name": "storage_bytes",
+            "publicName": "storage_bytes",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "number"
+            }
+          },
+          {
+            "name": "download_url",
+            "publicName": "download_url",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          {
+            "name": "animated_gif_url",
+            "publicName": "animated_gif_url",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          {
+            "name": "preview_thumbnails_url",
+            "publicName": "preview_thumbnails_url",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "video_webhook_payload",
+      "source": "video_webhook_payload",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "type",
+            "publicName": "type",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "enum",
+              "values": [
+                "video.status.created",
+                "video.status.downloaded",
+                "video.status.optimized",
+                "video.status.ready",
+                "video.status.errored",
+                "video.status.deleted",
+                "video.status.repackaged",
+                "video.status.stream_ready"
+              ],
+              "names": [
+                "VideoStatusCreated",
+                "VideoStatusDownloaded",
+                "VideoStatusOptimized",
+                "VideoStatusReady",
+                "VideoStatusErrored",
+                "VideoStatusDeleted",
+                "VideoStatusRepackaged",
+                "VideoStatusStreamReady"
+              ],
+              "deprecations": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "publicName": "status",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "asset_id",
+            "publicName": "asset_id",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "created_at",
+            "publicName": "created_at",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tag",
+            "publicName": "tag",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "primitive",
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "title",
+            "publicName": "title",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "publicName": "description",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "input",
+            "publicName": "input",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "ref",
+              "name": "video_webhook_input"
+            }
+          },
+          {
+            "name": "output",
+            "publicName": "output",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "ref",
+              "name": "video_webhook_output"
+            }
+          },
+          {
+            "name": "error",
+            "publicName": "error",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "ref",
+              "name": "webhook_error_detail"
+            }
+          },
+          {
+            "name": "warning",
+            "publicName": "warning",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "ref",
+              "name": "webhook_warning"
+            }
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "live_video_webhook_input",
+      "source": "live_video_webhook_input",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "live_video_source_id",
+            "publicName": "live_video_source_id",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "resolution",
+            "publicName": "resolution",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "array",
+              "items": {
+                "kind": "primitive",
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "title",
+            "publicName": "title",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "publicName": "width",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "height",
+            "publicName": "height",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "aspect_ratio",
+            "publicName": "aspect_ratio",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "live_video_webhook_output",
+      "source": "live_video_webhook_output",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "playback_url",
+            "publicName": "playback_url",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          {
+            "name": "embed_url",
+            "publicName": "embed_url",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          {
+            "name": "storage_size",
+            "publicName": "storage_size",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "number"
+            }
+          },
+          {
+            "name": "duration",
+            "publicName": "duration",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "number"
+            }
+          },
+          {
+            "name": "recording_playback_url",
+            "publicName": "recording_playback_url",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "live_video_webhook_payload",
+      "source": "live_video_webhook_payload",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "type",
+            "publicName": "type",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "enum",
+              "values": [
+                "live.video.status.created",
+                "live.video.status.ready",
+                "live.video.status.preparing",
+                "live.video.status.connected",
+                "live.video.status.active",
+                "live.video.status.complete",
+                "live.video.status.disconnected"
+              ],
+              "names": [
+                "LiveVideoStatusCreated",
+                "LiveVideoStatusReady",
+                "LiveVideoStatusPreparing",
+                "LiveVideoStatusConnected",
+                "LiveVideoStatusActive",
+                "LiveVideoStatusComplete",
+                "LiveVideoStatusDisconnected"
+              ],
+              "deprecations": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "publicName": "status",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "live_asset_id",
+            "publicName": "live_asset_id",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "created_at",
+            "publicName": "created_at",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updated_at",
+            "publicName": "updated_at",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "recording_asset_id",
+            "publicName": "recording_asset_id",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "vod_collection_id",
+            "publicName": "vod_collection_id",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "string"
+            }
+          },
+          {
+            "name": "deleted_at",
+            "publicName": "deleted_at",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "primitive",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "input",
+            "publicName": "input",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "ref",
+              "name": "live_video_webhook_input"
+            }
+          },
+          {
+            "name": "output",
+            "publicName": "output",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "ref",
+              "name": "live_video_webhook_output"
+            }
+          },
+          {
+            "name": "error",
+            "publicName": "error",
+            "required": false,
+            "deprecated": false,
+            "type": {
+              "kind": "ref",
+              "name": "webhook_error_detail"
+            }
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "event_webhook_payload",
+      "source": "event_webhook_payload",
+      "publicAliases": [],
+      "deprecated": false,
+      "type": {
+        "kind": "object",
+        "properties": [
+          {
+            "name": "type",
+            "publicName": "type",
+            "required": true,
+            "deprecated": false,
+            "type": {
+              "kind": "enum",
+              "values": [
+                "event.embed.viewed",
+                "event.embed.cta_clicked",
+                "event.video.updated",
+                "event.video.uploaded",
+                "event.playlist.created",
+                "event.playlist.asset",
+                "event.playlist.deleted",
+                "event.video.analytics",
+                "event.image.analytics",
+                "event.embed.form_submitted",
+                "event.comment.all",
+                "event.channel.member_joined"
+              ],
+              "names": [
+                "EventEmbedViewed",
+                "EventEmbedCtaClicked",
+                "EventVideoUpdated",
+                "EventVideoUploaded",
+                "EventPlaylistCreated",
+                "EventPlaylistAsset",
+                "EventPlaylistDeleted",
+                "EventVideoAnalytics",
+                "EventImageAnalytics",
+                "EventEmbedFormSubmitted",
+                "EventCommentAll",
+                "EventChannelMemberJoined"
+              ],
+              "deprecations": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            }
+          }
+        ],
+        "additionalProperties": {
+          "kind": "unknown"
+        }
+      }
     }
   ],
   "resources": [
@@ -12498,5 +13565,39 @@
       "transport": "http"
     }
   ],
-  "webhooks": []
+  "webhooks": [
+    {
+      "event": "videoAssetStatus",
+      "name": "Unwrap",
+      "source": "webhook",
+      "method": "POST",
+      "path": "videoAssetStatus",
+      "payloadModel": {
+        "name": "video_webhook_payload",
+        "publicAliases": []
+      }
+    },
+    {
+      "event": "liveVideoStatus",
+      "name": "Unwrap",
+      "source": "webhook",
+      "method": "POST",
+      "path": "liveVideoStatus",
+      "payloadModel": {
+        "name": "live_video_webhook_payload",
+        "publicAliases": []
+      }
+    },
+    {
+      "event": "productEvent",
+      "name": "Unwrap",
+      "source": "webhook",
+      "method": "POST",
+      "path": "productEvent",
+      "payloadModel": {
+        "name": "event_webhook_payload",
+        "publicAliases": []
+      }
+    }
+  ]
 }
