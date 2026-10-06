@@ -85,16 +85,16 @@ export type {
   VideoPlaylistReorderAssetParams,
   VideoPlaylistReorderAssetResponse,
 } from './video-playlists';
-export { Webhooks } from './webhooks';
+export { WebhookEndpoints } from './webhook-endpoints';
 export type {
-  WebhookCreateParams,
-  WebhookCreateResponse,
-  WebhookListResponse,
-  WebhookUpdateParams,
-  WebhookUpdateResponse,
-  WebhookDeleteResponse,
-  WebhookHistoryResponse,
-} from './webhooks';
+  WebhookEndpointCreateParams,
+  WebhookEndpointCreateResponse,
+  WebhookEndpointListResponse,
+  WebhookEndpointUpdateParams,
+  WebhookEndpointUpdateResponse,
+  WebhookEndpointDeleteResponse,
+  WebhookEndpointHistoryResponse,
+} from './webhook-endpoints';
 export { ImageSources } from './image-sources';
 export type {
   ImageSourceCreateParams,

@@ -112,15 +112,15 @@ import {
   type VideoPlaylistReorderAssetParams,
 } from './resources/video-playlists';
 import {
-  Webhooks,
-  type WebhookCreateResponse,
-  type WebhookListResponse,
-  type WebhookUpdateResponse,
-  type WebhookDeleteResponse,
-  type WebhookHistoryResponse,
-  type WebhookCreateParams,
-  type WebhookUpdateParams,
-} from './resources/webhooks';
+  WebhookEndpoints,
+  type WebhookEndpointCreateResponse,
+  type WebhookEndpointListResponse,
+  type WebhookEndpointUpdateResponse,
+  type WebhookEndpointDeleteResponse,
+  type WebhookEndpointHistoryResponse,
+  type WebhookEndpointCreateParams,
+  type WebhookEndpointUpdateParams,
+} from './resources/webhook-endpoints';
 import {
   ImageSources,
   type ImageSourceCreateResponse,
@@ -1054,7 +1054,7 @@ export class Gumlet {
   multipartUpload: MultipartUpload = new MultipartUpload(this);
   videoProfiles: VideoProfiles = new VideoProfiles(this);
   videoPlaylists: VideoPlaylists = new VideoPlaylists(this);
-  webhooksResource: Webhooks = new Webhooks(this);
+  webhookEndpoints: WebhookEndpoints = new WebhookEndpoints(this);
   imageSources: ImageSources = new ImageSources(this);
   imageUsageAnalytics: ImageUsageAnalytics = new ImageUsageAnalytics(this);
   liveStreamAssets: LiveStreamAssets = new LiveStreamAssets(this);
@@ -1080,7 +1080,7 @@ Gumlet.VideoUsageAnalytics = VideoUsageAnalytics;
 Gumlet.MultipartUpload = MultipartUpload;
 Gumlet.VideoProfiles = VideoProfiles;
 Gumlet.VideoPlaylists = VideoPlaylists;
-Gumlet.Webhooks = Webhooks;
+Gumlet.WebhookEndpoints = WebhookEndpoints;
 Gumlet.ImageSources = ImageSources;
 Gumlet.ImageUsageAnalytics = ImageUsageAnalytics;
 Gumlet.LiveStreamAssets = LiveStreamAssets;
@@ -1193,14 +1193,14 @@ export declare namespace Gumlet {
   };
 
   export {
-    Webhooks as Webhooks,
-    type WebhookCreateResponse as WebhookCreateResponse,
-    type WebhookListResponse as WebhookListResponse,
-    type WebhookUpdateResponse as WebhookUpdateResponse,
-    type WebhookDeleteResponse as WebhookDeleteResponse,
-    type WebhookHistoryResponse as WebhookHistoryResponse,
-    type WebhookCreateParams as WebhookCreateParams,
-    type WebhookUpdateParams as WebhookUpdateParams,
+    WebhookEndpoints as WebhookEndpoints,
+    type WebhookEndpointCreateResponse as WebhookEndpointCreateResponse,
+    type WebhookEndpointListResponse as WebhookEndpointListResponse,
+    type WebhookEndpointUpdateResponse as WebhookEndpointUpdateResponse,
+    type WebhookEndpointDeleteResponse as WebhookEndpointDeleteResponse,
+    type WebhookEndpointHistoryResponse as WebhookEndpointHistoryResponse,
+    type WebhookEndpointCreateParams as WebhookEndpointCreateParams,
+    type WebhookEndpointUpdateParams as WebhookEndpointUpdateParams,
   };
 
   export {

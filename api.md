@@ -47,7 +47,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Delete Playlist](#delete-playlist)
   - [Get playlist assets](#get-playlist-assets)
   - [Arrange Videos In Playlist](#arrange-videos-in-playlist)
-- [`Webhooks`](#webhooks)
+- [`WebhookEndpoints`](#webhookendpoints)
   - [Create Webhook](#create-webhook)
   - [List Webhooks](#list-webhooks)
   - [Update Webhook](#update-webhook)
@@ -716,7 +716,7 @@ const videoPlaylist = await client.videoPlaylists.reorderAsset('playlistId', {
 });
 ```
 
-## `Webhooks`
+## `WebhookEndpoints`
 
 Create webhook listeners and receive video status, live video status, and product events. Gumlet POSTs JSON to your URL with the `x-gumlet-token` header.
 
@@ -726,11 +726,11 @@ Creates a new webhook listener. Gumlet POSTs JSON to `url` for each matching eve
 
 | Direction | Type |
 | --- | --- |
-| Request | [`WebhookCreateParams`](./src/resources/webhooks.ts) |
-| Response | [`WebhookCreateResponse`](./src/resources/webhooks.ts) |
+| Request | [`WebhookEndpointCreateParams`](./src/resources/webhook-endpoints.ts) |
+| Response | [`WebhookEndpointCreateResponse`](./src/resources/webhook-endpoints.ts) |
 
 ```ts
-const webhook = await client.webhooksResource.create({
+const webhookEndpoint = await client.webhookEndpoints.create({
   url: '',
   secret_token: '',
   triggers: ['status'],
@@ -744,10 +744,10 @@ List all webhooks.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`WebhookListResponse`](./src/resources/webhooks.ts) |
+| Response | [`WebhookEndpointListResponse`](./src/resources/webhook-endpoints.ts) |
 
 ```ts
-const webhook = await client.webhooksResource.list();
+const webhookEndpoint = await client.webhookEndpoints.list();
 ```
 
 ### Update Webhook
@@ -756,11 +756,11 @@ Update a webhook listener.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`WebhookUpdateParams`](./src/resources/webhooks.ts) |
-| Response | [`WebhookUpdateResponse`](./src/resources/webhooks.ts) |
+| Request | [`WebhookEndpointUpdateParams`](./src/resources/webhook-endpoints.ts) |
+| Response | [`WebhookEndpointUpdateResponse`](./src/resources/webhook-endpoints.ts) |
 
 ```ts
-const webhook = await client.webhooksResource.update('webhookId');
+const webhookEndpoint = await client.webhookEndpoints.update('webhookId');
 ```
 
 ### Delete Webhook
@@ -769,10 +769,10 @@ Delete webhook listener endpoint.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`WebhookDeleteResponse`](./src/resources/webhooks.ts) |
+| Response | [`WebhookEndpointDeleteResponse`](./src/resources/webhook-endpoints.ts) |
 
 ```ts
-const webhook = await client.webhooksResource.delete('webhookId');
+const webhookEndpoint = await client.webhookEndpoints.delete('webhookId');
 ```
 
 ### Get History
@@ -781,10 +781,10 @@ Get logs history for a given webhook.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`WebhookHistoryResponse`](./src/resources/webhooks.ts) |
+| Response | [`WebhookEndpointHistoryResponse`](./src/resources/webhook-endpoints.ts) |
 
 ```ts
-const webhook = await client.webhooksResource.history('webhookId');
+const webhookEndpoint = await client.webhookEndpoints.history('webhookId');
 ```
 
 ## `ImageSources`
