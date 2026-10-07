@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/gumlet/nodejs-sdk/compare/v1.4.0...v1.4.1) (2026-10-07)
+
+
+### Chores
+
+* **api:** update generated SDK content ([d2da850](https://github.com/gumlet/nodejs-sdk/commit/d2da850d372bda841af35debbf6bfc92dc790cea))
+
 ## [1.4.0](https://github.com/gumlet/nodejs-sdk/compare/v1.3.9...v1.4.0) (2026-10-06)
 
 
