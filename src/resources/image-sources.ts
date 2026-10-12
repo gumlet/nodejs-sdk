@@ -564,6 +564,7 @@ export interface ImageSourceRetrieveResponse {
   fallback_origins?: Array<ImageSourceRetrieveResponse.FallbackOrigin>;
   wordpress?: ImageSourceRetrieveResponse.Wordpress;
   response_headers?: Array<Record<string, unknown>>;
+  temp_cname?: Array<string>;
 }
 
 export namespace ImageSourceRetrieveResponse {
@@ -664,7 +665,7 @@ export namespace ImageSourceRetrieveResponse {
       | 'proxy'
       | 'wordpress'
       | 'linode';
-    conditions?: Array<string>;
+    conditions?: Array<FallbackOrigin.Condition>;
     replace_operation?: FallbackOrigin.ReplaceOperation;
     /**
      * This is a required field if source type is webfolder.
@@ -716,6 +717,11 @@ export namespace ImageSourceRetrieveResponse {
   }
 
   export namespace FallbackOrigin {
+    export interface Condition {
+      function: string;
+      value: string;
+    }
+
     export interface ReplaceOperation {
       from?: string;
       to?: string;
@@ -822,7 +828,8 @@ export interface ImageSourceUpdateParams {
     | 'backblaze'
     | 'cloudflare'
     | 'imgix'
-    | 'wordpress';
+    | 'wordpress'
+    | 'hetzner';
   /**
    * This is a required field if source type is webfolder.
    */
@@ -1243,6 +1250,7 @@ export interface ImageSourceUpdateResponse {
   secure_token?: string;
   response_headers?: Array<Record<string, unknown>>;
   imgix?: Record<string, unknown>;
+  temp_cname?: Array<string>;
 }
 
 export namespace ImageSourceUpdateResponse {
