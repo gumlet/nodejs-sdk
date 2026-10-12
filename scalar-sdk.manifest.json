@@ -1278,7 +1278,7 @@
         },
         {
           "name": "format",
-          "required": true
+          "required": false
         },
         {
           "name": "tag",
@@ -7560,7 +7560,8 @@
         "cdn_cache_time",
         "is_active",
         "cname",
-        "fallback_origins"
+        "fallback_origins",
+        "secure_urls"
       ],
       "publicBodyParams": [
         "type",
@@ -7584,7 +7585,8 @@
         "cdn_cache_time",
         "is_active",
         "cname",
-        "fallback_origins"
+        "fallback_origins",
+        "secure_urls"
       ],
       "bodyParamDetails": [
         {
@@ -7673,6 +7675,10 @@
         },
         {
           "name": "fallback_origins",
+          "required": false
+        },
+        {
+          "name": "secure_urls",
           "required": false
         }
       ],
@@ -11644,7 +11650,8 @@
         "date_range",
         "filters",
         "group_by",
-        "chart_dimension"
+        "chart_dimension",
+        "download"
       ],
       "publicBodyParams": [
         "metrics",
@@ -11652,7 +11659,8 @@
         "date_range",
         "filters",
         "group_by",
-        "chart_dimension"
+        "chart_dimension",
+        "download"
       ],
       "bodyParamDetails": [
         {
@@ -11661,7 +11669,7 @@
         },
         {
           "name": "workspace_id",
-          "required": true
+          "required": false
         },
         {
           "name": "date_range",
@@ -11677,6 +11685,10 @@
         },
         {
           "name": "chart_dimension",
+          "required": false
+        },
+        {
+          "name": "download",
           "required": false
         }
       ],

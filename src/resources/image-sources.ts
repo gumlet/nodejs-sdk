@@ -820,7 +820,8 @@ export interface ImageSourceUpdateParams {
     | 'azure'
     | 'linode'
     | 'backblaze'
-    | 'cloudflare';
+    | 'cloudflare'
+    | 'imgix';
   /**
    * This is a required field if source type is webfolder.
    */
@@ -895,6 +896,10 @@ export interface ImageSourceUpdateParams {
    * List of fallback origins
    */
   fallback_origins?: Array<ImageSourceUpdateParams.FallbackOrigin>;
+  /**
+   * Whether the URL signing is enabled
+   */
+  secure_urls?: boolean;
 }
 
 export namespace ImageSourceUpdateParams {

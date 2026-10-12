@@ -1314,7 +1314,6 @@ This endpoint retrieves viewer analytics data. This endpoint is use for deep ins
 ```ts
 const videoAnalytic = await client.videoAnalytics.chartData({
   metrics: [''],
-  workspace_id: '',
   date_range: {
     start_at: '2024-01-01',
     end_at: '2024-01-01',

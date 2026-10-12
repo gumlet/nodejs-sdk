@@ -168,64 +168,70 @@ export interface WebhookEndpointCreateResponse {
 }
 
 export interface WebhookEndpointListResponse {
-  /**
-   * Webhook ID
-   */
-  id: string;
-  /**
-   * Webhook URL
-   */
-  url: string;
-  /**
-   * Events that invoke this webhook. `status` subscribes to every video asset status event. `live-video-status` subscribes to every live video status event. Any other value subscribes to that event only.
-   */
-  triggers: Array<
-    | 'status'
-    | 'live-video-status'
-    | 'video.status.created'
-    | 'video.status.downloaded'
-    | 'video.status.optimized'
-    | 'video.status.ready'
-    | 'video.status.errored'
-    | 'video.status.deleted'
-    | 'video.status.repackaged'
-    | 'video.status.stream_ready'
-    | 'live.video.status.created'
-    | 'live.video.status.ready'
-    | 'live.video.status.preparing'
-    | 'live.video.status.connected'
-    | 'live.video.status.active'
-    | 'live.video.status.complete'
-    | 'live.video.status.disconnected'
-    | 'event.embed.viewed'
-    | 'event.embed.cta_clicked'
-    | 'event.video.updated'
-    | 'event.video.uploaded'
-    | 'event.playlist.created'
-    | 'event.playlist.asset'
-    | 'event.playlist.deleted'
-    | 'event.video.analytics'
-    | 'event.image.analytics'
-    | 'event.embed.form_submitted'
-    | 'event.comment.all'
-    | 'event.channel.member_joined'
-  >;
-  /**
-   * Creation timestamp in ISO 8601 format
-   */
-  created_at: string;
-  /**
-   * Update timestamp in ISO 8601 format
-   */
-  updated_at: string;
-  /**
-   * List of workspace IDs for which the webhook is enabled.
-   */
-  sources: Array<string>;
-  /**
-   * Secret you supplied when creating the webhook. Gumlet sends this value in the `x-gumlet-token` header of each webhook POST.
-   */
-  secret_token?: string;
+  all_webhooks: Array<WebhookEndpointListResponse.AllWebhook>;
+}
+
+export namespace WebhookEndpointListResponse {
+  export interface AllWebhook {
+    /**
+     * Webhook ID
+     */
+    id?: string;
+    /**
+     * Webhook URL
+     */
+    url?: string | null;
+    /**
+     * Events that invoke this webhook. `status` subscribes to every video asset status event. `live-video-status` subscribes to every live video status event. Any other value subscribes to that event only.
+     */
+    triggers?: Array<
+      | 'status'
+      | 'live-video-status'
+      | 'video.status.created'
+      | 'video.status.downloaded'
+      | 'video.status.optimized'
+      | 'video.status.ready'
+      | 'video.status.errored'
+      | 'video.status.deleted'
+      | 'video.status.repackaged'
+      | 'video.status.stream_ready'
+      | 'live.video.status.created'
+      | 'live.video.status.ready'
+      | 'live.video.status.preparing'
+      | 'live.video.status.connected'
+      | 'live.video.status.active'
+      | 'live.video.status.complete'
+      | 'live.video.status.disconnected'
+      | 'event.embed.viewed'
+      | 'event.embed.cta_clicked'
+      | 'event.video.updated'
+      | 'event.video.uploaded'
+      | 'event.playlist.created'
+      | 'event.playlist.asset'
+      | 'event.playlist.deleted'
+      | 'event.video.analytics'
+      | 'event.image.analytics'
+      | 'event.embed.form_submitted'
+      | 'event.comment.all'
+      | 'event.channel.member_joined'
+    >;
+    /**
+     * Creation timestamp in ISO 8601 format
+     */
+    created_at?: string;
+    /**
+     * Update timestamp in ISO 8601 format
+     */
+    updated_at?: string;
+    /**
+     * List of workspace IDs for which the webhook is enabled.
+     */
+    sources?: Array<string>;
+    /**
+     * Secret you supplied when creating the webhook. Gumlet sends this value in the `x-gumlet-token` header of each webhook POST.
+     */
+    secret_token?: string;
+  }
 }
 
 export interface WebhookEndpointUpdateParams {

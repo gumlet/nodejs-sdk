@@ -320,10 +320,6 @@ export interface VideoAssetCreateParams {
    */
   input: string;
   /**
-   * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and `MP4`.
-   */
-  format: 'ABR' | 'MP4';
-  /**
    * Gumlet video workspace id.
    */
   workspace_id: string;
@@ -331,6 +327,10 @@ export interface VideoAssetCreateParams {
    * Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `collection_id`) from the video profile.
    */
   profile_id?: string;
+  /**
+   * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and `MP4`.
+   */
+  format?: 'ABR' | 'MP4';
   /**
    * Specify a text string or identifier which can identify an asset or bunch of assets later.
    */
