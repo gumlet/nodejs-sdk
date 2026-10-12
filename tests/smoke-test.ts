@@ -840,7 +840,7 @@ const cases: {
         url: '',
         secret_token: '',
         triggers: ['status'],
-        sources: '',
+        sources: [''],
       });
     },
   },
