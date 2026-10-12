@@ -992,7 +992,6 @@ export namespace ImageSourceUpdateParams {
   }
 
   export interface FallbackOrigin {
-    conditions: Array<FallbackOrigin.Condition>;
     /**
      * Name of fallback
      */
@@ -1016,6 +1015,7 @@ export namespace ImageSourceUpdateParams {
       | 'wordpress'
       | 'linode';
     replace_operation: FallbackOrigin.ReplaceOperation;
+    conditions?: Array<FallbackOrigin.Condition>;
     /**
      * This is a required field if source type is webfolder.
      */
@@ -1063,14 +1063,14 @@ export namespace ImageSourceUpdateParams {
   }
 
   export namespace FallbackOrigin {
-    export interface Condition {
-      function: string;
-      value: string;
-    }
-
     export interface ReplaceOperation {
       from?: string;
       to?: string;
+    }
+
+    export interface Condition {
+      function: string;
+      value: string;
     }
 
     export interface Webfolder {
