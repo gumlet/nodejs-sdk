@@ -176,7 +176,7 @@ export namespace WebhookEndpointListResponse {
     /**
      * Webhook ID
      */
-    id?: string;
+    id: string;
     /**
      * Webhook URL
      */
