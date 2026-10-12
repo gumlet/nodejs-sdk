@@ -16,7 +16,6 @@ export class VideoAnalytics extends APIResource {
    * ```ts
    * const videoAnalytic = await client.videoAnalytics.chartData({
    *   metrics: [''],
-   *   workspace_id: '',
    *   date_range: {
    *     start_at: '2024-01-01',
    *     end_at: '2024-01-01',
@@ -94,14 +93,14 @@ export interface VideoAnalyticChartDataParams {
    */
   metrics: Array<string>;
   /**
-   * The five to ten character unique identifier of the Gumlet workspace ID available on the Video Workspaces.
-   */
-  workspace_id: string;
-  /**
    * The timeframe to get the data for.
    * Currently, we only support a maximum of *60 days* between `start_at` and `end_at`.
    */
   date_range: VideoAnalyticChartDataParams.DateRange;
+  /**
+   * Gumlet workspace ID
+   */
+  workspace_id?: string;
   /**
    * Build *segments* of users using multiple filters on the data, `value` should be an *exact match*
    */
@@ -115,6 +114,10 @@ export interface VideoAnalyticChartDataParams {
    * Group metrics by the selected dimension. You can select up to 3 dimensions for nested category results; results follow the selection order.
    */
   chart_dimension?: VideoAnalyticChartDataParams.ChartDimension;
+  /**
+   * Whether the request is to download the chart data
+   */
+  download?: boolean;
 }
 
 export namespace VideoAnalyticChartDataParams {

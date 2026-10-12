@@ -1400,7 +1400,6 @@ const cases: {
     run: async () => {
       const videoAnalytic = await client.videoAnalytics.chartData({
         metrics: [''],
-        workspace_id: '',
         date_range: {
           start_at: '2024-01-01',
           end_at: '2024-01-01',
@@ -1432,6 +1431,7 @@ const cases: {
         ],
         group_by: 'daily',
         chart_dimension: {},
+        download: false,
       });
     },
   },
