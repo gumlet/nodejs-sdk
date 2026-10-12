@@ -231,6 +231,7 @@ export namespace WebhookEndpointListResponse {
      * Secret you supplied when creating the webhook. Gumlet sends this value in the `x-gumlet-token` header of each webhook POST.
      */
     secret_token?: string;
+    live_sources?: Array<string>;
   }
 }
 
@@ -280,7 +281,7 @@ export interface WebhookEndpointUpdateParams {
   /**
    * List of video collection identifiers for which webhooks are needed to be invoked.
    */
-  sources?: string;
+  sources?: Array<string>;
 }
 
 export interface WebhookEndpointUpdateResponse {

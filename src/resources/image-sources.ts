@@ -821,7 +821,8 @@ export interface ImageSourceUpdateParams {
     | 'linode'
     | 'backblaze'
     | 'cloudflare'
-    | 'imgix';
+    | 'imgix'
+    | 'wordpress';
   /**
    * This is a required field if source type is webfolder.
    */
@@ -984,7 +985,7 @@ export namespace ImageSourceUpdateParams {
   }
 
   export interface FallbackOrigin {
-    conditions: Array<string>;
+    conditions: Array<FallbackOrigin.Condition>;
     /**
      * Name of fallback
      */
@@ -1055,6 +1056,11 @@ export namespace ImageSourceUpdateParams {
   }
 
   export namespace FallbackOrigin {
+    export interface Condition {
+      function: string;
+      value: string;
+    }
+
     export interface ReplaceOperation {
       from?: string;
       to?: string;

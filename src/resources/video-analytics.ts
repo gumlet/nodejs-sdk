@@ -218,6 +218,7 @@ export interface VideoAnalyticChartDataResponse {
   views?: Array<VideoAnalyticChartDataResponse.View>;
   unique_views?: Array<VideoAnalyticChartDataResponse.UniqueView>;
   analytics_data?: VideoAnalyticChartDataResponse.AnalyticsData;
+  breakdowns?: Record<string, unknown>;
 }
 
 export namespace VideoAnalyticChartDataResponse {
