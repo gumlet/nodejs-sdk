@@ -34,7 +34,7 @@ export class ImageUsageAnalytics extends APIResource {
 
 export interface ImageUsageAnalyticRetrieveParams {
   /**
-   * Define the metric you need the data for. Currently we support `bandwidth_consumption`, `requests_count`, `status_4xx`, `status_5xx`, and `avg_response_time`.
+   * Define the metric you need the data for. Supported values: `bandwidth_consumption`, `requests_count`, `transformations_count`, `bandwidth_savings`, `origin_hit_rate`, `avg_transformation_response_time`, `status_4xx`, `status_5xx`, `cdn_hit_rate`, `content_type`, `status_2xx`, `avg_response_time`, `top_assets`, `bandwidth_consumption_by_source`, and `ai_credit_usage`.
    */
   metrics: Array<
     | 'bandwidth_consumption'

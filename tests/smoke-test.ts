@@ -1399,7 +1399,7 @@ const cases: {
     label: 'required params',
     run: async () => {
       const videoAnalytic = await client.videoAnalytics.chartData({
-        metrics: [''],
+        metrics: ['views'],
         date_range: {
           start_at: '2024-01-01',
           end_at: '2024-01-01',
@@ -1416,7 +1416,7 @@ const cases: {
     label: 'all params',
     run: async () => {
       const videoAnalytic = await client.videoAnalytics.chartData({
-        metrics: [''],
+        metrics: ['views'],
         workspace_id: '',
         date_range: {
           start_at: '2024-01-01',
@@ -1467,7 +1467,10 @@ const cases: {
           },
         ],
         workspace_id: '',
-        timeframe: {},
+        timeframe: {
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
+        },
       });
     },
   },
@@ -1486,7 +1489,10 @@ const cases: {
           },
         ],
         workspace_id: '',
-        timeframe: {},
+        timeframe: {
+          start_at: '2024-01-01',
+          end_at: '2024-01-01',
+        },
         filters: [
           {
             name: 'meta_browser',

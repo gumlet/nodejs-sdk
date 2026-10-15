@@ -2075,12 +2075,12 @@ export interface VideoAssetAnalyticsParams {
 export namespace VideoAssetAnalyticsParams {
   export interface DateRange {
     /**
-     * ISO 8601 start timestamp
+     * Date in yyyy-MM-dd format
      * @format date
      */
     start_at: string;
     /**
-     * ISO 8601 end timestamp
+     * Date in yyyy-MM-dd format
      * @format date
      */
     end_at: string;
