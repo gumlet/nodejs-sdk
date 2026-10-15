@@ -15,7 +15,7 @@ export class VideoAnalytics extends APIResource {
    * @example
    * ```ts
    * const videoAnalytic = await client.videoAnalytics.chartData({
-   *   metrics: [''],
+   *   metrics: ['views'],
    *   date_range: {
    *     start_at: '2024-01-01',
    *     end_at: '2024-01-01',
@@ -75,7 +75,10 @@ export class VideoAnalytics extends APIResource {
    *     },
    *   ],
    *   workspace_id: '',
-   *   timeframe: {},
+   *   timeframe: {
+   *     start_at: '2024-01-01',
+   *     end_at: '2024-01-01',
+   *   },
    * });
    * ```
    */
@@ -89,12 +92,20 @@ export class VideoAnalytics extends APIResource {
 
 export interface VideoAnalyticChartDataParams {
   /**
-   * Get data for one or more `metrics` in the same request. Please add any of these metrics. `views`, `unique_views`, `impressions`. `completion_percent_by_views`, `playing_time`, `concurrent_users`, `widget_form_submitted`, `cta_clicks`
+   * Get data for one or more metrics in the same request. Supported values: `views`, `unique_views`, `impressions`, `completion_percent_by_views`, `playing_time`, `concurrent_users`, `widget_form_submitted`, and `cta_clicks`.
    */
-  metrics: Array<string>;
+  metrics: Array<
+    | 'views'
+    | 'unique_views'
+    | 'impressions'
+    | 'completion_percent_by_views'
+    | 'playing_time'
+    | 'concurrent_users'
+    | 'widget_form_submitted'
+    | 'cta_clicks'
+  >;
   /**
-   * The timeframe to get the data for.
-   * Currently, we only support a maximum of *60 days* between `start_at` and `end_at`.
+   * The timeframe to get the data for. The maximum range between start_at and end_at is 60 days.
    */
   date_range: VideoAnalyticChartDataParams.DateRange;
   /**
@@ -123,12 +134,12 @@ export interface VideoAnalyticChartDataParams {
 export namespace VideoAnalyticChartDataParams {
   export interface DateRange {
     /**
-     * Use <b>yyyy-MM-dd</b> format
+     * Date in yyyy-MM-dd format
      * @format date
      */
     start_at: string;
     /**
-     * Use <b>yyyy-MM-dd</b> format
+     * Date in yyyy-MM-dd format
      * @format date
      */
     end_at: string;
@@ -261,8 +272,7 @@ export namespace VideoAnalyticChartDataResponse {
 
 export interface VideoAnalyticBreakdownDataParams {
   /**
-   * The timeframe to get the data for.
-   * Currently, we only support a maximum of *60 days* between `start_at` and `end_at`.
+   * The timeframe to get the data for. The maximum range between start_at and end_at is 60 days.
    */
   date_range: VideoAnalyticBreakdownDataParams.DateRange;
   /**
@@ -284,12 +294,12 @@ export interface VideoAnalyticBreakdownDataParams {
 export namespace VideoAnalyticBreakdownDataParams {
   export interface DateRange {
     /**
-     * Use <b>yyyy-MM-dd</b> format
+     * Date in yyyy-MM-dd format
      * @format date
      */
     start_at: string;
     /**
-     * Use <b>yyyy-MM-dd</b> format
+     * Date in yyyy-MM-dd format
      * @format date
      */
     end_at: string;
@@ -443,7 +453,7 @@ export interface VideoAnalyticAggregatedDataParams {
    */
   workspace_id: string;
   /**
-   * The timeframe to get the data for. Currently we only support maximum difference between `start_at` and `end_at` to be *60 days*
+   * The timeframe to get the data for. The maximum range between start_at and end_at is 60 days.
    */
   timeframe: VideoAnalyticAggregatedDataParams.Timeframe;
   /**
@@ -474,15 +484,15 @@ export namespace VideoAnalyticAggregatedDataParams {
 
   export interface Timeframe {
     /**
-     * Use <b>yyyy-MM-dd</b> format
+     * Date in yyyy-MM-dd format
      * @format date
      */
-    start_at?: string;
+    start_at: string;
     /**
-     * Use <b>yyyy-MM-dd</b> format
+     * Date in yyyy-MM-dd format
      * @format date
      */
-    end_at?: string;
+    end_at: string;
   }
 
   export interface Filter {
