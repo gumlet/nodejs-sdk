@@ -91,12 +91,12 @@ export interface VideoUsageAnalyticRetrieveParams {
 export namespace VideoUsageAnalyticRetrieveParams {
   export interface DateRange {
     /**
-     * The starting date to consider
+     * Date in yyyy-MM-dd format
      * @format date
      */
     start_at: string;
     /**
-     * The ending date to consider
+     * Date in yyyy-MM-dd format
      * @format date
      */
     end_at: string;
@@ -238,11 +238,13 @@ export namespace VideoUsageAnalyticRetrieveResponse {
 
 export interface VideoUsageAnalyticTopAssetsParams {
   /**
-   * Date string in "yyyy-mm-dd" format
+   * Date in yyyy-MM-dd format
+   * @format date
    */
   start_at: string;
   /**
-   * Date string in "yyyy-mm-dd" format
+   * Date in yyyy-MM-dd format
+   * @format date
    */
   end_at: string;
   /**

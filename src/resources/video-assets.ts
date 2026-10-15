@@ -1661,11 +1661,13 @@ export interface VideoAssetListParams {
    */
   playlist_id?: string;
   /**
-   * Asset created_at lower bound.
+   * Asset created_at lower bound. Date in yyyy-MM-dd format.
+   * @format date
    */
   start_date?: string;
   /**
-   * Asset created_at upper bound.
+   * Asset created_at upper bound. Date in yyyy-MM-dd format.
+   * @format date
    */
   end_date?: string;
   /**
