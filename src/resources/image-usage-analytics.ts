@@ -67,12 +67,12 @@ export interface ImageUsageAnalyticRetrieveParams {
 export namespace ImageUsageAnalyticRetrieveParams {
   export interface DateRange {
     /**
-     * The starting date to consider
+     * Date in yyyy-MM-dd format
      * @format date
      */
     start_at: string;
     /**
-     * The ending date to consider
+     * Date in yyyy-MM-dd format
      * @format date
      */
     end_at: string;
