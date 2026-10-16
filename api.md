@@ -1313,7 +1313,7 @@ This endpoint retrieves viewer analytics data. This endpoint is use for deep ins
 
 ```ts
 const videoAnalytic = await client.videoAnalytics.chartData({
-  metrics: [''],
+  metrics: ['views'],
   date_range: {
     start_at: '2024-01-01',
     end_at: '2024-01-01',
@@ -1361,7 +1361,10 @@ const videoAnalytic = await client.videoAnalytics.aggregatedData({
     },
   ],
   workspace_id: '',
-  timeframe: {},
+  timeframe: {
+    start_at: '2024-01-01',
+    end_at: '2024-01-01',
+  },
 });
 ```
 

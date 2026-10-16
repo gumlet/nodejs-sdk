@@ -55,7 +55,7 @@ export class VideoUsageAnalytics extends APIResource {
 
 export interface VideoUsageAnalyticRetrieveParams {
   /**
-   * Define the metric you need the data for. Currently we only support `bandwidth_consumption`, `asset_duration`, `storage_unit`, `top_assets`, `bandwidth_consumption_by_collection`, `errored_videos` and `widget_data`
+   * Define the metric you need the data for. Supported values: `bandwidth_consumption`, `asset_duration`, `storage_unit`, `top_assets`, `drm_requests`, `ai_credit_usage`, and `errored_videos`.
    */
   metrics: Array<
     | 'bandwidth_consumption'
@@ -91,12 +91,12 @@ export interface VideoUsageAnalyticRetrieveParams {
 export namespace VideoUsageAnalyticRetrieveParams {
   export interface DateRange {
     /**
-     * The starting date to consider
+     * Date in yyyy-MM-dd format
      * @format date
      */
     start_at: string;
     /**
-     * The ending date to consider
+     * Date in yyyy-MM-dd format
      * @format date
      */
     end_at: string;
@@ -238,11 +238,13 @@ export namespace VideoUsageAnalyticRetrieveResponse {
 
 export interface VideoUsageAnalyticTopAssetsParams {
   /**
-   * Date string in "yyyy-mm-dd" format
+   * Date in yyyy-MM-dd format
+   * @format date
    */
   start_at: string;
   /**
-   * Date string in "yyyy-mm-dd" format
+   * Date in yyyy-MM-dd format
+   * @format date
    */
   end_at: string;
   /**

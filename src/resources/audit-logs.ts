@@ -95,11 +95,13 @@ export interface AuditLogFetchParams {
 export namespace AuditLogFetchParams {
   export interface DateRange {
     /**
-     * Starting date for audit logs. It's a string in YYYY-MM-DD format.
+     * Date in yyyy-MM-dd format
+     * @format date
      */
     start_at: string;
     /**
-     * Ending date for audit logs. It's a string in YYYY-MM-DD format.
+     * Date in yyyy-MM-dd format
+     * @format date
      */
     end_at: string;
   }

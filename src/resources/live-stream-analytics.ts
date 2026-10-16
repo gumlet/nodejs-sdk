@@ -47,12 +47,12 @@ export interface LiveStreamAnalyticUsageParams {
 export namespace LiveStreamAnalyticUsageParams {
   export interface DateRange {
     /**
-     * Start date in ISO 8601 date format (YYYY-MM-DD)
+     * Date in yyyy-MM-dd format
      * @format date
      */
     start_at: string;
     /**
-     * End date in ISO 8601 date format (YYYY-MM-DD)
+     * Date in yyyy-MM-dd format
      * @format date
      */
     end_at: string;
