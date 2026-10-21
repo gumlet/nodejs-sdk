@@ -65,7 +65,7 @@ export class ImageSources extends APIResource {
   }
 
   /**
-   * This endpoint allows users to update image source that has previously been created.
+   * Update settings on an image source that already exists. This does not create a source or purge cached images.
    *
    * @param {string} imageSourceID - image source id which you want to update
    * @param {ImageSourceUpdateParams} [body] - The request body to send.

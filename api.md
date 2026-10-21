@@ -407,8 +407,7 @@ const audioUpload = await client.audioUpload.upload('assetId');
 
 ### Complete Audio Upload
 
-This API must be called after adding audio(s); The add audio call gives you URLs to upload, and you complete a `PUT` request to those URLs. 
-Once that is done, calling this initiates the process to actually add the subtitle to the video.
+Finish adding audio tracks to an existing video asset. Call this only after the audio files have been PUT to the upload URLs from the add-audio call. This attaches those tracks to the asset.
 
 | Direction | Type |
 | --- | --- |
@@ -838,7 +837,7 @@ const imageSource = await client.imageSources.retrieve('imageSourceId');
 
 ### Update Source
 
-This endpoint allows users to update image source that has previously been created.
+Update settings on an image source that already exists. This does not create a source or purge cached images.
 
 | Direction | Type |
 | --- | --- |
@@ -1324,7 +1323,7 @@ const videoAnalytic = await client.videoAnalytics.chartData({
 
 ### Breakdown Data
 
-This endpoint retrieves breakdown data of the given metrics by given breakdown field
+Read viewer metrics for one workspace, grouped by a breakdown field, for a date range of at most 60 days. This does not change assets or delivery.
 
 | Direction | Type |
 | --- | --- |

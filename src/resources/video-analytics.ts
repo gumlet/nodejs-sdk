@@ -32,7 +32,7 @@ export class VideoAnalytics extends APIResource {
   }
 
   /**
-   * This endpoint retrieves breakdown data of the given metrics by given breakdown field
+   * Read viewer metrics for one workspace, grouped by a breakdown field, for a date range of at most 60 days. This does not change assets or delivery.
    *
    * @param {VideoAnalyticBreakdownDataParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
