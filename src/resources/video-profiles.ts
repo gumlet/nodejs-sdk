@@ -18,6 +18,7 @@ export class VideoProfiles extends APIResource {
    * const videoProfile = await client.videoProfiles.create({
    *   name: 'Gumlet-Profile-1',
    *   format: 'ABR',
+   *   transcribe: false,
    * });
    * ```
    */
@@ -57,6 +58,7 @@ export class VideoProfiles extends APIResource {
    * const videoProfile = await client.videoProfiles.update('profileId', {
    *   profile_id: '',
    *   format: 'ABR',
+   *   transcribe: false,
    *   vc: ['libx264'],
    * });
    * ```
@@ -151,6 +153,11 @@ export interface VideoProfileCreateParams {
    * Gumlet allows you to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes). Remove this object if you do not want to generate AI subtitles.
    */
   generate_subtitles?: VideoProfileCreateParams.GenerateSubtitles;
+  /**
+   * This will generate the subtitles in the native audio.
+   * @default false
+   */
+  transcribe?: boolean;
   /**
    * Creates `mp4` version for download purpose in case of `MPEG-DASH` or `HLS` delivery format. **Default: `false`**
    */
@@ -345,11 +352,6 @@ export namespace VideoProfileCreateParams {
 
   export interface GenerateSubtitles {
     /**
-     * This will generate the subtitles in the native audio.
-     * @default true
-     */
-    transcribe?: boolean;
-    /**
      * Array of string of language codes for which subtitle needs to be generated. Maximum four language codes are allowed.
      */
     subtitle_languages?: string;
@@ -497,6 +499,11 @@ export interface VideoProfileUpdateParams {
    * Gumlet allows you to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes). You can remove this object if you don't want to generate AI subtitles.
    */
   generate_subtitles?: VideoProfileUpdateParams.GenerateSubtitles;
+  /**
+   * To generate the subtitles in the native audio.
+   * @default false
+   */
+  transcribe?: boolean;
   /**
    * Creates `mp4` version for download purpose in case of `MPEG-DASH` or `HLS` delivery format. **Default: `false`**
    */
@@ -707,10 +714,6 @@ export namespace VideoProfileUpdateParams {
      * Array of string of language codes for which subtitle needs to be generated. Maximum four language codes are allowed.
      */
     subtitle_languages?: Array<string>;
-    /**
-     * This is by default true to generate the subtitles in the native audio.
-     */
-    transcribe?: boolean;
   }
 }
 
