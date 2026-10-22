@@ -532,6 +532,7 @@ Gumlet provides the functionality of creating multiple video assets using the sa
 const videoProfile = await client.videoProfiles.create({
   name: 'Gumlet-Profile-1',
   format: 'ABR',
+  transcribe: false,
 });
 ```
 
@@ -561,6 +562,7 @@ Update an existing profile. Settings provided in body parameters will only be up
 const videoProfile = await client.videoProfiles.update('profileId', {
   profile_id: '',
   format: 'ABR',
+  transcribe: false,
   vc: ['libx264'],
 });
 ```
