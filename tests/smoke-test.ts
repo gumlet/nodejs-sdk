@@ -495,6 +495,7 @@ const cases: {
       const videoProfile = await client.videoProfiles.create({
         name: 'Gumlet-Profile-1',
         format: 'ABR',
+        transcribe: false,
       });
     },
   },
@@ -527,9 +528,8 @@ const cases: {
           text: '',
         },
         animated_gif: {},
-        generate_subtitles: {
-          transcribe: true,
-        },
+        generate_subtitles: {},
+        transcribe: false,
         mp4_access: false,
         per_title_encoding: false,
         process_low_resolution_input: false,
@@ -571,6 +571,7 @@ const cases: {
       const videoProfile = await client.videoProfiles.update('profileId', {
         profile_id: '',
         format: 'ABR',
+        transcribe: false,
         vc: ['libx264'],
       });
     },
@@ -605,9 +606,8 @@ const cases: {
           text: '',
         },
         animated_gif: {},
-        generate_subtitles: {
-          transcribe: true,
-        },
+        generate_subtitles: {},
+        transcribe: false,
         mp4_access: false,
         per_title_encoding: false,
         process_low_resolution_input: false,

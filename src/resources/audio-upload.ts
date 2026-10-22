@@ -29,8 +29,7 @@ export class AudioUpload extends APIResource {
   }
 
   /**
-   * This API must be called after adding audio(s); The add audio call gives you URLs to upload, and you complete a `PUT` request to those URLs.
-   * Once that is done, calling this initiates the process to actually add the subtitle to the video.
+   * Finish adding audio tracks to an existing video asset. Call this only after the audio files have been PUT to the upload URLs from the add-audio call. This attaches those tracks to the asset.
    *
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {AudioUploadCompleteParams} [body] - The request body to send.

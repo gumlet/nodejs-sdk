@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.6.0](https://github.com/gumlet/nodejs-sdk/compare/v1.5.5...v1.6.0) (2026-10-22)
+
+
+### Features
+
+* **api:** update SDK surface (2 changes) ([f6c2dc8](https://github.com/gumlet/nodejs-sdk/commit/f6c2dc80d03c2d6471de4f236e595d8562dabc3d))
+
+
+### Chores
+
+* **api:** regenerate SDK ([3534a2a](https://github.com/gumlet/nodejs-sdk/commit/3534a2aedd2b7888eb60a90b54b573808be95397))
+* **api:** update generated SDK content ([947baa7](https://github.com/gumlet/nodejs-sdk/commit/947baa736c8bcec28d3a19c74274219151e6c4ca))
+
 ## [1.5.5](https://github.com/gumlet/nodejs-sdk/compare/v1.5.4...v1.5.5) (2026-10-15)
 
 

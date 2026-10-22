@@ -1,7 +1,7 @@
 {
   "name": "Gumlet",
   "slug": "gumlet",
-  "generatorVersion": "0.36.5",
+  "generatorVersion": "0.36.8",
   "servers": [
     "https://api.gumlet.com/v1"
   ],
@@ -4722,6 +4722,7 @@
         "text_overlay",
         "animated_gif",
         "generate_subtitles",
+        "transcribe",
         "mp4_access",
         "per_title_encoding",
         "process_low_resolution_input",
@@ -4741,6 +4742,7 @@
         "text_overlay",
         "animated_gif",
         "generate_subtitles",
+        "transcribe",
         "mp4_access",
         "per_title_encoding",
         "process_low_resolution_input",
@@ -4794,6 +4796,10 @@
         },
         {
           "name": "generate_subtitles",
+          "required": false
+        },
+        {
+          "name": "transcribe",
           "required": false
         },
         {
@@ -5062,6 +5068,7 @@
         "text_overlay",
         "animated_gif",
         "generate_subtitles",
+        "transcribe",
         "mp4_access",
         "per_title_encoding",
         "process_low_resolution_input",
@@ -5085,6 +5092,7 @@
         "text_overlay",
         "animated_gif",
         "generate_subtitles",
+        "transcribe",
         "mp4_access",
         "per_title_encoding",
         "process_low_resolution_input",
@@ -5145,6 +5153,10 @@
         },
         {
           "name": "generate_subtitles",
+          "required": false
+        },
+        {
+          "name": "transcribe",
           "required": false
         },
         {
