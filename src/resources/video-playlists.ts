@@ -30,17 +30,19 @@ export class VideoPlaylists extends APIResource {
   /**
    * Get all playlists for given workspace
    *
-   * @param {VideoPlaylistListAllParams} [query] - The parameters to send with the request.
+   * @param {VideoPlaylistListAllParams} query - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistListAllResponse>} 200
    *
    * @example
    * ```ts
-   * const videoPlaylist = await client.videoPlaylists.listAll();
+   * const videoPlaylist = await client.videoPlaylists.listAll({
+   *   collection_id: 'collectionId',
+   * });
    * ```
    */
   listAll(
-    query: VideoPlaylistListAllParams | null | undefined = {},
+    query: VideoPlaylistListAllParams,
     options?: RequestOptions,
   ): APIPromise<VideoPlaylistListAllResponse> {
     return this._client.get('/video/playlist', { query, ...options });
@@ -296,7 +298,7 @@ export interface VideoPlaylistListAllParams {
   /**
    * Workspace ID
    */
-  collection_id?: string;
+  collection_id: string;
 }
 
 export type VideoPlaylistListAllResponse =

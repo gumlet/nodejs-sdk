@@ -37,11 +37,7 @@ export class VideoWorkspaces extends APIResource {
    *
    * @example
    * ```ts
-   * const videoWorkspace = await client.videoWorkspaces.create({
-   *   name: 'zoom-workspace',
-   *   type: 'zoom',
-   *   zoom: { secret: 'yourSecret' },
-   * });
+   * const videoWorkspace = await client.videoWorkspaces.create({ name: 'My Workspace', type: 'direct-upload' });
    * ```
    */
   create(
@@ -399,6 +395,11 @@ export interface VideoWorkspaceCreateParams {
    * This is a required field if workspace type is zoom.
    */
   zoom?: VideoWorkspaceCreateParams.Zoom;
+  /**
+   * Data localization region
+   * @default us
+   */
+  data_localization?: 'us' | 'in' | 'eu';
 }
 
 export namespace VideoWorkspaceCreateParams {
