@@ -8,13 +8,13 @@ export class VideoAnalytics extends APIResource {
   /**
    * This endpoint retrieves viewer analytics data. This endpoint is use for deep insights on the analytics data.
    *
-   * @param {VideoAnalyticChartDataParams} body - The request body to send.
+   * @param {VideoAnalyticViewerDataParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAnalyticChartDataResponse>} 200
+   * @returns {APIPromise<VideoAnalyticViewerDataResponse>} 200
    *
    * @example
    * ```ts
-   * const videoAnalytic = await client.videoAnalytics.chartData({
+   * const videoAnalytic = await client.videoAnalytics.viewerData({
    *   metrics: ['views'],
    *   date_range: {
    *     start_at: '2024-01-01',
@@ -24,10 +24,10 @@ export class VideoAnalytics extends APIResource {
    * });
    * ```
    */
-  chartData(
-    body: VideoAnalyticChartDataParams,
+  viewerData(
+    body: VideoAnalyticViewerDataParams,
     options?: RequestOptions,
-  ): APIPromise<VideoAnalyticChartDataResponse> {
+  ): APIPromise<VideoAnalyticViewerDataResponse> {
     return this._client.post('/insights/viewer-analytics', { body, ...options });
   }
 
@@ -90,7 +90,7 @@ export class VideoAnalytics extends APIResource {
   }
 }
 
-export interface VideoAnalyticChartDataParams {
+export interface VideoAnalyticViewerDataParams {
   /**
    * Get data for one or more metrics in the same request. Supported values: `views`, `unique_views`, `impressions`, `completion_percent_by_views`, `playing_time`, `concurrent_users`, `widget_form_submitted`, and `cta_clicks`.
    */
@@ -107,7 +107,7 @@ export interface VideoAnalyticChartDataParams {
   /**
    * The timeframe to get the data for. The maximum range between start_at and end_at is 60 days.
    */
-  date_range: VideoAnalyticChartDataParams.DateRange;
+  date_range: VideoAnalyticViewerDataParams.DateRange;
   /**
    * Gumlet workspace ID
    */
@@ -115,7 +115,7 @@ export interface VideoAnalyticChartDataParams {
   /**
    * Build *segments* of users using multiple filters on the data, `value` should be an *exact match*
    */
-  filters?: Array<VideoAnalyticChartDataParams.Filter>;
+  filters?: Array<VideoAnalyticViewerDataParams.Filter>;
   /**
    * Data can be grouped by `daily`, `weekly` or `monthly`.
    * @default daily
@@ -124,14 +124,14 @@ export interface VideoAnalyticChartDataParams {
   /**
    * Group metrics by the selected dimension. You can select up to 3 dimensions for nested category results; results follow the selection order.
    */
-  chart_dimension?: VideoAnalyticChartDataParams.ChartDimension;
+  chart_dimension?: VideoAnalyticViewerDataParams.ChartDimension;
   /**
    * Whether the request is to download the chart data
    */
   download?: boolean;
 }
 
-export namespace VideoAnalyticChartDataParams {
+export namespace VideoAnalyticViewerDataParams {
   export interface DateRange {
     /**
      * Date in yyyy-MM-dd format
@@ -225,14 +225,14 @@ export namespace VideoAnalyticChartDataParams {
   }
 }
 
-export interface VideoAnalyticChartDataResponse {
-  views?: Array<VideoAnalyticChartDataResponse.View>;
-  unique_views?: Array<VideoAnalyticChartDataResponse.UniqueView>;
-  analytics_data?: VideoAnalyticChartDataResponse.AnalyticsData;
+export interface VideoAnalyticViewerDataResponse {
+  views?: Array<VideoAnalyticViewerDataResponse.View>;
+  unique_views?: Array<VideoAnalyticViewerDataResponse.UniqueView>;
+  analytics_data?: VideoAnalyticViewerDataResponse.AnalyticsData;
   breakdowns?: Record<string, unknown>;
 }
 
-export namespace VideoAnalyticChartDataResponse {
+export namespace VideoAnalyticViewerDataResponse {
   export interface View {
     /**
      * @default 0
@@ -566,10 +566,10 @@ export namespace VideoAnalyticAggregatedDataResponse {
 }
 export declare namespace VideoAnalytics {
   export {
-    type VideoAnalyticChartDataResponse as VideoAnalyticChartDataResponse,
+    type VideoAnalyticViewerDataResponse as VideoAnalyticViewerDataResponse,
     type VideoAnalyticBreakdownDataResponse as VideoAnalyticBreakdownDataResponse,
     type VideoAnalyticAggregatedDataResponse as VideoAnalyticAggregatedDataResponse,
-    type VideoAnalyticChartDataParams as VideoAnalyticChartDataParams,
+    type VideoAnalyticViewerDataParams as VideoAnalyticViewerDataParams,
     type VideoAnalyticBreakdownDataParams as VideoAnalyticBreakdownDataParams,
     type VideoAnalyticAggregatedDataParams as VideoAnalyticAggregatedDataParams,
   };

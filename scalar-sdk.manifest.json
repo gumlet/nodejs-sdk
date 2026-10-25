@@ -11020,8 +11020,8 @@
     {
       "resource": "folders",
       "publicResource": "folders",
-      "operation": "deleteAssets",
-      "publicOperation": "deleteAssets",
+      "operation": "removeAssets",
+      "publicOperation": "removeAssets",
       "deprecated": false,
       "method": "POST",
       "path": "/video/workspaces/{workspace_id}/remove-assets-from-folder",
@@ -11061,7 +11061,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "FolderDeleteAssetsParams"
+        "publicName": "FolderRemoveAssetsParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -11268,8 +11268,8 @@
     {
       "resource": "channelViewers",
       "publicResource": "channelViewers",
-      "operation": "delete",
-      "publicOperation": "delete",
+      "operation": "remove",
+      "publicOperation": "remove",
       "deprecated": false,
       "method": "POST",
       "path": "/channel/{video_workspace_id}/viewers/remove",
@@ -11309,7 +11309,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "ChannelViewerDeleteParams"
+        "publicName": "ChannelViewerRemoveParams"
       },
       "requestBody": {
         "contentType": "application/json",
@@ -11651,8 +11651,8 @@
     {
       "resource": "videoAnalytics",
       "publicResource": "videoAnalytics",
-      "operation": "chartData",
-      "publicOperation": "chartData",
+      "operation": "viewerData",
+      "publicOperation": "viewerData",
       "deprecated": false,
       "method": "POST",
       "path": "/insights/viewer-analytics",
@@ -11717,7 +11717,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAnalyticChartDataParams"
+        "publicName": "VideoAnalyticViewerDataParams"
       },
       "requestBody": {
         "contentType": "application/json",
