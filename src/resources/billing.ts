@@ -225,7 +225,7 @@ export interface BillingFetchUpcomingInvoiceResponse {
    */
   next_invoice_date: string;
   /**
-   * Current month total amount in given currency.
+   * Current month total amount in given currency. This amount includes taxes.
    */
   current_month_usage: string;
   /**
@@ -241,7 +241,7 @@ export interface BillingFetchUpcomingInvoiceResponse {
 export namespace BillingFetchUpcomingInvoiceResponse {
   export interface UpcomingInvoice {
     /**
-     * Upcoming invoice amount without tax
+     * Upcoming invoice amount excluding tax
      */
     subtotal: string;
     /**
