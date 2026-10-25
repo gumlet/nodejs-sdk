@@ -154,6 +154,11 @@ export namespace VideoWorkspaceListResponse {
      * Whether the workspace is disabled for streaming. `true` means it's disabled.
      */
     on_streaming_halt?: boolean;
+    /**
+     * Data storage region
+     * @default us
+     */
+    data_localization?: 'us' | 'in' | 'eu';
   }
 
   export namespace AllSource {
@@ -1173,6 +1178,11 @@ export interface VideoWorkspaceRetrieveResponse {
    */
   on_streaming_halt?: boolean;
   storage_event_listener?: Array<VideoWorkspaceRetrieveResponse.StorageEventListener>;
+  /**
+   * Data storage region
+   * @default us
+   */
+  data_localization?: 'us' | 'in' | 'eu';
 }
 
 export namespace VideoWorkspaceRetrieveResponse {
