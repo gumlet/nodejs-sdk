@@ -5700,7 +5700,7 @@
       "queryParamDetails": [
         {
           "name": "collection_id",
-          "required": false,
+          "required": true,
           "style": "form",
           "explode": true
         }
@@ -9713,7 +9713,8 @@
         "linode",
         "backblaze",
         "cloudflare",
-        "zoom"
+        "zoom",
+        "data_localization"
       ],
       "publicBodyParams": [
         "name",
@@ -9731,7 +9732,8 @@
         "linode",
         "backblaze",
         "cloudflare",
-        "zoom"
+        "zoom",
+        "data_localization"
       ],
       "bodyParamDetails": [
         {
@@ -9796,6 +9798,10 @@
         },
         {
           "name": "zoom",
+          "required": false
+        },
+        {
+          "name": "data_localization",
           "required": false
         }
       ],
