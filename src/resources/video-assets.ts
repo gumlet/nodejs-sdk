@@ -1504,7 +1504,7 @@ export namespace VideoAssetRetrieveDetailsResponse {
 
 export interface VideoAssetUpdateParams {
   /**
-   * Asset Id
+   * Asset ID to update. This is a required parameter.
    */
   asset_id: string;
   /**

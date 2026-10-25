@@ -622,7 +622,9 @@ Get all playlists for given workspace
 | Response | [`VideoPlaylistListAllResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const videoPlaylist = await client.videoPlaylists.listAll();
+const videoPlaylist = await client.videoPlaylists.listAll({
+  collection_id: 'collectionId',
+});
 ```
 
 ### Add asset to playlist
@@ -1096,11 +1098,7 @@ Video workspaces are top-level entities in Gumlet. You can use them to organize 
 | Response | [`VideoWorkspaceCreateResponse`](./src/resources/video-workspaces.ts) |
 
 ```ts
-const videoWorkspace = await client.videoWorkspaces.create({
-  name: 'zoom-workspace',
-  type: 'zoom',
-  zoom: { secret: 'yourSecret' },
-});
+const videoWorkspace = await client.videoWorkspaces.create({ name: 'My Workspace', type: 'direct-upload' });
 ```
 
 ### Update Workspace

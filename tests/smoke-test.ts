@@ -655,17 +655,6 @@ const cases: {
     operation: 'listAll',
     method: 'GET',
     path: '/video/playlist',
-    label: 'required params',
-    run: async () => {
-      const videoPlaylist = await client.videoPlaylists.listAll();
-    },
-  },
-
-  {
-    operation: 'listAll',
-    method: 'GET',
-    path: '/video/playlist',
-    label: 'all params',
     run: async () => {
       const videoPlaylist = await client.videoPlaylists.listAll({
         collection_id: 'collectionId',
@@ -1195,9 +1184,8 @@ const cases: {
     path: '/video/workspaces',
     run: async () => {
       const videoWorkspace = await client.videoWorkspaces.create({
-        name: 'zoom-workspace',
-        type: 'zoom',
-        zoom: { secret: 'yourSecret' },
+        name: 'My Workspace',
+        type: 'direct-upload',
       });
     },
   },
