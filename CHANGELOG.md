@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.6.2](https://github.com/gumlet/nodejs-sdk/compare/v1.6.0...v1.6.2) (2026-10-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 3 breaking changes to the SDK surface.
+    - Removed operation `folders.deleteAssets` (`POST /video/workspaces/{workspace_id}/remove-assets-from-folder`).
+    - Removed operation `channelViewers.delete` (`POST /channel/{video_workspace_id}/viewers/remove`).
+    - Removed operation `videoAnalytics.chartData` (`POST /insights/viewer-analytics`).
+* **api:** query param `collection_id` on `videoPlaylists.listAll` is now required.
+
+### Features
+
+* **api:** remove operation folders.deleteAssets (+5 more changes) ([cdfdb94](https://github.com/gumlet/nodejs-sdk/commit/cdfdb946c605ce980ccc10051b5c7fd5aeffb675))
+* **api:** update SDK surface (2 changes) ([84a5153](https://github.com/gumlet/nodejs-sdk/commit/84a5153acedd56b85bedea34fe04ca6e0e297331))
+
+
+### Chores
+
+* **api:** regenerate SDK ([6cddfcf](https://github.com/gumlet/nodejs-sdk/commit/6cddfcfdc0a6d62f20e71a0ecd66b8ffcff0c60c))
+* release 1.6.2 ([76b3af8](https://github.com/gumlet/nodejs-sdk/commit/76b3af8e20198b608aafaacb0f708f303d808a2c))
+
 ## [1.6.0](https://github.com/gumlet/nodejs-sdk/compare/v1.5.5...v1.6.0) (2026-10-22)
 
 
