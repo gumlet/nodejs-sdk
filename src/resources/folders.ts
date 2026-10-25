@@ -127,22 +127,22 @@ export class Folders extends APIResource {
    * Remove one or more assets from their current folder assignment inside the workspace.
    *
    * @param {string} workspaceID - Video workspace id.
-   * @param {FolderDeleteAssetsParams} body - The request body to send.
+   * @param {FolderRemoveAssetsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<FolderDeleteAssetsResponse>} 200
+   * @returns {APIPromise<FolderRemoveAssetsResponse>} 200
    *
    * @example
    * ```ts
-   * const folder = await client.folders.deleteAssets('workspaceId', {
+   * const folder = await client.folders.removeAssets('workspaceId', {
    *   asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],
    * });
    * ```
    */
-  deleteAssets(
+  removeAssets(
     workspaceID: string,
-    body: FolderDeleteAssetsParams,
+    body: FolderRemoveAssetsParams,
     options?: RequestOptions,
-  ): APIPromise<FolderDeleteAssetsResponse> {
+  ): APIPromise<FolderRemoveAssetsResponse> {
     return this._client.post(__scalarPath`/video/workspaces/${workspaceID}/remove-assets-from-folder`, {
       body,
       ...options,
@@ -420,11 +420,11 @@ export interface FolderDeleteResponse {
   message?: string;
 }
 
-export interface FolderDeleteAssetsParams {
+export interface FolderRemoveAssetsParams {
   asset_ids: Array<string>;
 }
 
-export interface FolderDeleteAssetsResponse {
+export interface FolderRemoveAssetsResponse {
   message?: string;
   /**
    * @default 0
@@ -438,12 +438,12 @@ export declare namespace Folders {
     type FolderRetrieveResponse as FolderRetrieveResponse,
     type FolderUpdateResponse as FolderUpdateResponse,
     type FolderDeleteResponse as FolderDeleteResponse,
-    type FolderDeleteAssetsResponse as FolderDeleteAssetsResponse,
+    type FolderRemoveAssetsResponse as FolderRemoveAssetsResponse,
     type FolderCreateParams as FolderCreateParams,
     type FolderListParams as FolderListParams,
     type FolderRetrieveParams as FolderRetrieveParams,
     type FolderUpdateParams as FolderUpdateParams,
     type FolderDeleteParams as FolderDeleteParams,
-    type FolderDeleteAssetsParams as FolderDeleteAssetsParams,
+    type FolderRemoveAssetsParams as FolderRemoveAssetsParams,
   };
 }

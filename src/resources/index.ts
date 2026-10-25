@@ -155,15 +155,15 @@ export type {
   FolderUpdateResponse,
   FolderDeleteParams,
   FolderDeleteResponse,
-  FolderDeleteAssetsParams,
-  FolderDeleteAssetsResponse,
+  FolderRemoveAssetsParams,
+  FolderRemoveAssetsResponse,
 } from './folders';
 export { ChannelViewers } from './channel-viewers';
 export type {
   ChannelViewerInviteParams,
   ChannelViewerInviteResponse,
-  ChannelViewerDeleteParams,
-  ChannelViewerDeleteResponse,
+  ChannelViewerRemoveParams,
+  ChannelViewerRemoveResponse,
   ChannelViewerInviteCsvParams,
   ChannelViewerInviteCsvResponse,
   ChannelViewerListSubscribersParams,
@@ -171,8 +171,8 @@ export type {
 } from './channel-viewers';
 export { VideoAnalytics } from './video-analytics';
 export type {
-  VideoAnalyticChartDataParams,
-  VideoAnalyticChartDataResponse,
+  VideoAnalyticViewerDataParams,
+  VideoAnalyticViewerDataResponse,
   VideoAnalyticBreakdownDataParams,
   VideoAnalyticBreakdownDataResponse,
   VideoAnalyticAggregatedDataParams,

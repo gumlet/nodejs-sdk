@@ -39,22 +39,22 @@ export class ChannelViewers extends APIResource {
    * Remove one or more viewers from a channel by email address.
    *
    * @param {string} videoWorkspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
-   * @param {ChannelViewerDeleteParams} body - The request body to send.
+   * @param {ChannelViewerRemoveParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<ChannelViewerDeleteResponse>} 200
+   * @returns {APIPromise<ChannelViewerRemoveResponse>} 200
    *
    * @example
    * ```ts
-   * const channelViewer = await client.channelViewers.delete('videoWorkspaceId', {
+   * const channelViewer = await client.channelViewers.remove('videoWorkspaceId', {
    *   emails: ['test@gumlet.com', 'test+2@gumlet.com'],
    * });
    * ```
    */
-  delete(
+  remove(
     videoWorkspaceID: string,
-    body: ChannelViewerDeleteParams,
+    body: ChannelViewerRemoveParams,
     options?: RequestOptions,
-  ): APIPromise<ChannelViewerDeleteResponse> {
+  ): APIPromise<ChannelViewerRemoveResponse> {
     return this._client.post(__scalarPath`/channel/${videoWorkspaceID}/viewers/remove`, { body, ...options });
   }
 
@@ -138,7 +138,7 @@ export interface ChannelViewerInviteResponse {
   success?: boolean;
 }
 
-export interface ChannelViewerDeleteParams {
+export interface ChannelViewerRemoveParams {
   /**
    * Email addresses of viewers to remove. A maximum of 200 viewers can be removed in one request.
    * @maxItems 200
@@ -146,7 +146,7 @@ export interface ChannelViewerDeleteParams {
   emails: Array<string>;
 }
 
-export interface ChannelViewerDeleteResponse {
+export interface ChannelViewerRemoveResponse {
   success?: boolean;
 }
 
@@ -230,11 +230,11 @@ export namespace ChannelViewerListSubscribersResponse {
 export declare namespace ChannelViewers {
   export {
     type ChannelViewerInviteResponse as ChannelViewerInviteResponse,
-    type ChannelViewerDeleteResponse as ChannelViewerDeleteResponse,
+    type ChannelViewerRemoveResponse as ChannelViewerRemoveResponse,
     type ChannelViewerInviteCsvResponse as ChannelViewerInviteCsvResponse,
     type ChannelViewerListSubscribersResponse as ChannelViewerListSubscribersResponse,
     type ChannelViewerInviteParams as ChannelViewerInviteParams,
-    type ChannelViewerDeleteParams as ChannelViewerDeleteParams,
+    type ChannelViewerRemoveParams as ChannelViewerRemoveParams,
     type ChannelViewerInviteCsvParams as ChannelViewerInviteCsvParams,
     type ChannelViewerListSubscribersParams as ChannelViewerListSubscribersParams,
   };

@@ -1321,11 +1321,11 @@ const cases: {
   },
 
   {
-    operation: 'deleteAssets',
+    operation: 'removeAssets',
     method: 'POST',
     path: '/video/workspaces/{workspace_id}/remove-assets-from-folder',
     run: async () => {
-      const folder = await client.folders.deleteAssets('workspaceId', {
+      const folder = await client.folders.removeAssets('workspaceId', {
         asset_ids: ['67e4f2b4403562dbea654301', '67e4f2bb403562dbea654302'],
       });
     },
@@ -1347,11 +1347,11 @@ const cases: {
   },
 
   {
-    operation: 'delete',
+    operation: 'remove',
     method: 'POST',
     path: '/channel/{video_workspace_id}/viewers/remove',
     run: async () => {
-      const channelViewer = await client.channelViewers.delete('videoWorkspaceId', {
+      const channelViewer = await client.channelViewers.remove('videoWorkspaceId', {
         emails: ['test@gumlet.com', 'test+2@gumlet.com'],
       });
     },
@@ -1381,12 +1381,12 @@ const cases: {
   },
 
   {
-    operation: 'chartData',
+    operation: 'viewerData',
     method: 'POST',
     path: '/insights/viewer-analytics',
     label: 'required params',
     run: async () => {
-      const videoAnalytic = await client.videoAnalytics.chartData({
+      const videoAnalytic = await client.videoAnalytics.viewerData({
         metrics: ['views'],
         date_range: {
           start_at: '2024-01-01',
@@ -1398,12 +1398,12 @@ const cases: {
   },
 
   {
-    operation: 'chartData',
+    operation: 'viewerData',
     method: 'POST',
     path: '/insights/viewer-analytics',
     label: 'all params',
     run: async () => {
-      const videoAnalytic = await client.videoAnalytics.chartData({
+      const videoAnalytic = await client.videoAnalytics.viewerData({
         metrics: ['views'],
         workspace_id: '',
         date_range: {
