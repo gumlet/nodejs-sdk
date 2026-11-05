@@ -104,14 +104,19 @@ export namespace VideoUsageAnalyticRetrieveParams {
 
   export interface Filters {
     /**
-     * The ID of the `workspace` you want to filter the data for.
+     * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+     * @deprecated
      */
     collection_id?: string;
     /**
-     * The ID of the `workspace` you want to filter the data for. Deprecated.
+     * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
      * @deprecated
      */
     source_id?: string;
+    /**
+     * Gumlet video workspace ID. Preferred over deprecated `collection_id` / `source_id` (same ID).
+     */
+    workspace_id?: string;
   }
 }
 
@@ -248,7 +253,11 @@ export interface VideoUsageAnalyticTopAssetsParams {
    */
   end_at: string;
   /**
-   * Gumlet workspace ID
+   * Gumlet video workspace ID. Preferred. Provide `workspace_id`, or deprecated `collection_id` / `source_id` (same ID).
+   */
+  workspace_id?: string;
+  /**
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
    */
   collection_id?: string;
   /**

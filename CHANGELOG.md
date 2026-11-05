@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.7.0](https://github.com/gumlet/nodejs-sdk/compare/v1.6.3...v1.7.0) (2026-11-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 4 breaking changes to the SDK surface.
+    - Added required body field `workspace_id` to `videoAssets.upload`.
+    - Added required body field `workspace_id` to `videoAssets.deleteMany`.
+    - Added required body field `workspace_id` to `videoAssets.tagMany`.
+    - Added required body field `workspace_id` to `videoPlaylists.create`.
+
+### Features
+
+* **api:** update SDK surface (8 changes) ([181b9bd](https://github.com/gumlet/nodejs-sdk/commit/181b9bdba1e640a6af71b3d8090feaeb85342fd9))
+
+
+### Chores
+
+* release 1.7.0 ([3e039b3](https://github.com/gumlet/nodejs-sdk/commit/3e039b312cf8a306f4be28618648574c347039d0))
+
 ## [1.6.3](https://github.com/gumlet/nodejs-sdk/compare/v1.6.2...v1.6.3) (2026-10-25)
 
 

@@ -171,7 +171,8 @@ export interface FolderCreateResponse {
    */
   name?: string;
   /**
-   * Workspace ID
+   * Deprecated. Use `workspace_id` instead. Still returned for backwards compatibility.
+   * @deprecated
    */
   video_source_id?: string;
   /**
@@ -208,6 +209,10 @@ export interface FolderCreateResponse {
    * @format date-time
    */
   updated_at?: string;
+  /**
+   * Workspace ID
+   */
+  workspace_id?: string;
 }
 
 export interface FolderListParams {
@@ -230,7 +235,8 @@ export namespace FolderListResponse {
      */
     name?: string;
     /**
-     * Workspace ID
+     * Deprecated. Use `workspace_id` instead. Still returned for backwards compatibility.
+     * @deprecated
      */
     video_source_id?: string;
     /**
@@ -267,6 +273,10 @@ export namespace FolderListResponse {
      * @format date-time
      */
     updated_at?: string;
+    /**
+     * Workspace ID
+     */
+    workspace_id?: string;
   }
 }
 
@@ -287,7 +297,8 @@ export interface FolderRetrieveResponse {
    */
   name?: string;
   /**
-   * Workspace ID
+   * Deprecated. Use `workspace_id` instead. Still returned for backwards compatibility.
+   * @deprecated
    */
   video_source_id?: string;
   /**
@@ -324,6 +335,10 @@ export interface FolderRetrieveResponse {
    * @format date-time
    */
   updated_at?: string;
+  /**
+   * Workspace ID
+   */
+  workspace_id?: string;
 }
 
 export interface FolderUpdateParams {
@@ -374,6 +389,10 @@ export namespace FolderUpdateResponse {
   export interface FolderUpdateResponseItem {
     id?: string;
     name?: string;
+    /**
+     * Deprecated. Use `workspace_id` instead. Still returned for backwards compatibility.
+     * @deprecated
+     */
     video_source_id?: string;
     parent_id?: string | null;
     path?: Array<string>;
@@ -398,6 +417,10 @@ export namespace FolderUpdateResponse {
      * ISO Timestamp
      */
     updated_at?: string;
+    /**
+     * Workspace ID
+     */
+    workspace_id?: string;
   }
 
   export interface FolderUpdateResponseItem2 {
