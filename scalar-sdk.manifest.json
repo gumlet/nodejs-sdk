@@ -1,7 +1,7 @@
 {
   "name": "Gumlet",
   "slug": "gumlet",
-  "generatorVersion": "0.36.9",
+  "generatorVersion": "0.38.0",
   "servers": [
     "https://api.gumlet.com/v1"
   ],
@@ -1548,7 +1548,8 @@
         "enable_drm",
         "call_to_actions",
         "playlist_id",
-        "folder"
+        "folder",
+        "workspace_id"
       ],
       "publicBodyParams": [
         "collection_id",
@@ -1576,12 +1577,13 @@
         "enable_drm",
         "call_to_actions",
         "playlist_id",
-        "folder"
+        "folder",
+        "workspace_id"
       ],
       "bodyParamDetails": [
         {
           "name": "collection_id",
-          "required": true
+          "required": false
         },
         {
           "name": "profile_id",
@@ -1682,6 +1684,10 @@
         {
           "name": "folder",
           "required": false
+        },
+        {
+          "name": "workspace_id",
+          "required": true
         }
       ],
       "pathParamDetails": [],
@@ -3062,11 +3068,13 @@
       "publicHeaderParams": [],
       "bodyParams": [
         "asset_list",
-        "source_id"
+        "source_id",
+        "workspace_id"
       ],
       "publicBodyParams": [
         "asset_list",
-        "source_id"
+        "source_id",
+        "workspace_id"
       ],
       "bodyParamDetails": [
         {
@@ -3075,6 +3083,10 @@
         },
         {
           "name": "source_id",
+          "required": false
+        },
+        {
+          "name": "workspace_id",
           "required": true
         }
       ],
@@ -3199,13 +3211,15 @@
         "asset_list",
         "source_id",
         "add_tags",
-        "remove_tags"
+        "remove_tags",
+        "workspace_id"
       ],
       "publicBodyParams": [
         "asset_list",
         "source_id",
         "add_tags",
-        "remove_tags"
+        "remove_tags",
+        "workspace_id"
       ],
       "bodyParamDetails": [
         {
@@ -3214,7 +3228,7 @@
         },
         {
           "name": "source_id",
-          "required": true
+          "required": false
         },
         {
           "name": "add_tags",
@@ -3222,6 +3236,10 @@
         },
         {
           "name": "remove_tags",
+          "required": true
+        },
+        {
+          "name": "workspace_id",
           "required": true
         }
       ],
@@ -4208,6 +4226,7 @@
       "queryParams": [
         "start_at",
         "end_at",
+        "workspace_id",
         "collection_id",
         "page",
         "page_size"
@@ -4215,6 +4234,7 @@
       "publicQueryParams": [
         "start_at",
         "end_at",
+        "workspace_id",
         "collection_id",
         "page",
         "page_size"
@@ -4235,6 +4255,12 @@
         {
           "name": "end_at",
           "required": true,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "workspace_id",
+          "required": false,
           "style": "form",
           "explode": true
         },
@@ -5551,17 +5577,19 @@
       "bodyParams": [
         "collection_id",
         "title",
-        "description"
+        "description",
+        "workspace_id"
       ],
       "publicBodyParams": [
         "collection_id",
         "title",
-        "description"
+        "description",
+        "workspace_id"
       ],
       "bodyParamDetails": [
         {
           "name": "collection_id",
-          "required": true
+          "required": false
         },
         {
           "name": "title",
@@ -5570,6 +5598,10 @@
         {
           "name": "description",
           "required": false
+        },
+        {
+          "name": "workspace_id",
+          "required": true
         }
       ],
       "pathParamDetails": [],
@@ -5686,9 +5718,11 @@
       "pathParams": [],
       "publicPathParams": [],
       "queryParams": [
+        "workspace_id",
         "collection_id"
       ],
       "publicQueryParams": [
+        "workspace_id",
         "collection_id"
       ],
       "headerParams": [],
@@ -5699,8 +5733,14 @@
       "pathParamDetails": [],
       "queryParamDetails": [
         {
+          "name": "workspace_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
           "name": "collection_id",
-          "required": true,
+          "required": false,
           "style": "form",
           "explode": true
         }
@@ -13451,6 +13491,7 @@
       "publicPathParams": [],
       "queryParams": [
         "search_query",
+        "workspace_id",
         "collection_id",
         "size",
         "assets_offset",
@@ -13460,6 +13501,7 @@
       ],
       "publicQueryParams": [
         "search_query",
+        "workspace_id",
         "collection_id",
         "size",
         "assets_offset",
@@ -13477,6 +13519,12 @@
         {
           "name": "search_query",
           "required": true,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "workspace_id",
+          "required": false,
           "style": "form",
           "explode": true
         },

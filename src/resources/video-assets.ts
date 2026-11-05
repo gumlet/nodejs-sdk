@@ -58,6 +58,7 @@ export class VideoAssets extends APIResource {
    *     },
    *   ],
    *   folder: '697375fbfa2d1037283140e4',
+   *   workspace_id: '646df1c9173a4a2fcac180b4',
    * });
    * ```
    */
@@ -254,6 +255,7 @@ export class VideoAssets extends APIResource {
    * const videoAsset = await client.videoAssets.deleteMany({
    *   source_id: '60bd2ba353ff754d28179ee6',
    *   asset_list: ['64249a8858fd3a208b987702', '64784bae843b155b829bbf84'],
+   *   workspace_id: '60bd2ba353ff754d28179ee6',
    * });
    * ```
    */
@@ -278,6 +280,7 @@ export class VideoAssets extends APIResource {
    *   add_tags: ['tag-1'],
    *   remove_tags: ['playlist-1'],
    *   asset_list: ['6221db301c8b821b0519fba0', '61e8f2726ec832ab2ac4fa6e'],
+   *   workspace_id: '60bd2ba353ff754d28179ee6',
    * });
    * ```
    */
@@ -324,7 +327,7 @@ export interface VideoAssetCreateParams {
    */
   workspace_id: string;
   /**
-   * Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `collection_id`) from the video profile.
+   * Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `workspace_id`) from the video profile.
    */
   profile_id?: string;
   /**
@@ -774,11 +777,16 @@ export namespace VideoAssetCreateResponse {
 
 export interface VideoAssetUploadParams {
   /**
-   * Gumlet video workspace id.
+   * Gumlet video workspace ID. Preferred over deprecated `collection_id` / `source_id` (same ID).
    */
-  collection_id: string;
+  workspace_id: string;
   /**
-   * Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `collection_id`) from the video profile.
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+   * @deprecated
+   */
+  collection_id?: string;
+  /**
+   * Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `workspace_id`) from the video profile.
    */
   profile_id?: string;
   /**
@@ -1741,9 +1749,17 @@ export namespace VideoAssetListResponse {
     created_at?: number;
     status?: string;
     tag?: string;
+    /**
+     * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+     * @deprecated
+     */
     source_id?: string;
     input?: AllAsset.Input;
     output?: AllAsset.Output;
+    /**
+     * Workspace ID
+     */
+    workspace_id?: string;
   }
 
   export namespace AllAsset {
@@ -1827,6 +1843,10 @@ export namespace VideoAssetListResponse {
   export interface Folder {
     id?: string;
     name?: string;
+    /**
+     * Deprecated. Use `workspace_id` instead. Still returned for backwards compatibility.
+     * @deprecated
+     */
     video_source_id?: string;
     parent_id?: string | null;
     path?: Array<string>;
@@ -1845,6 +1865,10 @@ export namespace VideoAssetListResponse {
     asset_count?: number;
     created_at?: string;
     updated_at?: string;
+    /**
+     * Workspace ID
+     */
+    workspace_id?: string;
   }
 }
 
@@ -1919,9 +1943,17 @@ export namespace VideoAssetListDeprecatedResponse {
     created_at?: number;
     status?: string;
     tag?: string;
+    /**
+     * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+     * @deprecated
+     */
     source_id?: string;
     input?: AllAsset.Input;
     output?: AllAsset.Output;
+    /**
+     * Workspace ID
+     */
+    workspace_id?: string;
   }
 
   export namespace AllAsset {
@@ -2005,9 +2037,14 @@ export interface VideoAssetDeleteManyParams {
    */
   asset_list: Array<string>;
   /**
-   * Workspace ID from which assets needs to be deleted.
+   * Gumlet video workspace ID. Preferred over deprecated `collection_id` / `source_id` (same ID).
    */
-  source_id: string;
+  workspace_id: string;
+  /**
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+   * @deprecated
+   */
+  source_id?: string;
 }
 
 export interface VideoAssetDeleteManyResponse {
@@ -2023,10 +2060,6 @@ export interface VideoAssetTagManyParams {
    */
   asset_list: Array<string>;
   /**
-   * Workspace ID in which the videos needs the operation
-   */
-  source_id: string;
-  /**
    * List of tags to add to given assets.
    */
   add_tags: Array<string>;
@@ -2034,6 +2067,15 @@ export interface VideoAssetTagManyParams {
    * List of tags to remove from given assets. Pass empty array if nothing is to be removed.
    */
   remove_tags: Array<string>;
+  /**
+   * Gumlet video workspace ID. Preferred over deprecated `collection_id` / `source_id` (same ID).
+   */
+  workspace_id: string;
+  /**
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+   * @deprecated
+   */
+  source_id?: string;
 }
 
 export interface VideoAssetTagManyResponse {

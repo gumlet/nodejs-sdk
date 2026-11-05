@@ -20,6 +20,7 @@ export class VideoPlaylists extends APIResource {
    *   title: 'Playlist-Title',
    *   description: 'This is description for playlist.',
    *   collection_id: '{{video-source-id}}',
+   *   workspace_id: '{{video-source-id}}',
    * });
    * ```
    */
@@ -30,19 +31,17 @@ export class VideoPlaylists extends APIResource {
   /**
    * Get all playlists for given workspace
    *
-   * @param {VideoPlaylistListAllParams} query - The parameters to send with the request.
+   * @param {VideoPlaylistListAllParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoPlaylistListAllResponse>} 200
    *
    * @example
    * ```ts
-   * const videoPlaylist = await client.videoPlaylists.listAll({
-   *   collection_id: 'collectionId',
-   * });
+   * const videoPlaylist = await client.videoPlaylists.listAll();
    * ```
    */
   listAll(
-    query: VideoPlaylistListAllParams,
+    query: VideoPlaylistListAllParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<VideoPlaylistListAllResponse> {
     return this._client.get('/video/playlist', { query, ...options });
@@ -193,13 +192,18 @@ export class VideoPlaylists extends APIResource {
 
 export interface VideoPlaylistCreateParams {
   /**
-   * Workspace ID in which the playlist should be created
-   */
-  collection_id: string;
-  /**
    * Playlist title
    */
   title: string;
+  /**
+   * Gumlet video workspace ID. Preferred over deprecated `collection_id` / `source_id` (same ID).
+   */
+  workspace_id: string;
+  /**
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+   * @deprecated
+   */
+  collection_id?: string;
   /**
    * Playlist description
    */
@@ -212,7 +216,8 @@ export interface VideoPlaylistCreateResponse {
    */
   id: string;
   /**
-   * Workspace ID
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+   * @deprecated
    */
   collection_id?: string;
   /**
@@ -227,6 +232,10 @@ export interface VideoPlaylistCreateResponse {
    * Player config for assets in the playlist
    */
   player_config?: VideoPlaylistCreateResponse.PlayerConfig;
+  /**
+   * Workspace ID
+   */
+  workspace_id?: string;
 }
 
 export namespace VideoPlaylistCreateResponse {
@@ -296,9 +305,13 @@ export namespace VideoPlaylistCreateResponse {
 
 export interface VideoPlaylistListAllParams {
   /**
-   * Workspace ID
+   * Gumlet video workspace ID. Preferred. Provide one of `workspace_id` or the deprecated aliases below (same ID).
    */
-  collection_id: string;
+  workspace_id?: string;
+  /**
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+   */
+  collection_id?: string;
 }
 
 export type VideoPlaylistListAllResponse =
@@ -311,7 +324,8 @@ export namespace VideoPlaylistListAllResponse {
      */
     id: string;
     /**
-     * Workspace ID
+     * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+     * @deprecated
      */
     collection_id?: string;
     /**
@@ -326,6 +340,10 @@ export namespace VideoPlaylistListAllResponse {
      * Player configuration for the playlist
      */
     player_config?: Record<string, unknown>;
+    /**
+     * Workspace ID
+     */
+    workspace_id?: string;
   }
 }
 
@@ -434,7 +452,8 @@ export interface VideoPlaylistUpdateResponse {
    */
   id: string;
   /**
-   * Workspace ID
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+   * @deprecated
    */
   collection_id?: string;
   /**
@@ -446,6 +465,10 @@ export interface VideoPlaylistUpdateResponse {
    */
   description?: string;
   player_config?: VideoPlaylistUpdateResponse.PlayerConfig;
+  /**
+   * Workspace ID
+   */
+  workspace_id?: string;
 }
 
 export namespace VideoPlaylistUpdateResponse {

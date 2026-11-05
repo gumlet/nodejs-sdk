@@ -35,7 +35,11 @@ export interface GlobalSearchSearchParams {
    */
   search_query: string;
   /**
-   * Workspace ID if you want to limit search to a specific workspace
+   * Gumlet video workspace ID. Preferred. Provide `workspace_id`, or deprecated `collection_id` / `source_id` (same ID).
+   */
+  workspace_id?: string;
+  /**
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
    */
   collection_id?: string;
   /**

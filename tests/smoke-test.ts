@@ -81,6 +81,7 @@ const cases: {
           },
         ],
         folder: '697375fbfa2d1037283140e4',
+        workspace_id: '646df1c9173a4a2fcac180b4',
       });
     },
   },
@@ -231,6 +232,7 @@ const cases: {
       const videoAsset = await client.videoAssets.deleteMany({
         source_id: '60bd2ba353ff754d28179ee6',
         asset_list: ['64249a8858fd3a208b987702', '64784bae843b155b829bbf84'],
+        workspace_id: '60bd2ba353ff754d28179ee6',
       });
     },
   },
@@ -245,6 +247,7 @@ const cases: {
         add_tags: ['tag-1'],
         remove_tags: ['playlist-1'],
         asset_list: ['6221db301c8b821b0519fba0', '61e8f2726ec832ab2ac4fa6e'],
+        workspace_id: '60bd2ba353ff754d28179ee6',
       });
     },
   },
@@ -406,6 +409,7 @@ const cases: {
       const videoUsageAnalytic = await client.videoUsageAnalytics.topAssets({
         start_at: '2026-06-21',
         end_at: '2026-06-30',
+        workspace_id: 'workspaceId',
         collection_id: 'collectionId',
         page: '1',
         page_size: '1000',
@@ -647,6 +651,7 @@ const cases: {
         title: 'Playlist-Title',
         description: 'This is description for playlist.',
         collection_id: '{{video-source-id}}',
+        workspace_id: '{{video-source-id}}',
       });
     },
   },
@@ -655,8 +660,20 @@ const cases: {
     operation: 'listAll',
     method: 'GET',
     path: '/video/playlist',
+    label: 'required params',
+    run: async () => {
+      const videoPlaylist = await client.videoPlaylists.listAll();
+    },
+  },
+
+  {
+    operation: 'listAll',
+    method: 'GET',
+    path: '/video/playlist',
+    label: 'all params',
     run: async () => {
       const videoPlaylist = await client.videoPlaylists.listAll({
+        workspace_id: 'workspaceId',
         collection_id: 'collectionId',
       });
     },
@@ -1658,6 +1675,7 @@ const cases: {
     run: async () => {
       const globalSearch = await client.globalSearch.search({
         search_query: 'searchQuery',
+        workspace_id: 'workspaceId',
         collection_id: 'collectionId',
         size: 20,
         assets_offset: 0,
