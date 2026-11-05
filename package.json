@@ -7,6 +7,10 @@
     "type": "git",
     "url": "git+https://github.com/gumlet/nodejs-sdk.git"
   },
+  "bugs": {
+    "url": "https://github.com/gumlet/nodejs-sdk/issues"
+  },
+  "homepage": "https://github.com/gumlet/nodejs-sdk",
   "type": "module",
   "sideEffects": false,
   "main": "./dist/cjs/index.js",
@@ -48,9 +52,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.cjs.json --noEmit",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "standardwebhooks": "^1.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "typescript": "^6.0.0"
   },

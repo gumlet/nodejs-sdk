@@ -182,6 +182,7 @@ const videoAsset = await client.videoAssets.upload({
     },
   ],
   folder: '697375fbfa2d1037283140e4',
+  workspace_id: '646df1c9173a4a2fcac180b4',
 });
 ```
 
@@ -315,6 +316,7 @@ Delete multiple VOD assets at once.
 const videoAsset = await client.videoAssets.deleteMany({
   source_id: '60bd2ba353ff754d28179ee6',
   asset_list: ['64249a8858fd3a208b987702', '64784bae843b155b829bbf84'],
+  workspace_id: '60bd2ba353ff754d28179ee6',
 });
 ```
 
@@ -333,6 +335,7 @@ const videoAsset = await client.videoAssets.tagMany({
   add_tags: ['tag-1'],
   remove_tags: ['playlist-1'],
   asset_list: ['6221db301c8b821b0519fba0', '61e8f2726ec832ab2ac4fa6e'],
+  workspace_id: '60bd2ba353ff754d28179ee6',
 });
 ```
 
@@ -609,6 +612,7 @@ const videoPlaylist = await client.videoPlaylists.create({
   title: 'Playlist-Title',
   description: 'This is description for playlist.',
   collection_id: '{{video-source-id}}',
+  workspace_id: '{{video-source-id}}',
 });
 ```
 
@@ -622,9 +626,7 @@ Get all playlists for given workspace
 | Response | [`VideoPlaylistListAllResponse`](./src/resources/video-playlists.ts) |
 
 ```ts
-const videoPlaylist = await client.videoPlaylists.listAll({
-  collection_id: 'collectionId',
-});
+const videoPlaylist = await client.videoPlaylists.listAll();
 ```
 
 ### Add asset to playlist
