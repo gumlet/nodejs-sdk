@@ -12,7 +12,7 @@ Please allow us reasonable time to investigate and address the issue before disc
 
 ## Reporting Non-SDK Security Issues
 
-If the issue is in the Gumlet API or service rather than in this SDK, report it through the security process Gumlet has published.
+If the issue is in the Gumlet API or service rather than in this SDK, report it to Gumlet at support@gumlet.com.
 
 ---
 
