@@ -2,7 +2,7 @@
 
 This library provides convenient access to the Gumlet REST API from TypeScript or JavaScript.
 
-The full API of this library can be found in [api.md](./api.md).
+The REST API documentation can be found on [docs.gumlet.com](https://docs.gumlet.com/reference). The full API of this library can be found in [api.md](./api.md).
 
 <br />
 
@@ -182,5 +182,3 @@ The same resource also has:
 ## Requirements
 
 - Node.js 20+, a modern browser, or any runtime with `fetch` support
-
-Powered by Scalar.
