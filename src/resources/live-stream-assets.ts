@@ -199,7 +199,7 @@ export interface LiveStreamAssetCreateParams {
    * Creates <code>MP4</code> version for download purpose.
    */
   mp4_access?: boolean;
-  orientation?: 'landscape' | 'potrait';
+  orientation?: 'landscape' | 'portrait';
   /**
    * @format date-time
    */
