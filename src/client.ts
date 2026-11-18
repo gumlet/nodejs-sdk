@@ -6,6 +6,8 @@ import {
   type AbstractPage,
   type PageNumberPageParams,
   PageNumberPageResponse,
+  type PageNumberPage2Params,
+  PageNumberPage2Response,
 } from './core/pagination';
 import * as Pagination from './core/pagination';
 import * as Errors from './error';
@@ -141,6 +143,7 @@ import {
   type ImageSourceDeleteResponse,
   type ImageSourcePurgeCacheResponse,
   type ImageSourcePurgeResponse,
+  type ImageSourcesPageNumberPage2,
   type ImageSourceCreateParams,
   type ImageSourceListParams,
   type ImageSourceUpdateParams,
@@ -1372,6 +1375,12 @@ export declare namespace Gumlet {
     type PageNumberPageResponse as PageNumberPageResponse,
   };
 
+  export import PageNumberPage2 = Pagination.PageNumberPage2;
+  export {
+    type PageNumberPage2Params as PageNumberPage2Params,
+    type PageNumberPage2Response as PageNumberPage2Response,
+  };
+
   export {
     VideoAssets as VideoAssets,
     type VideoAssetCreateResponse as VideoAssetCreateResponse,
@@ -1486,6 +1495,7 @@ export declare namespace Gumlet {
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
     type ImageSourcePurgeCacheResponse as ImageSourcePurgeCacheResponse,
     type ImageSourcePurgeResponse as ImageSourcePurgeResponse,
+    type ImageSourcesPageNumberPage2 as ImageSourcesPageNumberPage2,
     type ImageSourceCreateParams as ImageSourceCreateParams,
     type ImageSourceListParams as ImageSourceListParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,

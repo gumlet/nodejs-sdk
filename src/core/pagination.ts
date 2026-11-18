@@ -96,6 +96,12 @@ export interface PageNumberPageParams {
   page_size?: number;
 }
 
+export interface PageNumberPage2Params {
+  page_number?: number;
+
+  page_size?: number;
+}
+
 export interface PageNumberPageResponse<Item> {
   all_profiles: Array<Item>;
   total_profile_count: number;
@@ -120,6 +126,55 @@ export class PageNumberPage<Item> extends AbstractPage<Item> implements PageNumb
 
   getPaginatedItems(): Item[] {
     const items = this.all_profiles;
+    return Array.isArray(items) ? items : [];
+  }
+
+  nextPageRequestOptions(): PageRequestOptions | null {
+    const currentPage = numericPageParam(maybeObj(this.options.query)['page_number'], 1);
+    if (currentPage === null) {
+      return null;
+    }
+
+    const totalPages = null;
+    if (totalPages !== null && currentPage >= totalPages) {
+      return null;
+    }
+
+    const nextPage = currentPage + 1;
+    return {
+      ...this.options,
+      query: {
+        ...maybeObj(this.options.query),
+        page_number: nextPage,
+      },
+    };
+  }
+}
+
+export interface PageNumberPage2Response<Item> {
+  all_sources: Array<Item>;
+  total_count: number;
+  page_size: number;
+}
+
+export class PageNumberPage2<Item> extends AbstractPage<Item> implements PageNumberPage2Response<Item> {
+  all_sources: Array<Item>;
+
+  total_count: number;
+
+  page_size: number;
+
+  constructor(client: Gumlet, response: Response, body: unknown, options: FinalRequestOptions) {
+    super(client, response, body, options);
+    const parsed = body as PageNumberPage2Response<Item>;
+
+    this.all_sources = parsed.all_sources || [];
+    this.total_count = parsed.total_count;
+    this.page_size = parsed.page_size;
+  }
+
+  getPaginatedItems(): Item[] {
+    const items = this.all_sources;
     return Array.isArray(items) ? items : [];
   }
 

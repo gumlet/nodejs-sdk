@@ -23,10 +23,7 @@ describe.concurrent('resource imageSources', () => {
     { operation: 'list', path: '/image/sources' },
     'list: only required params',
     async () => {
-      const imageSource = await client.imageSources.list({
-        page_number: 1,
-        page_size: 20,
-      });
+      const page = await client.imageSources.list();
     },
   );
   smokeCase(
@@ -34,9 +31,7 @@ describe.concurrent('resource imageSources', () => {
     { operation: 'list', path: '/image/sources' },
     'list: required and optional params',
     async () => {
-      const imageSource = await client.imageSources.list({
-        page_number: 1,
-        page_size: 20,
+      const page = await client.imageSources.list({
         next_page_token: 'nextPageToken',
       });
     },

@@ -844,10 +844,7 @@ Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-ba
 | Response | [`ImageSourceListResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const imageSource = await client.imageSources.list({
-  page_number: 1,
-  page_size: 20,
-});
+const page = await client.imageSources.list();
 ```
 
 ### Get Image Source

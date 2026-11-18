@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
+import { PageNumberPage2, type PagePromise } from '../core/pagination';
 import type { RequestOptions } from '../internal/request-options';
 import { path as __scalarPath } from '../internal/utils/path';
 
@@ -33,21 +34,21 @@ export class ImageSources extends APIResource {
    *
    * @param {ImageSourceListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<ImageSourceListResponse>} List all image sources
+   * @returns {PagePromise<ImageSourcesPageNumberPage2, ImageSourceListResponse>} List all image sources
    *
    * @example
    * ```ts
-   * const imageSource = await client.imageSources.list({
-   *   page_number: 1,
-   *   page_size: 20,
-   * });
+   * const page = await client.imageSources.list();
    * ```
    */
   list(
     query: ImageSourceListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<ImageSourceListResponse> {
-    return this._client.get('/image/sources', { query, ...options });
+  ): PagePromise<ImageSourcesPageNumberPage2, ImageSourceListResponse> {
+    return this._client.getAPIList('/image/sources', PageNumberPage2<ImageSourceListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -365,120 +366,104 @@ export interface ImageSourceListParams {
 }
 
 export interface ImageSourceListResponse {
-  all_sources?: Array<ImageSourceListResponse.AllSource>;
   /**
-   * Cursor for the next page when more results exist. Empty string when there is no next page.
+   * Image source ID
    */
-  next_page_token?: string;
+  id: string;
   /**
-   * Page size used for this response when it differs from the default.
+   * Source namespace (i.e. subdomain of gumlet.io)
    */
-  page_size?: number;
+  namespace: string;
   /**
-   * Total number of image sources available
+   * Source type
    */
-  total_count?: number;
+  type?: string | null;
+  /**
+   * Created at timestamo in ISO 8601
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated at timestamo in ISO 8601
+   * @format date-time
+   */
+  updated_at?: string;
+  aws?: ImageSourceListResponse.Aws;
+  webfolder?: ImageSourceListResponse.Webfolder;
+  /**
+   * Custom domains assigned to this source.
+   */
+  cname?: Array<string>;
+  wasabi?: ImageSourceListResponse.Wasabi;
+  gcs?: ImageSourceListResponse.Gcs;
+  wordpress?: ImageSourceListResponse.Wordpress;
+  backblaze?: ImageSourceListResponse.Backblaze;
+  hetzner?: ImageSourceListResponse.Hetzner;
+  dostorage?: ImageSourceListResponse.Dostorage;
+  azure?: ImageSourceListResponse.Azure;
+  linode?: ImageSourceListResponse.Linode;
+  cloudinary?: ImageSourceListResponse.Cloudinary;
 }
 
 export namespace ImageSourceListResponse {
-  export interface AllSource {
-    /**
-     * Image source ID
-     */
-    id: string;
-    /**
-     * Source namespace (i.e. subdomain of gumlet.io)
-     */
-    namespace: string;
-    /**
-     * Source type
-     */
-    type?: string | null;
-    /**
-     * Created at timestamo in ISO 8601
-     * @format date-time
-     */
-    created_at?: string;
-    /**
-     * Updated at timestamo in ISO 8601
-     * @format date-time
-     */
-    updated_at?: string;
-    aws?: AllSource.Aws;
-    webfolder?: AllSource.Webfolder;
-    /**
-     * Custom domains assigned to this source.
-     */
-    cname?: Array<string>;
-    wasabi?: AllSource.Wasabi;
-    gcs?: AllSource.Gcs;
-    wordpress?: AllSource.Wordpress;
-    backblaze?: AllSource.Backblaze;
-    hetzner?: AllSource.Hetzner;
-    dostorage?: AllSource.Dostorage;
-    azure?: AllSource.Azure;
-    linode?: AllSource.Linode;
-    cloudinary?: AllSource.Cloudinary;
+  export interface Aws {
+    bucket_name?: string;
+    bucket_region?: string;
+    access_key?: string;
+    secret?: string;
+    base_path?: string;
   }
 
-  export namespace AllSource {
-    export interface Aws {
-      bucket_name?: string;
-      bucket_region?: string;
-      access_key?: string;
-      secret?: string;
-      base_path?: string;
-    }
+  export interface Webfolder {
+    base_url: string;
+  }
 
-    export interface Webfolder {
-      base_url: string;
-    }
+  export interface Wasabi {
+    bucket_name: string;
+    base_path?: string;
+  }
 
-    export interface Wasabi {
-      bucket_name: string;
-      base_path?: string;
-    }
+  export interface Gcs {
+    bucket_name: string;
+    base_path?: string;
+  }
 
-    export interface Gcs {
-      bucket_name: string;
-      base_path?: string;
-    }
+  export interface Wordpress {
+    website_url: string;
+  }
 
-    export interface Wordpress {
-      website_url: string;
-    }
+  export interface Backblaze {
+    bucket_name: string;
+    base_path?: string;
+  }
 
-    export interface Backblaze {
-      bucket_name: string;
-      base_path?: string;
-    }
+  export interface Hetzner {
+    bucket_name?: string;
+    base_path?: string;
+  }
 
-    export interface Hetzner {
-      bucket_name?: string;
-      base_path?: string;
-    }
+  export interface Dostorage {
+    bucket_name: string;
+    base_path?: string;
+  }
 
-    export interface Dostorage {
-      bucket_name: string;
-      base_path?: string;
-    }
+  export interface Azure {
+    azure_account_name: string;
+    azure_path: string;
+    azure_container_name?: string;
+  }
 
-    export interface Azure {
-      azure_account_name: string;
-      azure_path: string;
-      azure_container_name?: string;
-    }
+  export interface Linode {
+    bucket_name: string;
+    bucket_region: string;
+  }
 
-    export interface Linode {
-      bucket_name: string;
-      bucket_region: string;
-    }
-
-    export interface Cloudinary {
-      cloud_name: string;
-    }
+  export interface Cloudinary {
+    cloud_name: string;
   }
 }
+
+export type ImageSourcesPageNumberPage2 = PageNumberPage2<ImageSourceListResponse>;
 
 export interface ImageSourceRetrieveResponse {
   /**
@@ -1543,6 +1528,7 @@ export declare namespace ImageSources {
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
     type ImageSourcePurgeCacheResponse as ImageSourcePurgeCacheResponse,
     type ImageSourcePurgeResponse as ImageSourcePurgeResponse,
+    type ImageSourcesPageNumberPage2 as ImageSourcesPageNumberPage2,
     type ImageSourceCreateParams as ImageSourceCreateParams,
     type ImageSourceListParams as ImageSourceListParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,
