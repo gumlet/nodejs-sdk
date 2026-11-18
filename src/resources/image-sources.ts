@@ -374,6 +374,10 @@ export interface ImageSourceListResponse {
    * Page size used for this response when it differs from the default.
    */
   page_size?: number;
+  /**
+   * Total number of image sources available
+   */
+  total_count?: number;
 }
 
 export namespace ImageSourceListResponse {
