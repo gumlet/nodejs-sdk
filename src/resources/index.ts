@@ -103,6 +103,7 @@ export type {
   ImageSourceCreateResponse,
   ImageSourceListParams,
   ImageSourceListResponse,
+  ImageSourcesPageNumberPage2,
   ImageSourceRetrieveResponse,
   ImageSourceUpdateParams,
   ImageSourceUpdateResponse,

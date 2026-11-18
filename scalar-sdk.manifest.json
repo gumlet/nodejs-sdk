@@ -7566,6 +7566,14 @@
         }
       ],
       "responseLinks": [],
+      "pagination": {
+        "style": "page",
+        "itemsField": "all_sources",
+        "metadata": {
+          "totalField": "total_count",
+          "pageSizeField": "page_size"
+        }
+      },
       "transport": "http"
     },
     {
