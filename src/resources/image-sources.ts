@@ -29,6 +29,8 @@ export class ImageSources extends APIResource {
   /**
    * This endpoint list image sources which are assigned to the user or token.
    *
+   * Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+   *
    * @param {ImageSourceListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<ImageSourceListResponse>} List all image sources
@@ -36,8 +38,8 @@ export class ImageSources extends APIResource {
    * @example
    * ```ts
    * const imageSource = await client.imageSources.list({
-   *   offset: 0,
-   *   size: 20,
+   *   page_number: 1,
+   *   page_size: 20,
    * });
    * ```
    */
@@ -344,19 +346,34 @@ export namespace ImageSourceCreateResponse {
 
 export interface ImageSourceListParams {
   /**
-   * Skip number of items. Helpful for pagination.
-   * @default 0
+   * Page number to retrieve. Starts at `1`.
+   * @default 1
+   * @minimum 1
    */
-  offset?: number;
+  page_number?: number;
   /**
-   * Results per page.
-   * @default 20
+   * Number of items to return per page. **Default: `20`**. **Maximum: `100`**.
+   * @minimum 1
+   * @maximum 100
    */
-  size?: number;
+  page_size?: number;
+  /**
+   * Cursor for the next page. Pass the `next_page_token` value returned in the previous response.
+   * @pattern ^[a-fA-F0-9]{24}$
+   */
+  next_page_token?: string;
 }
 
 export interface ImageSourceListResponse {
   all_sources?: Array<ImageSourceListResponse.AllSource>;
+  /**
+   * Cursor for the next page when more results exist. Empty string when there is no next page.
+   */
+  next_page_token?: string;
+  /**
+   * Page size used for this response when it differs from the default.
+   */
+  page_size?: number;
 }
 
 export namespace ImageSourceListResponse {

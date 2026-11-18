@@ -30,6 +30,8 @@ export class RecycleBin extends APIResource {
   /**
    * List all assets in a recycle bin for a given workspace. The deleted assets are available for 30 days. After that, assets are permanently deleted.
    *
+   * Pagination uses `page_number` / `page_size` only (no `next_page_token`).
+   *
    * @param {RecycleBinListParams} query - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<RecycleBinListResponse>} Successful response
@@ -37,8 +39,9 @@ export class RecycleBin extends APIResource {
    * @example
    * ```ts
    * const recycleBin = await client.recycleBin.list({
-   *   size: 20,
    *   workspace_id: 'workspaceId',
+   *   page_number: 1,
+   *   page_size: 20,
    * });
    * ```
    */
@@ -56,20 +59,21 @@ export interface RecycleBinRecoverParams {
 
 export interface RecycleBinListParams {
   /**
-   * Number of items to skip from start of page response.
-   * @minimum 0
-   */
-  offset?: number;
-  /**
-   * Number of items to return for a single page.
-   * @default 20
-   * @minimum 10
-   */
-  size?: number;
-  /**
    * ID of workspace for which you want to list the recycle bin items.
    */
   workspace_id: string;
+  /**
+   * Page number to retrieve. Starts at `1`.
+   * @default 1
+   * @minimum 1
+   */
+  page_number?: number;
+  /**
+   * Number of items to return per page. **Default: `20`**. **Maximum: `100`**.
+   * @minimum 1
+   * @maximum 100
+   */
+  page_size?: number;
 }
 
 export interface RecycleBinListResponse {

@@ -85,17 +85,27 @@ export class WebhookEndpoints extends APIResource {
   /**
    * Get logs history for a given webhook.
    *
+   * Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+   *
    * @param {string} webhookID - Webhook ID. You can get it using list webhook endpoint.
+   * @param {WebhookEndpointHistoryParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<WebhookEndpointHistoryResponse>} Successful response
    *
    * @example
    * ```ts
-   * const webhookEndpoint = await client.webhookEndpoints.history('webhookId');
+   * const webhookEndpoint = await client.webhookEndpoints.history('webhookId', {
+   *   page_number: 1,
+   *   page_size: 20,
+   * });
    * ```
    */
-  history(webhookID: string, options?: RequestOptions): APIPromise<WebhookEndpointHistoryResponse> {
-    return this._client.get(__scalarPath`/org/webhook/${webhookID}/history`, options);
+  history(
+    webhookID: string,
+    query: WebhookEndpointHistoryParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<WebhookEndpointHistoryResponse> {
+    return this._client.get(__scalarPath`/org/webhook/${webhookID}/history`, { query, ...options });
   }
 }
 
@@ -302,6 +312,26 @@ export interface WebhookEndpointUpdateResponse {
 
 export type WebhookEndpointDeleteResponse = Record<string, unknown>;
 
+export interface WebhookEndpointHistoryParams {
+  /**
+   * Page number to retrieve. Starts at `1`.
+   * @default 1
+   * @minimum 1
+   */
+  page_number?: number;
+  /**
+   * Number of items to return per page. **Default: `20`**. **Maximum: `100`**.
+   * @minimum 1
+   * @maximum 100
+   */
+  page_size?: number;
+  /**
+   * Cursor for the next page. Pass the `next_page_token` value returned in the previous response.
+   * @pattern ^[a-fA-F0-9]{24}$
+   */
+  next_page_token?: string;
+}
+
 export type WebhookEndpointHistoryResponse =
   Array<WebhookEndpointHistoryResponse.WebhookEndpointHistoryResponseItem>;
 
@@ -369,5 +399,6 @@ export declare namespace WebhookEndpoints {
     type WebhookEndpointHistoryResponse as WebhookEndpointHistoryResponse,
     type WebhookEndpointCreateParams as WebhookEndpointCreateParams,
     type WebhookEndpointUpdateParams as WebhookEndpointUpdateParams,
+    type WebhookEndpointHistoryParams as WebhookEndpointHistoryParams,
   };
 }

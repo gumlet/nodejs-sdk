@@ -14,10 +14,10 @@ export type {
   VideoAssetThumbnailUploadResponse,
   VideoAssetCreateUpdateChapterParams,
   VideoAssetCreateUpdateChapterResponse,
+  VideoAssetListWorkspaceFoldersAndDeprecatedParams,
+  VideoAssetListWorkspaceFoldersAndDeprecatedResponse,
   VideoAssetListParams,
   VideoAssetListResponse,
-  VideoAssetListDeprecatedParams,
-  VideoAssetListDeprecatedResponse,
   VideoAssetDeleteManyParams,
   VideoAssetDeleteManyResponse,
   VideoAssetTagManyParams,
@@ -63,6 +63,7 @@ export type {
   VideoProfileCreateResponse,
   VideoProfileListParams,
   VideoProfileListResponse,
+  VideoProfilesPageNumberPage,
   VideoProfileUpdateParams,
   VideoProfileUpdateResponse,
   VideoProfileRetrieveResponse,
@@ -93,6 +94,7 @@ export type {
   WebhookEndpointUpdateParams,
   WebhookEndpointUpdateResponse,
   WebhookEndpointDeleteResponse,
+  WebhookEndpointHistoryParams,
   WebhookEndpointHistoryResponse,
 } from './webhook-endpoints';
 export { ImageSources } from './image-sources';

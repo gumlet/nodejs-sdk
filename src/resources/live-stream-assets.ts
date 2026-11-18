@@ -104,6 +104,8 @@ export class LiveStreamAssets extends APIResource {
   /**
    * This endpoint lists live assets on the basis of `status` for the given `live_source_id`.
    *
+   * Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+   *
    * @param {string} liveSourceID - Gumlet live source/collection id.
    * @param {LiveStreamAssetFilterParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -111,7 +113,10 @@ export class LiveStreamAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId');
+   * const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId', {
+   *   page_number: 1,
+   *   page_size: 20,
+   * });
    * ```
    */
   filter(
@@ -348,15 +353,22 @@ export interface LiveStreamAssetFilterParams {
    */
   status?: string;
   /**
-   * Offset value for a paginated list of assets.
-   * @format int32
+   * Page number to retrieve. Starts at `1`.
+   * @default 1
+   * @minimum 1
    */
-  offset?: number;
+  page_number?: number;
   /**
-   * Page size for the paginated list.
-   * @format int32
+   * Number of items to return per page. **Default: `20`**. **Maximum: `100`**.
+   * @minimum 1
+   * @maximum 100
    */
-  size?: number;
+  page_size?: number;
+  /**
+   * Cursor for the next page. Pass the `next_page_token` value returned in the previous response.
+   * @pattern ^[a-fA-F0-9]{24}$
+   */
+  next_page_token?: string;
 }
 
 export interface LiveStreamAssetFilterResponse {
@@ -369,6 +381,14 @@ export interface LiveStreamAssetFilterResponse {
    * @default 0
    */
   current_offset?: number;
+  /**
+   * Cursor for the next page when more results exist. Empty string when there is no next page.
+   */
+  next_page_token?: string;
+  /**
+   * Page size used for this response when it differs from the default.
+   */
+  page_size?: number;
 }
 
 export namespace LiveStreamAssetFilterResponse {

@@ -1,7 +1,7 @@
 {
   "name": "Gumlet",
   "slug": "gumlet",
-  "generatorVersion": "0.38.0",
+  "generatorVersion": "0.44.0",
   "servers": [
     "https://api.gumlet.com/v1"
   ],
@@ -2635,9 +2635,9 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "list",
-      "publicOperation": "list",
-      "deprecated": false,
+      "operation": "listWorkspaceFoldersAndDeprecated",
+      "publicOperation": "listWorkspaceFoldersAndDeprecated",
+      "deprecated": true,
       "method": "GET",
       "path": "/video/workspaces/{workspace_id}/list",
       "pathParams": [
@@ -2802,7 +2802,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetListParams"
+        "publicName": "VideoAssetListWorkspaceFoldersAndDeprecatedParams"
       },
       "response": {
         "status": "200",
@@ -2872,9 +2872,9 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "listDeprecated",
-      "publicOperation": "listDeprecated",
-      "deprecated": true,
+      "operation": "list",
+      "publicOperation": "list",
+      "deprecated": false,
       "method": "GET",
       "path": "/video/assets/list/{workspace_id}",
       "pathParams": [
@@ -2887,25 +2887,35 @@
         "status",
         "tag",
         "title",
-        "folder",
-        "offset",
-        "size",
+        "folder_id",
         "playlist_id",
+        "start_date",
+        "end_date",
+        "min_duration",
+        "max_duration",
         "sortBy",
         "orderBy",
-        "type"
+        "signed_token",
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "publicQueryParams": [
         "status",
         "tag",
         "title",
-        "folder",
-        "offset",
-        "size",
+        "folder_id",
         "playlist_id",
+        "start_date",
+        "end_date",
+        "min_duration",
+        "max_duration",
         "sortBy",
         "orderBy",
-        "type"
+        "signed_token",
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -2940,25 +2950,37 @@
           "explode": true
         },
         {
-          "name": "folder",
-          "required": false,
-          "style": "form",
-          "explode": true
-        },
-        {
-          "name": "offset",
-          "required": false,
-          "style": "form",
-          "explode": true
-        },
-        {
-          "name": "size",
+          "name": "folder_id",
           "required": false,
           "style": "form",
           "explode": true
         },
         {
           "name": "playlist_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "start_date",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "end_date",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "min_duration",
+          "required": false,
+          "style": "form",
+          "explode": true
+        },
+        {
+          "name": "max_duration",
           "required": false,
           "style": "form",
           "explode": true
@@ -2978,7 +3000,28 @@
           "defaultValue": "desc"
         },
         {
-          "name": "type",
+          "name": "signed_token",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "page_number",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 1
+        },
+        {
+          "name": "page_size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        },
+        {
+          "name": "next_page_token",
           "required": false,
           "style": "form",
           "explode": true
@@ -2989,7 +3032,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetListDeprecatedParams"
+        "publicName": "VideoAssetListParams"
       },
       "response": {
         "status": "200",
@@ -4975,12 +5018,14 @@
       "pathParams": [],
       "publicPathParams": [],
       "queryParams": [
-        "offset",
-        "size"
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "publicQueryParams": [
-        "offset",
-        "size"
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -4990,13 +5035,21 @@
       "pathParamDetails": [],
       "queryParamDetails": [
         {
-          "name": "offset",
+          "name": "page_number",
           "required": false,
           "style": "form",
-          "explode": true
+          "explode": true,
+          "defaultValue": 1
         },
         {
-          "name": "size",
+          "name": "page_size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        },
+        {
+          "name": "next_page_token",
           "required": false,
           "style": "form",
           "explode": true
@@ -5060,6 +5113,14 @@
         }
       ],
       "responseLinks": [],
+      "pagination": {
+        "style": "page",
+        "itemsField": "all_profiles",
+        "metadata": {
+          "totalField": "total_profile_count",
+          "pageSizeField": "page_size"
+        }
+      },
       "transport": "http"
     },
     {
@@ -7073,8 +7134,16 @@
       "publicPathParams": [
         "webhook_id"
       ],
-      "queryParams": [],
-      "publicQueryParams": [],
+      "queryParams": [
+        "page_number",
+        "page_size",
+        "next_page_token"
+      ],
+      "publicQueryParams": [
+        "page_number",
+        "page_size",
+        "next_page_token"
+      ],
       "headerParams": [],
       "publicHeaderParams": [],
       "bodyParams": [],
@@ -7088,7 +7157,28 @@
           "explode": false
         }
       ],
-      "queryParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "page_number",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 1
+        },
+        {
+          "name": "page_size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        },
+        {
+          "name": "next_page_token",
+          "required": false,
+          "style": "form",
+          "explode": true
+        }
+      ],
       "headerParamDetails": [],
       "cookieParams": [],
       "publicCookieParams": [],
@@ -7381,12 +7471,14 @@
       "pathParams": [],
       "publicPathParams": [],
       "queryParams": [
-        "offset",
-        "size"
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "publicQueryParams": [
-        "offset",
-        "size"
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -7396,18 +7488,24 @@
       "pathParamDetails": [],
       "queryParamDetails": [
         {
-          "name": "offset",
+          "name": "page_number",
           "required": false,
           "style": "form",
           "explode": true,
-          "defaultValue": 0
+          "defaultValue": 1
         },
         {
-          "name": "size",
+          "name": "page_size",
           "required": false,
           "style": "form",
           "explode": true,
           "defaultValue": 20
+        },
+        {
+          "name": "next_page_token",
+          "required": false,
+          "style": "form",
+          "explode": true
         }
       ],
       "headerParamDetails": [],
@@ -8927,13 +9025,15 @@
       ],
       "queryParams": [
         "status",
-        "offset",
-        "size"
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "publicQueryParams": [
         "status",
-        "offset",
-        "size"
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -8956,13 +9056,21 @@
           "explode": true
         },
         {
-          "name": "offset",
+          "name": "page_number",
           "required": false,
           "style": "form",
-          "explode": true
+          "explode": true,
+          "defaultValue": 1
         },
         {
-          "name": "size",
+          "name": "page_size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        },
+        {
+          "name": "next_page_token",
           "required": false,
           "style": "form",
           "explode": true
@@ -9515,14 +9623,14 @@
       "pathParams": [],
       "publicPathParams": [],
       "queryParams": [
-        "offset",
-        "size",
-        "workspace_id"
+        "workspace_id",
+        "page_number",
+        "page_size"
       ],
       "publicQueryParams": [
-        "offset",
-        "size",
-        "workspace_id"
+        "workspace_id",
+        "page_number",
+        "page_size"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -9532,23 +9640,24 @@
       "pathParamDetails": [],
       "queryParamDetails": [
         {
-          "name": "offset",
-          "required": false,
-          "style": "form",
-          "explode": true
-        },
-        {
-          "name": "size",
-          "required": false,
-          "style": "form",
-          "explode": true,
-          "defaultValue": 20
-        },
-        {
           "name": "workspace_id",
           "required": true,
           "style": "form",
           "explode": true
+        },
+        {
+          "name": "page_number",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 1
+        },
+        {
+          "name": "page_size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
         }
       ],
       "headerParamDetails": [],
@@ -9634,12 +9743,14 @@
       "pathParams": [],
       "publicPathParams": [],
       "queryParams": [
-        "offset",
-        "size"
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "publicQueryParams": [
-        "offset",
-        "size"
+        "page_number",
+        "page_size",
+        "next_page_token"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -9649,18 +9760,24 @@
       "pathParamDetails": [],
       "queryParamDetails": [
         {
-          "name": "offset",
+          "name": "page_number",
           "required": false,
           "style": "form",
           "explode": true,
-          "defaultValue": "0"
+          "defaultValue": 1
         },
         {
-          "name": "size",
+          "name": "page_size",
           "required": false,
           "style": "form",
           "explode": true,
-          "defaultValue": "10"
+          "defaultValue": 20
+        },
+        {
+          "name": "next_page_token",
+          "required": false,
+          "style": "form",
+          "explode": true
         }
       ],
       "headerParamDetails": [],
@@ -11581,11 +11698,13 @@
       ],
       "queryParams": [
         "page_number",
-        "page_size"
+        "page_size",
+        "next_page_token"
       ],
       "publicQueryParams": [
         "page_number",
-        "page_size"
+        "page_size",
+        "next_page_token"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -11613,7 +11732,13 @@
           "required": false,
           "style": "form",
           "explode": true,
-          "defaultValue": 10
+          "defaultValue": 20
+        },
+        {
+          "name": "next_page_token",
+          "required": false,
+          "style": "form",
+          "explode": true
         }
       ],
       "headerParamDetails": [],

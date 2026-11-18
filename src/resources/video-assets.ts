@@ -192,9 +192,45 @@ export class VideoAssets extends APIResource {
   }
 
   /**
+   * [Deprecated] Combined folders + assets list for a workspace. Use `GET /video/assets/list/{workspace_id}` for assets and `GET /video/workspaces/{workspace_id}/folders` for folders instead.
+   *
    * List folders and assets for a workspace in a single response. Use `parent_id` to browse a specific folder, or filters like `title`, `status`, and `playlist_id` to search assets.
    *
    * @param {string} workspaceID - Video workspace id.
+   * @param {VideoAssetListWorkspaceFoldersAndDeprecatedParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<VideoAssetListWorkspaceFoldersAndDeprecatedResponse>} 200
+   *
+   * @example
+   * ```ts
+   * const videoAsset = await client.videoAssets.listWorkspaceFoldersAndDeprecated('workspaceId', {
+   *   type: 'all',
+   *   offset: 0,
+   *   size: 20,
+   *   signed_token: 'false',
+   * });
+   * ```
+   *
+   * @deprecated
+   */
+  listWorkspaceFoldersAndDeprecated(
+    workspaceID: string,
+    query: VideoAssetListWorkspaceFoldersAndDeprecatedParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VideoAssetListWorkspaceFoldersAndDeprecatedResponse> {
+    return this._client.get(__scalarPath`/video/workspaces/${workspaceID}/list`, { query, ...options });
+  }
+
+  /**
+   * List assets in a video workspace (local Mongo list; not Atlas Search).
+   *
+   * Use `page_number` and `page_size` for page-based pagination. Use `next_page_token` for cursor-based pagination where supported.
+   *
+   * `next_page_token` is supported only with the **default** sort or `sortBy=created_at` (and without a `title` search). It is **not** supported with other sort fields (for example `title`, `duration`, `status`, `playlist_order`, `custom`) or when `title` is set; in those cases use `page_number` / `page_size` only.
+   *
+   * For folders, use `GET /video/workspaces/{workspace_id}/folders` and combine results in your client. The combined endpoint `GET /video/workspaces/{workspace_id}/list` is deprecated.
+   *
+   * @param {string} workspaceID - Gumlet workspace ID. You can get it on the Gumlet dashboard or retrieve it using the list workspaces API.
    * @param {VideoAssetListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoAssetListResponse>} 200
@@ -202,10 +238,11 @@ export class VideoAssets extends APIResource {
    * @example
    * ```ts
    * const videoAsset = await client.videoAssets.list('workspaceId', {
-   *   type: 'all',
-   *   offset: 0,
-   *   size: 20,
+   *   sortBy: 'created_at',
+   *   orderBy: 'desc',
    *   signed_token: 'false',
+   *   page_number: 1,
+   *   page_size: 20,
    * });
    * ```
    */
@@ -214,32 +251,6 @@ export class VideoAssets extends APIResource {
     query: VideoAssetListParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<VideoAssetListResponse> {
-    return this._client.get(__scalarPath`/video/workspaces/${workspaceID}/list`, { query, ...options });
-  }
-
-  /**
-   * [Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.
-   *
-   * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
-   * @param {VideoAssetListDeprecatedParams} [query] - The parameters to send with the request.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetListDeprecatedResponse>} 200
-   *
-   * @example
-   * ```ts
-   * const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
-   *   sortBy: 'created_at',
-   *   orderBy: 'desc',
-   * });
-   * ```
-   *
-   * @deprecated
-   */
-  listDeprecated(
-    workspaceID: string,
-    query: VideoAssetListDeprecatedParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<VideoAssetListDeprecatedResponse> {
     return this._client.get(__scalarPath`/video/assets/list/${workspaceID}`, { query, ...options });
   }
 
@@ -1643,7 +1654,7 @@ export namespace VideoAssetCreateUpdateChapterParams {
 
 export type VideoAssetCreateUpdateChapterResponse = Record<string, unknown>;
 
-export interface VideoAssetListParams {
+export interface VideoAssetListWorkspaceFoldersAndDeprecatedParams {
   /**
    * Return `folders`, `videos`, or `all`. Default is `all`.
    */
@@ -1715,9 +1726,9 @@ export interface VideoAssetListParams {
   signed_token?: 'true' | 'false';
 }
 
-export interface VideoAssetListResponse {
-  all_assets: Array<VideoAssetListResponse.AllAsset>;
-  folders?: Array<VideoAssetListResponse.Folder>;
+export interface VideoAssetListWorkspaceFoldersAndDeprecatedResponse {
+  all_assets: Array<VideoAssetListWorkspaceFoldersAndDeprecatedResponse.AllAsset>;
+  folders?: Array<VideoAssetListWorkspaceFoldersAndDeprecatedResponse.Folder>;
   /**
    * @default 0
    */
@@ -1736,7 +1747,7 @@ export interface VideoAssetListResponse {
   current_offset?: number;
 }
 
-export namespace VideoAssetListResponse {
+export namespace VideoAssetListWorkspaceFoldersAndDeprecatedResponse {
   export interface AllAsset {
     asset_id?: string;
     /**
@@ -1872,53 +1883,80 @@ export namespace VideoAssetListResponse {
   }
 }
 
-export interface VideoAssetListDeprecatedParams {
+export interface VideoAssetListParams {
   /**
-   * To filter assets on the basis of their current status. Can be specified as a single status value string or comma-separated status values. The status value can be one of `queued`, `processing`, `ready`, `errored`, and `deleted`.
+   * Filter assets by status. Single value or comma-separated list (for example `ready` or `ready,errored`).
    */
-  status?: 'queued' | 'processing' | 'ready' | 'errored' | 'deleted';
+  status?: string;
   /**
-   * Input tag on the basis of which assets need to be filtered. To filter on multiple tags use comma-separated string.
+   * Filter by asset tag(s). Use a comma-separated string for multiple tags.
    */
   tag?: string;
   /**
-   * Title on the basis of which assets need to be filtered.
+   * Filter assets by title (text search). When `title` is set, `next_page_token` is not supported - use `page_number` / `page_size`.
    */
   title?: string;
   /**
-   * Folder name on the basis of which assets need to be filtered.
+   * Filter assets by folder id. Send `null` or empty string for assets not in a folder.
    */
-  folder?: string;
+  folder_id?: string;
   /**
-   * Offset value for a paginated list of assets.
-   */
-  offset?: string;
-  /**
-   * Page size for the paginated list. **Default: `10`** **Max Size: `100`**
-   */
-  size?: string;
-  /**
-   * filter assets from a playlist.
+   * Filter assets belonging to a playlist.
    */
   playlist_id?: string;
   /**
-   * assets will be sorted based on the provided field.
-   * @default created_at
+   * Asset `created_at` lower bound. Date in `yyyy-MM-dd` format.
+   * @format date
    */
-  sortBy?: 'title' | 'duration' | 'uploaded_at' | 'created_at';
+  start_date?: string;
   /**
-   * assets will be sorted in the specified order based on provided sortBy field or by default createAt field.
-   * @default desc
+   * Asset `created_at` upper bound. Date in `yyyy-MM-dd` format.
+   * @format date
+   */
+  end_date?: string;
+  /**
+   * Minimum asset duration in seconds.
+   * @minimum 0
+   */
+  min_duration?: number;
+  /**
+   * Maximum asset duration in seconds.
+   * @minimum 0
+   */
+  max_duration?: number;
+  /**
+   * Field to sort by. Default is `created_at`. `next_page_token` is only supported for the default sort or `created_at`.
+   */
+  sortBy?: 'title' | 'duration' | 'uploaded_at' | 'created_at' | 'status';
+  /**
+   * Sort direction. Default is `desc`.
    */
   orderBy?: 'asc' | 'desc';
   /**
-   * Search for folders, videos, or both. For videos, use `videos`. For folders, use `folders`. If you do not send this parameter, it will search for both.
+   * Whether URLs should be pre-signed in the API response. Possible values: `true` and `false`. Default is `false`.
    */
-  type?: string;
+  signed_token?: 'true' | 'false';
+  /**
+   * Page number to retrieve. Starts at `1`.
+   * @default 1
+   * @minimum 1
+   */
+  page_number?: number;
+  /**
+   * Number of items to return per page. **Default: `20`**. **Maximum: `100`**.
+   * @minimum 1
+   * @maximum 100
+   */
+  page_size?: number;
+  /**
+   * Cursor for the next page. Pass the `next_page_token` value returned in the previous response. Supported only when sorting by default/`created_at` and when `title` is not set. Otherwise the API returns `400`.
+   * @pattern ^[a-fA-F0-9]{24}$
+   */
+  next_page_token?: string;
 }
 
-export interface VideoAssetListDeprecatedResponse {
-  all_assets?: Array<VideoAssetListDeprecatedResponse.AllAsset>;
+export interface VideoAssetListResponse {
+  all_assets?: Array<VideoAssetListResponse.AllAsset>;
   /**
    * @default 0
    */
@@ -1928,9 +1966,25 @@ export interface VideoAssetListDeprecatedResponse {
    */
   current_offset?: number;
   distinct_tags?: Array<string>;
+  /**
+   * Cursor for the next page when more results exist. Empty string when there is no next page. Only returned for default/`created_at` sorts without `title` search.
+   */
+  next_page_token?: string;
+  /**
+   * Page size used for this response when it differs from the default.
+   */
+  page_size?: number;
+  /**
+   * Sort key applied to the result set (for example `created_at` or `custom`).
+   */
+  order_key?: string;
+  /**
+   * Sort direction applied to the result set.
+   */
+  order_direction?: 'asc' | 'desc';
 }
 
-export namespace VideoAssetListDeprecatedResponse {
+export namespace VideoAssetListResponse {
   export interface AllAsset {
     asset_id?: string;
     /**
@@ -2330,8 +2384,8 @@ export declare namespace VideoAssets {
     type VideoAssetThumbnailSelectResponse as VideoAssetThumbnailSelectResponse,
     type VideoAssetThumbnailUploadResponse as VideoAssetThumbnailUploadResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
+    type VideoAssetListWorkspaceFoldersAndDeprecatedResponse as VideoAssetListWorkspaceFoldersAndDeprecatedResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
-    type VideoAssetListDeprecatedResponse as VideoAssetListDeprecatedResponse,
     type VideoAssetDeleteManyResponse as VideoAssetDeleteManyResponse,
     type VideoAssetTagManyResponse as VideoAssetTagManyResponse,
     type VideoAssetAnalyticsResponse as VideoAssetAnalyticsResponse,
@@ -2340,8 +2394,8 @@ export declare namespace VideoAssets {
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
     type VideoAssetThumbnailSelectParams as VideoAssetThumbnailSelectParams,
     type VideoAssetCreateUpdateChapterParams as VideoAssetCreateUpdateChapterParams,
+    type VideoAssetListWorkspaceFoldersAndDeprecatedParams as VideoAssetListWorkspaceFoldersAndDeprecatedParams,
     type VideoAssetListParams as VideoAssetListParams,
-    type VideoAssetListDeprecatedParams as VideoAssetListDeprecatedParams,
     type VideoAssetDeleteManyParams as VideoAssetDeleteManyParams,
     type VideoAssetTagManyParams as VideoAssetTagManyParams,
     type VideoAssetAnalyticsParams as VideoAssetAnalyticsParams,
