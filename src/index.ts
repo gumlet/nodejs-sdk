@@ -4,6 +4,7 @@ export { Gumlet as default } from './client.js';
 
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './api-promise';
+export { PagePromise } from './core/pagination';
 export { WebhookVerificationError } from './internal/webhook-verify';
 export { Gumlet, type ClientOptions, type AuthTokenProvider } from './client.js';
 export {

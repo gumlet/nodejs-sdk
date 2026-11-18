@@ -87,6 +87,8 @@ export class ChannelViewers extends APIResource {
   /**
    * List all channel subscribers.
    *
+   * Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+   *
    * @param {string} workspaceID - Gumlet workspace ID. You can get it on Gumlet dashboard or retrieve it using list workspace API.
    * @param {ChannelViewerListSubscribersParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -96,7 +98,7 @@ export class ChannelViewers extends APIResource {
    * ```ts
    * const channelViewer = await client.channelViewers.listSubscribers('workspaceId', {
    *   page_number: 1,
-   *   page_size: 10,
+   *   page_size: 20,
    * });
    * ```
    */
@@ -164,19 +166,22 @@ export interface ChannelViewerInviteCsvResponse {
 
 export interface ChannelViewerListSubscribersParams {
   /**
-   * Page number to retrieve. Starts at 1.
+   * Page number to retrieve. Starts at `1`.
    * @default 1
    * @minimum 1
-   * @multipleOf 1
    */
   page_number?: number;
   /**
-   * Number of items to return per page
-   * @default 10
+   * Number of items to return per page. **Default: `20`**. **Maximum: `100`**.
    * @minimum 1
-   * @multipleOf 1
+   * @maximum 100
    */
   page_size?: number;
+  /**
+   * Cursor for the next page. Pass the `next_page_token` value returned in the previous response.
+   * @pattern ^[a-fA-F0-9]{24}$
+   */
+  next_page_token?: string;
 }
 
 export interface ChannelViewerListSubscribersResponse {
@@ -188,6 +193,14 @@ export interface ChannelViewerListSubscribersResponse {
    * Number of total subscribers
    */
   total_count: number;
+  /**
+   * Cursor for the next page when more results exist. Empty string when there is no next page.
+   */
+  next_page_token?: string;
+  /**
+   * Page size used for this response when it differs from the default.
+   */
+  page_size?: number;
 }
 
 export namespace ChannelViewerListSubscribersResponse {
