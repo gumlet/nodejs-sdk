@@ -2,7 +2,7 @@
 
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
-import { PageNumberPage3, type PagePromise } from '../core/pagination';
+import { LiveAssetsPage, type PagePromise } from '../core/pagination';
 import type { RequestOptions } from '../internal/request-options';
 import { buildHeaders } from '../internal/headers';
 import { path as __scalarPath } from '../internal/utils/path';
@@ -110,7 +110,7 @@ export class LiveStreamAssets extends APIResource {
    * @param {string} liveSourceID - Gumlet live source/collection id.
    * @param {LiveStreamAssetFilterParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {PagePromise<LiveStreamAssetsPageNumberPage3, LiveStreamAssetFilterResponse>} 200
+   * @returns {PagePromise<LiveStreamAssetsLiveAssetsPage, LiveStreamAssetFilterResponse>} 200
    *
    * @example
    * ```ts
@@ -121,10 +121,10 @@ export class LiveStreamAssets extends APIResource {
     liveSourceID: string,
     query: LiveStreamAssetFilterParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<LiveStreamAssetsPageNumberPage3, LiveStreamAssetFilterResponse> {
+  ): PagePromise<LiveStreamAssetsLiveAssetsPage, LiveStreamAssetFilterResponse> {
     return this._client.getAPIList(
       __scalarPath`/video/live/assets/list/${liveSourceID}`,
-      PageNumberPage3<LiveStreamAssetFilterResponse>,
+      LiveAssetsPage<LiveStreamAssetFilterResponse>,
       { query, ...options },
     );
   }
@@ -412,7 +412,7 @@ export namespace LiveStreamAssetFilterResponse {
   }
 }
 
-export type LiveStreamAssetsPageNumberPage3 = PageNumberPage3<LiveStreamAssetFilterResponse>;
+export type LiveStreamAssetsLiveAssetsPage = LiveAssetsPage<LiveStreamAssetFilterResponse>;
 
 export interface LiveStreamAssetUploadParams {
   /**
@@ -475,7 +475,7 @@ export declare namespace LiveStreamAssets {
     type LiveStreamAssetFilterResponse as LiveStreamAssetFilterResponse,
     type LiveStreamAssetUploadResponse as LiveStreamAssetUploadResponse,
     type LiveStreamAssetStatusHistoryResponse as LiveStreamAssetStatusHistoryResponse,
-    type LiveStreamAssetsPageNumberPage3 as LiveStreamAssetsPageNumberPage3,
+    type LiveStreamAssetsLiveAssetsPage as LiveStreamAssetsLiveAssetsPage,
     type LiveStreamAssetCreateParams as LiveStreamAssetCreateParams,
     type LiveStreamAssetUpdateParams as LiveStreamAssetUpdateParams,
     type LiveStreamAssetFilterParams as LiveStreamAssetFilterParams,

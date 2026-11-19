@@ -2,7 +2,7 @@
 
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
-import { PageNumberPage, type PagePromise } from '../core/pagination';
+import { ProfilePage, type PagePromise } from '../core/pagination';
 import type { RequestOptions } from '../internal/request-options';
 import { path as __scalarPath } from '../internal/utils/path';
 
@@ -34,7 +34,7 @@ export class VideoProfiles extends APIResource {
    *
    * @param {VideoProfileListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {PagePromise<VideoProfilesPageNumberPage, VideoProfileListResponse>} 200
+   * @returns {PagePromise<VideoProfilesProfilePage, VideoProfileListResponse>} 200
    *
    * @example
    * ```ts
@@ -44,8 +44,8 @@ export class VideoProfiles extends APIResource {
   list(
     query: VideoProfileListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<VideoProfilesPageNumberPage, VideoProfileListResponse> {
-    return this._client.getAPIList('/video/profiles', PageNumberPage<VideoProfileListResponse>, {
+  ): PagePromise<VideoProfilesProfilePage, VideoProfileListResponse> {
+    return this._client.getAPIList('/video/profiles', ProfilePage<VideoProfileListResponse>, {
       query,
       ...options,
     });
@@ -444,7 +444,7 @@ export namespace VideoProfileListResponse {
   }
 }
 
-export type VideoProfilesPageNumberPage = PageNumberPage<VideoProfileListResponse>;
+export type VideoProfilesProfilePage = ProfilePage<VideoProfileListResponse>;
 
 export interface VideoProfileUpdateParams {
   /**
@@ -796,7 +796,7 @@ export declare namespace VideoProfiles {
     type VideoProfileUpdateResponse as VideoProfileUpdateResponse,
     type VideoProfileRetrieveResponse as VideoProfileRetrieveResponse,
     type VideoProfileDeleteResponse as VideoProfileDeleteResponse,
-    type VideoProfilesPageNumberPage as VideoProfilesPageNumberPage,
+    type VideoProfilesProfilePage as VideoProfilesProfilePage,
     type VideoProfileCreateParams as VideoProfileCreateParams,
     type VideoProfileListParams as VideoProfileListParams,
     type VideoProfileUpdateParams as VideoProfileUpdateParams,

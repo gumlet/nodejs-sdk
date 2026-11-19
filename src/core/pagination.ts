@@ -90,31 +90,31 @@ export class PagePromise<
   }
 }
 
-export interface PageNumberPageParams {
+export interface ProfilePageParams {
   page_number?: number;
 
   page_size?: number;
 }
 
-export interface PageNumberPage2Params {
+export interface ImageSourcePageParams {
   page_number?: number;
 
   page_size?: number;
 }
 
-export interface PageNumberPage3Params {
+export interface LiveAssetsPageParams {
   page_number?: number;
 
   page_size?: number;
 }
 
-export interface PageNumberPageResponse<Item> {
+export interface ProfilePageResponse<Item> {
   all_profiles: Array<Item>;
   total_profile_count: number;
   page_size: number;
 }
 
-export class PageNumberPage<Item> extends AbstractPage<Item> implements PageNumberPageResponse<Item> {
+export class ProfilePage<Item> extends AbstractPage<Item> implements ProfilePageResponse<Item> {
   all_profiles: Array<Item>;
 
   total_profile_count: number;
@@ -123,7 +123,7 @@ export class PageNumberPage<Item> extends AbstractPage<Item> implements PageNumb
 
   constructor(client: Gumlet, response: Response, body: unknown, options: FinalRequestOptions) {
     super(client, response, body, options);
-    const parsed = body as PageNumberPageResponse<Item>;
+    const parsed = body as ProfilePageResponse<Item>;
 
     this.all_profiles = parsed.all_profiles || [];
     this.total_profile_count = parsed.total_profile_count;
@@ -157,13 +157,13 @@ export class PageNumberPage<Item> extends AbstractPage<Item> implements PageNumb
   }
 }
 
-export interface PageNumberPage2Response<Item> {
+export interface ImageSourcePageResponse<Item> {
   all_sources: Array<Item>;
   total_count: number;
   page_size: number;
 }
 
-export class PageNumberPage2<Item> extends AbstractPage<Item> implements PageNumberPage2Response<Item> {
+export class ImageSourcePage<Item> extends AbstractPage<Item> implements ImageSourcePageResponse<Item> {
   all_sources: Array<Item>;
 
   total_count: number;
@@ -172,7 +172,7 @@ export class PageNumberPage2<Item> extends AbstractPage<Item> implements PageNum
 
   constructor(client: Gumlet, response: Response, body: unknown, options: FinalRequestOptions) {
     super(client, response, body, options);
-    const parsed = body as PageNumberPage2Response<Item>;
+    const parsed = body as ImageSourcePageResponse<Item>;
 
     this.all_sources = parsed.all_sources || [];
     this.total_count = parsed.total_count;
@@ -206,13 +206,13 @@ export class PageNumberPage2<Item> extends AbstractPage<Item> implements PageNum
   }
 }
 
-export interface PageNumberPage3Response<Item> {
+export interface LiveAssetsPageResponse<Item> {
   all_live_assets: Array<Item>;
   total_live_asset_count: number;
   page_size: number;
 }
 
-export class PageNumberPage3<Item> extends AbstractPage<Item> implements PageNumberPage3Response<Item> {
+export class LiveAssetsPage<Item> extends AbstractPage<Item> implements LiveAssetsPageResponse<Item> {
   all_live_assets: Array<Item>;
 
   total_live_asset_count: number;
@@ -221,7 +221,7 @@ export class PageNumberPage3<Item> extends AbstractPage<Item> implements PageNum
 
   constructor(client: Gumlet, response: Response, body: unknown, options: FinalRequestOptions) {
     super(client, response, body, options);
-    const parsed = body as PageNumberPage3Response<Item>;
+    const parsed = body as LiveAssetsPageResponse<Item>;
 
     this.all_live_assets = parsed.all_live_assets || [];
     this.total_live_asset_count = parsed.total_live_asset_count;
