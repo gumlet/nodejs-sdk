@@ -60,7 +60,10 @@ describe.concurrent('resource videoProfiles', () => {
     { operation: 'list', path: '/video/profiles' },
     'list: only required params',
     async () => {
-      const page = await client.videoProfiles.list();
+      const videoProfile = await client.videoProfiles.list({
+        page_number: 1,
+        page_size: 20,
+      });
     },
   );
   smokeCase(
@@ -68,7 +71,9 @@ describe.concurrent('resource videoProfiles', () => {
     { operation: 'list', path: '/video/profiles' },
     'list: required and optional params',
     async () => {
-      const page = await client.videoProfiles.list({
+      const videoProfile = await client.videoProfiles.list({
+        page_number: 1,
+        page_size: 20,
         next_page_token: 'nextPageToken',
       });
     },

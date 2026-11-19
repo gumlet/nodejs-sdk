@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
-import { ProfilePage, type PagePromise } from '../core/pagination';
 import type { RequestOptions } from '../internal/request-options';
 import { path as __scalarPath } from '../internal/utils/path';
 
@@ -34,21 +33,21 @@ export class VideoProfiles extends APIResource {
    *
    * @param {VideoProfileListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {PagePromise<VideoProfilesProfilePage, VideoProfileListResponse>} 200
+   * @returns {APIPromise<VideoProfileListResponse>} 200
    *
    * @example
    * ```ts
-   * const page = await client.videoProfiles.list();
+   * const videoProfile = await client.videoProfiles.list({
+   *   page_number: 1,
+   *   page_size: 20,
+   * });
    * ```
    */
   list(
     query: VideoProfileListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<VideoProfilesProfilePage, VideoProfileListResponse> {
-    return this._client.getAPIList('/video/profiles', ProfilePage<VideoProfileListResponse>, {
-      query,
-      ...options,
-    });
+  ): APIPromise<VideoProfileListResponse> {
+    return this._client.get('/video/profiles', { query, ...options });
   }
 
   /**
@@ -413,38 +412,58 @@ export interface VideoProfileListParams {
 }
 
 export interface VideoProfileListResponse {
-  profile_id?: string;
-  name?: string;
-  transformations?: VideoProfileListResponse.Transformations;
+  all_profiles?: Array<VideoProfileListResponse.AllProfile>;
   /**
    * @default 0
    */
-  created_at?: number;
+  total_profile_count?: number;
   /**
    * @default 0
    */
-  updated_at?: number;
+  current_offset?: number;
+  /**
+   * Cursor for the next page when more results exist. Empty string when there is no next page.
+   */
+  next_page_token?: string;
+  /**
+   * Page size used for this response when it differs from the default.
+   */
+  page_size?: number;
 }
 
 export namespace VideoProfileListResponse {
-  export interface Transformations {
-    format?: string;
-    audio_codec?: Array<string>;
-    video_codec?: Array<string>;
-    thumbnail?: Array<string>;
-    thumbnail_format?: string;
+  export interface AllProfile {
+    profile_id?: string;
+    name?: string;
+    transformations?: AllProfile.Transformations;
     /**
-     * @default true
+     * @default 0
      */
-    mp4_access?: boolean;
+    created_at?: number;
     /**
-     * @default true
+     * @default 0
      */
-    per_title_encoding?: boolean;
+    updated_at?: number;
+  }
+
+  export namespace AllProfile {
+    export interface Transformations {
+      format?: string;
+      audio_codec?: Array<string>;
+      video_codec?: Array<string>;
+      thumbnail?: Array<string>;
+      thumbnail_format?: string;
+      /**
+       * @default true
+       */
+      mp4_access?: boolean;
+      /**
+       * @default true
+       */
+      per_title_encoding?: boolean;
+    }
   }
 }
-
-export type VideoProfilesProfilePage = ProfilePage<VideoProfileListResponse>;
 
 export interface VideoProfileUpdateParams {
   /**
@@ -796,7 +815,6 @@ export declare namespace VideoProfiles {
     type VideoProfileUpdateResponse as VideoProfileUpdateResponse,
     type VideoProfileRetrieveResponse as VideoProfileRetrieveResponse,
     type VideoProfileDeleteResponse as VideoProfileDeleteResponse,
-    type VideoProfilesProfilePage as VideoProfilesProfilePage,
     type VideoProfileCreateParams as VideoProfileCreateParams,
     type VideoProfileListParams as VideoProfileListParams,
     type VideoProfileUpdateParams as VideoProfileUpdateParams,

@@ -5125,14 +5125,6 @@
         }
       ],
       "responseLinks": [],
-      "pagination": {
-        "style": "page",
-        "itemsField": "all_profiles",
-        "metadata": {
-          "totalField": "total_profile_count",
-          "pageSizeField": "page_size"
-        }
-      },
       "transport": "http"
     },
     {
@@ -7578,14 +7570,6 @@
         }
       ],
       "responseLinks": [],
-      "pagination": {
-        "style": "page",
-        "itemsField": "all_sources",
-        "metadata": {
-          "totalField": "total_count",
-          "pageSizeField": "page_size"
-        }
-      },
       "transport": "http"
     },
     {
@@ -9162,14 +9146,6 @@
         }
       ],
       "responseLinks": [],
-      "pagination": {
-        "style": "page",
-        "itemsField": "all_live_assets",
-        "metadata": {
-          "totalField": "total_live_asset_count",
-          "pageSizeField": "page_size"
-        }
-      },
       "transport": "http"
     },
     {

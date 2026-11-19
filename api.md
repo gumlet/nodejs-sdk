@@ -564,7 +564,10 @@ Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-ba
 | Response | [`VideoProfileListResponse`](./src/resources/video-profiles.ts) |
 
 ```ts
-const page = await client.videoProfiles.list();
+const videoProfile = await client.videoProfiles.list({
+  page_number: 1,
+  page_size: 20,
+});
 ```
 
 ### Update Profile
@@ -846,7 +849,10 @@ Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-ba
 | Response | [`ImageSourceListResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const page = await client.imageSources.list();
+const imageSource = await client.imageSources.list({
+  page_number: 1,
+  page_size: 20,
+});
 ```
 
 ### Get Image Source
@@ -1019,7 +1025,10 @@ Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-ba
 | Response | [`LiveStreamAssetFilterResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const page = await client.liveStreamAssets.filter('liveSourceId');
+const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId', {
+  page_number: 1,
+  page_size: 20,
+});
 ```
 
 ### `start`

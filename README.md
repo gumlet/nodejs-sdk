@@ -16,7 +16,6 @@ The REST API documentation can be found on [docs.gumlet.com](https://docs.gumlet
 - [Client Options](#client-options)
 - [Request Options](#request-options)
 - [Retries and Timeouts](#retries-and-timeouts)
-- [Pagination](#pagination)
 - [Webhooks](#webhooks)
 - [Helpers](#helpers)
 - [Logging](#logging)
@@ -144,16 +143,6 @@ const client = new Gumlet({
 ## Retries and Timeouts
 
 Generated clients support request timeouts and retry temporary failures such as network errors, 408, 409, 429, and 5xx responses. Retry delays honor `Retry-After` headers when present. Tune the retry and timeout client options shown above, or override them per request.
-
-<br />
-
-## Pagination
-
-List endpoints return paginated results you can iterate directly; the SDK fetches subsequent pages for you.
-
-```ts
-const page = await client.videoProfiles.list();
-```
 
 <br />
 
