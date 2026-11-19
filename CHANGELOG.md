@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.8.1](https://github.com/gumlet/nodejs-sdk/compare/v1.8.0...v1.8.1) (2026-11-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 3 breaking changes to the SDK surface.
+    - Operation `videoProfiles.list` is no longer paginated.
+    - Operation `imageSources.list` is no longer paginated.
+    - Operation `liveStreamAssets.filter` is no longer paginated.
+
+### Features
+
+* **api:** remove pagination of videoProfiles.list (+2 more changes) ([2ec89c1](https://github.com/gumlet/nodejs-sdk/commit/2ec89c1835d07f62704df3ec27c3c60c474f6391))
+
+
+### Chores
+
+* **api:** update generated SDK content ([abc7215](https://github.com/gumlet/nodejs-sdk/commit/abc72156d5cf29d2859213a37fb272014be690e4))
+* **api:** update generated SDK content ([431fd4f](https://github.com/gumlet/nodejs-sdk/commit/431fd4ff4d6e67304e83f154120d8f5fb403b135))
+* release 1.8.1 ([6b4afd8](https://github.com/gumlet/nodejs-sdk/commit/6b4afd8a3252e7f9676a67a9e43855539af2f4e3))
+
 ## [1.8.0](https://github.com/gumlet/nodejs-sdk/compare/v1.7.2...v1.8.0) (2026-11-19)
 
 

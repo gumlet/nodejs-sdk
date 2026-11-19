@@ -1,17 +1,6 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
 import { APIPromise, type APIResponseProps } from './api-promise';
-import {
-  PagePromise,
-  type AbstractPage,
-  type PageNumberPageParams,
-  PageNumberPageResponse,
-  type PageNumberPage2Params,
-  PageNumberPage2Response,
-  type PageNumberPage3Params,
-  PageNumberPage3Response,
-} from './core/pagination';
-import * as Pagination from './core/pagination';
 import * as Errors from './error';
 import { uuid4 } from './internal/utils/uuid';
 import { validatePositiveInteger, isAbsoluteURL, safeJSON, isEmptyObj } from './internal/utils/values';
@@ -103,7 +92,6 @@ import {
   type VideoProfileUpdateResponse,
   type VideoProfileRetrieveResponse,
   type VideoProfileDeleteResponse,
-  type VideoProfilesPageNumberPage,
   type VideoProfileCreateParams,
   type VideoProfileListParams,
   type VideoProfileUpdateParams,
@@ -145,7 +133,6 @@ import {
   type ImageSourceDeleteResponse,
   type ImageSourcePurgeCacheResponse,
   type ImageSourcePurgeResponse,
-  type ImageSourcesPageNumberPage2,
   type ImageSourceCreateParams,
   type ImageSourceListParams,
   type ImageSourceUpdateParams,
@@ -167,7 +154,6 @@ import {
   type LiveStreamAssetFilterResponse,
   type LiveStreamAssetUploadResponse,
   type LiveStreamAssetStatusHistoryResponse,
-  type LiveStreamAssetsPageNumberPage3,
   type LiveStreamAssetCreateParams,
   type LiveStreamAssetUpdateParams,
   type LiveStreamAssetFilterParams,
@@ -791,31 +777,6 @@ export class Gumlet {
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
 
-  // Public escape hatch for list endpoints the spec does not describe: the page type parameter
-  // defaults so `getAPIList<Item>(path, MyPage)` needs only the item type, and the page argument
-  // is a bare constructor so a hand-rolled page class need not restate the runtime page
-  // constructor's parameter types.
-  getAPIList<Item, Page extends AbstractPage<Item> = AbstractPage<Item>>(
-    path: string,
-    Page: new (...args: any[]) => Page,
-    options?: PromiseOrValue<RequestOptions>,
-    method: FinalRequestOptions['method'] = 'get',
-  ): PagePromise<Page, Item> {
-    // List endpoints are usually GET, but a body-located cursor scheme rides a POST body, so the
-    // caller passes the operation's actual verb. The method is preserved across auto-advanced
-    // pages because `nextPageRequestOptions` spreads the stored request options (incl. `method`).
-    const requestOptions = Promise.resolve(options).then((opts) => ({ ...opts, method, path }));
-    return this.requestAPIList<Item, Page>(Page, requestOptions);
-  }
-
-  requestAPIList<Item = unknown, Page extends AbstractPage<Item> = AbstractPage<Item>>(
-    Page: new (...args: ConstructorParameters<typeof AbstractPage>) => Page,
-    options: PromiseOrValue<FinalRequestOptions>,
-  ): PagePromise<Page, Item> {
-    // `Item` is passed explicitly because the page constructor carries no slot to infer it from.
-    return new PagePromise<Page, Item>(this, this.makeRequest(options, null, undefined), Page);
-  }
-
   /**
    * Sends one request with a deadline on its response headers, following redirects as the client
    * does.
@@ -1371,25 +1332,6 @@ Gumlet.Webhooks = Webhooks;
 
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
-
-  export import PageNumberPage = Pagination.PageNumberPage;
-  export {
-    type PageNumberPageParams as PageNumberPageParams,
-    type PageNumberPageResponse as PageNumberPageResponse,
-  };
-
-  export import PageNumberPage2 = Pagination.PageNumberPage2;
-  export {
-    type PageNumberPage2Params as PageNumberPage2Params,
-    type PageNumberPage2Response as PageNumberPage2Response,
-  };
-
-  export import PageNumberPage3 = Pagination.PageNumberPage3;
-  export {
-    type PageNumberPage3Params as PageNumberPage3Params,
-    type PageNumberPage3Response as PageNumberPage3Response,
-  };
-
   export {
     VideoAssets as VideoAssets,
     type VideoAssetCreateResponse as VideoAssetCreateResponse,
@@ -1459,7 +1401,6 @@ export declare namespace Gumlet {
     type VideoProfileUpdateResponse as VideoProfileUpdateResponse,
     type VideoProfileRetrieveResponse as VideoProfileRetrieveResponse,
     type VideoProfileDeleteResponse as VideoProfileDeleteResponse,
-    type VideoProfilesPageNumberPage as VideoProfilesPageNumberPage,
     type VideoProfileCreateParams as VideoProfileCreateParams,
     type VideoProfileListParams as VideoProfileListParams,
     type VideoProfileUpdateParams as VideoProfileUpdateParams,
@@ -1504,7 +1445,6 @@ export declare namespace Gumlet {
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
     type ImageSourcePurgeCacheResponse as ImageSourcePurgeCacheResponse,
     type ImageSourcePurgeResponse as ImageSourcePurgeResponse,
-    type ImageSourcesPageNumberPage2 as ImageSourcesPageNumberPage2,
     type ImageSourceCreateParams as ImageSourceCreateParams,
     type ImageSourceListParams as ImageSourceListParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,
@@ -1528,7 +1468,6 @@ export declare namespace Gumlet {
     type LiveStreamAssetFilterResponse as LiveStreamAssetFilterResponse,
     type LiveStreamAssetUploadResponse as LiveStreamAssetUploadResponse,
     type LiveStreamAssetStatusHistoryResponse as LiveStreamAssetStatusHistoryResponse,
-    type LiveStreamAssetsPageNumberPage3 as LiveStreamAssetsPageNumberPage3,
     type LiveStreamAssetCreateParams as LiveStreamAssetCreateParams,
     type LiveStreamAssetUpdateParams as LiveStreamAssetUpdateParams,
     type LiveStreamAssetFilterParams as LiveStreamAssetFilterParams,
