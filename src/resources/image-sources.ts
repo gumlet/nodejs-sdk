@@ -2,7 +2,7 @@
 
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
-import { PageNumberPage2, type PagePromise } from '../core/pagination';
+import { ImageSourcePage, type PagePromise } from '../core/pagination';
 import type { RequestOptions } from '../internal/request-options';
 import { path as __scalarPath } from '../internal/utils/path';
 
@@ -34,7 +34,7 @@ export class ImageSources extends APIResource {
    *
    * @param {ImageSourceListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {PagePromise<ImageSourcesPageNumberPage2, ImageSourceListResponse>} List all image sources
+   * @returns {PagePromise<ImageSourcesImageSourcePage, ImageSourceListResponse>} List all image sources
    *
    * @example
    * ```ts
@@ -44,8 +44,8 @@ export class ImageSources extends APIResource {
   list(
     query: ImageSourceListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<ImageSourcesPageNumberPage2, ImageSourceListResponse> {
-    return this._client.getAPIList('/image/sources', PageNumberPage2<ImageSourceListResponse>, {
+  ): PagePromise<ImageSourcesImageSourcePage, ImageSourceListResponse> {
+    return this._client.getAPIList('/image/sources', ImageSourcePage<ImageSourceListResponse>, {
       query,
       ...options,
     });
@@ -463,7 +463,7 @@ export namespace ImageSourceListResponse {
   }
 }
 
-export type ImageSourcesPageNumberPage2 = PageNumberPage2<ImageSourceListResponse>;
+export type ImageSourcesImageSourcePage = ImageSourcePage<ImageSourceListResponse>;
 
 export interface ImageSourceRetrieveResponse {
   /**
@@ -1528,7 +1528,7 @@ export declare namespace ImageSources {
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
     type ImageSourcePurgeCacheResponse as ImageSourcePurgeCacheResponse,
     type ImageSourcePurgeResponse as ImageSourcePurgeResponse,
-    type ImageSourcesPageNumberPage2 as ImageSourcesPageNumberPage2,
+    type ImageSourcesImageSourcePage as ImageSourcesImageSourcePage,
     type ImageSourceCreateParams as ImageSourceCreateParams,
     type ImageSourceListParams as ImageSourceListParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,

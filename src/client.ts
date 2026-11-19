@@ -4,12 +4,12 @@ import { APIPromise, type APIResponseProps } from './api-promise';
 import {
   PagePromise,
   type AbstractPage,
-  type PageNumberPageParams,
-  PageNumberPageResponse,
-  type PageNumberPage2Params,
-  PageNumberPage2Response,
-  type PageNumberPage3Params,
-  PageNumberPage3Response,
+  type ProfilePageParams,
+  ProfilePageResponse,
+  type ImageSourcePageParams,
+  ImageSourcePageResponse,
+  type LiveAssetsPageParams,
+  LiveAssetsPageResponse,
 } from './core/pagination';
 import * as Pagination from './core/pagination';
 import * as Errors from './error';
@@ -103,7 +103,7 @@ import {
   type VideoProfileUpdateResponse,
   type VideoProfileRetrieveResponse,
   type VideoProfileDeleteResponse,
-  type VideoProfilesPageNumberPage,
+  type VideoProfilesProfilePage,
   type VideoProfileCreateParams,
   type VideoProfileListParams,
   type VideoProfileUpdateParams,
@@ -145,7 +145,7 @@ import {
   type ImageSourceDeleteResponse,
   type ImageSourcePurgeCacheResponse,
   type ImageSourcePurgeResponse,
-  type ImageSourcesPageNumberPage2,
+  type ImageSourcesImageSourcePage,
   type ImageSourceCreateParams,
   type ImageSourceListParams,
   type ImageSourceUpdateParams,
@@ -167,7 +167,7 @@ import {
   type LiveStreamAssetFilterResponse,
   type LiveStreamAssetUploadResponse,
   type LiveStreamAssetStatusHistoryResponse,
-  type LiveStreamAssetsPageNumberPage3,
+  type LiveStreamAssetsLiveAssetsPage,
   type LiveStreamAssetCreateParams,
   type LiveStreamAssetUpdateParams,
   type LiveStreamAssetFilterParams,
@@ -1372,22 +1372,19 @@ Gumlet.Webhooks = Webhooks;
 export declare namespace Gumlet {
   export type RequestOptions = Opts.RequestOptions;
 
-  export import PageNumberPage = Pagination.PageNumberPage;
+  export import ProfilePage = Pagination.ProfilePage;
+  export { type ProfilePageParams as ProfilePageParams, type ProfilePageResponse as ProfilePageResponse };
+
+  export import ImageSourcePage = Pagination.ImageSourcePage;
   export {
-    type PageNumberPageParams as PageNumberPageParams,
-    type PageNumberPageResponse as PageNumberPageResponse,
+    type ImageSourcePageParams as ImageSourcePageParams,
+    type ImageSourcePageResponse as ImageSourcePageResponse,
   };
 
-  export import PageNumberPage2 = Pagination.PageNumberPage2;
+  export import LiveAssetsPage = Pagination.LiveAssetsPage;
   export {
-    type PageNumberPage2Params as PageNumberPage2Params,
-    type PageNumberPage2Response as PageNumberPage2Response,
-  };
-
-  export import PageNumberPage3 = Pagination.PageNumberPage3;
-  export {
-    type PageNumberPage3Params as PageNumberPage3Params,
-    type PageNumberPage3Response as PageNumberPage3Response,
+    type LiveAssetsPageParams as LiveAssetsPageParams,
+    type LiveAssetsPageResponse as LiveAssetsPageResponse,
   };
 
   export {
@@ -1459,7 +1456,7 @@ export declare namespace Gumlet {
     type VideoProfileUpdateResponse as VideoProfileUpdateResponse,
     type VideoProfileRetrieveResponse as VideoProfileRetrieveResponse,
     type VideoProfileDeleteResponse as VideoProfileDeleteResponse,
-    type VideoProfilesPageNumberPage as VideoProfilesPageNumberPage,
+    type VideoProfilesProfilePage as VideoProfilesProfilePage,
     type VideoProfileCreateParams as VideoProfileCreateParams,
     type VideoProfileListParams as VideoProfileListParams,
     type VideoProfileUpdateParams as VideoProfileUpdateParams,
@@ -1504,7 +1501,7 @@ export declare namespace Gumlet {
     type ImageSourceDeleteResponse as ImageSourceDeleteResponse,
     type ImageSourcePurgeCacheResponse as ImageSourcePurgeCacheResponse,
     type ImageSourcePurgeResponse as ImageSourcePurgeResponse,
-    type ImageSourcesPageNumberPage2 as ImageSourcesPageNumberPage2,
+    type ImageSourcesImageSourcePage as ImageSourcesImageSourcePage,
     type ImageSourceCreateParams as ImageSourceCreateParams,
     type ImageSourceListParams as ImageSourceListParams,
     type ImageSourceUpdateParams as ImageSourceUpdateParams,
@@ -1528,7 +1525,7 @@ export declare namespace Gumlet {
     type LiveStreamAssetFilterResponse as LiveStreamAssetFilterResponse,
     type LiveStreamAssetUploadResponse as LiveStreamAssetUploadResponse,
     type LiveStreamAssetStatusHistoryResponse as LiveStreamAssetStatusHistoryResponse,
-    type LiveStreamAssetsPageNumberPage3 as LiveStreamAssetsPageNumberPage3,
+    type LiveStreamAssetsLiveAssetsPage as LiveStreamAssetsLiveAssetsPage,
     type LiveStreamAssetCreateParams as LiveStreamAssetCreateParams,
     type LiveStreamAssetUpdateParams as LiveStreamAssetUpdateParams,
     type LiveStreamAssetFilterParams as LiveStreamAssetFilterParams,
