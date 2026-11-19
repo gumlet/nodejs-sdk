@@ -9,6 +9,8 @@ export class VideoWorkspaces extends APIResource {
   /**
    * This endpoint list video workspace which are assigned to the user or token.
    *
+   * Pagination uses `page_number` / `page_size` (max page size 200). Use `next_page_token` for cursor-based pagination.
+   *
    * @param {VideoWorkspaceListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<VideoWorkspaceListResponse>} 200
@@ -16,8 +18,8 @@ export class VideoWorkspaces extends APIResource {
    * @example
    * ```ts
    * const videoWorkspace = await client.videoWorkspaces.list({
-   *   offset: '0',
-   *   size: '10',
+   *   page_number: 1,
+   *   page_size: 20,
    * });
    * ```
    */
@@ -103,19 +105,34 @@ export class VideoWorkspaces extends APIResource {
 
 export interface VideoWorkspaceListParams {
   /**
-   * Number of workspaces to skip. For example if you need to list 11 to 20th workspaces, pass offset as 10 and size as 10.
-   * @default 0
+   * Page number to retrieve. Starts at `1`.
+   * @default 1
+   * @minimum 1
    */
-  offset?: string;
+  page_number?: number;
   /**
-   * Number of workspace to return in single response.
-   * @default 10
+   * Number of items to return per page. **Default: `20`**. **Maximum: `200`**.
+   * @minimum 1
+   * @maximum 200
    */
-  size?: string;
+  page_size?: number;
+  /**
+   * Cursor for the next page. Pass the `next_page_token` value returned in the previous response.
+   * @pattern ^[a-fA-F0-9]{24}$
+   */
+  next_page_token?: string;
 }
 
 export interface VideoWorkspaceListResponse {
   all_sources?: Array<VideoWorkspaceListResponse.AllSource>;
+  /**
+   * Cursor for the next page when more results exist. Empty string when there is no next page.
+   */
+  next_page_token?: string;
+  /**
+   * Page size used for this response when it differs from the default.
+   */
+  page_size?: number;
 }
 
 export namespace VideoWorkspaceListResponse {

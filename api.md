@@ -13,8 +13,8 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Update thumbnail from video](#update-thumbnail-from-video)
   - [Update thumbnail via upload](#update-thumbnail-via-upload)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
+  - [List Assets (Deprecated)](#list-assets-deprecated)
   - [List Assets](#list-assets)
-  - [List Assets](#list-assets-1)
   - [Bulk Delete](#bulk-delete)
   - [Bulk Tag](#bulk-tag)
   - [Asset Analytics](#asset-analytics)
@@ -269,17 +269,19 @@ const videoAsset = await client.videoAssets.createUpdateChapter('assetId', {
 });
 ```
 
-### List Assets
+### List Assets (Deprecated)
+
+[Deprecated] Combined folders + assets list for a workspace. Use `GET /video/assets/list/{workspace_id}` for assets and `GET /video/workspaces/{workspace_id}/folders` for folders instead.
 
 List folders and assets for a workspace in a single response. Use `parent_id` to browse a specific folder, or filters like `title`, `status`, and `playlist_id` to search assets.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetListParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetListResponse`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetListWorkspaceFoldersAndDeprecatedParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetListWorkspaceFoldersAndDeprecatedResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const videoAsset = await client.videoAssets.list('workspaceId', {
+const videoAsset = await client.videoAssets.listWorkspaceFoldersAndDeprecated('workspaceId', {
   type: 'all',
   offset: 0,
   size: 20,
@@ -289,17 +291,26 @@ const videoAsset = await client.videoAssets.list('workspaceId', {
 
 ### List Assets
 
-[Deprecated] This endpoint list assets in video workspace. You can also pass `status` and `tag` to filter assets.
+List assets in a video workspace (local Mongo list; not Atlas Search).
+
+Use `page_number` and `page_size` for page-based pagination. Use `next_page_token` for cursor-based pagination where supported.
+
+`next_page_token` is supported only with the **default** sort or `sortBy=created_at` (and without a `title` search). It is **not** supported with other sort fields (for example `title`, `duration`, `status`, `playlist_order`, `custom`) or when `title` is set; in those cases use `page_number` / `page_size` only.
+
+For folders, use `GET /video/workspaces/{workspace_id}/folders` and combine results in your client. The combined endpoint `GET /video/workspaces/{workspace_id}/list` is deprecated.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VideoAssetListDeprecatedParams`](./src/resources/video-assets.ts) |
-| Response | [`VideoAssetListDeprecatedResponse`](./src/resources/video-assets.ts) |
+| Request | [`VideoAssetListParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetListResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const videoAsset = await client.videoAssets.listDeprecated('workspaceId', {
+const videoAsset = await client.videoAssets.list('workspaceId', {
   sortBy: 'created_at',
   orderBy: 'desc',
+  signed_token: 'false',
+  page_number: 1,
+  page_size: 20,
 });
 ```
 
@@ -427,7 +438,9 @@ Query video analytics and streaming duration usage data.
 
 ### Video Usage Analytics
 
-This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption
+This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption.
+
+Pagination applies only to `top_assets` and `widget_data` metrics.
 
 | Direction | Type |
 | --- | --- |
@@ -543,13 +556,15 @@ const videoProfile = await client.videoProfiles.create({
 
 This endpoint retrieves the details of all profiles that have previously been created.
 
+Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoProfileListParams`](./src/resources/video-profiles.ts) |
 | Response | [`VideoProfileListResponse`](./src/resources/video-profiles.ts) |
 
 ```ts
-const videoProfile = await client.videoProfiles.list();
+const page = await client.videoProfiles.list();
 ```
 
 ### Update Profile
@@ -784,12 +799,18 @@ const webhookEndpoint = await client.webhookEndpoints.delete('webhookId');
 
 Get logs history for a given webhook.
 
+Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+
 | Direction | Type |
 | --- | --- |
+| Request | [`WebhookEndpointHistoryParams`](./src/resources/webhook-endpoints.ts) |
 | Response | [`WebhookEndpointHistoryResponse`](./src/resources/webhook-endpoints.ts) |
 
 ```ts
-const webhookEndpoint = await client.webhookEndpoints.history('webhookId');
+const webhookEndpoint = await client.webhookEndpoints.history('webhookId', {
+  page_number: 1,
+  page_size: 20,
+});
 ```
 
 ## `ImageSources`
@@ -817,16 +838,15 @@ const imageSource = await client.imageSources.create({
 
 This endpoint list image sources which are assigned to the user or token.
 
+Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`ImageSourceListParams`](./src/resources/image-sources.ts) |
 | Response | [`ImageSourceListResponse`](./src/resources/image-sources.ts) |
 
 ```ts
-const imageSource = await client.imageSources.list({
-  offset: 0,
-  size: 20,
-});
+const page = await client.imageSources.list();
 ```
 
 ### Get Image Source
@@ -991,13 +1011,15 @@ const liveStreamAsset = await client.liveStreamAssets.complete('liveAssetId');
 
 This endpoint lists live assets on the basis of `status` for the given `live_source_id`.
 
+Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`LiveStreamAssetFilterParams`](./src/resources/live-stream-assets.ts) |
 | Response | [`LiveStreamAssetFilterResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId');
+const page = await client.liveStreamAssets.filter('liveSourceId');
 ```
 
 ### `start`
@@ -1058,6 +1080,8 @@ await client.recycleBin.recover({
 
 List all assets in a recycle bin for a given workspace. The deleted assets are available for 30 days. After that, assets are permanently deleted.
 
+Pagination uses `page_number` / `page_size` only (no `next_page_token`).
+
 | Direction | Type |
 | --- | --- |
 | Request | [`RecycleBinListParams`](./src/resources/recycle-bin.ts) |
@@ -1065,8 +1089,9 @@ List all assets in a recycle bin for a given workspace. The deleted assets are a
 
 ```ts
 const recycleBin = await client.recycleBin.list({
-  size: 20,
   workspace_id: 'workspaceId',
+  page_number: 1,
+  page_size: 20,
 });
 ```
 
@@ -1078,6 +1103,8 @@ Create and manage video workspaces.
 
 This endpoint list video workspace which are assigned to the user or token.
 
+Pagination uses `page_number` / `page_size` (max page size 200). Use `next_page_token` for cursor-based pagination.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`VideoWorkspaceListParams`](./src/resources/video-workspaces.ts) |
@@ -1085,8 +1112,8 @@ This endpoint list video workspace which are assigned to the user or token.
 
 ```ts
 const videoWorkspace = await client.videoWorkspaces.list({
-  offset: '0',
-  size: '10',
+  page_number: 1,
+  page_size: 20,
 });
 ```
 
@@ -1287,6 +1314,8 @@ const channelViewer = await client.channelViewers.inviteCsv('videoWorkspaceId', 
 
 List all channel subscribers.
 
+Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+
 | Direction | Type |
 | --- | --- |
 | Request | [`ChannelViewerListSubscribersParams`](./src/resources/channel-viewers.ts) |
@@ -1295,7 +1324,7 @@ List all channel subscribers.
 ```ts
 const channelViewer = await client.channelViewers.listSubscribers('workspaceId', {
   page_number: 1,
-  page_size: 10,
+  page_size: 20,
 });
 ```
 

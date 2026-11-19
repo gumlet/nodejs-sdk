@@ -1,6 +1,6 @@
 {
   "name": "@gumlet/nodejs-sdk",
-  "version": "1.7.2",
+  "version": "1.8.0",
   "description": "Gumlet helps developers deliver online video and images. This API encompasses Gumlet Video, Image and Video Analytics functionality to help you build your products better and faster than ever before.",
   "keywords": [
     "gumlet",
@@ -56,11 +56,13 @@
   "scripts": {
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && node scripts/finalize-build.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.cjs.json --noEmit",
+    "test": "vitest run",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {},
   "devDependencies": {
-    "typescript": "^6.0.0"
+    "typescript": "^6.0.0",
+    "vitest": "^4.1.7"
   },
   "license": "Apache-2.0"
 }

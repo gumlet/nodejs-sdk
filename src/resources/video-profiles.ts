@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
+import { PageNumberPage, type PagePromise } from '../core/pagination';
 import type { RequestOptions } from '../internal/request-options';
 import { path as __scalarPath } from '../internal/utils/path';
 
@@ -29,20 +30,25 @@ export class VideoProfiles extends APIResource {
   /**
    * This endpoint retrieves the details of all profiles that have previously been created.
    *
+   * Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
+   *
    * @param {VideoProfileListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoProfileListResponse>} 200
+   * @returns {PagePromise<VideoProfilesPageNumberPage, VideoProfileListResponse>} 200
    *
    * @example
    * ```ts
-   * const videoProfile = await client.videoProfiles.list();
+   * const page = await client.videoProfiles.list();
    * ```
    */
   list(
     query: VideoProfileListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<VideoProfileListResponse> {
-    return this._client.get('/video/profiles', { query, ...options });
+  ): PagePromise<VideoProfilesPageNumberPage, VideoProfileListResponse> {
+    return this._client.getAPIList('/video/profiles', PageNumberPage<VideoProfileListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -388,62 +394,57 @@ export namespace VideoProfileCreateResponse {
 
 export interface VideoProfileListParams {
   /**
-   * Offset value for a paginated list of profiles. Can be zero for the first time and `current_offset` value received from the last request afterwards.
-   * @format int32
+   * Page number to retrieve. Starts at `1`.
+   * @default 1
+   * @minimum 1
    */
-  offset?: number;
+  page_number?: number;
   /**
-   * Page size for the paginated list. **Default: `10`**
-   * @format int32
+   * Number of items to return per page. **Default: `20`**. **Maximum: `100`**.
+   * @minimum 1
+   * @maximum 100
    */
-  size?: number;
+  page_size?: number;
+  /**
+   * Cursor for the next page. Pass the `next_page_token` value returned in the previous response.
+   * @pattern ^[a-fA-F0-9]{24}$
+   */
+  next_page_token?: string;
 }
 
 export interface VideoProfileListResponse {
-  all_profiles?: Array<VideoProfileListResponse.AllProfile>;
+  profile_id?: string;
+  name?: string;
+  transformations?: VideoProfileListResponse.Transformations;
   /**
    * @default 0
    */
-  total_profile_count?: number;
+  created_at?: number;
   /**
    * @default 0
    */
-  current_offset?: number;
+  updated_at?: number;
 }
 
 export namespace VideoProfileListResponse {
-  export interface AllProfile {
-    profile_id?: string;
-    name?: string;
-    transformations?: AllProfile.Transformations;
+  export interface Transformations {
+    format?: string;
+    audio_codec?: Array<string>;
+    video_codec?: Array<string>;
+    thumbnail?: Array<string>;
+    thumbnail_format?: string;
     /**
-     * @default 0
+     * @default true
      */
-    created_at?: number;
+    mp4_access?: boolean;
     /**
-     * @default 0
+     * @default true
      */
-    updated_at?: number;
-  }
-
-  export namespace AllProfile {
-    export interface Transformations {
-      format?: string;
-      audio_codec?: Array<string>;
-      video_codec?: Array<string>;
-      thumbnail?: Array<string>;
-      thumbnail_format?: string;
-      /**
-       * @default true
-       */
-      mp4_access?: boolean;
-      /**
-       * @default true
-       */
-      per_title_encoding?: boolean;
-    }
+    per_title_encoding?: boolean;
   }
 }
+
+export type VideoProfilesPageNumberPage = PageNumberPage<VideoProfileListResponse>;
 
 export interface VideoProfileUpdateParams {
   /**
@@ -795,6 +796,7 @@ export declare namespace VideoProfiles {
     type VideoProfileUpdateResponse as VideoProfileUpdateResponse,
     type VideoProfileRetrieveResponse as VideoProfileRetrieveResponse,
     type VideoProfileDeleteResponse as VideoProfileDeleteResponse,
+    type VideoProfilesPageNumberPage as VideoProfilesPageNumberPage,
     type VideoProfileCreateParams as VideoProfileCreateParams,
     type VideoProfileListParams as VideoProfileListParams,
     type VideoProfileUpdateParams as VideoProfileUpdateParams,
