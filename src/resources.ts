@@ -166,6 +166,7 @@ export type {
   UserDataFetchResponse,
   AuditLogFetchParams,
   AuditLogFetchResponse,
+  BillingListInvoicesParams,
   BillingListInvoicesResponse,
   BillingFetchDetailsResponse,
   BillingUpdateDetailsParams,

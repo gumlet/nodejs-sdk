@@ -28,7 +28,7 @@ import Gumlet from '@gumlet/nodejs-sdk';
  * only for generator tooling). The runner refuses a list whose digest differs, so a list left by
  * an earlier generation is never trusted.
  */
-export const SMOKE_CASE_LIST_DIGEST = '3df2a2d2367c98c1';
+export const SMOKE_CASE_LIST_DIGEST = '7199ed29460b686c';
 
 const baseURL = process.env['TEST_API_BASE_URL'] || undefined;
 
