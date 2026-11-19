@@ -1,5 +1,46 @@
 # Changelog
 
+## [1.8.0](https://github.com/gumlet/nodejs-sdk/compare/v1.7.2...v1.8.0) (2026-11-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 21 breaking changes to the SDK surface.
+    - Operation `videoAssets.list` route changed from `GET /video/workspaces/{workspace_id}/list` to `GET /video/assets/list/{workspace_id}`.
+    - Serialization or defaults of query param `sortBy` on `videoAssets.list` changed.
+    - Serialization or defaults of query param `orderBy` on `videoAssets.list` changed.
+    - Removed query param `type` from `videoAssets.list`.
+    - Removed query param `parent_id` from `videoAssets.list`.
+    - Removed query param `searchIndex` from `videoAssets.list`.
+    - Removed query param `offset` from `videoAssets.list`.
+    - Removed query param `size` from `videoAssets.list`.
+    - `401` error response of `videoAssets.list` changed from `error` to `application/json`.
+    - Removed query param `offset` from `videoProfiles.list`.
+    - Removed query param `size` from `videoProfiles.list`.
+    - Removed query param `offset` from `imageSources.list`.
+    - Removed query param `size` from `imageSources.list`.
+    - Removed query param `offset` from `liveStreamAssets.filter`.
+    - Removed query param `size` from `liveStreamAssets.filter`.
+    - Removed query param `offset` from `recycleBin.list`.
+    - Removed query param `size` from `recycleBin.list`.
+    - Removed query param `offset` from `videoWorkspaces.list`.
+    - Removed query param `size` from `videoWorkspaces.list`.
+    - Serialization or defaults of query param `page_size` on `channelViewers.listSubscribers` changed.
+    - Removed operation `videoAssets.listDeprecated` (`GET /video/assets/list/{workspace_id}`).
+
+### Features
+
+* **api:** add pagination of imageSources.list ([2ed344b](https://github.com/gumlet/nodejs-sdk/commit/2ed344bd0899993e4fc06b7a02dfdab8aa777ea1))
+* **api:** add pagination of liveStreamAssets.filter ([d074021](https://github.com/gumlet/nodejs-sdk/commit/d07402165753b4caa442b4040b9285290801831b))
+* **api:** update operation videoAssets.list (+45 more changes) ([822786d](https://github.com/gumlet/nodejs-sdk/commit/822786dac766c2b295205236e31966088cf1e956))
+* **api:** update SDK surface (2 changes) ([a585774](https://github.com/gumlet/nodejs-sdk/commit/a585774242f0137c65603b454d0bfd165bc9439c))
+
+
+### Chores
+
+* **api:** update generated SDK content ([f1979a5](https://github.com/gumlet/nodejs-sdk/commit/f1979a5e7e1ce7d3d27fc95c6c0b571348f321b8))
+* release 1.8.0 ([fc85e7f](https://github.com/gumlet/nodejs-sdk/commit/fc85e7f6ef825faab902c9be32551c2548b139a0))
+
 ## [1.7.2](https://github.com/gumlet/nodejs-sdk/compare/v1.7.1...v1.7.2) (2026-11-13)
 
 
