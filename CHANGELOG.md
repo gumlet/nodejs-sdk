@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.9.0](https://github.com/gumlet/nodejs-sdk/compare/v1.8.1...v1.9.0) (2026-11-19)
+
+
+### Features
+
+* **api:** update SDK surface (2 changes) ([9652b78](https://github.com/gumlet/nodejs-sdk/commit/9652b7821be063978874500d1744f0a28e0c80cd))
+
+
+### Chores
+
+* **api:** update generated SDK content ([3bb0e1c](https://github.com/gumlet/nodejs-sdk/commit/3bb0e1c87b54b5a76964a2382807224c4e7953d8))
+
 ## [1.8.1](https://github.com/gumlet/nodejs-sdk/compare/v1.8.0...v1.8.1) (2026-11-19)
 
 
