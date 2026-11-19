@@ -6,7 +6,9 @@ import type { RequestOptions } from '../internal/request-options';
 
 export class VideoUsageAnalytics extends APIResource {
   /**
-   * This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption
+   * This endpoint gives usage analytics data of your videos. Ex - top assets, bandwidth consumption.
+   *
+   * Pagination applies only to `top_assets` and `widget_data` metrics.
    *
    * @param {VideoUsageAnalyticRetrieveParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -55,7 +57,7 @@ export class VideoUsageAnalytics extends APIResource {
 
 export interface VideoUsageAnalyticRetrieveParams {
   /**
-   * Define the metric you need the data for. Supported values: `bandwidth_consumption`, `asset_duration`, `storage_unit`, `top_assets`, `drm_requests`, `ai_credit_usage`, and `errored_videos`.
+   * Define the metric you need the data for. Supported values: `bandwidth_consumption`, `asset_duration`, `storage_unit`, `top_assets`, `widget_data`, `drm_requests`, `ai_credit_usage`, and `errored_videos`.
    */
   metrics: Array<
     | 'bandwidth_consumption'
@@ -72,13 +74,15 @@ export interface VideoUsageAnalyticRetrieveParams {
   date_range: VideoUsageAnalyticRetrieveParams.DateRange;
   filters?: VideoUsageAnalyticRetrieveParams.Filters;
   /**
-   * Count of video assets that should be returned. Max assets count is 1000 per page.
+   * Deprecated. Use `page_size` instead.
    * @default 5
+   * @deprecated
    */
   top_assets_count?: string;
   /**
-   * top_assets metric may get paginated response. Iterate this parameter to get more data.
+   * Deprecated. Use `page_number` instead.
    * @default 0
+   * @deprecated
    */
   top_assets_page?: string;
   /**
@@ -86,6 +90,18 @@ export interface VideoUsageAnalyticRetrieveParams {
    * @default hourly
    */
   group_by?: 'hourly' | 'daily' | 'monthly';
+  /**
+   * Page number for paginated metrics. Used by `widget_data`, and by `top_assets` Starts at 1.
+   * @default 1
+   * @minimum 1
+   */
+  page_number?: number;
+  /**
+   * Page size for paginated metrics. Used by `widget_data`, and by `top_assets`
+   * @default 20
+   * @minimum 1
+   */
+  page_size?: number;
 }
 
 export namespace VideoUsageAnalyticRetrieveParams {
