@@ -4133,7 +4133,9 @@
         "filters",
         "top_assets_count",
         "top_assets_page",
-        "group_by"
+        "group_by",
+        "page_number",
+        "page_size"
       ],
       "publicBodyParams": [
         "metrics",
@@ -4141,7 +4143,9 @@
         "filters",
         "top_assets_count",
         "top_assets_page",
-        "group_by"
+        "group_by",
+        "page_number",
+        "page_size"
       ],
       "bodyParamDetails": [
         {
@@ -4166,6 +4170,14 @@
         },
         {
           "name": "group_by",
+          "required": false
+        },
+        {
+          "name": "page_number",
+          "required": false
+        },
+        {
+          "name": "page_size",
           "required": false
         }
       ],
