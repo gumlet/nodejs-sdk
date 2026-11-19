@@ -9162,6 +9162,14 @@
         }
       ],
       "responseLinks": [],
+      "pagination": {
+        "style": "page",
+        "itemsField": "all_live_assets",
+        "metadata": {
+          "totalField": "total_live_asset_count",
+          "pageSizeField": "page_size"
+        }
+      },
       "transport": "http"
     },
     {

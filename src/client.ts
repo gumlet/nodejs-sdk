@@ -8,6 +8,8 @@ import {
   PageNumberPageResponse,
   type PageNumberPage2Params,
   PageNumberPage2Response,
+  type PageNumberPage3Params,
+  PageNumberPage3Response,
 } from './core/pagination';
 import * as Pagination from './core/pagination';
 import * as Errors from './error';
@@ -165,6 +167,7 @@ import {
   type LiveStreamAssetFilterResponse,
   type LiveStreamAssetUploadResponse,
   type LiveStreamAssetStatusHistoryResponse,
+  type LiveStreamAssetsPageNumberPage3,
   type LiveStreamAssetCreateParams,
   type LiveStreamAssetUpdateParams,
   type LiveStreamAssetFilterParams,
@@ -1381,6 +1384,12 @@ export declare namespace Gumlet {
     type PageNumberPage2Response as PageNumberPage2Response,
   };
 
+  export import PageNumberPage3 = Pagination.PageNumberPage3;
+  export {
+    type PageNumberPage3Params as PageNumberPage3Params,
+    type PageNumberPage3Response as PageNumberPage3Response,
+  };
+
   export {
     VideoAssets as VideoAssets,
     type VideoAssetCreateResponse as VideoAssetCreateResponse,
@@ -1519,6 +1528,7 @@ export declare namespace Gumlet {
     type LiveStreamAssetFilterResponse as LiveStreamAssetFilterResponse,
     type LiveStreamAssetUploadResponse as LiveStreamAssetUploadResponse,
     type LiveStreamAssetStatusHistoryResponse as LiveStreamAssetStatusHistoryResponse,
+    type LiveStreamAssetsPageNumberPage3 as LiveStreamAssetsPageNumberPage3,
     type LiveStreamAssetCreateParams as LiveStreamAssetCreateParams,
     type LiveStreamAssetUpdateParams as LiveStreamAssetUpdateParams,
     type LiveStreamAssetFilterParams as LiveStreamAssetFilterParams,

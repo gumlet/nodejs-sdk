@@ -83,10 +83,7 @@ describe.concurrent('resource liveStreamAssets', () => {
     { operation: 'filter', path: '/video/live/assets/list/{live_source_id}' },
     'filter: only required params',
     async () => {
-      const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId', {
-        page_number: 1,
-        page_size: 20,
-      });
+      const page = await client.liveStreamAssets.filter('liveSourceId');
     },
   );
   smokeCase(
@@ -94,10 +91,8 @@ describe.concurrent('resource liveStreamAssets', () => {
     { operation: 'filter', path: '/video/live/assets/list/{live_source_id}' },
     'filter: required and optional params',
     async () => {
-      const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId', {
+      const page = await client.liveStreamAssets.filter('liveSourceId', {
         status: 'status',
-        page_number: 1,
-        page_size: 20,
         next_page_token: 'nextPageToken',
       });
     },

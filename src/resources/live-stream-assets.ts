@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
+import { PageNumberPage3, type PagePromise } from '../core/pagination';
 import type { RequestOptions } from '../internal/request-options';
 import { buildHeaders } from '../internal/headers';
 import { path as __scalarPath } from '../internal/utils/path';
@@ -109,22 +110,23 @@ export class LiveStreamAssets extends APIResource {
    * @param {string} liveSourceID - Gumlet live source/collection id.
    * @param {LiveStreamAssetFilterParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<LiveStreamAssetFilterResponse>} 200
+   * @returns {PagePromise<LiveStreamAssetsPageNumberPage3, LiveStreamAssetFilterResponse>} 200
    *
    * @example
    * ```ts
-   * const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId', {
-   *   page_number: 1,
-   *   page_size: 20,
-   * });
+   * const page = await client.liveStreamAssets.filter('liveSourceId');
    * ```
    */
   filter(
     liveSourceID: string,
     query: LiveStreamAssetFilterParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<LiveStreamAssetFilterResponse> {
-    return this._client.get(__scalarPath`/video/live/assets/list/${liveSourceID}`, { query, ...options });
+  ): PagePromise<LiveStreamAssetsPageNumberPage3, LiveStreamAssetFilterResponse> {
+    return this._client.getAPIList(
+      __scalarPath`/video/live/assets/list/${liveSourceID}`,
+      PageNumberPage3<LiveStreamAssetFilterResponse>,
+      { query, ...options },
+    );
   }
 
   /**
@@ -372,65 +374,45 @@ export interface LiveStreamAssetFilterParams {
 }
 
 export interface LiveStreamAssetFilterResponse {
-  all_live_assets?: Array<LiveStreamAssetFilterResponse.AllLiveAsset>;
+  status?: string;
+  stream_key?: string;
+  live_asset_id?: string;
+  live_video_source_id?: string;
+  input?: LiveStreamAssetFilterResponse.Input;
+  stream_url?: string;
+  output?: LiveStreamAssetFilterResponse.Output;
+  thumbnail?: LiveStreamAssetFilterResponse.Thumbnail;
   /**
    * @default 0
    */
-  total_live_asset_count?: number;
+  created_at?: number;
   /**
    * @default 0
    */
-  current_offset?: number;
-  /**
-   * Cursor for the next page when more results exist. Empty string when there is no next page.
-   */
-  next_page_token?: string;
-  /**
-   * Page size used for this response when it differs from the default.
-   */
-  page_size?: number;
+  updated_at?: number;
+  deleted_at?: number;
 }
 
 export namespace LiveStreamAssetFilterResponse {
-  export interface AllLiveAsset {
-    status?: string;
-    stream_key?: string;
-    live_asset_id?: string;
-    live_video_source_id?: string;
-    input?: AllLiveAsset.Input;
-    stream_url?: string;
-    output?: AllLiveAsset.Output;
-    thumbnail?: AllLiveAsset.Thumbnail;
-    /**
-     * @default 0
-     */
-    created_at?: number;
-    /**
-     * @default 0
-     */
-    updated_at?: number;
-    deleted_at?: number;
+  export interface Input {
+    resolution?: Array<string>;
+    title?: string;
   }
 
-  export namespace AllLiveAsset {
-    export interface Input {
-      resolution?: Array<string>;
-      title?: string;
-    }
+  export interface Output {
+    playback_url?: string;
+    recording_playback_url?: string;
+    recording_dash_playback_url?: string;
+  }
 
-    export interface Output {
-      playback_url?: string;
-      recording_playback_url?: string;
-      recording_dash_playback_url?: string;
-    }
-
-    export interface Thumbnail {
-      preparing?: string;
-      disconnected?: string;
-      end?: string;
-    }
+  export interface Thumbnail {
+    preparing?: string;
+    disconnected?: string;
+    end?: string;
   }
 }
+
+export type LiveStreamAssetsPageNumberPage3 = PageNumberPage3<LiveStreamAssetFilterResponse>;
 
 export interface LiveStreamAssetUploadParams {
   /**
@@ -493,6 +475,7 @@ export declare namespace LiveStreamAssets {
     type LiveStreamAssetFilterResponse as LiveStreamAssetFilterResponse,
     type LiveStreamAssetUploadResponse as LiveStreamAssetUploadResponse,
     type LiveStreamAssetStatusHistoryResponse as LiveStreamAssetStatusHistoryResponse,
+    type LiveStreamAssetsPageNumberPage3 as LiveStreamAssetsPageNumberPage3,
     type LiveStreamAssetCreateParams as LiveStreamAssetCreateParams,
     type LiveStreamAssetUpdateParams as LiveStreamAssetUpdateParams,
     type LiveStreamAssetFilterParams as LiveStreamAssetFilterParams,

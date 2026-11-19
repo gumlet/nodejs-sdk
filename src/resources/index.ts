@@ -129,6 +129,7 @@ export type {
   LiveStreamAssetCompleteResponse,
   LiveStreamAssetFilterParams,
   LiveStreamAssetFilterResponse,
+  LiveStreamAssetsPageNumberPage3,
   LiveStreamAssetUploadParams,
   LiveStreamAssetUploadResponse,
   LiveStreamAssetStatusHistoryResponse,
