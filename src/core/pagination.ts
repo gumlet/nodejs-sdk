@@ -102,6 +102,12 @@ export interface PageNumberPage2Params {
   page_size?: number;
 }
 
+export interface PageNumberPage3Params {
+  page_number?: number;
+
+  page_size?: number;
+}
+
 export interface PageNumberPageResponse<Item> {
   all_profiles: Array<Item>;
   total_profile_count: number;
@@ -175,6 +181,55 @@ export class PageNumberPage2<Item> extends AbstractPage<Item> implements PageNum
 
   getPaginatedItems(): Item[] {
     const items = this.all_sources;
+    return Array.isArray(items) ? items : [];
+  }
+
+  nextPageRequestOptions(): PageRequestOptions | null {
+    const currentPage = numericPageParam(maybeObj(this.options.query)['page_number'], 1);
+    if (currentPage === null) {
+      return null;
+    }
+
+    const totalPages = null;
+    if (totalPages !== null && currentPage >= totalPages) {
+      return null;
+    }
+
+    const nextPage = currentPage + 1;
+    return {
+      ...this.options,
+      query: {
+        ...maybeObj(this.options.query),
+        page_number: nextPage,
+      },
+    };
+  }
+}
+
+export interface PageNumberPage3Response<Item> {
+  all_live_assets: Array<Item>;
+  total_live_asset_count: number;
+  page_size: number;
+}
+
+export class PageNumberPage3<Item> extends AbstractPage<Item> implements PageNumberPage3Response<Item> {
+  all_live_assets: Array<Item>;
+
+  total_live_asset_count: number;
+
+  page_size: number;
+
+  constructor(client: Gumlet, response: Response, body: unknown, options: FinalRequestOptions) {
+    super(client, response, body, options);
+    const parsed = body as PageNumberPage3Response<Item>;
+
+    this.all_live_assets = parsed.all_live_assets || [];
+    this.total_live_asset_count = parsed.total_live_asset_count;
+    this.page_size = parsed.page_size;
+  }
+
+  getPaginatedItems(): Item[] {
+    const items = this.all_live_assets;
     return Array.isArray(items) ? items : [];
   }
 

@@ -1019,10 +1019,7 @@ Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-ba
 | Response | [`LiveStreamAssetFilterResponse`](./src/resources/live-stream-assets.ts) |
 
 ```ts
-const liveStreamAsset = await client.liveStreamAssets.filter('liveSourceId', {
-  page_number: 1,
-  page_size: 20,
-});
+const page = await client.liveStreamAssets.filter('liveSourceId');
 ```
 
 ### `start`
