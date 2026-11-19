@@ -220,6 +220,7 @@ import {
   type BillingFetchDetailsResponse,
   type BillingUpdateDetailsResponse,
   type BillingFetchUpcomingInvoiceResponse,
+  type BillingListInvoicesParams,
   type BillingUpdateDetailsParams,
 } from './resources/billing';
 import {
@@ -1550,6 +1551,7 @@ export declare namespace Gumlet {
     type BillingFetchDetailsResponse as BillingFetchDetailsResponse,
     type BillingUpdateDetailsResponse as BillingUpdateDetailsResponse,
     type BillingFetchUpcomingInvoiceResponse as BillingFetchUpcomingInvoiceResponse,
+    type BillingListInvoicesParams as BillingListInvoicesParams,
     type BillingUpdateDetailsParams as BillingUpdateDetailsParams,
   };
 

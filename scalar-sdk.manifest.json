@@ -12627,19 +12627,42 @@
       "path": "/mixed/billing/invoice/history",
       "pathParams": [],
       "publicPathParams": [],
-      "queryParams": [],
-      "publicQueryParams": [],
+      "queryParams": [
+        "page_size",
+        "last_id"
+      ],
+      "publicQueryParams": [
+        "page_size",
+        "last_id"
+      ],
       "headerParams": [],
       "publicHeaderParams": [],
       "bodyParams": [],
       "publicBodyParams": [],
       "bodyParamDetails": [],
       "pathParamDetails": [],
-      "queryParamDetails": [],
+      "queryParamDetails": [
+        {
+          "name": "page_size",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": 20
+        },
+        {
+          "name": "last_id",
+          "required": false,
+          "style": "form",
+          "explode": true
+        }
+      ],
       "headerParamDetails": [],
       "cookieParams": [],
       "publicCookieParams": [],
       "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "BillingListInvoicesParams"
+      },
       "response": {
         "status": "200",
         "contentType": "application/json",
