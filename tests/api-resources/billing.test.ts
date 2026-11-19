@@ -7,11 +7,24 @@ import { client, smokeCase } from '../smoke-support';
 
 describe.concurrent('resource billing', () => {
   smokeCase(
-    'billing.listInvoices:single',
+    'billing.listInvoices:required',
     { operation: 'listInvoices', path: '/mixed/billing/invoice/history' },
-    'listInvoices',
+    'listInvoices: only required params',
     async () => {
-      const billing = await client.billing.listInvoices();
+      const billing = await client.billing.listInvoices({
+        page_size: 20,
+      });
+    },
+  );
+  smokeCase(
+    'billing.listInvoices:all',
+    { operation: 'listInvoices', path: '/mixed/billing/invoice/history' },
+    'listInvoices: required and optional params',
+    async () => {
+      const billing = await client.billing.listInvoices({
+        page_size: 20,
+        last_id: 'lastId',
+      });
     },
   );
   smokeCase(

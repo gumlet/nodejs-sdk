@@ -1464,14 +1464,17 @@ Get / change all details about billing and invoices.
 
 ### List Invoices
 
-Liost all invoices that are generated so far.
+List all invoices that are generated so far.
 
 | Direction | Type |
 | --- | --- |
+| Request | [`BillingListInvoicesParams`](./src/resources/billing.ts) |
 | Response | [`BillingListInvoicesResponse`](./src/resources/billing.ts) |
 
 ```ts
-const billing = await client.billing.listInvoices();
+const billing = await client.billing.listInvoices({
+  page_size: 20,
+});
 ```
 
 ### Get Billing Details
