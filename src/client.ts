@@ -220,6 +220,7 @@ import {
   type BillingFetchDetailsResponse,
   type BillingUpdateDetailsResponse,
   type BillingFetchUpcomingInvoiceResponse,
+  type BillingListInvoicesParams,
   type BillingUpdateDetailsParams,
 } from './resources/billing';
 import {
@@ -434,6 +435,7 @@ export class Gumlet {
     this._options = { ...options, baseURL: baseURLOverridden ? this.baseURL : undefined };
     this._baseURLOverridden = baseURLOverridden;
     this._defaultBaseURL = defaultBaseURL;
+    this.idempotencyHeader = 'Idempotency-Key';
 
     this.apiKey = apiKey;
     this.webhookSecret = webhookSecret;
@@ -1550,6 +1552,7 @@ export declare namespace Gumlet {
     type BillingFetchDetailsResponse as BillingFetchDetailsResponse,
     type BillingUpdateDetailsResponse as BillingUpdateDetailsResponse,
     type BillingFetchUpcomingInvoiceResponse as BillingFetchUpcomingInvoiceResponse,
+    type BillingListInvoicesParams as BillingListInvoicesParams,
     type BillingUpdateDetailsParams as BillingUpdateDetailsParams,
   };
 

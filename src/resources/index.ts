@@ -187,6 +187,7 @@ export { AuditLogs } from './audit-logs';
 export type { AuditLogFetchParams, AuditLogFetchResponse } from './audit-logs';
 export { Billing } from './billing';
 export type {
+  BillingListInvoicesParams,
   BillingListInvoicesResponse,
   BillingFetchDetailsResponse,
   BillingUpdateDetailsParams,

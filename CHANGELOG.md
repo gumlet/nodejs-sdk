@@ -1,5 +1,212 @@
 # Changelog
 
+## [1.9.0](https://github.com/gumlet/nodejs-sdk/compare/v1.8.1...v1.9.0) (2026-11-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 188 breaking changes to the SDK surface.
+    - `401` error response of `videoAssets.create` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.create` changed from `error` to `application/json`.
+    - `422` error response of `videoAssets.create` changed from `error` to `application/json`.
+    - `500` error response of `videoAssets.create` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.upload` changed from `error` to `application/json`.
+    - `422` error response of `videoAssets.upload` changed from `error` to `application/json`.
+    - `500` error response of `videoAssets.upload` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.delete` changed from `error` to `application/json`.
+    - `401` error response of `videoAssets.update` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.update` changed from `error` to `application/json`.
+    - `422` error response of `videoAssets.update` changed from `error` to `application/json`.
+    - `401` error response of `videoAssets.thumbnailSelect` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.thumbnailSelect` changed from `error` to `application/json`.
+    - `500` error response of `videoAssets.thumbnailSelect` changed from `error` to `application/json`.
+    - `401` error response of `videoAssets.thumbnailUpload` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.thumbnailUpload` changed from `error` to `application/json`.
+    - `500` error response of `videoAssets.thumbnailUpload` changed from `error` to `application/json`.
+    - `401` error response of `videoAssets.createUpdateChapter` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.createUpdateChapter` changed from `error` to `application/json`.
+    - `500` error response of `videoAssets.createUpdateChapter` changed from `error` to `application/json`.
+    - `401` error response of `videoAssets.listWorkspaceFoldersAndDeprecated` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.listWorkspaceFoldersAndDeprecated` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.list` changed from `error` to `application/json`.
+    - `401` error response of `videoAssets.deleteMany` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.deleteMany` changed from `error` to `application/json`.
+    - `500` error response of `videoAssets.deleteMany` changed from `error` to `application/json`.
+    - `401` error response of `videoAssets.tagMany` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.tagMany` changed from `error` to `application/json`.
+    - `500` error response of `videoAssets.tagMany` changed from `error` to `application/json`.
+    - `401` error response of `videoAssets.analytics` changed from `error` to `application/json`.
+    - `403` error response of `videoAssets.analytics` changed from `error` to `application/json`.
+    - `500` error response of `videoAssets.analytics` changed from `error` to `application/json`.
+    - `401` error response of `subtitleUpload.upload` changed from `error` to `application/json`.
+    - `403` error response of `subtitleUpload.upload` changed from `error` to `application/json`.
+    - `500` error response of `subtitleUpload.upload` changed from `error` to `application/json`.
+    - `401` error response of `subtitleUpload.complete` changed from `error` to `application/json`.
+    - `403` error response of `subtitleUpload.complete` changed from `error` to `application/json`.
+    - `500` error response of `subtitleUpload.complete` changed from `error` to `application/json`.
+    - `401` error response of `audioUpload.upload` changed from `error` to `application/json`.
+    - `403` error response of `audioUpload.upload` changed from `error` to `application/json`.
+    - `500` error response of `audioUpload.upload` changed from `error` to `application/json`.
+    - `401` error response of `audioUpload.complete` changed from `error` to `application/json`.
+    - `403` error response of `audioUpload.complete` changed from `error` to `application/json`.
+    - `500` error response of `audioUpload.complete` changed from `error` to `application/json`.
+    - `401` error response of `videoUsageAnalytics.retrieve` changed from `error` to `application/json`.
+    - `403` error response of `videoUsageAnalytics.retrieve` changed from `error` to `application/json`.
+    - `401` error response of `videoUsageAnalytics.topAssets` changed from `error` to `application/json`.
+    - `403` error response of `videoUsageAnalytics.topAssets` changed from `error` to `application/json`.
+    - `401` error response of `multipartUpload.retrievePartUrl` changed from `error` to `application/json`.
+    - `403` error response of `multipartUpload.retrievePartUrl` changed from `error` to `application/json`.
+    - `401` error response of `multipartUpload.complete` changed from `error` to `application/json`.
+    - `403` error response of `multipartUpload.complete` changed from `error` to `application/json`.
+    - `403` error response of `videoProfiles.create` changed from `error` to `application/json`.
+    - `422` error response of `videoProfiles.create` changed from `error` to `application/json`.
+    - `500` error response of `videoProfiles.create` changed from `error` to `application/json`.
+    - `401` error response of `videoProfiles.list` changed from `error` to `application/json`.
+    - `403` error response of `videoProfiles.list` changed from `error` to `application/json`.
+    - `401` error response of `videoProfiles.update` changed from `error` to `application/json`.
+    - `403` error response of `videoProfiles.update` changed from `error` to `application/json`.
+    - `500` error response of `videoProfiles.update` changed from `error` to `application/json`.
+    - `403` error response of `videoProfiles.retrieve` changed from `error` to `application/json`.
+    - `403` error response of `videoProfiles.delete` changed from `error` to `application/json`.
+    - `401` error response of `videoPlaylists.create` changed from `error` to `application/json`.
+    - `403` error response of `videoPlaylists.create` changed from `error` to `application/json`.
+    - `422` error response of `videoPlaylists.create` changed from `error` to `application/json`.
+    - `401` error response of `videoPlaylists.listAll` changed from `error` to `application/json`.
+    - `403` error response of `videoPlaylists.listAll` changed from `error` to `application/json`.
+    - `401` error response of `videoPlaylists.createAsset` changed from `error` to `application/json`.
+    - `403` error response of `videoPlaylists.createAsset` changed from `error` to `application/json`.
+    - `401` error response of `videoPlaylists.deleteAsset` changed from `error` to `application/json`.
+    - `403` error response of `videoPlaylists.deleteAsset` changed from `error` to `application/json`.
+    - `401` error response of `videoPlaylists.update` changed from `error` to `application/json`.
+    - `403` error response of `videoPlaylists.update` changed from `error` to `application/json`.
+    - `401` error response of `videoPlaylists.delete` changed from `error` to `application/json`.
+    - `403` error response of `videoPlaylists.delete` changed from `error` to `application/json`.
+    - `401` error response of `videoPlaylists.listAssets` changed from `error` to `application/json`.
+    - `403` error response of `videoPlaylists.listAssets` changed from `error` to `application/json`.
+    - `401` error response of `videoPlaylists.reorderAsset` changed from `error` to `application/json`.
+    - `403` error response of `videoPlaylists.reorderAsset` changed from `error` to `application/json`.
+    - `401` error response of `webhookEndpoints.create` changed from `error` to `application/json`.
+    - `403` error response of `webhookEndpoints.create` changed from `error` to `application/json`.
+    - `422` error response of `webhookEndpoints.create` changed from `error` to `application/json`.
+    - `401` error response of `webhookEndpoints.list` changed from `error` to `application/json`.
+    - `403` error response of `webhookEndpoints.list` changed from `error` to `application/json`.
+    - `401` error response of `webhookEndpoints.update` changed from `error` to `application/json`.
+    - `403` error response of `webhookEndpoints.update` changed from `error` to `application/json`.
+    - `401` error response of `webhookEndpoints.delete` changed from `error` to `application/json`.
+    - `403` error response of `webhookEndpoints.delete` changed from `error` to `application/json`.
+    - `401` error response of `webhookEndpoints.history` changed from `error` to `application/json`.
+    - `403` error response of `webhookEndpoints.history` changed from `error` to `application/json`.
+    - `401` error response of `imageSources.create` changed from `error` to `application/json`.
+    - `422` error response of `imageSources.create` changed from `error` to `application/json`.
+    - `401` error response of `imageSources.list` changed from `error` to `application/json`.
+    - `403` error response of `imageSources.list` changed from `error` to `application/json`.
+    - `401` error response of `imageSources.retrieve` changed from `error` to `application/json`.
+    - `403` error response of `imageSources.retrieve` changed from `error` to `application/json`.
+    - `401` error response of `imageSources.update` changed from `error` to `application/json`.
+    - `403` error response of `imageSources.update` changed from `error` to `application/json`.
+    - `401` error response of `imageSources.delete` changed from `error` to `application/json`.
+    - `403` error response of `imageSources.delete` changed from `error` to `application/json`.
+    - `401` error response of `imageSources.purgeCache` changed from `error` to `application/json`.
+    - `403` error response of `imageSources.purgeCache` changed from `error` to `application/json`.
+    - `401` error response of `imageSources.purge` changed from `error` to `application/json`.
+    - `403` error response of `imageSources.purge` changed from `error` to `application/json`.
+    - `401` error response of `imageUsageAnalytics.retrieve` changed from `error` to `application/json`.
+    - `403` error response of `imageUsageAnalytics.retrieve` changed from `error` to `application/json`.
+    - `422` error response of `liveStreamAssets.create` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamAssets.update` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamAssets.retrieveStatus` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamAssets.delete` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamAssets.complete` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamAssets.filter` changed from `error` to `application/json`.
+    - `401` error response of `liveStreamAssets.start` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamAssets.start` changed from `error` to `application/json`.
+    - `401` error response of `liveStreamAssets.upload` changed from `error` to `application/json`.
+    - `500` error response of `liveStreamAssets.upload` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamAssets.statusHistory` changed from `error` to `application/json`.
+    - `401` error response of `recycleBin.recover` changed from `error` to `application/json`.
+    - `403` error response of `recycleBin.recover` changed from `error` to `application/json`.
+    - `401` error response of `recycleBin.list` changed from `error` to `application/json`.
+    - `403` error response of `recycleBin.list` changed from `error` to `application/json`.
+    - `401` error response of `videoWorkspaces.list` changed from `error` to `application/json`.
+    - `403` error response of `videoWorkspaces.list` changed from `error` to `application/json`.
+    - `401` error response of `videoWorkspaces.create` changed from `error` to `application/json`.
+    - `422` error response of `videoWorkspaces.create` changed from `error` to `application/json`.
+    - `401` error response of `videoWorkspaces.update` changed from `error` to `application/json`.
+    - `403` error response of `videoWorkspaces.update` changed from `error` to `application/json`.
+    - `401` error response of `videoWorkspaces.retrieve` changed from `error` to `application/json`.
+    - `403` error response of `videoWorkspaces.retrieve` changed from `error` to `application/json`.
+    - `401` error response of `videoWorkspaces.delete` changed from `error` to `application/json`.
+    - `403` error response of `videoWorkspaces.delete` changed from `error` to `application/json`.
+    - `401` error response of `folders.create` changed from `error` to `application/json`.
+    - `403` error response of `folders.create` changed from `error` to `application/json`.
+    - `422` error response of `folders.create` changed from `error` to `application/json`.
+    - `401` error response of `folders.list` changed from `error` to `application/json`.
+    - `403` error response of `folders.list` changed from `error` to `application/json`.
+    - `401` error response of `folders.retrieve` changed from `error` to `application/json`.
+    - `403` error response of `folders.retrieve` changed from `error` to `application/json`.
+    - `401` error response of `folders.update` changed from `error` to `application/json`.
+    - `403` error response of `folders.update` changed from `error` to `application/json`.
+    - `401` error response of `folders.delete` changed from `error` to `application/json`.
+    - `403` error response of `folders.delete` changed from `error` to `application/json`.
+    - `401` error response of `folders.removeAssets` changed from `error` to `application/json`.
+    - `403` error response of `folders.removeAssets` changed from `error` to `application/json`.
+    - `401` error response of `channelViewers.invite` changed from `error` to `application/json`.
+    - `403` error response of `channelViewers.invite` changed from `error` to `application/json`.
+    - `401` error response of `channelViewers.remove` changed from `error` to `application/json`.
+    - `403` error response of `channelViewers.remove` changed from `error` to `application/json`.
+    - `401` error response of `channelViewers.inviteCsv` changed from `error` to `application/json`.
+    - `403` error response of `channelViewers.inviteCsv` changed from `error` to `application/json`.
+    - `401` error response of `channelViewers.listSubscribers` changed from `error` to `application/json`.
+    - `403` error response of `channelViewers.listSubscribers` changed from `error` to `application/json`.
+    - `403` error response of `videoAnalytics.viewerData` changed from `error` to `application/json`.
+    - `500` error response of `videoAnalytics.viewerData` changed from `error` to `application/json`.
+    - `403` error response of `videoAnalytics.breakdownData` changed from `error` to `application/json`.
+    - `500` error response of `videoAnalytics.breakdownData` changed from `error` to `application/json`.
+    - `403` error response of `videoAnalytics.aggregatedData` changed from `error` to `application/json`.
+    - `500` error response of `videoAnalytics.aggregatedData` changed from `error` to `application/json`.
+    - `401` error response of `organizationData.fetchOrg` changed from `error` to `application/json`.
+    - `403` error response of `organizationData.fetchOrg` changed from `error` to `application/json`.
+    - `401` error response of `userData.fetch` changed from `error` to `application/json`.
+    - `403` error response of `userData.fetch` changed from `error` to `application/json`.
+    - `401` error response of `auditLogs.fetch` changed from `error` to `application/json`.
+    - `403` error response of `auditLogs.fetch` changed from `error` to `application/json`.
+    - `422` error response of `auditLogs.fetch` changed from `error` to `application/json`.
+    - `401` error response of `billing.listInvoices` changed from `error` to `application/json`.
+    - `403` error response of `billing.listInvoices` changed from `error` to `application/json`.
+    - `401` error response of `billing.fetchDetails` changed from `error` to `application/json`.
+    - `403` error response of `billing.fetchDetails` changed from `error` to `application/json`.
+    - `401` error response of `billing.updateDetails` changed from `error` to `application/json`.
+    - `403` error response of `billing.updateDetails` changed from `error` to `application/json`.
+    - `500` error response of `billing.updateDetails` changed from `error` to `application/json`.
+    - `401` error response of `billing.fetchUpcomingInvoice` changed from `error` to `application/json`.
+    - `403` error response of `billing.fetchUpcomingInvoice` changed from `error` to `application/json`.
+    - `500` error response of `billing.fetchUpcomingInvoice` changed from `error` to `application/json`.
+    - `401` error response of `liveStreamWorkspaces.list` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamWorkspaces.list` changed from `error` to `application/json`.
+    - `401` error response of `liveStreamWorkspaces.create` changed from `error` to `application/json`.
+    - `422` error response of `liveStreamWorkspaces.create` changed from `error` to `application/json`.
+    - `401` error response of `liveStreamWorkspaces.update` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamWorkspaces.update` changed from `error` to `application/json`.
+    - `401` error response of `liveStreamWorkspaces.delete` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamWorkspaces.delete` changed from `error` to `application/json`.
+    - `401` error response of `liveStreamAnalytics.usage` changed from `error` to `application/json`.
+    - `403` error response of `liveStreamAnalytics.usage` changed from `error` to `application/json`.
+    - `401` error response of `globalSearch.search` changed from `error` to `application/json`.
+    - `403` error response of `globalSearch.search` changed from `error` to `application/json`.
+    - Removed schema `error`.
+
+### Features
+
+* **api:** update SDK surface (189 changes) ([57774ae](https://github.com/gumlet/nodejs-sdk/commit/57774ae9d70bc7f32e17b4207bbeae5cd77f5b86))
+* **api:** update SDK surface (2 changes) ([9652b78](https://github.com/gumlet/nodejs-sdk/commit/9652b7821be063978874500d1744f0a28e0c80cd))
+
+
+### Chores
+
+* **api:** update generated SDK content ([77c0167](https://github.com/gumlet/nodejs-sdk/commit/77c0167fc5b85f97c5867d935b4a2ee3fced1d9e))
+* **api:** update generated SDK content ([3bb0e1c](https://github.com/gumlet/nodejs-sdk/commit/3bb0e1c87b54b5a76964a2382807224c4e7953d8))
+* release 1.9.0 ([18df9b9](https://github.com/gumlet/nodejs-sdk/commit/18df9b960c2010b5cf4160a360ce0a5a833896f0))
+
 ## [1.8.1](https://github.com/gumlet/nodejs-sdk/compare/v1.8.0...v1.8.1) (2026-11-19)
 
 

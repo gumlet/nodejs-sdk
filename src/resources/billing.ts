@@ -6,18 +6,24 @@ import type { RequestOptions } from '../internal/request-options';
 
 export class Billing extends APIResource {
   /**
-   * Liost all invoices that are generated so far.
+   * List all invoices that are generated so far.
    *
+   * @param {BillingListInvoicesParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<BillingListInvoicesResponse>} Successful response
    *
    * @example
    * ```ts
-   * const billing = await client.billing.listInvoices();
+   * const billing = await client.billing.listInvoices({
+   *   page_size: 20,
+   * });
    * ```
    */
-  listInvoices(options?: RequestOptions): APIPromise<BillingListInvoicesResponse> {
-    return this._client.get('/mixed/billing/invoice/history', options);
+  listInvoices(
+    query: BillingListInvoicesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<BillingListInvoicesResponse> {
+    return this._client.get('/mixed/billing/invoice/history', { query, ...options });
   }
 
   /**
@@ -76,6 +82,20 @@ export class Billing extends APIResource {
   fetchUpcomingInvoice(options?: RequestOptions): APIPromise<BillingFetchUpcomingInvoiceResponse> {
     return this._client.get('/mixed/billing/invoice/upcoming', options);
   }
+}
+
+export interface BillingListInvoicesParams {
+  /**
+   * Number of invoices to return per page. **Default: `20`**. **Maximum: `100`**.
+   * @minimum 1
+   * @maximum 100
+   */
+  page_size?: number;
+  /**
+   * Stripe invoice ID cursor for the next page. Pass the `id` of the last invoice from the previous response to fetch the next set of invoices.
+   * @minLength 1
+   */
+  last_id?: string;
 }
 
 export interface BillingListInvoicesResponse {
@@ -283,6 +303,7 @@ export declare namespace Billing {
     type BillingFetchDetailsResponse as BillingFetchDetailsResponse,
     type BillingUpdateDetailsResponse as BillingUpdateDetailsResponse,
     type BillingFetchUpcomingInvoiceResponse as BillingFetchUpcomingInvoiceResponse,
+    type BillingListInvoicesParams as BillingListInvoicesParams,
     type BillingUpdateDetailsParams as BillingUpdateDetailsParams,
   };
 }
