@@ -435,6 +435,7 @@ export class Gumlet {
     this._options = { ...options, baseURL: baseURLOverridden ? this.baseURL : undefined };
     this._baseURLOverridden = baseURLOverridden;
     this._defaultBaseURL = defaultBaseURL;
+    this.idempotencyHeader = 'Idempotency-Key';
 
     this.apiKey = apiKey;
     this.webhookSecret = webhookSecret;
