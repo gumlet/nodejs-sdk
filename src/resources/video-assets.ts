@@ -4,7 +4,9 @@ import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
 import type { RequestOptions } from '../internal/request-options';
 import { buildHeaders } from '../internal/headers';
+import { readSignedUploadFile, uploadToSignedURL } from '../core/signed-upload';
 import { path as __scalarPath } from '../internal/utils/path';
+import type { Uploadable } from '../core/uploads';
 
 export class VideoAssets extends APIResource {
   /**
@@ -140,29 +142,6 @@ export class VideoAssets extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
-  }
-
-  /**
-   * Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.
-   *
-   * Here is the sample curl request.
-   *
-   * ```bash
-   * curl --location --request PUT '<upload_url>' \
-   * --data '<YOUR_FILE_PATH>'
-   * ```
-   *
-   * @param {string} assetID - An asset id for the previously created asset.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<VideoAssetThumbnailUploadResponse>}
-   *
-   * @example
-   * ```ts
-   * const videoAsset = await client.videoAssets.thumbnailUpload('assetId');
-   * ```
-   */
-  thumbnailUpload(assetID: string, options?: RequestOptions): APIPromise<VideoAssetThumbnailUploadResponse> {
-    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, options);
   }
 
   /**
@@ -325,6 +304,42 @@ export class VideoAssets extends APIResource {
     options?: RequestOptions,
   ): APIPromise<VideoAssetAnalyticsResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/analytics`, { body, ...options });
+  }
+
+  /**
+   * Requests a thumbnail upload URL for the asset and PUTs the file to it.
+   *
+   * @param {string} assetID - An asset id for the previously created asset.
+   * @param {Uploadable} file - The file to upload. It is sent to the pre-signed URL the request returns, without the client's credentials.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {Promise<VideoAssetUploadThumbnailFileResponse>}
+   *
+   * @example
+   * ```ts
+   * const videoAsset = await client.videoAssets.uploadThumbnailFile(
+   *   'assetId',
+   *   new File(['file contents'], 'file.txt'),
+   * );
+   * ```
+   */
+  async uploadThumbnailFile(
+    assetID: string,
+    file: Uploadable,
+    options?: RequestOptions,
+  ): Promise<VideoAssetUploadThumbnailFileResponse> {
+    const content = await readSignedUploadFile(file);
+    const initiated: unknown = await this._client.post(
+      __scalarPath`/video/assets/${assetID}/thumbnail`,
+      options,
+    );
+    await uploadToSignedURL(
+      this._client,
+      initiated,
+      { urlField: ['upload_url'], method: 'PUT', body: 'binary' },
+      content,
+      options,
+    );
+    return initiated as VideoAssetUploadThumbnailFileResponse;
   }
 }
 
@@ -1616,21 +1631,6 @@ export interface VideoAssetThumbnailSelectResponse {
   thumbnail_updated_at?: number;
 }
 
-export interface VideoAssetThumbnailUploadResponse {
-  /**
-   * Upload URL on which new thumbnail must be uploaded using a PUT request
-   */
-  upload_url?: string;
-  /**
-   * Asset ID
-   */
-  asset_id?: string;
-  /**
-   * Thumbnail updated at timestamp in milliseconds since epoch
-   */
-  thumbnail_updated_at?: number;
-}
-
 export interface VideoAssetCreateUpdateChapterParams {
   /**
    * List of chapters
@@ -2375,6 +2375,21 @@ export namespace VideoAssetAnalyticsResponse {
     }
   }
 }
+
+export interface VideoAssetUploadThumbnailFileResponse {
+  /**
+   * Upload URL on which new thumbnail must be uploaded using a PUT request
+   */
+  upload_url?: string;
+  /**
+   * Asset ID
+   */
+  asset_id?: string;
+  /**
+   * Thumbnail updated at timestamp in milliseconds since epoch
+   */
+  thumbnail_updated_at?: number;
+}
 export declare namespace VideoAssets {
   export {
     type VideoAssetCreateResponse as VideoAssetCreateResponse,
@@ -2382,13 +2397,13 @@ export declare namespace VideoAssets {
     type VideoAssetRetrieveDetailsResponse as VideoAssetRetrieveDetailsResponse,
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
     type VideoAssetThumbnailSelectResponse as VideoAssetThumbnailSelectResponse,
-    type VideoAssetThumbnailUploadResponse as VideoAssetThumbnailUploadResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
     type VideoAssetListWorkspaceFoldersAndDeprecatedResponse as VideoAssetListWorkspaceFoldersAndDeprecatedResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
     type VideoAssetDeleteManyResponse as VideoAssetDeleteManyResponse,
     type VideoAssetTagManyResponse as VideoAssetTagManyResponse,
     type VideoAssetAnalyticsResponse as VideoAssetAnalyticsResponse,
+    type VideoAssetUploadThumbnailFileResponse as VideoAssetUploadThumbnailFileResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
