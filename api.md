@@ -18,6 +18,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Bulk Delete](#bulk-delete)
   - [Bulk Tag](#bulk-tag)
   - [Asset Analytics](#asset-analytics)
+  - [Create Asset Direct Upload](#create-asset-direct-upload-1)
   - [Upload a thumbnail file](#upload-a-thumbnail-file)
 - [`SubtitleUpload`](#subtitleupload)
   - [Upload Subtitles](#upload-subtitles)
@@ -368,6 +369,41 @@ const videoAsset = await client.videoAssets.analytics('assetId', {
     end_at: '2024-01-01',
   },
   metrics: ['impressions'],
+});
+```
+
+### Create Asset Direct Upload
+
+This endpoint creates a video asset allowing upload of a video from the local file system and ingest media content into the Gumlet system for processing and delivery. Body parameters are the same as the Create Asset body parameters except for the `input` parameter, which this endpoint does not take. A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [this](https://docs.gumlet.com/docs/direct-upload#2-use-the-url-to-upload-a-file).
+
+| Direction | Type |
+| --- | --- |
+| Request | [`VideoAssetUploadFileParams`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetUploadFileResponse`](./src/resources/video-assets.ts) |
+
+```ts
+const videoAsset = await client.videoAssets.uploadFile(new File(['file contents'], 'file.txt'), {
+  format: 'ABR',
+  collection_id: '646df1c9173a4a2fcac180b4',
+  description: 'some description',
+  tag: ['ball'],
+  profile_id: '646df1c9173a4a2fcac180b7',
+  playlist_id: '6597acd5ed6f26a9c5ca9633',
+  metadata: { headermeta: 'metavalue' },
+  call_to_actions: [
+    {
+      start_time: 1,
+      end_time: 90,
+      text: 'some test',
+      url: 'https://some-url.com',
+      position_from_top: 11,
+      position_from_right: 23,
+      font_color: '#000001',
+      background_color: '#ffffff',
+    },
+  ],
+  folder: '697375fbfa2d1037283140e4',
+  workspace_id: '646df1c9173a4a2fcac180b4',
 });
 ```
 

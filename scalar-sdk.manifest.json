@@ -3374,6 +3374,303 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
+      "operation": "uploadFile",
+      "publicOperation": "uploadFile",
+      "deprecated": false,
+      "method": "POST",
+      "path": "/video/assets/upload",
+      "pathParams": [],
+      "publicPathParams": [],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [
+        "collection_id",
+        "profile_id",
+        "format",
+        "tag",
+        "title",
+        "description",
+        "metadata",
+        "width",
+        "height",
+        "resolution",
+        "crop",
+        "pad",
+        "trim",
+        "image_overlay",
+        "text_overlay",
+        "animated_gif",
+        "additional_tracks",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "enable_drm",
+        "call_to_actions",
+        "playlist_id",
+        "folder",
+        "workspace_id"
+      ],
+      "publicBodyParams": [
+        "collection_id",
+        "profile_id",
+        "format",
+        "tag",
+        "title",
+        "description",
+        "metadata",
+        "width",
+        "height",
+        "resolution",
+        "crop",
+        "pad",
+        "trim",
+        "image_overlay",
+        "text_overlay",
+        "animated_gif",
+        "additional_tracks",
+        "generate_subtitles",
+        "mp4_access",
+        "per_title_encoding",
+        "process_low_resolution_input",
+        "audio_only",
+        "enable_drm",
+        "call_to_actions",
+        "playlist_id",
+        "folder",
+        "workspace_id"
+      ],
+      "bodyParamDetails": [
+        {
+          "name": "collection_id",
+          "required": false
+        },
+        {
+          "name": "profile_id",
+          "required": false
+        },
+        {
+          "name": "format",
+          "required": false
+        },
+        {
+          "name": "tag",
+          "required": false
+        },
+        {
+          "name": "title",
+          "required": false
+        },
+        {
+          "name": "description",
+          "required": false
+        },
+        {
+          "name": "metadata",
+          "required": false
+        },
+        {
+          "name": "width",
+          "required": false
+        },
+        {
+          "name": "height",
+          "required": false
+        },
+        {
+          "name": "resolution",
+          "required": false
+        },
+        {
+          "name": "crop",
+          "required": false
+        },
+        {
+          "name": "pad",
+          "required": false
+        },
+        {
+          "name": "trim",
+          "required": false
+        },
+        {
+          "name": "image_overlay",
+          "required": false
+        },
+        {
+          "name": "text_overlay",
+          "required": false
+        },
+        {
+          "name": "animated_gif",
+          "required": false
+        },
+        {
+          "name": "additional_tracks",
+          "required": false
+        },
+        {
+          "name": "generate_subtitles",
+          "required": false
+        },
+        {
+          "name": "mp4_access",
+          "required": false
+        },
+        {
+          "name": "per_title_encoding",
+          "required": false
+        },
+        {
+          "name": "process_low_resolution_input",
+          "required": false
+        },
+        {
+          "name": "audio_only",
+          "required": false
+        },
+        {
+          "name": "enable_drm",
+          "required": false
+        },
+        {
+          "name": "call_to_actions",
+          "required": false
+        },
+        {
+          "name": "playlist_id",
+          "required": false
+        },
+        {
+          "name": "folder",
+          "required": false
+        },
+        {
+          "name": "workspace_id",
+          "required": true
+        }
+      ],
+      "pathParamDetails": [],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "VideoAssetUploadFileParams"
+      },
+      "requestBody": {
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ],
+        "required": false,
+        "publicName": "body",
+        "publicIdentifier": "body"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "400",
+          "401",
+          "402",
+          "403",
+          "422",
+          "500"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "400",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "402",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "403",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "500",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "videoAssets",
+      "publicResource": "videoAssets",
       "operation": "uploadThumbnail",
       "publicOperation": "uploadThumbnail",
       "deprecated": false,
