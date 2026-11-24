@@ -371,10 +371,10 @@ Requests a thumbnail upload URL for the asset and PUTs the file to it.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`VideoAssetUploadThumbnailResponse`](./src/resources/video-assets.ts) |
+| Response | [`VideoAssetUploadThumbnailFileResponse`](./src/resources/video-assets.ts) |
 
 ```ts
-const videoAsset = await client.videoAssets.uploadThumbnail(
+const videoAsset = await client.videoAssets.uploadThumbnailFile(
   'assetId',
   new File(['file contents'], 'file.txt'),
 );

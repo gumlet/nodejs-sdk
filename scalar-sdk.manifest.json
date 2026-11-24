@@ -3671,8 +3671,8 @@
     {
       "resource": "videoAssets",
       "publicResource": "videoAssets",
-      "operation": "uploadThumbnail",
-      "publicOperation": "uploadThumbnail",
+      "operation": "uploadThumbnailFile",
+      "publicOperation": "uploadThumbnailFile",
       "deprecated": false,
       "method": "POST",
       "path": "/video/assets/{asset_ID}/thumbnail",
@@ -3703,7 +3703,7 @@
       "publicCookieParams": [],
       "cookieParamDetails": [],
       "paramsModel": {
-        "publicName": "VideoAssetUploadThumbnailParams"
+        "publicName": "VideoAssetUploadThumbnailFileParams"
       },
       "response": {
         "status": "200",
