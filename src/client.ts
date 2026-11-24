@@ -42,6 +42,8 @@ import {
   type VideoAssetDeleteManyResponse,
   type VideoAssetTagManyResponse,
   type VideoAssetAnalyticsResponse,
+  type VideoAssetUploadFileResponse,
+  type VideoAssetUploadThumbnailResponse,
   type VideoAssetCreateParams,
   type VideoAssetUploadParams,
   type VideoAssetUpdateParams,
@@ -52,6 +54,7 @@ import {
   type VideoAssetDeleteManyParams,
   type VideoAssetTagManyParams,
   type VideoAssetAnalyticsParams,
+  type VideoAssetUploadFileParams,
 } from './resources/video-assets';
 import {
   SubtitleUpload,
@@ -299,6 +302,12 @@ export interface ClientOptions {
    * through this function, so a wrapper that adds a credential itself must add it only for the
    * API's own origin. A request whose `fetchOptions` set `redirect: 'manual'` gets its 3xx answer
    * back unfollowed, so a caller can read a signed URL from `Location`; `'error'` is kept too.
+   *
+   * A file upload to the pre-signed URL an API response names does not go through this function:
+   * it goes through the platform `fetch` with the transport fields of `fetchOptions`. Declare that
+   * this function sends a request as handed over with `signedUploadTransport(fetch)`, from the
+   * package root, to send uploads through it too, without the client's credentials or default
+   * headers; a credential it adds itself must then be added only for the API's own origin.
    *
    * In a browser or a browser worker, which hide a manual redirect's target, a request whose only
    * credentials are ones the browser itself keeps on the origin (`Authorization`, cookies) is sent
@@ -1348,6 +1357,8 @@ export declare namespace Gumlet {
     type VideoAssetDeleteManyResponse as VideoAssetDeleteManyResponse,
     type VideoAssetTagManyResponse as VideoAssetTagManyResponse,
     type VideoAssetAnalyticsResponse as VideoAssetAnalyticsResponse,
+    type VideoAssetUploadFileResponse as VideoAssetUploadFileResponse,
+    type VideoAssetUploadThumbnailResponse as VideoAssetUploadThumbnailResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
@@ -1358,6 +1369,7 @@ export declare namespace Gumlet {
     type VideoAssetDeleteManyParams as VideoAssetDeleteManyParams,
     type VideoAssetTagManyParams as VideoAssetTagManyParams,
     type VideoAssetAnalyticsParams as VideoAssetAnalyticsParams,
+    type VideoAssetUploadFileParams as VideoAssetUploadFileParams,
   };
 
   export {

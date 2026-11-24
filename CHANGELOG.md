@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.9.2](https://github.com/gumlet/nodejs-sdk/compare/v1.9.0...v1.9.2) (2026-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Removed operation `videoAssets.uploadThumbnailFile` (`POST /video/assets/{asset_ID}/thumbnail`).
+* **api:** Removed operation `videoAssets.thumbnailUpload` (`POST /video/assets/{asset_ID}/thumbnail`).
+
+### Features
+
+* **api:** add operation videoAssets.thumbnailUpload ([d63cb3a](https://github.com/gumlet/nodejs-sdk/commit/d63cb3a65fa76d73ff5654d7bcbbfe62a8903011))
+* **api:** add operation videoAssets.uploadFile ([3711e74](https://github.com/gumlet/nodejs-sdk/commit/3711e74534caecfca552664d429ce1c04f357fab))
+* **api:** update SDK surface (2 changes) ([839001e](https://github.com/gumlet/nodejs-sdk/commit/839001edff008cf6598c751ee759342be6ea9123))
+* **api:** update SDK surface (3 changes) ([77b9230](https://github.com/gumlet/nodejs-sdk/commit/77b9230bdbb088ffeb5169877c5571911a423979))
+
+
+### Chores
+
+* **api:** update generated SDK content ([9afa0d0](https://github.com/gumlet/nodejs-sdk/commit/9afa0d0265e0295d35d8287d872f2c09d2fc095c))
+* **api:** update generated SDK content ([0da4321](https://github.com/gumlet/nodejs-sdk/commit/0da4321e875c8033f9c79a4d845f4642eff46424))
+* release 1.9.2 ([ac17222](https://github.com/gumlet/nodejs-sdk/commit/ac17222ab18ec6667ecbd653016e9e9baef24a02))
+
 ## [1.9.0](https://github.com/gumlet/nodejs-sdk/compare/v1.8.1...v1.9.0) (2026-11-23)
 
 

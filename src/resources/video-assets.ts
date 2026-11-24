@@ -4,7 +4,9 @@ import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
 import type { RequestOptions } from '../internal/request-options';
 import { buildHeaders } from '../internal/headers';
+import { readSignedUploadFile, uploadToSignedURL } from '../core/signed-upload';
 import { path as __scalarPath } from '../internal/utils/path';
+import type { Uploadable } from '../core/uploads';
 
 export class VideoAssets extends APIResource {
   /**
@@ -37,29 +39,7 @@ export class VideoAssets extends APIResource {
    *
    * @example
    * ```ts
-   * const videoAsset = await client.videoAssets.upload({
-   *   format: 'ABR',
-   *   collection_id: '646df1c9173a4a2fcac180b4',
-   *   description: 'some description',
-   *   tag: ['ball'],
-   *   profile_id: '646df1c9173a4a2fcac180b7',
-   *   playlist_id: '6597acd5ed6f26a9c5ca9633',
-   *   metadata: { headermeta: 'metavalue' },
-   *   call_to_actions: [
-   *     {
-   *       start_time: 1,
-   *       end_time: 90,
-   *       text: 'some test',
-   *       url: 'https://some-url.com',
-   *       position_from_top: 11,
-   *       position_from_right: 23,
-   *       font_color: '#000001',
-   *       background_color: '#ffffff',
-   *     },
-   *   ],
-   *   folder: '697375fbfa2d1037283140e4',
-   *   workspace_id: '646df1c9173a4a2fcac180b4',
-   * });
+   * const videoAsset = await client.videoAssets.upload({ workspace_id: '646df1c9173a4a2fcac180b4' });
    * ```
    */
   upload(body: VideoAssetUploadParams, options?: RequestOptions): APIPromise<VideoAssetUploadResponse> {
@@ -325,6 +305,74 @@ export class VideoAssets extends APIResource {
     options?: RequestOptions,
   ): APIPromise<VideoAssetAnalyticsResponse> {
     return this._client.post(__scalarPath`/video/assets/${assetID}/analytics`, { body, ...options });
+  }
+
+  /**
+   * This endpoint creates a video asset allowing upload of a video from the local file system and ingest media content into the Gumlet system for processing and delivery. Body parameters are the same as the Create Asset body parameters except for the `input` parameter, which this endpoint does not take. A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [this](https://docs.gumlet.com/docs/direct-upload#2-use-the-url-to-upload-a-file).
+   *
+   * @param {Uploadable} file - The file to upload. It is sent to the pre-signed URL the request returns, without the client's credentials.
+   * @param {VideoAssetUploadFileParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {Promise<VideoAssetUploadFileResponse>} 200
+   *
+   * @example
+   * ```ts
+   * const videoAsset = await client.videoAssets.uploadFile(new File(['file contents'], 'file.txt'), {
+   *   workspace_id: '646df1c9173a4a2fcac180b4',
+   * });
+   * ```
+   */
+  async uploadFile(
+    file: Uploadable,
+    body: VideoAssetUploadFileParams,
+    options?: RequestOptions,
+  ): Promise<VideoAssetUploadFileResponse> {
+    const content = await readSignedUploadFile(file);
+    const initiated: unknown = await this._client.post('/video/assets/upload', { body, ...options });
+    await uploadToSignedURL(
+      this._client,
+      initiated,
+      { urlField: ['upload_url'], method: 'PUT', body: 'binary' },
+      content,
+      options,
+    );
+    return initiated as VideoAssetUploadFileResponse;
+  }
+
+  /**
+   * Requests a thumbnail upload URL for the asset and PUTs the file to it.
+   *
+   * @param {string} assetID - An asset id for the previously created asset.
+   * @param {Uploadable} file - The file to upload. It is sent to the pre-signed URL the request returns, without the client's credentials.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {Promise<VideoAssetUploadThumbnailResponse>}
+   *
+   * @example
+   * ```ts
+   * const videoAsset = await client.videoAssets.uploadThumbnail(
+   *   'assetId',
+   *   new File(['file contents'], 'file.txt'),
+   * );
+   * ```
+   */
+  async uploadThumbnail(
+    assetID: string,
+    file: Uploadable,
+    options?: RequestOptions,
+  ): Promise<VideoAssetUploadThumbnailResponse> {
+    const content = await readSignedUploadFile(file);
+    const initiated: unknown = await this._client.post(
+      __scalarPath`/video/assets/${assetID}/thumbnail`,
+      options,
+    );
+    await uploadToSignedURL(
+      this._client,
+      initiated,
+      { urlField: ['upload_url'], method: 'PUT', body: 'binary' },
+      content,
+      options,
+    );
+    return initiated as VideoAssetUploadThumbnailResponse;
   }
 }
 
@@ -2375,6 +2423,471 @@ export namespace VideoAssetAnalyticsResponse {
     }
   }
 }
+
+export interface VideoAssetUploadFileParams {
+  /**
+   * Gumlet video workspace ID. Preferred over deprecated `collection_id` / `source_id` (same ID).
+   */
+  workspace_id: string;
+  /**
+   * Deprecated. Use `workspace_id` instead. Still accepted for backwards compatibility.
+   * @deprecated
+   */
+  collection_id?: string;
+  /**
+   * Provide `profile_id` of the previously created video profile. This parameter will override all the parameters (except `input` and `workspace_id`) from the video profile.
+   */
+  profile_id?: string;
+  /**
+   * Transcode and deliver the asset in the requested format. The options can be one of `ABR` (HLS + DASH) and `MP4`.
+   */
+  format?: 'ABR' | 'MP4';
+  /**
+   * Specify a text string or identifier which can identify an asset or bunch of assets later.
+   */
+  tag?: Array<string>;
+  /**
+   * Specify a text string or identifier which can be used for filtering or searching the asset.
+   */
+  title?: string;
+  /**
+   * Attach some textual data with the asset. This field is neither searchable nor filterable.
+   */
+  description?: string;
+  /**
+   * Add your metadata you want to associate with this asset.<br/> Example: <br/> <code>  {  "internal_video_id" : "123Abc"  }  </code>
+   */
+  metadata?: Record<string, unknown>;
+  /**
+   * Resize video with the given width. Can be an absolute value in pixels or a percentage value with the `%` suffix. Specified values greater than the original asset width will be ignored. Applicable only when specified format is `MP4`.
+   */
+  width?: string;
+  /**
+   * Resize video with the given height. Can be an absolute value in pixels or a percentage value with the `%` suffix. Specified values greater than the original asset height will be ignored. Applicable only when specified format is `MP4`.
+   */
+  height?: string;
+  /**
+   * Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma-separated string out of the following values: `240p`, `360p`, `480p`, `540p`, `720p`, and `1080p`. Resized rendition will retain the input aspect ratio.
+   */
+  resolution?: string;
+  /**
+   * This transformation can be used to crop the video by defining a rectangular area within the dimensions of the output video.
+   */
+  crop?: VideoAssetUploadFileParams.Crop;
+  /**
+   * This transformation can be used to add padding to the video.
+   */
+  pad?: VideoAssetUploadFileParams.Pad;
+  /**
+   * Trim transformation can be used to trim videos based on time duration.
+   */
+  trim?: VideoAssetUploadFileParams.Trim;
+  /**
+   * Image overlay can be used to brand a video or add a visual label in the form of an image.
+   */
+  image_overlay?: VideoAssetUploadFileParams.ImageOverlay;
+  /**
+   * Text overlay can be used to brand a video or add a label in the form of text.
+   */
+  text_overlay?: VideoAssetUploadFileParams.TextOverlay;
+  /**
+   * Create an animated GIF from the video.
+   */
+  animated_gif?: VideoAssetUploadFileParams.AnimatedGif;
+  /**
+   * Add additional Audio / Subtitle tracks to Gumlet for transcoding and delivery along with video asset track.
+   */
+  additional_tracks?: Array<VideoAssetUploadFileParams.AdditionalTrack>;
+  /**
+   * Gumlet allows you to generate subtitles from the audio stream (use <a href='https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes'> ISO 639-1 </a> Language Codes)
+   */
+  generate_subtitles?: VideoAssetUploadFileParams.GenerateSubtitles;
+  /**
+   * Creates `MP4` version for download purpose in case of `MPEG-DASH` or `HLS` delivery format. **Default: `false`**
+   */
+  mp4_access?: boolean;
+  /**
+   * Gumlet analyzes each input video on a wide range of visual aspects. Based on the analysis, it chooses a unique set of transcoding options for processing the video. This ensures that the output video is of optimal size and best quality. **Default: `true`**
+   */
+  per_title_encoding?: boolean;
+  /**
+   * Currently, the minimum supported frame size is `57600` (`240x240`) pixels for `HLS/DASH` and `21025` (`145x145`) pixels for `MP4` format. However, enabling this flag will allow Gumlet to simply put your video asset into the specified delivery format without transcoding and optimization. Enabling this flag will cause any kind of specified video transformation to be ignored if you input video asset frame size is lower than the minimum supported frame size for the specified format. **Default: `false`**
+   */
+  process_low_resolution_input?: boolean;
+  /**
+   * This flag allows Gumlet to transcode and deliver audio-only in the specified format. In this case, video transformation and thumbnails/animated GIFs would not be created. **Default: `false`**
+   */
+  audio_only?: boolean;
+  /**
+   * Enable DRM encryption for transcoded videos. Gumlet supports Widevine and FairPlay DRMs.
+   */
+  enable_drm?: boolean;
+  /**
+   * A CTA is an explicit prompt within the video content encouraging viewers to take a particular action.
+   */
+  call_to_actions?: Array<VideoAssetUploadFileParams.CallToAction>;
+  /**
+   * Add this asset to a playlist.
+   */
+  playlist_id?: string;
+  /**
+   * Add this asset to an existing folder by `folder_id`.
+   */
+  folder?: string;
+}
+
+export namespace VideoAssetUploadFileParams {
+  export interface Crop {
+    /**
+     * Width of the cropping area in pixels.
+     */
+    width: string;
+    /**
+     * Height of the cropping area in pixels.
+     */
+    height: string;
+    /**
+     * This parameter defines the horizontal coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video width. **Default: `0`**
+     */
+    horizontal_margin?: string;
+    /**
+     * This parameter defines the vertical coordinate value of the upper-left corner of the cropping area. Values can be an absolute number of pixels or a percentage value relative to the video height. **Default: `0`**
+     */
+    vertical_margin?: string;
+  }
+
+  export interface Pad {
+    /**
+     * Width of padding on the top side. Values can be an absolute number of pixels or a percentage value relative to the video height. **Default: `%5`**
+     */
+    top?: string;
+    /**
+     * Width of padding on the left side. Values can be an absolute number of pixels or a percentage value relative to the video width. **Default: `0`**
+     */
+    left?: string;
+    /**
+     * Width of padding on the bottom side. Values can be an absolute number of pixels or a percentage value relative to the video height. **Default: `%5`**
+     */
+    bottom?: string;
+    /**
+     * Width of padding on the right side. Values can be an absolute number of pixels or a percentage value relative to the video width. **Default: `0`**
+     */
+    right?: string;
+    /**
+     * Color of padding area. **Default: `black`**
+     */
+    color?: string;
+  }
+
+  export interface Trim {
+    /**
+     * Start offset in number of seconds or in `HH:MM:SS` format.
+     * @format float
+     */
+    start_offset: number;
+    /**
+     * End offset in number of seconds or in `HH:MM:SS` format.
+     * @format float
+     */
+    end_offset: number;
+    /**
+     * Duration can be used in conjunction with `start_offset` parameter, can be specified in number of seconds.
+     * @format float
+     */
+    duration?: number;
+  }
+
+  export interface ImageOverlay {
+    /**
+     * This is the required parameter for image overlay; it can be a URL to an image that needs to be overlaid.
+     */
+    url: string;
+    /**
+     * This parameter defines the horizontal coordinate value of the corner (determined by `horizontal_align`) of the overlay area. Values can be an absolute number of pixels or a percentage value relative to the video width. **Default: `0`**
+     */
+    horizontal_margin?: string;
+    /**
+     * This parameter defines the vertical coordinate value of the corner (determined by `vertical_align`) of the overlay area. Values can be an absolute number of pixels or a percentage value relative to the video height. **Default: `0`**
+     */
+    vertical_margin?: string;
+    /**
+     * This parameter specifies the horizontal alignment of the overlaid image and can be either `left` or `right`. **Default: `right`**
+     */
+    horizontal_align?: string;
+    /**
+     * This parameter specifies the vertical alignment of the overlaid image and can be either `top` or `bottom`. **Default: `bottom`**
+     */
+    vertical_align?: string;
+    /**
+     * Width of the overlaid image. **Default: `image width`**
+     */
+    width?: string;
+    /**
+     * Height of the overlaid image. **Default: `image height`**
+     */
+    height?: string;
+  }
+
+  export interface TextOverlay {
+    /**
+     * Text to be overlaid on video.
+     */
+    text: string;
+    /**
+     * This parameter specifies the horizontal alignment of the overlaid text and can be either `left` or `right`. **Default: `right`**
+     */
+    horizontal_align?: string;
+    /**
+     * This parameter specifies the vertical alignment of the overlaid text and can be either `top` or `bottom`. **Default: `bottom`**
+     */
+    vertical_align?: string;
+    /**
+     * This parameter defines the horizontal coordinate value of the corner (determined by `horizontal_align`) of the overlay area. Values can be an absolute number of pixels relative to the video width. **Default: `0`**
+     */
+    horizontal_margin?: string;
+    /**
+     * This parameter defines the vertical coordinate value of the corner (determined by vertical_align) of the overlay area. Values can be an absolute number of pixels relative to the video height. **Default: `0`**
+     */
+    vertical_margin?: string;
+    /**
+     * Font color for text. **Default: `black`**
+     */
+    color?: string;
+    /**
+     * Font family type for text. **Default: `sans`**
+     */
+    font?: string;
+    /**
+     * Font size in pixels. **Default: `16`**
+     */
+    font_size?: string;
+    /**
+     * Overlay text opacity can be specified with opacity parameter where value can be between `0` and `100` where `0` is considered completely transparent and `100` is considered completely opaque. **Default: `100`**
+     */
+    opacity?: string;
+    /**
+     * This parameter allows drawing a rectangular box over the overlaid text. **Default: `false`**
+     */
+    box?: boolean;
+    /**
+     * Box color can be specified with this parameter. **Default: `white`**
+     */
+    box_color?: string;
+    /**
+     * Box opacity can be specified with this parameter. **Default: `100`**
+     */
+    box_opacity?: string;
+    /**
+     * Padding between the box border and the text can be specified with this parameter in pixels. **Default: `0`**
+     */
+    box_border?: string;
+  }
+
+  export interface AnimatedGif {
+    /**
+     * The time (in seconds or `HH:MM:SS` format) of the video timeline where the animated gif should begin. **Default: `0`**
+     */
+    start_offset?: string;
+    /**
+     * The time (in seconds or `HH:MM:SS` format) of the video timeline where the GIF ends. Defaults to `10` seconds after the start_offset. Maximum duration of GIF is limited to `10` seconds.
+     */
+    end_offset?: string;
+    /**
+     * The width in pixels (or in percentage value of asset width) of the animated GIF. Max width is `640px`.
+     */
+    width?: string;
+    /**
+     * The height in pixels (or in percentage value of asset height) of the animated GIF. Max height is `640px`.
+     */
+    height?: string;
+    /**
+     * The frame rate of the generated GIF. Defaults to `15` fps. Max `30` fps.
+     */
+    fps?: string;
+  }
+
+  export interface AdditionalTrack {
+    /**
+     * URL or web address of a file that Gumlet should download to add a stream.
+     */
+    url: string;
+    /**
+     * Type of additional track. Value can be either audio or subtitle.
+     */
+    type: string;
+    /**
+     * The language code value represents BCP 47 specification compliant value. For example, en for English.
+     */
+    language_code: string;
+    /**
+     * The name of the track containing a human-readable description.
+     */
+    name?: string;
+  }
+
+  export interface GenerateSubtitles {
+    /**
+     * Language code for native language of the audio.
+     */
+    audio_language?: string;
+    /**
+     * Comma separated string of language codes for which subtitle needs to be generated. Maximum four language codes are allowed.
+     */
+    subtitle_languages?: string;
+  }
+
+  export interface CallToAction {
+    text?: string;
+    url?: string;
+    /**
+     * @format int32
+     */
+    start_time?: number;
+    /**
+     * @format int32
+     */
+    end_time?: number;
+    /**
+     * hex value of color
+     */
+    font_color?: string;
+    /**
+     * hex code of color
+     */
+    background_color?: string;
+    /**
+     * number of pixels from top
+     * @format int32
+     */
+    position_from_top?: number;
+    /**
+     * number of pixels from right
+     * @format int32
+     */
+    position_from_right?: number;
+  }
+}
+
+export interface VideoAssetUploadFileResponse {
+  /**
+   * Asset ID of the created asset
+   */
+  asset_id?: string;
+  /**
+   * Processing progress percentage number between 0 and 100
+   * @default 0
+   * @minimum 0
+   * @maximum 100
+   */
+  progress?: number;
+  /**
+   * Created at timestamp in milliseconds since epoch
+   * @default 0
+   */
+  created_at?: number;
+  /**
+   * Updated at timestamp in milliseconds since epoch
+   * @default 0
+   */
+  updated_at?: number;
+  /**
+   * Status of asset
+   */
+  status?: string;
+  tag?: Array<string>;
+  input?: VideoAssetUploadFileResponse.Input;
+  /**
+   * Output data information
+   */
+  output?: VideoAssetUploadFileResponse.Output;
+  /**
+   * Upload URL on which you need to send actual file using PUT request
+   */
+  upload_url?: string;
+  /**
+   * Information about playlists
+   */
+  playlists?: Array<string>;
+  /**
+   * Workdspace ID
+   */
+  workspace_id?: string;
+}
+
+export namespace VideoAssetUploadFileResponse {
+  export interface Input {
+    transformations?: Input.Transformations;
+    profile_id?: string;
+    title?: string;
+    description?: string;
+    metadata?: Input.Metadata;
+    source_url?: string;
+    call_to_actions?: Array<Input.CallToAction>;
+  }
+
+  export namespace Input {
+    export interface Transformations {
+      format?: string;
+      resolution?: Array<string>;
+      audio_codec?: Array<string>;
+      video_codec?: Array<string>;
+      thumbnail?: Array<string>;
+      thumbnail_format?: string;
+      /**
+       * @default true
+       */
+      mp4_access?: boolean;
+      /**
+       * @default true
+       */
+      per_title_encoding?: boolean;
+      /**
+       * @default true
+       */
+      original_deleted?: boolean;
+    }
+
+    export interface Metadata {
+      headermeta?: string;
+    }
+
+    export interface CallToAction {
+      /**
+       * @default 0
+       */
+      start_time?: number;
+      /**
+       * @default 0
+       */
+      end_time?: number;
+      text?: string;
+      url?: string;
+      html_target?: string;
+    }
+  }
+
+  export interface Output {
+    format?: string;
+    status_url?: string;
+    playback_url?: string;
+    thumbnail_url?: Array<string>;
+  }
+}
+
+export interface VideoAssetUploadThumbnailResponse {
+  /**
+   * Upload URL on which new thumbnail must be uploaded using a PUT request
+   */
+  upload_url?: string;
+  /**
+   * Asset ID
+   */
+  asset_id?: string;
+  /**
+   * Thumbnail updated at timestamp in milliseconds since epoch
+   */
+  thumbnail_updated_at?: number;
+}
 export declare namespace VideoAssets {
   export {
     type VideoAssetCreateResponse as VideoAssetCreateResponse,
@@ -2389,6 +2902,8 @@ export declare namespace VideoAssets {
     type VideoAssetDeleteManyResponse as VideoAssetDeleteManyResponse,
     type VideoAssetTagManyResponse as VideoAssetTagManyResponse,
     type VideoAssetAnalyticsResponse as VideoAssetAnalyticsResponse,
+    type VideoAssetUploadFileResponse as VideoAssetUploadFileResponse,
+    type VideoAssetUploadThumbnailResponse as VideoAssetUploadThumbnailResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
@@ -2399,5 +2914,6 @@ export declare namespace VideoAssets {
     type VideoAssetDeleteManyParams as VideoAssetDeleteManyParams,
     type VideoAssetTagManyParams as VideoAssetTagManyParams,
     type VideoAssetAnalyticsParams as VideoAssetAnalyticsParams,
+    type VideoAssetUploadFileParams as VideoAssetUploadFileParams,
   };
 }
