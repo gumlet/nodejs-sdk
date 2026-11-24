@@ -119,9 +119,9 @@ const client = new Gumlet({
 | `defaultHeaders` | `HeadersInit` | - | Headers sent with every request. |
 | `defaultQuery` | `Record<string, string \| undefined>` | - | Query parameters sent with every request. |
 | `fetchOptions` | `RequestInit` | - | Additional fetch options sent with every request. |
-| `fetch` | `Fetch` | - | Custom fetch implementation. |
-| `logLevel` | `"off" \| "error" \| "warn" \| "info" \| "debug" \| null` | `process.env["GUMLET_LOG"]` | Controls request and retry debug logging. |
-| `logger` | `Logger \| null` | `console` | Custom logger implementation. |
+| `fetch` | `Fetch` | - | Custom fetch implementation. A file upload to a pre-signed URL uses it only when wrapped in `signedUploadTransport(fetch)`, which declares that it adds no credentials or headers of its own except for the API's own origin. |
+| `logLevel` | `"off" \| "error" \| "warn" \| "info" \| "debug"` | `process.env["GUMLET_LOG"] ?? "warn"` | Controls request and retry debug logging. `"off"` turns logging off. |
+| `logger` | `Logger` | `console` | Custom logger implementation. |
 
 <br />
 
@@ -157,6 +157,21 @@ const event = client.webhooks.unwrap(body, { headers });
 
 The signing secret comes from the client's `webhookSecret` option, which defaults to the `GUMLET_WEBHOOK_SECRET` environment variable. Pass `key` to use a different secret for one call.
 
+A delivery that fails verification throws `WebhookVerificationError`, exported from the package root. Check for it with `isWebhookVerificationError(error)`, exported beside it:
+
+```ts
+import { isWebhookVerificationError } from '@gumlet/nodejs-sdk';
+
+try {
+  const event = client.webhooks.unwrap(body, { headers });
+} catch (error) {
+  if (!isWebhookVerificationError(error)) throw error;
+  // Not a genuine delivery: reject it, for example with a 400 response.
+}
+```
+
+The guard matches the SDK's class and its subclasses, and the `standardwebhooks` class of the same name from any copy of that library, in every runtime. A handler that still imports that class from `standardwebhooks` keeps matching the SDK's refusals with `instanceof` on Node and Bun when the application loads `standardwebhooks` from its own `node_modules`, and in a Jest test that loads it with Jest's default CommonJS modules. It does not match where the library is bundled into the application, or in a browser, an edge runtime, or an ES module application on a Node release without `process.getBuiltinModule` (before 20.16, any 21, or 22 before 22.3). Use the guard there, and in Jest tests that run as ES modules.
+
 The same resource also has:
 
 - `client.webhooks.verifySignature(body, headers)` checks a delivery's signature, and fails when it does not verify.
@@ -166,8 +181,8 @@ The same resource also has:
 
 ## Helpers
 
-- Use `.withResponse()` on any request to inspect both parsed data and the raw `Response` object.
-- Every operation returns an `APIPromise`, so you can `await` it directly or chain `.withResponse()`.
+- Use `.withResponse()` on a request to inspect both parsed data and the raw `Response` object.
+- Every operation returns an `APIPromise`, so you can `await` it directly or chain `.withResponse()` — except a method that uploads a file to a pre-signed URL (a signed upload), which resolves to a plain `Promise` of its result.
 
 <br />
 
@@ -175,7 +190,7 @@ The same resource also has:
 
 - Set `logLevel: "debug"` to log request URLs, options, response status, response headers, and retry attempts.
 - Pass a custom `logger` to route logs into your own observability pipeline.
-- Set `logLevel: null` to disable environment-driven logging.
+- Set `logLevel: "off"` to turn logging off, whatever `GUMLET_LOG` says. Without `logLevel`, the client reads that environment variable, then defaults to `"warn"`.
 
 <br />
 

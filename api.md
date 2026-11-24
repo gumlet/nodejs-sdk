@@ -11,13 +11,13 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Delete Asset](#delete-asset)
   - [Update Asset](#update-asset)
   - [Update thumbnail from video](#update-thumbnail-from-video)
-  - [Update thumbnail via upload](#update-thumbnail-via-upload)
   - [Create/Update Video Asset Chapters](#createupdate-video-asset-chapters)
   - [List Assets (Deprecated)](#list-assets-deprecated)
   - [List Assets](#list-assets)
   - [Bulk Delete](#bulk-delete)
   - [Bulk Tag](#bulk-tag)
   - [Asset Analytics](#asset-analytics)
+  - [Upload a thumbnail file](#upload-a-thumbnail-file)
 - [`SubtitleUpload`](#subtitleupload)
   - [Upload Subtitles](#upload-subtitles)
   - [Complete Subtitle Upload](#complete-subtitle-upload)
@@ -232,25 +232,6 @@ Select frame from video to use as thumbnail.
 const videoAsset = await client.videoAssets.thumbnailSelect('assetId', { frame_at_second: 2 });
 ```
 
-### Update thumbnail via upload
-
-Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.
-
-Here is the sample curl request.
-
-```bash
-curl --location --request PUT '<upload_url>' \
---data '<YOUR_FILE_PATH>'
-```
-
-| Direction | Type |
-| --- | --- |
-| Response | [`VideoAssetThumbnailUploadResponse`](./src/resources/video-assets.ts) |
-
-```ts
-const videoAsset = await client.videoAssets.thumbnailUpload('assetId');
-```
-
 ### Create/Update Video Asset Chapters
 
 This endpoint will create/update video asset chapters.
@@ -368,6 +349,21 @@ const videoAsset = await client.videoAssets.analytics('assetId', {
   },
   metrics: ['impressions'],
 });
+```
+
+### Upload a thumbnail file
+
+Requests a thumbnail upload URL for the asset and PUTs the file to it.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`VideoAssetUploadThumbnailFileResponse`](./src/resources/video-assets.ts) |
+
+```ts
+const videoAsset = await client.videoAssets.uploadThumbnailFile(
+  'assetId',
+  new File(['file contents'], 'file.txt'),
+);
 ```
 
 ## `SubtitleUpload`

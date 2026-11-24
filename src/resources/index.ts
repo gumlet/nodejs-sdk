@@ -11,7 +11,6 @@ export type {
   VideoAssetUpdateResponse,
   VideoAssetThumbnailSelectParams,
   VideoAssetThumbnailSelectResponse,
-  VideoAssetThumbnailUploadResponse,
   VideoAssetCreateUpdateChapterParams,
   VideoAssetCreateUpdateChapterResponse,
   VideoAssetListWorkspaceFoldersAndDeprecatedParams,
@@ -24,6 +23,7 @@ export type {
   VideoAssetTagManyResponse,
   VideoAssetAnalyticsParams,
   VideoAssetAnalyticsResponse,
+  VideoAssetUploadThumbnailFileResponse,
 } from './video-assets';
 export { SubtitleUpload } from './subtitle-upload';
 export type {
