@@ -31,7 +31,7 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * This endpoint creates a video asset allowing upload of a video from the local file system and ingest media content into the Gumlet system for processing and delivery. Body parameters are the same as the Create Asset body parameters except for the `input` parameter, which this endpoint does not take. A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [this](https://docs.gumlet.com/docs/direct-upload#2-use-the-url-to-upload-a-file).
+   * This endpoint creates a video asset allowing upload of a video from the local file system and ingest media content into the Gumlet system for processing and delivery. Body parameters are the same as the Create Asset body parameters except for the `input` parameter, which this endpoint does not take. A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [Direct Upload](https://docs.gumlet.com/developers/vod-developers-section/direct-upload#2.-use-the-url-to-upload-a-file) guide.
    *
    * @param {VideoAssetUploadParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -308,7 +308,7 @@ export class VideoAssets extends APIResource {
   }
 
   /**
-   * This endpoint creates a video asset allowing upload of a video from the local file system and ingest media content into the Gumlet system for processing and delivery. Body parameters are the same as the Create Asset body parameters except for the `input` parameter, which this endpoint does not take. A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [this](https://docs.gumlet.com/docs/direct-upload#2-use-the-url-to-upload-a-file).
+   * This endpoint creates a video asset allowing upload of a video from the local file system and ingest media content into the Gumlet system for processing and delivery. Body parameters are the same as the Create Asset body parameters except for the `input` parameter, which this endpoint does not take. A successful response will be returned with `upload_url` field. You can make `PUT` request to that URL to upload video. To upload video using `upload_url` refer to [Direct Upload](https://docs.gumlet.com/developers/vod-developers-section/direct-upload#2.-use-the-url-to-upload-a-file) guide.
    *
    * @param {Uploadable} file - The file to upload. It is sent to the pre-signed URL the request returns, without the client's credentials.
    * @param {VideoAssetUploadFileParams} body - The request body to send.
