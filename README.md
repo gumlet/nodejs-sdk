@@ -197,4 +197,4 @@ The same resource also has:
 ## Requirements
 
 - Node.js 20+, a modern browser, or any runtime with `fetch` support
-- TypeScript 5.8+ for type checking, with `moduleResolution` set to `node16` or `nodenext` (from CommonJS or ES modules) or `bundler`
+
