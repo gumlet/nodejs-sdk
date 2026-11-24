@@ -85,6 +85,14 @@ describe.concurrent('resource videoAssets', () => {
     },
   );
   smokeCase(
+    'videoAssets.thumbnailUpload:single',
+    { operation: 'thumbnailUpload', path: '/video/assets/{asset_ID}/thumbnail' },
+    'thumbnailUpload',
+    async () => {
+      const videoAsset = await client.videoAssets.thumbnailUpload('assetId');
+    },
+  );
+  smokeCase(
     'videoAssets.createUpdateChapter:single',
     { operation: 'createUpdateChapter', path: '/video/assets/{asset_id}/chapters' },
     'createUpdateChapter',

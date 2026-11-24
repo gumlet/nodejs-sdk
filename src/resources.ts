@@ -36,6 +36,7 @@ export type {
   VideoAssetUpdateResponse,
   VideoAssetThumbnailSelectParams,
   VideoAssetThumbnailSelectResponse,
+  VideoAssetThumbnailUploadResponse,
   VideoAssetCreateUpdateChapterParams,
   VideoAssetCreateUpdateChapterResponse,
   VideoAssetListWorkspaceFoldersAndDeprecatedParams,

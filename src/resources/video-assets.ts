@@ -145,6 +145,29 @@ export class VideoAssets extends APIResource {
   }
 
   /**
+   * Use any image file to use as thumbnail. Once you use the API, you will get `upload_url` in the response, and that can be used to upload the image file.
+   *
+   * Here is the sample curl request.
+   *
+   * ```bash
+   * curl --location --request PUT '<upload_url>' \
+   * --data '<YOUR_FILE_PATH>'
+   * ```
+   *
+   * @param {string} assetID - An asset id for the previously created asset.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<VideoAssetThumbnailUploadResponse>}
+   *
+   * @example
+   * ```ts
+   * const videoAsset = await client.videoAssets.thumbnailUpload('assetId');
+   * ```
+   */
+  thumbnailUpload(assetID: string, options?: RequestOptions): APIPromise<VideoAssetThumbnailUploadResponse> {
+    return this._client.post(__scalarPath`/video/assets/${assetID}/thumbnail`, options);
+  }
+
+  /**
    * This endpoint will create/update video asset chapters.
    *
    * @param {string} assetID - Gumlet asset ID
@@ -1631,6 +1654,21 @@ export interface VideoAssetThumbnailSelectResponse {
   thumbnail_updated_at?: number;
 }
 
+export interface VideoAssetThumbnailUploadResponse {
+  /**
+   * Upload URL on which new thumbnail must be uploaded using a PUT request
+   */
+  upload_url?: string;
+  /**
+   * Asset ID
+   */
+  asset_id?: string;
+  /**
+   * Thumbnail updated at timestamp in milliseconds since epoch
+   */
+  thumbnail_updated_at?: number;
+}
+
 export interface VideoAssetCreateUpdateChapterParams {
   /**
    * List of chapters
@@ -2397,6 +2435,7 @@ export declare namespace VideoAssets {
     type VideoAssetRetrieveDetailsResponse as VideoAssetRetrieveDetailsResponse,
     type VideoAssetUpdateResponse as VideoAssetUpdateResponse,
     type VideoAssetThumbnailSelectResponse as VideoAssetThumbnailSelectResponse,
+    type VideoAssetThumbnailUploadResponse as VideoAssetThumbnailUploadResponse,
     type VideoAssetCreateUpdateChapterResponse as VideoAssetCreateUpdateChapterResponse,
     type VideoAssetListWorkspaceFoldersAndDeprecatedResponse as VideoAssetListWorkspaceFoldersAndDeprecatedResponse,
     type VideoAssetListResponse as VideoAssetListResponse,
