@@ -345,21 +345,21 @@ export class VideoAssets extends APIResource {
    * @param {string} assetID - An asset id for the previously created asset.
    * @param {Uploadable} file - The file to upload. It is sent to the pre-signed URL the request returns, without the client's credentials.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {Promise<VideoAssetUploadThumbnailResponse>}
+   * @returns {Promise<VideoAssetUploadThumbnailFileResponse>}
    *
    * @example
    * ```ts
-   * const videoAsset = await client.videoAssets.uploadThumbnail(
+   * const videoAsset = await client.videoAssets.uploadThumbnailFile(
    *   'assetId',
    *   new File(['file contents'], 'file.txt'),
    * );
    * ```
    */
-  async uploadThumbnail(
+  async uploadThumbnailFile(
     assetID: string,
     file: Uploadable,
     options?: RequestOptions,
-  ): Promise<VideoAssetUploadThumbnailResponse> {
+  ): Promise<VideoAssetUploadThumbnailFileResponse> {
     const content = await readSignedUploadFile(file);
     const initiated: unknown = await this._client.post(
       __scalarPath`/video/assets/${assetID}/thumbnail`,
@@ -372,7 +372,7 @@ export class VideoAssets extends APIResource {
       content,
       options,
     );
-    return initiated as VideoAssetUploadThumbnailResponse;
+    return initiated as VideoAssetUploadThumbnailFileResponse;
   }
 }
 
@@ -2874,7 +2874,7 @@ export namespace VideoAssetUploadFileResponse {
   }
 }
 
-export interface VideoAssetUploadThumbnailResponse {
+export interface VideoAssetUploadThumbnailFileResponse {
   /**
    * Upload URL on which new thumbnail must be uploaded using a PUT request
    */
@@ -2903,7 +2903,7 @@ export declare namespace VideoAssets {
     type VideoAssetTagManyResponse as VideoAssetTagManyResponse,
     type VideoAssetAnalyticsResponse as VideoAssetAnalyticsResponse,
     type VideoAssetUploadFileResponse as VideoAssetUploadFileResponse,
-    type VideoAssetUploadThumbnailResponse as VideoAssetUploadThumbnailResponse,
+    type VideoAssetUploadThumbnailFileResponse as VideoAssetUploadThumbnailFileResponse,
     type VideoAssetCreateParams as VideoAssetCreateParams,
     type VideoAssetUploadParams as VideoAssetUploadParams,
     type VideoAssetUpdateParams as VideoAssetUpdateParams,
