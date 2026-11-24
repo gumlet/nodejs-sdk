@@ -48,7 +48,7 @@ export type {
   VideoAssetTagManyResponse,
   VideoAssetAnalyticsParams,
   VideoAssetAnalyticsResponse,
-  VideoAssetUploadThumbnailFileResponse,
+  VideoAssetUploadThumbnailResponse,
   SubtitleUploadUploadParams,
   SubtitleUploadUploadResponse,
   SubtitleUploadCompleteParams,

@@ -23,7 +23,7 @@ export type {
   VideoAssetTagManyResponse,
   VideoAssetAnalyticsParams,
   VideoAssetAnalyticsResponse,
-  VideoAssetUploadThumbnailFileResponse,
+  VideoAssetUploadThumbnailResponse,
 } from './video-assets';
 export { SubtitleUpload } from './subtitle-upload';
 export type {
