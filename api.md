@@ -862,6 +862,7 @@ Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-ba
 const imageSource = await client.imageSources.list({
   page_number: 1,
   page_size: 20,
+  order_by: 'asc',
 });
 ```
 
