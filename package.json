@@ -77,6 +77,12 @@
     },
     "./package.json": "./package.json"
   },
+  "imports": {
+    "#internal/node-require": {
+      "node": "./dist/esm/internal/node-require.node.js",
+      "default": "./dist/esm/internal/node-require.js"
+    }
+  },
   "files": [
     "dist",
     "api.md",

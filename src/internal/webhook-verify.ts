@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { GumletError } from '../core/error';
 import { type HeadersLike, type HeadersProtocol, getHeader, getHeaderValues } from './headers';
 import { type NodeCrypto, hmacSha256Parts, nodeCrypto } from './hmac';
+import { createRequire as staticCreateRequire } from './node-require';
 import { toBase64 } from './utils/base64';
 import { encodeUTF8 } from './utils/bytes';
 
@@ -62,15 +62,20 @@ const DEFAULT_SCHEME = {
  * SDKs that verified through the `standardwebhooks` package let that library's class of the same name
  * escape, so callers wrote `err.name === 'WebhookVerificationError'` or `err instanceof
  * WebhookVerificationError`. The name is kept, and the package root exports this class, so both checks
- * keep working once the import points at the SDK. It extends the SDK's base error, so
- * `instanceof GumletError` covers a refused delivery too. Where the application has
- * loaded `standardwebhooks` itself, an `instanceof` against that library's class matches a refusal as
- * well (see {@link bridgeLibraryError}), and {@link isWebhookVerificationError} matches both classes
- * wherever that bridge cannot reach. A helper configured with an algorithm the verifier does not
- * implement throws it on every call; a missing or malformed secret, and a header the companions find
- * missing, still throw plain `Error`s.
+ * keep working once the import points at the SDK. An `instanceof` against the library's own class
+ * matches a refusal too: in every runtime once the application passes that class to
+ * {@link registerWebhookErrorClass}, and without that wherever the SDK finds the application's copy
+ * itself (see {@link bridgeLibraryError}). {@link isWebhookVerificationError} matches both classes
+ * with no setup at all. A helper configured with an algorithm the verifier does not implement throws
+ * it on every call; a missing or malformed secret, and a header the companions find missing, still
+ * throw plain `Error`s.
+ *
+ * It extends `Error` directly, not the SDK's base error: the library's class never was one, so a
+ * handler that catches the SDK's base error around API calls never caught a forged or stale delivery,
+ * and making it one would turn a security rejection into something a generic API-error handler
+ * swallows.
  */
-export class WebhookVerificationError extends GumletError {
+export class WebhookVerificationError extends Error {
   /**
    * Type-only, never set: a private member makes the class nominal, so a plain `Error` is not assignable
    * to it. Without it the class can have exactly `Error`'s members, and a false answer from
@@ -173,9 +178,9 @@ const isBridgedRefusal = (value: unknown): boolean =>
  * Makes `instanceof` against `standardwebhooks`' `WebhookVerificationError` match this SDK's refusals,
  * so a handler still importing the library's class keeps catching them after the move to the SDK.
  *
- * A refusal already extends the SDK's base error, and a prototype chain is linear, so the library's
- * class cannot be a second base the way it is in Python. The library's own `Symbol.hasInstance` is
- * what can answer instead, and is wrapped to accept refusals carrying {@link REFUSAL_BRAND}.
+ * A prototype chain is linear and the SDK cannot import the library, so the library's class cannot be
+ * a base of the SDK's the way it is in Python. The library's own `Symbol.hasInstance` is what can
+ * answer instead, and is wrapped to accept refusals carrying {@link REFUSAL_BRAND}.
  *
  * The SDK never loads the library. It only bridges a copy the application has already loaded, found
  * in a module cache: Node's (`require.cache`, where an ESM `import` of the CommonJS-only library lands
@@ -188,12 +193,12 @@ const isBridgedRefusal = (value: unknown): boolean =>
  * per entry, so a library that resolves from the application and is loaded after the first refusal is
  * picked up by the next one.
  *
- * Feature-detected through `process.getBuiltinModule`, `process.mainModule` or this file's own
- * CommonJS `module`, never a static import or `require`, so no bundler tries to resolve the library and
- * browsers and edge runtimes, which have none of them, skip it. Where it cannot work (a copy bundled
- * into the application, or one an ES module application loads on Node before 20.16, on 21 or on 22
- * before 22.3), {@link isWebhookVerificationError} still recognises both classes. Any failure leaves
- * the refusal exactly as it was without the library.
+ * `node:module` is feature-detected (see {@link nodeModuleOf}), and the library is never imported or
+ * `require`d, so no bundler tries to resolve it, and browsers and edge runtimes skip all of this. Where
+ * it cannot work (a copy bundled into the application, a browser, an edge runtime, Jest's ES module
+ * mode), the application passes its class to {@link registerWebhookErrorClass}, which installs the
+ * same wrapper, and {@link isWebhookVerificationError} recognises both classes with no setup. Any
+ * failure leaves the refusal exactly as it was without the library.
  *
  * Patching the library's class is deliberate and process-wide, and there is no opt-out: it changes
  * that class's `instanceof` answer for every caller in the process, but only ever to add refusals,
@@ -335,14 +340,15 @@ const resolveLibraryLookups = (): typeof libraryLookups => {
  * `node:module`; `null` when `process.getBuiltinModule` has none to give; `undefined` where the runtime
  * offers no synchronous way to it.
  *
- * `process.getBuiltinModule` first (Node 20.16+ and 22.3+, Bun). Before it, a CommonJS module's
- * constructor is the `Module` class `node:module` exports: the application's entry module,
- * `process.mainModule`, which a CommonJS entry sets (reading it prints no deprecation warning), and
- * else this file's own `module` in the CommonJS build, which an ES module application that loads that
- * build still provides. So Node 20.0–20.15, 21 and 22.0–22.2 bridge there too. An ES module
- * application loading the ES module build has neither, and the only other way in, `import()`, is
- * asynchronous: it would leave the first refusal unbridged and put a dynamic import into every bundle
- * of the SDK, so that case is left to {@link isWebhookVerificationError}.
+ * `process.getBuiltinModule` first (Node 20.16+ and 22.3+, Bun). Before it, the ES module build Node
+ * loads imports `createRequire` statically: the package's `imports` map sends `./node-require` to a
+ * Node-only file under the `node` condition, so browser and edge bundles never see a `node:` import.
+ * Then a CommonJS module's constructor is the `Module` class `node:module` exports: the application's
+ * entry module, `process.mainModule`, which a CommonJS entry sets (reading it prints no deprecation
+ * warning), and else this file's own `module` in the CommonJS build, which an ES module application
+ * that loads that build still provides. So Node 20.0–20.15, 21 and 22.0–22.2 bridge with either build.
+ * A bundle of the SDK built for Node keeps the static import, and one built for anything else has none
+ * of these, which is what {@link registerWebhookErrorClass} is for.
  */
 const nodeModuleOf = (
   runtime: NonNullable<BridgeGlobals['process']>,
@@ -350,6 +356,11 @@ const nodeModuleOf = (
 ): NodeModule | null | undefined => {
   if (typeof runtime.getBuiltinModule === 'function') {
     return (runtime.getBuiltinModule('node:module') as NodeModule | undefined) ?? null;
+  }
+  // The ES module build loaded under Node's `node` condition imports `createRequire` statically (see
+  // `./node-require`); everywhere else, the CommonJS build included, this is `undefined`.
+  if (typeof staticCreateRequire === 'function') {
+    return { createRequire: staticCreateRequire as NonNullable<NodeModule['createRequire']> };
   }
   for (const candidate of [runtime.mainModule as HostModule | undefined, host]) {
     const constructor = candidate?.constructor as NodeModule | undefined;
@@ -434,14 +445,81 @@ const patchLibraryHasInstance = (libraryClass: object): void => {
 };
 
 /**
+ * Makes `instanceof` against `errorClass` match this SDK's refused webhook deliveries, in every
+ * runtime. Pass the `WebhookVerificationError` class the application imports from `standardwebhooks`,
+ * once, before the handlers that check it run:
+ *
+ * ```ts
+ * import { WebhookVerificationError } from 'standardwebhooks';
+ *
+ * registerWebhookErrorClass(WebhookVerificationError);
+ * ```
+ *
+ * The SDK finds the application's copy of the library by itself only through a module cache it can
+ * read: Node's, or the CommonJS registry of a Jest test. A copy bundled into the application (webpack,
+ * esbuild, Vite), a browser, an edge runtime and Jest's ES module mode have none it can read, and the
+ * SDK cannot import a package it does not depend on: a bundler fails on an import it cannot resolve.
+ * Handing over the class the application imported itself works everywhere, because it is exactly the
+ * copy its handlers check against. It installs the same `Symbol.hasInstance` wrapper as the automatic
+ * path (see {@link bridgeLibraryError}), so the wrapper only ever adds this SDK's refusals, any other
+ * SDK's and earlier ones included, to the class's answer.
+ *
+ * Registration is process-wide, not a client option, because `instanceof` is answered by the class,
+ * and a refusal carries no client: the same class answers for every client and every copy of the SDK.
+ * Calling it again, with a class the automatic path or another SDK already wrapped, is a no-op, and so
+ * is passing this SDK's own `WebhookVerificationError`, which matches its refusals already.
+ *
+ * @throws {TypeError} When `errorClass` is not a subclass of `Error` (a plain object, an instance, the
+ *   library's `Webhook` class), or when it is frozen, so its `instanceof` answer cannot be changed.
+ */
+export const registerWebhookErrorClass = (errorClass: abstract new (...args: never) => Error): void => {
+  const candidate: unknown = errorClass;
+  const prototype: unknown =
+    typeof candidate === 'function' ? (candidate as { readonly prototype?: unknown }).prototype : undefined;
+  // Error subclasses only: a function or class of any other kind (the library's `Webhook`, say) is a
+  // mistake whose `instanceof` answer would quietly start matching refusals.
+  if (
+    typeof prototype !== 'object' ||
+    prototype === null ||
+    !Object.prototype.isPrototypeOf.call(Error.prototype, prototype)
+  ) {
+    throw new TypeError(
+      `registerWebhookErrorClass expects an Error subclass, such as the WebhookVerificationError class from standardwebhooks; got ${describeValue(candidate)}`,
+    );
+  }
+  // This SDK's own class, or another SDK's: it matches refusals already, and wrapping it would make it
+  // match every other SDK's refusals too.
+  if (isBridgedRefusal(prototype)) return;
+  const libraryClass = candidate as object;
+  attemptedLibraryClasses.add(libraryClass);
+  if (Object.prototype.hasOwnProperty.call(libraryClass, BRIDGED_MARK)) return;
+  try {
+    patchLibraryHasInstance(libraryClass);
+  } catch (cause) {
+    // Unlike the automatic path, a caller asked for this, so a class that cannot be patched is reported.
+    throw new TypeError(
+      `registerWebhookErrorClass could not change how ${describeValue(candidate)} answers instanceof; is the class frozen?`,
+      { cause },
+    );
+  }
+};
+
+/** How a value passed to {@link registerWebhookErrorClass} is named in its error message. */
+const describeValue = (value: unknown): string => {
+  if (value === null || value === undefined) return String(value);
+  if (typeof value === 'function') return value.name ? `the function ${value.name}` : 'an anonymous function';
+  return typeof value === 'object' ? 'an object' : `a ${typeof value}`;
+};
+
+/**
  * Whether `error` is a refused webhook delivery: this SDK's {@link WebhookVerificationError} or a
  * subclass of it, from either build or any other copy of the SDK, or an `Error` named
  * `WebhookVerificationError`, as every copy of the `standardwebhooks` library's is.
  *
- * Use it where a handler catches both classes and `instanceof` against the library's cannot be relied
- * on. The SDK can only bridge a copy of the library it finds in a module cache it can reach, so a copy
- * bundled into the application, and every copy in a browser, an edge runtime or an ES module
- * application on Node before 20.16, on 21 or on 22 before 22.3, is not bridged. The SDK's own classes
+ * Use it where a handler catches both classes and nothing has called {@link registerWebhookErrorClass}:
+ * it needs no setup in any runtime. Without registration, the SDK bridges only a copy of the library it
+ * finds in a module cache it can reach, so a copy bundled into the application, and every copy in a
+ * browser, an edge runtime or a Jest test running as ES modules, is not bridged. The SDK's own classes
  * are matched by the brand their prototype carries, which a subclass inherits whatever it names
  * itself. The library's class is matched by its name, which its constructor sets on every instance and
  * which survives minification, since nothing the SDK can read tells one copy of it from another; any
@@ -450,9 +528,8 @@ const patchLibraryHasInstance = (libraryClass: object): void => {
  * does not match; an SDK refusal from one does, by its brand.
  *
  * A true answer narrows to the SDK's class or to an `Error` of that name, not to the SDK's class
- * alone: the library's error carries none of the members the SDK's base error may add (a status code,
- * a response body), so a handler has to narrow further with `instanceof` before reading them. The class
- * is nominal (see {@link WebhookVerificationError}), so a false answer leaves an `Error`-typed value an
+ * alone, since nothing guarantees the library's error has the SDK class's members. The class is
+ * nominal (see {@link WebhookVerificationError}), so a false answer leaves an `Error`-typed value an
  * `Error`.
  */
 export const isWebhookVerificationError = (

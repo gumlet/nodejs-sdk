@@ -1133,6 +1133,7 @@ Pagination uses `page_number` / `page_size` (max page size 200). Use `next_page_
 const videoWorkspace = await client.videoWorkspaces.list({
   page_number: 1,
   page_size: 20,
+  order_by: 'asc',
 });
 ```
 
