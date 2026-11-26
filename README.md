@@ -170,7 +170,29 @@ try {
 }
 ```
 
-The guard matches the SDK's class and its subclasses, and the `standardwebhooks` class of the same name from any copy of that library, in every runtime. A handler that still imports that class from `standardwebhooks` keeps matching the SDK's refusals with `instanceof` on Node and Bun when the application loads `standardwebhooks` from its own `node_modules`, and in a Jest test that loads it with Jest's default CommonJS modules. It does not match where the library is bundled into the application, or in a browser, an edge runtime, or an ES module application on a Node release without `process.getBuiltinModule` (before 20.16, any 21, or 22 before 22.3). Use the guard there, and in Jest tests that run as ES modules.
+The guard needs no setup: it matches the SDK's class and its subclasses, and the `standardwebhooks` class of the same name from any copy of that library, in every runtime. `WebhookVerificationError` extends `Error`, not the SDK's base error class, so a handler that catches the SDK's API errors does not also catch a forged or stale delivery.
+
+A handler that still imports `WebhookVerificationError` from `standardwebhooks` and checks `instanceof` against it matches the SDK's refusals as follows:
+
+| Where the handler runs | `instanceof` against the `standardwebhooks` class |
+| --- | --- |
+| Node or Bun, loading `standardwebhooks` from the application's `node_modules` (CommonJS or ES modules) | Matches on its own |
+| A Jest test with Jest's default CommonJS modules | Matches on its own |
+| An application bundled with webpack, esbuild or Vite | Needs `registerWebhookErrorClass` |
+| A browser | Needs `registerWebhookErrorClass` |
+| An edge runtime | Needs `registerWebhookErrorClass` |
+| A Jest test that runs as ES modules | Needs `registerWebhookErrorClass` |
+
+Register the class your application imports once, at startup, and `instanceof` matches everywhere:
+
+```ts
+import { WebhookVerificationError } from 'standardwebhooks';
+import { registerWebhookErrorClass } from '@gumlet/nodejs-sdk';
+
+registerWebhookErrorClass(WebhookVerificationError);
+```
+
+Registering is safe to repeat, and it only adds the SDK's refusals to what the class matches.
 
 The same resource also has:
 

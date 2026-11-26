@@ -5,7 +5,11 @@ export { Gumlet as default } from './client.js';
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './api-promise';
 export { signedUploadTransport } from './core/signed-upload';
-export { WebhookVerificationError, isWebhookVerificationError } from './internal/webhook-verify';
+export {
+  WebhookVerificationError,
+  isWebhookVerificationError,
+  registerWebhookErrorClass,
+} from './internal/webhook-verify';
 export { Gumlet, type ClientOptions, type AuthTokenProvider } from './client.js';
 export {
   GumletError,

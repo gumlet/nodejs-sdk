@@ -5,6 +5,13 @@ import { getRequiredHeader, type HeadersLike } from '../internal/headers';
 import { verifyWebhookSignature } from '../internal/webhook-verify';
 
 export class Webhooks extends APIResource {
+  /**
+   * Verifies that `body` was signed with the webhook key, then parses it into a typed event.
+   *
+   * A refused delivery throws `WebhookVerificationError`; `isWebhookVerificationError` recognises it with
+   * no setup. For `instanceof` against the `standardwebhooks` class of that name to match it in every
+   * runtime, pass that class to `registerWebhookErrorClass` once at startup.
+   */
   unwrap(body: string, { headers, key }: { headers: HeadersLike; key?: string }): ParsedWebhookEvent {
     const keyStr: string | null = key === undefined ? this._client.webhookSecret : key;
     if (keyStr === null) throw new Error('Webhook key must not be null in order to unwrap');
@@ -16,6 +23,10 @@ export class Webhooks extends APIResource {
    * Verifies that `body` was signed with the webhook key, throwing when it was not.
    *
    * `key` defaults to the client's `webhookSecret`. A missing signature header throws too.
+   *
+   * A refused delivery throws `WebhookVerificationError`; `isWebhookVerificationError` recognises it with
+   * no setup. For `instanceof` against the `standardwebhooks` class of that name to match it in every
+   * runtime, pass that class to `registerWebhookErrorClass` once at startup.
    */
   verifySignature(
     body: string,
