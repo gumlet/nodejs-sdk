@@ -7458,12 +7458,14 @@
       "queryParams": [
         "page_number",
         "page_size",
-        "next_page_token"
+        "next_page_token",
+        "order_by"
       ],
       "publicQueryParams": [
         "page_number",
         "page_size",
-        "next_page_token"
+        "next_page_token",
+        "order_by"
       ],
       "headerParams": [],
       "publicHeaderParams": [],
@@ -7491,6 +7493,13 @@
           "required": false,
           "style": "form",
           "explode": true
+        },
+        {
+          "name": "order_by",
+          "required": false,
+          "style": "form",
+          "explode": true,
+          "defaultValue": "asc"
         }
       ],
       "headerParamDetails": [],
