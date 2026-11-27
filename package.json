@@ -1,13 +1,7 @@
 {
   "name": "@gumlet/nodejs-sdk",
-  "version": "1.9.3",
+  "version": "1.10.0",
   "description": "Gumlet helps developers deliver online video and images. This API encompasses Gumlet Video, Image and Video Analytics functionality to help you build your products better and faster than ever before.",
-  "keywords": [
-    "gumlet",
-    "api",
-    "video",
-    "image"
-  ],
   "author": "Gumlet <support@gumlet.com>",
   "repository": {
     "type": "git",
@@ -16,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/gumlet/nodejs-sdk/issues"
   },
-  "homepage": "https://docs.gumlet.com/reference",
+  "homepage": "https://github.com/gumlet/nodejs-sdk",
   "type": "module",
   "sideEffects": false,
   "main": "./dist/cjs/index.js",
@@ -76,6 +70,12 @@
       }
     },
     "./package.json": "./package.json"
+  },
+  "imports": {
+    "#internal/node-require": {
+      "node": "./dist/esm/internal/node-require.node.js",
+      "default": "./dist/esm/internal/node-require.js"
+    }
   },
   "files": [
     "dist",

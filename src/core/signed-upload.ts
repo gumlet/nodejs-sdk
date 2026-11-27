@@ -205,10 +205,11 @@ export type SignedUploadConfirmDefaults = {
  * negotiation the confirm endpoint's own method would use.
  *
  * Everything else rides along, whatever the options type holds: the abort signal, deadlines, retry
- * settings, the caller's headers and fetch options, and any base-URL override. A confirm sent to a
- * different server than the one that issued the upload, or without the call's deadline, would act on
- * the wrong resource or hang. Replaying the idempotency key would have an idempotency-aware API answer
- * the confirm with the initiating response, or reject the key as reused.
+ * settings, the caller's headers and fetch options, and any base-URL override. A caller's base-URL
+ * override routes the confirm just as it routes the initiating request (the confirm operation's own
+ * server, when it declares one, is only the default the generated call passes ahead of these), and a
+ * confirm sent without the call's deadline could hang. Replaying the idempotency key would have an
+ * idempotency-aware API answer the confirm with the initiating response, or reject the key as reused.
  */
 export const signedUploadConfirmOptions = (
   options: RequestOptions | undefined,

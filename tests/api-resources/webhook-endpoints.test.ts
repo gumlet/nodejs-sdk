@@ -7,6 +7,14 @@ import { client, smokeCase } from '../smoke-support';
 
 describe.concurrent('resource webhookEndpoints', () => {
   smokeCase(
+    'webhookEndpoints.retrieve:single',
+    { operation: 'retrieve', path: '/org/webhooks/{webhook_id}' },
+    'retrieve',
+    async () => {
+      const webhookEndpoint = await client.webhookEndpoints.retrieve('webhookId');
+    },
+  );
+  smokeCase(
     'webhookEndpoints.create:single',
     { operation: 'create', path: '/org/webhooks' },
     'create',

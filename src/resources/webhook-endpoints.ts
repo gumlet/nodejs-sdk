@@ -7,6 +7,22 @@ import { path as __scalarPath } from '../internal/utils/path';
 
 export class WebhookEndpoints extends APIResource {
   /**
+   * Retrieve details of a single webhook by ID.
+   *
+   * @param {string} webhookID - Webhook ID. You can get it using the list webhooks endpoint.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<WebhookEndpointRetrieveResponse>} Successful response
+   *
+   * @example
+   * ```ts
+   * const webhookEndpoint = await client.webhookEndpoints.retrieve('webhookId');
+   * ```
+   */
+  retrieve(webhookID: string, options?: RequestOptions): APIPromise<WebhookEndpointRetrieveResponse> {
+    return this._client.get(__scalarPath`/org/webhooks/${webhookID}`, options);
+  }
+
+  /**
    * Creates a new webhook listener. Gumlet POSTs JSON to `url` for each matching event and sends `secret_token` in the `x-gumlet-token` header. Payload schemas are documented in the webhooks section.
    *
    * @param {WebhookEndpointCreateParams} body - The request body to send.
@@ -83,7 +99,7 @@ export class WebhookEndpoints extends APIResource {
   }
 
   /**
-   * Get logs history for a given webhook.
+   * Get delivery history logs for a given webhook.
    *
    * Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
    *
@@ -107,6 +123,66 @@ export class WebhookEndpoints extends APIResource {
   ): APIPromise<WebhookEndpointHistoryResponse> {
     return this._client.get(__scalarPath`/org/webhook/${webhookID}/history`, { query, ...options });
   }
+}
+
+export interface WebhookEndpointRetrieveResponse {
+  /**
+   * Webhook ID
+   */
+  id: string;
+  /**
+   * Webhook URL
+   */
+  url?: string | null;
+  /**
+   * Events that invoke this webhook. `status` subscribes to every video asset status event. `live-video-status` subscribes to every live video status event. Any other value subscribes to that event only.
+   */
+  triggers?: Array<
+    | 'video.status.created'
+    | 'video.status.downloaded'
+    | 'video.status.optimized'
+    | 'video.status.ready'
+    | 'video.status.errored'
+    | 'video.status.deleted'
+    | 'video.status.repackaged'
+    | 'video.status.stream_ready'
+    | 'live.video.status.created'
+    | 'live.video.status.ready'
+    | 'live.video.status.preparing'
+    | 'live.video.status.connected'
+    | 'live.video.status.active'
+    | 'live.video.status.complete'
+    | 'live.video.status.disconnected'
+    | 'event.embed.viewed'
+    | 'event.embed.cta_clicked'
+    | 'event.video.updated'
+    | 'event.video.uploaded'
+    | 'event.playlist.created'
+    | 'event.playlist.asset'
+    | 'event.playlist.deleted'
+    | 'event.video.analytics'
+    | 'event.image.analytics'
+    | 'event.embed.form_submitted'
+    | 'event.comment.all'
+    | 'event.channel.member_joined'
+  >;
+  /**
+   * Creation timestamp in ISO 8601 format
+   */
+  created_at?: string;
+  /**
+   * Update timestamp in ISO 8601 format
+   */
+  updated_at?: string;
+  /**
+   * List of workspace IDs for which the webhook is enabled.
+   */
+  sources?: Array<string>;
+  /**
+   * Secret you supplied when creating the webhook. Gumlet sends this value in the `x-gumlet-token` header of each webhook POST.
+   */
+  secret_token?: string;
+  live_sources?: Array<string>;
 }
 
 export interface WebhookEndpointCreateParams {
@@ -332,11 +408,31 @@ export interface WebhookEndpointHistoryParams {
   next_page_token?: string;
 }
 
-export type WebhookEndpointHistoryResponse =
-  Array<WebhookEndpointHistoryResponse.WebhookEndpointHistoryResponseItem>;
+export interface WebhookEndpointHistoryResponse {
+  /**
+   * Webhook trigger history events for this page.
+   */
+  history: Array<WebhookEndpointHistoryResponse.History>;
+  /**
+   * Total number of history events.
+   */
+  total_count: number;
+  /**
+   * Offset after this page of results.
+   */
+  current_offset?: number;
+  /**
+   * Cursor for the next page when more results exist. Empty string when there is no next page.
+   */
+  next_page_token?: string;
+  /**
+   * Page size used for this response when it differs from the default.
+   */
+  page_size?: number;
+}
 
 export namespace WebhookEndpointHistoryResponse {
-  export interface WebhookEndpointHistoryResponseItem {
+  export interface History {
     /**
      * Webhook event ID
      */
@@ -344,13 +440,13 @@ export namespace WebhookEndpointHistoryResponse {
     /**
      * Delivery status stored for the event: `success`, `retrying`, or `failed`. `success` means the endpoint returned a 2xx response. `retrying` means that attempt did not.
      */
-    status: string;
+    status: 'success' | 'retrying' | 'failed';
     /**
-     * Number of retries it needed to deliver webhook.
+     * Number of retries needed to deliver the webhook.
      */
     retry_count: number;
     /**
-     * Webhook event name. One of the video status, live video status, or product events.
+     * Webhook event name.
      */
     event:
       | 'video.status.created'
@@ -381,17 +477,18 @@ export namespace WebhookEndpointHistoryResponse {
       | 'event.comment.all'
       | 'event.channel.member_joined';
     /**
-     * Asset ID for which the event was fired
+     * Asset ID for which the event was fired.
      */
     asset_id: string;
     /**
-     * Event timestamp in ISO 8601 format
+     * Event timestamp in ISO 8601 format.
      */
     created_at: string;
   }
 }
 export declare namespace WebhookEndpoints {
   export {
+    type WebhookEndpointRetrieveResponse as WebhookEndpointRetrieveResponse,
     type WebhookEndpointCreateResponse as WebhookEndpointCreateResponse,
     type WebhookEndpointListResponse as WebhookEndpointListResponse,
     type WebhookEndpointUpdateResponse as WebhookEndpointUpdateResponse,

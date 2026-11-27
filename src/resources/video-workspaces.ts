@@ -20,6 +20,7 @@ export class VideoWorkspaces extends APIResource {
    * const videoWorkspace = await client.videoWorkspaces.list({
    *   page_number: 1,
    *   page_size: 20,
+   *   order_by: 'asc',
    * });
    * ```
    */
@@ -121,6 +122,10 @@ export interface VideoWorkspaceListParams {
    * @pattern ^[a-fA-F0-9]{24}$
    */
   next_page_token?: string;
+  /**
+   * Sort direction for the workspace list (`asc` or `desc`). **Default: `asc`**.
+   */
+  order_by?: 'asc' | 'desc';
 }
 
 export interface VideoWorkspaceListResponse {

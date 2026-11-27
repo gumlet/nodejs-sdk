@@ -94,6 +94,7 @@ export type {
   VideoPlaylistListAssetsResponse,
   VideoPlaylistReorderAssetParams,
   VideoPlaylistReorderAssetResponse,
+  WebhookEndpointRetrieveResponse,
   WebhookEndpointCreateParams,
   WebhookEndpointCreateResponse,
   WebhookEndpointListResponse,

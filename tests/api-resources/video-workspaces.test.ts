@@ -14,6 +14,7 @@ describe.concurrent('resource videoWorkspaces', () => {
       const videoWorkspace = await client.videoWorkspaces.list({
         page_number: 1,
         page_size: 20,
+        order_by: 'asc',
       });
     },
   );
@@ -26,6 +27,7 @@ describe.concurrent('resource videoWorkspaces', () => {
         page_number: 1,
         page_size: 20,
         next_page_token: 'nextPageToken',
+        order_by: 'asc',
       });
     },
   );

@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.10.0](https://github.com/gumlet/nodejs-sdk/compare/v1.9.3...v1.10.0) (2026-11-27)
+
+
+### Features
+
+* **api:** add operation webhookEndpoints.retrieve ([58be5f7](https://github.com/gumlet/nodejs-sdk/commit/58be5f77d1879d91321535044971a7f001424be0))
+* **api:** add query param order_by on imageSources.list ([d6d4fe7](https://github.com/gumlet/nodejs-sdk/commit/d6d4fe7b00ac0e0fed503fd18b519ece45afc2ea))
+* **api:** update SDK surface (2 changes) ([e65bef5](https://github.com/gumlet/nodejs-sdk/commit/e65bef560ad0ca800e5c20ee3718e6705f9dc484))
+
+
+### Chores
+
+* **api:** update generated SDK content ([3ee3ff4](https://github.com/gumlet/nodejs-sdk/commit/3ee3ff4c18655b57b74c03196bc56a9bb7dc2242))
+* **api:** update generated SDK content ([293c980](https://github.com/gumlet/nodejs-sdk/commit/293c9804b3c653c09ac097ea6f31dd3b9cf06052))
+
 ## [1.9.3](https://github.com/gumlet/nodejs-sdk/compare/v1.9.2...v1.9.3) (2026-11-24)
 
 
