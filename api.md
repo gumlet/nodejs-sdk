@@ -50,6 +50,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Get playlist assets](#get-playlist-assets)
   - [Arrange Videos In Playlist](#arrange-videos-in-playlist)
 - [`WebhookEndpoints`](#webhookendpoints)
+  - [Get Webhook](#get-webhook)
   - [Create Webhook](#create-webhook)
   - [List Webhooks](#list-webhooks)
   - [Update Webhook](#update-webhook)
@@ -752,6 +753,18 @@ const videoPlaylist = await client.videoPlaylists.reorderAsset('playlistId', {
 ## `WebhookEndpoints`
 
 Create webhook listeners and receive video status, live video status, and product events. Gumlet POSTs JSON to your URL with the `x-gumlet-token` header.
+
+### Get Webhook
+
+Retrieve details of a single webhook by ID.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`WebhookEndpointRetrieveResponse`](./src/resources/webhook-endpoints.ts) |
+
+```ts
+const webhookEndpoint = await client.webhookEndpoints.retrieve('webhookId');
+```
 
 ### Create Webhook
 

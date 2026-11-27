@@ -118,6 +118,7 @@ import {
 } from './resources/video-playlists';
 import {
   WebhookEndpoints,
+  type WebhookEndpointRetrieveResponse,
   type WebhookEndpointCreateResponse,
   type WebhookEndpointListResponse,
   type WebhookEndpointUpdateResponse,
@@ -1458,6 +1459,7 @@ export declare namespace Gumlet {
 
   export {
     WebhookEndpoints as WebhookEndpoints,
+    type WebhookEndpointRetrieveResponse as WebhookEndpointRetrieveResponse,
     type WebhookEndpointCreateResponse as WebhookEndpointCreateResponse,
     type WebhookEndpointListResponse as WebhookEndpointListResponse,
     type WebhookEndpointUpdateResponse as WebhookEndpointUpdateResponse,

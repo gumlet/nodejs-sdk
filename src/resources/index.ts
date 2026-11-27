@@ -90,6 +90,7 @@ export type {
 } from './video-playlists';
 export { WebhookEndpoints } from './webhook-endpoints';
 export type {
+  WebhookEndpointRetrieveResponse,
   WebhookEndpointCreateParams,
   WebhookEndpointCreateResponse,
   WebhookEndpointListResponse,

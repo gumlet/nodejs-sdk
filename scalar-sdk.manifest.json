@@ -6681,6 +6681,100 @@
     {
       "resource": "webhookEndpoints",
       "publicResource": "webhookEndpoints",
+      "operation": "retrieve",
+      "publicOperation": "retrieve",
+      "deprecated": false,
+      "method": "GET",
+      "path": "/org/webhooks/{webhook_id}",
+      "pathParams": [
+        "webhook_id"
+      ],
+      "publicPathParams": [
+        "webhook_id"
+      ],
+      "queryParams": [],
+      "publicQueryParams": [],
+      "headerParams": [],
+      "publicHeaderParams": [],
+      "bodyParams": [],
+      "publicBodyParams": [],
+      "bodyParamDetails": [],
+      "pathParamDetails": [
+        {
+          "name": "webhook_id",
+          "required": true,
+          "style": "simple",
+          "explode": false
+        }
+      ],
+      "queryParamDetails": [],
+      "headerParamDetails": [],
+      "cookieParams": [],
+      "publicCookieParams": [],
+      "cookieParamDetails": [],
+      "paramsModel": {
+        "publicName": "WebhookEndpointRetrieveParams"
+      },
+      "response": {
+        "status": "200",
+        "contentType": "application/json",
+        "encoding": "json",
+        "contents": [
+          {
+            "contentType": "application/json",
+            "encoding": "json"
+          }
+        ]
+      },
+      "result": {
+        "successStatus": "200",
+        "errorStatuses": [
+          "401",
+          "403",
+          "404"
+        ]
+      },
+      "errorResponses": [
+        {
+          "status": "401",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "403",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        },
+        {
+          "status": "404",
+          "contentType": "application/json",
+          "encoding": "json",
+          "contents": [
+            {
+              "contentType": "application/json",
+              "encoding": "json"
+            }
+          ]
+        }
+      ],
+      "responseLinks": [],
+      "transport": "http"
+    },
+    {
+      "resource": "webhookEndpoints",
+      "publicResource": "webhookEndpoints",
       "operation": "create",
       "publicOperation": "create",
       "deprecated": false,
