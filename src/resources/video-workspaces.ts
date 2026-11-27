@@ -177,7 +177,7 @@ export namespace VideoWorkspaceListResponse {
      */
     on_streaming_halt?: boolean;
     /**
-     * Data storage region
+     * Data storage region (Only available in enterprise plan)
      * @default us
      */
     data_localization?: 'us' | 'in' | 'eu';
@@ -423,7 +423,7 @@ export interface VideoWorkspaceCreateParams {
    */
   zoom?: VideoWorkspaceCreateParams.Zoom;
   /**
-   * Data localization region
+   * Data storage region (Only available in enterprise plan)
    * @default us
    */
   data_localization?: 'us' | 'in' | 'eu';
@@ -1201,7 +1201,7 @@ export interface VideoWorkspaceRetrieveResponse {
   on_streaming_halt?: boolean;
   storage_event_listener?: Array<VideoWorkspaceRetrieveResponse.StorageEventListener>;
   /**
-   * Data storage region
+   * Data storage region (Only available in enterprise plan)
    * @default us
    */
   data_localization?: 'us' | 'in' | 'eu';
