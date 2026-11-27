@@ -83,7 +83,7 @@ export class WebhookEndpoints extends APIResource {
   }
 
   /**
-   * Get logs history for a given webhook.
+   * Get delivery history logs for a given webhook.
    *
    * Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
    *
@@ -332,11 +332,31 @@ export interface WebhookEndpointHistoryParams {
   next_page_token?: string;
 }
 
-export type WebhookEndpointHistoryResponse =
-  Array<WebhookEndpointHistoryResponse.WebhookEndpointHistoryResponseItem>;
+export interface WebhookEndpointHistoryResponse {
+  /**
+   * Webhook trigger history events for this page.
+   */
+  history: Array<WebhookEndpointHistoryResponse.History>;
+  /**
+   * Total number of history events.
+   */
+  total_count: number;
+  /**
+   * Offset after this page of results.
+   */
+  current_offset?: number;
+  /**
+   * Cursor for the next page when more results exist. Empty string when there is no next page.
+   */
+  next_page_token?: string;
+  /**
+   * Page size used for this response when it differs from the default.
+   */
+  page_size?: number;
+}
 
 export namespace WebhookEndpointHistoryResponse {
-  export interface WebhookEndpointHistoryResponseItem {
+  export interface History {
     /**
      * Webhook event ID
      */
@@ -344,13 +364,13 @@ export namespace WebhookEndpointHistoryResponse {
     /**
      * Delivery status stored for the event: `success`, `retrying`, or `failed`. `success` means the endpoint returned a 2xx response. `retrying` means that attempt did not.
      */
-    status: string;
+    status: 'success' | 'retrying' | 'failed';
     /**
-     * Number of retries it needed to deliver webhook.
+     * Number of retries needed to deliver the webhook.
      */
     retry_count: number;
     /**
-     * Webhook event name. One of the video status, live video status, or product events.
+     * Webhook event name.
      */
     event:
       | 'video.status.created'
@@ -381,11 +401,11 @@ export namespace WebhookEndpointHistoryResponse {
       | 'event.comment.all'
       | 'event.channel.member_joined';
     /**
-     * Asset ID for which the event was fired
+     * Asset ID for which the event was fired.
      */
     asset_id: string;
     /**
-     * Event timestamp in ISO 8601 format
+     * Event timestamp in ISO 8601 format.
      */
     created_at: string;
   }

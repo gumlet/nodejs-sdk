@@ -54,7 +54,7 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [List Webhooks](#list-webhooks)
   - [Update Webhook](#update-webhook)
   - [Delete Webhook](#delete-webhook)
-  - [Get History](#get-history)
+  - [Get Webhook History](#get-webhook-history)
 - [`ImageSources`](#imagesources)
   - [Create Source](#create-source)
   - [List Sources](#list-sources)
@@ -808,9 +808,9 @@ Delete webhook listener endpoint.
 const webhookEndpoint = await client.webhookEndpoints.delete('webhookId');
 ```
 
-### Get History
+### Get Webhook History
 
-Get logs history for a given webhook.
+Get delivery history logs for a given webhook.
 
 Pagination uses `page_number` / `page_size`. Use `next_page_token` for cursor-based pagination.
 
